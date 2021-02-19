@@ -1,10 +1,10 @@
-package com.model.member;
+package com.member.model;
 
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Arrays;
 
-public class memberBean {
+public class MemberBean {
     private String member_account;
     private String member_password;
     private String member_name;
@@ -121,4 +121,5 @@ public class memberBean {
     public void setMember_status(Integer member_status) {
         this.member_status = member_status;
     }
+
 }

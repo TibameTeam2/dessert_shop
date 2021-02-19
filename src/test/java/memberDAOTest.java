@@ -1,4 +1,4 @@
-import com.model.member.memberBean;
+import com.member.model.MemberBean;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -6,7 +6,6 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import java.sql.Date;
 import java.util.List;
 
 public class memberDAOTest {
@@ -22,6 +21,10 @@ public class memberDAOTest {
         ApplicationContext app = new ClassPathXmlApplicationContext("applicationContext.xml");
         // 取得JDBC模板物件
         jdbcTemplate = (JdbcTemplate) app.getBean("jdbcTemplate");
+
+
+
+
     }
 
     /**
@@ -41,8 +44,8 @@ public class memberDAOTest {
     @Test
     public void test2(){
         String sql = "select * from member";
-        List<memberBean> list = jdbcTemplate.query(sql, new BeanPropertyRowMapper<memberBean>(memberBean.class));
-        for (memberBean member : list) {
+        List<MemberBean> list = jdbcTemplate.query(sql, new BeanPropertyRowMapper<MemberBean>(MemberBean.class));
+        for (MemberBean member : list) {
             System.out.println(member);
         }
     }
@@ -78,9 +81,6 @@ public class memberDAOTest {
                 "values(?,?,?,?,?,?,?,?,?)";
         int count = jdbcTemplate.update(sql, "andy", "123", "ANDY","0938439241","andy@gmail.com",0,"1994-09-24",0,0);
         System.out.println(count);
-
     }
-
-
 }
 
