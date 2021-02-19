@@ -1,0 +1,25 @@
+CREATE DATABASE IF NOT EXISTS sweet;
+use sweet;
+
+DROP TABLE IF EXISTS member;
+
+-- 以下設定: 自增主鍵的起點值，也就是初始值，取值範圍是1 .. 655355 --
+set auto_increment_offset=1;
+-- 以下設定: 自增主鍵每次遞增的量，其預設值是1，取值範圍是1 .. 65535 --
+-- set auto_increment_increment=1;
+CREATE TABLE member (
+	member_account    VARCHAR(50) NOT NULL  PRIMARY KEY,
+	member_password	  VARCHAR(50),
+	member_name		  VARCHAR(50) NOT NULL,
+	member_phone	  VARCHAR(50) NOT NULL,
+	member_email	  VARCHAR(50) NOT NULL,
+	member_photo	  BLOB,
+	member_gender	  TINYINT NOT NULL,
+	member_birthday	  DATE NOT NULL,
+	regist_time	      TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	regist_method	  TINYINT NOT NULL,
+	member_status	  TINYINT NOT NULL
+); -- AUTO_INCREMENT = 1;
+
+INSERT INTO member (member_account,member_password,member_name,member_phone,member_email,member_photo,member_gender,member_birthday,regist_method,member_status)
+VALUES ('tom','123','TOM','0912328743','tom@gmail.com',null,1,'2021-02-19',1,0);
