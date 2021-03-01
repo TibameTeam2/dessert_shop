@@ -375,7 +375,7 @@ CREATE TABLE order_master (
 	order_master_id      int not null auto_increment PRIMARY KEY,
 	member_account	     varchar(50) not null,
 	order_time		     timestamp default current_timestamp,
-	payment_time         timestamp not null,
+	payment_time         timestamp,
     payment_method       tinyint not null,
     coupon_id			 int,
     order_status		 tinyint not null,
