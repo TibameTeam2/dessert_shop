@@ -13,13 +13,13 @@ public class MemberBean {
     private byte[] member_photo;
     private Integer member_gender;
     private Date member_birthday;
-    private Timestamp regist_time;
-    private Integer regist_method;
+    private Timestamp register_time;
+    private Integer register_method;
     private Integer member_status;
 
     @Override
     public String toString() {
-        return "memberBean{" +
+        return "MemberBean{" +
                 "member_account='" + member_account + '\'' +
                 ", member_password='" + member_password + '\'' +
                 ", member_name='" + member_name + '\'' +
@@ -28,8 +28,8 @@ public class MemberBean {
                 ", member_photo=" + Arrays.toString(member_photo) +
                 ", member_gender=" + member_gender +
                 ", member_birthday=" + member_birthday +
-                ", regist_time=" + regist_time +
-                ", regist_method=" + regist_method +
+                ", register_time=" + register_time +
+                ", register_method=" + register_method +
                 ", member_status=" + member_status +
                 '}';
     }
@@ -98,20 +98,20 @@ public class MemberBean {
         this.member_birthday = member_birthday;
     }
 
-    public Timestamp getRegist_time() {
-        return regist_time;
+    public Timestamp getRegister_time() {
+        return register_time;
     }
 
-    public void setRegist_time(Timestamp regist_time) {
-        this.regist_time = regist_time;
+    public void setRegister_time(Timestamp register_time) {
+        this.register_time = register_time;
     }
 
-    public Integer getRegist_method() {
-        return regist_method;
+    public Integer getRegister_method() {
+        return register_method;
     }
 
-    public void setRegist_method(Integer regist_method) {
-        this.regist_method = regist_method;
+    public void setRegister_method(Integer register_method) {
+        this.register_method = register_method;
     }
 
     public Integer getMember_status() {
@@ -121,5 +121,4 @@ public class MemberBean {
     public void setMember_status(Integer member_status) {
         this.member_status = member_status;
     }
-
 }

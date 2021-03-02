@@ -1,6 +1,6 @@
 package com.authority_content.model;
 
-public class Authority_ContentBean {
+public class AuthorityContentBean {
 
     private Integer authority_content_id;
     private String authority_content;

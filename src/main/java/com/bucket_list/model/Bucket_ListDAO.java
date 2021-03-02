@@ -1,4 +1,4 @@
-package com.authority_content.model;
+package com.bucket_list.model;
 
 
 import com.util.JDBCUtil;
@@ -10,8 +10,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
-public class Authority_ContentDAO {
+public class Bucket_ListDAO {
 
     private static JdbcTemplate jdbcTemplate;
     private String driver = JDBCUtil.driver;
@@ -36,7 +35,8 @@ public class Authority_ContentDAO {
     }
 
 
-    public void insert(Authority_ContentBean ath_Content_Insert) {
+    public void insert(Bucket_ListBean Bck_List_Insert) {
+
         Connection con = null;
         PreparedStatement pstmt = null;
 
@@ -44,13 +44,13 @@ public class Authority_ContentDAO {
 
             Class.forName(driver);
             con = DriverManager.getConnection(url, userid, passwd);
-            pstmt = con.prepareStatement("INSERT INTO sweet.authority_content (authority_content_id,authority_content)\n" +
-                    "VALUES (?,?)");
+            pstmt = con.prepareStatement("INSERT INTO bucket_list (member_account,product_id,bucket_list_status)\n" +
+                    "VALUES (?,?,?)");
 
-            pstmt.setInt(1, ath_Content_Insert.getAuthority_content_id());
-            pstmt.setString(2, ath_Content_Insert.getAuthority_content());
+            pstmt.setString(1, Bck_List_Insert.getMember_account());
+            pstmt.setInt(2, Bck_List_Insert.getProduct_id());
+            pstmt.setInt(3, Bck_List_Insert.getBucket_list_status());
 
-//            pstmt.setInt(7, EmployeeBean.getEmployee_status());
 
             int count;
             count=pstmt.executeUpdate();
@@ -85,7 +85,7 @@ public class Authority_ContentDAO {
 
 
 
-    public void update(Authority_ContentBean ath_ContentInsert_Update) {
+    public void update(Bucket_ListBean Bck_List_Update) {
 
         Connection con = null;
         PreparedStatement pstmt = null;
@@ -94,12 +94,13 @@ public class Authority_ContentDAO {
 
             Class.forName(driver);
             con = DriverManager.getConnection(url, userid, passwd);
-            pstmt = con.prepareStatement("UPDATE sweet.authority_content set " +
-                    "authority_content_id=?, authority_content=? where authority_content = ?");
+            pstmt = con.prepareStatement("UPDATE sweet.bucket_list set " +
+                    " bucket_list_status = ? where member_account = ? and product_id = ?");
 
-            pstmt.setInt(1, ath_ContentInsert_Update.getAuthority_content_id());
-            pstmt.setString(2, ath_ContentInsert_Update.getAuthority_content());
 
+            pstmt.setInt(1, Bck_List_Update.getBucket_list_status());
+            pstmt.setString(2, Bck_List_Update.getMember_account());
+            pstmt.setInt(3, Bck_List_Update.getProduct_id());
 
             pstmt.executeUpdate();
 
@@ -132,7 +133,7 @@ public class Authority_ContentDAO {
     }
 
 
-    public void delete(String authority_content) {
+    public void delete(String member_account,Integer product_id) {
 
         Connection con = null;
         PreparedStatement pstmt = null;
@@ -141,9 +142,10 @@ public class Authority_ContentDAO {
 
             Class.forName(driver);
             con = DriverManager.getConnection(url, userid, passwd);
-            pstmt = con.prepareStatement("DELETE FROM authority_content where authority_content=?");
+            pstmt = con.prepareStatement("Delete from sweet.bucket_list where member_account = ? and product_id = ?");
 
-            pstmt.setString(1, authority_content);
+            pstmt.setString(1, member_account);
+            pstmt.setInt(2, product_id);
 
             pstmt.executeUpdate();
 
@@ -176,9 +178,9 @@ public class Authority_ContentDAO {
     }
 
 
-    public Authority_ContentBean findByPrimaryKey(String authority_content) {
+    public Bucket_ListBean findByPrimaryKey(String member_account,Integer product_id) {
 
-        Authority_ContentBean Empone = null;
+        Bucket_ListBean Bck_List_Select_One = null;
         Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -187,18 +189,20 @@ public class Authority_ContentDAO {
 
             Class.forName(driver);
             con = DriverManager.getConnection(url, userid, passwd);
-            pstmt = con.prepareStatement("SELECT * FROM sweet.authority_content where authority_content=?");
+            pstmt = con.prepareStatement("SELECT * FROM sweet.bucket_list where member_account = ? and product_id = ?");
 
-            pstmt.setString(1, authority_content);
+            pstmt.setString(1, member_account);
+            pstmt.setInt(2, product_id);
 
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
-                // Empone 也稱為 Domain objects
-                Empone = new Authority_ContentBean();
-                Empone.setAuthority_content_id(rs.getInt("authority_id"));
-                Empone.setAuthority_content(rs.getString("employee_account"));
-
+                // EmpgetAll 也稱為 Domain objects
+                Bck_List_Select_One = new Bucket_ListBean();
+                Bck_List_Select_One.setBucket_list_id(rs.getInt("bucket_list_id"));
+                Bck_List_Select_One.setMember_account(rs.getString("member_account"));
+                Bck_List_Select_One.setProduct_id(rs.getInt("product_id"));
+                Bck_List_Select_One.setBucket_list_status(rs.getInt("bucket_list_status"));
             }
 
             // Handle any driver errors
@@ -233,13 +237,13 @@ public class Authority_ContentDAO {
                 }
             }
         }
-        return Empone;
+        return Bck_List_Select_One;
     }
     //
 //
-    public List<Authority_ContentBean> selectAll() {
-        List<Authority_ContentBean> list = new ArrayList<Authority_ContentBean>();
-        Authority_ContentBean EmpgetAll = null;
+    public List<Bucket_ListBean> selectAll() {
+        List<Bucket_ListBean> list = new ArrayList<Bucket_ListBean>();
+        Bucket_ListBean Bck_List_All = null;
 
         Connection con = null;
         PreparedStatement pstmt = null;
@@ -249,15 +253,17 @@ public class Authority_ContentDAO {
 
             Class.forName(driver);
             con = DriverManager.getConnection(url, userid, passwd);
-            pstmt = con.prepareStatement("SELECT * FROM sweet.authority_content");
+            pstmt = con.prepareStatement("SELECT * FROM sweet.bucket_list");
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
-                // EmpgetAll 也稱為 Domain objects
-                EmpgetAll = new Authority_ContentBean();
-                EmpgetAll.setAuthority_content_id(rs.getInt("authority_content_id"));
-                EmpgetAll.setAuthority_content(rs.getString("authority_content"));
-                list.add(EmpgetAll); // Store the row in the list
+                // Bck_List_All 也稱為 Domain objects
+                Bck_List_All = new Bucket_ListBean();
+                Bck_List_All.setBucket_list_id(rs.getInt("bucket_list_id"));
+                Bck_List_All.setMember_account(rs.getString("member_account"));
+                Bck_List_All.setProduct_id(rs.getInt("product_id"));
+                Bck_List_All.setBucket_list_status(rs.getInt("bucket_list_status"));
+                list.add(Bck_List_All); // Store the row in the list
 
             }
 
@@ -298,39 +304,41 @@ public class Authority_ContentDAO {
 
     public static void main(String[] args) {
 
-        Authority_ContentDAO dao = new Authority_ContentDAO();
+        Bucket_ListDAO dao = new Bucket_ListDAO();
 
-
-/*
+//        init();
+        /*
 //        // 新增
-        Authority_ContentBean ath_Content_Insert = new Authority_ContentBean();
-        ath_Content_Insert.setAuthority_content_id(3);
-        ath_Content_Insert.setAuthority_content("管理權限");
-//        EmployeeBeanInsert.setEmployee_status(1);
-        dao.insert(ath_Content_Insert);
+        Bucket_ListBean Bck_List_Insert = new Bucket_ListBean();
+        Bck_List_Insert.setBucket_list_status(1);
+        Bck_List_Insert.setMember_account("amy");
+        Bck_List_Insert.setProduct_id(2);
 
+        dao.insert(Bck_List_Insert);
+//
 //        // 修改
-        Authority_ContentBean ath_ContentInsert_Update = new Authority_ContentBean();
-        ath_ContentInsert_Update.setAuthority_content_id(3);
-        ath_ContentInsert_Update.setAuthority_content("管理權限2");
+        Bucket_ListBean Bck_List_Update = new Bucket_ListBean();
 
-        dao.update(ath_ContentInsert_Update);
+        Bck_List_Update.setBucket_list_status(0);
+        Bck_List_Update.setMember_account("jason");
+        Bck_List_Update.setProduct_id(2);
 
-
+        dao.update(Bck_List_Update);
 
 //
-        // 刪除
-        dao.delete("張貼公告");
-
+//        // 刪除
+        dao.delete("amy",3);
+//
 //        // 查詢
-        Authority_ContentBean ath_Content_one = dao.findByPrimaryKey("張貼公告");
-        System.out.println(ath_Content_one);*/
+        Bucket_ListBean Bck_List_Select_One = dao.findByPrimaryKey("jason",2);
+        System.out.println(Bck_List_Select_One);
 
-
+        */
         // 查詢
-        List<Authority_ContentBean> list = dao.selectAll();
-        for (Authority_ContentBean aEmp : list) {
+        List<Bucket_ListBean> list = dao.selectAll();
+        for (Bucket_ListBean aEmp : list) {
             System.out.println(aEmp);
+
         }
 
     }

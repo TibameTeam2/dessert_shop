@@ -1,6 +1,8 @@
-import com.card_detail.model.CardDetailBean;
-import org.junit.Before;
-import org.junit.Test;
+package com.card_detail.model;
+
+import com.employee.model.EmployeeBean;
+import com.employee.model.EmployeeDAO;
+import com.util.JDBCUtil;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -9,35 +11,33 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class card_detailDAOTest {
-    private JdbcTemplate jdbcTemplate;
-    String driver;
-    String url;
-    String userid;
-    String passwd;
+public class CardDetailDAO {
+
+    private static JdbcTemplate jdbcTemplate;
+    private String driver = JDBCUtil.driver;
+    private String url = JDBCUtil.url;
+    private String userid = JDBCUtil.user;
+    private String passwd = JDBCUtil.password;
 
     /**
      * 初始化
      */
-    @Before
     public void init() {
         // 得到Spring配置文件
         ApplicationContext app = new ClassPathXmlApplicationContext("applicationContext.xml");
         // 取得JDBC模板物件
         jdbcTemplate = (JdbcTemplate) app.getBean("jdbcTemplate");
 
-
-        driver = "com.mysql.cj.jdbc.Driver";
-        url = "jdbc:mysql://localhost:3306/sweet?serverTimezone=Asia/Taipei";
-        userid = "root";
-        passwd = "root";
+//        driver = "com.mysql.cj.jdbc.Driver";
+//        url = "jdbc:mysql://localhost:3306/sweet?serverTimezone=Asia/Taipei";
+//        userid = "root";
+//        passwd = "root";
     }
 
     /**
      * 查詢全部並封裝成Bean
      */
-    @Test
-    public void getAll() {
+    public List<CardDetailBean> getAll() {
         List<CardDetailBean> list = new ArrayList<CardDetailBean>();
         CardDetailBean card_detailBean = null;
 
@@ -95,15 +95,14 @@ public class card_detailDAOTest {
             }
         }
 //        System.out.println(list);
-//        return list;
+        return list;
     }
 
     /**
      * 查一筆主鍵 並封裝成Bean
      */
-    @Test
-    public void findByPrimaryKey() {
-        Integer card_id = 2;   //要找的PK0
+    public CardDetailBean findByPrimaryKey(Integer card_id) {
+//        Integer card_id = 2;   //要找的PK
 
         CardDetailBean card_detailBean = null;
         Connection con = null;
@@ -129,7 +128,7 @@ public class card_detailDAOTest {
                 card_detailBean.setCard_expired_day(rs.getString("card_expired_day"));
                 card_detailBean.setCard_cvc(rs.getString("card_cvc"));
                 card_detailBean.setCard_addedDate(rs.getTimestamp("card_addedDate"));
-                System.out.println(card_detailBean);
+//                System.out.println(card_detailBean);
             }
 
             // Handle any driver errors
@@ -164,19 +163,13 @@ public class card_detailDAOTest {
                 }
             }
         }
-//        return card_detailBean;
+        return card_detailBean;
     }
 
     /**
      * 插入一筆資料
      */
-    @Test
-    public void insert() {
-        CardDetailBean card_detailBean = new CardDetailBean();
-        card_detailBean.setMember_account("amy");
-        card_detailBean.setCard_number("8412 4661 4712 8871");
-        card_detailBean.setCard_expired_day("07/23");
-        card_detailBean.setCard_cvc("182");
+    public void insert(CardDetailBean card_detailBean) {
 
         Connection con = null;
         PreparedStatement pstmt = null;
@@ -226,9 +219,8 @@ public class card_detailDAOTest {
     /**
      * 刪除指定主鍵
      */
-    @Test
-    public void delete() {
-        Integer card_id = 4;
+    public void delete(Integer card_id) {
+//        Integer card_id = 4;
 
         Connection con = null;
         PreparedStatement pstmt = null;
@@ -276,15 +268,7 @@ public class card_detailDAOTest {
     /**
      * 修改
      */
-    @Test
-    public void update() {
-        CardDetailBean card_detailBean = new CardDetailBean();
-        card_detailBean.setCard_id(5);
-        card_detailBean.setMember_account("amy");
-        card_detailBean.setCard_number("8888 8888 8888 8888");
-        card_detailBean.setCard_expired_day("06/02");
-        card_detailBean.setCard_cvc("123");
-
+    public void update(CardDetailBean card_detailBean) {
         Connection con = null;
         PreparedStatement pstmt = null;
 
@@ -330,6 +314,55 @@ public class card_detailDAOTest {
         }
 
     }
+
+
+
+    public static void main(String[] args) {
+
+        CardDetailDAO dao = new CardDetailDAO();
+
+//        CardDetailBean card_detailBean = new CardDetailBean();
+//        init();
+//        // 新增
+//        CardDetailBean card_detailBean = new CardDetailBean();
+//        card_detailBean.setMember_account("amy");
+//        card_detailBean.setCard_number("8412 4661 4712 8871");
+//        card_detailBean.setCard_expired_day("07/23");
+//        card_detailBean.setCard_cvc("182");
+//        dao.insert(card_detailBean);
+//
+//        // 修改
+//        CardDetailBean card_detailBean = new CardDetailBean();
+//        card_detailBean.setCard_id(1);
+//        card_detailBean.setMember_account("amy");
+//        card_detailBean.setCard_number("8888 8888 8888 8888");
+//        card_detailBean.setCard_expired_day("06/02");
+//        card_detailBean.setCard_cvc("123");
+//        dao.update(card_detailBean);
+
+
+
+//
+//        // 刪除
+//       dao.delete(3);
+//
+//        // 查詢
+//        CardDetailBean Bean = dao.findByPrimaryKey(2);
+//        System.out.println(Bean);
+
+
+        // 查詢
+        List<CardDetailBean> list = dao.getAll();
+        for (CardDetailBean Bean : list) {
+            System.out.println(Bean);
+
+        }
+
+    }
+
+
+
+
 
 
 }

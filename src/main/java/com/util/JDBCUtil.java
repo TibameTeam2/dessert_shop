@@ -44,10 +44,10 @@ public class JDBCUtil {
             password = pro.getProperty("jdbc.password");
             driver = pro.getProperty("jdbc.driver");
 
-            System.out.println("url = " + url);
-            System.out.println("driver = " + driver);
-            System.out.println("user = " + user);
-            System.out.println("password = " + password);
+//            System.out.println("url = " + url);
+//            System.out.println("driver = " + driver);
+//            System.out.println("user = " + user);
+//            System.out.println("password = " + password);
             //4. 注册驱动
             Class.forName(driver);
         } catch (IOException e) {

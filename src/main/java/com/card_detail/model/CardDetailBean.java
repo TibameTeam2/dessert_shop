@@ -2,7 +2,7 @@ package com.card_detail.model;
 
 import java.sql.Timestamp;
 
-public class card_detailBean {
+public class CardDetailBean {
     private Integer card_id;
     private String member_account;
     private String card_number;

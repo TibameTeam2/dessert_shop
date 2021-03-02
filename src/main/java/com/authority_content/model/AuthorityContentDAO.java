@@ -1,6 +1,7 @@
-import com.card_detail.model.CardDetailBean;
-import org.junit.Before;
-import org.junit.Test;
+package com.authority_content.model;
+
+
+import com.util.JDBCUtil;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -9,59 +10,197 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class card_detailDAOTest {
-    private JdbcTemplate jdbcTemplate;
-    String driver;
-    String url;
-    String userid;
-    String passwd;
+
+public class AuthorityContentDAO {
+
+    private static JdbcTemplate jdbcTemplate;
+    private String driver = JDBCUtil.driver;
+    private String url = JDBCUtil.url;
+    private String userid = JDBCUtil.user;
+    private String passwd = JDBCUtil.password;
 
     /**
      * 初始化
      */
-    @Before
-    public void init() {
+    public static void init() {
         // 得到Spring配置文件
         ApplicationContext app = new ClassPathXmlApplicationContext("applicationContext.xml");
         // 取得JDBC模板物件
         jdbcTemplate = (JdbcTemplate) app.getBean("jdbcTemplate");
 
 
-        driver = "com.mysql.cj.jdbc.Driver";
-        url = "jdbc:mysql://localhost:3306/sweet?serverTimezone=Asia/Taipei";
-        userid = "root";
-        passwd = "root";
+//        driver = "com.mysql.cj.jdbc.Driver";
+//        url = "jdbc:mysql://localhost:3306/sweet?serverTimezone=Asia/Taipei";
+//        userid = "root";
+//        passwd = "root";
     }
 
-    /**
-     * 查詢全部並封裝成Bean
-     */
-    @Test
-    public void getAll() {
-        List<CardDetailBean> list = new ArrayList<CardDetailBean>();
-        CardDetailBean card_detailBean = null;
+
+    public void insert(AuthorityContentBean ath_Content_Insert) {
+        Connection con = null;
+        PreparedStatement pstmt = null;
+
+        try {
+
+            Class.forName(driver);
+            con = DriverManager.getConnection(url, userid, passwd);
+            pstmt = con.prepareStatement("INSERT INTO sweet.authority_content (authority_content_id,authority_content)\n" +
+                    "VALUES (?,?)");
+
+            pstmt.setInt(1, ath_Content_Insert.getAuthority_content_id());
+            pstmt.setString(2, ath_Content_Insert.getAuthority_content());
+
+//            pstmt.setInt(7, EmployeeBean.getEmployee_status());
+
+            int count;
+            count=pstmt.executeUpdate();
+            System.out.println(count);
+            // Handle any driver errors
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException("Couldn't load database driver. "
+                    + e.getMessage());
+            // Handle any SQL errors
+        } catch (SQLException se) {
+            throw new RuntimeException("A database error occured. "
+                    + se.getMessage());
+            // Clean up JDBC resources
+        } finally {
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException se) {
+                    se.printStackTrace(System.err);
+                }
+            }
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (Exception e) {
+                    e.printStackTrace(System.err);
+                }
+            }
+        }
+
+    }
+
+
+
+    public void update(AuthorityContentBean ath_ContentInsert_Update) {
 
         Connection con = null;
         PreparedStatement pstmt = null;
-        ResultSet rs = null;
+
         try {
+
             Class.forName(driver);
             con = DriverManager.getConnection(url, userid, passwd);
-            pstmt = con.prepareStatement("select * from sweet.card_detail");
+            pstmt = con.prepareStatement("UPDATE sweet.authority_content set " +
+                    "authority_content_id=?, authority_content=? where authority_content = ?");
+
+            pstmt.setInt(1, ath_ContentInsert_Update.getAuthority_content_id());
+            pstmt.setString(2, ath_ContentInsert_Update.getAuthority_content());
+
+
+            pstmt.executeUpdate();
+
+            // Handle any driver errors
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException("Couldn't load database driver. "
+                    + e.getMessage());
+            // Handle any SQL errors
+        } catch (SQLException se) {
+            throw new RuntimeException("A database error occured. "
+                    + se.getMessage());
+            // Clean up JDBC resources
+        } finally {
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException se) {
+                    se.printStackTrace(System.err);
+                }
+            }
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (Exception e) {
+                    e.printStackTrace(System.err);
+                }
+            }
+        }
+
+    }
+
+
+    public void delete(String authority_content) {
+
+        Connection con = null;
+        PreparedStatement pstmt = null;
+
+        try {
+
+            Class.forName(driver);
+            con = DriverManager.getConnection(url, userid, passwd);
+            pstmt = con.prepareStatement("DELETE FROM authority_content where authority_content=?");
+
+            pstmt.setString(1, authority_content);
+
+            pstmt.executeUpdate();
+
+            // Handle any driver errors
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException("Couldn't load database driver. "
+                    + e.getMessage());
+            // Handle any SQL errors
+        } catch (SQLException se) {
+            throw new RuntimeException("A database error occured. "
+                    + se.getMessage());
+            // Clean up JDBC resources
+        } finally {
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException se) {
+                    se.printStackTrace(System.err);
+                }
+            }
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (Exception e) {
+                    e.printStackTrace(System.err);
+                }
+            }
+        }
+
+    }
+
+
+    public AuthorityContentBean findByPrimaryKey(String authority_content) {
+
+        AuthorityContentBean Empone = null;
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        try {
+
+            Class.forName(driver);
+            con = DriverManager.getConnection(url, userid, passwd);
+            pstmt = con.prepareStatement("SELECT * FROM sweet.authority_content where authority_content=?");
+
+            pstmt.setString(1, authority_content);
+
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
-                // deptVO 也稱為 Domain objects
-                card_detailBean = new CardDetailBean();
-                card_detailBean.setCard_id(rs.getInt("card_id"));
-                card_detailBean.setMember_account(rs.getString("member_account"));
-                card_detailBean.setCard_number(rs.getString("card_number"));
-                card_detailBean.setCard_expired_day(rs.getString("card_expired_day"));
-                card_detailBean.setCard_cvc(rs.getString("card_cvc"));
-                card_detailBean.setCard_addedDate(rs.getTimestamp("card_addedDate"));
-                list.add(card_detailBean);
-                System.out.println(card_detailBean);
+                // Empone 也稱為 Domain objects
+                Empone = new AuthorityContentBean();
+                Empone.setAuthority_content_id(rs.getInt("authority_id"));
+                Empone.setAuthority_content(rs.getString("employee_account"));
+
             }
+
             // Handle any driver errors
         } catch (ClassNotFoundException e) {
             throw new RuntimeException("Couldn't load database driver. "
@@ -94,18 +233,14 @@ public class card_detailDAOTest {
                 }
             }
         }
-//        System.out.println(list);
-//        return list;
+        return Empone;
     }
+    //
+//
+    public List<AuthorityContentBean> selectAll() {
+        List<AuthorityContentBean> list = new ArrayList<AuthorityContentBean>();
+        AuthorityContentBean EmpgetAll = null;
 
-    /**
-     * 查一筆主鍵 並封裝成Bean
-     */
-    @Test
-    public void findByPrimaryKey() {
-        Integer card_id = 2;   //要找的PK0
-
-        CardDetailBean card_detailBean = null;
         Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -114,22 +249,16 @@ public class card_detailDAOTest {
 
             Class.forName(driver);
             con = DriverManager.getConnection(url, userid, passwd);
-            pstmt = con.prepareStatement("SELECT * FROM card_detail where card_id = ?");
-
-            pstmt.setInt(1, card_id);
-
+            pstmt = con.prepareStatement("SELECT * FROM sweet.authority_content");
             rs = pstmt.executeQuery();
 
             while (rs.next()) {
-                // empVo 也稱為 Domain objects
-                card_detailBean = new CardDetailBean();
-                card_detailBean.setCard_id(rs.getInt("card_id"));
-                card_detailBean.setMember_account(rs.getString("member_account"));
-                card_detailBean.setCard_number(rs.getString("card_number"));
-                card_detailBean.setCard_expired_day(rs.getString("card_expired_day"));
-                card_detailBean.setCard_cvc(rs.getString("card_cvc"));
-                card_detailBean.setCard_addedDate(rs.getTimestamp("card_addedDate"));
-                System.out.println(card_detailBean);
+                // EmpgetAll 也稱為 Domain objects
+                EmpgetAll = new AuthorityContentBean();
+                EmpgetAll.setAuthority_content_id(rs.getInt("authority_content_id"));
+                EmpgetAll.setAuthority_content(rs.getString("authority_content"));
+                list.add(EmpgetAll); // Store the row in the list
+
             }
 
             // Handle any driver errors
@@ -164,172 +293,46 @@ public class card_detailDAOTest {
                 }
             }
         }
-//        return card_detailBean;
+        return list;
     }
 
-    /**
-     * 插入一筆資料
-     */
-    @Test
-    public void insert() {
-        CardDetailBean card_detailBean = new CardDetailBean();
-        card_detailBean.setMember_account("amy");
-        card_detailBean.setCard_number("8412 4661 4712 8871");
-        card_detailBean.setCard_expired_day("07/23");
-        card_detailBean.setCard_cvc("182");
+    public static void main(String[] args) {
 
-        Connection con = null;
-        PreparedStatement pstmt = null;
+        AuthorityContentDAO dao = new AuthorityContentDAO();
 
-        try {
 
-            Class.forName(driver);
-            con = DriverManager.getConnection(url, userid, passwd);
-            pstmt = con.prepareStatement("INSERT INTO sweet.card_detail (member_account,card_number,card_expired_day,card_cvc) VALUES (?, ?, ?, ?)");
+/*
+//        // 新增
+        Authority_ContentBean ath_Content_Insert = new Authority_ContentBean();
+        ath_Content_Insert.setAuthority_content_id(3);
+        ath_Content_Insert.setAuthority_content("管理權限");
+//        EmployeeBeanInsert.setEmployee_status(1);
+        dao.insert(ath_Content_Insert);
 
-            pstmt.setString(1, card_detailBean.getMember_account());
-            pstmt.setString(2, card_detailBean.getCard_number());
-            pstmt.setString(3, card_detailBean.getCard_expired_day());
-            pstmt.setString(4, card_detailBean.getCard_cvc());
+//        // 修改
+        Authority_ContentBean ath_ContentInsert_Update = new Authority_ContentBean();
+        ath_ContentInsert_Update.setAuthority_content_id(3);
+        ath_ContentInsert_Update.setAuthority_content("管理權限2");
 
-            int count = pstmt.executeUpdate();
-            System.out.println(count);
+        dao.update(ath_ContentInsert_Update);
 
-            // Handle any driver errors
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException("Couldn't load database driver. "
-                    + e.getMessage());
-            // Handle any SQL errors
-        } catch (SQLException se) {
-            throw new RuntimeException("A database error occured. "
-                    + se.getMessage());
-            // Clean up JDBC resources
-        } finally {
-            if (pstmt != null) {
-                try {
-                    pstmt.close();
-                } catch (SQLException se) {
-                    se.printStackTrace(System.err);
-                }
-            }
-            if (con != null) {
-                try {
-                    con.close();
-                } catch (Exception e) {
-                    e.printStackTrace(System.err);
-                }
-            }
+
+
+//
+        // 刪除
+        dao.delete("張貼公告");
+
+//        // 查詢
+        Authority_ContentBean ath_Content_one = dao.findByPrimaryKey("張貼公告");
+        System.out.println(ath_Content_one);*/
+
+
+        // 查詢
+        List<AuthorityContentBean> list = dao.selectAll();
+        for (AuthorityContentBean aEmp : list) {
+            System.out.println(aEmp);
         }
 
     }
-
-    /**
-     * 刪除指定主鍵
-     */
-    @Test
-    public void delete() {
-        Integer card_id = 4;
-
-        Connection con = null;
-        PreparedStatement pstmt = null;
-
-        try {
-
-            Class.forName(driver);
-            con = DriverManager.getConnection(url, userid, passwd);
-            pstmt = con.prepareStatement("DELETE FROM sweet.card_detail where card_id = ?");
-
-            pstmt.setInt(1, card_id);
-
-            int count = pstmt.executeUpdate();
-            System.out.println(count);
-
-            // Handle any driver errors
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException("Couldn't load database driver. "
-                    + e.getMessage());
-            // Handle any SQL errors
-        } catch (SQLException se) {
-            throw new RuntimeException("A database error occured. "
-                    + se.getMessage());
-            // Clean up JDBC resources
-        } finally {
-            if (pstmt != null) {
-                try {
-                    pstmt.close();
-                } catch (SQLException se) {
-                    se.printStackTrace(System.err);
-                }
-            }
-            if (con != null) {
-                try {
-                    con.close();
-                } catch (Exception e) {
-                    e.printStackTrace(System.err);
-                }
-            }
-        }
-
-    }
-
-
-    /**
-     * 修改
-     */
-    @Test
-    public void update() {
-        CardDetailBean card_detailBean = new CardDetailBean();
-        card_detailBean.setCard_id(5);
-        card_detailBean.setMember_account("amy");
-        card_detailBean.setCard_number("8888 8888 8888 8888");
-        card_detailBean.setCard_expired_day("06/02");
-        card_detailBean.setCard_cvc("123");
-
-        Connection con = null;
-        PreparedStatement pstmt = null;
-
-        try {
-
-            Class.forName(driver);
-            con = DriverManager.getConnection(url, userid, passwd);
-            pstmt = con.prepareStatement("UPDATE card_detail set member_account=?, card_number=?, card_expired_day=?, card_cvc=? where card_id = ?");
-
-            pstmt.setString(1, card_detailBean.getMember_account());
-            pstmt.setString(2, card_detailBean.getCard_number());
-            pstmt.setString(3, card_detailBean.getCard_expired_day());
-            pstmt.setString(4, card_detailBean.getCard_cvc());
-            pstmt.setInt(5, card_detailBean.getCard_id());
-
-
-            int count = pstmt.executeUpdate();
-            System.out.println(count);
-            // Handle any driver errors
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException("Couldn't load database driver. "
-                    + e.getMessage());
-            // Handle any SQL errors
-        } catch (SQLException se) {
-            throw new RuntimeException("A database error occured. "
-                    + se.getMessage());
-            // Clean up JDBC resources
-        } finally {
-            if (pstmt != null) {
-                try {
-                    pstmt.close();
-                } catch (SQLException se) {
-                    se.printStackTrace(System.err);
-                }
-            }
-            if (con != null) {
-                try {
-                    con.close();
-                } catch (Exception e) {
-                    e.printStackTrace(System.err);
-                }
-            }
-        }
-
-    }
-
 
 }
