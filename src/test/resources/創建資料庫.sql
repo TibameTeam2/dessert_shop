@@ -314,7 +314,7 @@ create table coupon_code(
 	coupon_code_text                FLOAT NOT NULL,
 	discount_type                   TINYINT NOT NULL,
 	employee_account                VARCHAR(50) NOT NULL,
-	foreign key (employee_account) references employee_authority(employee_account)
+	foreign key (employee_account) references employee(employee_account)
 )AUTO_INCREMENT=1;
 insert into coupon_code(coupon_code,coupon_code_effective_date,coupon_code_expire_date,
 coupon_code_text_content,coupon_code_text,discount_type,employee_account)
@@ -339,7 +339,7 @@ create table coupon(
 	coupon_status           TINYINT NOT NULL,
 	employee_account        VARCHAR(50) NOT NULL,
 	coupon_code_id          INT,
-	foreign key (employee_account) references employee_authority(employee_account),
+	foreign key (employee_account) references employee(employee_account),
 	foreign key (member_account) references member(member_account),
 	foreign key (coupon_code_id) references coupon_code(coupon_code_id)
 )AUTO_INCREMENT=1;
