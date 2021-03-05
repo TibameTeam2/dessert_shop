@@ -90,10 +90,10 @@ public class ProductDAO {
 	public void update(ProductBean productBean) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
+		
 		UPDATE = "UPDATE product set product_name = ?, product_type = ?, product_intro = ?, product_price = ?, product_available_qty = ?, product_status = ?, product_calorie = ?, degree_of_sweetness = ?, total_star = ?, total_review = ?"
 				+ " where product_id = ?";
 
-		
 		try {
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userid, passwd);
