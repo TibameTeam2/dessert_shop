@@ -12,7 +12,7 @@ public class ProductImageBean {
 	@Override
 	public String toString() {
 		return "ProductImageBean [image_id=" + image_id + ", product_id=" + product_id + ", product_image="
-				+ Arrays.toString(product_image) + "]";
+				+ product_image + "]";
 	}
 
 	public Integer getImage_id() {

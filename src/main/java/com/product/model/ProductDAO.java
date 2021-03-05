@@ -346,12 +346,12 @@ public class ProductDAO {
 //		productBean.setDegree_of_sweetness(1);
 //		productBean.setTotal_star(5);
 //		productBean.setTotal_review(19);
-//		productBean.setProduct_id(3);
-//        dao.update(productBean);
+//		productBean.setProduct_id(4);
+//		dao.update(productBean);
 
 
 //        // 刪除
-//       dao.delete(4);
+//		dao.delete(4);
 
 		// 查詢
 //		ProductBean productBean = dao.findByPrimaryKey(2);

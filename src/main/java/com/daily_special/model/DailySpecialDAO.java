@@ -285,12 +285,12 @@ public class DailySpecialDAO {
 
         // 新增
 		// 設定資料
-//		DailySpecialBean dsBean = new DailySpecialBean();
-//		dsBean.setProduct_id(3);
-//		dsBean.setDiscount_price(150);
-//		dsBean.setDiscount_start_time(Timestamp.valueOf("2021-02-28 00:00:00"));
-//		dsBean.setDiscount_deadline(Timestamp.valueOf("2021-02-28 23:59:59"));
-//		dao.insert(dsBean);
+		DailySpecialBean dsBean = new DailySpecialBean();
+		dsBean.setProduct_id(2);
+		dsBean.setDiscount_price(150);
+		dsBean.setDiscount_start_time(Timestamp.valueOf("2021-02-28 00:00:00"));
+		dsBean.setDiscount_deadline(Timestamp.valueOf("2021-02-28 23:59:59"));
+		dao.insert(dsBean);
 
         // 修改
 		// 設定資料
@@ -300,12 +300,12 @@ public class DailySpecialDAO {
 //		dsBean.setDiscount_start_time(Timestamp.valueOf("2021-04-04 00:00:00"));
 //		dsBean.setDiscount_deadline(Timestamp.valueOf("2021-04-04 23:59:59"));
 //
-//		dsBean.setDiscount_product_id(4);
-//        dao.update(dsBean);
+//		dsBean.setDiscount_product_id(2);
+//		dao.update(dsBean);
 
 
 //        // 刪除
-//       dao.delete(3);
+//		dao.delete(6);
 
         // 查詢
 //		DailySpecialBean dsBean = dao.findByPrimaryKey(2);
@@ -313,10 +313,10 @@ public class DailySpecialDAO {
 
 
 		// 查詢
-        List<DailySpecialBean> list = dao.getAll();
-        for (DailySpecialBean dsBean : list) {
-            System.out.println(dsBean);
-        }
+//        List<DailySpecialBean> list = dao.getAll();
+//        for (DailySpecialBean dsBean : list) {
+//            System.out.println(dsBean);
+//        }
 
 	}
 }

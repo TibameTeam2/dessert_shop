@@ -195,8 +195,8 @@ public class ProductImageDAO {
 				piBean.setProduct_image(rs.getBytes("product_image"));
 				
 				list_piBean.add(piBean);
-				System.out.println(piBean);
 				readPicture(piBean.getProduct_image(), piBean.getImage_id());
+//				System.out.println(piBean);
 		
 			}
 			
@@ -313,6 +313,6 @@ public class ProductImageDAO {
 		for (ProductImageBean piBean : list) {
 			System.out.println(piBean);	
 		}
-
+//		System.out.println(list.size());
 	}
 }
