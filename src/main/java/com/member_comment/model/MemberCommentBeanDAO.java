@@ -299,7 +299,7 @@ public class MemberCommentBeanDAO {
 		MemberCommentBean memeber_commentBean_findByPK = dao.findByPK(2);
 		System.out.println("review_id: "+memeber_commentBean_findByPK.getReview_id() + ",");
 		System.out.println("order_detail_id: "+memeber_commentBean_findByPK.getOrder_detail_id() + ",");
-		System.out.println("comment_ocntent: "+memeber_commentBean_findByPK.getComment_content() + ",");
+		System.out.println("comment_content: "+memeber_commentBean_findByPK.getComment_content() + ",");
 		System.out.println("rating: "+memeber_commentBean_findByPK.getRating() + ",");
 		System.out.println("current_time: "+memeber_commentBean_findByPK.getComment_time() + ",");
 		System.out.println("product_id: "+memeber_commentBean_findByPK.getProduct_id() + ",");
