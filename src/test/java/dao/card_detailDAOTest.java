@@ -1,3 +1,5 @@
+package dao;
+
 import com.card_detail.model.CardDetailBean;
 import org.junit.Before;
 import org.junit.Test;

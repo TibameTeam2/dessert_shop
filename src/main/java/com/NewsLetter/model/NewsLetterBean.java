@@ -1,4 +1,4 @@
-package com.NewsLetter.model;
+package com.newsletter.model;
 
 
 import java.sql.Timestamp;

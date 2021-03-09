@@ -1,3 +1,5 @@
+package dao;
+
 import com.member.model.MemberBean;
 import org.junit.Before;
 import org.junit.Test;
