@@ -35,6 +35,41 @@
     <!-- <link rel="stylesheet" href="assets/css/vendor/plugins.min.css">
     <link rel="stylesheet" href="assets/css/style.min.css"> -->
 
+<style>
+    .single-form {
+        margin-top: 10px;
+    }
+    a {
+        text-decoration: none;
+        color: blue;
+    }
+
+
+    /* 元素 article 置中及基本樣式 */
+    div.overlay>div {
+        background-color: #000022;
+        width: 90%;
+        max-width: 600px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px #ddd;
+        padding: 10px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    /* 購票燈箱 */
+
+    div.overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: hsla(0, 0%, 0%, .5);
+        display: none;
+    }
+</style>
 </head>
 
 <body>
@@ -44,41 +79,7 @@
         <!--Header Start-->
         <div class="section header-area-02 d-none d-lg-block">
             <!--Header Top Start-->
-            <div class="header-top-02">
-                <div class="container">
-                    <!-- header Top wrapper Start -->
-                    <div class="header-top-wrapper-02">
-                        <!-- Static Nav Start -->
-                        <div class="static-nav-02">
-                            <p>Additional <span>20% Off</span> Sale Items – Please See Details</p>
-                        </div>
-                        <!-- Static Nav End -->
 
-                        <!-- Header Language and Currency Start -->
-                        <div class="header-language-currency-selector">
-                            <div class="dropdown header-language">
-                                <a href="#" role="button" data-bs-toggle="dropdown">USD $ <i class="las la-angle-down"></i></a>
-
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">EUR €</a></li>
-                                    <li><a href="#">USD $</a></li>
-                                </ul>
-                            </div>
-                            <div class="dropdown header-currency">
-                                <a href="#" role="button" data-bs-toggle="dropdown"> <img src="assets/images/flag/01.jpg" alt=""> English <i class="las la-angle-down"></i> </a>
-
-                                <ul class="dropdown-menu">
-                                    <li><a href="#"><img src="assets/images/flag/01.jpg" alt=""> English</a></li>
-                                    <li><a href="#"><img src="assets/images/flag/02.jpg" alt=""> اللغة العربية </a></li>
-                                    <li><a href="#"><img src="assets/images/flag/03.jpg" alt=""> spanish </a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <!-- Header Language and Currency Start -->
-                    </div>
-                    <!-- header Top wrapper End -->
-                </div>
-            </div>
             <!--Header Top End-->
 
             <!--Header Bottom Start-->
@@ -591,44 +592,44 @@
                     <div class="col-lg-6">
                         <!-- Login & Register Start -->
                         <div class="login-register-wrapper">
-                            <h4 class="title">Create New Account</h4>
-                            <p>Already have an account? <a href="login.html">Log in instead!</a></p>
+                            <h4 class="title">建立帳號</h4>
+                            <p>已有帳號? <a href="login.html">立刻登入!</a></p>
                             <form action="#">
                                 <div class="single-form">
-                                    <label class="form-label">First Name</label>
+                                    <label class="form-label">註冊帳號</label>
                                     <input type="text" class="form-control">
                                 </div>
                                 <div class="single-form">
-                                    <label class="form-label">Last Name</label>
-                                    <input type="text" class="form-control">
-                                </div>
-                                <div class="single-form">
-                                    <label class="form-label">Email Address *</label>
-                                    <input type="text" class="form-control">
-                                </div>
-                                <div class="single-form">
-                                    <label class="form-label">Username *</label>
-                                    <input type="text" class="form-control">
-                                </div>
-                                <div class="single-form">
-                                    <label class="form-label">Password</label>
+                                    <label class="form-label">密碼</label>
                                     <input type="password" class="form-control">
                                 </div>
                                 <div class="single-form">
-                                    <label class="form-label">Confirm Password</label>
+                                    <label class="form-label">確認密碼</label>
                                     <input type="password" class="form-control">
+                                </div>
+                                <div class="single-form">
+                                    <label class="form-label">姓名</label>
+                                    <input type="text" class="form-control">
+                                </div>
+                                <div class="single-form">
+                                    <label class="form-label">手機</label>
+                                    <input type="text" class="form-control">
+                                </div>
+                                <div class="single-form">
+                                    <label class="form-label">驗證碼</label>
+                                    <input type="text" class="form-control">
                                 </div>
                                 <div class="form-check">
                                     <input type="checkbox" class="form-check-input" id="receive">
-                                    <label class="form-check-label" for="receive">Receive Offers From Our Partners</label>
+                                    <label class="form-check-label" for="receive">我已詳閱隱私權條款，充分了解並同意。</label>
                                 </div>
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="newsletter">
-                                    <label class="form-check-label" for="newsletter">Sign Up For Our Newsletter <br>
-											Subscribe To Our Newsletters Now And Stay Up-To-Date With New Collections, The Latest Lookbooks And Exclusive Offers.</label>
-                                </div>
+<!--                                <div class="form-check">-->
+<!--                                    <input type="checkbox" class="form-check-input" id="newsletter">-->
+<!--                                    <label class="form-check-label" for="newsletter">Sign Up For Our Newsletter <br>-->
+<!--											Subscribe To Our Newsletters Now And Stay Up-To-Date With New Collections, The Latest Lookbooks And Exclusive Offers.</label>-->
+<!--                                </div>-->
                                 <div class="single-form">
-                                    <button class="btn btn-primary btn-hover-dark">Register</button>
+                                    <button class="btn btn-primary btn-hover-dark">註冊</button>
                                 </div>
                             </form>
                         </div>
@@ -761,6 +762,25 @@
 
 
 
+    <!-- 預售票燈箱 -->
+    <div class="overlay preorder_lightbox" >
+        <div class="preventd">
+            <div class="container">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="preorder_pic">
+                            <img src="./img/conan_preorder.jpg" alt="" width="100%" >
+                        </div>
+                    </div>
+                    <div class="col-6 preordertext">
+                        <p>《名偵探柯南 緋色的彈丸》雙人套票（赤井吊飾）</p>
+                        <p>建議售價:NT599</p>
+                        <button type="submit" class="preorder_btn">立即預定</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 
@@ -792,6 +812,13 @@
     <!-- Main JS -->
     <script src="assets/js/main.js"></script>
 
+
+<script>
+    $("div button.btn").on("click",function(){
+        $(".preorder_lightbox").fadeIn();
+    })
+
+</script>
 </body>
 
 </html>
