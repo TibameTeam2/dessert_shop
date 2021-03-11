@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Amino - Organic & Multipurpose Bootstrap 5 Template</title>
-    <meta name="robots" content="noindex, follow" />
+    <meta name="robots" content="noindex, follow"/>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Favicon -->
@@ -59,6 +59,7 @@
             left: 50%;
             transform: translate(-50%, -50%);
         }
+
         /* 購票燈箱 */
         div.overlay {
             position: fixed;
@@ -613,30 +614,42 @@
                     <div class="login-register-wrapper">
                         <h4 class="title">建立帳號</h4>
                         <p>已有帳號? <a href="login.html">立刻登入!</a></p>
-                        <form action="#">
+                        <form id="register_form" action="#">
                             <div class="single-form">
                                 <label class="form-label">註冊帳號</label>
-                                <input type="text" class="form-control">
+                                <input type="text" class="form-control" name="member_account">
                             </div>
                             <div class="single-form">
                                 <label class="form-label">密碼</label>
-                                <input type="password" class="form-control">
+                                <input type="password" class="form-control" name="member_password">
                             </div>
                             <div class="single-form">
                                 <label class="form-label">確認密碼</label>
                                 <input type="password" class="form-control">
                             </div>
                             <div class="single-form">
+                                <label class="form-label">信箱</label>
+                                <input type="text" class="form-control" name="member_email">
+                            </div>
+                            <div class="single-form">
                                 <label class="form-label">姓名</label>
-                                <input type="text" class="form-control">
+                                <input type="text" class="form-control" name="member_name">
                             </div>
                             <div class="single-form">
                                 <label class="form-label">手機</label>
-                                <input type="text" class="form-control">
+                                <input type="text" class="form-control" name="member_phone">
+                            </div>
+                            <div class="single-form">
+                                <label class="form-label">性別</label>
+                                <input type="text" class="form-control" name="member_gender">
+                            </div>
+                            <div class="single-form">
+                                <label class="form-label">生日</label>
+                                <input type="text" class="form-control" name="member_birthday">
                             </div>
                             <div class="single-form">
                                 <label class="form-label">驗證碼</label>
-                                <input type="text" class="form-control">
+                                <input type="text" class="form-control" name="code">
                             </div>
                             <div class="form-check">
                                 <input type="checkbox" class="form-check-input" id="receive">
@@ -650,6 +663,8 @@
                             <div class="single-form">
                                 <button class="btn btn-primary btn-hover-dark">註冊</button>
                             </div>
+                            <input type="hidden" name="register_method" value="1">
+                            <input type="hidden" name="member_status" value="0">
                         </form>
                     </div>
                     <!-- Login & Register End -->
@@ -824,17 +839,56 @@
 
 
 <script>
-    $("div button.btn").on("click", function () {
-        $(".preorder_lightbox").fadeIn();
-    })
+    <!-- 以下燈箱 -->
+    // $("div button.btn").on("click", function () {
+    //     $(".preorder_lightbox").fadeIn();
+    // })
+    //
+    // $("div.preorder_lightbox").on("click", function () {
+    //     $("div.preorder_lightbox").attr("style", "display -none")
+    // })
+    //
+    // $("div.preventd").on("click", function (e) {
+    //     e.stopPropagation();
+    // })
 
-    $("div.preorder_lightbox").on("click", function () {
-        $("div.preorder_lightbox").attr("style", "display -none")
-    })
 
-    $("div.preventd").on("click", function (e) {
-        e.stopPropagation();
-    })
+    $(function () {
+        //表單送出時
+        $("#register_form").submit(function () {
+            //表單提交時檢查所有屬性合法
+            // if(checkUsername() && checkPassword() && checkEmail()){
+            //發送ajax請求，送出表單資料
+            console.log($("#register_form").serialize());
+            $.post("member/register", $(this).serialize(), function (data) {
+                //處理伺服器回應的資料  data  {flag:true,errorMsg:"註冊成功!!!"}
+                if (data.flag) {
+                    // 註冊成功後跳轉頁面
+                    // location.href="register_ok.html";
+                    // alert("註冊成功!!!");
+                    alert(data.errorMsg);
+                } else {
+                    // 註冊失敗 彈出視窗
+                    // $("#errorMsg").html(data.errorMsg);
+                    // alert("註冊失敗!!!");
+                    alert(data.errorMsg);
+                }
+            });
+
+            // }
+            //2.不跳轉頁面，等資料回來會做跳轉
+            return false;
+            //如果為true，表單提交，如果為false，不提交
+            //在這裡不管怎樣都是false，因為跳轉的功能在ajax中實現了
+        });
+
+        // 失去焦點 調用檢查方法
+        // $("#username").blur(checkUsername);
+        // $("#password").blur(checkPassword);
+        // $("#email").blur(checkEmail);
+
+
+    });
 </script>
 </body>
 

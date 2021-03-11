@@ -1,18 +1,16 @@
 package com.member.model;
 
 
-import com.employee.model.EmployeeBean;
 import com.util.JDBCUtil;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MemberDAO {
+public class MemberDaoImpl implements MemberDao{
 
     private static JdbcTemplate jdbcTemplate;
     private String driver = JDBCUtil.driver;
@@ -331,7 +329,7 @@ public class MemberDAO {
     }
 
     public static void main(String[] args) {
-        MemberDAO dao = new MemberDAO();
+        MemberDaoImpl dao = new MemberDaoImpl();
 
 //        init();
 //        // 新增
