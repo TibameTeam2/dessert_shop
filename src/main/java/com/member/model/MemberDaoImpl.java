@@ -10,7 +10,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MemberDaoImpl implements MemberDao{
+public class MemberDaoImpl implements MemberDao {
 
     private static JdbcTemplate jdbcTemplate;
     private String driver = JDBCUtil.driver;
@@ -19,7 +19,7 @@ public class MemberDaoImpl implements MemberDao{
     private String passwd = JDBCUtil.password;
 
     /**
-     *初始化
+     * 初始化
      */
     public void init() {
         // 得到Spring配置文件
@@ -60,7 +60,7 @@ public class MemberDaoImpl implements MemberDao{
 
 
             int count;
-            count=pstmt.executeUpdate();
+            count = pstmt.executeUpdate();
             System.out.println(count);
             // Handle any driver errors
         } catch (ClassNotFoundException e) {
@@ -91,8 +91,7 @@ public class MemberDaoImpl implements MemberDao{
     }
 
 
-
-    public void update(MemberBean memberBean){
+    public void update(MemberBean memberBean) {
 
         Connection con = null;
         PreparedStatement pstmt = null;
@@ -258,6 +257,7 @@ public class MemberDaoImpl implements MemberDao{
         }
         return memberBean;
     }
+
     //
 //
     public List<MemberBean> selectAll() {
@@ -361,7 +361,6 @@ public class MemberDaoImpl implements MemberDao{
 //        memberBean.setRegister_method(1);
 //        memberBean.setMember_status(1);
 //        dao.update(memberBean);
-
 
 
 //

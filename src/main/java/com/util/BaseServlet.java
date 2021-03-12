@@ -21,19 +21,19 @@ public class BaseServlet extends HttpServlet {
         //準備方法的分發
         //獲取請求路徑
         String uri = req.getRequestURI();
-        System.out.println("請求的uri:"+uri);//  /dessert_shop/member/register
+        System.out.println("請求的uri:" + uri);//  /dessert_shop/member/register
         //字串切割後，獲取方法名稱
         String methodName = uri.substring(uri.lastIndexOf('/') + 1);
-        System.out.println("方法名稱："+methodName);
+        System.out.println("方法名稱：" + methodName);
         //誰調用的?
         System.out.println(this);//com.member.controller.RegisterMemberServlet@438d0d75
         try {
             //獲取方法
             Method method = this.getClass().getMethod(methodName, HttpServletRequest.class, HttpServletResponse.class);
             //執行方法
-            //暴力映射
+            //暴力映射(連private都可以調用)
             //method.setAccessible(true);
-            method.invoke(this,req,resp);
+            method.invoke(this, req, resp);
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
@@ -41,22 +41,22 @@ public class BaseServlet extends HttpServlet {
         } catch (InvocationTargetException e) {
             e.printStackTrace();
         }
-
-
     }
 
     /**
      * 將傳入的物件序列化成json，直接寫回前端
+     *
      * @param obj
      */
-    public void writeValue(Object obj,HttpServletResponse response) throws IOException {
+    public void writeValue(Object obj, HttpServletResponse response) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         response.setContentType("application/json;charset=utf-8");
-        mapper.writeValue(response.getOutputStream(),obj);
+        mapper.writeValue(response.getOutputStream(), obj);
     }
 
     /**
      * 將物件序列化為json，並返回
+     *
      * @param obj
      * @return
      */
