@@ -1,0 +1,26 @@
+# 郵件服務器的SMTP地址，可選，默認為smtp.<發件人郵箱後綴>
+host=smtp.gmail.com
+# 郵件服務器的SMTP端口，可選，默認25
+port=465
+# 發件人（必須正確，否則發送失敗）
+from=嗜甜<sweetshop.jason@gmail.com>
+# 帳號，默認為發件人郵箱前綴
+user=sweetshop.jason
+# 密碼（註意，某些郵箱需要為SMTP服務單獨設置授權碼，詳情查看相關幫助）
+pass=ucdgaumupqswrxxd
+# 使用SSL安全連接
+sslEnable=true
+
+#使用 STARTTLS安全連接，STARTTLS是對純文本通信協議的擴展。
+#startttlsEnable=true
+
+# 指定實現javax.net.SocketFactory接口的類的名稱,這個類將被用於創建SMTP的套接字
+#socketFactoryClass = javax.net.ssl.SSLSocketFactory
+# 如果設置為true,未能創建壹個套接字使用指定的套接字工廠類將導致使用java.net.Socket創建的套接字類, 默認值為true
+#socketFactoryFallback =true
+# 指定的端口連接到在使用指定的套接字工廠。如果沒有設置,將使用默認端口456
+#socketFactoryPort =465
+# SMTP超時時長，單位毫秒，缺省值不超時
+#timeout =0
+# Socket連接超時值，單位毫秒，缺省值不超時
+#connectionTimeout =0
