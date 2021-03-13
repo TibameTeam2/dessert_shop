@@ -1,5 +1,6 @@
 package com.member.controller;
 
+import cn.hutool.crypto.digest.DigestUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.member.model.MemberBean;
 import com.member.model.MemberService;
@@ -31,6 +32,8 @@ public class MemberServlet extends BaseServlet{
         } catch (InvocationTargetException e) {
             e.printStackTrace();
         }
+        System.out.println(member);
+        member.setMember_password(DigestUtil.md5Hex(member.getMember_password()));
         System.out.println(member);
         //調用service開始註冊
         MemberService service = new MemberService();

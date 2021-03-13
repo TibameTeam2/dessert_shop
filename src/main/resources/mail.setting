@@ -10,17 +10,3 @@ user=sweetshop.jason
 pass=ucdgaumupqswrxxd
 # 使用SSL安全連接
 sslEnable=true
-
-#使用 STARTTLS安全連接，STARTTLS是對純文本通信協議的擴展。
-#startttlsEnable=true
-
-# 指定實現javax.net.SocketFactory接口的類的名稱,這個類將被用於創建SMTP的套接字
-#socketFactoryClass = javax.net.ssl.SSLSocketFactory
-# 如果設置為true,未能創建壹個套接字使用指定的套接字工廠類將導致使用java.net.Socket創建的套接字類, 默認值為true
-#socketFactoryFallback =true
-# 指定的端口連接到在使用指定的套接字工廠。如果沒有設置,將使用默認端口456
-#socketFactoryPort =465
-# SMTP超時時長，單位毫秒，缺省值不超時
-#timeout =0
-# Socket連接超時值，單位毫秒，缺省值不超時
-#connectionTimeout =0
