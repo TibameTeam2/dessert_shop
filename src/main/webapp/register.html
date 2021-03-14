@@ -866,12 +866,13 @@
                     // 註冊成功後跳轉頁面
                     // location.href="register_ok.html";
                     // alert("註冊成功!!!");
-                    alert(data.errorMsg);
+                    alert(data.msg);
+                    location.href = data.redirect;
                 } else {
                     // 註冊失敗 彈出視窗
                     // $("#errorMsg").html(data.errorMsg);
                     // alert("註冊失敗!!!");
-                    alert(data.errorMsg);
+                    alert(data.msg);
                 }
             });
 

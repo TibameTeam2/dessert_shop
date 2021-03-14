@@ -13,4 +13,16 @@ public class MemberService {
         dao.insert(member);
         return true;
     }
+
+    public MemberBean login(MemberBean member) {
+        MemberBean m = dao.findByPrimaryKey(member.getMember_account());
+        if (m == null) {
+            System.out.println("m=" + m);
+            return null;
+        }
+        if (member.getMember_password().equals(m.getMember_password()))
+            return m;
+        return null;
+    }
+
 }

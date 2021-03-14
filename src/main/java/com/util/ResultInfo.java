@@ -8,25 +8,9 @@ import java.util.Objects;
  */
 public class ResultInfo implements Serializable {
     private boolean flag;//後端返回結果正常為true，異常為false
-    private Object data;//正常的話返回一個物件
-    private String errorMsg;//異常時的錯誤訊息
-
-    public ResultInfo() {
-    }
-    public ResultInfo(boolean flag) {
-        this.flag = flag;
-    }
-
-    public ResultInfo(boolean flag, String errorMsg) {
-        this.flag = flag;
-        this.errorMsg = errorMsg;
-    }
-
-    public ResultInfo(boolean flag, Object data, String errorMsg) {
-        this.flag = flag;
-        this.data = data;
-        this.errorMsg = errorMsg;
-    }
+    private Object data;//正常的話可以返回一個物件
+    private String msg;//異常時的錯誤訊息
+    private String redirect;//讓前端收到訊息後，由前端跳轉
 
     public boolean isFlag() {
         return flag;
@@ -44,11 +28,19 @@ public class ResultInfo implements Serializable {
         this.data = data;
     }
 
-    public String getErrorMsg() {
-        return errorMsg;
+    public String getMsg() {
+        return msg;
     }
 
-    public void setErrorMsg(String errorMsg) {
-        this.errorMsg = errorMsg;
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+
+    public String getRedirect() {
+        return redirect;
+    }
+
+    public void setRedirect(String redirect) {
+        this.redirect = redirect;
     }
 }

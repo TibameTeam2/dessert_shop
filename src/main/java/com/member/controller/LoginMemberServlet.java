@@ -47,11 +47,11 @@ public class LoginMemberServlet extends HttpServlet {
         if(flag){
             //註冊成功
             info.setFlag(true);
-            info.setErrorMsg("註冊成功!");
+            info.setMsg("註冊成功!");
         }else{
             //註冊失敗
             info.setFlag(false);
-            info.setErrorMsg("註冊失敗!");
+            info.setMsg("註冊失敗!");
         }
 
         //把info序列化為json

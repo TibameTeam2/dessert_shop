@@ -16,7 +16,7 @@ import java.lang.reflect.Method;
  */
 public class BaseServlet extends HttpServlet {
     @Override
-    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         //System.out.println("baseServlet的service方法被执行了...");
         //準備方法的分發
         //獲取請求路徑
@@ -33,14 +33,40 @@ public class BaseServlet extends HttpServlet {
             //執行方法
             //暴力映射(連private都可以調用)
             //method.setAccessible(true);
-            method.invoke(this, req, resp);
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
+            String dispatcherPage = (String)method.invoke(this, req, res);
+
+//            RequestDispatcher dispatcher = req.getRequestDispatcher("/forwarding.jsp");
+//            dispatcher.forward(req, res);
+            String page;
+            if (dispatcherPage==null)return;
+            if(dispatcherPage.contains(":")){
+                String[] data = dispatcherPage.split(":");
+                System.out.println("分號前文字:"+data[0] + " 分號後文字:"+data[1]);
+                page = data[1];
+                if("forward".equals(data[0])){
+                    req.getRequestDispatcher(page).forward(req,res);
+                }else if("redirect".equals(data[0])){
+                    res.sendRedirect(req.getContextPath() + page);
+                }
+            }
+//            else{
+//                // 如果沒有寫forward:或redirect: 則預設使用forward
+//                page = dispatcherPage;
+//                System.out.println("page:"+page);
+//                if (page == null || page == ""){
+//                    System.out.println("page 為空");
+////                    res.sendRedirect(req.getContextPath() +"/500.jsp");
+//                }else {
+//                    req.getRequestDispatcher(page).forward(req, res);
+//                }
+//            }
+
+
+
+        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }
+
     }
 
     /**
