@@ -93,6 +93,17 @@
             border-radius: 0px 20px 20px 0;
         }
         
+        button.remove {
+            margin: 0;
+            padding: 0;
+            outline: none;
+            border-radius: 0;
+            border: 1px solid transparent;
+            background-color: transparent;
+            line-height: inherit;
+            width: max-content;
+        }
+        
         .cart-table .table {
             border-collapse: separate;
             border-spacing: 0 8px;
@@ -125,10 +136,6 @@
             height: 30px;
             font-size: 14px;
             font-weight: bolder;
-        }
-        
-        .input-coupon {
-            margin: 0 15px 0 10px;
         }
         
         .total-key {
@@ -175,6 +182,12 @@
             display: inline-block;
             width: 70px;
             margin-right: 5px;
+        }
+        
+        div.img-coupon {
+            width: 100px;
+            height: 100px;
+            border: 10px solid black;
         }
     </style>
 
@@ -769,8 +782,7 @@
                                             <button type="button " class="sub "><i
                                                     class="fas fa-minus "></i></i></button>
                                             <input type="text " value="1" readonly class="quantity-input" />
-                                            <button type="button " class="add "><i
-                                                    class="fas fa-plus "></i></i></button>
+                                            <button type="button " class="add "><i class="fas fa-plus "></i></i></button>
                                         </div>
                                     </td>
 
@@ -780,7 +792,7 @@
                                     </td>
 
                                     <td class=" Product-action " colspan="1 " style="border-left: 0; ">
-                                        <span class="remove "><i class="lar la-trash-alt "></i></span>
+                                        <button type="button" class="remove"><i class="lar la-trash-alt "></i></button>
                                     </td>
 
                                 </tr>
@@ -816,7 +828,7 @@
                                         </td>
 
                                         <td class=" Product-action " colspan="1 ">
-                                            <a href="# " class="remove "><i class="lar la-trash-alt "></i></a>
+                                            <button type="button " class="remove "><i class="lar la-trash-alt "></i></button>
                                         </td>
 
                                 </tr>
@@ -850,39 +862,7 @@
                                     </td>
 
                                     <td class=" Product-action " colspan="1 ">
-                                        <a href="# " class="remove "><i class="lar la-trash-alt "></i></a>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td class="Product-thumb" colspan="1" style="border-right: 0;">
-                                        <img class="td-img" src="assets/images/product/product-16.jpg" alt="">
-                                    </td>
-                                    <td class="Product-info" colspan="5" style="border-left: 0;">
-                                        <h6 class="name"><a class="item-name" href="shop-single.html">熔岩巧克力蛋糕</a></h6>
-                                        <span>Coulant au chocolat</span>
-                                    </td>
-
-                                    <td class="Product-unit-price" colspan="1">
-                                        <span class="price unit-price" style="font-size: 20px;">400</span><span class="price">元</span>
-                                    </td>
-
-                                    <td class=" quantity " colspan="3 ">
-                                        <div class="product-quantity d-inline-flex ">
-                                            <button type="button " class="sub "><i
-                                                    class="fas fa-minus "></i></i></button>
-                                            <input type="text " value="1" readonly class="quantity-input" />
-                                            <button type="button " class="add "><i
-                                                    class="fas fa-plus "></i></i></button>
-                                        </div>
-                                    </td>
-
-                                    <td class="Product-total-price " colspan="1 ">
-                                        <span class="price total-span " style="font-size: 20px; ">400</span><span class="price ">元</span>
-                                    </td>
-
-                                    <td class=" Product-action " colspan="1 ">
-                                        <a href="# " class="remove "><i class="lar la-trash-alt "></i></a>
+                                        <button type="button" class="remove "><i class="lar la-trash-alt "></i></button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -899,21 +879,24 @@
                                 <!-- <div class="cart-title ">
                                     <h4 class="title ">優惠券</h4>
                                 </div> -->
+
                                 <div class="cart-form " style="margin-top: 10px;">
                                     <form action="# ">
-                                        <div class="single-form " style=" display: inline-block;">
-                                            <!-- <input type="radio" id="louie" name="check-coupon" value="use-coupon"> -->
-                                            <label style="margin-left: 10px;">優惠券代碼</label>
+                                        <div calss="single-form img-coupon " style=" display: inline-block;vertical-align:middle ">
+                                            <img style="width: 30px;" src="assets/images/icon/icon-coupon.png">
                                         </div>
-                                        <div class=" single-form input-coupon " style=" display: inline-block; ">
-                                            <input class="form-control input-coupon " type="text " placeholder="在這輸入優惠碼.. ">
+
+                                        <div class="single-form " style=" display: inline-block;vertical-align:-10%; ">
+                                            <!-- <input type="radio " id="louie " name="check-coupon " value="use-coupon "> -->
+                                            <span style="margin-left: 5px;">選擇優惠券或輸入優惠代碼</span>
                                         </div>
-                                        <div class="single-form " style=" display: inline-block; ">
-                                            <button class=" btn btn-shopping btn-hover-primary btn-coupon ">使用優惠券</button>
+
+                                        <!-- <div class="single-form " style=" display: inline-block; ">
+                                            <button type="button " class=" btn btn-shopping btn-hover-primary btn-coupon ">使用優惠券</button>
                                         </div>
                                         <div class="coupon-list-parent ">
                                             <ul class="coupon-list "></ul>
-                                        </div>
+                                        </div> -->
                                     </form>
                                 </div>
                             </div>
@@ -1156,7 +1139,7 @@
             /*======================================= Delete =======================================*/
 
 
-            $('span.remove').on("click ", function() {
+            $('button.remove').on("click ", function() {
                 $(this).closest("tr ").remove();
                 if ($(".td.Product-thumb ").length == 0) {
                     $("span.count-price ").text(0);
@@ -1201,109 +1184,9 @@
             // });
 
 
-            /*======================================= Coupon List =======================================*/
-            // let input_coupon = $('input.input-coupon');
-
-            // $('button.btn-coupon').on("click ", function() {
-            //     addCouponList(input_coupon);
-            // });
-
-
-            // $('ul.coupon-list').on("click ", 'button.btn_delete', function() {
-            //     $(this).closest("li ").remove();
-            //     $('span.coupon-price').html("0");
-            //     sum_total();
-
-            // });
-
-
-            // function addCouponList(input_coupon) {
-            //     let detail = `
-            //         <li class="coupon-li">
-            //             <div class="detail " >
-            //                 <div class="left_block ">
-            //                     <span class="para ">` + input_coupon.val().trim() + `</span>
-            //                 </div>
-
-            //                 <div class="middle_block ">
-            //                     <span class="sale-name " style="margin-left:8px; ">活動名稱</span>
-            //                     <span class="price coupon-input-price " style="margin-left:120px; ">0</span>
-            //                     <span class="price " style="margin-left:1px; ">元</span>
-            //                 </div>
-
-            //                 <div class="right_block ">
-            //                 <div class="btn_flex ">
-            //                     <button type="button " class="btn_delete ">移除</button>
-            //                 </div>
-            //                 </div>
-            //             </div >
-            //         </li > `
-
-
-
-            //     if ($("input.input-coupon").val() == "aaa") {
-
-            //         $("ul.coupon-list ").prepend(detail);
-            //         $("input.input-coupon").val(" ");
-
-
-            //         $('span.sale-name').html('aaa專案');
-            //         $('span.coupon-input-price').html('100');
-            //         $('span.coupon-price').html($('span.coupon-input-price').html());
-            //         sum_total();
-
-            //     } else if ($("input.input-coupon").val() == "bbb") {
-
-            //         $("ul.coupon-list ").prepend(detail);
-            //         $("input.input-coupon").val(" ");
-
-
-            //         $('span.sale-name').html('bbb專案');
-            //         $('span.coupon-input-price').html('200');
-            //         $('span.coupon-price').html($('span.coupon-input-price').html());
-            //         sum_total();
-
-            //     } else {
-
-            //         alert("優惠券代碼錯誤，請確認後再重新輸入");
-            //         $("input.input-coupon").val(" ");
-
-            //     }
-
-            // }
-
-
         });
     </script>
 
 </body>
 
 </html>
-
-<!-- let input_text = $('span.para');
-                let sale_name = $('span.sale-name');
-                let sale_price = $('span.coupon-input-price');
-                let total_coupon = $('span.coupon-price');
-
-                switch (input_text.html()) {
-
-                    case "aaa":
-
-                        $(input_text).closest("li").find(sale_name).html('aaa專案');
-                        $(input_text).closest("li").find(sale_price).html('100');
-                        total_coupon.html(sale_price.html());
-                        sum_total();
-                        break;
-
-                    case "bbb":
-                        // sale_name.html('bbb專案');
-                        // sale_price.html('300');
-                        $(input_text).closest("li").find(sale_name).html('bbb專案');
-                        $(input_text).closest("li").find(sale_price).html('200');
-                        total_coupon.html(sale_price.html());
-                        sum_total();
-                        break;
-                    default:
-                        alert("優惠券代碼錯誤");
-                        return false;
-                } -->
