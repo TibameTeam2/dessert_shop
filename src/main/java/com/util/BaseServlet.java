@@ -24,7 +24,7 @@ public class BaseServlet extends HttpServlet {
         System.out.println("請求的uri:" + uri);//  /dessert_shop/member/register
         //字串切割後，獲取方法名稱
         String methodName = uri.substring(uri.lastIndexOf('/') + 1);
-        System.out.println("方法名稱：" + methodName);
+        System.out.println("方法名稱：" + methodName);//  register
         //誰調用的?
         System.out.println(this);//com.member.controller.RegisterMemberServlet@438d0d75
         try {
@@ -34,11 +34,11 @@ public class BaseServlet extends HttpServlet {
             //暴力映射(連private都可以調用)
             //method.setAccessible(true);
             String dispatcherPage = (String)method.invoke(this, req, res);
-
-//            RequestDispatcher dispatcher = req.getRequestDispatcher("/forwarding.jsp");
-//            dispatcher.forward(req, res);
-            String page;
+            System.out.println("dispatcherPage = " + dispatcherPage);
+            //如果有回傳字串，幫你轉送，格式forward:/index.html或redirect:/index.html
+            //如果只傳/index.html預設使用forward
             if (dispatcherPage==null)return;
+            String page;
             if(dispatcherPage.contains(":")){
                 String[] data = dispatcherPage.split(":");
                 System.out.println("分號前文字:"+data[0] + " 分號後文字:"+data[1]);
@@ -49,24 +49,21 @@ public class BaseServlet extends HttpServlet {
                     res.sendRedirect(req.getContextPath() + page);
                 }
             }
-//            else{
-//                // 如果沒有寫forward:或redirect: 則預設使用forward
-//                page = dispatcherPage;
-//                System.out.println("page:"+page);
-//                if (page == null || page == ""){
-//                    System.out.println("page 為空");
-////                    res.sendRedirect(req.getContextPath() +"/500.jsp");
-//                }else {
-//                    req.getRequestDispatcher(page).forward(req, res);
-//                }
-//            }
-
-
-
+            else{
+                // 如果沒有寫forward:或redirect: 則預設使用forward
+                page = dispatcherPage;
+                System.out.println("page:"+page);
+                if (page == null || page == ""){
+                    System.out.println("page 為空 "+page);
+//                    res.sendRedirect(req.getContextPath() +"/500.jsp");
+                }else {
+                    System.out.println("預設forward "+page);
+                    req.getRequestDispatcher(page).forward(req, res);
+                }
+            }
         } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }
-
     }
 
     /**
@@ -74,7 +71,7 @@ public class BaseServlet extends HttpServlet {
      *
      * @param obj
      */
-    public void writeValue(Object obj, HttpServletResponse response) throws IOException {
+    public void writeValue(HttpServletResponse response,Object obj) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         response.setContentType("application/json;charset=utf-8");
         mapper.writeValue(response.getOutputStream(), obj);

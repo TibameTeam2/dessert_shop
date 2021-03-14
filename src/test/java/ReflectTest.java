@@ -13,14 +13,21 @@ public class ReflectTest {
 //        array.add("hello");
         System.out.println(array);
 
-        Class c = array.getClass();
 
 
 
-        Method m = c.getMethod("add", Object.class);
-        m.invoke(array,"hello");
-        m.invoke(array,9.222);
-        System.out.println(array);
+
+
+
+
+
+
+
+//        Class c = array.getClass();
+//        Method m = c.getMethod("add", Object.class);
+//        m.invoke(array,"hello");
+//        m.invoke(array,9.222);
+//        System.out.println(array);
 
     }
 }

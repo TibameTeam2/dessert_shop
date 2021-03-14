@@ -30,9 +30,7 @@ public class MemberServlet extends BaseServlet{
         MemberBean member = new MemberBean();
         try {
             BeanUtils.populate(member,map);
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
+        } catch (IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }
         System.out.println(member);
@@ -47,11 +45,11 @@ public class MemberServlet extends BaseServlet{
             //註冊成功
             info.setFlag(true);
             info.setMsg("註冊成功!");
-            info.setRedirect(req.getContextPath()+"/index.html");
+            info.setRedirect(req.getContextPath()+"/login.html");
         }else{
             //註冊失敗
             info.setFlag(false);
-            info.setRedirect(req.getContextPath()+"/index.html");
+            info.setRedirect(req.getContextPath()+"/login.html");
             info.setMsg("註冊失敗!");
         }
 
@@ -118,25 +116,50 @@ public class MemberServlet extends BaseServlet{
         Object member = req.getSession().getAttribute("member");
 
         //把member寫回前端
-        ObjectMapper mapper = new ObjectMapper();
-        res.setContentType("application/json;charset=utf-8");
-        mapper.writeValue(res.getOutputStream(),member);
+//        ObjectMapper mapper = new ObjectMapper();
+//        res.setContentType("application/json;charset=utf-8");
+//        mapper.writeValue(res.getOutputStream(),member);
+
+
+        writeValue(res,member);
+
+//        ObjectMapper mapper = new ObjectMapper();
+//        String json = mapper.writeValueAsString(member);
+//        System.out.println("json = " + json);
+//        res.setContentType("application/json;charset=utf-8");
+//        res.getWriter().write(json);
     }
 
 
-    public String testForward(HttpServletRequest req, HttpServletResponse res){
-        return "forward:/index.html";
+    public String testForward1(HttpServletRequest req, HttpServletResponse res){
+        return "forward:/index.jsp";
+    }
+    public void testForward2(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        req.getRequestDispatcher("/index.jsp").forward(req, res);
+    }
+    public String testForward3(HttpServletRequest req, HttpServletResponse res){
+        return "/index.jsp";
+    }
+    //不可使用此種
+    public String testForward4(HttpServletRequest req, HttpServletResponse res){
+        return "index.jsp";
     }
 
-    public String testRedirect(HttpServletRequest req, HttpServletResponse res){
+    public String testRedirect1(HttpServletRequest req, HttpServletResponse res){
         return "redirect:/index.html";
     }
-
-    public void testForward1(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        req.getRequestDispatcher("/index.html").forward(req, res);
+    public void testRedirect2(HttpServletRequest req, HttpServletResponse res) throws IOException {
+        res.sendRedirect(req.getContextPath() + "/index.html");
     }
 
-    public void testRedirect1(HttpServletRequest req, HttpServletResponse res) throws IOException {
-        res.sendRedirect(req.getContextPath() + "/index.html");
+
+
+    public String testReturn1(HttpServletRequest req, HttpServletResponse res){
+        return "";
+    }
+    public String testReturn2(HttpServletRequest req, HttpServletResponse res){
+        return null;
+    }
+    public void testReturn3(HttpServletRequest req, HttpServletResponse res){
     }
 }

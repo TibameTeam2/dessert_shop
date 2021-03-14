@@ -4,6 +4,9 @@ import cn.hutool.crypto.digest.DigestUtil;
 import cn.hutool.crypto.digest.Digester;
 import org.junit.Test;
 
+/**
+ * 單向加密，不可逆
+ */
 public class Md5Test {
     @Test
     public void md5() {
