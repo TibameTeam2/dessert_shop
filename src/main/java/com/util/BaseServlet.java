@@ -24,7 +24,7 @@ public class BaseServlet extends HttpServlet {
         System.out.println("請求的uri:" + uri);//  /dessert_shop/member/register
         //字串切割後，獲取方法名稱
         String methodName = uri.substring(uri.lastIndexOf('/') + 1);
-        System.out.println("方法名稱：" + methodName);//  register
+        System.out.println("方法名稱:" + methodName);//  register
         //誰調用的?
         System.out.println(this);//com.member.controller.RegisterMemberServlet@438d0d75
         try {
@@ -54,8 +54,8 @@ public class BaseServlet extends HttpServlet {
                 page = dispatcherPage;
                 System.out.println("page:"+page);
                 if (page == null || page == ""){
-                    System.out.println("page 為空 "+page);
-//                    res.sendRedirect(req.getContextPath() +"/500.jsp");
+                    System.out.println("page為空 "+page);
+//                    res.sendRedirect(req.getContextPath() +"/error.jsp");
                 }else {
                     System.out.println("預設forward "+page);
                     req.getRequestDispatcher(page).forward(req, res);
@@ -67,21 +67,25 @@ public class BaseServlet extends HttpServlet {
     }
 
     /**
-     * 將傳入的物件序列化成json，直接寫回前端
-     *
-     * @param obj
+     * 將傳入的物件序列化成json，用字節流(byte)的方式寫回前端
      */
-    public void writeValue(HttpServletResponse response,Object obj) throws IOException {
+    public void writeValueByStream(HttpServletResponse response,Object obj) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         response.setContentType("application/json;charset=utf-8");
         mapper.writeValue(response.getOutputStream(), obj);
     }
 
     /**
+     * 將傳入的物件序列化成json，用字符流(char)的方式寫回前端
+     */
+    public void writeValueByWriter(HttpServletResponse response,Object obj) throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        response.setContentType("application/json;charset=utf-8");
+        mapper.writeValue(response.getWriter(), obj);
+    }
+
+    /**
      * 將物件序列化為json，並返回
-     *
-     * @param obj
-     * @return
      */
     public String writeValueAsString(Object obj) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();

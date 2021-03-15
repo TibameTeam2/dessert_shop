@@ -140,6 +140,14 @@
       <artifactId>mail</artifactId>
       <version>1.4.7</version>
     </dependency>
+    <!--Redis-->
+    <dependency>
+      <groupId>redis.clients</groupId>
+      <artifactId>jedis</artifactId>
+      <version>3.5.1</version>
+      <type>jar</type>
+      <scope>compile</scope>
+    </dependency>
   </dependencies>
 
 

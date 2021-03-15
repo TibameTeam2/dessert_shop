@@ -1,5 +1,6 @@
 package com.member.controller;
 
+import cn.hutool.core.convert.Convert;
 import cn.hutool.core.lang.Console;
 import cn.hutool.crypto.digest.DigestUtil;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -25,7 +26,8 @@ public class MemberServlet extends BaseServlet{
         System.out.println("MemberServlet in register");
         //獲取數據
         Map<String, String[]> map = req.getParameterMap();
-        System.out.println("map= "+map);
+        System.out.println("map= "+ new ObjectMapper().writeValueAsString(map));
+
         //封裝物件
         MemberBean member = new MemberBean();
         try {
@@ -69,7 +71,7 @@ public class MemberServlet extends BaseServlet{
     public void login(HttpServletRequest req, HttpServletResponse res) throws IOException {
         //獲取數據
         Map<String, String[]> map = req.getParameterMap();
-        System.out.println("map= "+map);
+        System.out.println("map= "+ new ObjectMapper().writeValueAsString(map));
         //封裝物件
         MemberBean member = new MemberBean();
         try {
@@ -94,6 +96,7 @@ public class MemberServlet extends BaseServlet{
             info.setFlag(true);
             req.getSession().setAttribute("member",member);//登入成功
             info.setMsg("登入成功!");
+            info.setData(member);
             System.out.println("member = " + member);
         }
 
@@ -110,19 +113,28 @@ public class MemberServlet extends BaseServlet{
     }
 
 
-
     public void isLogin(HttpServletRequest req, HttpServletResponse res) throws IOException {
         //從session取得member
-        Object member = req.getSession().getAttribute("member");
+        MemberBean member = (MemberBean)req.getSession().getAttribute("member");
 
-        //把member寫回前端
-//        ObjectMapper mapper = new ObjectMapper();
-//        res.setContentType("application/json;charset=utf-8");
-//        mapper.writeValue(res.getOutputStream(),member);
+        ResultInfo info = new ResultInfo();
+        if(member==null){
+            info.setFlag(false);
+            info.setMsg("尚未登入!");
+        }
+
+        else if(member!=null){
+            info.setFlag(true);
+            req.getSession().setAttribute("member",member);//登入成功
+            info.setMsg("已登入!");
+            info.setData(member);
+            System.out.println("member = " + member);
+        }
 
 
-        writeValue(res,member);
 
+
+        writeValueByWriter(res,info);
 //        ObjectMapper mapper = new ObjectMapper();
 //        String json = mapper.writeValueAsString(member);
 //        System.out.println("json = " + json);
@@ -130,21 +142,27 @@ public class MemberServlet extends BaseServlet{
 //        res.getWriter().write(json);
     }
 
+    public void emailActive(HttpServletRequest req, HttpServletResponse res){
+        
+    }
 
+
+    //測試Forward
     public String testForward1(HttpServletRequest req, HttpServletResponse res){
         return "forward:/index.jsp";
     }
-    public void testForward2(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        req.getRequestDispatcher("/index.jsp").forward(req, res);
-    }
-    public String testForward3(HttpServletRequest req, HttpServletResponse res){
+    public String testForward2(HttpServletRequest req, HttpServletResponse res){
         return "/index.jsp";
+    }
+    public void testForward3(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        req.getRequestDispatcher("/index.jsp").forward(req, res);
     }
     //不可使用此種
     public String testForward4(HttpServletRequest req, HttpServletResponse res){
         return "index.jsp";
     }
 
+    //測試Redirect
     public String testRedirect1(HttpServletRequest req, HttpServletResponse res){
         return "redirect:/index.html";
     }
@@ -152,8 +170,7 @@ public class MemberServlet extends BaseServlet{
         res.sendRedirect(req.getContextPath() + "/index.html");
     }
 
-
-
+    //測試回傳
     public String testReturn1(HttpServletRequest req, HttpServletResponse res){
         return "";
     }

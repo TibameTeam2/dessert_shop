@@ -795,11 +795,10 @@
         $.get("member/isLogin",{}, function (data) {
             //處理伺服器回應的資料  data  {flag:true,errorMsg:"註冊成功!!!"}
             console.log(data);
-            if (data) {
+            if (data.flag) {
                 // 註冊成功後跳轉頁面
                 // location.href="register_ok.html";
-                // alert("註冊成功!!!");
-                alert("帳號:"+data.member_account+"\n密碼:"+data.member_password);
+                alert("帳號:"+data.data.member_account+"\n姓名:"+data.data.member_name+"\n密碼:"+data.data.member_password);
                 // if(data.redirect)
                 //     location.href = data.redirect;
             } else {
