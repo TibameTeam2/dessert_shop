@@ -154,11 +154,14 @@ public class MemberServlet extends BaseServlet{
     public String testForward2(HttpServletRequest req, HttpServletResponse res){
         return "/index.jsp";
     }
-    public void testForward3(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+    public String testForward3(HttpServletRequest req, HttpServletResponse res){
+        return "forwardSuccess:/index.jsp";
+    }
+    public void testForward4(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         req.getRequestDispatcher("/index.jsp").forward(req, res);
     }
     //不可使用此種
-    public String testForward4(HttpServletRequest req, HttpServletResponse res){
+    public String testForward5(HttpServletRequest req, HttpServletResponse res){
         return "index.jsp";
     }
 

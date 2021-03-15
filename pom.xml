@@ -20,11 +20,7 @@
       <artifactId>mysql-connector-java</artifactId>
       <version>8.0.23</version>
     </dependency>
-<!--    <dependency>-->
-<!--      <groupId>c3p0</groupId>-->
-<!--      <artifactId>c3p0</artifactId>-->
-<!--      <version>0.9.1.2</version>-->
-<!--    </dependency>-->
+    <!--阿里巴巴資料庫連線池-->
     <dependency>
       <groupId>com.alibaba</groupId>
       <artifactId>druid</artifactId>
@@ -36,7 +32,7 @@
       <version>4.12</version>
       <scope>test</scope>
     </dependency>
-    <!-- Spring 框架  -->
+    <!--Spring 框架-->
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-jdbc</artifactId>
@@ -62,37 +58,21 @@
       <artifactId>spring-webmvc</artifactId>
       <version>5.0.5.RELEASE</version>
     </dependency>
-    <!--  servlet  -->
+    <!--servlet-->
     <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>javax.servlet-api</artifactId>
       <version>4.0.1</version>
       <scope>provided</scope>
     </dependency>
+    <!--jsp-->
     <dependency>
       <groupId>javax.servlet.jsp</groupId>
       <artifactId>javax.servlet.jsp-api</artifactId>
       <version>2.3.3</version>
       <scope>provided</scope>
     </dependency>
-    <!--  jackson  -->
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-core</artifactId>
-      <version>2.9.0</version>
-    </dependency>
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-databind</artifactId>
-      <version>2.9.0</version>
-    </dependency>
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-annotations</artifactId>
-      <version>2.9.0</version>
-    </dependency>
-
-
+    <!--fileUpload-->
     <dependency>
       <groupId>commons-fileupload</groupId>
       <artifactId>commons-fileupload</artifactId>
@@ -103,8 +83,6 @@
       <artifactId>commons-io</artifactId>
       <version>2.3</version>
     </dependency>
-
-
     <!--beanUtils-->
     <dependency>
       <groupId>commons-beanutils</groupId>
@@ -148,11 +126,21 @@
       <type>jar</type>
       <scope>compile</scope>
     </dependency>
+    <!--解決Redis出現警告-->
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>2.0.0-alpha1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-simple</artifactId>
+      <version>2.0.0-alpha1</version>
+      <scope>test</scope>
+    </dependency>
+
+
   </dependencies>
-
-
-
-
 
 
 

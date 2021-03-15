@@ -43,9 +43,9 @@ public class BaseServlet extends HttpServlet {
                 String[] data = dispatcherPage.split(":");
                 System.out.println("分號前文字:"+data[0] + " 分號後文字:"+data[1]);
                 page = data[1];
-                if("forward".equals(data[0])){
+                if(data[0].contains("forward")){
                     req.getRequestDispatcher(page).forward(req,res);
-                }else if("redirect".equals(data[0])){
+                }else if(data[0].contains("redirect")){
                     res.sendRedirect(req.getContextPath() + page);
                 }
             }

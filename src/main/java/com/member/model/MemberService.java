@@ -22,15 +22,22 @@ public class MemberService {
         dao.insert(member);
 
 
-        String activeCode = RandomUtil.randomString(8);
+//        String activeCode = RandomUtil.randomString(8);
 
-        Jedis jedis = JedisUtil.getJedis();
-        jedis.set(member.getMember_account(),activeCode);
-        jedis.close();
+//        Jedis jedis = JedisUtil.getJedis();
+//        jedis.set(member.getMember_account(),activeCode);
+//        jedis.close();
 
+//        MailUtil.send("jasonwu1994@gmail.com", "嗜甜，信箱驗證", activeCode, false);
 
-        MailUtil.send("jasonwu1994@gmail.com", "嗜甜，信箱驗證", activeCode, false);
-
+        new Thread(() -> {
+            String activeCode = randomString(8);
+            Jedis jedis = JedisUtil.getJedis();
+            jedis.set(member.getMember_account(),activeCode);
+            jedis.close();
+            MailUtil.send("jasonwu1994@gmail.com", "嗜甜，信箱驗證", activeCode, false);
+            System.out.println("thread "+member);
+        }).start();
         return true;
     }
 
@@ -44,5 +51,6 @@ public class MemberService {
             return m;
         return null;
     }
+
 
 }

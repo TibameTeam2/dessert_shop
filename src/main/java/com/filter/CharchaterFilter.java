@@ -40,6 +40,8 @@ public class CharchaterFilter implements Filter {
         //處理響應的亂碼
         response.setContentType("text/html;charset=UTF-8");
 //        response.setContentType("text/html;charset=BIG5");
+//        response.setContentType("text/html;charset=iso-8859-1");
+
         filterChain.doFilter(request,response);
     }
 
