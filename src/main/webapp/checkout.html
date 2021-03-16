@@ -30,10 +30,28 @@
     <!-- Main Style CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
 
+<!-- 日期 -->
+    <!-- <link href="assets/css/plugins/the-datepicker.css" rel="stylesheet"> -->
+
+    <!-- 信用卡 -->
+<link href="assets/css/plugins/cardstyle.css" rel="stylesheet">
 
     <!--====== Use the minified version files listed below for better performance and remove the files listed above ======-->
     <!-- <link rel="stylesheet" href="assets/css/vendor/plugins.min.css">
     <link rel="stylesheet" href="assets/css/style.min.css"> -->
+
+
+<style>
+.single-select2 {
+    margin-top: 10px;
+}
+
+
+.form-container.-on {
+  display: none;
+}
+
+</style>
 
 </head>
 
@@ -586,549 +604,279 @@
 
         <!-- Checkout Section Start -->
         <div class="section section-padding-02 mt-n6">
-            <div class="container">
-                <div class="checkout-info mt-30">
-                    <p class="info-header error"><i class="fa fa-exclamation-circle"></i> <strong>Error:</strong> Username is required.</p>
-                </div>
 
-                <div class="checkout-info mt-30">
-                    <p class="info-header"> <i class="fa fa-exclamation-circle"></i> Returning customer? <a data-bs-toggle="collapse" href="#login">Click here to login</a></p>
+        <div class="container">
 
-                    <div class="collapse" id="login">
-                        <div class="card-body">
-                            <p>If you have shopped with us before, please enter your details in the boxes below. If you are a new customer, please proceed to the Billing & Shipping section.</p>
-                            <form action="#">
+          <!-- <div id="css-script-menu"> -->
 
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="single-form">
-                                            <label class="form-label">Username or email *</label>
-                                            <input type="email" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="single-form">
-                                            <label class="form-label">Password</label>
-                                            <input type="password" class="form-control">
-                                        </div>
-                                    </div>
-                                </div>
+          <div class="checkout-info mt-30">
+              <h1>購物車</h1>
+              <p>資料填寫</p>
 
-                                <div class="single-form d-flex align-items-center">
-                                    <button class="btn btn-primary">Login</button>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="remember">
-                                        <label class="form-check-label" for="remember">Remember Me</label>
-                                    </div>
-                                </div>
-                                <div class="forget">
-                                    <a href="#">Lost Your Password</a>
-                                </div>
-                            </form>
+              <div class="collapse" id="coupon">
+                  <div class="card-body">
+                      <form action="#">
+                          <div class="row">
+                              <div class="col-lg-6">
+                                  <div class="single-form">
+                                      <input type="email" placeholder="Coupon code" class="form-control">
+                                  </div>
+                              </div>
+                              <div class="col-lg-6">
+                                  <div class="single-form">
+                                      <button class="btn btn-primary">Login</button>
+                                  </div>
+                              </div>
+                          </div>
+                      </form>
+                  </div>
+              </div>
+          </div>
+
+<!-- row開始 -->
+      <div class="row">
+<!-- 左半開始 -->
+         <div class="col-lg-7">
+
+           <div class="checkout-form">
+               <div class="checkout-title">
+                   <h4 class="title">取餐者資訊</h4>
+           </div>
+
+               <div class="row">
+
+                   <div class="col-sm-6">
+                       <div class="single-form">
+                           <label class="form-label">姓名</label>
+                           <input type="text" class="form-control">
+                       </div>
+                   </div>
+                   <div class="col-sm-6" style="padding-top: 45px;">
+                        <div class="single-form" >
+
+                            <input type="radio" name="skill" value="male">先生
+                            <input type="radio" name="skill" value="female">小姐
+
                         </div>
                     </div>
-                </div>
+                   </div>
+                   <div class="col-sm-12">
+                       <div class="single-form">
+                           <label class="form-label">電話</label>
+                           <input type="text" class="form-control">
+                       </div>
+                   </div>
 
-                <div class="checkout-info mt-30">
-                    <p class="info-header"> <i class="fa fa-exclamation-circle"></i> Have a coupon? <a data-bs-toggle="collapse" href="#coupon">Click here to enter your code</a></p>
+                   <div class="col-sm-12">
+                       <div class="single-form">
+                           <label class="form-label">電子信箱</label>
 
-                    <div class="collapse" id="coupon">
-                        <div class="card-body">
-                            <form action="#">
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="single-form">
-                                            <input type="email" placeholder="Coupon code" class="form-control">
+                           <input type="text" class="form-control">
+                       </div>
+                   </div>
+
+
+
+                       <div class="row">
+                           <div class="single-form">
+                               <label class="form-label">取餐時間</label>
+                             <div class="row">
+                                   <div class="col-sm-6">
+                                     <input type="date" id="my-input1" class="form-control">
+                                   </div>
+                                   <div class="col-sm-6">
+                                     <div class="single-select2" style="margin-top: 0px;width: 100px;">
+                                       <div class="form-select2">
+                                           <select class="select2">
+
+                                               <option value="0">09:00</option>
+                                               <option value="1">10:00</option>
+                                               <option value="2">11:00</option>
+                                               <option value="3">12:00</option>
+                                               <option value="4">13:00</option>
+                                               <option value="5">14:00</option>
+                                               <option value="6">15:00</option>
+                                               <option value="7">16:00</option>
+
+                                           </select>
                                         </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="single-form">
-                                            <button class="btn btn-primary">Login</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
+                                      </div>
+                                   </div>
+                             </div>
+                           </div>
+
                         </div>
-                    </div>
-                </div>
 
-                <form action="#">
-                    <div class="row">
-                        <div class="col-lg-7">
-                            <!-- Checkout Form Start -->
-                            <div class="checkout-form">
-                                <div class="checkout-title">
-                                    <h4 class="title">Billing details</h4>
-                                </div>
+                   </div>
+                   <div class="col-sm-12">
+                       <div class="single-form">
+                           <label class="form-label">其他備註</label>
+                           <textarea class="form-control"></textarea>
+                       </div>
+                   </div>
 
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="single-form">
-                                            <label class="form-label">First name *</label>
-                                            <input type="text" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="single-form">
-                                            <label class="form-label">Last name *</label>
-                                            <input type="text" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-12">
-                                        <div class="single-form">
-                                            <label class="form-label">Company name</label>
-                                            <input type="text" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-12">
-                                        <div class="single-select2">
-                                            <label class="form-label">Country *</label>
+                  <!-- 付款方式 -->
 
-                                            <div class="form-select2">
-                                                <select class="select2">
-                                                    <option value="0">Select a country…</option>
-                                                    <option value="1">Bangladesh</option>
-                                                    <option value="2">Canada</option>
-                                                    <option value="3">Colombia</option>
-                                                    <option value="4">Indonesia</option>
-                                                    <option value="5">Italy</option>
-                                                    <option value="6">Pakistan</option>
-                                                    <option value="7">Turkey</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-12">
-                                        <div class="single-form">
-                                            <label class="form-label">Street address *</label>
-                                            <input type="text" class="form-control" placeholder="House number and street name">
-                                            <input type="text" class="form-control" placeholder="Apartment, suite, unit etc. (optional)">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-12">
-                                        <div class="single-form">
-                                            <label class="form-label">Town / City *</label>
-                                            <input type="text" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-12">
-                                        <div class="single-select2">
-                                            <label class="form-label">District *</label>
+                  <div class="col-sm-12" style="padding-top: 30px;">
+                    <h5>付款方式</h5>
+                    <p></p>
+                      <form>
+                        <input type="radio" class="pay1" name="payment" value="card">線上刷卡
 
-                                            <div class="form-select2">
-                                                <select class="select2">
-                                                    <option value="">Select an option…</option>
-                                                    <option value="BAG">Bagerhat</option>
-                                                    <option value="BAN">Bandarban</option>
-                                                    <option value="BAR">Barguna</option>
-                                                    <option value="BARI">Barisal</option>
-                                                    <option value="BHO">Bhola</option>
-                                                    <option value="BOG">Bogra</option>
-                                                    <option value="BRA">Brahmanbaria</option>
-                                                    <option value="CHA">Chandpur</option>
-                                                    <option value="CHI">Chittagong</option>
-                                                    <option value="CHU">Chuadanga</option>
-                                                    <option value="COM">Comilla</option>
-                                                    <option value="COX">Cox's Bazar</option>
-                                                    <option value="DHA">Dhaka</option>
-                                                    <option value="DIN">Dinajpur</option>
-                                                    <option value="FAR">Faridpur </option>
-                                                    <option value="FEN">Feni</option>
-                                                    <option value="GAI">Gaibandha</option>
-                                                    <option value="GAZI">Gazipur</option>
-                                                    <option value="GOP">Gopalganj</option>
-                                                    <option value="HAB">Habiganj</option>
-                                                    <option value="JAM">Jamalpur</option>
-                                                    <option value="JES">Jessore</option>
-                                                    <option value="JHA">Jhalokati</option>
-                                                    <option value="JHE">Jhenaidah</option>
-                                                    <option value="JOY">Joypurhat</option>
-                                                    <option value="KHA">Khagrachhari</option>
-                                                    <option value="KHU">Khulna</option>
-                                                    <option value="KIS">Kishoreganj</option>
-                                                    <option value="KUR">Kurigram</option>
-                                                    <option value="KUS">Kushtia</option>
-                                                    <option value="LAK">Lakshmipur</option>
-                                                    <option value="LAL">Lalmonirhat</option>
-                                                    <option value="MAD">Madaripur</option>
-                                                    <option value="MAG">Magura</option>
-                                                    <option value="MAN">Manikganj </option>
-                                                    <option value="MEH">Meherpur</option>
-                                                    <option value="MOU">Moulvibazar</option>
-                                                    <option value="MUN">Munshiganj</option>
-                                                    <option value="MYM">Mymensingh</option>
-                                                    <option value="NAO">Naogaon</option>
-                                                    <option value="NAR">Narail</option>
-                                                    <option value="NARG">Narayanganj</option>
-                                                    <option value="NARD">Narsingdi</option>
-                                                    <option value="NAT">Natore</option>
-                                                    <option value="NAW">Nawabganj</option>
-                                                    <option value="NET">Netrakona</option>
-                                                    <option value="NIL">Nilphamari</option>
-                                                    <option value="NOA">Noakhali</option>
-                                                    <option value="PAB">Pabna</option>
-                                                    <option value="PAN">Panchagarh</option>
-                                                    <option value="PAT">Patuakhali</option>
-                                                    <option value="PIR">Pirojpur</option>
-                                                    <option value="RAJB">Rajbari</option>
-                                                    <option value="RAJ">Rajshahi</option>
-                                                    <option value="RAN">Rangamati</option>
-                                                    <option value="RANP">Rangpur</option>
-                                                    <option value="SAT">Satkhira</option>
-                                                    <option value="SHA">Shariatpur</option>
-                                                    <option value="SHE">Sherpur</option>
-                                                    <option value="SIR">Sirajganj</option>
-                                                    <option value="SUN">Sunamganj</option>
-                                                    <option value="SYL">Sylhet</option>
-                                                    <option value="TAN">Tangail</option>
-                                                    <option value="THA">Thakurgaon</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-12">
-                                        <div class="single-form">
-                                            <label class="form-label">Postcode / ZIP</label>
-                                            <input type="text" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="single-form">
-                                            <label class="form-label">Phone *</label>
-                                            <input type="text" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="single-form">
-                                            <label class="form-label">Email address *</label>
-                                            <input type="text" class="form-control">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-check checkout-checkbox">
-                                    <input type="checkbox" class="form-check-input" id="account">
-                                    <label class="form-check-label" for="account"> Create an account?</label>
-                                </div>
-
-                                <div class="checkout-account">
-                                    <div class="single-form">
-                                        <label class="form-label">Create account Password *</label>
-                                        <input type="password" placeholder="Password" class="form-control">
-                                    </div>
-                                </div>
-
-                                <div class="form-check checkout-checkbox">
-                                    <input type="checkbox" class="form-check-input" id="shipping">
-                                    <label class="form-check-label" for="shipping">Ship to a different address?</label>
-                                </div>
-
-                                <div class="checkout-shipping">
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <div class="single-form">
-                                                <label class="form-label">First name *</label>
-                                                <input type="text" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="single-form">
-                                                <label class="form-label">Last name *</label>
-                                                <input type="text" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-12">
-                                            <div class="single-form">
-                                                <label class="form-label">Company name</label>
-                                                <input type="text" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-12">
-                                            <div class="single-select2">
-                                                <label class="form-label">Country *</label>
-
-                                                <div class="form-select2">
-                                                    <select class="select2">
-                                                        <option value="0">Select a country…</option>
-                                                        <option value="1">Bangladesh</option>
-                                                        <option value="2">Canada</option>
-                                                        <option value="3">Colombia</option>
-                                                        <option value="4">Indonesia</option>
-                                                        <option value="5">Italy</option>
-                                                        <option value="6">Pakistan</option>
-                                                        <option value="7">Turkey</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-12">
-                                            <div class="single-form">
-                                                <label class="form-label">Street address *</label>
-                                                <input type="text" class="form-control" placeholder="House number and street name">
-                                                <input type="text" class="form-control" placeholder="Apartment, suite, unit etc. (optional)">
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-12">
-                                            <div class="single-form">
-                                                <label class="form-label">Town / City *</label>
-                                                <input type="text" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-12">
-                                            <div class="single-select2">
-                                                <label class="form-label">District *</label>
-
-                                                <div class="form-select2">
-                                                    <select class="select2">
-                                                        <option value="">Select an option…</option>
-                                                        <option value="BAG">Bagerhat</option>
-                                                        <option value="BAN">Bandarban</option>
-                                                        <option value="BAR">Barguna</option>
-                                                        <option value="BARI">Barisal</option>
-                                                        <option value="BHO">Bhola</option>
-                                                        <option value="BOG">Bogra</option>
-                                                        <option value="BRA">Brahmanbaria</option>
-                                                        <option value="CHA">Chandpur</option>
-                                                        <option value="CHI">Chittagong</option>
-                                                        <option value="CHU">Chuadanga</option>
-                                                        <option value="COM">Comilla</option>
-                                                        <option value="COX">Cox's Bazar</option>
-                                                        <option value="DHA">Dhaka</option>
-                                                        <option value="DIN">Dinajpur</option>
-                                                        <option value="FAR">Faridpur </option>
-                                                        <option value="FEN">Feni</option>
-                                                        <option value="GAI">Gaibandha</option>
-                                                        <option value="GAZI">Gazipur</option>
-                                                        <option value="GOP">Gopalganj</option>
-                                                        <option value="HAB">Habiganj</option>
-                                                        <option value="JAM">Jamalpur</option>
-                                                        <option value="JES">Jessore</option>
-                                                        <option value="JHA">Jhalokati</option>
-                                                        <option value="JHE">Jhenaidah</option>
-                                                        <option value="JOY">Joypurhat</option>
-                                                        <option value="KHA">Khagrachhari</option>
-                                                        <option value="KHU">Khulna</option>
-                                                        <option value="KIS">Kishoreganj</option>
-                                                        <option value="KUR">Kurigram</option>
-                                                        <option value="KUS">Kushtia</option>
-                                                        <option value="LAK">Lakshmipur</option>
-                                                        <option value="LAL">Lalmonirhat</option>
-                                                        <option value="MAD">Madaripur</option>
-                                                        <option value="MAG">Magura</option>
-                                                        <option value="MAN">Manikganj </option>
-                                                        <option value="MEH">Meherpur</option>
-                                                        <option value="MOU">Moulvibazar</option>
-                                                        <option value="MUN">Munshiganj</option>
-                                                        <option value="MYM">Mymensingh</option>
-                                                        <option value="NAO">Naogaon</option>
-                                                        <option value="NAR">Narail</option>
-                                                        <option value="NARG">Narayanganj</option>
-                                                        <option value="NARD">Narsingdi</option>
-                                                        <option value="NAT">Natore</option>
-                                                        <option value="NAW">Nawabganj</option>
-                                                        <option value="NET">Netrakona</option>
-                                                        <option value="NIL">Nilphamari</option>
-                                                        <option value="NOA">Noakhali</option>
-                                                        <option value="PAB">Pabna</option>
-                                                        <option value="PAN">Panchagarh</option>
-                                                        <option value="PAT">Patuakhali</option>
-                                                        <option value="PIR">Pirojpur</option>
-                                                        <option value="RAJB">Rajbari</option>
-                                                        <option value="RAJ">Rajshahi</option>
-                                                        <option value="RAN">Rangamati</option>
-                                                        <option value="RANP">Rangpur</option>
-                                                        <option value="SAT">Satkhira</option>
-                                                        <option value="SHA">Shariatpur</option>
-                                                        <option value="SHE">Sherpur</option>
-                                                        <option value="SIR">Sirajganj</option>
-                                                        <option value="SUN">Sunamganj</option>
-                                                        <option value="SYL">Sylhet</option>
-                                                        <option value="TAN">Tangail</option>
-                                                        <option value="THA">Thakurgaon</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-12">
-                                            <div class="single-form">
-                                                <label class="form-label">Postcode / ZIP</label>
-                                                <input type="text" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="single-form">
-                                                <label class="form-label">Phone *</label>
-                                                <input type="text" class="form-control">
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <div class="single-form">
-                                                <label class="form-label">Email address *</label>
-                                                <input type="text" class="form-control">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="single-form checkout-note">
-                                    <label class="form-label">Order notes</label>
-                                    <textarea class="form-control" placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
-                                </div>
+                        <div class="form-container -on">
+                            <div class="field-container">
+                                <label for="name">姓名</label>
+                                <input id="name" class="form-control" maxlength="20" type="text">
                             </div>
-                            <!-- Checkout Form End -->
-                        </div>
-                        <div class="col-lg-5">
-                            <div class="checkout-order">
-                                <div class="checkout-title">
-                                    <h4 class="title">Your Order</h4>
-                                </div>
-
-                                <div class="checkout-order-table table-responsive">
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th class="Product-name">Product</th>
-                                                <th class="Product-price">Total</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td class="Product-name">
-                                                    <p>Bodysuit With Long Sleeves × 1</p>
-                                                </td>
-                                                <td class="Product-price">
-                                                    <p>$150.00</p>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="Product-name">
-                                                    <p>Classic Polo Shirt × 1</p>
-                                                </td>
-                                                <td class="Product-price">
-                                                    <p>$150.00</p>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="Product-name">
-                                                    <p>Trousers With Side Stripe × 1</p>
-                                                </td>
-                                                <td class="Product-price">
-                                                    <p>$150.00</p>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="Product-name">
-                                                    <p>Biker Jacket × 1</p>
-                                                </td>
-                                                <td class="Product-price">
-                                                    <p>$150.00</p>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <td class="Product-name">
-                                                    <p>Subtotal</p>
-                                                </td>
-                                                <td class="Product-price">
-                                                    <p>$150.00</p>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="Product-name">
-                                                    <p>Shipping</p>
-                                                </td>
-                                                <td class="Product-price">
-                                                    <ul class="shipping-list">
-                                                        <li class="radio">
-                                                            <input type="radio" name="shipping" id="radio1" checked>
-                                                            <label for="radio1"><span></span> Flat Rate</label>
-                                                        </li>
-                                                        <li class="radio">
-                                                            <input type="radio" name="shipping" id="radio2">
-                                                            <label for="radio2"><span></span> Free Shipping</label>
-                                                        </li>
-                                                        <li class="radio">
-                                                            <input type="radio" name="shipping" id="radio3">
-                                                            <label for="radio3"><span></span> Local Pickup</label>
-                                                        </li>
-                                                    </ul>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="Product-name">
-                                                    <p>Total</p>
-                                                </td>
-                                                <td class="total-price">
-                                                    <p>$600.00</p>
-                                                </td>
-                                            </tr>
-                                        </tfoot>
-                                    </table>
-                                </div>
-
-                                <div class="checkout-payment">
-                                    <ul>
-                                        <li>
-                                            <div class="single-payment">
-                                                <div class="payment-radio radio">
-                                                    <input type="radio" name="radio" id="bank">
-                                                    <label for="bank"><span></span> Direct bank transfer </label>
-
-                                                    <div class="payment-details">
-                                                        <p>Please send a Check to Store name with Store Street, Store Town, Store State, Store Postcode, Store Country.</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="single-payment">
-                                                <div class="payment-radio radio">
-                                                    <input type="radio" name="radio" id="check">
-                                                    <label for="check"><span></span> Check payments </label>
-
-                                                    <div class="payment-details">
-                                                        <p>Please send a check to Store Name, Store Street, Store Town, Store State / County, Store Postcode.</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="single-payment">
-                                                <div class="payment-radio radio">
-                                                    <input type="radio" name="radio" id="cash" checked="checked">
-                                                    <label for="cash"><span></span> Cash on Delivery</label>
-
-                                                    <div class="payment-details">
-                                                        <p>Pay with cash upon delivery.</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="single-payment">
-                                                <div class="payment-radio radio">
-                                                    <input type="radio" name="radio" id="paypal">
-                                                    <label for="paypal"><span></span> Paypal <img class="payment" src="assets/images/payment-2.png" alt=""> <a href="#">What is PayPal?</a></label>
-
-                                                    <div class="payment-details">
-                                                        <p>Pay via PayPal; you can pay with your credit card if you don’t have a PayPal account.</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-
-                                    <div class="checkout-btn">
-                                        <a class="btn btn-primary btn-hover-dark d-block" href="#">Place Order</a>
-                                    </div>
-                                </div>
+                            <div class="field-container">
+                                <label for="cardnumber">卡號</label>
+                                <input id="cardnumber" class="form-control" type="text" pattern="[0-9]*" inputmode="numeric">
+                                <svg id="ccicon" class="ccicon" width="750" height="471" viewBox="0 0 750 471" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                     xmlns:xlink="http://www.w3.org/1999/xlink">
+                                </svg>
+                            </div>
+                            <div class="field-container">
+                                <label for="expirationdate">有效期限 (mm/yy)</label>
+                                <input id="expirationdate" class="form-control" type="text" pattern="[0-9]*" inputmode="numeric">
+                            </div>
+                            <div class="field-container">
+                                <label for="securitycode">安全碼</label>
+                                <input id="securitycode" class="form-control" type="text" pattern="[0-9]*" inputmode="numeric">
                             </div>
                         </div>
-                    </div>
-                </form>
-            </div>
-        </div>
+
+
+                        <p></p>
+                        <input type="radio" class="pay2" name="payment" value="shop">到店付款
+                        <p></p>
+                        <input type="radio" class="pay3" name="payment" value="atm">匯款
+                      </form>
+                  </div>
+
+
+              </div>
+<!-- 左半結束 -->
+
+
+<!-- 右半開始 -->
+         <div class="col-lg-5">
+
+           <div class="checkout-order">
+               <div class="checkout-title">
+                   <h4 class="title">訂購商品</h4>
+               </div>
+
+               <div class="checkout-order-table table-responsive">
+                   <table class="table">
+                       <thead>
+                           <tr>
+                               <th class="Product-name">商品</th>
+                               <th class="Product-price">金額</th>
+                           </tr>
+                       </thead>
+                       <tbody>
+                           <tr>
+                               <td class="Product-name">
+                                   <p>熔岩巧克力蛋糕<br>Coulant au chocolat</p>
+                               </td>
+                               <td class="Product-price">
+                                   <p>$100 × 2</p>
+                               </td>
+                           </tr>
+                           <tr>
+                               <td class="Product-name">
+                                   <p>法式檸檬塔<br>Tarte au citron</p>
+                               </td>
+                               <td class="Product-price">
+                                   <p>$100 × 2</p>
+                               </td>
+                           </tr>
+                           <tr>
+                               <td class="Product-name">
+                                   <p>可麗露<br>Canelé</p>
+                               </td>
+                               <td class="Product-price">
+                                   <p>$100 × 2</p>
+                               </td>
+                           </tr>
+                           <tr>
+                               <td class="Product-name">
+                                   <p>修女泡芙<br>La Religieuse</p>
+                               </td>
+                               <td class="Product-price">
+                                   <p>$100 × 2</p>
+                               </td>
+                           </tr>
+                       </tbody>
+                       <tfoot>
+                           <tr>
+                               <td class="Product-name">
+                                   <p>合計數量：8</p>
+                               </td>
+                               <td class="Product-price" >
+                                   <p></p>
+                               </td>
+                           </tr>
+
+                           <tr>
+                               <td class="Product-name">
+                                   <p>合計金額：800元</p>
+                               </td>
+                               <td class="Product-price" >
+                                   <p></p>
+                               </td>
+                           </tr>
+
+                           <tr>
+                               <td class="Product-name">
+                                   <p>優惠券序號：abc123(折20元)</p>
+                               </td>
+                               <td class="Product-price" >
+                                   <p></p>
+                               </td>
+                           </tr>
+
+                       </tfoot>
+                   </table>
+               </div>
+
+               <div class="checkout-payment">
+
+                  <h3 style="text-align: right; font-weight: bold;">應付金額：780元</h3>
+
+                   <div class="checkout-btn">
+                       <a class="btn btn-primary btn-hover-dark d-block" href="#">確認結帳</a>
+                       <p></p>
+                       <a class="btn btn-primary btn-hover-dark d-block" href="#">回上一頁</a>
+                   </div>
+               </div>
+           </div>
+
+
+
+
+         </div>
+<!-- 右半結束 -->
+
+
+
+
+
+
+
+               </div>
+<!-- row結束 -->
+
+
+
+
+
+
+    </div>
+
+
+          </div>
+
         <!-- Checkout Section End -->
         <!-- Shopping Cart Section End -->
 
@@ -1278,12 +1026,57 @@
     <script src="assets/js/plugins/jquery.zoom.min.js"></script>
     <script src="assets/js/plugins/ajax-contact.js"></script>
 
+<!-- 信用卡 -->
+    <script src="assets/js/plugins/cardimask.min.js"></script>
+    <script src="assets/js/plugins/cardindex.js"></script>
+
     <!--====== Use the minified version files listed below for better performance and remove the files listed above ======-->
     <!-- <script src="assets/js/plugins.min.js"></script> -->
 
 
     <!-- Main JS -->
     <script src="assets/js/main.js"></script>
+
+<!-- 日期 -->
+<!-- <script src="assets/js/plugins/the-datepicker.js"></script>
+<script>
+    (function () {
+        const input = document.getElementById('my-input');
+        const datepicker = new TheDatepicker.Datepicker(input);
+        datepicker.render();
+    })();
+</script> -->
+
+
+
+
+<!-- 時間 select2 -->
+<script>
+$("select.select2").select2({
+    minimumResultsForSearch: -1
+});
+</script>
+
+<!-- 信用卡付款 -->
+    <script>
+      $("input.pay1").on("change", function(e) {
+        e.preventDefault();
+        $(this).siblings("div.form-container").toggleClass("-on");
+      });
+
+      $("input.pay2").on("change", function(e) {
+        e.preventDefault();
+        $(this).siblings("div.form-container").addClass("-on");
+      });
+
+      $("input.pay3").on("change", function(e) {
+        e.preventDefault();
+        $(this).siblings("div.form-container").addClass("-on");
+      });
+
+    </script>
+
+
 
 </body>
 
