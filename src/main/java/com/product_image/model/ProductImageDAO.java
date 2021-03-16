@@ -27,29 +27,24 @@ public class ProductImageDAO {
 	String SELECT_ALL;
 	String SELECT_PK;
 	
-	// 使用InputStream資料流方式
-	public static InputStream getPictureStream(String path) throws IOException {
+	// 使用byte[]方式
+	public static byte[] getPictureByteArray(String path) throws IOException {
 		FileInputStream fis = new FileInputStream(path);
-		return fis;
+		byte[] buffer = new byte[fis.available()];
+		fis.read(buffer);
+		fis.close();
+		return buffer;
 	}
 	
-	
-	
-	// 使用Blob
-	public static void  readPicture(Blob blob, Integer id) throws IOException, SQLException {
-		InputStream is = blob.getBinaryStream();
-		FileOutputStream fos = new FileOutputStream("Output/" + id + ".jfif");
-		int i;
-		while((i = is.read()) != -1) {
-			fos.write(i);
-		}
+	// readPicture
+	public static void readPicture(byte[] bytes, Integer image_id) throws IOException {
+//		FileOutputStream fos = new FileOutputStream("C:/Output/"+ image_id+".png");
+		FileOutputStream fos = new FileOutputStream("Output/"+ image_id+".png");
+		fos.write(bytes);
 		fos.flush();
-		fos.close();
-		is.close();
+		fos.close();	
 	}
-	
-	
-	
+		
 	public void init() {
 //		driver = "com.mysql.cj.jdbc.Driver";
 //		url = "jdbc:mysql://localhost:3306/sweet?serverTimezone=Asia/Taipei";
@@ -57,15 +52,10 @@ public class ProductImageDAO {
 //		passwd = "root";
 	}
 	
-	public void insert() throws IOException {
+	public void insert(ProductImageBean piBean) throws IOException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		INSERT = "INSERT INTO product_image (product_id, product_image) VALUES (?, ?) ";
-		
-		// 設定資料
-		InputStream is = getPictureStream("Images/cake3.jfif");
-		ProductImageBean piBean = new ProductImageBean();
-		piBean.setProduct_id(6);
 		
 		try {
 			Class.forName(driver);
@@ -73,10 +63,9 @@ public class ProductImageDAO {
 			pstmt = con.prepareStatement(INSERT);
 
 			pstmt.setInt(1, piBean.getProduct_id());
-			pstmt.setBlob(2, is);
+			pstmt.setBytes(2, piBean.getProduct_image());
 
 			pstmt.executeUpdate();
-			is.close();
 
 		} catch (ClassNotFoundException e) {
 			throw new RuntimeException("Couldn't load database driver." + e.getMessage());
@@ -102,30 +91,21 @@ public class ProductImageDAO {
 		
 	}
 	
-	public void update() throws IOException {
+	public void update(ProductImageBean piBean) throws IOException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		UPDATE = "UPDATE product_image set product_id = ?, product_image = ? WHERE image_id = ?";
-		
-		// 設定資料
-		InputStream is = getPictureStream("Images/cake2.jfif");
-		
-		ProductImageBean piBean = new ProductImageBean();
-		piBean.setProduct_id(4);
-		piBean.setImage_id(12);
-		
+				
 		try {
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(UPDATE);
 			
 			pstmt.setInt(1, piBean.getProduct_id());
-			pstmt.setBlob(2, is);
-		
+			pstmt.setBytes(2, piBean.getProduct_image());
 			pstmt.setInt(3, piBean.getImage_id());
 
 			pstmt.executeUpdate();
-			is.close();
 			
 			// Handle any driver errors
 		} catch (ClassNotFoundException e) {
@@ -157,9 +137,6 @@ public class ProductImageDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		DELETE = "DELETE FROM product_image WHERE image_id = ?";
-		
-		// 設定資料
-//		Integer image_id = 3;
 		
 		try {
 			Class.forName(driver);
@@ -215,13 +192,11 @@ public class ProductImageDAO {
 				piBean = new ProductImageBean();
 				piBean.setImage_id(rs.getInt("image_id"));
 				piBean.setProduct_id(rs.getInt("product_id"));
-				
-				Blob blob = rs.getBlob("product_image");
-				piBean.setProduct_image(blob);
+				piBean.setProduct_image(rs.getBytes("product_image"));
 				
 				list_piBean.add(piBean);
-				System.out.println(piBean);
-				readPicture(blob, rs.getInt("image_id"));
+				readPicture(piBean.getProduct_image(), piBean.getImage_id());
+//				System.out.println(piBean);
 		
 			}
 			
@@ -255,11 +230,8 @@ public class ProductImageDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		SELECT_PK = "SELECT * FROM product_image WHERE image_id = ?";	
-		
-		// 設定資料
+		SELECT_PK = "SELECT * FROM product_image WHERE image_id = ?";
 		ProductImageBean piBean = null;
-//		Integer image_id = 12;
 		
 		try {
 			Class.forName(driver);
@@ -274,13 +246,10 @@ public class ProductImageDAO {
 				piBean = new ProductImageBean();
 				piBean.setImage_id(rs.getInt("image_id"));
 				piBean.setProduct_id(rs.getInt("product_id"));
-				
-				Blob blob = rs.getBlob("product_image");
-				piBean.setProduct_image(blob);
-				
-//				System.out.println(piBean);
-				readPicture(blob, rs.getInt("image_id"));
-				
+				piBean.setProduct_image(rs.getBytes("product_image"));
+
+				System.out.println(piBean);
+				readPicture(piBean.getProduct_image(), piBean.getImage_id());
 			}
 			
 			// Handle any driver errors
@@ -310,45 +279,40 @@ public class ProductImageDAO {
 	}
 
 
-
 	public static void main(String[] args) throws IOException {
 		ProductImageDAO dao = new ProductImageDAO();
 
-
 		// 新增
 		// 設定資料
-//		DailySpecialBean dsBean = new DailySpecialBean();
-//		dsBean.setProduct_id(3);
-//		dsBean.setDiscount_price(150);
-//		dsBean.setDiscount_start_time(Timestamp.valueOf("2021-02-28 00:00:00"));
-//		dsBean.setDiscount_deadline(Timestamp.valueOf("2021-02-28 23:59:59"));
-//		dao.insert(dsBean);
+//		byte[] pic = getPictureByteArray("Images/chocoMacaron1.jpg");
+//		ProductImageBean piBean = new ProductImageBean();
+//		piBean.setProduct_id(3);
+//		piBean.setProduct_image(pic);
+//		dao.insert(piBean);
 
 		// 修改
 		// 設定資料
-//		DailySpecialBean dsBean = new DailySpecialBean();
-//		dsBean.setProduct_id(3);
-//		dsBean.setDiscount_price(240);
-//		dsBean.setDiscount_start_time(Timestamp.valueOf("2021-04-04 00:00:00"));
-//		dsBean.setDiscount_deadline(Timestamp.valueOf("2021-04-04 23:59:59"));
+//		byte[] pic = getPictureByteArray("Images/chocoMacaron2.jpg");
 //
-//		dsBean.setDiscount_product_id(4);
-//        dao.update(dsBean);
-
-
-//        // 刪除
-//       dao.delete(3);
+//		ProductImageBean piBean = new ProductImageBean();
+//		piBean.setProduct_id(1);
+//		piBean.setProduct_image(pic);
+//		piBean.setImage_id(6);
+//		dao.update(piBean);
+		
+		// 刪除
+//		dao.delete(7);
 
 		// 查詢
-//		ProductImageBean piBean = dao.findByPrimaryKey(2);
+//		ProductImageBean piBean = dao.findByPrimaryKey(6);
 //		System.out.println(piBean);
 
 
 		// 查詢
-//		List<ProductImageBean> list = dao.getAll();
-//		for (ProductImageBean piBean : list) {
-//			System.out.println(piBean);
-//		}
-
+		List<ProductImageBean> list = dao.getAll();
+		for (ProductImageBean piBean : list) {
+			System.out.println(piBean);	
+		}
+//		System.out.println(list.size());
 	}
 }

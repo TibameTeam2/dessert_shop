@@ -90,10 +90,10 @@ public class ProductDAO {
 	public void update(ProductBean productBean) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
+		
 		UPDATE = "UPDATE product set product_name = ?, product_type = ?, product_intro = ?, product_price = ?, product_available_qty = ?, product_status = ?, product_calorie = ?, degree_of_sweetness = ?, total_star = ?, total_review = ?"
 				+ " where product_id = ?";
 
-		
 		try {
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userid, passwd);
@@ -346,12 +346,12 @@ public class ProductDAO {
 //		productBean.setDegree_of_sweetness(1);
 //		productBean.setTotal_star(5);
 //		productBean.setTotal_review(19);
-//		productBean.setProduct_id(3);
-//        dao.update(productBean);
+//		productBean.setProduct_id(4);
+//		dao.update(productBean);
 
 
 //        // 刪除
-//       dao.delete(4);
+//		dao.delete(4);
 
 		// 查詢
 //		ProductBean productBean = dao.findByPrimaryKey(2);

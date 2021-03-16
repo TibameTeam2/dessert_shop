@@ -1,4 +1,4 @@
-package com.NewsLetter.model;
+package com.newsletter.model;
 
 import com.util.JDBCUtil;
 import org.springframework.jdbc.core.JdbcTemplate;
