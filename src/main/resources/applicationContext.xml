@@ -5,7 +5,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
                         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <!--加载外部的properties文件-->
+    <!--加載外部的properties文件-->
     <context:property-placeholder location="classpath:jdbc.properties"/>
 
     <!--設定連接池-->
@@ -16,7 +16,7 @@
         <property name="password" value="${jdbc.password}"></property>
     </bean>
 
-    <!-- 配置Spirng的JdbcTemplate并指定数据源 -->
+    <!-- 配置Spring的JdbcTemplate並指定連線池 -->
     <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
         <property name="dataSource" ref="dataSource"></property>
     </bean>
