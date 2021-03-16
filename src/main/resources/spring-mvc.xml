@@ -8,19 +8,19 @@
                         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
                         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <!--Controller的组件扫描-->
-    <context:component-scan base-package="com.sweet">
-        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
-    </context:component-scan>
+    <!--Controller的組件掃描-->
+<!--    <context:component-scan base-package="com.sweet">-->
+<!--        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>-->
+<!--    </context:component-scan>-->
 
-    <!--配置内部资源视图解析器-->
-    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <!--  /jsp/success.jsp  -->
-        <property name="prefix" value="/jsp/"></property>
-        <property name="suffix" value=".jsp"></property>
-    </bean>
+    <!--配置內部資源視圖解析器-->
+<!--    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">-->
+<!--        &lt;!&ndash;  /jsp/success.jsp  &ndash;&gt;-->
+<!--        <property name="prefix" value="/jsp/"></property>-->
+<!--        <property name="suffix" value=".jsp"></property>-->
+<!--    </bean>-->
 
-    <!--配置处理器映射器-->
+    <!--配置處理器映射器-->
     <!--<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
         <property name="messageConverters">
             <list>
@@ -29,30 +29,30 @@
         </property>
     </bean>-->
 
-    <!--mvc的注解驱动-->
-    <mvc:annotation-driven conversion-service="conversionService"/>
+    <!--MVC的註解驅動-->
+<!--    <mvc:annotation-driven conversion-service="conversionService"/>-->
 
-    <!--开发资源的访问-->
+    <!--開發資源的訪問-->
     <!--<mvc:resources mapping="/js/**" location="/js/"/>
     <mvc:resources mapping="/img/**" location="/img/"/>-->
 
-    <mvc:default-servlet-handler/>
+<!--    <mvc:default-servlet-handler/>-->
 
 
-    <!--声明转换器-->
-    <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
-        <property name="converters">
-            <list>
-                <bean class="com.sweet.converter.DateConverter"></bean>
-            </list>
-        </property>
-    </bean>
+    <!--聲明轉換器-->
+<!--    <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">-->
+<!--        <property name="converters">-->
+<!--            <list>-->
+<!--                <bean class="com.sweet.converter.DateConverter"></bean>-->
+<!--            </list>-->
+<!--        </property>-->
+<!--    </bean>-->
 
-    <!--配置文件上传解析器-->
-    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-        <property name="defaultEncoding" value="UYF-8"/>
-        <property name="maxUploadSize" value="500000"/>
-    </bean>
+    <!--配置文件上傳解析器-->
+<!--    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">-->
+<!--        <property name="defaultEncoding" value="UYF-8"/>-->
+<!--        <property name="maxUploadSize" value="500000"/>-->
+<!--    </bean>-->
 
 
 

@@ -4,21 +4,24 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
 
 
+<!--    <servlet>-->
+<!--        <servlet-name>RegisterMemberServlet</servlet-name>-->
+<!--        <servlet-class>com.member.controller.RegisterMemberServlet</servlet-class>-->
+<!--    </servlet>-->
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>RegisterMemberServlet</servlet-name>-->
+<!--        <url-pattern>/member/register</url-pattern>-->
+<!--    </servlet-mapping>-->
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <servlet>
+        <servlet-name>MemberServlet</servlet-name>
+        <servlet-class>com.member.controller.MemberServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MemberServlet</servlet-name>
+        <url-pattern>/member/*</url-pattern>
+    </servlet-mapping>
 
     <!--配置全局过滤的filter-->
 <!--    <filter>-->
