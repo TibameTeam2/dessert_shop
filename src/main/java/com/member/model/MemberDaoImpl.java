@@ -1,18 +1,16 @@
 package com.member.model;
 
 
-import com.employee.model.EmployeeBean;
 import com.util.JDBCUtil;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MemberDAO {
+public class MemberDaoImpl implements MemberDao {
 
     private static JdbcTemplate jdbcTemplate;
     private String driver = JDBCUtil.driver;
@@ -21,7 +19,7 @@ public class MemberDAO {
     private String passwd = JDBCUtil.password;
 
     /**
-     *初始化
+     * 初始化
      */
     public void init() {
         // 得到Spring配置文件
@@ -62,7 +60,7 @@ public class MemberDAO {
 
 
             int count;
-            count=pstmt.executeUpdate();
+            count = pstmt.executeUpdate();
             System.out.println(count);
             // Handle any driver errors
         } catch (ClassNotFoundException e) {
@@ -93,8 +91,7 @@ public class MemberDAO {
     }
 
 
-
-    public void update(MemberBean memberBean){
+    public void update(MemberBean memberBean) {
 
         Connection con = null;
         PreparedStatement pstmt = null;
@@ -260,6 +257,7 @@ public class MemberDAO {
         }
         return memberBean;
     }
+
     //
 //
     public List<MemberBean> selectAll() {
@@ -331,7 +329,7 @@ public class MemberDAO {
     }
 
     public static void main(String[] args) {
-        MemberDAO dao = new MemberDAO();
+        MemberDaoImpl dao = new MemberDaoImpl();
 
 //        init();
 //        // 新增
@@ -363,7 +361,6 @@ public class MemberDAO {
 //        memberBean.setRegister_method(1);
 //        memberBean.setMember_status(1);
 //        dao.update(memberBean);
-
 
 
 //
