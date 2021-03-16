@@ -66,6 +66,22 @@ public class RegisterMemberServlet extends BaseServlet {
         res.getWriter().write(json);
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public void register(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         System.out.println("RegisterMemberServlet in register");
 

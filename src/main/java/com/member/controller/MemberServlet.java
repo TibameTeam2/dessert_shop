@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.Map;
 
 public class MemberServlet extends BaseServlet{
@@ -101,14 +102,16 @@ public class MemberServlet extends BaseServlet{
         }
 
 
-        //把info序列化為json
-        ObjectMapper mapper = new ObjectMapper();
-        String json = mapper.writeValueAsString(info);
-        System.out.println(json);
-        //將json寫回前端
-        //设置content-type為json格式
-        res.setContentType("application/json;charset=utf-8");
-        res.getWriter().write(json);
+//        //把info序列化為json
+//        ObjectMapper mapper = new ObjectMapper();
+//        String json = mapper.writeValueAsString(info);
+//        System.out.println(json);
+//        //將json寫回前端
+//        //设置content-type為json格式
+//        res.setContentType("application/json;charset=utf-8");
+//        res.getWriter().write(json);
+
+        writeValueByWriter(res,info);
 
     }
 
@@ -143,16 +146,20 @@ public class MemberServlet extends BaseServlet{
     }
 
     public void emailActive(HttpServletRequest req, HttpServletResponse res){
-        
+
     }
 
+
+    public void logout(HttpServletRequest req, HttpServletResponse res){
+
+    }
 
     //測試Forward
     public String testForward1(HttpServletRequest req, HttpServletResponse res){
         return "forward:/index.jsp";
     }
     public String testForward2(HttpServletRequest req, HttpServletResponse res){
-        return "/index.jsp";
+        return "/index.html";
     }
     public String testForward3(HttpServletRequest req, HttpServletResponse res){
         return "forwardSuccess:/index.jsp";

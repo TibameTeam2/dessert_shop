@@ -27,9 +27,8 @@ public class MemberService {
 //        Jedis jedis = JedisUtil.getJedis();
 //        jedis.set(member.getMember_account(),activeCode);
 //        jedis.close();
-
+//
 //        MailUtil.send("jasonwu1994@gmail.com", "嗜甜，信箱驗證", activeCode, false);
-
         new Thread(() -> {
             String activeCode = randomString(8);
             Jedis jedis = JedisUtil.getJedis();

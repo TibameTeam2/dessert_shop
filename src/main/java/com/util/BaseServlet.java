@@ -26,7 +26,7 @@ public class BaseServlet extends HttpServlet {
         String methodName = uri.substring(uri.lastIndexOf('/') + 1);
         System.out.println("方法名稱:" + methodName);//  register
         //誰調用的?
-        System.out.println(this);//com.member.controller.RegisterMemberServlet@438d0d75
+        System.out.println(this);//com.member.controller.MemberServlet@438d0d75
         try {
             //獲取方法
             Method method = this.getClass().getMethod(methodName, HttpServletRequest.class, HttpServletResponse.class);
