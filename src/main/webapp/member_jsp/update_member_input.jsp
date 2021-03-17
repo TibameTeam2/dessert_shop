@@ -1,9 +1,9 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page import="com.emp.model.*"%>
+<%@ page import="com.member.model.*"%>
 
 <%
-  EmpVO empVO = (EmpVO) request.getAttribute("empVO"); //EmpServlet.java (Concroller) 存入req的empVO物件 (包括幫忙取出的empVO, 也包括輸入資料錯誤時的empVO物件)
+	MemberBean memberBean = (MemberBean) request.getAttribute("member"); //EmpServlet.java (Concroller) 存入req的empVO物件 (包括幫忙取出的empVO, 也包括輸入資料錯誤時的empVO物件)
 %>
 
 <html>
@@ -68,44 +68,47 @@
 <FORM METHOD="post" ACTION="emp.do" name="form1">
 <table>
 	<tr>
-		<td>員工編號:<font color=red><b>*</b></font></td>
-		<td><%=empVO.getEmpno()%></td>
+		<td>會員帳號:<font color=red><b>*</b></font></td>
+		<td><%=memberBean.getMember_account()%></td>
 	</tr>
 	<tr>
-		<td>員工姓名:</td>
-		<td><input type="TEXT" name="ename" size="45" value="<%=empVO.getEname()%>" /></td>
+		<td>姓名:</td>
+		<td><input type="TEXT" name="ename" size="45" value="<%=memberBean.getMember_name()%>" /></td>
 	</tr>
 	<tr>
-		<td>職位:</td>
-		<td><input type="TEXT" name="job" size="45"	value="<%=empVO.getJob()%>" /></td>
+		<td>電話:</td>
+		<td><input type="TEXT" name="job" size="45"	value="<%=memberBean.getMember_phone()%>" /></td>
 	</tr>
 	<tr>
-		<td>雇用日期:</td>
-		<td><input name="hiredate" id="f_date1" type="text" ></td>
+		<td>信箱:</td>
+		<td><input type="TEXT" name="job" size="45"	value="<%=memberBean.getMember_email()%>" /></td>
 	</tr>
 	<tr>
-		<td>薪水:</td>
-		<td><input type="TEXT" name="sal" size="45"	value="<%=empVO.getSal()%>" /></td>
+		<td>性別:</td>
+		<td><input type="TEXT" name="sal" size="45"	value="<%=memberBean.getMember_gender()%>" /></td>
 	</tr>
 	<tr>
-		<td>獎金:</td>
-		<td><input type="TEXT" name="comm" size="45" value="<%=empVO.getComm()%>" /></td>
+		<td>生日:</td>
+		<td><input type="TEXT" name="comm" size="45" value="<%=memberBean.getMember_birthday()%>" /></td>
 	</tr>
-
-	<jsp:useBean id="deptSvc" scope="page" class="com.dept.model.DeptService" />
 	<tr>
-		<td>部門:<font color=red><b>*</b></font></td>
-		<td><select size="1" name="deptno">
-			<c:forEach var="deptVO" items="${deptSvc.all}">
-				<option value="${deptVO.deptno}" ${(empVO.deptno==deptVO.deptno)?'selected':'' } >${deptVO.dname}
-			</c:forEach>
-		</select></td>
+		<td>照片:</td>
+		<td><input type="TEXT" name="comm" size="45" value="<%=memberBean.getMember_photo()%>" /></td>
 	</tr>
+<%--	<jsp:useBean id="deptSvc" scope="page" class="com.dept.model.DeptService" />--%>
+<%--	<tr>--%>
+<%--		<td>部門:<font color=red><b>*</b></font></td>--%>
+<%--		<td><select size="1" name="deptno">--%>
+<%--			<c:forEach var="deptVO" items="${deptSvc.all}">--%>
+<%--				<option value="${deptVO.deptno}" ${(empVO.deptno==deptVO.deptno)?'selected':'' } >${deptVO.dname}--%>
+<%--			</c:forEach>--%>
+<%--		</select></td>--%>
+<%--	</tr>--%>
 
 </table>
 <br>
-<input type="hidden" name="action" value="update">
-<input type="hidden" name="empno" value="<%=empVO.getEmpno()%>">
+<%--<input type="hidden" name="action" value="update">--%>
+<input type="hidden" name="empno" value="<%=memberBean.getMember_account()%>">
 <input type="submit" value="送出修改">
 </FORM>
 </body>
@@ -134,7 +137,7 @@
  	       timepicker:false,       //timepicker:true,
  	       step: 1,                //step: 60 (這是timepicker的預設間隔60分鐘)
  	       format:'Y-m-d',         //format:'Y-m-d H:i:s',
- 		   value: '<%=empVO.getHiredate()%>', // value:   new Date(),
+ 		   value: '<%=memberBean.getMember_birthday()%>', // value:   new Date(),
            //disabledDates:        ['2017/06/08','2017/06/09','2017/06/10'], // 去除特定不含
            //startDate:	            '2017/07/10',  // 起始日
            //minDate:               '-1970-01-01', // 去除今日(不含)之前

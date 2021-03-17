@@ -17,7 +17,6 @@ import java.lang.reflect.Method;
 public class BaseServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        //System.out.println("baseServlet的service方法被执行了...");
         //準備方法的分發
         //獲取請求路徑
         String uri = req.getRequestURI();

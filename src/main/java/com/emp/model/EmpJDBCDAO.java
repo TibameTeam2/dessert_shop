@@ -182,7 +182,7 @@ public class EmpJDBCDAO implements EmpDAO_interface {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// empVo §]∫Ÿ¨∞ Domain objects
+				// empVo ‰πüÁ®±ÁÇ∫ Domain objects
 				empVO = new EmpVO();
 				empVO.setEmpno(rs.getInt("empno"));
 				empVO.setEname(rs.getString("ename"));
@@ -245,7 +245,7 @@ public class EmpJDBCDAO implements EmpDAO_interface {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// empVO §]∫Ÿ¨∞ Domain objects
+				// empVO ‰πüÁ®±ÁÇ∫ Domain objects
 				empVO = new EmpVO();
 				empVO.setEmpno(rs.getInt("empno"));
 				empVO.setEname(rs.getString("ename"));
@@ -296,9 +296,9 @@ public class EmpJDBCDAO implements EmpDAO_interface {
 
 		EmpJDBCDAO dao = new EmpJDBCDAO();
 
-		// ∑sºW
+		// Êñ∞Â¢û
 		EmpVO empVO1 = new EmpVO();
-		empVO1.setEname("ßd•√ß”1");
+		empVO1.setEname("Âê≥Ê∞∏Âøó1");
 		empVO1.setJob("MANAGER");
 		empVO1.setHiredate(java.sql.Date.valueOf("2005-01-01"));
 		empVO1.setSal(new Double(50000));
@@ -306,10 +306,10 @@ public class EmpJDBCDAO implements EmpDAO_interface {
 		empVO1.setDeptno(10);
 		dao.insert(empVO1);
 
-		// ≠◊ßÔ
+		// ‰øÆÊîπ
 		EmpVO empVO2 = new EmpVO();
 		empVO2.setEmpno(7001);
-		empVO2.setEname("ßd•√ß”2");
+		empVO2.setEname("Âê≥Ê∞∏Âøó2");
 		empVO2.setJob("MANAGER2");
 		empVO2.setHiredate(java.sql.Date.valueOf("2002-01-01"));
 		empVO2.setSal(new Double(20000));
@@ -317,10 +317,10 @@ public class EmpJDBCDAO implements EmpDAO_interface {
 		empVO2.setDeptno(20);
 		dao.update(empVO2);
 
-		// ßR∞£
+		// Âà™Èô§
 		dao.delete(7014);
 
-		// ¨d∏ﬂ
+		// Êü•Ë©¢
 		EmpVO empVO3 = dao.findByPrimaryKey(7001);
 		System.out.print(empVO3.getEmpno() + ",");
 		System.out.print(empVO3.getEname() + ",");
@@ -331,7 +331,7 @@ public class EmpJDBCDAO implements EmpDAO_interface {
 		System.out.println(empVO3.getDeptno());
 		System.out.println("---------------------");
 
-		// ¨d∏ﬂ
+		// Êü•Ë©¢
 		List<EmpVO> list = dao.getAll();
 		for (EmpVO aEmp : list) {
 			System.out.print(aEmp.getEmpno() + ",");
