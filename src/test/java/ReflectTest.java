@@ -9,29 +9,16 @@ public class ReflectTest {
     @Test
     public void arrayTest() throws Exception {
         ArrayList<Integer> array = new ArrayList<Integer>();
-
         array.add(10);
         array.add(20);
 //        array.add("hello");
         System.out.println(array);
 
-
-
-
-
-
-
-
-
-
-
-
-
-//        Class c = array.getClass();
-//        Method m = c.getMethod("add", Object.class);
-//        m.invoke(array,"hello");
-//        m.invoke(array,new Object());
-//        System.out.println("array = " + array);
+        Class c = array.getClass();
+        Method m = c.getMethod("add", Object.class);
+        m.invoke(array,"hello");
+        m.invoke(array,new Object());
+        System.out.println("array = " + array);
 
 //        ArrayList<Integer> array1 = new ArrayList<Integer>();
 //        m.invoke(array1,9.222);
@@ -57,10 +44,10 @@ public class ReflectTest {
 //        System.out.println("member = " + member);
 
 
-//        Method[] methods = c.getDeclaredMethods();
-//        for(Method method : methods) {
-//            System.out.println(method);
-//        }
+        Method[] methods = c.getDeclaredMethods();
+        for(Method method : methods) {
+            System.out.println(method);
+        }
 
 
 
