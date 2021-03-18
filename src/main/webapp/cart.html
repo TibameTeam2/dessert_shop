@@ -30,239 +30,15 @@
     <!-- Main Style CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
 
+    <!-- Mine CSS -->
+    <link rel="stylesheet" href="assets/css/mineCarStyle.css">
+
+
     <!--====== Use the minified version files listed below for better performance and remove the files listed above ======-->
     <!-- <link rel="stylesheet" href="assets/css/vendor/plugins.min.css">
     <link rel="stylesheet" href="assets/css/style.min.css"> -->
 
     <!------------------------------------------------------------- 頁面CSS ------------------------------------------------------------->
-    <style>
-        .cart-table .table thead tr th {
-            color: #fff;
-            background-color: #000;
-            border: 2px solid #000;
-            /* #6DD0CD */
-        }
-        
-        .cart-table .table thead tr th.Product-info {
-            text-align: center;
-        }
-        
-        .table> :not(:last-child)> :last-child>* {
-            border-bottom-color: rgb(0 0 0 / 0%);
-        }
-        
-        .cart-table .table thead tr th.Product-unit-price {
-            min-width: 90px;
-        }
-        
-        .cart-table .table tbody tr td.Product-unit-price {
-            text-align: center;
-        }
-        
-        .cart-table .table tbody tr td.Product-unit-price {
-            font-size: 18px;
-        }
-        
-        td.Product-thumb {
-            text-align: center;
-            width: 200px;
-        }
-        
-        .cart-table .table tbody tr td {
-            padding: 10px;
-            background-color: #f7fffe;
-        }
-        
-        .cart-table .table tbody tr td.Product-info .name a {
-            font-size: 20px;
-        }
-        
-        .cart-table .table thead tr th {
-            font-size: 22px;
-        }
-        
-        .la-trash-alt:before {
-            font-size: 30px;
-        }
-        
-        button.sub {
-            border-radius: 20px 0 0 20px;
-        }
-        
-        button.add {
-            border-radius: 0px 20px 20px 0;
-        }
-        
-        button.remove {
-            margin: 0;
-            padding: 0;
-            outline: none;
-            border-radius: 0;
-            border: 1px solid transparent;
-            background-color: transparent;
-            line-height: inherit;
-            width: max-content;
-        }
-        
-        .cart-table .table {
-            border-collapse: separate;
-            border-spacing: 0 8px;
-        }
-        
-        img {
-            border-radius: 5px;
-        }
-        
-        li {
-            list-style: none;
-        }
-        
-        .btn-shopping {
-            color: #fff;
-            background-color: #000;
-            border-color: #000;
-            border-radius: 10px;
-        }
-        
-        .btn_delete {
-            /* #6DD0CD */
-            background-color: transparent;
-            border: 1px solid transparent;
-            color: #fff;
-            background-color: #000;
-            border-color: #000;
-            border-radius: 5px;
-            width: 60px;
-            height: 30px;
-            font-size: 14px;
-            font-weight: bolder;
-        }
-        
-        .total-key {
-            text-align: right;
-            width: 100px;
-        }
-        
-        .total-val {
-            text-align: right;
-            width: 100px;
-        }
-        
-        .right-btn {
-            padding-right: 0;
-        }
-        
-        .detail {
-            background-color: #FCFCFC;
-            width: 465px;
-            margin-top: 15px;
-            padding-top: 8px;
-            border: 1px solid #e2e2e2;
-            font-size: 18px;
-            height: 50px;
-            text-align: center;
-            border-radius: 5px;
-        }
-        
-        .left_block {
-            display: inline-block;
-            width: 100px;
-            margin-left: 5px;
-            text-align: center;
-        }
-        
-        .middle_block {
-            display: inline-block;
-            width: 270px;
-            text-align: left;
-            padding-top: 5px;
-        }
-        
-        .right_block {
-            display: inline-block;
-            width: 70px;
-            margin-right: 5px;
-        }
-        
-        div.img-coupon {
-            width: 100px;
-            height: 100px;
-            border: 10px solid black;
-        }
-        
-        div.overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background-color: hsla(0, 0%, 0%, .5);
-            display: none;
-        }
-        /* 元素 article 置中及基本樣式 */
-        
-        article.coupon-article {
-            background-color: white;
-            width: 90%;
-            max-width: 550px;
-            border-radius: 10px;
-            padding: 20px;
-            position: absolute;
-            top: 55%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-        
-        button.btn-coupon {
-            margin: 5px;
-            padding: 5px;
-            outline: none;
-            border-radius: 5px;
-            border: 1px solid #888;
-            background-color: #FFF;
-            line-height: inherit;
-            /* width: max-content; */
-            width: 60px;
-            height: 35px;
-            font-size: 16px;
-        }
-        
-        button.btn-coupon:hover {
-            border-color: #E8E8D0;
-            background-color: #E8E8D0;
-        }
-        
-        div.messages {
-            position: fixed;
-            right: 50px;
-            bottom: 50px;
-            /* font-size: 20px; */
-            z-index: 30;
-        }
-        
-        div.message-table {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background-color: hsla(0, 0%, 0%, .5);
-            display: none;
-        }
-        
-        article.message-article {
-            background-color: white;
-            width: 90%;
-            max-width: 550px;
-            border-radius: 10px;
-            padding: 20px;
-            position: absolute;
-            top: 55%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-    </style>
-
 </head>
 
 <body class="body-scroll">
@@ -846,7 +622,7 @@
                                     </td>
 
                                     <td class="Product-unit-price" colspan="1">
-                                        <span class="price unit-price" style="font-size: 20px;">100</span><span class="price">元</span>
+                                        <span class="price unit-price">100</span><span class="price">元</span>
                                     </td>
 
                                     <td class=" quantity " colspan="3 ">
@@ -860,10 +636,10 @@
 
 
                                     <td class="Product-total-price " colspan="1 ">
-                                        <span class="price total-span" style="font-size: 20px;">100</span><span class="price">元</span>
+                                        <span class="price total-span">100</span><span class="price">元</span>
                                     </td>
 
-                                    <td class=" Product-action " colspan="1 " style="border-left: 0; ">
+                                    <td class=" Product-action " colspan="1 ">
                                         <button type="button" class="remove"><i class="lar la-trash-alt "></i></button>
                                     </td>
 
@@ -882,7 +658,7 @@
                                         </td>
 
                                         <td class="Product-unit-price" colspan="1">
-                                            <span class="price unit-price" style="font-size: 20px;">200</span><span class="price">元</span>
+                                            <span class="price unit-price">200</span><span class="price">元</span>
                                         </td>
 
                                         <td class=" quantity " colspan="3 ">
@@ -896,7 +672,7 @@
                                         </td>
 
                                         <td class="Product-total-price " colspan="1 ">
-                                            <span class="price total-span" style="font-size: 20px;">200</span><span class="price">元</span>
+                                            <span class="price total-span">200</span><span class="price">元</span>
                                         </td>
 
                                         <td class=" Product-action " colspan="1 ">
@@ -907,35 +683,38 @@
 
 
                                 <tr>
-                                    <td class="Product-thumb" colspan="1" style="border-right: 0;">
+                                    <td class="Product-thumb" colspan="1">
                                         <img class="td-img" src="assets/images/product/product-16.jpg" alt="">
                                     </td>
-                                    <td class="Product-info" colspan="5" style="border-left: 0;">
-                                        <h6 class="name"><a class="item-name" href="shop-single.html">熔岩巧克力蛋糕</a></h6>
-                                        <span>Coulant au chocolat</span>
-                                    </td>
 
-                                    <td class="Product-unit-price" colspan="1">
-                                        <span class="price unit-price" style="font-size: 20px;">300</span><span class="price">元</span>
-                                    </td>
+                                    <li>
+                                        <td class="Product-info" colspan="5">
+                                            <h6 class="name"><a class="item-name" href="shop-single.html">熔岩巧克力蛋糕</a></h6>
+                                            <span>Coulant au chocolat</span>
+                                        </td>
 
-                                    <td class=" quantity " colspan="3 ">
-                                        <div class="product-quantity d-inline-flex ">
-                                            <button type="button " class="sub "><i
+                                        <td class="Product-unit-price" colspan="1">
+                                            <span class="price unit-price">300</span><span class="price">元</span>
+                                        </td>
+
+                                        <td class=" quantity " colspan="3 ">
+                                            <div class="product-quantity d-inline-flex ">
+                                                <button type="button " class="sub "><i
                                                     class="fas fa-minus "></i></i></button>
-                                            <input type="text " value="1" readonly class="quantity-input" />
-                                            <button type="button " class="add "><i
+                                                <input type="text " value="1" readonly class="quantity-input" />
+                                                <button type="button " class="add "><i
                                                     class="fas fa-plus "></i></i></button>
-                                        </div>
-                                    </td>
+                                            </div>
+                                        </td>
 
-                                    <td class="Product-total-price " colspan="1 ">
-                                        <span class="price total-span " style="font-size: 20px; ">300</span><span class="price ">元</span>
-                                    </td>
+                                        <td class="Product-total-price " colspan="1 ">
+                                            <span class="price total-span">300</span><span class="price">元</span>
+                                        </td>
 
-                                    <td class=" Product-action " colspan="1 ">
-                                        <button type="button" class="remove "><i class="lar la-trash-alt "></i></button>
-                                    </td>
+                                        <td class=" Product-action " colspan="1 ">
+                                            <button type="button " class="remove "><i class="lar la-trash-alt "></i></button>
+                                        </td>
+
                                 </tr>
                             </tbody>
                         </table>
@@ -945,58 +724,58 @@
                     <!-- Cart Wrapper End -->
                     <!-- Cart btn Start -->
                     <div class="row cart-btn d-flex flex-wrap justify-content-between ">
-                        <div class="left-btn col-lg-7" style="padding-left: 5px;">
+                        <div class="left-btn col-lg-7">
                             <!-- Cart Shipping(coupon) Start -->
-                            <div class="cart-shipping " style="margin-top: 0px;">
-                                <!-- <div class="cart-title ">
-                                    <h4 class="title ">優惠券</h4>
-                                </div> -->
-
-                                <div class="cart-form " style="margin-top: 10px;">
-                                    <form action="# ">
-                                        <div calss="single-form img-coupon " style=" display: inline-block;vertical-align:middle ">
-                                            <img style="width: 40px;" src="assets/images/icon/icon-coupon.png">
+                            <div class="cart-shipping ">
+                                <div class="cart-form ">
+                                    <form action="#">
+                                        <div calss="single-form coupon-icons">
+                                            <img class="img-coupon" src="assets/images/icon/icon-coupon.png">
                                         </div>
 
-                                        <div class="single-form " style=" display: inline-block;vertical-align:-20%; ">
-                                            <span type="button" class="choose-coupon" style="margin-left: 5px; font-size: 20px; color:	#000093;"><u>選擇優惠券或輸入優惠代碼</u></span>
+                                        <div class="single-form choose-coupon-div">
+                                            <span type="button" class="choose-coupon"><u>選擇優惠券或輸入優惠代碼</u></span>
                                         </div>
 
                                         <div class="overlay">
                                             <article class="coupon-article">
-                                                <div style="font-size:20px; margin-bottom: 10px; color:black;">選擇優惠券或輸入優惠代碼</div>
+                                                <div class="coupon-list-title">選擇優惠券或輸入優惠代碼</div>
 
-                                                <div style="background-color:#F0F0F0; height:65px; padding:10px; color:black; font-size:16px; ">
-                                                    <span style="margin-right: 10px; ">新增優惠代碼</span>
-                                                    <input style="height: 35px; width: 280px; margin-right: 10px; font-size: 13px; border:1px solid #888;" type="text" value="" placeholder="優惠代碼" maxlength="200">
-                                                    <button type="button" class="btn-coupon">使用</button>
+                                                <div class="coupon-list-add">
+                                                    <span>新增優惠代碼</span>
+                                                    <input type="text" value="" placeholder="優惠代碼" maxlength="200">
+                                                    <button type="button" class="btn-coupon coupon-use">使用</button>
                                                 </div>
-                                                <div style="height: 300px; margin-top: 25px; overflow-y: auto;  text-align: center">
-                                                    <img style="width: 120px; margin-top: 60px;" src="assets/images/icon/icon-coupon2.png">
-                                                    <p style="margin-top: 20px; font-weight: bolder; font-size: 18px;">您尚未擁有任何一張優惠券，請前往領取</p>
+
+                                                <div class="coupon-non">
+                                                    <img src="assets/images/icon/icon-coupon2.png">
+                                                    <p>您尚未擁有任何一張優惠券，請前往領取</p>
                                                 </div>
-                                                <div style="margin-top: 20px; text-align: right;">
-                                                    <button type="button" class="btn-coupon">確定</button>
+
+                                                <div class="coupon-list-parent">
+                                                    <ul class="coupon-list">
+
+                                                        <!-- 這個區塊是放新增的優惠券 -->
+
+
+                                                    </ul>
+                                                </div>
+
+                                                <div calss="coupn-btn-div" style="text-align: right;">
+                                                    <button type="button" class="btn_modal_check btn-coupon">確定</button>
                                                     <button type="button" class="btn_modal_close btn-coupon">取消</button>
                                                 </div>
                                             </article>
                                         </div>
 
-
-                                        <!-- <div class="single-form " style=" display: inline-block; ">
-                                            <button type="button " class=" btn btn-shopping btn-hover-primary btn-coupon ">使用優惠券</button>
-                                        </div>
-                                        <div class="coupon-list-parent ">
-                                            <ul class="coupon-list "></ul>
-                                        </div> -->
                                     </form>
                                 </div>
                             </div>
                             <!-- Cart Shipping(coupon) End -->
                         </div>
-                        <div class=" right-btn col-lg-4 ">
+                        <div class=" right-btn col-lg-4 " class="coupon-form-div">
                             <!-- Cart Totals Start -->
-                            <div class="cart-totals coupon-form " style="margin-top: 5px; ">
+                            <div class="cart-totals coupon-form ">
                                 <div class="cart-title ">
                                     <h4 class="title ">應付金額</h4>
                                 </div>
@@ -1032,7 +811,7 @@
                                     </table>
                                 </div>
                                 <div class="cart-total-btn mt-20 ">
-                                    <a href="shop-grid-left-sidebar.html " class="btn btn-shopping btn-hover-primary " style="margin-right: 10px; ">繼續購物</a>
+                                    <a href="shop-grid-left-sidebar.html " class="btn btn-shopping btn-hover-primary btn-go-shopping">繼續購物</a>
                                     <a href="checkout.html " class="btn btn-shopping btn-hover-primary ">前往結帳</a>
                                 </div>
                             </div>
@@ -1164,14 +943,30 @@
         </a> -->
         <!--Back To End-->
 
+        <!--------------------------------------------------- LiveSupport --------------------------------------------------->
+
         <div class="messages">
-            <img type="button" class="message-btn" style="width: 80px;" src="assets/images/icon/messenger.png">;
+            <img type="button" class="message-btn" src="assets/images/icon/messenger.png">;
         </div>
 
-
-        <div class="message-table" style="border:2px solid black; height: 300px; display: none;">
+        <div class="message-table">
             <article cla="message-article">
-                <button class="message-close">離開</button>
+
+
+                <div class="message-title">
+                    <div class="tilte-span-div">
+                        <span class="tilte-span">即&emsp;時&emsp;客&emsp;服</span>
+                    </div>
+                    <div style="display: inline-block;">
+                        <button class="message-close"><i class="fas fa-times"></i></button>
+                    </div>
+                </div>
+
+                <div class="message-input-div">
+                    <input class="message-input" type="text" placeholder="請輸入文字...">
+                    <img type="button" class="send-btn" src="assets/images/icon/icon-send.png">
+                </div>
+
             </article>
         </div>
 
@@ -1210,106 +1005,8 @@
     <!-- Main JS -->
     <script src="assets/js/main.js "></script>
 
-
-    <!------------------------------------------------------------- Script ------------------------------------------------------------->
-    <script>
-        $(window).on("load ", function() {
-
-            count_total();
-            sum_total();
-
-            /*======================================= Plus =======================================*/
-            $('button.add').on("click ", function(event) {
-                let total = $(this).closest("tr ").find("span.total-span ");
-                let quantity = $(this).closest("tr ").find('input.quantity-input').val();
-                let unit_price = $(this).closest("tr ").find('span.unit-price').text();
-                total.text(quantity * unit_price);
-                count_total();
-                sum_total();
-            });
-
-
-            /*======================================= Minus =======================================*/
-            $('button.sub').click(function(event) {
-                let total = $(this).closest("tr ").find("span.total-span ");
-                let quantity = $(this).closest("tr ").find('input.quantity-input').val();
-                let unit_price = $(this).closest("tr ").find('span.unit-price').text();
-                total.text(quantity * unit_price);
-                count_total();
-                sum_total();
-            });
-
-
-            /*======================================= Delete =======================================*/
-
-
-            $('button.remove').on("click ", function() {
-                $(this).closest("tr ").remove();
-                if ($(".td.Product-thumb ").length == 0) {
-                    $("span.count-price ").text(0);
-                }
-                count_total();
-                sum_total();
-            });
-
-
-
-            /*======================================= 小計函式 =======================================*/
-            function count_total() {
-                let sum = 0;
-                $("span.total-span ").each(function() {
-                    sum += parseInt($(this).text());
-                    $('span.count-price').text(sum);
-                });
-            }
-
-
-            /*======================================= 總計函式 =======================================*/
-            function sum_total() {
-
-                let count_total = $('span.count-price').html();
-                let coupon_price = $('span.coupon-price').html();
-
-                $('span.sum-total').html(count_total - coupon_price);
-
-            }
-
-
-
-            /*======================================= 優惠券LightBox並鎖住背景 =======================================*/
-            // 開啟 Modal 彈跳視窗
-            $("span.choose-coupon ").on("click ", function() {
-                $("div.overlay ").fadeIn();
-
-                $('body.body-scroll').attr("style", "overflow :hidden ")
-
-            });
-
-            // 關閉 Modal
-            $("button.btn_modal_close ").on("click ", function() {
-                $("div.overlay ").fadeOut();
-
-                $('body.body-scroll').removeAttr("style", "overflow :hidden ");
-            });
-
-
-
-
-
-            /*======================================= MessageLightBox =======================================*/
-            // 開啟 Modal 彈跳視窗
-            $("img.message-btn").on("click ", function() {
-                $("div.message-table").fadeIn();
-            });
-
-            // 關閉 Modal
-            $("button.message-close").on("click ", function() {
-                $("div.message-table").fadeOut();
-            });
-
-
-        });
-    </script>
+    <!-- MineCar JS-->
+    <script src="assets/js/mineCarJS.js "></script>
 
 </body>
 
