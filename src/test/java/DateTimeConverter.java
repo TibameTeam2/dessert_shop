@@ -1,3 +1,5 @@
+import cn.hutool.core.convert.Convert;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -44,6 +46,9 @@ public class DateTimeConverter {
         // String → sql.Timestamp
         String dateTimeStr2 = "2018-11-29 20:25:58";
         java.sql.Timestamp ts = java.sql.Timestamp.valueOf(dateTimeStr2);
+
+        //String → sql.Timestamp  第二種這種 可以只帶入日期，不用時分秒
+        java.sql.Timestamp ts3 =  new java.sql.Timestamp(Convert.toDate("2018-11-29").getTime());
 
         // sql.Timestamp → String (最簡單的就是直接呼叫toString()即可, 配合SimpleDateFormat就可以有更多取法)
         java.sql.Timestamp ts2 = new java.sql.Timestamp(System.currentTimeMillis());

@@ -1,9 +1,9 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="com.emp.model.*"%>
+<%@ page import="com.member.model.MemberBean" %>
 <%-- 此頁暫練習採用 Script 的寫法取值 --%>
 
 <%
-  EmpVO empVO = (EmpVO) request.getAttribute("empVO"); //EmpServlet.java(Concroller), 存入req的empVO物件
+  MemberBean member = (MemberBean) request.getAttribute("member"); //EmpServlet.java(Concroller), 存入req的empVO物件
 %>
 
 <html>
@@ -50,28 +50,36 @@
 <table id="table-1">
 	<tr><td>
 		 <h3>員工資料 - ListOneEmp.jsp</h3>
-		 <h4><a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a></h4>
+		 <h4><a href="../member_jsp/select_page.jsp"><img src="../member_jsp/images/back1.gif" width="100" height="32" border="0">回首頁</a></h4>
 	</td></tr>
 </table>
 
 <table>
 	<tr>
-		<th>員工編號</th>
-		<th>員工姓名</th>
-		<th>職位</th>
-		<th>雇用日期</th>
-		<th>薪水</th>
-		<th>獎金</th>
-		<th>部門</th>
+		<th>會員帳號</th>
+		<th>會員密碼</th>
+		<th>姓名</th>
+		<th>電話</th>
+		<th>信箱</th>
+		<th>性別</th>
+		<th>生日</th>
+		<th>註冊時間</th>
+		<th>註冊方法</th>
+		<th>狀態</th>
+		<th>照片</th>
 	</tr>
 	<tr>
-		<td><%=empVO.getEmpno()%></td>
-		<td><%=empVO.getEname()%></td>
-		<td><%=empVO.getJob()%></td>
-		<td><%=empVO.getHiredate()%></td>
-		<td><%=empVO.getSal()%></td>
-		<td><%=empVO.getComm()%></td>
-		<td><%=empVO.getDeptno()%></td>
+		<td><%=member.getMember_account()%></td>
+		<td><%=member.getMember_password()%></td>
+		<td><%=member.getMember_name()%></td>
+		<td><%=member.getMember_phone()%></td>
+		<td><%=member.getMember_email()%></td>
+		<td><%=member.getMember_gender()%></td>
+		<td><%=member.getMember_birthday()%></td>
+		<td><%=member.getRegister_time()%></td>
+		<td><%=member.getRegister_method()%></td>
+		<td><%=member.getMember_status()%></td>
+		<td><%=member.getMember_photo()%></td>
 	</tr>
 </table>
 

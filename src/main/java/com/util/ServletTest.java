@@ -96,4 +96,12 @@ public class ServletTest extends BaseServlet {
 
     public void testReturn3(HttpServletRequest req, HttpServletResponse res) {
     }
+
+    int count = 0;
+    public void test(HttpServletRequest req, HttpServletResponse res){
+        ResultInfo info = new ResultInfo();
+        info.setMsg(Convert.toStr(count));
+        writeValueByWriter(res,info);
+        count++;
+    }
 }

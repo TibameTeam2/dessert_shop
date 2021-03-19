@@ -74,4 +74,8 @@ public class MemberService {
     public void update(MemberBean member) {
         dao.update(member);
     }
+
+    public void addMember(MemberBean member){
+        dao.insert(member);
+    }
 }

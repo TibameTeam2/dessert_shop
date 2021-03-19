@@ -97,7 +97,7 @@
 	</tr>
 	<tr>
 		<td>註冊時間:</td>
-		<td><input type="TEXT" name="member_birthday" size="45" value="<%=memberBean.getRegister_time()%>" /></td>
+		<td><input type="TEXT" name="register_time" size="45" value="<%=memberBean.getRegister_time()%>" /></td>
 	</tr>
 	<tr>
 		<td>註冊方法:</td>
