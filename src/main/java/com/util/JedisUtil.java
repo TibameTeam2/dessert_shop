@@ -12,7 +12,7 @@ import java.util.Properties;
  * Jedis工具類
  */
 public final class JedisUtil {
-    private static JedisPool jedisPool;
+    private static final JedisPool jedisPool;
 
     static {
         //讀取配置檔
