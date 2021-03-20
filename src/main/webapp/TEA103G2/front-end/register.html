@@ -616,8 +616,8 @@
                         <p>已有帳號? <a href="login.html">立刻登入!</a></p>
                         <form id="register_form" action="#">
                             <div class="single-form">
-                                <label class="form-label">註冊帳號</label>
-                                <input type="text" class="form-control" name="member_account">
+                                <label class="form-label" id="member_account_label">註冊帳號</label>
+                                <input type="text" class="form-control" id="member_account" name="member_account">
                             </div>
                             <div class="single-form">
                                 <label class="form-label">密碼</label>
@@ -856,6 +856,7 @@
     $(function () {
         //表單送出時
         $("#register_form").submit(function () {
+            getParameter();
             //表單提交時檢查所有屬性合法
             // if(checkUsername() && checkPassword() && checkEmail()){
             //發送ajax請求，送出表單資料
@@ -884,11 +885,49 @@
         });
 
         // 失去焦點 調用檢查方法
-        // $("#username").blur(checkUsername);
+        $("#member_account").blur(checkAccount);
         // $("#password").blur(checkPassword);
         // $("#email").blur(checkEmail);
 
 
+
+        function checkAccount() {
+            let account = "account="+$("#member_account").val();
+            $.post("/dessert_shop/member/checkAccount", account, function (data) {
+                if (data.flag) {
+                    // alert(data.msg);
+                    $("#member_account").css("border","");
+                    $("#member_account_label").html("註冊帳號&nbsp&nbsp&nbsp&nbsp"+data.msg);
+                } else {
+                    // alert(data.msg);
+                    $("#member_account").css("border","1px solid red");
+                    $("#member_account_label").html("註冊帳號&nbsp&nbsp&nbsp&nbsp"+data.msg);
+                }
+            });
+            //
+            // //2.定义正则
+            // let reg_username = /^\w{8,20}$/;
+            //
+            // //3.判断，给出提示信息
+            // let flag = reg_username.test(username);
+            // if(flag){
+            //     //用户名合法
+            //     $("#username").css("border","");
+            // }else{
+            //     //用户名非法,加一个红色边框
+            //     $("#username").css("border","1px solid red");
+            // }
+        }
+
+
+
+
+        function getParameter() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const myParam = urlParams.get('id');
+            console.log(myParam);
+
+        }
     });
 </script>
 </body>

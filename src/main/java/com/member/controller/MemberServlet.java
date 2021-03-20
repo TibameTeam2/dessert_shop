@@ -127,6 +127,26 @@ public class MemberServlet extends BaseServlet {
         writeValueByWriter(res, info);
     }
 
+    public void checkAccount(HttpServletRequest req, HttpServletResponse res) {
+        //獲取數據
+        String account = req.getParameter("account");
+        MemberBean member = service.getOneMember(account);
+        ResultInfo info = new ResultInfo();
+        if (member==null){
+            info.setFlag(true);
+            info.setMsg(account+" 可以使用");
+        }else{
+            info.setFlag(false);
+            info.setMsg(account+" 已被註冊");
+        }
+        writeValueByWriter(res,info);
+    }
+
+
+
+
+
+
 
     public String backend_getOne_For_Update(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         List<String> errorMsgs = new LinkedList<String>();
