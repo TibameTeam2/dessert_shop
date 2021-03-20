@@ -53,7 +53,7 @@ public class MemberServlet extends BaseServlet {
             //註冊成功
             info.setFlag(true);
             info.setMsg("註冊成功!");
-            info.setRedirect(req.getContextPath() + "/login.html");
+            info.setRedirect(req.getContextPath() + "/TEA103G2/front-end/login.html");
         } else {
             //註冊失敗
             info.setFlag(false);
@@ -128,7 +128,7 @@ public class MemberServlet extends BaseServlet {
     }
 
 
-    public String getOne_For_Update(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+    public String backend_getOne_For_Update(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         List<String> errorMsgs = new LinkedList<String>();
         // Store this set in the request scope, in case we need to
         // send the ErrorPage view.
@@ -157,6 +157,294 @@ public class MemberServlet extends BaseServlet {
             return "forwardFail:/member_jsp/listAllEmp.jsp";
         }
 
+    }
+
+
+    public String backend_update(HttpServletRequest req, HttpServletResponse res) {
+        List<String> errorMsgs = new LinkedList<String>();
+        // Store this set in the request scope, in case we need to
+        // send the ErrorPage view.
+        req.setAttribute("errorMsgs", errorMsgs);
+
+        try {
+            /***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
+            String member_account = req.getParameter("member_account").trim();
+
+            String member_name = req.getParameter("member_name");
+            String enameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,10}$";
+            if (member_name == null || member_name.trim().length() == 0) {
+                errorMsgs.add("員工姓名: 請勿空白");
+            } else if (!member_name.trim().matches(enameReg)) { //以下練習正則(規)表示式(regular-expression)
+                errorMsgs.add("員工姓名: 只能是中、英文字母、數字和_ , 且長度必需在2到10之間");
+            }
+
+            String member_phone = req.getParameter("member_phone").trim();
+            if (member_phone == null || member_phone.trim().length() == 0) {
+                errorMsgs.add("手機請勿空白");
+            }
+
+            String member_email = req.getParameter("member_email").trim();
+            if (member_email == null || member_phone.trim().length() == 0) {
+                errorMsgs.add("信箱請勿空白");
+            }
+
+            Integer member_gender = null;
+            try {
+                member_gender = new Integer(req.getParameter("member_gender").trim());
+            } catch (NumberFormatException e) {
+                member_gender = 0;
+                errorMsgs.add("薪水請填數字.");
+            }
+
+
+            java.sql.Date member_birthday = null;
+            try {
+                member_birthday = java.sql.Date.valueOf(req.getParameter("member_birthday").trim());
+            } catch (IllegalArgumentException e) {
+                member_birthday = new java.sql.Date(System.currentTimeMillis());
+                errorMsgs.add("請輸入日期!");
+            }
+
+            java.sql.Timestamp register_time = java.sql.Timestamp.valueOf(req.getParameter("register_time".trim()));
+            Integer register_method = Convert.toInt(req.getParameter("register_method".trim()));
+            Integer member_status = Convert.toInt(req.getParameter("member_status".trim()));
+            String member_password = req.getParameter("member_password".trim());
+
+            MemberBean member = new MemberBean();
+            member.setMember_account(member_account);
+            member.setMember_name(member_name);
+            member.setMember_phone(member_phone);
+            member.setMember_email(member_email);
+            member.setMember_gender(member_gender);
+            member.setMember_birthday(member_birthday);
+            member.setMember_status(member_status);
+            member.setRegister_method(register_method);
+            member.setRegister_time(register_time);
+            member.setMember_password(member_password);
+
+
+
+            // Send the use back to the form, if there were errors
+            if (!errorMsgs.isEmpty()) {
+                req.setAttribute("member", member); // 含有輸入格式錯誤的empVO物件,也存入req
+                RequestDispatcher failureView = req
+                        .getRequestDispatcher("/emp/update_emp_input.jsp");
+                failureView.forward(req, res);
+                return null; //程式中斷
+            }
+
+            /***************************2.開始修改資料*****************************************/
+            System.out.println("before member = " + member);
+            MemberService memberSve = new MemberService();
+            memberSve.update(member);
+            System.out.println("after member = " + member);
+            /***************************3.修改完成,準備轉交(Send the Success view)*************/
+            req.setAttribute("member", member); // 資料庫update成功後,正確的的empVO物件,存入req
+//            String url = "/emp/listOneEmp.jsp";
+//            RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
+//            successView.forward(req, res);
+            return "/member_jsp/listOneEmp.jsp";
+            /***************************其他可能的錯誤處理*************************************/
+        } catch (Exception e) {
+            errorMsgs.add("修改資料失敗:" + e.getMessage());
+            e.printStackTrace();
+//            RequestDispatcher failureView = req
+//                    .getRequestDispatcher("/emp/update_emp_input.jsp");
+//            failureView.forward(req, res);
+            return "/member_jsp/update_member_input.jsp";
+        }
+    }
+
+
+    public String backend_getOne_For_Display(HttpServletRequest req, HttpServletResponse res){
+
+        List<String> errorMsgs = new LinkedList<String>();
+        // Store this set in the request scope, in case we need to
+        // send the ErrorPage view.
+        req.setAttribute("errorMsgs", errorMsgs);
+
+        try {
+            /***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
+            String str = req.getParameter("member_account");
+            if (str == null || (str.trim()).length() == 0) {
+                errorMsgs.add("請輸入員工編號");
+            }
+            // Send the use back to the form, if there were errors
+            if (!errorMsgs.isEmpty()) {
+//                RequestDispatcher failureView = req
+//                        .getRequestDispatcher("/emp/select_page.jsp");
+//                failureView.forward(req, res);
+                return "/member_jsp/select_page.jsp";//程式中斷
+            }
+
+            String member_account = null;
+            try {
+                member_account = str;
+            } catch (Exception e) {
+                errorMsgs.add("員工編號格式不正確");
+            }
+            // Send the use back to the form, if there were errors
+            if (!errorMsgs.isEmpty()) {
+//                RequestDispatcher failureView = req
+//                        .getRequestDispatcher("/emp/select_page.jsp");
+//                failureView.forward(req, res);
+                return "/member_jsp/select_page.jsp";//程式中斷
+            }
+
+            /***************************2.開始查詢資料*****************************************/
+            MemberService memberSvc = new MemberService();
+            MemberBean member = memberSvc.getOneMember(member_account);
+            if (member == null) {
+                errorMsgs.add("查無資料");
+            }
+            // Send the use back to the form, if there were errors
+            if (!errorMsgs.isEmpty()) {
+//                RequestDispatcher failureView = req
+//                        .getRequestDispatcher("/emp/select_page.jsp");
+//                failureView.forward(req, res);
+                return "/member_jsp/select_page.jsp";//程式中斷
+            }
+
+            /***************************3.查詢完成,準備轉交(Send the Success view)*************/
+            req.setAttribute("member", member); // 資料庫取出的empVO物件,存入req
+//            String url = "/emp/listOneEmp.jsp";
+//            RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
+//            successView.forward(req, res);
+            return "/member_jsp/listOneEmp.jsp";
+
+            /***************************其他可能的錯誤處理*************************************/
+        } catch (Exception e) {
+            errorMsgs.add("無法取得資料:" + e.getMessage());
+//            RequestDispatcher failureView = req
+//                    .getRequestDispatcher("/emp/select_page.jsp");
+//            failureView.forward(req, res);
+            return "/member_jsp/select_page.jsp";
+        }
+
+
+
+    }
+
+
+    public String backend_delete(HttpServletRequest req, HttpServletResponse res){
+        List<String> errorMsgs = new LinkedList<String>();
+        // Store this set in the request scope, in case we need to
+        // send the ErrorPage view.
+        req.setAttribute("errorMsgs", errorMsgs);
+
+        try {
+            /***************************1.接收請求參數***************************************/
+            String member_account = req.getParameter("member_account");
+
+            /***************************2.開始刪除資料***************************************/
+            MemberService memberSvc = new MemberService();
+            memberSvc.deleteMember(member_account);
+
+            /***************************3.刪除完成,準備轉交(Send the Success view)***********/
+//            String url = "/emp/listAllEmp.jsp";
+//            RequestDispatcher successView = req.getRequestDispatcher(url);// 刪除成功後,轉交回送出刪除的來源網頁
+//            successView.forward(req, res);
+            return "/member_jsp/listAllEmp.jsp";
+
+            /***************************其他可能的錯誤處理**********************************/
+        } catch (Exception e) {
+            errorMsgs.add("刪除資料失敗:"+e.getMessage());
+//            RequestDispatcher failureView = req
+//                    .getRequestDispatcher("/emp/listAllEmp.jsp");
+//            failureView.forward(req, res);
+            return "/member_jsp/listAllEmp.jsp";
+        }
+    }
+
+
+    public String backend_insert(HttpServletRequest req, HttpServletResponse res){
+        List<String> errorMsgs = new LinkedList<String>();
+        // Store this set in the request scope, in case we need to
+        // send the ErrorPage view.
+        req.setAttribute("errorMsgs", errorMsgs);
+
+        try {
+            /***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
+            String member_account = req.getParameter("member_account").trim();
+
+            String member_name = req.getParameter("member_name");
+            String enameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,10}$";
+            if (member_name == null || member_name.trim().length() == 0) {
+                errorMsgs.add("員工姓名: 請勿空白");
+            } else if (!member_name.trim().matches(enameReg)) { //以下練習正則(規)表示式(regular-expression)
+                errorMsgs.add("員工姓名: 只能是中、英文字母、數字和_ , 且長度必需在2到10之間");
+            }
+
+            String member_phone = req.getParameter("member_phone").trim();
+            if (member_phone == null || member_phone.trim().length() == 0) {
+                errorMsgs.add("手機請勿空白");
+            }
+
+            String member_email = req.getParameter("member_email").trim();
+            if (member_email == null || member_phone.trim().length() == 0) {
+                errorMsgs.add("信箱請勿空白");
+            }
+
+            Integer member_gender = null;
+            try {
+                member_gender = new Integer(req.getParameter("member_gender").trim());
+            } catch (NumberFormatException e) {
+                member_gender = 0;
+                errorMsgs.add("薪水請填數字.");
+            }
+
+
+            java.sql.Date member_birthday = null;
+            try {
+                member_birthday = java.sql.Date.valueOf(req.getParameter("member_birthday").trim());
+            } catch (IllegalArgumentException e) {
+                member_birthday = new java.sql.Date(System.currentTimeMillis());
+                errorMsgs.add("請輸入日期!");
+            }
+
+            java.sql.Timestamp register_time = java.sql.Timestamp.valueOf(req.getParameter("register_time".trim()));
+            Integer register_method = Convert.toInt(req.getParameter("register_method".trim()));
+            Integer member_status = Convert.toInt(req.getParameter("member_status".trim()));
+            String member_password = req.getParameter("member_password".trim());
+
+            MemberBean member = new MemberBean();
+            member.setMember_account(member_account);
+            member.setMember_name(member_name);
+            member.setMember_phone(member_phone);
+            member.setMember_email(member_email);
+            member.setMember_gender(member_gender);
+            member.setMember_birthday(member_birthday);
+            member.setMember_status(member_status);
+            member.setRegister_method(register_method);
+            member.setRegister_time(register_time);
+            member.setMember_password(member_password);
+
+            // Send the use back to the form, if there were errors
+            if (!errorMsgs.isEmpty()) {
+                req.setAttribute("member", member); // 含有輸入格式錯誤的empVO物件,也存入req
+//                RequestDispatcher failureView = req
+//                        .getRequestDispatcher("/emp/addEmp.jsp");
+//                failureView.forward(req, res);
+                return "/member_jsp/addEmp.jsp";
+            }
+
+            /***************************2.開始新增資料***************************************/
+            MemberService memberSvc = new MemberService();
+            memberSvc.addMember(member);
+
+            /***************************3.新增完成,準備轉交(Send the Success view)***********/
+//            String url = "/emp/listAllEmp.jsp";
+//            RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
+//            successView.forward(req, res);
+            return "/member_jsp/listAllEmp.jsp";
+            /***************************其他可能的錯誤處理**********************************/
+        } catch (Exception e) {
+            errorMsgs.add(e.getMessage());
+//            RequestDispatcher failureView = req
+//                    .getRequestDispatcher("/emp/addEmp.jsp");
+//            failureView.forward(req, res);
+            return "/member_jsp/addEmp.jsp";
+        }
     }
 
 

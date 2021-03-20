@@ -48,14 +48,14 @@
 </c:if>
 
 <ul>
-  <li><a href='listAllEmp.jsp'>List</a> all Emps.  <br><br></li>
+  <li><a href='<%=request.getContextPath()%>/member_jsp/listAllEmp.jsp'>List</a> all Emps.  <br><br></li>
   
   
   <li>
-    <FORM METHOD="post" ACTION="emp.do" >
+    <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/member/backend_getOne_For_Display" >
         <b>輸入員工編號 (如7001):</b>
-        <input type="text" name="empno">
-        <input type="hidden" name="action" value="getOne_For_Display">
+        <input type="text" name="member_account">
+<%--        <input type="hidden" name="action" value="getOne_For_Display">--%>
         <input type="submit" value="送出">
     </FORM>
   </li>
@@ -63,27 +63,27 @@
   <jsp:useBean id="memberSvc" scope="page" class="com.member.model.MemberService" />
 
   <li>
-     <FORM METHOD="post" ACTION="emp.do" >
+     <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/member/backend_getOne_For_Display" >
        <b>選擇員工編號:</b>
        <select size="1" name="member_account">
          <c:forEach var="memberBean" items="${memberSvc.all}" >
           <option value="${memberBean.member_account}">${memberBean.member_account}
          </c:forEach>
        </select>
-       <input type="hidden" name="action" value="getOne_For_Display">
+<%--       <input type="hidden" name="action" value="getOne_For_Display">--%>
        <input type="submit" value="送出">
     </FORM>
   </li>
 
   <li>
-     <FORM METHOD="post" ACTION="emp.do" >
+     <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/member/backend_getOne_For_Display" >
        <b>選擇員工姓名:</b>
        <select size="1" name="member_account">
          <c:forEach var="memberBean" items="${memberSvc.all}" >
-          <option value="${memberBean.member_name}">${memberBean.member_account}
+          <option value="${memberBean.member_account}">${memberBean.member_name}
          </c:forEach>
        </select>
-       <input type="hidden" name="action" value="getOne_For_Display">
+<%--       <input type="hidden" name="action" value="getOne_For_Display">--%>
        <input type="submit" value="送出">
      </FORM>
   </li>

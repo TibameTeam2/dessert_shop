@@ -69,4 +69,13 @@ public class MemberService {
         return dao.selectAll();
     }
 
+
+
+    public void update(MemberBean member) {
+        dao.update(member);
+    }
+
+    public void addMember(MemberBean member){
+        dao.insert(member);
+    }
 }

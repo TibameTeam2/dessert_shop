@@ -55,7 +55,7 @@
 <table id="table-1">
 	<tr><td>
 		 <h3>所有員工資料 - listAllEmp.jsp</h3>
-		 <h4><a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a></h4>
+		 <h4><a href="../member_jsp/select_page.jsp"><img src="../member_jsp/images/back1.gif" width="100" height="32" border="0">回首頁</a></h4>
 	</td></tr>
 </table>
 
@@ -72,11 +72,15 @@
 <table>
 	<tr>
 		<th>會員帳號</th>
+		<th>會員密碼</th>
 		<th>姓名</th>
 		<th>電話</th>
 		<th>信箱</th>
 		<th>性別</th>
 		<th>生日</th>
+		<th>註冊時間</th>
+		<th>註冊方法</th>
+		<th>狀態</th>
 		<th>照片</th>
 		<th>修改</th>
 		<th>刪除</th>
@@ -86,23 +90,30 @@
 		
 		<tr>
 			<td>${memberBean.member_account}</td>
+			<td>${memberBean.member_password}</td>
 			<td>${memberBean.member_name}</td>
 			<td>${memberBean.member_phone}</td>
 			<td>${memberBean.member_email}</td>
 			<td>${memberBean.member_gender}</td>
 			<td>${memberBean.member_birthday}</td>
+			<td>${memberBean.register_time}</td>
+			<td>${memberBean.register_method}</td>
+			<td>${memberBean.member_status}</td>
 			<td>${memberBean.member_photo}</td>
+
 			<td>
-			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/member/getOne_For_Update" style="margin-bottom: 0px;">
+			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/member/backend_getOne_For_Update" style="margin-bottom: 0px;">
 			     <input type="submit" value="修改">
 			     <input type="hidden" name="member_account"  value="${memberBean.member_account}">
 <%--			     <input type="hidden" name="action"	value="getOne_For_Update"></FORM>--%>
+			  </FORM>
 			</td>
 			<td>
-			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/member/delete" style="margin-bottom: 0px;">
+			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/member/backend_delete" style="margin-bottom: 0px;">
 			     <input type="submit" value="刪除">
 			     <input type="hidden" name="member_account"  value="${memberBean.member_account}">
 <%--			     <input type="hidden" name="action" value="delete"></FORM>--%>
+			  </FORM>
 			</td>
 		</tr>
 	</c:forEach>
