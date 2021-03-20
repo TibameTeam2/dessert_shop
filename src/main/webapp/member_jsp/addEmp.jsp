@@ -1,9 +1,9 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page import="com.emp.model.*"%>
+<%@ page import="com.member.model.MemberBean" %>
 
 <%
-  EmpVO empVO = (EmpVO) request.getAttribute("empVO");
+  MemberBean member = (MemberBean) request.getAttribute("member");
 %>
 
 <html>
@@ -65,42 +65,84 @@
 	</ul>
 </c:if>
 
-<FORM METHOD="post" ACTION="emp.do" name="form1">
+<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/member/backend_insert" name="form1">
 <table>
 	<tr>
-		<td>員工姓名:</td>
-		<td><input type="TEXT" name="ename" size="45" 
-			 value="<%= (empVO==null)? "吳永志" : empVO.getEname()%>" /></td>
+		<td>會員帳號:</td>
+		<td><input type="TEXT" name="member_account" size="45"
+			 value="<%= (member==null)? "acc" : member.getMember_account()%>" /></td>
 	</tr>
 	<tr>
-		<td>職位:</td>
-		<td><input type="TEXT" name="job" size="45"
-			 value="<%= (empVO==null)? "MANAGER" : empVO.getJob()%>" /></td>
-	</tr>
-	<tr>
-		<td>雇用日期:</td>
-		<td><input name="hiredate" id="f_date1" type="text"></td>
-	</tr>
-	<tr>
-		<td>薪水:</td>
-		<td><input type="TEXT" name="sal" size="45"
-			 value="<%= (empVO==null)? "10000" : empVO.getSal()%>" /></td>
-	</tr>
-	<tr>
-		<td>獎金:</td>
-		<td><input type="TEXT" name="comm" size="45"
-			 value="<%= (empVO==null)? "100" : empVO.getComm()%>" /></td>
+		<td>會員密碼:</td>
+		<td><input type="TEXT" name="member_password" size="45"
+			 value="<%= (member==null)? "123" : member.getMember_password()%>" /></td>
 	</tr>
 
-	<jsp:useBean id="deptSvc" scope="page" class="com.dept.model.DeptService" />
 	<tr>
-		<td>部門:<font color=red><b>*</b></font></td>
-		<td><select size="1" name="deptno">
-			<c:forEach var="deptVO" items="${deptSvc.all}">
-				<option value="${deptVO.deptno}" ${(empVO.deptno==deptVO.deptno)? 'selected':'' } >${deptVO.dname}
-			</c:forEach>
-		</select></td>
+		<td>姓名:</td>
+		<td><input type="TEXT" name="member_name" size="45"
+				   value="<%= (member==null)? "測試姓名" : member.getMember_name()%>" /></td>
 	</tr>
+	<tr>
+		<td>電話:</td>
+		<td><input type="TEXT" name="member_phone" size="45"
+				   value="<%= (member==null)? "094894915" : member.getMember_phone()%>" /></td>
+	</tr>
+	<tr>
+		<td>信箱:</td>
+		<td><input type="TEXT" name="member_email" size="45"
+				   value="<%= (member==null)? "test@gmail.com" : member.getMember_email()%>" /></td>
+	</tr>
+	<tr>
+		<td>性別:</td>
+		<td><input type="TEXT" name="member_gender" size="45"
+				   value="<%= (member==null)? "1" : member.getMember_gender()%>" /></td>
+	</tr>
+	<tr>
+		<td>生日:</td>
+		<td><input type="TEXT" name="member_birthday" id="f_date1"
+				   value="<%= (member==null)? "2021-03-20" : member.getMember_birthday()%>" /></td>
+	</tr>
+	<tr>
+		<td>註冊時間:</td>
+		<td><input type="TEXT" name="register_time" size="45"
+				   value="<%= (member==null)? "2021-03-20 11:11:11" : member.getRegister_time()%>" /></td>
+	</tr>
+	<tr>
+		<td>註冊方法:</td>
+		<td><input type="TEXT" name="register_method" size="45"
+				   value="<%= (member==null)? "1" : member.getRegister_method()%>" /></td>
+	</tr>
+	<tr>
+		<td>狀態:</td>
+		<td><input type="TEXT" name="member_status" size="45"
+				   value="<%= (member==null)? "1" : member.getMember_status()%>" /></td>
+	</tr>
+	<tr>
+		<td>照片:</td>
+		<td><input type="TEXT" name="member_photo" size="45"
+				   value="<%= (member==null)? null : member.getMember_photo()%>" /></td>
+	</tr>
+
+
+
+
+
+
+
+
+
+
+
+<%--	<jsp:useBean id="deptSvc" scope="page" class="com.dept.model.DeptService" />--%>
+<%--	<tr>--%>
+<%--		<td>部門:<font color=red><b>*</b></font></td>--%>
+<%--		<td><select size="1" name="deptno">--%>
+<%--			<c:forEach var="deptVO" items="${deptSvc.all}">--%>
+<%--				<option value="${deptVO.deptno}" ${(empVO.deptno==deptVO.deptno)? 'selected':'' } >${deptVO.dname}--%>
+<%--			</c:forEach>--%>
+<%--		</select></td>--%>
+<%--	</tr>--%>
 
 </table>
 <br>
@@ -113,11 +155,11 @@
 <!-- =========================================以下為 datetimepicker 之相關設定========================================== -->
 
 <% 
-  java.sql.Date hiredate = null;
+  java.sql.Date member_birthday = null;
   try {
-	    hiredate = empVO.getHiredate();
+	  member_birthday = member.getMember_birthday();
    } catch (Exception e) {
-	    hiredate = new java.sql.Date(System.currentTimeMillis());
+	  member_birthday = new java.sql.Date(System.currentTimeMillis());
    }
 %>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/datetimepicker/jquery.datetimepicker.css" />
@@ -140,7 +182,7 @@
 	       timepicker:false,       //timepicker:true,
 	       step: 1,                //step: 60 (這是timepicker的預設間隔60分鐘)
 	       format:'Y-m-d',         //format:'Y-m-d H:i:s',
-		   value: '<%=hiredate%>', // value:   new Date(),
+		   value: '<%=member_birthday%>', // value:   new Date(),
            //disabledDates:        ['2017/06/08','2017/06/09','2017/06/10'], // 去除特定不含
            //startDate:	            '2017/07/10',  // 起始日
            //minDate:               '-1970-01-01', // 去除今日(不含)之前

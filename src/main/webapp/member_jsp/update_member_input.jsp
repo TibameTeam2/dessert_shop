@@ -49,7 +49,7 @@
 <table id="table-1">
 	<tr><td>
 		 <h3>員工資料修改 - update_emp_input.jsp</h3>
-		 <h4><a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a></h4>
+		 <h4><a href="../member_jsp/select_page.jsp"><img src="../member_jsp/images/back1.gif" width="100" height="32" border="0">回首頁</a></h4>
 	</td></tr>
 </table>
 
@@ -65,35 +65,51 @@
 	</ul>
 </c:if>
 
-<FORM METHOD="post" ACTION="emp.do" name="form1">
+<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/member/backend_update" name="form1">
 <table>
 	<tr>
 		<td>會員帳號:<font color=red><b>*</b></font></td>
 		<td><%=memberBean.getMember_account()%></td>
 	</tr>
 	<tr>
+		<td>會員密碼:</td>
+		<td><input type="TEXT" name="member_password" size="45" 	value="<%=memberBean.getMember_password()%>" /></td>
+	</tr>
+	<tr>
 		<td>姓名:</td>
-		<td><input type="TEXT" name="ename" size="45" value="<%=memberBean.getMember_name()%>" /></td>
+		<td><input type="TEXT" name="member_name" size="45" 	value="<%=memberBean.getMember_name()%>" /></td>
 	</tr>
 	<tr>
 		<td>電話:</td>
-		<td><input type="TEXT" name="job" size="45"	value="<%=memberBean.getMember_phone()%>" /></td>
+		<td><input type="TEXT" name="member_phone" size="45"	value="<%=memberBean.getMember_phone()%>" /></td>
 	</tr>
 	<tr>
 		<td>信箱:</td>
-		<td><input type="TEXT" name="job" size="45"	value="<%=memberBean.getMember_email()%>" /></td>
+		<td><input type="TEXT" name="member_email" size="45"	value="<%=memberBean.getMember_email()%>" /></td>
 	</tr>
 	<tr>
 		<td>性別:</td>
-		<td><input type="TEXT" name="sal" size="45"	value="<%=memberBean.getMember_gender()%>" /></td>
+		<td><input type="TEXT" name="member_gender" size="45"	value="<%=memberBean.getMember_gender()%>" /></td>
 	</tr>
 	<tr>
 		<td>生日:</td>
-		<td><input type="TEXT" name="comm" size="45" value="<%=memberBean.getMember_birthday()%>" /></td>
+		<td><input type="TEXT" name="member_birthday" size="45" value="<%=memberBean.getMember_birthday()%>" /></td>
+	</tr>
+	<tr>
+		<td>註冊時間:</td>
+		<td><input type="TEXT" name="register_time" size="45" value="<%=memberBean.getRegister_time()%>" /></td>
+	</tr>
+	<tr>
+		<td>註冊方法:</td>
+		<td><input type="TEXT" name="register_method" size="45"	value="<%=memberBean.getRegister_method()%>" /></td>
+	</tr>
+	<tr>
+		<td>狀態:</td>
+		<td><input type="TEXT" name="member_status" size="45"	value="<%=memberBean.getMember_status()%>" /></td>
 	</tr>
 	<tr>
 		<td>照片:</td>
-		<td><input type="TEXT" name="comm" size="45" value="<%=memberBean.getMember_photo()%>" /></td>
+		<td><input type="TEXT" name="member_photo" size="45" 	value="<%=memberBean.getMember_photo()%>" /></td>
 	</tr>
 <%--	<jsp:useBean id="deptSvc" scope="page" class="com.dept.model.DeptService" />--%>
 <%--	<tr>--%>
@@ -108,7 +124,11 @@
 </table>
 <br>
 <%--<input type="hidden" name="action" value="update">--%>
-<input type="hidden" name="empno" value="<%=memberBean.getMember_account()%>">
+<input type="hidden" name="member_account" value="<%=memberBean.getMember_account()%>">
+<%--<input type="hidden" name="register_time" value="<%=memberBean.getRegister_time()%>">--%>
+<%--<input type="hidden" name="register_method" value="<%=memberBean.getRegister_method()%>">--%>
+<%--<input type="hidden" name="member_status" value="<%=memberBean.getMember_status()%>">--%>
+
 <input type="submit" value="送出修改">
 </FORM>
 </body>
