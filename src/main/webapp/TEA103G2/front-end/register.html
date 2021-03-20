@@ -860,7 +860,7 @@
             // if(checkUsername() && checkPassword() && checkEmail()){
             //發送ajax請求，送出表單資料
             console.log($("#register_form").serialize());
-            $.post("member/register", $(this).serialize(), function (data) {
+            $.post("/dessert_shop/member/register", $(this).serialize(), function (data) {
                 //處理伺服器回應的資料  data  {flag:true,errorMsg:"註冊成功!!!"}
                 if (data.flag) {
                     // 註冊成功後跳轉頁面
