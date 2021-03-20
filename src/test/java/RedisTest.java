@@ -12,7 +12,7 @@ public class RedisTest {
         Jedis jedis = JedisUtil.getJedis();
         jedis.set("Member_account",activeCode);
         //設定有效期限
-        jedis.expire("Member_account", 8);
+        jedis.expire("Member_account", 15);
         jedis.close();
     }
 }

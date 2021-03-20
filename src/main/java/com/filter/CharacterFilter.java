@@ -10,7 +10,7 @@ import java.io.IOException;
  * 解決全站亂碼，過濾所有請求
  */
 @WebFilter("/*")
-public class CharchaterFilter implements Filter {
+public class CharacterFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
 
@@ -22,10 +22,10 @@ public class CharchaterFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) rep;
 
-        //filter 排除css js檔，這兩種如果被加上text/html;charset=UTF-8 會錯誤
+        //排除css js檔，這兩種如果被加上text/html;charset=UTF-8 會錯誤
         String request_uri = request.getRequestURI();
         if(request_uri.contains(".css") || request_uri.contains(".js")){
-            //如果发现是css或者js文件，直接放行
+            //如果發現是css或者js檔案，直接放行
             filterChain.doFilter(request,response);
             return;
         }
