@@ -1,5 +1,8 @@
 package com.member.controller;
 
+import cn.hutool.captcha.CaptchaUtil;
+import cn.hutool.captcha.LineCaptcha;
+import cn.hutool.captcha.ShearCaptcha;
 import cn.hutool.core.convert.Convert;
 import cn.hutool.core.lang.Console;
 import cn.hutool.crypto.digest.DigestUtil;
@@ -20,6 +23,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.nio.charset.StandardCharsets;
@@ -30,6 +34,21 @@ public class MemberServlet extends BaseServlet {
 
     public void register(HttpServletRequest req, HttpServletResponse res) {
         System.out.println("MemberServlet in register");
+        //先拿出用戶輸入的驗證碼，跟伺服器驗證碼比對
+        String checkCodeClient = req.getParameter("code");
+        HttpSession session = req.getSession();
+        String checkCodeServer = (String) session.getAttribute("checkCodeServer");
+        //比较
+        if(checkCodeServer == null || !checkCodeServer.equalsIgnoreCase(checkCodeClient)){
+            ResultInfo info = new ResultInfo();
+            info.setFlag(false);
+            info.setMsg("驗證碼錯誤!");
+            writeValueByWriter(res,info);
+            return;
+        }
+        session.removeAttribute("checkCodeServer");//確保驗證碼只能使用一次，按返回無效
+
+
         //獲取數據
         Map<String, String[]> map = req.getParameterMap();
         System.out.println("map= " + Convert.toStr(map));
@@ -142,7 +161,14 @@ public class MemberServlet extends BaseServlet {
         writeValueByWriter(res,info);
     }
 
-
+    public void checkCode(HttpServletRequest req, HttpServletResponse res) throws IOException {
+        LineCaptcha lineCaptcha = CaptchaUtil.createLineCaptcha(100, 50,4,50);
+        lineCaptcha.verify("1234");
+        System.out.println(lineCaptcha.getCode());
+        req.getSession().setAttribute("checkCodeServer",lineCaptcha.getCode());
+        res.setContentType("image/png;");
+        lineCaptcha.write(res.getOutputStream());
+    }
 
 
 

@@ -466,7 +466,7 @@ CREATE TABLE member_comment(
     order_detail_id		INT NOT NULL,
     comment_content 	VARCHAR(2000),
     rating 				TINYINT NOT NULL,
-    comment_time 		TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    comment_time 		TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     product_id			INT NOT NULL,
     comment_status 		TINYINT NOT NULL,
     constraint fk_member_content_product foreign key (product_id) references product (product_id)
