@@ -792,7 +792,7 @@
 
 <script>
     $(function () {
-        $.get("member/isLogin",{}, function (data) {
+        $.get("/dessert_shop/member/isLogin",{}, function (data) {
             //處理伺服器回應的資料  data  {flag:true,errorMsg:"註冊成功!!!"}
             console.log(data);
             if (data.flag) {
@@ -818,7 +818,7 @@
             // if(checkUsername() && checkPassword() && checkEmail()){
             //發送ajax請求，送出表單資料
             console.log($("#login_form").serialize());
-            $.post("member/login", $(this).serialize(), function (data) {
+            $.post("/dessert_shop/member/login", $(this).serialize(), function (data) {
                 //處理伺服器回應的資料  data  {flag:true,errorMsg:"註冊成功!!!"}
                 if (data.flag) {
                     // 註冊成功後跳轉頁面
