@@ -4,9 +4,12 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
+import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -14,6 +17,7 @@ import java.lang.reflect.Method;
 /**
  * 透過映射的方式，做方法的分發，類似controller
  */
+//@MultipartConfig
 public class BaseServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
@@ -104,4 +108,17 @@ public class BaseServlet extends HttpServlet {
         return null;
     }
 
+
+
+    // 取出上傳的檔案名稱 (因為API未提供method,所以必須自行撰寫)
+    public String getFileNameFromPart(Part part) {
+        String header = part.getHeader("content-disposition");
+        System.out.println("header=" + header); // 測試用
+        String filename = new File(header.substring(header.lastIndexOf("=") + 2, header.length() - 1)).getName();
+        System.out.println("filename=" + filename); // 測試用
+        if (filename.length() == 0) {
+            return null;
+        }
+        return filename;
+    }
 }
