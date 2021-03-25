@@ -218,9 +218,61 @@ public class MemberServlet extends BaseServlet {
         lineCaptcha.write(res.getOutputStream());
     }
 
+    /**
+     * 發送忘記密碼連結到會員信箱
+     */
     public void forgetPassword(HttpServletRequest req, HttpServletResponse res) {
-
+        String email = req.getParameter("email").trim();
+        if (email == null || email.length()==0) return;
+        String path = req.getScheme() + "://" + req.getServerName() + ":" + req.getServerPort() + req.getContextPath();
+        boolean flag = service.forgetPassword(email,path);
     }
+
+    /**
+     * 重置密碼
+     */
+    public void resetPassword(HttpServletRequest req, HttpServletResponse res) {
+        String code = req.getParameter("resetPasswordCode");
+        String isValid = req.getParameter("isValid");
+        Jedis jedis = JedisUtil.getJedis();
+        String account = jedis.get(code);
+        ResultInfo info = new ResultInfo();
+        if (account == null) {
+            info.setFlag(false);
+            info.setMsg("重置碼錯誤或過期\n請重新操作忘記密碼");
+            jedis.close();
+            writeValueByWriter(res, info);
+            return;
+        }
+        if (isValid == null) {  //重置碼有效的情況下，
+            try {
+                String password = req.getParameter("password");
+                boolean flag = service.changePassword(account,DigestUtil.md5Hex(password));
+                if (flag) {
+                    info.setFlag(true);
+                    info.setMsg("密碼已重置!");
+                    jedis.del(code);
+                } else {
+                    info.setFlag(false);
+                    info.setMsg("查無此帳號!");
+                }
+                writeValueByWriter(res, info);
+            } catch (Exception ignored) {
+            } finally {
+                jedis.close();
+            }
+        }else{  //單純檢查重置碼是否有效
+            try {
+                info.setFlag(true);
+                info.setMsg("重置碼有效!");
+                writeValueByWriter(res, info);
+            } catch (Exception ignored) {
+            } finally {
+                jedis.close();
+            }
+        }
+    }
+
 
 
     /************************************以下後臺使用****************************************/
@@ -622,7 +674,7 @@ public class MemberServlet extends BaseServlet {
     }
 
     public void testphoto(HttpServletRequest req, HttpServletResponse res) throws IOException {
-        String imgStr ="";
+        String imgStr = "";
         byte[] buf = GenerateImage(imgStr);
         res.setContentType("image/png;");
         IoUtil.write(res.getOutputStream(), true, buf);

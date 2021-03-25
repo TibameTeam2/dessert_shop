@@ -190,7 +190,7 @@
         // console.log(activeCode);
         if (activeCode != null) {
             $.post("/dessert_shop/member/emailActive?", "activeCode=" + activeCode, function (data) {
-                console.log(data.flag);
+                console.log(data);
                 if (data.flag) {
                     Swal.fire({
                         title: data.msg,
@@ -212,19 +212,29 @@
         }
 
         //會員點選email信，忘記密碼  未完成
-        let passwordCode = getParameter("passwordCode");   //取不到值時會是null
-        // console.log(activeCode);
-        if (activeCode != null) {
-            $.post("/dessert_shop/member/forgetPassword?", "passwordCode=" + passwordCode, function (data) {
-                if (data.flag) {
-                    Swal.fire({
-                        title: data.msg,
-                        text: '',
-                        icon: 'success'
-                    }).then(function () {
-                        location.href = data.redirect;
-                    });
-                } else {
+        let resetPasswordCode = getParameter("resetPasswordCode");   //取不到值時會是null
+        console.log(resetPasswordCode);
+        if (resetPasswordCode != null) {
+            $.post("/dessert_shop/member/resetPassword?", "isValid=1&resetPasswordCode=" + resetPasswordCode, async function (data) {
+                if (data.flag) { //重置碼合法，準備輸入密碼
+                    const { value: formValues } = await Swal.fire({
+                        title: '重置密碼',
+                        html:
+                            '<input type="password" id="swal-input1" class="swal2-input" placeholder="密碼">' +
+                            '<input type="password" id="swal-input2" class="swal2-input" placeholder="確認密碼">',
+                        confirmButtonClass:'password',
+                        preConfirm: () => {
+                            return [
+                                document.getElementById('swal-input1').value,
+                                document.getElementById('swal-input2').value
+                            ]
+                        }
+                    })
+
+                    if (formValues) {
+                        Swal.fire(JSON.stringify(formValues))
+                    }
+                } else { //重置碼非法
                     Swal.fire({
                         title: data.msg,
                         text: '',
@@ -234,6 +244,24 @@
             });
         }
 
+        $("body").on("blur", "#swal-input2", function (e) {
+            let input1=$("#swal-input1").val()
+            let input2=$("#swal-input2").val()
+            console.log( input1);
+            console.log( input2);
+            if(input1!==input2){
+                $("button").prop('disabled', true);
+            }
+            $(".swal2-confirm").prop('disabled', false);
+        });
+        $("body").on("click", ".swal2-confirm", function (e) {
+            let input1=$("#swal-input1").val()
+            let input2=$("#swal-input2").val()
+            console.log( input1);
+            console.log( input2);
+            console.log( "666");
+            e.preventDefault();
+        });
 
         function getParameter(param) {
             const urlParams = new URLSearchParams(window.location.search);
@@ -256,6 +284,23 @@
                     icon: "success"
                 })
 
+                $.post("/dessert_shop/member/forgetPassword?", "email=" + email, function (data) {
+                    // if (data.flag) {
+                    //     Swal.fire({
+                    //         title: data.msg,
+                    //         text: '',
+                    //         icon: 'success'
+                    //     }).then(function () {
+                    //         location.href = data.redirect;
+                    //     });
+                    // } else {
+                    //     Swal.fire({
+                    //         title: data.msg,
+                    //         text: '',
+                    //         icon: 'error'
+                    //     })
+                    // }
+                });
 
 
             }
