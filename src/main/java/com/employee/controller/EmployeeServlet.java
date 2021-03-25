@@ -1,20 +1,22 @@
 package com.employee.controller;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.LinkedList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
-import com.emp.model.EmpService;
-import com.emp.model.EmpVO;
 import com.employee.model.EmployeeBean;
 import com.employee.model.EmployeeService;
 
+@MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 50 * 1024 * 1024, maxRequestSize = 50 * 1024 * 1024)
 public class EmployeeServlet extends HttpServlet {
 	
 	public void doGet(HttpServletRequest req, HttpServletResponse res)
@@ -154,8 +156,14 @@ public class EmployeeServlet extends HttpServlet {
 				
 				
 				
-				
-				
+				Part part = req.getPart("upfile1");
+		        InputStream in = part.getInputStream();
+		        byte[] employee_photo = new byte[in.available()];
+		        in.read(employee_photo);
+		        in.close();
+				if (employee_photo.length == 0) {
+					errorMsgs.add("請上傳圖片!");
+				}
 				
 				
 				
@@ -186,7 +194,7 @@ public class EmployeeServlet extends HttpServlet {
 				empBean.setEmployee_name(employee_name);
 				empBean.setEmployee_password(employee_password);
 				empBean.setEmployee_position(employee_position);
-//				empBean.setEmployee_photo(employee_photo);
+				empBean.setEmployee_photo(employee_photo);
 				empBean.setHire_date(hire_date);
 				empBean.setEmployee_status(employee_status);
 
@@ -201,7 +209,7 @@ public class EmployeeServlet extends HttpServlet {
 				
 				/***************************2.開始修改資料*****************************************/
 				EmployeeService empSvc = new EmployeeService();
-				empBean = empSvc.updateEmp(employee_name, employee_password, employee_position, null, hire_date, employee_status, employee_account);
+				empBean = empSvc.updateEmp(employee_name, employee_password, employee_position, employee_photo, hire_date, employee_status, employee_account);
 				
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("empBean", empBean); // 資料庫update成功後,正確的的empVO物件,存入req
@@ -252,11 +260,16 @@ public class EmployeeServlet extends HttpServlet {
 				
 				
 				
+				Part part = req.getPart("upfile1");
+	            InputStream in = part.getInputStream();
+	            byte[] employee_photo = new byte[in.available()];
+	            in.read(employee_photo);
+	            in.close();
+	            if (employee_photo.length == 0) {
+					errorMsgs.add("請上傳圖片!");
+				}
 				
-				
-				
-				
-				
+							
 				
 				
 				java.sql.Date hire_date = null;
@@ -284,7 +297,7 @@ public class EmployeeServlet extends HttpServlet {
 				empBean.setEmployee_name(employee_name);
 				empBean.setEmployee_password(employee_password);
 				empBean.setEmployee_position(employee_position);
-//				empBean.setEmployee_photo(employee_photo);
+				empBean.setEmployee_photo(employee_photo);
 				empBean.setHire_date(hire_date);
 				empBean.setEmployee_status(employee_status);
 				
@@ -299,7 +312,7 @@ public class EmployeeServlet extends HttpServlet {
 				
 				/***************************2.開始新增資料***************************************/
 				EmployeeService empSvc = new EmployeeService();
-				empBean = empSvc.addEmp(employee_account, employee_name, employee_password, employee_position, null, hire_date, employee_status);
+				empBean = empSvc.addEmp(employee_account, employee_name, employee_password, employee_position, employee_photo, hire_date, employee_status);
 				
 				/***************************3.新增完成,準備轉交(Send the Success view)***********/
 				String url = "/employee_jsp/listAllEmp.jsp";

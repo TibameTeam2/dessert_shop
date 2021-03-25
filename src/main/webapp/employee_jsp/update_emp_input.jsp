@@ -65,7 +65,8 @@
 	</ul>
 </c:if>
 
-<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/employee_jsp/employee.do" name="form1">
+<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/employee_jsp/employee.do" name="form1"
+enctype="multipart/form-data">
 <table>
 	<tr>
 		<td>員工帳號:<font color=red><b>*</b></font></td>
@@ -85,7 +86,8 @@
 	</tr>
 	<tr>
 		<td>員工照片:</td>
-		<td><input type="TEXT" name="employee_photo" size="45"	value="<%=empBean.getEmployee_photo()%>" /></td>
+		<td><input type="file" name="upfile1">
+        </td>
 	</tr>
 	<tr>
 		<td>雇用日期:</td>

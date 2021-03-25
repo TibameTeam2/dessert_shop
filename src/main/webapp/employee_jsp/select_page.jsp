@@ -80,7 +80,7 @@
        <b>選擇員工姓名:</b>
        <select size="1" name="employee_account">
          <c:forEach var="empBean" items="${empSvc.all}" >
-          <option value="${empBean.employee_account}">${empBean.employee_account}
+          <option value="${empBean.employee_account}">${empBean.employee_name}
          </c:forEach>
        </select>
        <input type="hidden" name="action" value="getOne_For_Display">

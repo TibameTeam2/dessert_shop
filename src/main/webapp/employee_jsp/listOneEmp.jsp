@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.util.Base64" %>>
 <%@ page import="com.employee.model.*"%>
 <%-- 此頁暫練習採用 Script 的寫法取值 --%>
 
@@ -69,7 +70,12 @@
 		<td><%=empBean.getEmployee_name()%></td>
 		<td><%=empBean.getEmployee_password()%></td>
 		<td><%=empBean.getEmployee_position()%></td>
-		<td><%=empBean.getEmployee_photo()%></td>
+		<td>
+            <% if (empBean.getEmployee_photo() != null){
+                System.out.println(empBean.getEmployee_photo());%>
+              <img src="data:image/png;base64,<%=Base64.getEncoder().encodeToString(empBean.getEmployee_photo())%>">
+             <%}%>
+		</td>
 		<td><%=empBean.getHire_date()%></td>
 		<td><%=empBean.getEmployee_status()%></td>
 	</tr>

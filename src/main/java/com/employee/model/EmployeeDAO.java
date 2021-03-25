@@ -43,13 +43,10 @@ public class EmployeeDAO {
 
             Class.forName(driver);
             con = DriverManager.getConnection(url, userid, passwd);
-<<<<<<< HEAD
+
             pstmt = con.prepareStatement("INSERT INTO employee (employee_account,employee_name,employee_password,employee_position,employee_photo,hire_date,employee_status)\n" +
                     "VALUES (?,?,?,?,?,?,?)");
-=======
-            pstmt = con.prepareStatement("INSERT INTO employee (employee_account,employee_name,employee_password,employee_position,employee_photo,hire_date)\n" +
-                    "VALUES (?,?,?,?,?,?)");
->>>>>>> master
+
 
             pstmt.setString(1, emp_Insert.getEmployee_account());
             pstmt.setString(2, emp_Insert.getEmployee_name());
@@ -57,15 +54,11 @@ public class EmployeeDAO {
             pstmt.setString(4, emp_Insert.getEmployee_position());
             pstmt.setBytes(5, emp_Insert.getEmployee_photo());
             pstmt.setDate(6, emp_Insert.getHire_date());
-<<<<<<< HEAD
             pstmt.setInt(7, emp_Insert.getEmployee_status());
-=======
-//            pstmt.setInt(7, EmployeeBean.getEmployee_status());
->>>>>>> master
 
-            int count;
-            count=pstmt.executeUpdate();
-            System.out.println(count);
+            
+            pstmt.executeUpdate();
+
             // Handle any driver errors
         } catch (ClassNotFoundException e) {
             throw new RuntimeException("Couldn't load database driver. "
@@ -106,11 +99,7 @@ public class EmployeeDAO {
             Class.forName(driver);
             con = DriverManager.getConnection(url, userid, passwd);
             pstmt = con.prepareStatement("UPDATE sweet.employee set " +
-<<<<<<< HEAD
                     "employee_name=?, employee_password=?, employee_position=?, employee_photo=?, hire_date=?, employee_status=?  where employee_account = ?");
-=======
-                    "employee_name=?, employee_password=?, employee_position=?, employee_photo=?, hire_date=?  where employee_account = ?");
->>>>>>> master
 
 
             pstmt.setString(1, emp_Update.getEmployee_name());
@@ -118,14 +107,8 @@ public class EmployeeDAO {
             pstmt.setString(3, emp_Update.getEmployee_position());
             pstmt.setBytes(4, emp_Update.getEmployee_photo());
             pstmt.setDate(5, emp_Update.getHire_date());
-<<<<<<< HEAD
             pstmt.setInt(6, emp_Update.getEmployee_status());
             pstmt.setString(7, emp_Update.getEmployee_account());
-=======
-//            pstmt.setInt(6, emp_Update.getEmployee_status());
-//            pstmt.setString(8, emp_Update.getEmployee_account());
-            pstmt.setString(6, emp_Update.getEmployee_account());
->>>>>>> master
 
             pstmt.executeUpdate();
 
@@ -228,12 +211,9 @@ public class EmployeeDAO {
                 EmployeeBean.setEmployee_position(rs.getString("employee_position"));
                 EmployeeBean.setEmployee_photo(rs.getBytes("employee_photo"));
                 EmployeeBean.setHire_date(rs.getDate("hire_date"));
-<<<<<<< HEAD
                 EmployeeBean.setEmployee_status(rs.getInt("employee_status"));
-=======
-                EmployeeBean.setEmployee_status(rs.getInt("employee_password"));
->>>>>>> master
             }
+
 
             // Handle any driver errors
         } catch (ClassNotFoundException e) {
@@ -271,11 +251,9 @@ public class EmployeeDAO {
     }
 //
 //
-<<<<<<< HEAD
+
     public List<EmployeeBean> getAll() {
-=======
-    public List<EmployeeBean> selectAll() {
->>>>>>> master
+
         List<EmployeeBean> list = new ArrayList<EmployeeBean>();
         EmployeeBean EmpgetAll = null;
 
@@ -299,11 +277,8 @@ public class EmployeeDAO {
                 EmpgetAll.setEmployee_position(rs.getString("employee_position"));
                 EmpgetAll.setEmployee_photo(rs.getBytes("employee_photo"));
                 EmpgetAll.setHire_date(rs.getDate("hire_date"));
-<<<<<<< HEAD
                 EmpgetAll.setEmployee_status(rs.getInt("employee_status"));
-=======
-                EmpgetAll.setEmployee_status(rs.getInt("employee_password"));
->>>>>>> master
+
                 list.add(EmpgetAll); // Store the row in the list
 
             }
@@ -382,15 +357,9 @@ public class EmployeeDAO {
 
 
         // 查詢
-<<<<<<< HEAD
 //        List<EmployeeBean> list = dao.getAll();
-=======
-//        List<EmployeeBean> list = dao.selectAll();
->>>>>>> master
-//        for (EmployeeBean aEmp : list) {
-//            System.out.print(aEmp);
-//
-//        }
+
+        
 
     }
 }

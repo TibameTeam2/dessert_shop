@@ -89,7 +89,12 @@
 			<td>${empBean.employee_name}</td>
 			<td>${empBean.employee_password}</td>
 			<td>${empBean.employee_position}</td>
-			<td>${empBean.employee_photo}</td>
+			<td>  <% EmployeeBean empBean =(EmployeeBean)pageContext.getAttribute("empBean");%>
+                     <% if (empBean.getEmployee_photo() != null){
+                         System.out.println(empBean.getEmployee_photo());%>
+                       <img src="data:image/png;base64,<%=Base64.getEncoder().encodeToString(empBean.getEmployee_photo())%>">
+                      <%}%>
+            </td>
 			<td>${empBean.hire_date}</td> 
 			<td>${empBean.employee_status}</td>
 			<td>
