@@ -3,11 +3,18 @@ package com.product.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Writer;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.LinkedList;
 import java.util.List;
-
+import cn.hutool.core.io.IoUtil;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +24,9 @@ import com.emp.model.EmpService;
 import com.emp.model.EmpVO;
 import com.product.model.ProductBean;
 import com.product.model.ProductService;
+import com.util.JDBCUtil;
+
+import cn.hutool.core.io.IoUtil;
 
 public class ProductServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -29,11 +39,61 @@ public class ProductServlet extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		
-		PrintWriter out = res.getWriter();
-		out.print("this is product servlet");
+//		PrintWriter out = res.getWriter();
+//		out.print("this is product servlet");
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
 		res.setContentType("text/html;charset=UTF-8");
+		
+		
+		if ("getProductImage".equals(action)) { 
+			System.out.println("getProductImage");
+		        res.setContentType("image/png");
+		        Connection con = null;
+		        String driver = JDBCUtil.driver;
+		        String url = JDBCUtil.url;
+		        String userid = JDBCUtil.user;
+		        String passwd = JDBCUtil.password;
+		        ResultSet rs=null;
+		        PreparedStatement pstmt = null;
+		        try {
+			        con = DriverManager.getConnection(url, userid, passwd);
+			        ServletOutputStream out = res.getOutputStream();
+			        Statement stmt = con.createStatement();
+			        String id = req.getParameter("id").trim();
+//			        ResultSet rs = stmt.executeQuery(
+//			                "SELECT member_photo FROM sweet.member WHERE member_account =" + id);
+
+			       
+			        pstmt = con.prepareStatement("SELECT product_image FROM sweet.product_image where product_id=?");
+
+			        pstmt.setString(1, id);
+
+			        rs = pstmt.executeQuery();
+
+		            if (rs.next()) {
+//		            BufferedInputStream in = new BufferedInputStream(rs.getBinaryStream("member_photo"));
+		                IoUtil.write(res.getOutputStream(), true, IoUtil.readBytes(rs.getBinaryStream("product_image"), true));
+		            }
+		        } catch (Exception e) {
+
+		        } finally {
+		            
+		            try {
+		            	rs.close();
+						pstmt.close();
+						con.close();
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+		            
+		        }
+			 
+			 
+			 
+			 
+		}
 		
 		
 		if ("getOne_For_Display".equals(action)) { 

@@ -109,11 +109,11 @@ th, td {
 				<td>${productBean.degree_of_sweetness}</td>
 				<td>${productBean.total_star}</td>
 				<td>${productBean.total_review}</td>
-				<td></td>
-<%-- 				<c:forEach var="productImageBean" items="${list}" begin="<%=pageIndex%>"  --%>
-<%-- 			end="<%=pageIndex+rowsPerPage-1%>"> --%>
-<%-- 				<td>${productImBean.product_image}</td> --%>
-<%-- 				</c:forEach> --%>
+							
+				<td>
+                <img src="<%=request.getContextPath()%>/product/product.do?action=getProductImage&id=${productBean.product_id}">
+				</td>
+				
 				<td>
 					<form method="post" action="<%=request.getContextPath()%>/product/product.do">
 						<input type="submit" value="修改">
