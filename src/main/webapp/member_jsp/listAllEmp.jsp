@@ -109,13 +109,29 @@
             <td>${memberBean.member_name}</td>
             <td>${memberBean.member_phone}</td>
             <td>${memberBean.member_email}</td>
-            <td>${memberBean.member_gender}</td>
+            <td>
+                <c:choose>
+                    <c:when test="${memberBean.member_gender == 0}">女</c:when>
+                    <c:when test="${memberBean.member_gender == 1}">男</c:when>
+                    <c:otherwise>未知錯誤</c:otherwise>
+                </c:choose>
+            </td>
             <td>${memberBean.member_birthday}</td>
             <td>${memberBean.register_time}</td>
             <td>${memberBean.register_method}</td>
-            <td>${memberBean.member_status}</td>
             <td>
-                                    <img src="<%=request.getContextPath()%>/member/backend_getPhoto?id=${memberBean.member_account}">
+                <c:choose>
+                    <c:when test="${memberBean.member_status == 0}">未啟用</c:when>
+                    <c:when test="${memberBean.member_status == 1}">已啟用</c:when>
+                    <c:otherwise>未知錯誤</c:otherwise>
+                </c:choose>
+            </td>
+
+
+
+
+            <td>
+                <img src="<%=request.getContextPath()%>/member/backend_getPhoto?id=${memberBean.member_account}">
 <%--                        <% MemberBean member=(MemberBean)pageContext.getAttribute("memberBean");%>--%>
 <%--                        <% if (member.getMember_photo() != null){--%>
 <%--                            System.out.println(member.getMember_photo());%>--%>

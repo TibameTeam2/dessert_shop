@@ -51,7 +51,8 @@
     <script src="assets/js/vendor/modernizr-3.11.2.min.js"></script>
     <script src="assets/js/vendor/jquery-3.5.1.min.js"></script>
     <script src="assets/js/vendor/jquery.waitforimages.min.js"></script>
-<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.waitforimages/2.0.2/jquery.waitforimages.min.js"></script>-->
+    <script src="assets/js/plugins/sweetalert2.all.min.js"></script>
+
 </head>
 
 
@@ -179,8 +180,6 @@
 </div>
 
 
-
-
 <!-- JS
 ============================================ -->
 
@@ -213,7 +212,6 @@
     })
 
 
-
     $("body").waitForImages({
         finished: function () {
             setTimeout(function () {
@@ -235,7 +233,6 @@
     });
     $(function () {
 
-
         //更換驗證碼
         $("#checkCodeImg").on("click", function () {
             $("#checkCodeImg").attr("src", "/dessert_shop/member/checkCode?" + new Date().getTime())
@@ -252,11 +249,20 @@
                 if (data.flag) {
                     // 註冊成功後跳轉頁面
                     // location.href="register_ok.html";
-                    alert(data.msg);
-                    location.href = data.redirect;
+                    Swal.fire({
+                            title: data.msg,
+                            text: "請至信箱收信以啟用帳號",
+                            type: "success"
+                        }).then(function (){
+                            location.href = data.redirect;
+                    });
                 } else {
                     // 註冊失敗 彈出視窗
-                    alert(data.msg);
+                    Swal.fire(
+                        data.msg,
+                        '',
+                        'error'
+                    )
                 }
             });
 

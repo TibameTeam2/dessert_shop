@@ -17,7 +17,7 @@ import java.lang.reflect.Method;
 /**
  * 透過映射的方式，做方法的分發，類似controller
  */
-//@MultipartConfig
+
 public class BaseServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
