@@ -1,39 +1,48 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
+
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Product: Home</title>
+<title>Product: Home in Desser_shop</title>
 
 <style>
-	table#table-1{
+table#table-1 {
 	width: 450px;
-	background-color: #CCCCFF;
+	background-color: pink /*#CCCCFF*/;
 	margin-top: 5px;
 	margin-bottom: 10px;
 	border: 3px ridge Gray;
 	height: 80px;
 	text-align: center;
-	}
+}
 
+table#table-1 h4 {
+	color: red;
+	display: block;
+	margin-bottom: 1px;
+}
+
+h4 {
+	color: blue;
+	display: inline;
+}
 </style>
-
 
 </head>
 <body bgcolor='white'>
+
 	<table id="table-1">
 		<tr>
-			<td><h3>Dessert Shop Product: Home</h3>
-				<h4>(MVC)</h4></td>
+			<td><h3>Dessert Shop Product: Home  -- form dessert_shop</h3>
+				<h4>( MVC )</h4></td>
 		</tr>
 	</table>
+
+	<p>This is the home page from Dessert Shop Product: Home</p>
+
+	<h3>商品查詢：</h3>
 	
-	<p>This is the home page for Dessert Shop Product: Home</p>
-	
-	<h3>商品查詢</h3>
-	<%-- 錯誤表列 --%>   					<%-- 這啥???????? --%>
+	<%-- 錯誤表列--%>
 	<c:if test="${not empty errorMsgs}">
 		<font style="color: red">請修正以下錯誤:</font>
 		<ul>
@@ -79,6 +88,12 @@
 				<input type="submit" value="送出">
 			</FORM>
 		</li>
+	</ul>
+	
+	<h3>商品管理</h3>
+
+	<ul>
+		<li><a href='addProduct.jsp'>Add</a> a new Product.</li>
 	</ul>
 	
 	

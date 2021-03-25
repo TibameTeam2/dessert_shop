@@ -31,8 +31,9 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>ProductServlet</servlet-name>
-		<url-pattern>/product/ProductServlet</url-pattern>
-	</servlet-mapping>	
+		<url-pattern>/product/product.do</url-pattern>
+	</servlet-mapping>
+	
 	
 
     <!--測試用Servlet-->
