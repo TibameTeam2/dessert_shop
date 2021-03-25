@@ -43,8 +43,8 @@ public class EmployeeDAO {
 
             Class.forName(driver);
             con = DriverManager.getConnection(url, userid, passwd);
-            pstmt = con.prepareStatement("INSERT INTO employee (employee_account,employee_name,employee_password,employee_position,employee_photo,hire_date)\n" +
-                    "VALUES (?,?,?,?,?,?)");
+            pstmt = con.prepareStatement("INSERT INTO employee (employee_account,employee_name,employee_password,employee_position,employee_photo,hire_date,employee_status)\n" +
+                    "VALUES (?,?,?,?,?,?,?)");
 
             pstmt.setString(1, emp_Insert.getEmployee_account());
             pstmt.setString(2, emp_Insert.getEmployee_name());
@@ -52,7 +52,7 @@ public class EmployeeDAO {
             pstmt.setString(4, emp_Insert.getEmployee_position());
             pstmt.setBytes(5, emp_Insert.getEmployee_photo());
             pstmt.setDate(6, emp_Insert.getHire_date());
-//            pstmt.setInt(7, EmployeeBean.getEmployee_status());
+            pstmt.setInt(7, emp_Insert.getEmployee_status());
 
             int count;
             count=pstmt.executeUpdate();
@@ -97,7 +97,7 @@ public class EmployeeDAO {
             Class.forName(driver);
             con = DriverManager.getConnection(url, userid, passwd);
             pstmt = con.prepareStatement("UPDATE sweet.employee set " +
-                    "employee_name=?, employee_password=?, employee_position=?, employee_photo=?, hire_date=?  where employee_account = ?");
+                    "employee_name=?, employee_password=?, employee_position=?, employee_photo=?, hire_date=?, employee_status=?  where employee_account = ?");
 
 
             pstmt.setString(1, emp_Update.getEmployee_name());
@@ -105,9 +105,8 @@ public class EmployeeDAO {
             pstmt.setString(3, emp_Update.getEmployee_position());
             pstmt.setBytes(4, emp_Update.getEmployee_photo());
             pstmt.setDate(5, emp_Update.getHire_date());
-//            pstmt.setInt(6, emp_Update.getEmployee_status());
-//            pstmt.setString(8, emp_Update.getEmployee_account());
-            pstmt.setString(6, emp_Update.getEmployee_account());
+            pstmt.setInt(6, emp_Update.getEmployee_status());
+            pstmt.setString(7, emp_Update.getEmployee_account());
 
             pstmt.executeUpdate();
 
@@ -210,7 +209,7 @@ public class EmployeeDAO {
                 EmployeeBean.setEmployee_position(rs.getString("employee_position"));
                 EmployeeBean.setEmployee_photo(rs.getBytes("employee_photo"));
                 EmployeeBean.setHire_date(rs.getDate("hire_date"));
-                EmployeeBean.setEmployee_status(rs.getInt("employee_password"));
+                EmployeeBean.setEmployee_status(rs.getInt("employee_status"));
             }
 
             // Handle any driver errors
@@ -249,7 +248,7 @@ public class EmployeeDAO {
     }
 //
 //
-    public List<EmployeeBean> selectAll() {
+    public List<EmployeeBean> getAll() {
         List<EmployeeBean> list = new ArrayList<EmployeeBean>();
         EmployeeBean EmpgetAll = null;
 
@@ -273,7 +272,7 @@ public class EmployeeDAO {
                 EmpgetAll.setEmployee_position(rs.getString("employee_position"));
                 EmpgetAll.setEmployee_photo(rs.getBytes("employee_photo"));
                 EmpgetAll.setHire_date(rs.getDate("hire_date"));
-                EmpgetAll.setEmployee_status(rs.getInt("employee_password"));
+                EmpgetAll.setEmployee_status(rs.getInt("employee_status"));
                 list.add(EmpgetAll); // Store the row in the list
 
             }
@@ -352,7 +351,7 @@ public class EmployeeDAO {
 
 
         // 查詢
-//        List<EmployeeBean> list = dao.selectAll();
+//        List<EmployeeBean> list = dao.getAll();
 //        for (EmployeeBean aEmp : list) {
 //            System.out.print(aEmp);
 //
