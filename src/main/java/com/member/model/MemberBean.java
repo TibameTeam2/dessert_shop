@@ -25,7 +25,11 @@ public class MemberBean {
                 ", member_name='" + member_name + '\'' +
                 ", member_phone='" + member_phone + '\'' +
                 ", member_email='" + member_email + '\'' +
+<<<<<<< HEAD
                 ", member_photo=" + Arrays.toString(member_photo) +
+=======
+                ", member_photo=" + member_photo +
+>>>>>>> master
                 ", member_gender=" + member_gender +
                 ", member_birthday=" + member_birthday +
                 ", register_time=" + register_time +
