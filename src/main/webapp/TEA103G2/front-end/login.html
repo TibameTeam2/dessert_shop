@@ -34,7 +34,11 @@
     <!--====== Use the minified version files listed below for better performance and remove the files listed above ======-->
     <!-- <link rel="stylesheet" href="assets/css/vendor/plugins.min.css">
     <link rel="stylesheet" href="assets/css/style.min.css"> -->
-
+    <!-- Modernizer & jQuery JS -->
+    <script src="assets/js/vendor/modernizr-3.11.2.min.js"></script>
+    <script src="assets/js/vendor/jquery-3.5.1.min.js"></script>
+    <script src="assets/js/vendor/jquery.waitforimages.min.js"></script>
+    <script src="assets/js/plugins/sweetalert2.all.min.js"></script>
 </head>
 
 <body>
@@ -630,7 +634,7 @@
                                 <button class="btn btn-primary btn-hover-dark">登入</button>
                             </div>
                         </form>
-                        <p><a href="#">忘記密碼?</a></p>
+                        <p><a href="javascript:void(0)" id="forgetPassword">忘記密碼?</a></p>
                         <p>沒有帳號? <a href="register.html">點此註冊</a></p>
                     </div>
                     <!-- Login & Register End -->
@@ -765,9 +769,6 @@
 <!-- JS
 ============================================ -->
 
-<!-- Modernizer & jQuery JS -->
-<script src="assets/js/vendor/modernizr-3.11.2.min.js"></script>
-<script src="assets/js/vendor/jquery-3.5.1.min.js"></script>
 
 <!-- Bootstrap JS -->
 <script src="assets/js/plugins/popper.min.js"></script>
@@ -792,24 +793,88 @@
 
 <script>
     $(function () {
-        $.get("member/isLogin",{}, function (data) {
-            //處理伺服器回應的資料  data  {flag:true,errorMsg:"註冊成功!!!"}
+        $.get("/dessert_shop/member/isLogin", {}, function (data) {
             console.log(data);
             if (data.flag) {
-                // 註冊成功後跳轉頁面
-                // location.href="register_ok.html";
-                alert("帳號:"+data.data.member_account+"\n姓名:"+data.data.member_name+"\n密碼:"+data.data.member_password);
+                // alert("帳號:" + data.data.member_account + "\n姓名:" + data.data.member_name + "\n密碼:" + data.data.member_password);
+                // console.log(data.data);
                 // if(data.redirect)
                 //     location.href = data.redirect;
             } else {
-                // 註冊失敗 彈出視窗
-                // $("#errorMsg").html(data.errorMsg);
-                // alert("註冊失敗!!!");
-                // alert(data.msg);
             }
         });
 
+        //會員點選email信，啟動帳號
+        let activeCode = getParameter("activeCode");   //取不到值時會是null
+        // console.log(activeCode);
+        if (activeCode != null) {
+            $.post("/dessert_shop/member/emailActive?", "activeCode=" + activeCode, function (data) {
+                if (data.flag) {
+                    Swal.fire({
+                        title: data.msg,
+                        text: '',
+                        icon: 'success'
+                    }).then(function () {
+                        history.replaceState(null, null, "login.html");
+                    });
+                } else {
+                    Swal.fire({
+                        title: data.msg,
+                        text: '',
+                        icon: 'error'
+                    }).then(function () {
+                        history.replaceState(null, null, "login.html");
+                    });
+                }
+            });
+        }
 
+        //會員點選email信，忘記密碼  未完成
+        let passwordCode = getParameter("passwordCode");   //取不到值時會是null
+        // console.log(activeCode);
+        if (activeCode != null) {
+            $.post("/dessert_shop/member/forgetPassword?", "passwordCode=" + passwordCode, function (data) {
+                if (data.flag) {
+                    Swal.fire({
+                        title: data.msg,
+                        text: '',
+                        icon: 'success'
+                    }).then(function () {
+                        location.href = data.redirect;
+                    });
+                } else {
+                    Swal.fire({
+                        title: data.msg,
+                        text: '',
+                        icon: 'error'
+                    })
+                }
+            });
+        }
+
+
+        function getParameter(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);   //取不到值時會是null
+        }
+
+        //點擊忘記密碼 彈出視窗
+        $("#forgetPassword").click(async function () {
+            let {value: email} = await Swal.fire({
+                title: '忘記密碼',
+                input: 'email',
+                inputLabel: '請輸入帳號信箱',
+                // inputPlaceholder: 'Enter your email address',
+                showCancelButton: true
+            })
+            if (email) {
+                Swal.fire({
+                    title: '重置密碼的連結已發送至\n' + email,
+                    text: '',
+                    icon: "success"
+                })
+            }
+        })
 
 
         //表單送出時
@@ -818,14 +883,14 @@
             // if(checkUsername() && checkPassword() && checkEmail()){
             //發送ajax請求，送出表單資料
             console.log($("#login_form").serialize());
-            $.post("member/login", $(this).serialize(), function (data) {
+            $.post("/dessert_shop/member/login", $(this).serialize(), function (data) {
                 //處理伺服器回應的資料  data  {flag:true,errorMsg:"註冊成功!!!"}
                 if (data.flag) {
                     // 註冊成功後跳轉頁面
                     // location.href="register_ok.html";
                     // alert("註冊成功!!!");
                     alert(data.msg);
-                    if(data.redirect)
+                    if (data.redirect)
                         location.href = data.redirect;
                 } else {
                     // 註冊失敗 彈出視窗
@@ -835,7 +900,6 @@
                 }
             });
 
-            // }
             //2.不跳轉頁面，等資料回來會做跳轉
             return false;
             //如果為true，表單提交，如果為false，不提交

@@ -1,3 +1,4 @@
+import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.RandomUtil;
 import cn.hutool.crypto.digest.DigestUtil;
 import com.util.JedisUtil;
@@ -13,6 +14,18 @@ public class RedisTest {
         jedis.set("Member_account",activeCode);
         //設定有效期限
         jedis.expire("Member_account", 15);
+        jedis.close();
+
+    }
+    @Test
+    public void uuid() {
+        String uuid = IdUtil.randomUUID();
+        System.out.println("uuid = " + uuid);
+        Jedis jedis = JedisUtil.getJedis();
+        jedis.set(uuid,"member_account");
+        jedis.del(uuid); //刪除
+        //設定有效期限
+        jedis.expire(uuid, 600);
         jedis.close();
     }
 }
