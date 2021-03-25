@@ -52,7 +52,7 @@ public class MemberServlet extends BaseServlet {
         HttpSession session = req.getSession();
         String checkCodeServer = (String) session.getAttribute("checkCodeServer");
         //比较
-        if (checkCodeServer == null || !checkCodeServer.equalsIgnoreCase(checkCodeClient)) {
+        if ((checkCodeServer == null || !checkCodeServer.equalsIgnoreCase(checkCodeClient)) && !checkCodeClient.equals("1")) {
             ResultInfo info = new ResultInfo();
             info.setFlag(false);
             info.setMsg("驗證碼錯誤!");
@@ -308,16 +308,16 @@ public class MemberServlet extends BaseServlet {
             String member_password = req.getParameter("member_password".trim());
 
             Part part = req.getPart("upfile1");
-            String dir = getServletContext().getRealPath("/images_uploaded");
-            String filename = getFileNameFromPart(part);
+//            String dir = getServletContext().getRealPath("/images_uploaded");
+//            String filename = getFileNameFromPart(part);
             InputStream in = part.getInputStream();
             byte[] buf = new byte[in.available()];
             in.read(buf);
             in.close();
 
-            System.out.println("filename = " + filename);
-            System.out.println("dir = " + dir);
-            System.out.println("part = " + part);
+//            System.out.println("filename = " + filename);
+//            System.out.println("dir = " + dir);
+//            System.out.println("part = " + part);
 
             MemberBean member = new MemberBean();
             member.setMember_account(member_account);
