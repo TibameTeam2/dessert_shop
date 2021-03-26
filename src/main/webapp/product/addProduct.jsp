@@ -80,59 +80,59 @@ th, td {
 			<tr>
 				<td>商品名稱:</td>
 				<td><input type="TEXT" name="product_name" size="45"
-					value="<%= (productBean==null)? "" : productBean.getProduct_name()%>" /></td>
+					value="<%= (productBean==null)? "巧克力蛋糕" : productBean.getProduct_name()%>" /></td>
 			</tr>
 			<tr>
 				<td>商品種類:</td>
 				<td><select size="1" name="product_type">
 						<option value="">請選擇商品種類
 						<optgroup label="蛋糕">
-							<option value="千層蛋糕">千層蛋糕</option>
-							<option value="杯子蛋糕">杯子蛋糕</option>
-							<option value="起士蛋糕">起士蛋糕</option>
-							<option value="磅蛋糕">磅蛋糕</option>
-							<option value="蛋糕捲">蛋糕捲</option>
+							<option value="蛋糕:千層蛋糕">千層蛋糕</option>
+							<option value="蛋糕:杯子蛋糕">杯子蛋糕</option>
+							<option value="蛋糕:起士蛋糕">起士蛋糕</option>
+							<option value="蛋糕:磅蛋糕">磅蛋糕</option>
+							<option value="蛋糕:蛋糕捲">蛋糕捲</option>
 						</optgroup>
 						<optgroup label="巧克力">
-							<option value="生巧克力">生巧克力</option>
-							<option value="藝術巧克力">藝術巧克力</option>
-							<option value="巴克巧克力">巴克巧克力</option>
+							<option value="巧克力:生巧克力">生巧克力</option>
+							<option value="巧克力:藝術巧克力">藝術巧克力</option>
+							<option value="巧克力:巴克巧克力">巴克巧克力</option>
 						</optgroup>
 						<optgroup label="精緻小點">
-							<option value="派 & 塔">派 & 塔</option>
-							<option value="泡芙">泡芙</option>
-							<option value="馬卡龍">馬卡龍</option>
-							<option value="可麗露">可麗露</option>
-							<option value="布蕾">布蕾</option>
+							<option value="精緻小點:派 & 塔">派 & 塔</option>
+							<option value="精緻小點:泡芙">泡芙</option>
+							<option value="精緻小點:馬卡龍">馬卡龍</option>
+							<option value="精緻小點:可麗露">可麗露</option>
+							<option value="精緻小點:布蕾">布蕾</option>
 						</optgroup>
 						<optgroup label="飲品">
-							<option value="特調茶飲">特調茶飲</option>
-							<option value="香濃拿鐵">香濃拿鐵</option>
-							<option value="經典咖啡">經典咖啡</option>
-							<option value="繽紛水果飲">繽紛水果飲</option>
-							<option value="其他">其他</option>
+							<option value="飲品:特調茶飲">特調茶飲</option>
+							<option value="飲品:香濃拿鐵">香濃拿鐵</option>
+							<option value="飲品:經典咖啡">經典咖啡</option>
+							<option value="飲品:繽紛水果飲">繽紛水果飲</option>
+							<option value="飲品:其他">其他</option>
 						</optgroup>
 					</select></td>
 			</tr>
 			<tr>
 				<td>商品介紹:</td>
 				<td><input type="TEXT" name="product_intro" size="45"
-					value="<%= (productBean==null)? "" : productBean.getProduct_intro()%>" /></td>
+					value="<%= (productBean==null)? "使用義大利可可粉..." : productBean.getProduct_intro()%>" /></td>
 			</tr>
 			<tr>
 				<td>商品成份:</td>
 				<td><input type="TEXT" name="product_ingredient" size="45"
-					value="<%= (productBean==null)? "" : productBean.getProduct_ingredient()%>" /></td>
+					value="<%= (productBean==null)? "可可粉" : productBean.getProduct_ingredient()%>" /></td>
 			</tr>
 			<tr>
 				<td>商品價格:</td>
 				<td><input type="TEXT" name="product_price" size="45"
-					value="<%= (productBean==null)? "" : productBean.getProduct_price()%>" /></td>
+					value="<%= (productBean==null)? "140" : productBean.getProduct_price()%>" /></td>
 			</tr>
 			<tr>
 				<td>現貨數量:</td>
 				<td><input type="TEXT" name="product_available_qty" size="45"
-					value="<%= (productBean==null)? "" : productBean.getProduct_available_qty()%>" /></td>
+					value="<%= (productBean==null)? "20" : productBean.getProduct_available_qty()%>" /></td>
 			</tr>	
 			<tr>
 				<td>商品狀態:</td>
@@ -141,47 +141,45 @@ th, td {
 					<option value=0>未上架
 					<option value=1>上架中
 				</select></td>
-			</tr>
+			</tr>			
 			<tr>
 				<td>賞味天數:</td>
 				<td><input type="TEXT" name="expiry_after_buying" size="45"
-					value="<%= (productBean==null)? "" : productBean.getExpiry_after_buying()%>" /></td>
+					value="<%= (productBean==null)? "5" : productBean.getExpiry_after_buying()%>" /></td>
 			</tr>
 			<tr>
 				<td>商品熱量:</td>
 				<td><input type="TEXT" name="product_calorie" size="45"
-					value="<%= (productBean==null)? "" : productBean.getProduct_calorie()%>" /></td>
+					value="<%= (productBean==null)? "190" : productBean.getProduct_calorie()%>" /></td>
 			</tr>
 			<tr>
 				<td>商品甜度:</td>
 				<td><input type="TEXT" name="degree_of_sweetness" size="45"
-					value="<%= (productBean==null)? "" : productBean.getDegree_of_sweetness()%>" /></td>
+					value="<%= (productBean==null)? "2" : productBean.getDegree_of_sweetness()%>" /></td>
 			</tr>
 			<tr>
 				<td>累計星等:</td>
 				<td><input type="TEXT" name="total_star" size="45"
-					value="<%= (productBean==null)? "" : productBean.getTotal_star()%>" /></td>
+					value="<%= (productBean==null)? "600" : productBean.getTotal_star()%>" /></td>
 			</tr>
 			<tr>
 				<td>累計評價次數:</td>
 				<td><input type="TEXT" name="total_review" size="45"
-					value="<%= (productBean==null)? "" : productBean.getTotal_review()%>" /></td>
+					value="<%= (productBean==null)? "130" : productBean.getTotal_review()%>" /></td>
 			</tr>
 			<tr>
 				<td>累計銷售:</td>
 				<td><input type="TEXT" name="total_purchase" size="45"
-					value="<%= (productBean==null)? "" : productBean.getTotal_purchase()%>" /></td>
+					value="<%= (productBean==null)? "300" : productBean.getTotal_purchase()%>" /></td>
 			</tr>
-			<tr>
-				<td>商品圖片：</td>
-     			<td><input type="file" id="pic_file" accept="image/*"></td>
-			</tr>
-			
-     			<div>     			
-     			<input id="drop_zone"><span class="text">圖片拖曳至此處</span>
-     			</div>
-    			<input id="preview" class="picture_list"><span class="text">預覽圖</span>
-     			
+<!-- 			<tr> -->
+<!-- 				<td>商品圖片：</td> -->
+<!--      			<td><input type="file" name="product_img" accept="image/*"></td> -->
+<!-- 				<td> -->
+				
+<!-- 				</td> -->
+<!-- 			</tr> -->
+		
 				
 			<jsp:useBean id="productSvc" scope="page"
 				class="com.product.model.ProductService" />

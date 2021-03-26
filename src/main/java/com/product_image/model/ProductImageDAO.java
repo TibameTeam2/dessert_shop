@@ -14,7 +14,7 @@ import com.daily_special.model.DailySpecialDAO;
 import com.util.JDBCUtil;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-public class ProductImageDAO {
+public class ProductImageDAO implements ProductImageDAO_interface{
 	private static JdbcTemplate jdbcTemplate;
 	private String driver = JDBCUtil.driver;
 	private String url = JDBCUtil.url;

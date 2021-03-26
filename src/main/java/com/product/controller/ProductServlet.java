@@ -192,7 +192,7 @@ public class ProductServlet extends HttpServlet {
 		
 		
 		if ("update".equals(action)) { // 來自update_product_input.jsp的請求
-			
+			System.out.println("update");
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
 			// send the ErrorPage view.
@@ -201,8 +201,9 @@ public class ProductServlet extends HttpServlet {
 			try {
 				/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
 				Integer product_id = new Integer(req.getParameter("product_id").trim());
-				
+				System.out.println(product_id);//
 				String product_name = req.getParameter("product_name");
+				System.out.println(product_name);//
 				String product_nameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,10}$";
 				if (product_name == null || product_name.trim().length() == 0) {
 					errorMsgs.add("商品名稱: 請勿空白");
@@ -210,26 +211,31 @@ public class ProductServlet extends HttpServlet {
 					errorMsgs.add("商品名稱: 只能是中、英文字母、數字和_ , 且長度必需在2到10之間");
 	            }
 				
+				// 商品種類
+				String category = req.getParameter("product_type");
+				String product_type = null;
+				String product_subtype = null;
+				if (category == null || category.trim().length() == 0) {
+					errorMsgs.add("請選擇商品種類");
+				}else {
+				 String[] tokens = category.split(":");
+				 product_type = tokens[0];
+				 product_subtype = tokens[1];
+				}
 				
-				//
-				String product_type = req.getParameter("product_type").trim();
-				if (product_type == null || product_type.trim().length() == 0) {
-					errorMsgs.add("商品主分類請勿空白");
-				}	
-				
-				String product_subtype = req.getParameter("product_subtype").trim();
-				if (product_subtype == null || product_subtype.trim().length() == 0) {
-					errorMsgs.add("商品次分類請勿空白");
-				}	
-
 				String product_intro = req.getParameter("product_intro").trim();
 				if (product_intro == null || product_intro.trim().length() == 0) {
 					errorMsgs.add("商品介紹請勿空白");
 				}	
+				
+				System.out.println(product_intro);//
+				
 				String product_ingredient = req.getParameter("product_ingredient").trim();
 				if (product_ingredient == null || product_ingredient.trim().length() == 0) {
 					errorMsgs.add("商品成份請勿空白");
-				}	
+				}
+				
+//				System.out.println(product_ingredient);//
 
 				Integer product_price = null;
 				try {
@@ -238,6 +244,8 @@ public class ProductServlet extends HttpServlet {
 					product_price = 0;
 					errorMsgs.add("商品售價請填數字.");
 				}
+				
+//				System.out.println(product_price);//
 
 				Integer product_available_qty = null;
 				try {
@@ -246,7 +254,9 @@ public class ProductServlet extends HttpServlet {
 					product_available_qty = 0;
 					errorMsgs.add("現貨數量請填數字.");
 				}
-				//
+				
+//				System.out.println(product_available_qty);//
+				
 				Integer product_status = null;
 				try {
 					product_status = new Integer(req.getParameter("product_status").trim());
@@ -302,8 +312,12 @@ public class ProductServlet extends HttpServlet {
 					total_purchase = new Integer(req.getParameter("total_purchase").trim());
 				} catch (NumberFormatException e) {
 					total_purchase = 0;
-					errorMsgs.add("請輸入商品評價數量");
+					errorMsgs.add("請輸入商品累計銷售量");
 				}
+				
+				// 商品圖片的驗證
+				
+				
 				
 				
 				ProductBean productBean = new ProductBean();
@@ -323,23 +337,30 @@ public class ProductServlet extends HttpServlet {
 				productBean.setTotal_review(total_review);
 				productBean.setTotal_purchase(total_purchase);
 				
-
+				
+//				System.out.println(productBean);//
+				
+				
+				
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					req.setAttribute("productBean", productBean); // 含有輸入格式錯誤的empVO物件,也存入req
+					req.setAttribute("productBean", productBean); // 含有輸入格式錯誤的productBean物件,也存入req
 					RequestDispatcher failureView = req
 							.getRequestDispatcher("/product/update_product_input.jsp");
 					failureView.forward(req, res);
 					return; //程式中斷
 				}
+				System.out.println("uu");
 				
 				/***************************2.開始修改資料*****************************************/
 				ProductService productSvc = new ProductService();
 //				productBean = productSvc.updateProduct(product_id, product_name, product_type, product_intro, product_price, product_available_qty, product_status, product_calorie, degree_of_sweetness, total_star, total_review);
 				productSvc.updateProduct(productBean);
 				
+//				System.out.println("修改資料"+ productBean);//
+				
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/
-				req.setAttribute("productBean", productBean); // 資料庫update成功後,正確的的empVO物件,存入req
+				req.setAttribute("productBean", productBean); // 資料庫update成功後,正確的的productBean物件,存入req
 				String url = "/product/listOneProduct.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 				successView.forward(req, res);
@@ -355,6 +376,8 @@ public class ProductServlet extends HttpServlet {
 			
 		if ("insert".equals(action)) { // 來自addProduct.jsp的請求  
 			
+//			System.out.println("insert");//
+			
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
 			// send the ErrorPage view.
@@ -369,26 +392,39 @@ public class ProductServlet extends HttpServlet {
 				} else if(!product_name.trim().matches(enameReg)) { //以下練習正則(規)表示式(regular-expression) // matches回傳boolean
 					errorMsgs.add("商品名稱: 只能是中、英文字母、數字和_ , 且長度必需在2到10之間");
 	            }
-				//
-				String product_type = req.getParameter("product_type").trim();
-				if (product_type == null || product_type.trim().length() == 0) {
-					errorMsgs.add("商品主分類請勿空白");
-				}	
 				
-				String product_subtype = req.getParameter("product_subtype").trim();
-				if (product_subtype == null || product_subtype.trim().length() == 0) {
-					errorMsgs.add("商品分類請勿空白");
-				}	
+//				System.out.println(product_name);//
+				
+				// 商品種類
+				String category = req.getParameter("product_type");
+				String product_type = null;
+				String product_subtype = null;
+				if (category == null || category.trim().length() == 0) {
+					errorMsgs.add("請選擇商品種類");
+				}else {
+				 String[] tokens = category.split(":");
+				 product_type = tokens[0];
+				 product_subtype = tokens[1];
+				}
+				
+//				System.out.println(product_type);//
+//				System.out.println(product_subtype);//
+				
 
 				String product_intro = req.getParameter("product_intro").trim();
 				if (product_intro == null || product_intro.trim().length() == 0) {
 					errorMsgs.add("商品介紹請勿空白");
 				}	
+				
+//				System.out.println(product_intro);//
+				
 				String product_ingredient = req.getParameter("product_ingredient").trim();
 				if (product_ingredient == null || product_ingredient.trim().length() == 0) {
 					errorMsgs.add("商品成份請勿空白");
 				}	
 
+//				System.out.println(product_ingredient);//
+				
 				Integer product_price = null;
 				try {
 					product_price = new Integer(req.getParameter("product_price").trim());
@@ -397,6 +433,8 @@ public class ProductServlet extends HttpServlet {
 					errorMsgs.add("商品售價請填數字.");
 				}
 
+//				System.out.println(product_price);//
+				
 				Integer product_available_qty = null;
 				try {
 					product_available_qty = new Integer(req.getParameter("product_available_qty").trim());
@@ -404,7 +442,9 @@ public class ProductServlet extends HttpServlet {
 					product_available_qty = 0;
 					errorMsgs.add("現貨數量請填數字.");
 				}
-				//
+				
+//				System.out.println(product_available_qty);//
+			
 				Integer product_status = null;
 				try {
 					product_status = new Integer(req.getParameter("product_status").trim());
@@ -412,6 +452,8 @@ public class ProductServlet extends HttpServlet {
 					product_status = 0;
 					errorMsgs.add("請選擇商品狀態");
 				}
+				
+//				System.out.println(product_status);//
 				
 				Integer expiry_after_buying = null;
 				try {
@@ -421,6 +463,8 @@ public class ProductServlet extends HttpServlet {
 					errorMsgs.add("請輸入賞味天數");
 				}
 				
+//				System.out.println(expiry_after_buying);//
+				
 				Integer product_calorie = null;
 				try {
 					product_calorie = new Integer(req.getParameter("product_calorie").trim());
@@ -429,6 +473,8 @@ public class ProductServlet extends HttpServlet {
 					errorMsgs.add("請輸入商品熱量");
 				}
 				
+//				System.out.println(product_calorie);//
+				
 				Integer degree_of_sweetness = null;
 				try {
 					degree_of_sweetness = new Integer(req.getParameter("degree_of_sweetness").trim());
@@ -436,6 +482,8 @@ public class ProductServlet extends HttpServlet {
 					degree_of_sweetness = 0;
 					errorMsgs.add("請輸入商品甜度");
 				}
+				
+//				System.out.println(degree_of_sweetness);//
 				
 				//不是輸入而來的數字
 				Integer total_star = null;
@@ -446,6 +494,8 @@ public class ProductServlet extends HttpServlet {
 					errorMsgs.add("請輸入商品累計星等");
 				}
 				
+//				System.out.println(total_star);//
+								
 				//不是輸入而來的數字
 				Integer total_review = null;
 				try {
@@ -455,13 +505,19 @@ public class ProductServlet extends HttpServlet {
 					errorMsgs.add("請輸入商品評價數量");
 				}
 				
+//				System.out.println(total_review);//
+				
 				Integer total_purchase = null;
 				try {
 					total_purchase = new Integer(req.getParameter("total_purchase").trim());
 				} catch (NumberFormatException e) {
 					total_purchase = 0;
-					errorMsgs.add("請輸入商品評價數量");
+					errorMsgs.add("請輸入商品累計銷售量");
 				}
+				
+//				System.out.println(total_purchase);//
+				
+				// 商品照片驗證:
 				
 				
 			
@@ -481,21 +537,23 @@ public class ProductServlet extends HttpServlet {
 				productBean.setTotal_review(total_review);
 				productBean.setTotal_purchase(total_purchase);
 				
-				
+//				System.out.println(productBean);//
 
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					req.setAttribute("productBean", productBean); // 含有輸入格式錯誤的empVO物件,也存入req
+					req.setAttribute("productBean", productBean); // 含有輸入格式錯誤的productBean物件,也存入req
 					RequestDispatcher failureView = req
 							.getRequestDispatcher("/product/addProduct.jsp");
 					failureView.forward(req, res);
 					return;
 				}
-				
+				System.out.println("aa");
 				/***************************2.開始新增資料***************************************/
 				ProductService productSvc = new ProductService();
 //				productBean = productSvc.addProduct(product_name, product_type, product_intro, product_price, product_available_qty, product_status, product_calorie, degree_of_sweetness, total_star, total_review);
-				productSvc.updateProduct(productBean);
+				productSvc.addProduct(productBean);
+				
+//				System.out.println("新增資料:"+productBean);//
 				
 				/***************************3.新增完成,準備轉交(Send the Success view)***********/
 				String url = "/product/listAllProduct.jsp";

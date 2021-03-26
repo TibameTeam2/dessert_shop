@@ -110,7 +110,13 @@ th, td {
 				<td>${productBean.product_ingredient}</td>
 				<td>${productBean.product_price}</td>
 				<td>${productBean.product_available_qty}</td>
-				<td>${productBean.product_status}</td>
+				<td>
+					<c:choose>
+                    <c:when test="${productBean.product_status == 0}">未上架</c:when>
+                    <c:when test="${productBean.product_status == 1}">上架中</c:when>
+                    <c:otherwise>未知錯誤</c:otherwise>
+            		</c:choose>
+				</td>
 				<td>${productBean.expiry_after_buying}</td>
 				<td>${productBean.product_calorie}</td>
 				<td>${productBean.degree_of_sweetness}</td>

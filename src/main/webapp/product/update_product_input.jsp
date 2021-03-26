@@ -77,7 +77,7 @@ th, td {
 			<c:forEach var="message" items="${errorMsgs}">
 				<li style="color: red">${message}</li>
 			</c:forEach>
-		</ul>
+		</ul>4
 	</c:if>
 
 	<FORM METHOD="post" ACTION="product.do" name="form1">
@@ -94,43 +94,54 @@ th, td {
 			<tr>
 				<td>商品種類:</td>
 				<td><select size="1" name="product_type">
+<%-- 					<option value="${productBean.product_type}:${productBean.product_subtype}" ${(${productBean.product_type}:${productBean.product_subtype}==)?'selected':'' }> --%>
+						<% String category = productBean.getProduct_type() + ":" + productBean.getProduct_subtype();
+							System.out.println(category);
+						%>
+							
+							
+							<%if(category.equals("蛋糕:千層蛋糕")){%>
+									selected
+							<%}%>
+									
+						
 						<option value="">請選擇商品種類
 						<optgroup label="蛋糕">
-							<option value="千層蛋糕">千層蛋糕</option>
-							<option value="杯子蛋糕">杯子蛋糕</option>
-							<option value="起士蛋糕">起士蛋糕</option>
-							<option value="磅蛋糕">磅蛋糕</option>
-							<option value="蛋糕捲">蛋糕捲</option>
+							<option value="蛋糕:千層蛋糕"<%if(category.equals("蛋糕:千層蛋糕"))%>selected>千層蛋糕</option>
+							<option value="蛋糕:杯子蛋糕"<%if(category.equals("蛋糕:杯子蛋糕"))%>selected>杯子蛋糕</option>
+							<option value="蛋糕:起士蛋糕"<%if(category.equals("蛋糕:起士蛋糕"))%>selected>起士蛋糕</option>
+							<option value="蛋糕:磅蛋糕"<%if(category.equals("蛋糕:磅蛋糕"))%>selected>磅蛋糕</option>
+							<option value="蛋糕:蛋糕捲"<%if(category.equals("蛋糕:蛋糕捲"))%>selected>蛋糕捲</option>
 						</optgroup>
 						<optgroup label="巧克力">
-							<option value="生巧克力">生巧克力</option>
-							<option value="藝術巧克力">藝術巧克力</option>
-							<option value="巴克巧克力">巴克巧克力</option>
+							<option value="巧克力:生巧克力">生巧克力</option>
+							<option value="巧克力:藝術巧克力">藝術巧克力</option>
+							<option value="巧克力:巴克巧克力">巴克巧克力</option>
 						</optgroup>
 						<optgroup label="精緻小點">
-							<option value="派 & 塔">派 & 塔</option>
-							<option value="泡芙">泡芙</option>
-							<option value="馬卡龍">馬卡龍</option>
-							<option value="可麗露">可麗露</option>
-							<option value="布蕾">布蕾</option>
+							<option value="精緻小點:派 & 塔">派 & 塔</option>
+							<option value="精緻小點:泡芙">泡芙</option>
+							<option value="精緻小點:馬卡龍">馬卡龍</option>
+							<option value="精緻小點:可麗露">可麗露</option>
+							<option value="精緻小點:布蕾">布蕾</option>
 						</optgroup>
 						<optgroup label="飲品">
-							<option value="特調茶飲">特調茶飲</option>
-							<option value="香濃拿鐵">香濃拿鐵</option>
-							<option value="經典咖啡">經典咖啡</option>
-							<option value="繽紛水果飲">繽紛水果飲</option>
-							<option value="其他">其他</option>
+							<option value="飲品:特調茶飲">特調茶飲</option>
+							<option value="飲品:香濃拿鐵">香濃拿鐵</option>
+							<option value="飲品:經典咖啡">經典咖啡</option>
+							<option value="飲品:繽紛水果飲">繽紛水果飲</option>
+							<option value="飲品:其他">其他</option>
 						</optgroup>
 					</select></td>
 			</tr>
 			<tr>
 				<td>商品介紹:</td>
-				<td><input type="TEXT" name="procut_intro" size="45"
+				<td><input type="TEXT" name="product_intro" size="45"
 					value="<%=productBean.getProduct_intro()%>" /></td>
 			</tr>
 			<tr>
 				<td>商品成份:</td>
-				<td><input type="TEXT" name="procut_ingredient" size="45"
+				<td><input type="TEXT" name="product_ingredient" size="45"
 					value="<%=productBean.getProduct_ingredient()%>" /></td>
 			</tr>
 			<tr>
@@ -146,6 +157,11 @@ th, td {
 			<tr>
 				<td>商品狀態:</td>
 				<td><select size="1" name="product_status">
+<%-- <%-- 					<c:forEach var="deptVO" items="${deptSvc.all}"> --%> --%>
+<%-- 						<option value="${productBean.product_status}" ${(product_status==value)?'selected':'' } >${deptVO.dname} --%>
+<%-- <%-- 					</c:forEach>				 --%> --%>
+				
+				
 					<option value="">請選擇上架狀態
 					<option value=0>未上架
 					<option value=1>上架中
@@ -181,6 +197,16 @@ th, td {
 				<td><input type="TEXT" name="total_purchase" size="45"
 					value="<%=productBean.getTotal_purchase()%>" /></td>
 			</tr>
+			
+			<tr>
+				<td>商品圖片：</td>
+				<td>
+					 <input type="file" name="upfile1">
+                <input type="image" src="/dessert_shop/product/backend_getPhoto?id=<%=productBean.getProduct_id()%>"name="my_img">
+					
+				
+				</td>
+			</tr>
 
 			<jsp:useBean id="productSvc" scope="page"
 				class="com.product.model.ProductService" />
@@ -195,30 +221,32 @@ th, td {
 <!-- 			</tr> -->
 
 		</table>
-		<br> <input type="hidden" name="action" value="update"> <input
-<%-- 			type="hidden" name="product_id" value="<%=productBean.getProduct_id()%>"> <input --%>
-			type="submit" value="送出修改">
+		<br><input type="hidden" name="action" value="update"> 
+			<input type="hidden" name="product_id" value="<%=productBean.getProduct_id()%>"> 
+			<input type="submit" value="送出修改">
 	</FORM>
 	
 </body>
 <!-- =========================================以下為 datetimepicker 之相關設定========================================== -->
 
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/datetimepicker/jquery.datetimepicker.css" />
-<script src="<%=request.getContextPath()%>/datetimepicker/jquery.js"></script>
-<script
-	src="<%=request.getContextPath()%>/datetimepicker/jquery.datetimepicker.full.js"></script>
+<!-- <link rel="stylesheet" type="text/css" -->
+<%-- 	href="<%=request.getContextPath()%>/datetimepicker/jquery.datetimepicker.css" /> --%>
+<%-- <script src="<%=request.getContextPath()%>/datetimepicker/jquery.js"></script> --%>
+<!-- <script -->
+<%-- 	src="<%=request.getContextPath()%>/datetimepicker/jquery.datetimepicker.full.js"></script> --%>
 
+<!-- 
 <style>
 .xdsoft_datetimepicker .xdsoft_datepicker {
-	width: 300px; /* width:  300px; */
+	width: 300px;
 }
 
 .xdsoft_datetimepicker .xdsoft_timepicker .xdsoft_time_box {
 	height: 151px; /* height:  151px; */
 }
-</style>
-
+</style> 
+-->
+<!-- 
 <script>
         $.datetimepicker.setLocale('zh');
         $('#f_date1').datetimepicker({
@@ -285,6 +313,7 @@ th, td {
         
 </script>
 
+ -->
 
 
 </html>
