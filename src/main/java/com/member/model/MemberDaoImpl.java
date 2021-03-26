@@ -23,9 +23,9 @@ public class MemberDaoImpl implements MemberDao {
      */
     public void init() {
         // 得到Spring配置文件
-        ApplicationContext app = new ClassPathXmlApplicationContext("applicationContext.xml");
+//        ApplicationContext app = new ClassPathXmlApplicationContext("applicationContext.xml");
         // 取得JDBC模板物件
-        jdbcTemplate = (JdbcTemplate) app.getBean("jdbcTemplate");
+//        jdbcTemplate = (JdbcTemplate) app.getBean("jdbcTemplate");
 //        driver = "com.mysql.cj.jdbc.Driver";
 //        url = "jdbc:mysql://localhost:3306/sweet?serverTimezone=Asia/Taipei";
 //        userid = "root";
