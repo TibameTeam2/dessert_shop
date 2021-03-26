@@ -638,7 +638,7 @@ public class MemberServlet extends BaseServlet {
 
         } finally {
             rs.close();
-            stmt.close();
+            pstmt.close();
             con.close();
         }
 
