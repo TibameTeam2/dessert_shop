@@ -162,7 +162,9 @@ public class EmployeeServlet extends HttpServlet {
 		        in.read(employee_photo);
 		        in.close();
 				if (employee_photo.length == 0) {
-					errorMsgs.add("請上傳圖片!");
+					EmployeeService empSvc = new EmployeeService();
+					EmployeeBean Bean = empSvc.getOneEmp(employee_account);
+					employee_photo = Bean.getEmployee_photo();
 				}
 				
 				
