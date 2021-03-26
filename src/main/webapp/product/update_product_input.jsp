@@ -91,19 +91,47 @@ th, td {
 				<td><input type="TEXT" name="product_name" size="45"
 					value="<%=productBean.getProduct_name()%>" /></td>
 			</tr>
-			<tr>  <!-- 抓不到原本資料 -->
+			<tr>
 				<td>商品種類:</td>
 				<td><select size="1" name="product_type">
-					<option value=1>蛋糕
-					<option value=2>巧克力
-					<option value=3>精緻小點
-					<option value=4>飲品
+						<option value="">請選擇商品種類
+						<optgroup label="蛋糕">
+							<option value="千層蛋糕">千層蛋糕</option>
+							<option value="杯子蛋糕">杯子蛋糕</option>
+							<option value="起士蛋糕">起士蛋糕</option>
+							<option value="磅蛋糕">磅蛋糕</option>
+							<option value="蛋糕捲">蛋糕捲</option>
+						</optgroup>
+						<optgroup label="巧克力">
+							<option value="生巧克力">生巧克力</option>
+							<option value="藝術巧克力">藝術巧克力</option>
+							<option value="巴克巧克力">巴克巧克力</option>
+						</optgroup>
+						<optgroup label="精緻小點">
+							<option value="派 & 塔">派 & 塔</option>
+							<option value="泡芙">泡芙</option>
+							<option value="馬卡龍">馬卡龍</option>
+							<option value="可麗露">可麗露</option>
+							<option value="布蕾">布蕾</option>
+						</optgroup>
+						<optgroup label="飲品">
+							<option value="特調茶飲">特調茶飲</option>
+							<option value="香濃拿鐵">香濃拿鐵</option>
+							<option value="經典咖啡">經典咖啡</option>
+							<option value="繽紛水果飲">繽紛水果飲</option>
+							<option value="其他">其他</option>
+						</optgroup>
 					</select></td>
 			</tr>
 			<tr>
 				<td>商品介紹:</td>
 				<td><input type="TEXT" name="procut_intro" size="45"
 					value="<%=productBean.getProduct_intro()%>" /></td>
+			</tr>
+			<tr>
+				<td>商品成份:</td>
+				<td><input type="TEXT" name="procut_ingredient" size="45"
+					value="<%=productBean.getProduct_ingredient()%>" /></td>
 			</tr>
 			<tr>
 				<td>商品價格:</td>
@@ -116,11 +144,17 @@ th, td {
 					value="<%=productBean.getProduct_available_qty()%>" /></td>
 			</tr>
 			<tr>
-				<td>商品狀態:</td> <!-- 抓不到原本資料 -->
+				<td>商品狀態:</td>
 				<td><select size="1" name="product_status">
+					<option value="">請選擇上架狀態
 					<option value=0>未上架
 					<option value=1>上架中
-				</select></td>	
+				</select></td>
+			</tr>
+			<tr>
+				<td>賞味天數:</td>
+				<td><input type="TEXT" name="expiry_after_buying" size="45"
+					value="<%=productBean.getExpiry_after_buying()%>" /></td>
 			</tr>
 			<tr>
 				<td>商品熱量:</td>
@@ -138,9 +172,14 @@ th, td {
 					value="<%=productBean.getTotal_star()%>" /></td>
 			</tr>
 			<tr>
-				<td>累計評價人數:</td>
+				<td>累計評價次數:</td>
 				<td><input type="TEXT" name="total_review" size="45"
 					value="<%=productBean.getTotal_review()%>" /></td>
+			</tr>
+			<tr>
+				<td>累計銷售:</td>
+				<td><input type="TEXT" name="total_purchase" size="45"
+					value="<%=productBean.getTotal_purchase()%>" /></td>
 			</tr>
 
 			<jsp:useBean id="productSvc" scope="page"

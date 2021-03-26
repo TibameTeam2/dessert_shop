@@ -32,9 +32,9 @@ public class ProductDAO implements ProductDAO_interface {
 	public void insert(ProductBean productBean) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		INSERT = "INSERT INTO product (product_name, product_type, product_intro, product_price,product_available_qty,"
-									+ "product_status, product_calorie, degree_of_sweetness, total_star, total_review) "
-									+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		INSERT = "INSERT INTO product (product_name, product_type, product_subtype, product_intro, product_ingredient, product_price,product_available_qty,"
+									+ "product_status, expiry_after_buying, product_calorie, degree_of_sweetness, total_star, total_review, total_purchase) "
+									+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 
 		
@@ -45,14 +45,18 @@ public class ProductDAO implements ProductDAO_interface {
 		
 		pstmt.setString(1, productBean.getProduct_name());
 		pstmt.setString(2, productBean.getProduct_type());
-		pstmt.setString(3, productBean.getProduct_intro());
-		pstmt.setInt(4, productBean.getProduct_price());
-		pstmt.setInt(5, productBean.getProduct_available_qty());
-		pstmt.setInt(6, productBean.getProduct_status());
-		pstmt.setInt(7, productBean.getProduct_calorie());
-		pstmt.setInt(8, productBean.getDegree_of_sweetness());
-		pstmt.setInt(9, productBean.getTotal_star());
-		pstmt.setInt(10, productBean.getTotal_review());
+		pstmt.setString(3, productBean.getProduct_subtype());
+		pstmt.setString(4, productBean.getProduct_intro());
+		pstmt.setString(5, productBean.getProduct_ingredient());		
+		pstmt.setInt(6, productBean.getProduct_price());
+		pstmt.setInt(7, productBean.getProduct_available_qty());
+		pstmt.setInt(8, productBean.getProduct_status());
+		pstmt.setInt(9, productBean.getExpiry_after_buying());
+		pstmt.setInt(10, productBean.getProduct_calorie());
+		pstmt.setInt(11, productBean.getDegree_of_sweetness());
+		pstmt.setInt(12, productBean.getTotal_star());
+		pstmt.setInt(13, productBean.getTotal_review());
+		pstmt.setInt(14, productBean.getTotal_purchase());
 		
 		
 		pstmt.executeUpdate();
@@ -90,7 +94,8 @@ public class ProductDAO implements ProductDAO_interface {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		
-		UPDATE = "UPDATE product set product_name = ?, product_type = ?, product_intro = ?, product_price = ?, product_available_qty = ?, product_status = ?, product_calorie = ?, degree_of_sweetness = ?, total_star = ?, total_review = ?"
+		UPDATE = "UPDATE product set product_name = ?, product_type = ?, product_subtype = ?, product_intro = ?, product_ingredient = ?, product_price = ?, product_available_qty = ?, "
+				+ "product_status = ?, expiry_after_buying = ?, product_calorie = ?, degree_of_sweetness = ?, total_star = ?, total_review = ?, total_purchase=?"
 				+ " where product_id = ?";
 
 		try {
@@ -100,16 +105,20 @@ public class ProductDAO implements ProductDAO_interface {
 			
 			pstmt.setString(1, productBean.getProduct_name());
 			pstmt.setString(2, productBean.getProduct_type());
-			pstmt.setString(3, productBean.getProduct_intro());
-			pstmt.setInt(4, productBean.getProduct_price());
-			pstmt.setInt(5, productBean.getProduct_available_qty());
-			pstmt.setInt(6, productBean.getProduct_status());
-			pstmt.setInt(7, productBean.getProduct_calorie());
-			pstmt.setInt(8, productBean.getDegree_of_sweetness());
-			pstmt.setInt(9, productBean.getTotal_star());
-			pstmt.setInt(10, productBean.getTotal_review());
+			pstmt.setString(3, productBean.getProduct_subtype());
+			pstmt.setString(4, productBean.getProduct_intro());
+			pstmt.setString(5, productBean.getProduct_ingredient());
+			pstmt.setInt(6, productBean.getProduct_price());
+			pstmt.setInt(7, productBean.getProduct_available_qty());
+			pstmt.setInt(8, productBean.getProduct_status());
+			pstmt.setInt(9, productBean.getExpiry_after_buying());
+			pstmt.setInt(10, productBean.getProduct_calorie());
+			pstmt.setInt(11, productBean.getDegree_of_sweetness());
+			pstmt.setInt(12, productBean.getTotal_star());
+			pstmt.setInt(13, productBean.getTotal_review());
+			pstmt.setInt(14, productBean.getTotal_purchase());
 			
-			pstmt.setInt(11, productBean.getProduct_id());
+			pstmt.setInt(15, productBean.getProduct_id());
 			
 			pstmt.executeUpdate();
 			
@@ -207,14 +216,18 @@ public class ProductDAO implements ProductDAO_interface {
 				productBean.setProduct_id(rs.getInt("product_id"));
 				productBean.setProduct_name(rs.getString("product_name"));
 				productBean.setProduct_type(rs.getString("product_type"));
+				productBean.setProduct_subtype(rs.getString("product_subtype"));
 				productBean.setProduct_intro(rs.getString("product_intro"));
+				productBean.setProduct_ingredient(rs.getString("Product_ingredient"));
 				productBean.setProduct_price(rs.getInt("product_price"));
 				productBean.setProduct_available_qty(rs.getInt("product_available_qty"));
 				productBean.setProduct_status(rs.getInt("product_status"));
+				productBean.setExpiry_after_buying(rs.getInt("expiry_after_buying"));
 				productBean.setProduct_calorie(rs.getInt("product_calorie"));
 				productBean.setDegree_of_sweetness(rs.getInt("degree_of_sweetness"));
 				productBean.setTotal_star(rs.getInt("total_star"));
 				productBean.setTotal_review(rs.getInt("total_review"));
+				productBean.setTotal_purchase(rs.getInt("total_purchase"));
 				list_productBean.add(productBean);
 //				System.out.println(productBean);
 			}
@@ -268,18 +281,23 @@ public class ProductDAO implements ProductDAO_interface {
 			
 			while(rs.next()) {
 				productBean = new ProductBean();
+				
 				productBean.setProduct_id(rs.getInt("product_id"));
 				productBean.setProduct_name(rs.getString("product_name"));
 				productBean.setProduct_type(rs.getString("product_type"));
+				productBean.setProduct_subtype(rs.getString("product_subtype"));
 				productBean.setProduct_intro(rs.getString("product_intro"));
+				productBean.setProduct_ingredient(rs.getString("Product_ingredient"));
 				productBean.setProduct_price(rs.getInt("product_price"));
 				productBean.setProduct_available_qty(rs.getInt("product_available_qty"));
 				productBean.setProduct_status(rs.getInt("product_status"));
+				productBean.setExpiry_after_buying(rs.getInt("expiry_after_buying"));
 				productBean.setProduct_calorie(rs.getInt("product_calorie"));
 				productBean.setDegree_of_sweetness(rs.getInt("degree_of_sweetness"));
 				productBean.setTotal_star(rs.getInt("total_star"));
 				productBean.setTotal_review(rs.getInt("total_review"));
-			
+				productBean.setTotal_purchase(rs.getInt("total_purchase"));
+				
 //				System.out.println(productBean);
 			}
 			
@@ -317,35 +335,49 @@ public class ProductDAO implements ProductDAO_interface {
 	public static void main(String[] args) {
 		ProductDAO dao = new ProductDAO();
 
-		// 新增
-		//設定資料
+//		// 新增
+//		// 設定資料
 //		ProductBean productBean = new ProductBean();
 //		productBean.setProduct_name("蜂蜜蛋糕");
 //		productBean.setProduct_type("蛋糕");
+//		productBean.setProduct_subtype("磅蛋糕");
 //		productBean.setProduct_intro("使用台灣產蜂蜜......");
-//		productBean.setProduct_price(900);
+//		productBean.setProduct_ingredient("蜂蜜、奶油");
+//		productBean.setProduct_price(100);
 //		productBean.setProduct_available_qty(50);
 //		productBean.setProduct_status(1);
-//		productBean.setProduct_calorie(435);
-//		productBean.setDegree_of_sweetness(5);
-//		productBean.setTotal_star(4);
+//		productBean.setExpiry_after_buying(5);
+//		productBean.setProduct_calorie(328);
+//		productBean.setDegree_of_sweetness(3);
+//		productBean.setTotal_star(577);
 //		productBean.setTotal_review(139);
+//		productBean.setTotal_purchase(166);
 //		dao.insert(productBean);
-
-		// 修改
-		//設定資料
+		
+		
+		
+		
+		
+//		// 修改
+//		// 設定資料
 //		ProductBean productBean = new ProductBean();
-//		productBean.setProduct_name("貓掌餅乾");
-//		productBean.setProduct_type("餅乾");
-//		productBean.setProduct_intro("使用頂級麵粉......");
-//		productBean.setProduct_price(300);
-//		productBean.setProduct_available_qty(20);
+//		
+//		productBean.setProduct_name("蜂蜜蛋糕");
+//		productBean.setProduct_type("蛋糕");
+//		productBean.setProduct_subtype("磅蛋糕");
+//		productBean.setProduct_intro("使用台灣產蜂蜜......修改測試");
+//		productBean.setProduct_ingredient("蜂蜜、奶油");
+//		productBean.setProduct_price(100);
+//		productBean.setProduct_available_qty(50);
 //		productBean.setProduct_status(1);
-//		productBean.setProduct_calorie(55);
-//		productBean.setDegree_of_sweetness(1);
-//		productBean.setTotal_star(5);
-//		productBean.setTotal_review(19);
+//		productBean.setExpiry_after_buying(5);
+//		productBean.setProduct_calorie(328);
+//		productBean.setDegree_of_sweetness(3);
+//		productBean.setTotal_star(577);
+//		productBean.setTotal_review(139);
+//		productBean.setTotal_purchase(166);
 //		productBean.setProduct_id(4);
+//		
 //		dao.update(productBean);
 
 

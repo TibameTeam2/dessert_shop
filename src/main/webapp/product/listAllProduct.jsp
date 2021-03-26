@@ -78,15 +78,19 @@ th, td {
 		<tr>
 			<th>商品編號</th>
 			<th>商品名稱</th>
-			<th>商品類別</th>
+			<th>商品主分類</th>
+			<th>商品子分類</th>
 			<th>商品介紹</th>
+			<th>商品成份</th>
 			<th>商品價格</th>
 			<th>現貨數量</th>
 			<th>商品狀態</th>
+			<th>賞味天數</th>
 			<th>商品熱量</th>
 			<th>商品甜度</th>
 			<th>累計星等</th>
-			<th>累計評價人數</th>
+			<th>累計評價次數</th>
+			<th>累計銷售</th>
 			
 			<th>商品圖片</th>
 			
@@ -101,17 +105,21 @@ th, td {
 				<td>${productBean.product_id}</td>
 				<td>${productBean.product_name}</td>
 				<td>${productBean.product_type}</td>
+				<td>${productBean.product_subtype}</td>
 				<td>${productBean.product_intro}</td>
+				<td>${productBean.product_ingredient}</td>
 				<td>${productBean.product_price}</td>
 				<td>${productBean.product_available_qty}</td>
 				<td>${productBean.product_status}</td>
+				<td>${productBean.expiry_after_buying}</td>
 				<td>${productBean.product_calorie}</td>
 				<td>${productBean.degree_of_sweetness}</td>
 				<td>${productBean.total_star}</td>
 				<td>${productBean.total_review}</td>
+				<td>${productBean.total_purchase}</td>
 							
 				<td>
-                <img src="<%=request.getContextPath()%>/product/product.do?action=getProductImage&id=${productBean.product_id}">
+                <img src="<%=request.getContextPath()%>/product/product.do?action=getProductImage&id=${productBean.product_id}" alt="photo">
 				</td>
 				
 				<td>
