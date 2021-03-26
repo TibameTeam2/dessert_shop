@@ -23,9 +23,9 @@ public class MemberDaoImpl implements MemberDao {
      */
     public void init() {
         // 得到Spring配置文件
-        ApplicationContext app = new ClassPathXmlApplicationContext("applicationContext.xml");
+//        ApplicationContext app = new ClassPathXmlApplicationContext("applicationContext.xml");
         // 取得JDBC模板物件
-        jdbcTemplate = (JdbcTemplate) app.getBean("jdbcTemplate");
+//        jdbcTemplate = (JdbcTemplate) app.getBean("jdbcTemplate");
 //        driver = "com.mysql.cj.jdbc.Driver";
 //        url = "jdbc:mysql://localhost:3306/sweet?serverTimezone=Asia/Taipei";
 //        userid = "root";
@@ -328,6 +328,72 @@ public class MemberDaoImpl implements MemberDao {
         return list;
     }
 
+
+    public MemberBean findByEmail(String member_email) {
+        MemberBean memberBean = null;
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        try {
+
+            Class.forName(driver);
+            con = DriverManager.getConnection(url, userid, passwd);
+            pstmt = con.prepareStatement("SELECT * FROM sweet.member where member_email=?");
+
+            pstmt.setString(1, member_email);
+
+            rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                memberBean = new MemberBean();
+                memberBean.setMember_account(rs.getString("member_account"));
+                memberBean.setMember_password(rs.getString("member_password"));
+                memberBean.setMember_name(rs.getString("member_name"));
+                memberBean.setMember_phone(rs.getString("member_phone"));
+                memberBean.setMember_email(rs.getString("member_email"));
+                memberBean.setMember_photo(rs.getBytes("member_photo"));
+                memberBean.setMember_gender(rs.getInt("member_gender"));
+                memberBean.setMember_birthday(rs.getDate("member_birthday"));
+                memberBean.setRegister_time(rs.getTimestamp("register_time"));
+                memberBean.setRegister_method(rs.getInt("register_method"));
+                memberBean.setMember_status(rs.getInt("member_status"));
+            }
+
+            // Handle any driver errors
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException("Couldn't load database driver. "
+                    + e.getMessage());
+            // Handle any SQL errors
+        } catch (SQLException se) {
+            throw new RuntimeException("A database error occured. "
+                    + se.getMessage());
+            // Clean up JDBC resources
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException se) {
+                    se.printStackTrace(System.err);
+                }
+            }
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException se) {
+                    se.printStackTrace(System.err);
+                }
+            }
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (Exception e) {
+                    e.printStackTrace(System.err);
+                }
+            }
+        }
+        return memberBean;
+    }
     public static void main(String[] args) {
         MemberDaoImpl dao = new MemberDaoImpl();
 

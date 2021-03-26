@@ -11,7 +11,8 @@ public class EmployeeBean {
     private String employee_position;
     private byte[] employee_photo;
     private Date hire_date;
-    private Integer employee_status ;
+    private Integer employee_status;
+
 
 
     @Override

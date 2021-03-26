@@ -36,7 +36,7 @@
 <p>This is the Home page for IBM Emp: Home</p>
 
 <h3>資料查詢:</h3>
-	
+
 <%-- 錯誤表列 --%>
 <c:if test="${not empty errorMsgs}">
 	<font style="color:red">請修正以下錯誤:</font>
@@ -49,8 +49,8 @@
 
 <ul>
   <li><a href='<%=request.getContextPath()%>/member_jsp/listAllEmp.jsp'>List</a> all Emps.  <br><br></li>
-  
-  
+
+
   <li>
     <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/member/backend_getOne_For_Display" >
         <b>輸入員工編號 (如7001):</b>
@@ -79,9 +79,11 @@
      <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/member/backend_getOne_For_Display" >
        <b>選擇員工姓名:</b>
        <select size="1" name="member_account">
-         <c:forEach var="memberBean" items="${memberSvc.all}" >
-          <option value="${memberBean.member_account}">${memberBean.member_name}
-         </c:forEach>
+<%--         <c:forEach var="memberBean" items="${memberSvc.all}" >--%>
+<%--          <option value="${memberBean.member_account}">${memberBean.member_name}--%>
+<%--         </c:forEach>--%>
+             <option value=1>品種1
+            <option value=2>品種2
        </select>
 <%--       <input type="hidden" name="action" value="getOne_For_Display">--%>
        <input type="submit" value="送出">

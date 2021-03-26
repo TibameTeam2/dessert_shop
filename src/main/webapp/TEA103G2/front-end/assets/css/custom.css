@@ -29,9 +29,9 @@
     background: #ffffff;
 }
 
-/*#loading-progress::after {*/
-/*    background: #ffffff;*/
-/*}*/
+#loading-progress::after {
+    background: #ffffff;
+}
 
 #loading-progress.hide-it {
     visibility: hidden;
