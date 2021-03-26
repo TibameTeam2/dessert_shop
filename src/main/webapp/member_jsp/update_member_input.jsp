@@ -120,10 +120,13 @@
             <td>照片:</td>
 <%--            		<td><input type="TEXT" name="member_photo" size="45" 	value="<%=memberBean.getMember_photo()%>" /></td>--%>
             <td>
-                <input type="file" name="upfile1">
+                <input type="file" name="upfile1" id="p_file">
 <%--                <img src="/dessert_shop/member/backend_getPhoto?id=<%=memberBean.getMember_account()%>">--%>
-                <input type="image" src="/dessert_shop/member/backend_getPhoto?id=<%=memberBean.getMember_account()%>"name="my_img">
+<%--                <img src="/dessert_shop/member/backend_getPhoto?id=<%=memberBean.getMember_account()%>"name="my_img">--%>
+                <div id="preview">
+                    <img src="/dessert_shop/member/backend_getPhoto?id=<%=memberBean.getMember_account()%>"name="my_img">
 
+                    <span class="text">預覽圖</span></div>
 
             </td>
         </tr>
@@ -228,6 +231,37 @@
     //              }
     //              return [true, ""];
     //      }});
+    const p_file = document.getElementById("p_file");
+    p_file.addEventListener("change", function (e) {
+        handleFiles(this.files);
+    });
 
+    //檔案上傳的處理函式
+    function handleFiles(files) {
+        //先刪掉預覽圖裡的img
+        while (preview.firstChild) preview.removeChild(preview.lastChild);
+
+        // 跑每個使用者選的檔案
+        for (let i = 0; i < files.length; i++) {
+            let file = files[i];
+            let imageType = /image.*/;
+            // 判斷檔案的類型，圖片才加載
+            if (!file.type.match(imageType)) {
+                continue;
+            }
+            //增加img節點在預覽圖裡面
+            let img = document.createElement("img");
+            img.classList.add("preview_img");
+            img.setAttribute("id", "p_img")
+            preview.appendChild(img);
+
+            let reader = new FileReader();
+            // reader.onload = (e => img.src = reader.result);  //監聽器 檔案讀完的事件 設定img的src
+            reader.addEventListener("load", function (e) {
+                img.src = reader.result.toString();
+            })
+            reader.readAsDataURL(file);  //讀取檔案
+        }
+    }
 </script>
 </html>
