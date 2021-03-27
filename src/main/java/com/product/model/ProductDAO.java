@@ -29,7 +29,7 @@ public class ProductDAO implements ProductDAO_interface {
 //		passwd = "root";
 	}
 	
-	public void insert(ProductBean productBean) {
+	public int insert(ProductBean productBean) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		INSERT = "INSERT INTO product (product_name, product_type, product_subtype, product_intro, product_ingredient, product_price,product_available_qty,"
@@ -37,7 +37,7 @@ public class ProductDAO implements ProductDAO_interface {
 									+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 
-		
+		int count=0;
 		try {
 		Class.forName(driver);
 		con = DriverManager.getConnection(url, userid, passwd);
@@ -60,6 +60,17 @@ public class ProductDAO implements ProductDAO_interface {
 		
 		
 		pstmt.executeUpdate();
+		
+		pstmt = con.prepareStatement("select LAST_INSERT_ID()");
+		
+		
+		ResultSet rs = null;
+		rs = pstmt.executeQuery();
+		if(rs.next()) {			
+			count =rs.getInt(1);
+			System.out.println(count);
+		}
+		rs.close();
 		
 		
 			// Handle any driver errors
@@ -87,7 +98,7 @@ public class ProductDAO implements ProductDAO_interface {
 				}
 			}
 		}
-
+		return count;
 	}
 	
 	public void update(ProductBean productBean) {
@@ -337,22 +348,22 @@ public class ProductDAO implements ProductDAO_interface {
 
 //		// 新增
 //		// 設定資料
-//		ProductBean productBean = new ProductBean();
-//		productBean.setProduct_name("蜂蜜蛋糕");
-//		productBean.setProduct_type("蛋糕");
-//		productBean.setProduct_subtype("磅蛋糕");
-//		productBean.setProduct_intro("使用台灣產蜂蜜......");
-//		productBean.setProduct_ingredient("蜂蜜、奶油");
-//		productBean.setProduct_price(100);
-//		productBean.setProduct_available_qty(50);
-//		productBean.setProduct_status(1);
-//		productBean.setExpiry_after_buying(5);
-//		productBean.setProduct_calorie(328);
-//		productBean.setDegree_of_sweetness(3);
-//		productBean.setTotal_star(577);
-//		productBean.setTotal_review(139);
-//		productBean.setTotal_purchase(166);
-//		dao.insert(productBean);
+		ProductBean productBean = new ProductBean();
+		productBean.setProduct_name("蜂蜜蛋糕");
+		productBean.setProduct_type("蛋糕");
+		productBean.setProduct_subtype("磅蛋糕");
+		productBean.setProduct_intro("使用台灣產蜂蜜......");
+		productBean.setProduct_ingredient("蜂蜜、奶油");
+		productBean.setProduct_price(100);
+		productBean.setProduct_available_qty(50);
+		productBean.setProduct_status(1);
+		productBean.setExpiry_after_buying(5);
+		productBean.setProduct_calorie(328);
+		productBean.setDegree_of_sweetness(3);
+		productBean.setTotal_star(577);
+		productBean.setTotal_review(139);
+		productBean.setTotal_purchase(166);
+		dao.insert(productBean);
 		
 		
 		
@@ -390,10 +401,10 @@ public class ProductDAO implements ProductDAO_interface {
 
 
 		// 查詢
-		List<ProductBean> list = dao.getAll();
-		for (ProductBean productBean : list) {
-			System.out.println(productBean);
-		}
+//		List<ProductBean> list = dao.getAll();
+//		for (ProductBean productBean : list) {
+//			System.out.println(productBean);
+//		}
 
 	}
 }

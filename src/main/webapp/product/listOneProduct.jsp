@@ -4,6 +4,7 @@
 
 <% 
 	ProductBean productBean = (ProductBean) request.getAttribute("productBean");
+	System.out.println(productBean);
 %>
 
 <!DOCTYPE html>
@@ -50,7 +51,7 @@
 </style>
 
 </head>
-<body bgcolor="lightblue">
+<body bgcolor="white">
 	<h3>this is listOneProduct.jsp</h3>
 	<table id="table-1">
 		<tr>
@@ -83,8 +84,8 @@
 			
 			<th>商品圖片</th>
 			
-			<th>修改</th>
-			<th>刪除</th>
+<!-- 			<th>修改</th> -->
+<!-- 			<th>刪除</th> -->
 		</tr>
 		<tr>
 			<td>${productBean.product_id}</td>
@@ -95,7 +96,13 @@
 				<td>${productBean.product_ingredient}</td>
 				<td>${productBean.product_price}</td>
 				<td>${productBean.product_available_qty}</td>
-				<td>${productBean.product_status}</td>
+				<td>
+					<c:choose>
+                    <c:when test="${productBean.product_status == 0}">未上架</c:when>
+                    <c:when test="${productBean.product_status == 1}">上架中</c:when>
+                    <c:otherwise>未知錯誤</c:otherwise>
+            		</c:choose>
+				</td>
 				<td>${productBean.expiry_after_buying}</td>
 				<td>${productBean.product_calorie}</td>
 				<td>${productBean.degree_of_sweetness}</td>
@@ -121,23 +128,26 @@
 <%-- 			<td><%=productBean.getDegree_of_sweetness()%></td> --%>
 <%-- 			<td><%=productBean.getTotal_star()%></td> --%>
 <%-- 			<td><%=productBean.getTotal_review()%></td> --%>
-			<td>
-				<form method="post"
-					action="<%=request.getContextPath()%>/product/product.do">
-					<input type="submit" value="修改"> <input type="hidden"
-						name="product_id" value="${productBean.product_id}"> <input
-						type="hidden" name="action" value="getOne_For_Update">
-				</form>
-			</td>
-			<td>
-				<form method="post"
-					action="<%=request.getContextPath()%>/product/product.do">
-					<input type="submit" value="刪除"> <input type="hidden"
-						name="product_id" value="${productBean.product_id}"> <input
-						type="hidden" name="action" value="delete">
-				</form>
-			</td>
-		</tr>
+
+
+<%-- 以下多餘功能 --%>
+<!-- 			<td> -->
+<!-- 				<form method="post" -->
+<%-- 					action="<%=request.getContextPath()%>/product/product.do"> --%>
+<!-- 					<input type="submit" value="修改"> <input type="hidden" -->
+<%-- 						name="product_id" value="${productBean.product_id}"> <input --%>
+<!-- 						type="hidden" name="action" value="getOne_For_Update"> -->
+<!-- 				</form> -->
+<!-- 			</td> -->
+<!-- 			<td> -->
+<!-- 				<form method="post" -->
+<%-- 					action="<%=request.getContextPath()%>/product/product.do"> --%>
+<!-- 					<input type="submit" value="刪除"> <input type="hidden" -->
+<%-- 						name="product_id" value="${productBean.product_id}"> <input --%>
+<!-- 						type="hidden" name="action" value="delete"> -->
+<!-- 				</form> -->
+<!-- 			</td> -->
+<!-- 		</tr> -->
 	</table>
 
 </body>

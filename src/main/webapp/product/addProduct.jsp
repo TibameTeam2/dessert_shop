@@ -75,7 +75,7 @@ th, td {
 		</ul>
 	</c:if>
 
-	<FORM METHOD="post" ACTION="product.do" name="form1">
+	<FORM METHOD="post" ACTION="product.do" name="form1" enctype="multipart/form-data">
 		<table>
 			<tr>
 				<td>商品名稱:</td>
@@ -172,13 +172,10 @@ th, td {
 				<td><input type="TEXT" name="total_purchase" size="45"
 					value="<%= (productBean==null)? "300" : productBean.getTotal_purchase()%>" /></td>
 			</tr>
-<!-- 			<tr> -->
-<!-- 				<td>商品圖片：</td> -->
-<!--      			<td><input type="file" name="product_img" accept="image/*"></td> -->
-<!-- 				<td> -->
-				
-<!-- 				</td> -->
-<!-- 			</tr> -->
+			<tr>
+				<td>商品圖片：</td>
+     			<td><input type="file" name="upfile1" accept="image/*"></td>
+			</tr>
 		
 				
 			<jsp:useBean id="productSvc" scope="page"

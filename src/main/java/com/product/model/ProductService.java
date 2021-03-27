@@ -12,7 +12,9 @@ public class ProductService {
 	
 	public ProductBean addProduct(ProductBean productBean) {
 		
-		dao.insert(productBean);
+		
+		int count = dao.insert(productBean);
+		productBean.setProduct_id(count);
 				
 		return productBean;
 	}

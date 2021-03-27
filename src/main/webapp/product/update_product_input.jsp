@@ -80,7 +80,7 @@ th, td {
 		</ul>4
 	</c:if>
 
-	<FORM METHOD="post" ACTION="product.do" name="form1">
+	<FORM METHOD="post" ACTION="product.do" name="form1" enctype="multipart/form-data">
 		<table>
 			<tr>
 				<td>商品編號:<font color=red><b>*</b></font></td>
@@ -94,43 +94,74 @@ th, td {
 			<tr>
 				<td>商品種類:</td>
 				<td><select size="1" name="product_type">
-<%-- 					<option value="${productBean.product_type}:${productBean.product_subtype}" ${(${productBean.product_type}:${productBean.product_subtype}==)?'selected':'' }> --%>
 						<% String category = productBean.getProduct_type() + ":" + productBean.getProduct_subtype();
-							System.out.println(category);
-						%>
-							
-							
-							<%if(category.equals("蛋糕:千層蛋糕")){%>
-									selected
-							<%}%>
-									
+							System.out.println(category);%>
+<%-- 						<%if(category.equals("蛋糕:千層蛋糕")){%> --%>
+<!-- 						selected -->
+<%-- 						<%}%>				 //只能此種寫法 --%>
 						
-						<option value="">請選擇商品種類
+						<option value="">請選擇商品種類						
 						<optgroup label="蛋糕">
-							<option value="蛋糕:千層蛋糕"<%if(category.equals("蛋糕:千層蛋糕"))%>selected>千層蛋糕</option>
-							<option value="蛋糕:杯子蛋糕"<%if(category.equals("蛋糕:杯子蛋糕"))%>selected>杯子蛋糕</option>
-							<option value="蛋糕:起士蛋糕"<%if(category.equals("蛋糕:起士蛋糕"))%>selected>起士蛋糕</option>
-							<option value="蛋糕:磅蛋糕"<%if(category.equals("蛋糕:磅蛋糕"))%>selected>磅蛋糕</option>
-							<option value="蛋糕:蛋糕捲"<%if(category.equals("蛋糕:蛋糕捲"))%>selected>蛋糕捲</option>
+							<option value="蛋糕:千層蛋糕"<%if(category.equals("蛋糕:千層蛋糕")){%>
+							selected
+							<%}%>>千層蛋糕</option>
+							<option value="蛋糕:杯子蛋糕"<%if(category.equals("蛋糕:杯子蛋糕")){%>
+							selected
+							<%}%>>杯子蛋糕</option>
+							<option value="蛋糕:起士蛋糕"<%if(category.equals("蛋糕:起士蛋糕")){%>
+							selected
+							<%}%>>起士蛋糕</option>
+							<option value="蛋糕:磅蛋糕"<%if(category.equals("蛋糕:磅蛋糕")){%>
+							selected
+							<%}%>>磅蛋糕</option>
+							<option value="蛋糕:蛋糕捲"<%if(category.equals("蛋糕:蛋糕捲")){%>
+							selected
+							<%}%>>蛋糕捲</option>
 						</optgroup>
 						<optgroup label="巧克力">
-							<option value="巧克力:生巧克力">生巧克力</option>
-							<option value="巧克力:藝術巧克力">藝術巧克力</option>
-							<option value="巧克力:巴克巧克力">巴克巧克力</option>
+							<option value="巧克力:生巧克力"<%if(category.equals("巧克力:生巧克力")){%>
+							selected
+							<%}%>>生巧克力</option>
+							<option value="巧克力:藝術巧克力"<%if(category.equals("巧克力:藝術巧克力")){%>
+							selected
+							<%}%>>藝術巧克力</option>
+							<option value="巧克力:巴克巧克力"<%if(category.equals("巧克力:巴克巧克力")){%>
+							selected
+							<%}%>>巴克巧克力</option>
 						</optgroup>
 						<optgroup label="精緻小點">
-							<option value="精緻小點:派 & 塔">派 & 塔</option>
-							<option value="精緻小點:泡芙">泡芙</option>
-							<option value="精緻小點:馬卡龍">馬卡龍</option>
-							<option value="精緻小點:可麗露">可麗露</option>
-							<option value="精緻小點:布蕾">布蕾</option>
+							<option value="精緻小點:派 & 塔"<%if(category.equals("精緻小點:派 & 塔")){%>
+							selected
+							<%}%>>派 & 塔</option>
+							<option value="精緻小點:泡芙"<%if(category.equals("精緻小點:泡芙")){%>
+							selected
+							<%}%>>泡芙</option>
+							<option value="精緻小點:馬卡龍"<%if(category.equals("精緻小點:馬卡龍")){%>
+							selected
+							<%}%>>馬卡龍</option>
+							<option value="精緻小點:可麗露"<%if(category.equals("精緻小點:可麗露")){%>
+							selected
+							<%}%>>可麗露</option>
+							<option value="精緻小點:布蕾"<%if(category.equals("精緻小點:布蕾")){%>
+							selected
+							<%}%>>布蕾</option>
 						</optgroup>
 						<optgroup label="飲品">
-							<option value="飲品:特調茶飲">特調茶飲</option>
-							<option value="飲品:香濃拿鐵">香濃拿鐵</option>
-							<option value="飲品:經典咖啡">經典咖啡</option>
-							<option value="飲品:繽紛水果飲">繽紛水果飲</option>
-							<option value="飲品:其他">其他</option>
+							<option value="飲品:特調茶飲"<%if(category.equals("飲品:特調茶飲")){%>
+							selected
+							<%}%>>特調茶飲</option>
+							<option value="飲品:香濃拿鐵"<%if(category.equals("飲品:香濃拿鐵")){%>
+							selected
+							 <%}%>>香濃拿鐵</option>
+							<option value="飲品:經典咖啡"<%if(category.equals("飲品:經典咖啡")){%>
+							selected
+							<%}%>>經典咖啡</option>
+							<option value="飲品:繽紛水果飲"<%if(category.equals("飲品:繽紛水果飲")){%>
+							selected
+							<%}%>>繽紛水果飲</option>
+							<option value="飲品:其他"<%if(category.equals("飲品:其他")){%>
+							selected
+							<%}%>>其他</option>
 						</optgroup>
 					</select></td>
 			</tr>
@@ -157,14 +188,17 @@ th, td {
 			<tr>
 				<td>商品狀態:</td>
 				<td><select size="1" name="product_status">
-<%-- <%-- 					<c:forEach var="deptVO" items="${deptSvc.all}"> --%> --%>
-<%-- 						<option value="${productBean.product_status}" ${(product_status==value)?'selected':'' } >${deptVO.dname} --%>
-<%-- <%-- 					</c:forEach>				 --%> --%>
-				
+					<% Integer product_status = productBean.getProduct_status(); 
+						System.out.println(product_status);%>
+					
 				
 					<option value="">請選擇上架狀態
-					<option value=0>未上架
-					<option value=1>上架中
+						<option value=0 <%if(product_status == 0){%>
+						selected
+						<%}%>>未上架
+						<option value=1 <%if(product_status == 1){%>
+						selected
+						<%}%>>上架中
 				</select></td>
 			</tr>
 			<tr>
@@ -201,24 +235,13 @@ th, td {
 			<tr>
 				<td>商品圖片：</td>
 				<td>
-					 <input type="file" name="upfile1">
-                <input type="image" src="/dessert_shop/product/backend_getPhoto?id=<%=productBean.getProduct_id()%>"name="my_img">
-					
-				
+					<input type="file" name="upfile1" accept="image/*">
+<%--                 	<input type="image" name="upfile1" src="/dessert_shop/product/backend_getPhoto?id=<%=productBean.getProduct_id()%>"> --%>
 				</td>
 			</tr>
 
 			<jsp:useBean id="productSvc" scope="page"
 				class="com.product.model.ProductService" />
-<!-- 			<tr> -->
-<!-- 				<td>商品狀態:<font color=red><b>*</b></font></td> -->
-<!-- 				<td><select size="1" name="product_status"> -->
-<%-- 						<c:forEach var="productBean" items="${productSvc.all}"> --%>
-<%-- 							<option value="${productBean.product_status}" --%>
-<%-- 								${(productBean.product_status==pro.deptno)?'selected':'' }>${productBean.product_name} --%>
-<%-- 						</c:forEach> --%>
-<!-- 				</select></td> -->
-<!-- 			</tr> -->
 
 		</table>
 		<br><input type="hidden" name="action" value="update"> 

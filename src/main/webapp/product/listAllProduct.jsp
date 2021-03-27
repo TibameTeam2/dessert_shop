@@ -65,14 +65,14 @@ th, td {
 	</table>
 	
 	<%-- 錯誤表列 --%> <%-- 是不是不用這一塊呀? --%>
-<%-- 	<c:if test="${not empty errorMsgs}"> --%>
-<!-- 		<font style="color: red">請修正以下錯誤:</font> -->
-<!-- 		<ul> -->
-<%-- 			<c:forEach var="message" items="${errorMsgs}"> --%>
-<%-- 				<li style="color: red">${message}</li> --%>
-<%-- 			</c:forEach> --%>
-<!-- 		</ul> -->
-<%-- 	</c:if> --%>
+	<c:if test="${not empty errorMsgs}">
+		<font style="color: red">請修正以下錯誤:</font>
+		<ul>
+			<c:forEach var="message" items="${errorMsgs}">
+				<li style="color: red">${message}</li>
+			</c:forEach>
+		</ul>
+	</c:if>
 	
 	<table>
 		<tr>
@@ -123,9 +123,19 @@ th, td {
 				<td>${productBean.total_star}</td>
 				<td>${productBean.total_review}</td>
 				<td>${productBean.total_purchase}</td>
+				
+<%-- 				<td><% ProductImageBean productImageBean =(ProductImageBean)pageContext.getAttribute("productImageBean");%> --%>
+<%--                      <% if (productBean.getEmployee_photo() != null){ --%>
+<%--                          System.out.println(empBean.getEmployee_photo());%> --%>
+<%--                        <img src="data:image/png;base64,<%=Base64.getEncoder().encodeToString(empBean.getEmployee_photo())%>"> --%>
+<%--                       <%}%> --%>
+<!--            		 </td> -->
+				
+				
+				
 							
 				<td>
-                <img src="<%=request.getContextPath()%>/product/product.do?action=getProductImage&id=${productBean.product_id}" alt="photo">
+                	<img src="<%=request.getContextPath()%>/product/product.do?action=getProductImage&id=${productBean.product_id}" alt="photo">
 				</td>
 				
 				<td>

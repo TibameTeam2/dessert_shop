@@ -1,6 +1,7 @@
 package com.product.controller;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.io.Writer;
 import java.sql.Connection;
@@ -15,19 +16,23 @@ import cn.hutool.core.io.IoUtil;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
-import com.emp.model.EmpService;
-import com.emp.model.EmpVO;
+
 import com.product.model.ProductBean;
 import com.product.model.ProductService;
+import com.product_image.model.ProductImageBean;
+import com.product_image.model.ProductImageService;
 import com.util.JDBCUtil;
 
 import cn.hutool.core.io.IoUtil;
 
+@MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 50 * 1024 * 1024, maxRequestSize = 50 * 1024 * 1024)
 public class ProductServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
       
@@ -46,7 +51,7 @@ public class ProductServlet extends HttpServlet {
 		res.setContentType("text/html;charset=UTF-8");
 		
 		
-		if ("getProductImage".equals(action)) { 
+		if ("getProductImage".equals(action)) { //from ???的請求
 			System.out.println("getProductImage");
 		        res.setContentType("image/png");
 		        Connection con = null;
@@ -192,7 +197,7 @@ public class ProductServlet extends HttpServlet {
 		
 		
 		if ("update".equals(action)) { // 來自update_product_input.jsp的請求
-			System.out.println("update");
+			System.out.println("update");//
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
 			// send the ErrorPage view.
@@ -307,6 +312,8 @@ public class ProductServlet extends HttpServlet {
 					errorMsgs.add("請輸入商品評價數量");
 				}
 				
+				System.out.println(total_review);//
+				
 				Integer total_purchase = null;
 				try {
 					total_purchase = new Integer(req.getParameter("total_purchase").trim());
@@ -315,12 +322,28 @@ public class ProductServlet extends HttpServlet {
 					errorMsgs.add("請輸入商品累計銷售量");
 				}
 				
-				// 商品圖片的驗證
+				System.out.println("圖片驗證update");//
+// 商品圖片的驗證
+				Part part = req.getPart("upfile1");
+		        InputStream in = part.getInputStream();
+		        byte[] product_image = new byte[in.available()];
+		        in.read(product_image);
+		        in.close();
+		   
+		        System.out.println("圖片驗證update2");//
+		   
+				if (product_image.length == 0) {
+					errorMsgs.add("請上傳圖片!");
+				}
 				
 				
-				
+				System.out.println(product_image);
+								
 				
 				ProductBean productBean = new ProductBean();
+				
+				ProductImageBean piBean = new ProductImageBean();//
+				
 				productBean.setProduct_id(product_id);
 				productBean.setProduct_name(product_name);
 				productBean.setProduct_type(product_type);
@@ -337,8 +360,13 @@ public class ProductServlet extends HttpServlet {
 				productBean.setTotal_review(total_review);
 				productBean.setTotal_purchase(total_purchase);
 				
+//				piBean.setProduct_id(piBean.getImage_id((productBean.getProduct_id()));//
 				
-//				System.out.println(productBean);//
+				piBean.setProduct_image(product_image);//
+			
+				
+				System.out.println("update的:"+productBean);//
+				System.out.println("update的:"+piBean);//
 				
 				
 				
@@ -357,6 +385,12 @@ public class ProductServlet extends HttpServlet {
 //				productBean = productSvc.updateProduct(product_id, product_name, product_type, product_intro, product_price, product_available_qty, product_status, product_calorie, degree_of_sweetness, total_star, total_review);
 				productSvc.updateProduct(productBean);
 				
+				ProductImageService piSvc = new ProductImageService();
+				
+//				piBean.setProduct_id(productBean.getProduct_id());
+				piSvc.updateProductImage(piBean);
+				
+				
 //				System.out.println("修改資料"+ productBean);//
 				
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/
@@ -367,9 +401,10 @@ public class ProductServlet extends HttpServlet {
 
 				/***************************其他可能的錯誤處理*************************************/
 			} catch (Exception e) {
+				System.out.println("error");//
 				errorMsgs.add("修改資料失敗:"+e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/product/update_product_input.jsp");
+						.getRequestDispatcher("/product/listAllProduct.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -517,11 +552,23 @@ public class ProductServlet extends HttpServlet {
 				
 //				System.out.println(total_purchase);//
 				
-				// 商品照片驗證:
+				System.out.println("圖片驗證from insert");//
+// 商品圖片的驗證
+				Part part = req.getPart("upfile1");
+		        InputStream in = part.getInputStream();
+		        byte[] product_image = new byte[in.available()];
+		        in.read(product_image);
+		        in.close();
+				if (product_image.length == 0) {
+					errorMsgs.add("請上傳圖片!");
+				}
+				System.out.println(product_image);
 				
 				
 			
 				ProductBean productBean = new ProductBean();
+				ProductImageBean piBean = new ProductImageBean();//
+				
 				productBean.setProduct_name(product_name);
 				productBean.setProduct_type(product_type);
 				productBean.setProduct_subtype(product_subtype);
@@ -537,6 +584,9 @@ public class ProductServlet extends HttpServlet {
 				productBean.setTotal_review(total_review);
 				productBean.setTotal_purchase(total_purchase);
 				
+				piBean.setProduct_image(product_image);//
+				
+				
 //				System.out.println(productBean);//
 
 				// Send the use back to the form, if there were errors
@@ -551,9 +601,19 @@ public class ProductServlet extends HttpServlet {
 				/***************************2.開始新增資料***************************************/
 				ProductService productSvc = new ProductService();
 //				productBean = productSvc.addProduct(product_name, product_type, product_intro, product_price, product_available_qty, product_status, product_calorie, degree_of_sweetness, total_star, total_review);
-				productSvc.addProduct(productBean);
+				productBean = productSvc.addProduct(productBean);
+
+				System.out.println("新增資料:"+productBean);//
 				
-//				System.out.println("新增資料:"+productBean);//
+				ProductImageService piSvc = new ProductImageService();
+				
+				piBean.setProduct_id(productBean.getProduct_id());
+				
+				System.out.println("id:"+productBean.getProduct_id());//
+				
+				piSvc.addProductImage(piBean);
+				
+				System.out.println("新增圖片:"+piBean);//
 				
 				/***************************3.新增完成,準備轉交(Send the Success view)***********/
 				String url = "/product/listAllProduct.jsp";
