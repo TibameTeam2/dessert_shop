@@ -87,14 +87,16 @@
                     </ul>
 
                     <div class="top-bar-select">
-                        <span>Sort by:</span>
-                        <select class="custom-select">
-                            <option value="0">Relevance</option>
-                            <option value="1">Best sellers</option>
-                            <option value="2">Name, A to Z</option>
-                            <option value="3">Name, Z to A</option>
-                            <option value="4">Price, low to high</option>
-                            <option value="5">Price, high to low</option>
+                        <span>排序:</span>
+                        <!-- <select class="custom-select"> -->
+                        <!--如果有這行 文字會無法顯示-->
+                        <select class="">
+                            <option value="0">最新商品</option>
+                            <option value="1">銷售量 高至低</option>
+                            <option value="2">收藏數 高至低</option>
+                            <option value="3">依售價 高至低</option>
+                            <option value="4">依熱量 高至低 </option>
+                            <option value="5">依甜度 高至低</option>
                         </select>
                     </div>
                 </div>
@@ -1055,6 +1057,7 @@
     <!-- Main JS -->
     <script src="assets/js/main.js"></script>
 
+    <!-- Header Footer LoadingAnimation -->
     <script>
         $(document).ready(function () {
             $('.header').load('header.html')
@@ -1080,7 +1083,58 @@
                 }), $("#lp-bar").animate({ width: n + "%" }, 0)
             }, waitForAll: !0
         });
+    </script>
 
+    <!-- 商品展示 -->
+    <script>
+        // Single Product Start
+        let product_img_a=data.data.product--;
+        let product_img_b=data.data.product--;
+
+        let single_product = `
+                        <div class="single-product product-list">
+                            <div class="product-image">
+                                <a class="product-thumbnail" href="shop-single.html">
+                                    <img src="assets/images/product/${product_img_a}.jpg" alt="product">
+                                    <img class="image-hover" src="assets/images/product/${product_img_b}.jpg" alt="product">
+                                </a>
+                                <div class="product-action">
+                                    <a href="#" class="action"><i class="lar la-heart"></i></a>
+                                    <a href="#" class="action"><i class="las la-sync"></i></a>
+                                    <a href="#" class="action" data-bs-toggle="modal" data-bs-target="#quick-view"><i
+                                            class="las la-search"></i></a>
+                                </div>
+                                <div class="product-flag">
+                                    <span class="new">New</span>
+                                </div>
+                            </div>
+                            <div class="product-content">
+                                <h4 class="product-title"><a href="shop-single.html">Calvin Klein Jeans Reflective Logo
+                                        Full Zip</a></h4>
+                                <div class="manufacturer"><a href="#">Studio Design</a></div>
+                                <div class="product-price">
+                                    <span class="sele-price">$25.12</span>
+                                </div>
+                                <div class="product-desc">
+                                    <ul>
+                                        <li>Block out the haters with the fresh adidas® Originals Kaval Windbreaker
+                                            Jacket.</li>
+                                        <li>Part of the Kaval Collection.</li>
+                                        <li>Regular fit is eased, but not sloppy, and perfect for any activity.</li>
+                                        <li>Plain-woven jacket specifically constructed for freedom of movement.</li>
+                                    </ul>
+                                </div>
+                                <div class="availability">
+                                    <p>Availability: <span>300 In Stock</span></p>
+                                </div>
+                                <div class="cart-btn">
+                                    <a href="#" class="btn btn-primary btn-hover-dark">Add to Cart</a>
+                                </div>
+                            </div>
+                        </div>
+        `
+
+        // Single Product End
     </script>
 </body>
 
