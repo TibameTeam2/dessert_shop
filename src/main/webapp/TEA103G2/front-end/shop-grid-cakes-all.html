@@ -1083,20 +1083,36 @@
                 }), $("#lp-bar").animate({ width: n + "%" }, 0)
             }, waitForAll: !0
         });
-    </script>
+   
+   	</script>
 
+	
     <!-- 商品展示 -->
-    <script>
-        // Single Product Start
-        let product_img_a=data.data.product--;
-        let product_img_b=data.data.product--;
+    
+   
+  	<script>
+        // 
+        $(function () {
+        	$.get("/dessert_shop/product/getAllProduct", {}, function (data) {
+           		 console.log(data.msg);
+//            		if (data.flag) {
+//                     // alert("帳號:" + data.data.member_account + "\n姓名:" + data.data.member_name + "\n密碼:" + data.data.member_password);
+//                     // console.log(data.data);
+//                     // if(data.redirect)
+//                     //     location.href = data.redirect;
+//                 } else {
+//                 }
+            });
+           		
+        })
 
+		let product
         let single_product = `
                         <div class="single-product product-list">
                             <div class="product-image">
                                 <a class="product-thumbnail" href="shop-single.html">
-                                    <img src="assets/images/product/${product_img_a}.jpg" alt="product">
-                                    <img class="image-hover" src="assets/images/product/${product_img_b}.jpg" alt="product">
+                                    <img src="assets/images/product/"+"${product_img_a}"+".jpg" alt="product">
+                                    <img class="image-hover" src="assets/images/product/"+"${product_img_b}"+".jpg" alt="product">
                                 </a>
                                 <div class="product-action">
                                     <a href="#" class="action"><i class="lar la-heart"></i></a>
@@ -1131,11 +1147,14 @@
                                     <a href="#" class="btn btn-primary btn-hover-dark">Add to Cart</a>
                                 </div>
                             </div>
-                        </div>
-        `
+                        </div> `
+	
 
         // Single Product End
+        
+       
     </script>
+    
 </body>
 
 </html>

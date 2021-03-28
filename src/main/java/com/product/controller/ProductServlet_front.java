@@ -21,6 +21,7 @@ public class ProductServlet_front extends BaseServlet {
     	System.out.println("test");
     }   
     
+    // 呈現在http://localhost:8081/dessert_shop/product/getAllProduct
     public void getAllProduct(HttpServletRequest req, HttpServletResponse res) {
     	ProductService productSvc = new ProductService();
     	List<ProductBean> productList = productSvc.getAll();
@@ -28,7 +29,7 @@ public class ProductServlet_front extends BaseServlet {
 		ResultInfo info = new ResultInfo();
 
 		info.setFlag(true);
-		info.setMsg("取得成功!");
+		info.setMsg("資料取得成功!");
 		info.setData(productList);
 
 		writeValueByWriter(res, info);
