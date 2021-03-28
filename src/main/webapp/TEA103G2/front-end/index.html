@@ -35,6 +35,86 @@
     <!-- <link rel="stylesheet" href="assets/css/vendor/plugins.min.css">
     <link rel="stylesheet" href="assets/css/style.min.css"> -->
 
+    <style>
+    /* nav nav整排到setting */
+    .col-lg-10 {
+      -webkit-box-flex: 0;
+      -webkit-flex: 0 0 auto;
+          -ms-flex: 0 0 auto;
+              flex: 0 0 auto;
+      width: 83.33333%;
+
+      /* border: 1px solid blue;// */
+    }
+      /* nav- Home到contact，含下拉區塊中"子分類"的區塊 */
+      .primary-menu ul {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+
+        /* border: 1px dashed red;// */
+      }
+
+      /* 含 sub-menu 跟 mega-sub-menu 的hover外框  */
+      .primary-menu ul li:hover > .sub-menu,
+      .primary-menu ul li:hover > .mega-sub-menu {
+        opacity: 1;
+        visibility: visible;
+        -webkit-transform: rotateX(0deg);
+                transform: rotateX(0deg);
+        -o-transition: -o-transform 0.3s, opacity 0.3s;
+        -ms-transition: -ms-transform 0.3s, opacity 0.3s;
+        -moz-transition: -moz-transform 0.3s, opacity 0.3s;
+        -webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
+
+        /* border: 4px dotted orange;// */
+      }
+
+      /* sub-menu的hover框框    */
+      /* 會被上面覆蓋 */
+      .primary-menu .sub-menu {
+        position: absolute;
+        min-width: 230px;
+        left: 0;
+        top: 100%;
+        background-color: #fff;
+        -webkit-box-shadow: 0px 0px 3.76px 0.24px rgba(0, 0, 0, 0.15);
+                box-shadow: 0px 0px 3.76px 0.24px rgba(0, 0, 0, 0.15);
+        opacity: 0;
+        visibility: hidden;
+        z-index: 9;
+        -o-transform-origin: 0% 0%;
+        -ms-transform-origin: 0% 0%;
+        -moz-transform-origin: 0% 0%;
+        -webkit-transform-origin: 0% 0%;
+        transform-style: preserve-3d;
+        -o-transform-style: preserve-3d;
+        -moz-transform-style: preserve-3d;
+        -webkit-transform-style: preserve-3d;
+        -webkit-transform: rotateX(-75deg);
+                transform: rotateX(-75deg);
+
+        /* border: 3px solid purple;// */
+      }
+
+      /* 調整index 商品總攬 banner 外框大小 */
+      .primary-menu .mega-sub-menu > li.manu-banner {
+        width: 50%;
+        margin-top: 20px;
+        position: relative;
+
+        /* border: 2px solid black;// */
+      }
+      /* 調整index 商品總攬 banner 圖片大小 */
+      .primary-menu .mega-sub-menu > li.manu-banner img {
+        width: 100%;
+      }
+
+
+    </style>
+
+
 </head>
 
 <body>
@@ -67,6 +147,7 @@
                             </div>
                             <!-- Header Logo End -->
                         </div>
+                        <!-- nav整排到setting -->
                         <div class="col-lg-10">
                             <!--Header Menu Wrapper Start -->
                             <div class="header-menu-wrapper">
@@ -84,40 +165,52 @@
                                                 </ul>
                                             </li>
                                             <li>
-                                                <a href="#">Shop</a>
+                                                <a href="#">商品總覽</a>
                                                 <ul class="mega-sub-menu">
                                                     <li>
-                                                        <a href="#" class="menu-title">Shop Grid</a>
+                                                        <a href="shop-grid-cakes-all.html" class="menu-title">蛋糕</a>
 
                                                         <ul class="menu-item">
-                                                            <li><a href="shop-grid-3-column.html">Shop Grid 3 Column</a></li>
-                                                            <li><a href="shop-grid-4-column.html">Shop Grid 4 Column</a></li>
-                                                            <li><a href="shop-grid-left-sidebar.html">Shop Grid Left Sidebar</a></li>
-                                                            <li><a href="shop-grid-right-sidebar.html">Shop Grid Right Sidebar</a></li>
+                                                            <li><a href="shop-grid-3-column.html">千層蛋糕</a></li>
+                                                            <li><a href="shop-grid-4-column.html">杯子蛋糕</a></li>
+                                                            <li><a href="shop-grid-left-sidebar.html">起司蛋糕</a></li>
+                                                            <li><a href="shop-grid-right-sidebar.html">磅蛋糕</a></li>
+                                                            <li><a href="shop-grid-right-sidebar.html">蛋糕捲</a></li>
+                                                          </ul>
+                                                    </li>
+                                                    <li>
+                                                        <a href="shop-grid-chocolates-all.html" class="menu-title">巧克力</a>
+
+                                                        <ul class="menu-item">
+                                                            <li><a href="shop-list.html">生巧克力</a></li>
+                                                            <li><a href="shop-list-left-sidebar.html">藝術巧克力</a></li>
+                                                            <li><a href="shop-list-right-sidebar.html">巴克巧克力</a></li>
                                                         </ul>
                                                     </li>
                                                     <li>
-                                                        <a href="#" class="menu-title">Shop List</a>
+                                                        <a href="shop-grid-others-all.html" class="menu-title">精緻小點</a>
 
                                                         <ul class="menu-item">
-                                                            <li><a href="shop-list.html">Shop List</a></li>
-                                                            <li><a href="shop-list-left-sidebar.html">Shop List Left Sidebar</a></li>
-                                                            <li><a href="shop-list-right-sidebar.html">Shop List Right Sidebar</a></li>
+                                                            <li><a href="shop-single.html">派 & 塔</a></li>
+                                                            <li><a href="shop-single-affiliate.html">泡芙</a></li>
+                                                            <li><a href="shop-single-gallery.html">馬卡龍</a></li>
+                                                            <li><a href="shop-single-group.html">可麗露</a></li>
+                                                            <li><a href="shop-single-sticky.html">布蕾</a></li>
                                                         </ul>
                                                     </li>
                                                     <li>
-                                                        <a href="#" class="menu-title">Shop Single</a>
+                                                        <a href="shop-grid-drinks-all.html" class="menu-title">飲品</a>
 
                                                         <ul class="menu-item">
-                                                            <li><a href="shop-single.html">Shop Single</a></li>
-                                                            <li><a href="shop-single-affiliate.html">Shop Single Affiliate</a></li>
-                                                            <li><a href="shop-single-gallery.html">Shop Single Gallery</a></li>
-                                                            <li><a href="shop-single-group.html">Shop Single Group</a></li>
-                                                            <li><a href="shop-single-sticky.html">Shop Single Sticky</a></li>
+                                                            <li><a href="about.html">特調茶飲</a></li>
+                                                            <li><a href="cart.html">香濃拿鐵</a></li>
+                                                            <li><a href="wishlist.html">經典咖啡</a></li>
+                                                            <li><a href="checkout.html">繽紛水果飲</a></li>
+                                                            <li><a href="my-account.html">其他</a></li>
                                                         </ul>
                                                     </li>
-                                                    <li>
-                                                        <a href="#" class="menu-title">Page</a>
+                                                    <!-- <li>
+                                                        <a href="#" class="menu-title">其他</a>
 
                                                         <ul class="menu-item">
                                                             <li><a href="about.html">About Us</a></li>
@@ -126,13 +219,14 @@
                                                             <li><a href="checkout.html">Checkout</a></li>
                                                             <li><a href="my-account.html">My Account</a></li>
                                                         </ul>
-                                                    </li>
+                                                    </li> -->
 
+                                                    <!-- banner 3:1 -->
                                                     <li class="manu-banner">
-                                                        <a href="#"><img src="assets/images/banner-menu-01.jpg" alt=""></a>
+                                                        <a href="#"><img src="assets/images/banner-1.jpg" alt=""></a>
                                                     </li>
                                                     <li class="manu-banner">
-                                                        <a href="#"><img src="assets/images/banner-menu-02.jpg" alt=""></a>
+                                                        <a href="#"><img src="assets/images/banner-2.jpg" alt=""></a>
                                                     </li>
                                                 </ul>
                                             </li>
@@ -151,27 +245,27 @@
                                                 </ul>
                                             </li>
                                             <li>
-                                                <a href="#">最新消息</a>
+                                                <a href="#">Blog</a>
                                                 <ul class="sub-menu">
-                                                    <li><a href="blog-grid.html">嗜甜公告</a>
-                                                        <!-- <ul class="sub-menu">
+                                                    <li><a href="#">Blog Grid</a>
+                                                        <ul class="sub-menu">
                                                             <li><a href="blog-grid.html">Blog Grid</a></li>
                                                             <li><a href="blog-grid-left-sidebar.html">Blog Grid Left Sidebar</a></li>
                                                             <li><a href="blog-grid-right-sidebar.html">Blog Grid Right Sidebar</a></li>
-                                                        </ul> -->
+                                                        </ul>
                                                     </li>
-                                                    <li><a href="blog-grid2.html">媒體報導</a>
-                                                        <!-- <ul class="sub-menu">
+                                                    <li><a href="#">Blog List</a>
+                                                        <ul class="sub-menu">
                                                             <li><a href="blog-list-left-sidebar.html">Blog List Left Sidebar</a></li>
                                                             <li><a href="blog-list-right-sidebar.html">Blog List Right Sidebar</a></li>
-                                                        </ul> -->
+                                                        </ul>
                                                     </li>
-                                                    <!-- <li><a href="#">Blog Details</a>
+                                                    <li><a href="#">Blog Details</a>
                                                         <ul class="sub-menu">
                                                             <li><a href="blog-details-left-sidebar.html">Blog details Left Sidebar</a></li>
                                                             <li><a href="blog-details-right-sidebar.html">Blog details Right Sidebar</a></li>
                                                         </ul>
-                                                    </li> -->
+                                                    </li>
                                                 </ul>
                                             </li>
                                             <li><a href="contact.html">Contact</a></li>
@@ -205,6 +299,12 @@
                                         <i class="lar la-heart"></i>
                                         <span class="number">3</span>
                                     </a>
+                                    <a class="action" href="#">
+                                        <i class="far fa-bell"></i>
+                                        <span class="number">3</span>
+                                    </a>
+
+
                                     <div class="dropdown">
                                         <a class="action" href="#" role="button" data-bs-toggle="dropdown">
                                             <i class="las la-shopping-bag"></i>
@@ -450,6 +550,7 @@
             <!-- Canvas Close bar End -->
 
             <!-- Canvas Menu Start -->
+            <!-- 隱藏在左邊? -->
             <div class="canvas-menu">
                 <nav>
                     <ul>
@@ -463,7 +564,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="#">Shop</a>
+                            <a href="#">商品總覽canvas</a>
                             <ul class="mega-sub-menu">
                                 <li>
                                     <a href="#" class="menu-title">Shop Grid</a>
@@ -789,23 +890,26 @@
         <!--Features End-->
 
         <!--New Arrivals Start-->
+        <!-- 最新商品 -->
         <div class="section section-padding-02">
             <div class="container">
                 <!-- Section Title Start -->
                 <div class="section-title text-center">
                     <span class="sub-title">See Our Latest</span>
-                    <h2 class="title">New Arrivals</h2>
+                    <h2 class="title">最新商品</h2>
                 </div>
                 <!-- Section Title Start -->
                 <div class="swiper-container product-active">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
+
+                            <!-- 中段的商品列表 -->
                             <!-- Single Product Start -->
                             <div class="single-product">
                                 <div class="product-image">
                                     <a class="product-thumbnail" href="shop-single.html">
-                                        <img src="assets/images/product/product-13.jpg" alt="product">
-                                        <img class="image-hover" src="assets/images/product/product-14.jpg" alt="product">
+                                        <img src="assets/images/product/cakes/cupCinnamon-a.jpg" alt="product">
+                                        <img class="image-hover" src="assets/images/product/cakes/cupCinnamon-b.jpg" alt="product">
                                     </a>
                                     <div class="product-action">
                                         <a href="#" class="action"><i class="lar la-heart"></i></a>
@@ -814,15 +918,15 @@
                                         <a href="#" class="action"><i class="ion-bag"></i></a>
                                     </div>
                                     <div class="product-flag">
-                                        <span class="discount">-25%</span>
+                                        <span class="discount">new</span>
                                     </div>
                                 </div>
                                 <div class="product-content">
-                                    <h4 class="product-title"><a href="shop-single.html">Originals Kaval Windbreaker Winter Jacket</a></h4>
-                                    <div class="manufacturer"><a href="#">Studio Design</a></div>
+                                    <h4 class="product-title"><a href="shop-single.html">莓芬肉桂</a></h4>
+                                    <div class="manufacturer"><a href="#">杯子蛋糕</a></div>
                                     <div class="product-price">
-                                        <span class="regular-price">$23.90</span>
-                                        <span class="sele-price">$19.12</span>
+                                        <span class="regular-price">$90</span>
+                                        <span class="sele-price">$75</span>
                                     </div>
                                 </div>
                             </div>
@@ -831,8 +935,8 @@
                             <div class="single-product">
                                 <div class="product-image">
                                     <a class="product-thumbnail" href="shop-single.html">
-                                        <img src="assets/images/product/product-14.jpg" alt="product">
-                                        <img class="image-hover" src="assets/images/product/product-06.jpg" alt="product">
+                                        <img src="assets/images/product/cakes/bBerryPound-a.jpg" alt="product">
+                                        <img class="image-hover" src="assets/images/product/cakes/bBerryPound-b.jpg" alt="product">
                                     </a>
                                     <div class="product-action">
                                         <a href="#" class="action"><i class="lar la-heart"></i></a>
@@ -845,11 +949,11 @@
                                     </div>
                                 </div>
                                 <div class="product-content">
-                                    <h4 class="product-title"><a href="shop-single.html">Juicy Couture Juicy Quilted Terry Track Jacket</a></h4>
-                                    <div class="manufacturer"><a href="#">Studio Design</a></div>
+                                    <h4 class="product-title"><a href="shop-single.html">藍莓優格</a></h4>
+                                    <div class="manufacturer"><a href="#">磅蛋糕</a></div>
                                     <div class="product-price">
-                                        <span class="regular-price">$35.90</span>
-                                        <span class="sele-price">$28.12</span>
+                                        <span class="regular-price">$95</span>
+                                        <span class="sele-price">$75</span>
                                     </div>
                                 </div>
                             </div>
@@ -860,8 +964,8 @@
                             <div class="single-product">
                                 <div class="product-image">
                                     <a class="product-thumbnail" href="shop-single.html">
-                                        <img src="assets/images/product/product-01.jpg" alt="product">
-                                        <img class="image-hover" src="assets/images/product/product-02.jpg" alt="product">
+                                        <img src="assets/images/product/others/chocoT-a.jpg" alt="product">
+                                        <img class="image-hover" src="assets/images/product/others/chocoT-b.jpg" alt="product">
                                     </a>
                                     <div class="product-action">
                                         <a href="#" class="action"><i class="lar la-heart"></i></a>
@@ -874,20 +978,20 @@
                                     </div>
                                 </div>
                                 <div class="product-content">
-                                    <h4 class="product-title"><a href="shop-single.html">Madden by Steve Madden Cale 6</a></h4>
-                                    <div class="manufacturer"><a href="#">Studio Design</a></div>
+                                    <h4 class="product-title"><a href="shop-single.html">濃情巧克力</a></h4>
+                                    <div class="manufacturer"><a href="#">派 & 塔</a></div>
                                     <div class="product-price">
-                                        <span class="sele-price">$11.12</span>
+                                        <span class="sele-price">$100</span>
                                     </div>
                                 </div>
                             </div>
                             <!-- Single Product End -->
-                            <!-- Single Product Start -->
+                            <!-- Single Product Start --><!--9-->
                             <div class="single-product">
                                 <div class="product-image">
                                     <a class="product-thumbnail" href="shop-single.html">
-                                        <img src="assets/images/product/product-08.jpg" alt="product">
-                                        <img class="image-hover" src="assets/images/product/product-04.jpg" alt="product">
+                                        <img src="assets/images/product/drinks/butterflyT-a.jpg" alt="product">
+                                        <img class="image-hover" src="assets/images/product/drinks/butterflyT-b.jpg" alt="product">
                                     </a>
                                     <div class="product-action">
                                         <a href="#" class="action"><i class="lar la-heart"></i></a>
@@ -900,64 +1004,10 @@
                                     </div>
                                 </div>
                                 <div class="product-content">
-                                    <h4 class="product-title"><a href="shop-single.html">Trans-Weight Hooded Wind and Water Resistant Shell</a></h4>
-                                    <div class="manufacturer"><a href="#">Studio Design</a></div>
+                                    <h4 class="product-title"><a href="shop-single.html">蝶豆花冰茶</a></h4>
+                                    <div class="manufacturer"><a href="#">特調茶飲</a></div>
                                     <div class="product-price">
-                                        <span class="sele-price">$11.12</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Single Product End -->
-                        </div>
-                        <div class="swiper-slide">
-                            <!-- Single Product Start -->
-                            <div class="single-product">
-                                <div class="product-image">
-                                    <a class="product-thumbnail" href="shop-single.html">
-                                        <img src="assets/images/product/product-04.jpg" alt="product">
-                                        <img class="image-hover" src="assets/images/product/product-03.jpg" alt="product">
-                                    </a>
-                                    <div class="product-action">
-                                        <a href="#" class="action"><i class="lar la-heart"></i></a>
-                                        <a href="#" class="action"><i class="las la-sync"></i></a>
-                                        <a href="#" class="action" data-bs-toggle="modal" data-bs-target="#quick-view"><i class="las la-search"></i></a>
-                                        <a href="#" class="action"><i class="ion-bag"></i></a>
-                                    </div>
-                                    <div class="product-flag">
-                                        <span class="new">New</span>
-                                    </div>
-                                </div>
-                                <div class="product-content">
-                                    <h4 class="product-title"><a href="shop-single.html">Water and Wind Resistant Insulated Jacket</a></h4>
-                                    <div class="manufacturer"><a href="#">Studio Design</a></div>
-                                    <div class="product-price">
-                                        <span class="sele-price">$11.12</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Single Product End -->
-                            <!-- Single Product Start -->
-                            <div class="single-product">
-                                <div class="product-image">
-                                    <a class="product-thumbnail" href="shop-single.html">
-                                        <img src="assets/images/product/product-03.jpg" alt="product">
-                                        <img class="image-hover" src="assets/images/product/product-05.jpg" alt="product">
-                                    </a>
-                                    <div class="product-action">
-                                        <a href="#" class="action"><i class="lar la-heart"></i></a>
-                                        <a href="#" class="action"><i class="las la-sync"></i></a>
-                                        <a href="#" class="action" data-bs-toggle="modal" data-bs-target="#quick-view"><i class="las la-search"></i></a>
-                                        <a href="#" class="action"><i class="ion-bag"></i></a>
-                                    </div>
-                                    <div class="product-flag">
-                                        <span class="new">New</span>
-                                    </div>
-                                </div>
-                                <div class="product-content">
-                                    <h4 class="product-title"><a href="shop-single.html">New Balance Fresh Foam Kaymin</a></h4>
-                                    <div class="manufacturer"><a href="#">Studio Design</a></div>
-                                    <div class="product-price">
-                                        <span class="sele-price">$18.12</span>
+                                        <span class="sele-price">$130</span>
                                     </div>
                                 </div>
                             </div>
@@ -968,7 +1018,8 @@
                             <div class="single-product">
                                 <div class="product-image">
                                     <a class="product-thumbnail" href="shop-single.html">
-                                        <img src="assets/images/product/product-05.jpg" alt="product">
+                                        <img src="assets/images/product/chocolates/pyrChoco-a.jpg" alt="product">
+                                        <img class="image-hover" src="assets/images/product/chocolates/pyrChoco-b.jpg" alt="product">
                                     </a>
                                     <div class="product-action">
                                         <a href="#" class="action"><i class="lar la-heart"></i></a>
@@ -981,10 +1032,10 @@
                                     </div>
                                 </div>
                                 <div class="product-content">
-                                    <h4 class="product-title"><a href="shop-single.html">Juicy Couture Solid Sleeve Puffer Jacket</a></h4>
-                                    <div class="manufacturer"><a href="#">Studio Design</a></div>
+                                    <h4 class="product-title"><a href="shop-single.html">晴光金字塔</a></h4>
+                                    <div class="manufacturer"><a href="#">工藝巧克力</a></div>
                                     <div class="product-price">
-                                        <span class="sele-price">$19.12</span>
+                                        <span class="sele-price">$69</span>
                                     </div>
                                 </div>
                             </div>
@@ -993,8 +1044,8 @@
                             <div class="single-product">
                                 <div class="product-image">
                                     <a class="product-thumbnail" href="shop-single.html">
-                                        <img src="assets/images/product/product-09.jpg" alt="product">
-                                        <img class="image-hover" src="assets/images/product/product-10.jpg" alt="product">
+                                        <img src="assets/images/product/chocolates/rasBar-a.jpg" alt="product">
+                                        <img class="image-hover" src="assets/images/product/chocolates/pyrChoco-b.jpg" alt="product">
                                     </a>
                                     <div class="product-action">
                                         <a href="#" class="action"><i class="lar la-heart"></i></a>
@@ -1007,10 +1058,10 @@
                                     </div>
                                 </div>
                                 <div class="product-content">
-                                    <h4 class="product-title"><a href="shop-single.html">New Balance Fresh Foam LAZR v1 Sport</a></h4>
-                                    <div class="manufacturer"><a href="#">Studio Design</a></div>
+                                    <h4 class="product-title"><a href="shop-single.html">紅莓甜心</a></h4>
+                                    <div class="manufacturer"><a href="#">工藝巧克力</a></div>
                                     <div class="product-price">
-                                        <span class="sele-price">$19.12</span>
+                                        <span class="sele-price">$55</span>
                                     </div>
                                 </div>
                             </div>
@@ -1021,8 +1072,8 @@
                             <div class="single-product">
                                 <div class="product-image">
                                     <a class="product-thumbnail" href="shop-single.html">
-                                        <img src="assets/images/product/product-12.jpg" alt="product">
-                                        <img class="image-hover" src="assets/images/product/product-01.jpg" alt="product">
+                                        <img src="assets/images/product/cakes/marbledPound-a.jpg" alt="product">
+                                        <img class="image-hover" src="assets/images/product/cakes/marbledPound-b.jpg" alt="product">
                                     </a>
                                     <div class="product-action">
                                         <a href="#" class="action"><i class="lar la-heart"></i></a>
@@ -1035,10 +1086,10 @@
                                     </div>
                                 </div>
                                 <div class="product-content">
-                                    <h4 class="product-title"><a href="shop-single.html">Calvin Klein Jeans Reflective Logo Full Zip</a></h4>
-                                    <div class="manufacturer"><a href="#">Studio Design</a></div>
+                                    <h4 class="product-title"><a href="shop-single.html">焦糖核果大理石</a></h4>
+                                    <div class="manufacturer"><a href="#">磅蛋糕</a></div>
                                     <div class="product-price">
-                                        <span class="sele-price">$29.12</span>
+                                        <span class="sele-price">$100</span>
                                     </div>
                                 </div>
                             </div>
@@ -1047,8 +1098,8 @@
                             <div class="single-product">
                                 <div class="product-image">
                                     <a class="product-thumbnail" href="shop-single.html">
-                                        <img src="assets/images/product/product-10.jpg" alt="product">
-                                        <img class="image-hover" src="assets/images/product/product-11.jpg" alt="product">
+                                        <img src="assets/images/product/cakes/mangoCheese-a.jpg" alt="product">
+                                        <img class="image-hover" src="assets/images/product/cakes/mangoCheese-b.jpg" alt="product">
                                     </a>
                                     <div class="product-action">
                                         <a href="#" class="action"><i class="lar la-heart"></i></a>
@@ -1061,8 +1112,62 @@
                                     </div>
                                 </div>
                                 <div class="product-content">
-                                    <h4 class="product-title"><a href="shop-single.html">Juicy Couture Tricot Logo Stripe Jacket</a></h4>
-                                    <div class="manufacturer"><a href="#">Studio Design</a></div>
+                                    <h4 class="product-title"><a href="shop-single.html">香芒華爾滋</a></h4>
+                                    <div class="manufacturer"><a href="#">起司蛋糕</a></div>
+                                    <div class="product-price">
+                                        <span class="sele-price">$130</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Single Product End -->
+                        </div>
+                        <div class="swiper-slide">
+                           <!-- Single Product Start -->
+                           <div class="single-product">
+                            <div class="product-image">
+                                <a class="product-thumbnail" href="shop-single.html">
+                                    <img src="assets/images/product/cakes/3berryRoll-a.jpg" alt="product">
+                                    <img class="image-hover" src="assets/images/product/cakes/3berryRoll-b.jpg" alt="product">
+                                </a>
+                                <div class="product-action">
+                                    <a href="#" class="action"><i class="lar la-heart"></i></a>
+                                    <a href="#" class="action"><i class="las la-sync"></i></a>
+                                    <a href="#" class="action" data-bs-toggle="modal" data-bs-target="#quick-view"><i class="las la-search"></i></a>
+                                    <a href="#" class="action"><i class="ion-bag"></i></a>
+                                </div>
+                                <div class="product-flag">
+                                    <span class="new">New</span>
+                                </div>
+                            </div>
+                            <div class="product-content">
+                                <h4 class="product-title"><a href="shop-single.html">繽紛野莓派對</a></h4>
+                                <div class="manufacturer"><a href="#">蛋糕捲</a></div>
+                                <div class="product-price">
+                                    <span class="sele-price">$120</span>
+                                </div>
+                            </div>
+                        </div>
+                            <!-- Single Product End -->
+                            <!-- Single Product Start -->
+                            <div class="single-product">
+                                <div class="product-image">
+                                    <a class="product-thumbnail" href="shop-single.html">
+                                        <img src="assets/images/product/drinks/toastedMCoffee-a.jpg" alt="product">
+                                        <img class="image-hover" src="assets/images/product/drinks/toastedMCoffee-b.jpg" alt="product">
+                                    </a>
+                                    <div class="product-action">
+                                        <a href="#" class="action"><i class="lar la-heart"></i></a>
+                                        <a href="#" class="action"><i class="las la-sync"></i></a>
+                                        <a href="#" class="action" data-bs-toggle="modal" data-bs-target="#quick-view"><i class="las la-search"></i></a>
+                                        <a href="#" class="action"><i class="ion-bag"></i></a>
+                                    </div>
+                                    <div class="product-flag">
+                                        <span class="new">New</span>
+                                    </div>
+                                </div>
+                                <div class="product-content">
+                                    <h4 class="product-title"><a href="shop-single.html">烤棉花糖摩卡</a></h4>
+                                    <div class="manufacturer"><a href="#">經典咖啡</a></div>
                                     <div class="product-price">
                                         <span class="sele-price">$25.12</span>
                                     </div>
@@ -1170,152 +1275,41 @@
         <!-- Testimonial End-->
 
         <!-- Our Product Start-->
+        <!-- 嗜甜商品 -->
         <div class="section section-padding-02 product-bg">
             <div class="container">
                 <!-- Section Title Start -->
                 <div class="section-title text-center">
                     <span class="sub-title">See Our Latest</span>
-                    <h2 class="title">Our products </h2>
+                    <h2 class="title">嗜甜x甜點 </h2>
                 </div>
                 <!-- Section Title End -->
 
                 <!-- Product Tab Menu Start -->
                 <ul class="nav product-nav justify-content-center">
-                    <li><a class="active" data-bs-toggle="tab" href="#tab1">Fruits</a></li>
-                    <li><a data-bs-toggle="tab" href="#tab2">Flour</a></li>
-                    <li><a data-bs-toggle="tab" href="#tab3">Vegetables</a></li>
-                    <li><a data-bs-toggle="tab" href="#tab4">Meat</a></li>
-                    <li><a data-bs-toggle="tab" href="#tab5">Milk & Eggs</a></li>
+                    <li><a class="active" data-bs-toggle="tab" href="#tab1">每日優惠</a></li>
+                    <li><a data-bs-toggle="tab" href="#tab2">蛋糕</a></li>
+                    <li><a data-bs-toggle="tab" href="#tab3">巧克力</a></li>
+                    <li><a data-bs-toggle="tab" href="#tab4">精緻小點</a></li>
+                    <li><a data-bs-toggle="tab" href="#tab5">飲品</a></li>
                 </ul>
                 <!-- Product Tab Menu End -->
 
                 <!-- Product Tab Content Start -->
                 <div class="tab-content product-tab-content">
                     <div class="tab-pane fade show active" id="tab1">
-                        <!-- Product 2 Start -->
+                        <!-- Product tab1 Start -->
                         <div class="product-2-active">
                             <div class="swiper-container">
                                 <div class="swiper-wrapper">
                                     <div class="swiper-slide">
+                                        <!-- 每日優惠商品 -->
                                         <!-- Single Product Start -->
                                         <div class="single-product">
                                             <div class="product-image">
                                                 <a class="product-thumbnail" href="shop-single.html">
-                                                    <img src="assets/images/product/product-14.jpg" alt="product">
-                                                    <img class="image-hover" src="assets/images/product/product-06.jpg" alt="product">
-                                                </a>
-                                                <div class="product-action">
-                                                    <a href="#" class="action"><i class="lar la-heart"></i></a>
-                                                    <a href="#" class="action"><i class="las la-sync"></i></a>
-                                                    <a href="#" class="action" data-bs-toggle="modal" data-bs-target="#quick-view"><i class="las la-search"></i></a>
-                                                    <a href="#" class="action"><i class="ion-bag"></i></a>
-                                                </div>
-                                                <div class="product-flag">
-                                                    <span class="new">New</span>
-                                                </div>
-                                            </div>
-                                            <div class="product-content">
-                                                <h4 class="product-title"><a href="shop-single.html">Juicy Couture Juicy Quilted Terry Track Jacket</a></h4>
-                                                <div class="manufacturer"><a href="#">Studio Design</a></div>
-                                                <div class="product-price">
-                                                    <span class="regular-price">$23.90</span>
-                                                    <span class="sele-price">$19.12</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Single Product End -->
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <!-- Single Product Start -->
-                                        <div class="single-product">
-                                            <div class="product-image">
-                                                <a class="product-thumbnail" href="shop-single.html">
-                                                    <img src="assets/images/product/product-01.jpg" alt="product">
-                                                    <img class="image-hover" src="assets/images/product/product-02.jpg" alt="product">
-                                                </a>
-                                                <div class="product-action">
-                                                    <a href="#" class="action"><i class="lar la-heart"></i></a>
-                                                    <a href="#" class="action"><i class="las la-sync"></i></a>
-                                                    <a href="#" class="action" data-bs-toggle="modal" data-bs-target="#quick-view"><i class="las la-search"></i></a>
-                                                    <a href="#" class="action"><i class="ion-bag"></i></a>
-                                                </div>
-                                                <div class="product-flag">
-                                                    <span class="new">New</span>
-                                                </div>
-                                            </div>
-                                            <div class="product-content">
-                                                <h4 class="product-title"><a href="shop-single.html">Madden by Steve Madden Cale 6</a></h4>
-                                                <div class="manufacturer"><a href="#">Studio Design</a></div>
-                                                <div class="product-price">
-                                                    <span class="sele-price">$11.12</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Single Product End -->
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <!-- Single Product Start -->
-                                        <div class="single-product">
-                                            <div class="product-image">
-                                                <a class="product-thumbnail" href="shop-single.html">
-                                                    <img src="assets/images/product/product-06.jpg" alt="product">
-                                                    <img class="image-hover" src="assets/images/product/product-07.jpg" alt="product">
-                                                </a>
-                                                <div class="product-action">
-                                                    <a href="#" class="action"><i class="lar la-heart"></i></a>
-                                                    <a href="#" class="action"><i class="las la-sync"></i></a>
-                                                    <a href="#" class="action" data-bs-toggle="modal" data-bs-target="#quick-view"><i class="las la-search"></i></a>
-                                                    <a href="#" class="action"><i class="ion-bag"></i></a>
-                                                </div>
-                                                <div class="product-flag">
-                                                    <span class="new">New</span>
-                                                </div>
-                                            </div>
-                                            <div class="product-content">
-                                                <h4 class="product-title"><a href="shop-single.html">Brixton Patrol All Terrain Anorak Jacket</a></h4>
-                                                <div class="manufacturer"><a href="#">Studio Design</a></div>
-                                                <div class="product-price">
-                                                    <span class="sele-price">$29.12</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Single Product End -->
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <!-- Single Product Start -->
-                                        <div class="single-product">
-                                            <div class="product-image">
-                                                <a class="product-thumbnail" href="shop-single.html">
-                                                    <img src="assets/images/product/product-08.jpg" alt="product">
-                                                    <img class="image-hover" src="assets/images/product/product-04.jpg" alt="product">
-                                                </a>
-                                                <div class="product-action">
-                                                    <a href="#" class="action"><i class="lar la-heart"></i></a>
-                                                    <a href="#" class="action"><i class="las la-sync"></i></a>
-                                                    <a href="#" class="action" data-bs-toggle="modal" data-bs-target="#quick-view"><i class="las la-search"></i></a>
-                                                    <a href="#" class="action"><i class="ion-bag"></i></a>
-                                                </div>
-                                                <div class="product-flag">
-                                                    <span class="new">New</span>
-                                                </div>
-                                            </div>
-                                            <div class="product-content">
-                                                <h4 class="product-title"><a href="shop-single.html">Trans-Weight Hooded Wind and Water Resistant Shell</a></h4>
-                                                <div class="manufacturer"><a href="#">Studio Design</a></div>
-                                                <div class="product-price">
-                                                    <span class="sele-price">$19.12</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Single Product End -->
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <!-- Single Product Start -->
-                                        <div class="single-product">
-                                            <div class="product-image">
-                                                <a class="product-thumbnail" href="shop-single.html">
-                                                    <img src="assets/images/product/product-13.jpg" alt="product">
-                                                    <img class="image-hover" src="assets/images/product/product-14.jpg" alt="product">
+                                                    <img src="assets/images/product/others/pearT-a.jpg" alt="product">
+                                                    <img class="image-hover" src="assets/images/product/others/pearT-b.jpg" alt="product">
                                                 </a>
                                                 <div class="product-action">
                                                     <a href="#" class="action"><i class="lar la-heart"></i></a>
@@ -1328,11 +1322,11 @@
                                                 </div>
                                             </div>
                                             <div class="product-content">
-                                                <h4 class="product-title"><a href="shop-single.html">Originals Kaval Windbreaker Winter Jacket</a></h4>
+                                                <h4 class="product-title"><a href="shop-single.html">Juicy Couture Juicy Quilted Terry Track Jacket</a></h4>
                                                 <div class="manufacturer"><a href="#">Studio Design</a></div>
                                                 <div class="product-price">
-                                                    <span class="regular-price">$20.90</span>
-                                                    <span class="sele-price">$11.12</span>
+                                                    <span class="regular-price">$100</span>
+                                                    <span class="sele-price">$75</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -1343,8 +1337,124 @@
                                         <div class="single-product">
                                             <div class="product-image">
                                                 <a class="product-thumbnail" href="shop-single.html">
-                                                    <img src="assets/images/product/product-10.jpg" alt="product">
-                                                    <img class="image-hover" src="assets/images/product/product-11.jpg" alt="product">
+                                                    <img src="assets/images/product/others/berryMacaron-a.jpg" alt="product">
+                                                    <img class="image-hover" src="assets/images/product/others/berryMacaron-b.jpg" alt="product">
+                                                </a>
+                                                <div class="product-action">
+                                                    <a href="#" class="action"><i class="lar la-heart"></i></a>
+                                                    <a href="#" class="action"><i class="las la-sync"></i></a>
+                                                    <a href="#" class="action" data-bs-toggle="modal" data-bs-target="#quick-view"><i class="las la-search"></i></a>
+                                                    <a href="#" class="action"><i class="ion-bag"></i></a>
+                                                </div>
+                                                <div class="product-flag">
+                                                    <span class="discount">-50%</span>
+                                                </div>
+                                            </div>
+                                            <div class="product-content">
+                                                <h4 class="product-title"><a href="shop-single.html">Madden by Steve Madden Cale 6</a></h4>
+                                                <div class="manufacturer"><a href="#">Studio Design</a></div>
+                                                <div class="product-price">
+                                                    <span class="regular-price">$80</span>
+                                                    <span class="sele-price">$40</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Single Product End -->
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <!-- Single Product Start -->
+                                        <div class="single-product">
+                                            <div class="product-image">
+                                                <a class="product-thumbnail" href="shop-single.html">
+                                                    <img src="assets/images/product/cakes/cupPinapple-a.jpg" alt="product">
+                                                    <img class="image-hover" src="assets/images/product/cakes/cupPinapple-b.jpg" alt="product">
+                                                </a>
+                                                <div class="product-action">
+                                                    <a href="#" class="action"><i class="lar la-heart"></i></a>
+                                                    <a href="#" class="action"><i class="las la-sync"></i></a>
+                                                    <a href="#" class="action" data-bs-toggle="modal" data-bs-target="#quick-view"><i class="las la-search"></i></a>
+                                                    <a href="#" class="action"><i class="ion-bag"></i></a>
+                                                </div>
+                                                <div class="product-flag">
+                                                    <span class="discount">-25%</span>
+                                                </div>
+                                            </div>
+                                            <div class="product-content">
+                                                <h4 class="product-title"><a href="shop-single.html">Brixton Patrol All Terrain Anorak Jacket</a></h4>
+                                                <div class="manufacturer"><a href="#">Studio Design</a></div>
+                                                <div class="product-price">
+                                                    <span class="regular-price">$90</span>
+                                                    <span class="sele-price">$68</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Single Product End -->
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <!-- Single Product Start -->
+                                        <div class="single-product">
+                                            <div class="product-image">
+                                                <a class="product-thumbnail" href="shop-single.html">
+                                                    <img src="assets/images/product/cakes/gingerCup-a.jpg" alt="product">
+                                                    <img class="image-hover" src="assets/images/product/cakes/gingerCup-b.jpg" alt="product">
+                                                </a>
+                                                <div class="product-action">
+                                                    <a href="#" class="action"><i class="lar la-heart"></i></a>
+                                                    <a href="#" class="action"><i class="las la-sync"></i></a>
+                                                    <a href="#" class="action" data-bs-toggle="modal" data-bs-target="#quick-view"><i class="las la-search"></i></a>
+                                                    <a href="#" class="action"><i class="ion-bag"></i></a>
+                                                </div>
+                                                <div class="product-flag">
+                                                    <span class="new">new</span>
+                                                </div>
+                                            </div>
+                                            <div class="product-content">
+                                                <h4 class="product-title"><a href="shop-single.html">Trans-Weight Hooded Wind and Water Resistant Shell</a></h4>
+                                                <div class="manufacturer"><a href="#">Studio Design</a></div>
+                                                <div class="product-price">
+                                                    <span class="regular-price">$100</span>
+                                                    <span class="sele-price">$85</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Single Product End -->
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <!-- Single Product Start -->
+                                        <div class="single-product">
+                                            <div class="product-image">
+                                                <a class="product-thumbnail" href="shop-single.html">
+                                                    <img src="assets/images/product/chocolates/rasHeart-a.jpg" alt="product">
+                                                    <img class="image-hover" src="assets/images/product/chocolates/rasHeart-b.jpg" alt="product">
+                                                </a>
+                                                <div class="product-action">
+                                                    <a href="#" class="action"><i class="lar la-heart"></i></a>
+                                                    <a href="#" class="action"><i class="las la-sync"></i></a>
+                                                    <a href="#" class="action" data-bs-toggle="modal" data-bs-target="#quick-view"><i class="las la-search"></i></a>
+                                                    <a href="#" class="action"><i class="ion-bag"></i></a>
+                                                </div>
+                                                <div class="product-flag">
+                                                    <span class="discount">-10%</span>
+                                                </div>
+                                            </div>
+                                            <div class="product-content">
+                                                <h4 class="product-title"><a href="shop-single.html">Originals Kaval Windbreaker Winter Jacket</a></h4>
+                                                <div class="manufacturer"><a href="#">Studio Design</a></div>
+                                                <div class="product-price">
+                                                    <span class="regular-price">$50</span>
+                                                    <span class="sele-price">$45</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Single Product End -->
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <!-- Single Product Start -->
+                                        <div class="single-product">
+                                            <div class="product-image">
+                                                <a class="product-thumbnail" href="shop-single.html">
+                                                    <img src="assets/images/product/chocolates/champChoco-a.jpg" alt="product">
+                                                    <img class="image-hover" src="assets/images/product/chocolates/champChoco-b.jpg" alt="product">
                                                 </a>
                                                 <div class="product-action">
                                                     <a href="#" class="action"><i class="lar la-heart"></i></a>
@@ -1360,7 +1470,8 @@
                                                 <h4 class="product-title"><a href="shop-single.html">Juicy Couture Tricot Logo Stripe Jacket</a></h4>
                                                 <div class="manufacturer"><a href="#">Studio Design</a></div>
                                                 <div class="product-price">
-                                                    <span class="sele-price">$9.12</span>
+                                                    <span class="regular-price">$55</span>
+                                                    <span class="sele-price">$45</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -1371,8 +1482,8 @@
                                         <div class="single-product">
                                             <div class="product-image">
                                                 <a class="product-thumbnail" href="shop-single.html">
-                                                    <img src="assets/images/product/product-03.jpg" alt="product">
-                                                    <img class="image-hover" src="assets/images/product/product-05.jpg" alt="product">
+                                                    <img src="assets/images/product/drinks/toastedMCoffee-a.jpg" alt="product">
+                                                    <img class="image-hover" src="assets/images/product/drinks/toastedMCoffee-b.jpg" alt="product">
                                                 </a>
                                                 <div class="product-action">
                                                     <a href="#" class="action"><i class="lar la-heart"></i></a>
@@ -1388,7 +1499,8 @@
                                                 <h4 class="product-title"><a href="shop-single.html">New Balance Fresh Foam Kaymin</a></h4>
                                                 <div class="manufacturer"><a href="#">Studio Design</a></div>
                                                 <div class="product-price">
-                                                    <span class="sele-price">$9.12</span>
+                                                    <span class="regular-price">$140</span>
+                                                    <span class="sele-price">$100</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -1399,8 +1511,8 @@
                                         <div class="single-product">
                                             <div class="product-image">
                                                 <a class="product-thumbnail" href="shop-single.html">
-                                                    <img src="assets/images/product/product-11.jpg" alt="product">
-                                                    <img class="image-hover" src="assets/images/product/product-15.jpg" alt="product">
+                                                    <img src="assets/images/product/drinks/lilacHoneyT-a.jpg" alt="product">
+                                                    <img class="image-hover" src="assets/images/product/drinks/lilacHoneyT-b.jpg" alt="product">
                                                 </a>
                                                 <div class="product-action">
                                                     <a href="#" class="action"><i class="lar la-heart"></i></a>
@@ -1409,14 +1521,15 @@
                                                     <a href="#" class="action"><i class="ion-bag"></i></a>
                                                 </div>
                                                 <div class="product-flag">
-                                                    <span class="new">New</span>
+                                                    <span class="new">-15%</span>
                                                 </div>
                                             </div>
                                             <div class="product-content">
-                                                <h4 class="product-title"><a href="shop-single.html">Fila Locker Room Varsity Jacket</a></h4>
-                                                <div class="manufacturer"><a href="#">Studio Design</a></div>
+                                                <h4 class="product-title"><a href="shop-single.html">紫丁香蜂蜜茶</a></h4>
+                                                <div class="manufacturer"><a href="#">特調茶飲</a></div>
                                                 <div class="product-price">
-                                                    <span class="sele-price">$15.00</span>
+                                                    <span class="regular-price">$160</span>
+                                                    <span class="sele-price">$135</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -1428,10 +1541,10 @@
                             <div class="swiper-button-next"><i class="ion-ios-arrow-right"></i></div>
                             <div class="swiper-button-prev"><i class="ion-ios-arrow-left"></i></div>
                         </div>
-                        <!-- Product 2 End -->
+                        <!-- Product tab1 End -->
                     </div>
                     <div class="tab-pane fade" id="tab2">
-                        <!-- Product 2 Start -->
+                        <!-- Product tab2 Start -->
                         <div class="product-2-active">
                             <div class="swiper-container">
                                 <div class="swiper-wrapper">
@@ -1440,8 +1553,8 @@
                                         <div class="single-product">
                                             <div class="product-image">
                                                 <a class="product-thumbnail" href="shop-single.html">
-                                                    <img src="assets/images/product/product-03.jpg" alt="product">
-                                                    <img class="image-hover" src="assets/images/product/product-05.jpg" alt="product">
+                                                    <img src="assets/images/product/cakes/bBerryCup-a.jpg" alt="product">
+                                                    <img class="image-hover" src="assets/images/product/cakes/bBerryCup-b.jpg" alt="product">
                                                 </a>
                                                 <div class="product-action">
                                                     <a href="#" class="action"><i class="lar la-heart"></i></a>
@@ -1454,7 +1567,7 @@
                                                 </div>
                                             </div>
                                             <div class="product-content">
-                                                <h4 class="product-title"><a href="shop-single.html">New Balance Fresh Foam Kaymin</a></h4>
+                                                <h4 class="product-title"><a href="shop-single.html">2-1</a></h4>
                                                 <div class="manufacturer"><a href="#">Studio Design</a></div>
                                                 <div class="product-price">
                                                     <span class="sele-price">$9.12</span>
@@ -1468,8 +1581,8 @@
                                         <div class="single-product">
                                             <div class="product-image">
                                                 <a class="product-thumbnail" href="shop-single.html">
-                                                    <img src="assets/images/product/product-04.jpg" alt="product">
-                                                    <img class="image-hover" src="assets/images/product/product-03.jpg" alt="product">
+                                                    <img src="assets/images/product/cakes/caramelCrepe-a.jpg" alt="product">
+                                                    <img class="image-hover" src="assets/images/product/cakes/caramelCrepe-b.jpg" alt="product">
                                                 </a>
                                                 <div class="product-action">
                                                     <a href="#" class="action"><i class="lar la-heart"></i></a>
@@ -1496,7 +1609,9 @@
                                         <div class="single-product">
                                             <div class="product-image">
                                                 <a class="product-thumbnail" href="shop-single.html">
-                                                    <img src="assets/images/product/product-05.jpg" alt="product">
+                                                    <img src="assets/images/product/cakes/cupCaramel-a.jpg" alt="product">
+                                                    <img class="image-hover" src="assets/images/product/cakes/cupCaramel-b.jpg" alt="product">
+
                                                 </a>
                                                 <div class="product-action">
                                                     <a href="#" class="action"><i class="lar la-heart"></i></a>
@@ -1523,8 +1638,8 @@
                                         <div class="single-product">
                                             <div class="product-image">
                                                 <a class="product-thumbnail" href="shop-single.html">
-                                                    <img src="assets/images/product/product-14.jpg" alt="product">
-                                                    <img class="image-hover" src="assets/images/product/product-06.jpg" alt="product">
+                                                    <img src="assets/images/product/cakes/berryPound-a.jpg" alt="product">
+                                                    <img class="image-hover" src="assets/images/product/cakes/berryPound-b.jpg" alt="product">
                                                 </a>
                                                 <div class="product-action">
                                                     <a href="#" class="action"><i class="lar la-heart"></i></a>
@@ -1551,8 +1666,8 @@
                                         <div class="single-product">
                                             <div class="product-image">
                                                 <a class="product-thumbnail" href="shop-single.html">
-                                                    <img src="assets/images/product/product-01.jpg" alt="product">
-                                                    <img class="image-hover" src="assets/images/product/product-02.jpg" alt="product">
+                                                    <img src="assets/images/product/cakes/matchaCrepe-a.jpg" alt="product">
+                                                    <img class="image-hover" src="assets/images/product/cakes/matchaCrepe-b.jpg" alt="product">
                                                 </a>
                                                 <div class="product-action">
                                                     <a href="#" class="action"><i class="lar la-heart"></i></a>
@@ -1579,8 +1694,8 @@
                                         <div class="single-product">
                                             <div class="product-image">
                                                 <a class="product-thumbnail" href="shop-single.html">
-                                                    <img src="assets/images/product/product-10.jpg" alt="product">
-                                                    <img class="image-hover" src="assets/images/product/product-11.jpg" alt="product">
+                                                    <img src="assets/images/product/cakes/bOrangePound-a.jpg" alt="product">
+                                                    <img class="image-hover" src="assets/images/product/cakes/bOrangePound-b.jpg" alt="product">
                                                 </a>
                                                 <div class="product-action">
                                                     <a href="#" class="action"><i class="lar la-heart"></i></a>
@@ -1607,8 +1722,8 @@
                                         <div class="single-product">
                                             <div class="product-image">
                                                 <a class="product-thumbnail" href="shop-single.html">
-                                                    <img src="assets/images/product/product-06.jpg" alt="product">
-                                                    <img class="image-hover" src="assets/images/product/product-07.jpg" alt="product">
+                                                    <img src="assets/images/product/cakes/cupRose-a.jpg" alt="product">
+                                                    <img class="image-hover" src="assets/images/product/cakes/cupRose-b.jpg" alt="product">
                                                 </a>
                                                 <div class="product-action">
                                                     <a href="#" class="action"><i class="lar la-heart"></i></a>
@@ -1635,8 +1750,8 @@
                                         <div class="single-product">
                                             <div class="product-image">
                                                 <a class="product-thumbnail" href="shop-single.html">
-                                                    <img src="assets/images/product/product-08.jpg" alt="product">
-                                                    <img class="image-hover" src="assets/images/product/product-04.jpg" alt="product">
+                                                    <img src="assets/images/product/cakes/mTeaCrepe-a.jpg" alt="product">
+                                                    <img class="image-hover" src="assets/images/product/cakes/mTeaCrepe-b.jpg" alt="product">
                                                 </a>
                                                 <div class="product-action">
                                                     <a href="#" class="action"><i class="lar la-heart"></i></a>
@@ -1664,10 +1779,10 @@
                             <div class="swiper-button-next"><i class="ion-ios-arrow-right"></i></div>
                             <div class="swiper-button-prev"><i class="ion-ios-arrow-left"></i></div>
                         </div>
-                        <!-- Product 2 End -->
+                        <!-- Product tab2 End -->
                     </div>
                     <div class="tab-pane fade" id="tab3">
-                        <!-- Product 2 Start -->
+                        <!-- Product tab3 Start -->
                         <div class="product-2-active">
                             <div class="swiper-container">
                                 <div class="swiper-wrapper">
@@ -1676,8 +1791,8 @@
                                         <div class="single-product">
                                             <div class="product-image">
                                                 <a class="product-thumbnail" href="shop-single.html">
-                                                    <img src="assets/images/product/product-04.jpg" alt="product">
-                                                    <img class="image-hover" src="assets/images/product/product-03.jpg" alt="product">
+                                                    <img src="assets/images/product/chocolates/artChoco-a.jpg" alt="product">
+                                                    <img class="image-hover" src="assets/images/product/chocolates/artChoco-b.jpg" alt="product">
                                                 </a>
                                                 <div class="product-action">
                                                     <a href="#" class="action"><i class="lar la-heart"></i></a>
@@ -1704,7 +1819,8 @@
                                         <div class="single-product">
                                             <div class="product-image">
                                                 <a class="product-thumbnail" href="shop-single.html">
-                                                    <img src="assets/images/product/product-05.jpg" alt="product">
+                                                    <img src="assets/images/product/chocolates/apricotBark-a.jpg" alt="product">
+                                                    <img class="image-hover" src="assets/images/product/chocolates/apricotBark-b.jpg" alt="product">
                                                 </a>
                                                 <div class="product-action">
                                                     <a href="#" class="action"><i class="lar la-heart"></i></a>
@@ -1731,8 +1847,8 @@
                                         <div class="single-product">
                                             <div class="product-image">
                                                 <a class="product-thumbnail" href="shop-single.html">
-                                                    <img src="assets/images/product/product-06.jpg" alt="product">
-                                                    <img class="image-hover" src="assets/images/product/product-07.jpg" alt="product">
+                                                    <img src="assets/images/product/chocolates/berryBullet-a.jpg" alt="product">
+                                                    <img class="image-hover" src="assets/images/product/chocolates/berryBullet-b.jpg" alt="product">
                                                 </a>
                                                 <div class="product-action">
                                                     <a href="#" class="action"><i class="lar la-heart"></i></a>
@@ -1759,8 +1875,8 @@
                                         <div class="single-product">
                                             <div class="product-image">
                                                 <a class="product-thumbnail" href="shop-single.html">
-                                                    <img src="assets/images/product/product-11.jpg" alt="product">
-                                                    <img class="image-hover" src="assets/images/product/product-15.jpg" alt="product">
+                                                    <img src="assets/images/product/chocolates/blueBar-a.jpg" alt="product">
+                                                    <img class="image-hover" src="assets/images/product/chocolates/blueBar-b.jpg" alt="product">
                                                 </a>
                                                 <div class="product-action">
                                                     <a href="#" class="action"><i class="lar la-heart"></i></a>
@@ -1787,8 +1903,8 @@
                                         <div class="single-product">
                                             <div class="product-image">
                                                 <a class="product-thumbnail" href="shop-single.html">
-                                                    <img src="assets/images/product/product-13.jpg" alt="product">
-                                                    <img class="image-hover" src="assets/images/product/product-14.jpg" alt="product">
+                                                    <img src="assets/images/product/chocolates/brownChoco-a.jpg" alt="product">
+                                                    <img class="image-hover" src="assets/images/product/chocolates/brownChoco-b.jpg" alt="product">
                                                 </a>
                                                 <div class="product-action">
                                                     <a href="#" class="action"><i class="lar la-heart"></i></a>
@@ -1816,8 +1932,8 @@
                                         <div class="single-product">
                                             <div class="product-image">
                                                 <a class="product-thumbnail" href="shop-single.html">
-                                                    <img src="assets/images/product/product-03.jpg" alt="product">
-                                                    <img class="image-hover" src="assets/images/product/product-05.jpg" alt="product">
+                                                    <img src="assets/images/product/chocolates/brownieChoco-a.jpg" alt="product">
+                                                    <img class="image-hover" src="assets/images/product/chocolates/brownieChoco-b.jpg" alt="product">
                                                 </a>
                                                 <div class="product-action">
                                                     <a href="#" class="action"><i class="lar la-heart"></i></a>
@@ -1844,8 +1960,8 @@
                                         <div class="single-product">
                                             <div class="product-image">
                                                 <a class="product-thumbnail" href="shop-single.html">
-                                                    <img src="assets/images/product/product-14.jpg" alt="product">
-                                                    <img class="image-hover" src="assets/images/product/product-06.jpg" alt="product">
+                                                    <img src="assets/images/product/chocolates/cassisChoco-a.jpg" alt="product">
+                                                    <img class="image-hover" src="assets/images/product/chocolates/cassisChoco-b.jpg" alt="product">
                                                 </a>
                                                 <div class="product-action">
                                                     <a href="#" class="action"><i class="lar la-heart"></i></a>
@@ -1872,8 +1988,8 @@
                                         <div class="single-product">
                                             <div class="product-image">
                                                 <a class="product-thumbnail" href="shop-single.html">
-                                                    <img src="assets/images/product/product-01.jpg" alt="product">
-                                                    <img class="image-hover" src="assets/images/product/product-02.jpg" alt="product">
+                                                    <img src="assets/images/product/chocolates/cranBark-a.jpg" alt="product">
+                                                    <img class="image-hover" src="assets/images/product/chocolates/cranBark-b.jpg" alt="product">
                                                 </a>
                                                 <div class="product-action">
                                                     <a href="#" class="action"><i class="lar la-heart"></i></a>
@@ -1901,10 +2017,10 @@
                             <div class="swiper-button-next"><i class="ion-ios-arrow-right"></i></div>
                             <div class="swiper-button-prev"><i class="ion-ios-arrow-left"></i></div>
                         </div>
-                        <!-- Product 2 End -->
+                        <!-- Product tab3 End -->
                     </div>
                     <div class="tab-pane fade" id="tab4">
-                        <!-- Product 2 Start -->
+                        <!-- Product tab4 Start -->
                         <div class="product-2-active">
                             <div class="swiper-container">
                                 <div class="swiper-wrapper">
@@ -1913,8 +2029,8 @@
                                         <div class="single-product">
                                             <div class="product-image">
                                                 <a class="product-thumbnail" href="shop-single.html">
-                                                    <img src="assets/images/product/product-08.jpg" alt="product">
-                                                    <img class="image-hover" src="assets/images/product/product-04.jpg" alt="product">
+                                                    <img src="assets/images/product/others/berryPastry-a.jpg" alt="product">
+                                                    <img class="image-hover" src="assets/images/product/others/berryPastry-b.jpg" alt="product">
                                                 </a>
                                                 <div class="product-action">
                                                     <a href="#" class="action"><i class="lar la-heart"></i></a>
@@ -1941,8 +2057,8 @@
                                         <div class="single-product">
                                             <div class="product-image">
                                                 <a class="product-thumbnail" href="shop-single.html">
-                                                    <img src="assets/images/product/product-11.jpg" alt="product">
-                                                    <img class="image-hover" src="assets/images/product/product-15.jpg" alt="product">
+                                                    <img src="assets/images/product/others/blueBerryT-a.jpg" alt="product">
+                                                    <img class="image-hover" src="assets/images/product/others/blueBerryT-b.jpg" alt="product">
                                                 </a>
                                                 <div class="product-action">
                                                     <a href="#" class="action"><i class="lar la-heart"></i></a>
@@ -1969,8 +2085,8 @@
                                         <div class="single-product">
                                             <div class="product-image">
                                                 <a class="product-thumbnail" href="shop-single.html">
-                                                    <img src="assets/images/product/product-06.jpg" alt="product">
-                                                    <img class="image-hover" src="assets/images/product/product-07.jpg" alt="product">
+                                                    <img src="assets/images/product/others/hazelnutT-a.jpg" alt="product">
+                                                    <img class="image-hover" src="assets/images/product/others/hazelnutT-b.jpg" alt="product">
                                                 </a>
                                                 <div class="product-action">
                                                     <a href="#" class="action"><i class="lar la-heart"></i></a>
@@ -1997,8 +2113,8 @@
                                         <div class="single-product">
                                             <div class="product-image">
                                                 <a class="product-thumbnail" href="shop-single.html">
-                                                    <img src="assets/images/product/product-13.jpg" alt="product">
-                                                    <img class="image-hover" src="assets/images/product/product-14.jpg" alt="product">
+                                                    <img src="assets/images/product/others/limePuff-a.jpg" alt="product">
+                                                    <img class="image-hover" src="assets/images/product/others/limePuff-b.jpg" alt="product">
                                                 </a>
                                                 <div class="product-action">
                                                     <a href="#" class="action"><i class="lar la-heart"></i></a>
@@ -2026,8 +2142,8 @@
                                         <div class="single-product">
                                             <div class="product-image">
                                                 <a class="product-thumbnail" href="shop-single.html">
-                                                    <img src="assets/images/product/product-14.jpg" alt="product">
-                                                    <img class="image-hover" src="assets/images/product/product-06.jpg" alt="product">
+                                                    <img src="assets/images/product/others/montblanc-a.jpg" alt="product">
+                                                    <img class="image-hover" src="assets/images/product/others/montblanc-b.jpg" alt="product">
                                                 </a>
                                                 <div class="product-action">
                                                     <a href="#" class="action"><i class="lar la-heart"></i></a>
@@ -2054,8 +2170,8 @@
                                         <div class="single-product">
                                             <div class="product-image">
                                                 <a class="product-thumbnail" href="shop-single.html">
-                                                    <img src="assets/images/product/product-03.jpg" alt="product">
-                                                    <img class="image-hover" src="assets/images/product/product-05.jpg" alt="product">
+                                                    <img src="assets/images/product/others/cherryT-a.jpg" alt="product">
+                                                    <img class="image-hover" src="assets/images/product/others/cherryT-b.jpg" alt="product">
                                                 </a>
                                                 <div class="product-action">
                                                     <a href="#" class="action"><i class="lar la-heart"></i></a>
@@ -2082,8 +2198,8 @@
                                         <div class="single-product">
                                             <div class="product-image">
                                                 <a class="product-thumbnail" href="shop-single.html">
-                                                    <img src="assets/images/product/product-12.jpg" alt="product">
-                                                    <img class="image-hover" src="assets/images/product/product-01.jpg" alt="product">
+                                                    <img src="assets/images/product/others/peachMacaron-a.jpg" alt="product">
+                                                    <img class="image-hover" src="assets/images/product/others/peachMacaron-b.jpg" alt="product">
                                                 </a>
                                                 <div class="product-action">
                                                     <a href="#" class="action"><i class="lar la-heart"></i></a>
@@ -2111,10 +2227,10 @@
                             <div class="swiper-button-next"><i class="ion-ios-arrow-right"></i></div>
                             <div class="swiper-button-prev"><i class="ion-ios-arrow-left"></i></div>
                         </div>
-                        <!-- Product 2 End -->
+                        <!-- Product tab4 End -->
                     </div>
                     <div class="tab-pane fade" id="tab5">
-                        <!-- Product 2 Start -->
+                        <!-- Product tab5 Start -->
                         <div class="product-2-active">
                             <div class="swiper-container">
                                 <div class="swiper-wrapper">
@@ -2123,8 +2239,64 @@
                                         <div class="single-product">
                                             <div class="product-image">
                                                 <a class="product-thumbnail" href="shop-single.html">
-                                                    <img src="assets/images/product/product-09.jpg" alt="product">
-                                                    <img class="image-hover" src="assets/images/product/product-10.jpg" alt="product">
+                                                    <img src="assets/images/product/drinks/ChamoTea-a.jpg" alt="product">
+                                                    <img class="image-hover" src="assets/images/product/drinks/ChamoTea-b.jpg" alt="product">
+                                                </a>
+                                                <div class="product-action">
+                                                    <a href="#" class="action"><i class="lar la-heart"></i></a>
+                                                    <a href="#" class="action"><i class="las la-sync"></i></a>
+                                                    <a href="#" class="action" data-bs-toggle="modal" data-bs-target="#quick-view"><i class="las la-search"></i></a>
+                                                    <a href="#" class="action"><i class="ion-bag"></i></a>
+                                                </div>
+                                                <div class="product-flag">
+                                                    <span class="new">推薦</span>
+                                                </div>
+                                            </div>
+                                            <div class="product-content">
+                                                <h4 class="product-title"><a href="shop-single.html">洋甘菊阿薩姆</a></h4>
+                                                <div class="manufacturer"><a href="#">特調茶飲</a></div>
+                                                <div class="product-price">
+                                                    <span class="sele-price">$150</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Single Product End -->
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <!-- Single Product Start -->
+                                        <div class="single-product">
+                                            <div class="product-image">
+                                                <a class="product-thumbnail" href="shop-single.html">
+                                                    <img src="assets/images/product/drinks/herbalSunT-a.jpg" alt="product">
+                                                    <img class="image-hover" src="assets/images/product/drinks/herbalSunT-b.jpg" alt="product">
+                                                </a>
+                                                <div class="product-action">
+                                                    <a href="#" class="action"><i class="lar la-heart"></i></a>
+                                                    <a href="#" class="action"><i class="las la-sync"></i></a>
+                                                    <a href="#" class="action" data-bs-toggle="modal" data-bs-target="#quick-view"><i class="las la-search"></i></a>
+                                                    <a href="#" class="action"><i class="ion-bag"></i></a>
+                                                </div>
+                                                <div class="product-flag">
+                                                    <span class="new">推薦</span>
+                                                </div>
+                                            </div>
+                                            <div class="product-content">
+                                                <h4 class="product-title"><a href="shop-single.html">草本蜜桃茶</a></h4>
+                                                <div class="manufacturer"><a href="#">特調茶飲</a></div>
+                                                <div class="product-price">
+                                                    <span class="sele-price">$180</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Single Product End -->
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <!-- Single Product Start -->
+                                        <div class="single-product">
+                                            <div class="product-image">
+                                                <a class="product-thumbnail" href="shop-single.html">
+                                                    <img src="assets/images/product/drinks/herbalT-a.jpg" alt="product">
+                                                    <img class="image-hover" src="assets/images/product/drinks/herbalT-b.jpg" alt="product">
                                                 </a>
                                                 <div class="product-action">
                                                     <a href="#" class="action"><i class="lar la-heart"></i></a>
@@ -2137,10 +2309,10 @@
                                                 </div>
                                             </div>
                                             <div class="product-content">
-                                                <h4 class="product-title"><a href="shop-single.html">New Balance Fresh Foam LAZR v1 Sport</a></h4>
-                                                <div class="manufacturer"><a href="#">Studio Design</a></div>
+                                                <h4 class="product-title"><a href="shop-single.html">皇家草本茶</a></h4>
+                                                <div class="manufacturer"><a href="#">特調茶飲</a></div>
                                                 <div class="product-price">
-                                                    <span class="sele-price">$19.12</span>
+                                                    <span class="sele-price">$160</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -2151,8 +2323,8 @@
                                         <div class="single-product">
                                             <div class="product-image">
                                                 <a class="product-thumbnail" href="shop-single.html">
-                                                    <img src="assets/images/product/product-12.jpg" alt="product">
-                                                    <img class="image-hover" src="assets/images/product/product-01.jpg" alt="product">
+                                                    <img src="assets/images/product/drinks/hotChoco-a.jpg" alt="product">
+                                                    <img class="image-hover" src="assets/images/product/drinks/hotChoco-b.jpg" alt="product">
                                                 </a>
                                                 <div class="product-action">
                                                     <a href="#" class="action"><i class="lar la-heart"></i></a>
@@ -2161,14 +2333,14 @@
                                                     <a href="#" class="action"><i class="ion-bag"></i></a>
                                                 </div>
                                                 <div class="product-flag">
-                                                    <span class="new">New</span>
+                                                    <span class="new">推薦</span>
                                                 </div>
                                             </div>
                                             <div class="product-content">
-                                                <h4 class="product-title"><a href="shop-single.html">Calvin Klein Jeans Reflective Logo Full Zip</a></h4>
-                                                <div class="manufacturer"><a href="#">Studio Design</a></div>
+                                                <h4 class="product-title"><a href="shop-single.html">甜心可可亞</a></h4>
+                                                <div class="manufacturer"><a href="#">香濃拿鐵</a></div>
                                                 <div class="product-price">
-                                                    <span class="sele-price">$29.12</span>
+                                                    <span class="sele-price">$100</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -2179,8 +2351,8 @@
                                         <div class="single-product">
                                             <div class="product-image">
                                                 <a class="product-thumbnail" href="shop-single.html">
-                                                    <img src="assets/images/product/product-01.jpg" alt="product">
-                                                    <img class="image-hover" src="assets/images/product/product-02.jpg" alt="product">
+                                                    <img src="assets/images/product/drinks/matchaLatte-a.jpg" alt="product">
+                                                    <img class="image-hover" src="assets/images/product/drinks/matchaLatte-b.jpg" alt="product">
                                                 </a>
                                                 <div class="product-action">
                                                     <a href="#" class="action"><i class="lar la-heart"></i></a>
@@ -2189,14 +2361,14 @@
                                                     <a href="#" class="action"><i class="ion-bag"></i></a>
                                                 </div>
                                                 <div class="product-flag">
-                                                    <span class="new">New</span>
+                                                    <span class="new">推薦</span>
                                                 </div>
                                             </div>
                                             <div class="product-content">
-                                                <h4 class="product-title"><a href="shop-single.html">Madden by Steve Madden Cale 6</a></h4>
-                                                <div class="manufacturer"><a href="#">Studio Design</a></div>
+                                                <h4 class="product-title"><a href="shop-single.html">椰香抹茶拿鐵</a></h4>
+                                                <div class="manufacturer"><a href="#">香濃拿鐵</a></div>
                                                 <div class="product-price">
-                                                    <span class="sele-price">$11.12</span>
+                                                    <span class="sele-price">$160</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -2207,8 +2379,8 @@
                                         <div class="single-product">
                                             <div class="product-image">
                                                 <a class="product-thumbnail" href="shop-single.html">
-                                                    <img src="assets/images/product/product-07.jpg" alt="product">
-                                                    <img class="image-hover" src="assets/images/product/product-12.jpg" alt="product">
+                                                    <img src="assets/images/product/drinks/macchiato-a.jpg" alt="product">
+                                                    <img class="image-hover" src="assets/images/product/drinks/macchiato-b.jpg" alt="product">
                                                 </a>
                                                 <div class="product-action">
                                                     <a href="#" class="action"><i class="lar la-heart"></i></a>
@@ -2217,14 +2389,14 @@
                                                     <a href="#" class="action"><i class="ion-bag"></i></a>
                                                 </div>
                                                 <div class="product-flag">
-                                                    <span class="new">New</span>
+                                                    <span class="new">推薦</span>
                                                 </div>
                                             </div>
                                             <div class="product-content">
-                                                <h4 class="product-title"><a href="shop-single.html">New Balance Arishi Sport v1</a></h4>
-                                                <div class="manufacturer"><a href="#">Studio Design</a></div>
+                                                <h4 class="product-title"><a href="shop-single.html">焦糖瑪奇朵</a></h4>
+                                                <div class="manufacturer"><a href="#">經典咖啡</a></div>
                                                 <div class="product-price">
-                                                    <span class="sele-price">$29.00</span>
+                                                    <span class="sele-price">$180</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -2235,8 +2407,8 @@
                                         <div class="single-product">
                                             <div class="product-image">
                                                 <a class="product-thumbnail" href="shop-single.html">
-                                                    <img src="assets/images/product/product-06.jpg" alt="product">
-                                                    <img class="image-hover" src="assets/images/product/product-07.jpg" alt="product">
+                                                    <img src="assets/images/product/drinks/roseLatte-a.jpg" alt="product">
+                                                    <img class="image-hover" src="assets/images/product/drinks/roseLatte-b.jpg" alt="product">
                                                 </a>
                                                 <div class="product-action">
                                                     <a href="#" class="action"><i class="lar la-heart"></i></a>
@@ -2245,71 +2417,16 @@
                                                     <a href="#" class="action"><i class="ion-bag"></i></a>
                                                 </div>
                                                 <div class="product-flag">
-                                                    <span class="new">New</span>
+                                                    <!-- <span class="discount">-25%</span> -->
+                                                    <span class="new">推薦</span>
                                                 </div>
                                             </div>
                                             <div class="product-content">
-                                                <h4 class="product-title"><a href="shop-single.html">Brixton Patrol All Terrain Anorak Jacket</a></h4>
-                                                <div class="manufacturer"><a href="#">Studio Design</a></div>
+                                                <h4 class="product-title"><a href="shop-single.html">玫瑰甜心</a></h4>
+                                                <div class="manufacturer"><a href="#">香濃拿鐵</a></div>
                                                 <div class="product-price">
-                                                    <span class="sele-price">$29.12</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Single Product End -->
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <!-- Single Product Start -->
-                                        <div class="single-product">
-                                            <div class="product-image">
-                                                <a class="product-thumbnail" href="shop-single.html">
-                                                    <img src="assets/images/product/product-11.jpg" alt="product">
-                                                    <img class="image-hover" src="assets/images/product/product-15.jpg" alt="product">
-                                                </a>
-                                                <div class="product-action">
-                                                    <a href="#" class="action"><i class="lar la-heart"></i></a>
-                                                    <a href="#" class="action"><i class="las la-sync"></i></a>
-                                                    <a href="#" class="action" data-bs-toggle="modal" data-bs-target="#quick-view"><i class="las la-search"></i></a>
-                                                    <a href="#" class="action"><i class="ion-bag"></i></a>
-                                                </div>
-                                                <div class="product-flag">
-                                                    <span class="new">New</span>
-                                                </div>
-                                            </div>
-                                            <div class="product-content">
-                                                <h4 class="product-title"><a href="shop-single.html">Fila Locker Room Varsity Jacket</a></h4>
-                                                <div class="manufacturer"><a href="#">Studio Design</a></div>
-                                                <div class="product-price">
-                                                    <span class="sele-price">$15.00</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Single Product End -->
-                                    </div>
-                                    <div class="swiper-slide">
-                                        <!-- Single Product Start -->
-                                        <div class="single-product">
-                                            <div class="product-image">
-                                                <a class="product-thumbnail" href="shop-single.html">
-                                                    <img src="assets/images/product/product-13.jpg" alt="product">
-                                                    <img class="image-hover" src="assets/images/product/product-14.jpg" alt="product">
-                                                </a>
-                                                <div class="product-action">
-                                                    <a href="#" class="action"><i class="lar la-heart"></i></a>
-                                                    <a href="#" class="action"><i class="las la-sync"></i></a>
-                                                    <a href="#" class="action" data-bs-toggle="modal" data-bs-target="#quick-view"><i class="las la-search"></i></a>
-                                                    <a href="#" class="action"><i class="ion-bag"></i></a>
-                                                </div>
-                                                <div class="product-flag">
-                                                    <span class="discount">-25%</span>
-                                                </div>
-                                            </div>
-                                            <div class="product-content">
-                                                <h4 class="product-title"><a href="shop-single.html">Originals Kaval Windbreaker Winter Jacket</a></h4>
-                                                <div class="manufacturer"><a href="#">Studio Design</a></div>
-                                                <div class="product-price">
-                                                    <span class="regular-price">$20.90</span>
-                                                    <span class="sele-price">$11.12</span>
+                                                    <span class="regular-price">$180</span>
+                                                    <!-- <span class="sele-price">$11.12</span> -->
                                                 </div>
                                             </div>
                                         </div>
@@ -2321,7 +2438,7 @@
                             <div class="swiper-button-next"><i class="ion-ios-arrow-right"></i></div>
                             <div class="swiper-button-prev"><i class="ion-ios-arrow-left"></i></div>
                         </div>
-                        <!-- Product 2 End -->
+                        <!-- Product tab5 End -->
                     </div>
                 </div>
                 <!-- Product Tab Content End -->
@@ -2346,25 +2463,17 @@
                             <!-- Single Blog Start -->
                             <div class="single-blog">
                                 <div class="blog-images">
-                                    <a href="blog-grid.html"><img src="assets/images/blog/comingSoon.jpg" height="234.33px" alt=""></a>
+                                    <a href="blog-details-left-sidebar.html"><img src="assets/images/blog/blog-01.jpg" alt=""></a>
                                     <div class="meta-category">
-                                        <a href="blog-grid.html">公告</a>
+                                        <a href="#">Fashion</a>
                                     </div>
                                 </div>
                                 <div class="blog-content">
-                                    <h4 class="blog-title"><a href="blog-grid.html">全新公告敬請期待</a></h4>
-                                    <p>
-                                        歡迎光臨嗜甜<br>
-                                    敬請期待全新內容<br>
-                                    決不要放過任何一個通知<br>
-                                    <span><br></span>
-                                    <span></span><br>
-
-
-                                    </p>
+                                    <h4 class="blog-title"><a href="blog-details-left-sidebar.html">This is Third Post For XipBlog</a></h4>
+                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys ...</p>
                                     <div class="post-meta ">
-                                        <span class="meta-date">Jan 12TH, 2021</span>
-                                        <span class="meta-author">Posted by <span>Kenny</span></span>
+                                        <span class="meta-date">Sep 12TH, 2020</span>
+                                        <span class="meta-author">Posted by <span>Demo hasthemes</span></span>
                                     </div>
                                 </div>
                             </div>
@@ -2374,21 +2483,17 @@
                             <!-- Single Blog Start -->
                             <div class="single-blog">
                                 <div class="blog-images">
-                                    <a href="shop-grid-3-column.html"><img src="assets/images/blog/Tiramisù.jpg" width="369.99px" height="234.33px" alt=""></a>
+                                    <a href="blog-details-left-sidebar.html"><img src="assets/images/blog/blog-02.jpg" alt=""></a>
                                     <div class="meta-category">
-                                        <a href="shop-grid-3-column.html">商品</a>
+                                        <a href="#">Fashion</a>
                                     </div>
                                 </div>
                                 <div class="blog-content">
-                                    <h4 class="blog-title"><a href="shop-grid-3-column.html">提拉米蘇熱銷中</a></h4>
-                                    <p>歡迎光臨嗜甜<br>
-                                        香醇濃沉的口感,甘甜與苦澀的完美融合<br>
-                                        感謝各位消費者的肯定<br>
-                                        提拉米蘇熱銷中<br>
-                                        <span><br></span></p>
+                                    <h4 class="blog-title"><a href="blog-details-left-sidebar.html">This is Big sale this summer</a></h4>
+                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys ...</p>
                                     <div class="post-meta ">
-                                        <span class="meta-date">Jan 5TH, 2021</span>
-                                        <span class="meta-author">Posted by <span>Cheryl</span></span>
+                                        <span class="meta-date">Sep 12TH, 2020</span>
+                                        <span class="meta-author">Posted by <span>Demo hasthemes</span></span>
                                     </div>
                                 </div>
                             </div>
@@ -2398,21 +2503,17 @@
                             <!-- Single Blog Start -->
                             <div class="single-blog">
                                 <div class="blog-images">
-                                    <a href="shop-grid-3-column.html"><img src="assets/images/blog/lemonCake.jpg" width="369.99px" height="234.33px" alt=""></a>
+                                    <a href="blog-details-left-sidebar.html"><img src="assets/images/blog/blog-03.jpg" alt=""></a>
                                     <div class="meta-category">
-                                        <a href="shop-grid-3-column.html">商品</a>
+                                        <a href="#">Fashion</a>
                                     </div>
                                 </div>
                                 <div class="blog-content">
-                                    <h4 class="blog-title"><a href="shop-grid-3-column.html">新商品 檸檬蛋糕</a></h4>
-                                    <p>歡迎光臨嗜甜<br>
-                                        國產檸檬的香氣與奶油乳酪的完美比例<br>
-                                        酸甜不膩口與扎實的口感<br>
-                                        經典永遠令人回味<br>
-                                        檸檬蛋糕 新上市</p>
+                                    <h4 class="blog-title"><a href="blog-details-left-sidebar.html">This is Nicholas K Spring 2021 Runway</a></h4>
+                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys ...</p>
                                     <div class="post-meta ">
-                                        <span class="meta-date">Dec 29TH, 2020</span>
-                                        <span class="meta-author">Posted by <span>Cheryl</span></span>
+                                        <span class="meta-date">Sep 12TH, 2020</span>
+                                        <span class="meta-author">Posted by <span>Demo hasthemes</span></span>
                                     </div>
                                 </div>
                             </div>
@@ -2422,21 +2523,17 @@
                             <!-- Single Blog Start -->
                             <div class="single-blog">
                                 <div class="blog-images">
-                                    <a href="shop-grid-3-column.html"><img src="assets/images/blog/strawberryCake.jpg" width="369.99px" height="234.33px" alt=""></a>
+                                    <a href="blog-details-left-sidebar.html"><img src="assets/images/blog/blog-04.jpg" alt=""></a>
                                     <div class="meta-category">
-                                        <a href="shop-grid-3-column.html">商品</a>
+                                        <a href="#">Fashion</a>
                                     </div>
                                 </div>
                                 <div class="blog-content">
-                                    <h4 class="blog-title"><a href="shop-grid-3-column.html">新商品 草莓蛋糕</a></h4>
-                                    <p>歡迎光臨嗜甜<br>
-                                        季節限定的大湖草莓<br>
-                                        結合了慕斯,口感既清淡又輕盈<br>
-                                        入口即溶,微妙絕配<br>
-                                        賞心悅目又美味</p>
+                                    <h4 class="blog-title"><a href="blog-details-left-sidebar.html">London Food Week 2021</a></h4>
+                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys ...</p>
                                     <div class="post-meta ">
-                                        <span class="meta-date">Dec 29TH, 2020</span>
-                                        <span class="meta-author">Posted by <span>Cheryl</span></span>
+                                        <span class="meta-date">Sep 12TH, 2020</span>
+                                        <span class="meta-author">Posted by <span>Demo hasthemes</span></span>
                                     </div>
                                 </div>
                             </div>

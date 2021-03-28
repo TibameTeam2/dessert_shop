@@ -1,0 +1,90 @@
+/* Loading Progress */
+#loading-progress {
+    position: fixed;
+    z-index: 99999;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+#loading-progress::before, #loading-progress::after {
+    transition: 0.5s cubic-bezier(0.23, 1, 0.32, 1) 0.8s;
+}
+
+#loading-progress::before, #loading-progress::after {
+    content: "";
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#loading-progress::before {
+    background: #ffffff;
+}
+
+#loading-progress::after {
+    background: #ffffff;
+}
+
+#loading-progress.hide-it {
+    visibility: hidden;
+    transition-delay: 1.5s;
+}
+
+#loading-progress.hide-it::before, #loading-progress.hide-it::after {
+    transform: translateY(-100%);
+}
+
+#loading-progress.hide-it::before {
+    transition-delay: 0.2s;
+}
+
+#loading-progress .logo {
+    position: relative;
+    z-index: 1;
+    margin-bottom: 50px;
+    transition: all 0.4s 0.3s;
+}
+
+#loading-progress .lp-content {
+    position: relative;
+    width: 100%;
+    z-index: 1;
+    transition: all 0.4s;
+}
+
+#loading-progress .lp-counter {
+    margin-bottom: 9px;
+    font-size: 14px;
+    font-weight: 300;
+    font-family: "Roboto", sans-serif;
+    color: #888;
+}
+
+#loading-progress .lp-counter #lp-counter {
+    display: inline-block;
+    width: 33px;
+    font-weight: 600;
+    text-align: left;
+    color: #222;
+}
+
+#loading-progress .lp-bar {
+    position: relative;
+    margin: auto;
+    width: 150px;
+    background: #eee;
+}
+
+#loading-progress .lp-bar #lp-bar {
+    height: 2px;
+    background: #2570ff;
+    width: 0;
+}

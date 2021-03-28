@@ -24,6 +24,18 @@
     </servlet-mapping>
 
 
+	<!-- product相關 -->
+	<servlet>
+		<servlet-name>ProductServlet</servlet-name>
+		<servlet-class>com.product.controller.ProductServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ProductServlet</servlet-name>
+		<url-pattern>/product/product.do</url-pattern>
+	</servlet-mapping>
+	
+	
+
     <!--測試用Servlet-->
     <servlet>
         <servlet-name>ServletTest</servlet-name>
@@ -43,6 +55,19 @@
         <servlet-name>EmpServlet</servlet-name>
         <url-pattern>/emp/emp.do</url-pattern>
     </servlet-mapping>
+    
+    <!--Employee的0201-->
+    <servlet>
+        <servlet-name>EmployeeServlet</servlet-name>
+        <servlet-class>com.employee.controller.EmployeeServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EmployeeServlet</servlet-name>
+        <url-pattern>/employee_jsp/employee.do</url-pattern>
+    </servlet-mapping>    
+      
+    
+    
     <!--配置全局过滤的filter-->
 <!--    <filter>-->
 <!--        <filter-name>CharacterEncodingFilter</filter-name>-->
