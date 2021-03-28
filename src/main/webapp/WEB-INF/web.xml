@@ -22,6 +22,15 @@
         <servlet-name>MemberServlet</servlet-name>
         <url-pattern>/member/*</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>OrderMasterServlet</servlet-name>
+        <servlet-class>com.order_master.controller.OrderMasterServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>OrderMasterServlet</servlet-name>
+        <url-pattern>/orderMaster/*</url-pattern>
+    </servlet-mapping>
 
 
 	<!-- product相關 -->
