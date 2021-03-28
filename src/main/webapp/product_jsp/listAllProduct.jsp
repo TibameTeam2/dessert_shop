@@ -58,13 +58,13 @@ th, td {
 		<tr>
 			<td>
 				<h3>所有商品資訊 - listAllProduct.jsp</h3>
-				<h4><a href="select_page.jsp">回首頁</a>
+				<h4><a href="../product_jsp/select_page.jsp">回首頁</a>
 				</h4>
 			</td>
 		</tr>
 	</table>
 	
-	<%-- 錯誤表列 --%> <%-- 是不是不用這一塊呀? --%>
+	<%-- 錯誤表列 --%>
 	<c:if test="${not empty errorMsgs}">
 		<font style="color: red">請修正以下錯誤:</font>
 		<ul>
@@ -131,22 +131,20 @@ th, td {
 <%--                       <%}%> --%>
 <!--            		 </td> -->
 				
-				
-				
 							
 				<td>
-                	<img src="<%=request.getContextPath()%>/product/product.do?action=getProductImage&id=${productBean.product_id}" alt="photo">
+                	<img src="<%=request.getContextPath()%>/product_jsp/product.do?action=getProductImage&id=${productBean.product_id}" alt="photo">
 				</td>
 				
 				<td>
-					<form method="post" action="<%=request.getContextPath()%>/product/product.do">
+					<form method="post" action="<%=request.getContextPath()%>/product_jsp/product.do">
 						<input type="submit" value="修改">
 						<input type="hidden" name="product_id" value="${productBean.product_id}">
 						<input type="hidden" name="action" value="getOne_For_Update">
 					</form>
 				</td>			
 				<td>
-					<form method="post" action="<%=request.getContextPath()%>/product/product.do">
+					<form method="post" action="<%=request.getContextPath()%>/product_jsp/product.do">
 						<input type="submit" value="刪除">
 						<input type="hidden" name="product_id" value="${productBean.product_id}">
 						<input type="hidden" name="action" value="delete">

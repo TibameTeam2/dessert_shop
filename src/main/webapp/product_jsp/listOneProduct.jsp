@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.product.model.*"%>
 
-<% 
+<%
 	ProductBean productBean = (ProductBean) request.getAttribute("productBean");
-	System.out.println(productBean);
 %>
 
 <!DOCTYPE html>
@@ -14,40 +14,38 @@
 <title>商品資訊 - listOneProduct.jsp</title>
 
 <style>
+table#table-1 {
+	background-color: violet;
+	border: 2px solid black;
+	text-align: center;
+}
 
- table#table-1 { 
- 	background-color: violet; 
- 	border: 2px solid black; 
- 	text-align: center; 
- } 
+table#table-1 h4 {
+	color: red;
+	display: block;
+	margin-bottom: 1px;
+}
 
- table#table-1 h4 { 
- 	color: red; 
- 	display: block; 
- 	margin-bottom: 1px; 
- } 
+h4 {
+	color: blue;
+	display: inline;
+}
 
- h4 { 
- 	color: blue; 
- 	display: inline; 
- } 
+table {
+	width: 1200px;
+	background-color: white;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
 
- table { 
- 	width: 1200px; 
- 	background-color: white; 
- 	margin-top: 5px; 
- 	margin-bottom: 5px; 
- } 
+table, th, td {
+	border: 1px solid #CCCCFF;
+}
 
- table, th, td { 
- 	border: 1px solid #CCCCFF; 
- } 
-
- th, td { 
- 	padding: 5px; 
- 	text-align: center; 
- }
- 
+th, td {
+	padding: 5px;
+	text-align: center;
+}
 </style>
 
 </head>
@@ -58,7 +56,7 @@
 			<td>
 				<h3>商品資訊 - listOneProduct.jsp</h3>
 				<h4>
-					<a href="select_page.jsp">回首頁</a>
+					<a href="../product_jsp/select_page.jsp">回首頁</a>
 				</h4>
 			</td>
 		</tr>
@@ -81,73 +79,37 @@
 			<th>累計星等</th>
 			<th>累計評價次數</th>
 			<th>累計銷售</th>
-			
+
 			<th>商品圖片</th>
-			
-<!-- 			<th>修改</th> -->
-<!-- 			<th>刪除</th> -->
+
+			<!-- 			<th>修改</th> -->
+			<!-- 			<th>刪除</th> -->
 		</tr>
 		<tr>
-			<td>${productBean.product_id}</td>
-				<td>${productBean.product_name}</td>
-				<td>${productBean.product_type}</td>
-				<td>${productBean.product_subtype}</td>
-				<td>${productBean.product_intro}</td>
-				<td>${productBean.product_ingredient}</td>
-				<td>${productBean.product_price}</td>
-				<td>${productBean.product_available_qty}</td>
-				<td>
-					<c:choose>
-                    <c:when test="${productBean.product_status == 0}">未上架</c:when>
-                    <c:when test="${productBean.product_status == 1}">上架中</c:when>
-                    <c:otherwise>未知錯誤</c:otherwise>
-            		</c:choose>
-				</td>
-				<td>${productBean.expiry_after_buying}</td>
-				<td>${productBean.product_calorie}</td>
-				<td>${productBean.degree_of_sweetness}</td>
-				<td>${productBean.total_star}</td>
-				<td>${productBean.total_review}</td>
-				<td>${productBean.total_purchase}</td>
-				
-				
-				<td>
-                <img src="<%=request.getContextPath()%>/product/product.do?action=getProductImage&id=${productBean.product_id}">
-				</td>
+			<td><%=productBean.getProduct_id()%></td>
+			<td><%=productBean.getProduct_name()%></td>
+			<td><%=productBean.getProduct_type()%></td>
+			<td><%=productBean.getProduct_subtype()%></td>
+			<td><%=productBean.getProduct_intro()%></td>
+			<td><%=productBean.getProduct_ingredient()%></td>
+			<td><%=productBean.getProduct_price()%></td>
+			<td><%=productBean.getProduct_available_qty()%></td>
+			<td><c:choose>
+					<c:when test="<%=productBean.getProduct_status() == 0%>">未上架</c:when>
+					<c:when test="<%=productBean.getProduct_status() == 1%>">上架中</c:when>
+					<c:otherwise>未知錯誤</c:otherwise>
+				</c:choose></td>
+			<td><%=productBean.getExpiry_after_buying()%></td>
+			<td><%=productBean.getProduct_calorie()%></td>
+			<td><%=productBean.getDegree_of_sweetness()%></td>
+			<td><%=productBean.getTotal_star()%></td>
+			<td><%=productBean.getTotal_review()%></td>
+			<td><%=productBean.getTotal_purchase()%></td>
 
-
-<!-- 為什麼下面這些不行? -->
-<%-- 			<td><%=productBean.getProduct_id()%></td> --%>
-<%-- 			<td><%=productBean.getProduct_name()%></td> --%>
-<%-- 			<td><%=productBean.getProduct_type()%></td> --%>
-<%-- 			<td><%=productBean.getProduct_intro()%></td> --%>
-<%-- 			<td><%=productBean.getProduct_price()%></td> --%>
-<%-- 			<td><%=productBean.getProduct_available_qty()%></td> --%>
-<%-- 			<td><%=productBean.getProduct_status()%></td> --%>
-<%-- 			<td><%=productBean.getProduct_calorie()%></td> --%>
-<%-- 			<td><%=productBean.getDegree_of_sweetness()%></td> --%>
-<%-- 			<td><%=productBean.getTotal_star()%></td> --%>
-<%-- 			<td><%=productBean.getTotal_review()%></td> --%>
-
-
-<%-- 以下多餘功能 --%>
-<!-- 			<td> -->
-<!-- 				<form method="post" -->
-<%-- 					action="<%=request.getContextPath()%>/product/product.do"> --%>
-<!-- 					<input type="submit" value="修改"> <input type="hidden" -->
-<%-- 						name="product_id" value="${productBean.product_id}"> <input --%>
-<!-- 						type="hidden" name="action" value="getOne_For_Update"> -->
-<!-- 				</form> -->
-<!-- 			</td> -->
-<!-- 			<td> -->
-<!-- 				<form method="post" -->
-<%-- 					action="<%=request.getContextPath()%>/product/product.do"> --%>
-<!-- 					<input type="submit" value="刪除"> <input type="hidden" -->
-<%-- 						name="product_id" value="${productBean.product_id}"> <input --%>
-<!-- 						type="hidden" name="action" value="delete"> -->
-<!-- 				</form> -->
-<!-- 			</td> -->
-<!-- 		</tr> -->
+			<td><img
+				src="<%=request.getContextPath()%>/product_jsp/product.do?action=getProductImage&id=${productBean.product_id}">
+			</td>
+			
 	</table>
 
 </body>

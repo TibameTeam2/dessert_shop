@@ -3,12 +3,12 @@
 
 <html>
 <head>
-<title>Product: Home in Desser_shop</title>
+<title>Product: Home from Desser_shop</title>
 
 <style>
 table#table-1 {
 	width: 450px;
-	background-color: pink /*#CCCCFF*/;
+	background-color: pink;
 	margin-top: 5px;
 	margin-bottom: 10px;
 	border: 3px ridge Gray;
@@ -58,7 +58,7 @@ h4 {
 
 
 		<li>
-			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/product/product.do">
+			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/product_jsp/product.do">
 				<b>輸入商品編號 (如0001):</b> <input type="text" name="product_id"> <input
 					type="hidden" name="action" value="getOne_For_Display"> <input
 					type="submit" value="送出">
@@ -68,7 +68,7 @@ h4 {
 		<jsp:useBean id="productSvc" scope="page" class="com.product.model.ProductService" />
 
 		<li>
-			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/product/product.do">
+			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/product_jsp/product.do">
 				<b>選擇商品編號:</b> <select size="1" name="product_id">
 					<c:forEach var="proBean" items="${productSvc.all}">
 						<option value="${proBean.product_id}">${proBean.product_id}
@@ -79,7 +79,7 @@ h4 {
 		</li>
 
 		<li>
-			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/product/product.do">
+			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/product_jsp/product.do">
 				<b>選擇商品名稱:</b> <select size="1" name="product_id">
 					<c:forEach var="proBean" items="${productSvc.all}">
 						<option value="${proBean.product_id}">${proBean.product_name}

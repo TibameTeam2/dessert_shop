@@ -5,7 +5,7 @@
 <%
   ProductBean productBean = (ProductBean) request.getAttribute("productBean");
 %>
-<%= productBean==null %>--${productBean.product_id}--  -this is add single product page-
+
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -75,7 +75,7 @@ th, td {
 		</ul>
 	</c:if>
 
-	<FORM METHOD="post" ACTION="product.do" name="form1" enctype="multipart/form-data">
+	<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/product_jsp/product.do" name="form1" enctype="multipart/form-data">
 		<table>
 			<tr>
 				<td>商品名稱:</td>

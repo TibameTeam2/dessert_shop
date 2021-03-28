@@ -4,7 +4,7 @@
 <%
   ProductBean productBean = (ProductBean) request.getAttribute("productBean"); //EmpServlet.java (Concroller) 存入req的empVO物件 (包括幫忙取出的empVO, 也包括輸入資料錯誤時的empVO物件)
 %>
-<%= productBean==null %>--${productBean.product_id}-- --this is Update_product_input.jsp--
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,12 +46,7 @@ table, th, td {
 th, td {
 	padding: 1px;
 }
-
-
-
 </style>
-
-
 
 </head>
 <body bgcolor="white">
@@ -80,7 +75,7 @@ th, td {
 		</ul>4
 	</c:if>
 
-	<FORM METHOD="post" ACTION="product.do" name="form1" enctype="multipart/form-data">
+	<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/product_jsp/product.do" name="form1" enctype="multipart/form-data">
 		<table>
 			<tr>
 				<td>商品編號:<font color=red><b>*</b></font></td>
@@ -236,12 +231,14 @@ th, td {
 				<td>商品圖片：</td>
 				<td>
 					<input type="file" name="upfile1" accept="image/*">
-<%--                 	<input type="image" name="upfile1" src="/dessert_shop/product/backend_getPhoto?id=<%=productBean.getProduct_id()%>"> --%>
+                	<input type="image" src="/dessert_shop/product/backend_getPhoto?id=<%=productBean.getProduct_id()%>" name="my_img">
 				</td>
 			</tr>
 
-			<jsp:useBean id="productSvc" scope="page"
-				class="com.product.model.ProductService" />
+
+<%--			這段的目的?? --%>
+<%-- 			<jsp:useBean id="productSvc" scope="page" --%>
+<%-- 				class="com.product.model.ProductService" /> --%>
 
 		</table>
 		<br><input type="hidden" name="action" value="update"> 
