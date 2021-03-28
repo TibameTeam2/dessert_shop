@@ -240,6 +240,14 @@ public class ProductDAO implements ProductDAO_interface {
 				productBean.setTotal_review(rs.getInt("total_review"));
 				productBean.setTotal_purchase(rs.getInt("total_purchase"));
 				list_productBean.add(productBean);
+
+				pstmt = con.prepareStatement("SELECT image_id FROM sweet.product_image where product_id="+productBean.getProduct_id());
+				List<String> img_url=new ArrayList<String>();
+				ResultSet rs_image = pstmt.executeQuery();
+				while (rs_image.next()) {
+					img_url.add("/product/product.do?action=getProductImage&id="+rs.getString(1));
+				}
+				productBean.setImage_url(img_url);
 //				System.out.println(productBean);
 			}
 			
