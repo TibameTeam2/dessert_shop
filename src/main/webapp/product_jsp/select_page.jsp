@@ -58,7 +58,7 @@ h4 {
 
 
 		<li>
-			<FORM METHOD="post" ACTION="product.do">
+			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/product/product.do">
 				<b>輸入商品編號 (如0001):</b> <input type="text" name="product_id"> <input
 					type="hidden" name="action" value="getOne_For_Display"> <input
 					type="submit" value="送出">
@@ -68,7 +68,7 @@ h4 {
 		<jsp:useBean id="productSvc" scope="page" class="com.product.model.ProductService" />
 
 		<li>
-			<FORM METHOD="post" ACTION="product.do">
+			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/product/product.do">
 				<b>選擇商品編號:</b> <select size="1" name="product_id">
 					<c:forEach var="proBean" items="${productSvc.all}">
 						<option value="${proBean.product_id}">${proBean.product_id}
@@ -79,7 +79,7 @@ h4 {
 		</li>
 
 		<li>
-			<FORM METHOD="post" ACTION="product.do">
+			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/product/product.do">
 				<b>選擇商品名稱:</b> <select size="1" name="product_id">
 					<c:forEach var="proBean" items="${productSvc.all}">
 						<option value="${proBean.product_id}">${proBean.product_name}

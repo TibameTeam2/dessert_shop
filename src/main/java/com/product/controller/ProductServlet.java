@@ -117,7 +117,7 @@ public class ProductServlet extends HttpServlet {
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/product/select_page.jsp");
+							.getRequestDispatcher("/product_jsp/select_page.jsp");
 					failureView.forward(req, res);
 					return;//程式中斷
 				}
@@ -131,7 +131,7 @@ public class ProductServlet extends HttpServlet {
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/product/select_page.jsp");
+							.getRequestDispatcher("/product_jsp/select_page.jsp");
 					failureView.forward(req, res);
 					return;//程式中斷
 				}
@@ -145,14 +145,14 @@ public class ProductServlet extends HttpServlet {
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/product/select_page.jsp");
+							.getRequestDispatcher("/product_jsp/select_page.jsp");
 					failureView.forward(req, res);
 					return;//程式中斷
 				}
 				
 				/***************************3.查詢完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("productBean", productBean); // 資料庫取出的productBean物件,存入req
-				String url = "/product/listOneProduct.jsp";
+				String url = "/product_jsp/listOneProduct.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
 				successView.forward(req, res);
 
@@ -160,7 +160,7 @@ public class ProductServlet extends HttpServlet {
 			} catch (Exception e) {
 				errorMsgs.add("無法取得資料:" + e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/product/select_page.jsp");
+						.getRequestDispatcher("/product_jsp/select_page.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -182,7 +182,7 @@ public class ProductServlet extends HttpServlet {
 								
 				/***************************3.查詢完成,準備轉交(Send the Success view)************/
 				req.setAttribute("productBean", productBean);         // 資料庫取出的productBean物件,存入req
-				String url = "/product/update_product_input.jsp";
+				String url = "/product_jsp/update_product_input.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update_emp_input.jsp
 				successView.forward(req, res);
 
@@ -190,7 +190,7 @@ public class ProductServlet extends HttpServlet {
 			} catch (Exception e) {
 				errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/product/listAllProduct.jsp");
+						.getRequestDispatcher("/product_jsp/listAllProduct.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -374,7 +374,7 @@ public class ProductServlet extends HttpServlet {
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("productBean", productBean); // 含有輸入格式錯誤的productBean物件,也存入req
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/product/update_product_input.jsp");
+							.getRequestDispatcher("/product_jsp/update_product_input.jsp");
 					failureView.forward(req, res);
 					return; //程式中斷
 				}
@@ -395,7 +395,7 @@ public class ProductServlet extends HttpServlet {
 				
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("productBean", productBean); // 資料庫update成功後,正確的的productBean物件,存入req
-				String url = "/product/listOneProduct.jsp";
+				String url = "/product_jsp/listOneProduct.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 				successView.forward(req, res);
 
@@ -404,7 +404,7 @@ public class ProductServlet extends HttpServlet {
 				System.out.println("error");//
 				errorMsgs.add("修改資料失敗:"+e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/product/listAllProduct.jsp");
+						.getRequestDispatcher("/product_jsp/listAllProduct.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -593,7 +593,7 @@ public class ProductServlet extends HttpServlet {
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("productBean", productBean); // 含有輸入格式錯誤的productBean物件,也存入req
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/product/addProduct.jsp");
+							.getRequestDispatcher("/product_jsp/addProduct.jsp");
 					failureView.forward(req, res);
 					return;
 				}
@@ -624,7 +624,7 @@ public class ProductServlet extends HttpServlet {
 				} catch (Exception e) {
 				errorMsgs.add(e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/product/addProduct.jsp");
+						.getRequestDispatcher("/product_jsp/addProduct.jsp");
 				failureView.forward(req, res);
 				}
 			}
@@ -646,7 +646,7 @@ public class ProductServlet extends HttpServlet {
 				productSvc.deleteProduct(product_id);
 				
 				/***************************3.刪除完成,準備轉交(Send the Success view)***********/								
-				String url = "/product/listAllProduct.jsp";
+				String url = "/product_jsp/listAllProduct.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);// 刪除成功後,轉交回送出刪除的來源網頁
 				successView.forward(req, res);
 				
@@ -654,7 +654,7 @@ public class ProductServlet extends HttpServlet {
 			} catch (Exception e) {
 				errorMsgs.add("刪除資料失敗:"+e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/product/listAllProduct.jsp");
+						.getRequestDispatcher("/product_jsp/listAllProduct.jsp");
 				failureView.forward(req, res);
 			}
 		}
