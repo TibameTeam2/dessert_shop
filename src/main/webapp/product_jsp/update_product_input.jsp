@@ -46,6 +46,10 @@ table, th, td {
 th, td {
 	padding: 1px;
 }
+
+div.picture_list{
+	border: 1px solid red;	
+}
 </style>
 
 </head>
@@ -231,7 +235,9 @@ th, td {
 				<td>商品圖片：</td>
 				<td>
 					<input type="file" name="upfile1" accept="image/*">
+					<div id="preview" class="picture_list"><span class="text">預覽圖</span>
                 	<input type="image" src="/dessert_shop/product/backend_getPhoto?id=<%=productBean.getProduct_id()%>" name="my_img">
+				
 				</td>
 			</tr>
 

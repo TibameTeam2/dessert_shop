@@ -14,19 +14,19 @@ import com.daily_special.model.DailySpecialDAO;
 import com.util.JDBCUtil;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-public class ProductImageDAO implements ProductImageDAO_interface{
+public class ProductImageDAO implements ProductImageDAO_interface {
 	private static JdbcTemplate jdbcTemplate;
 	private String driver = JDBCUtil.driver;
 	private String url = JDBCUtil.url;
 	private String userid = JDBCUtil.user;
 	private String passwd = JDBCUtil.password;
-	
+
 	String INSERT;
 	String UPDATE;
 	String DELETE;
 	String SELECT_ALL;
 	String SELECT_PK;
-	
+
 	// 使用byte[]方式
 	public static byte[] getPictureByteArray(String path) throws IOException {
 		FileInputStream fis = new FileInputStream(path);
@@ -35,28 +35,29 @@ public class ProductImageDAO implements ProductImageDAO_interface{
 		fis.close();
 		return buffer;
 	}
-	
+
 	// readPicture
 	public static void readPicture(byte[] bytes, Integer image_id) throws IOException {
 //		FileOutputStream fos = new FileOutputStream("C:/Output/"+ image_id+".png");
-		FileOutputStream fos = new FileOutputStream("Output/"+ image_id+".png");
+		FileOutputStream fos = new FileOutputStream("Output/" + image_id + ".png");
 		fos.write(bytes);
 		fos.flush();
-		fos.close();	
+		fos.close();
 	}
-		
+
 	public void init() {
 //		driver = "com.mysql.cj.jdbc.Driver";
 //		url = "jdbc:mysql://localhost:3306/sweet?serverTimezone=Asia/Taipei";
 //		userid = "root";
 //		passwd = "root";
 	}
-	
-	public void insert(ProductImageBean piBean) throws IOException {
+
+	public ProductImageBean insert(ProductImageBean piBean) throws IOException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		INSERT = "INSERT INTO product_image (product_id, product_image) VALUES (?, ?) ";
-		
+
+		int imgId = 0;
 		try {
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userid, passwd);
@@ -66,6 +67,19 @@ public class ProductImageDAO implements ProductImageDAO_interface{
 			pstmt.setBytes(2, piBean.getProduct_image());
 
 			pstmt.executeUpdate();
+
+////////	
+			pstmt = con.prepareStatement("select LAST_INSERT_ID()");
+
+			ResultSet rs = null;
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				imgId = rs.getInt(1);
+				System.out.println(imgId);
+
+				piBean.setImage_id(imgId);
+			}
+			rs.close();
 
 		} catch (ClassNotFoundException e) {
 			throw new RuntimeException("Couldn't load database driver." + e.getMessage());
@@ -88,25 +102,27 @@ public class ProductImageDAO implements ProductImageDAO_interface{
 				}
 			}
 		}
-		
+		return piBean;////
 	}
-	
+
 	public void update(ProductImageBean piBean) throws IOException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		UPDATE = "UPDATE product_image set product_id = ?, product_image = ? WHERE image_id = ?";
-				
+
+
 		try {
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(UPDATE);
-			
+
 			pstmt.setInt(1, piBean.getProduct_id());
 			pstmt.setBytes(2, piBean.getProduct_image());
 			pstmt.setInt(3, piBean.getImage_id());
 
 			pstmt.executeUpdate();
-			
+
+
 			// Handle any driver errors
 		} catch (ClassNotFoundException e) {
 			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
@@ -132,21 +148,21 @@ public class ProductImageDAO implements ProductImageDAO_interface{
 		}
 
 	}
-	
+
 	public void delete(Integer image_id) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		DELETE = "DELETE FROM product_image WHERE image_id = ?";
-		
+
 		try {
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(DELETE);
-		
-			pstmt.setInt(1,  image_id);
-			
+
+			pstmt.setInt(1, image_id);
+
 			pstmt.executeUpdate();
-			
+
 			// Handle any driver errors
 		} catch (ClassNotFoundException e) {
 			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
@@ -172,34 +188,34 @@ public class ProductImageDAO implements ProductImageDAO_interface{
 		}
 
 	}
-		
+
 	public List<ProductImageBean> getAll() throws IOException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		SELECT_ALL = "SELECT * FROM product_image";	
+		SELECT_ALL = "SELECT * FROM product_image";
 		List<ProductImageBean> list_piBean = new ArrayList<ProductImageBean>();
 		ProductImageBean piBean = null;
-		
+
 		try {
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(SELECT_ALL);
-			
+
 			rs = pstmt.executeQuery();
-			
-			while(rs.next()) {
+
+			while (rs.next()) {
 				piBean = new ProductImageBean();
 				piBean.setImage_id(rs.getInt("image_id"));
 				piBean.setProduct_id(rs.getInt("product_id"));
 				piBean.setProduct_image(rs.getBytes("product_image"));
-				
+
 				list_piBean.add(piBean);
 				readPicture(piBean.getProduct_image(), piBean.getImage_id());
 //				System.out.println(piBean);
-		
+
 			}
-			
+
 			// Handle any driver errors
 		} catch (ClassNotFoundException e) {
 			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
@@ -224,25 +240,25 @@ public class ProductImageDAO implements ProductImageDAO_interface{
 			}
 		}
 		return list_piBean;
-	}	
-		
+	}
+
 	public ProductImageBean findByPrimaryKey(Integer image_id) throws IOException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		SELECT_PK = "SELECT * FROM product_image WHERE image_id = ?";
 		ProductImageBean piBean = null;
-		
+
 		try {
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(SELECT_PK);
-			
+
 			pstmt.setInt(1, image_id);
-			
+
 			rs = pstmt.executeQuery();
-			
-			while(rs.next()) {
+
+			while (rs.next()) {
 				piBean = new ProductImageBean();
 				piBean.setImage_id(rs.getInt("image_id"));
 				piBean.setProduct_id(rs.getInt("product_id"));
@@ -251,7 +267,7 @@ public class ProductImageDAO implements ProductImageDAO_interface{
 				System.out.println(piBean);
 				readPicture(piBean.getProduct_image(), piBean.getImage_id());
 			}
-			
+
 			// Handle any driver errors
 		} catch (ClassNotFoundException e) {
 			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
@@ -278,7 +294,6 @@ public class ProductImageDAO implements ProductImageDAO_interface{
 		return piBean;
 	}
 
-
 	public static void main(String[] args) throws IOException {
 		ProductImageDAO dao = new ProductImageDAO();
 
@@ -299,7 +314,7 @@ public class ProductImageDAO implements ProductImageDAO_interface{
 //		piBean.setProduct_image(pic);
 //		piBean.setImage_id(1);
 //		dao.update(piBean);
-		
+
 		// 刪除
 //		dao.delete(4);
 
@@ -307,14 +322,12 @@ public class ProductImageDAO implements ProductImageDAO_interface{
 //		ProductImageBean piBean = dao.findByPrimaryKey(6);
 //		System.out.println(piBean);
 
-
 		// 查詢
 		List<ProductImageBean> list = dao.getAll();
 		for (ProductImageBean piBean : list) {
-			System.out.println(piBean);	
+			System.out.println(piBean);
 		}
-		
-		
+
 //		System.out.println(list.size());
 	}
 }

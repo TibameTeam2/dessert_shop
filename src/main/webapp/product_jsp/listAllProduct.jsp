@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.product.model.*"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <%
 	ProductService productSvc = new ProductService();
@@ -44,9 +45,18 @@ table, th, td {
 	border: 1px solid #CCCCFF;
 }
 
-th, td {
+th{
 	padding: 5px;
 	text-align: center;
+	white-space: nowrap;
+}
+td {
+	padding: 5px;
+	text-align: center;
+}
+img {
+	width: 200px;
+	height: 200px;
 }
 
 </style>
@@ -120,7 +130,9 @@ th, td {
 				<td>${productBean.expiry_after_buying}</td>
 				<td>${productBean.product_calorie}</td>
 				<td>${productBean.degree_of_sweetness}</td>
-				<td>${productBean.total_star}</td>
+				<td>
+					<fmt:formatNumber type="number" value="${productBean.total_star/productBean.total_review}" maxFractionDigits="1"/>
+				</td>
 				<td>${productBean.total_review}</td>
 				<td>${productBean.total_purchase}</td>
 				
