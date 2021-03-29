@@ -223,9 +223,9 @@ public class MemberServlet extends BaseServlet {
      */
     public void forgetPassword(HttpServletRequest req, HttpServletResponse res) {
         String email = req.getParameter("email").trim();
-        if (email == null || email.length()==0) return;
+        if (email == null || email.length() == 0) return;
         String path = req.getScheme() + "://" + req.getServerName() + ":" + req.getServerPort() + req.getContextPath();
-        boolean flag = service.forgetPassword(email,path);
+        boolean flag = service.forgetPassword(email, path);
     }
 
     /**
@@ -247,7 +247,7 @@ public class MemberServlet extends BaseServlet {
         if (isValid == null) {  //重置碼有效的情況下，
             try {
                 String password = req.getParameter("password");
-                boolean flag = service.changePassword(account,DigestUtil.md5Hex(password));
+                boolean flag = service.changePassword(account, DigestUtil.md5Hex(password));
                 if (flag) {
                     info.setFlag(true);
                     info.setMsg("密碼已重置!");
@@ -261,7 +261,7 @@ public class MemberServlet extends BaseServlet {
             } finally {
                 jedis.close();
             }
-        }else{  //單純檢查重置碼是否有效
+        } else {  //單純檢查重置碼是否有效
             try {
                 info.setFlag(true);
                 info.setMsg("重置碼有效!");
@@ -272,7 +272,6 @@ public class MemberServlet extends BaseServlet {
             }
         }
     }
-
 
 
     /************************************以下後臺使用****************************************/
@@ -367,6 +366,7 @@ public class MemberServlet extends BaseServlet {
             in.read(buf);
             in.close();
 
+
 //            System.out.println("filename = " + filename);
 //            System.out.println("dir = " + dir);
 //            System.out.println("part = " + part);
@@ -383,7 +383,11 @@ public class MemberServlet extends BaseServlet {
             member.setRegister_time(register_time);
             member.setMember_password(member_password);
             member.setMember_photo(buf);
-
+            if (buf.length == 0) {
+                MemberService tempSvc = new MemberService();
+                MemberBean member1 = tempSvc.getOneMember(member_account);
+                member.setMember_photo(member1.getMember_photo());
+            }
 
             // Send the use back to the form, if there were errors
             if (!errorMsgs.isEmpty()) {
