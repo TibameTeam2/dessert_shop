@@ -15,7 +15,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import com.order_master.model.OrderMasterBean;
 import com.util.JDBCUtil;
 
-public class OrderMasterDAO {
+public class OrderMasterDaoImpl implements OrderMasterDao {
 	private static JdbcTemplate jdbcTemplate;
 	private String driver = JDBCUtil.driver;
 	private String url = JDBCUtil.url;
@@ -309,7 +309,7 @@ public class OrderMasterDAO {
 	}
 	
 	public static void main(String[] args) {
-		OrderMasterDAO dao = new OrderMasterDAO();
+		OrderMasterDaoImpl dao = new OrderMasterDaoImpl();
 		
 		//insert
 		//設定資料
@@ -348,10 +348,10 @@ public class OrderMasterDAO {
 //		System.out.print(omBean);
 		
 		//select_all
-		List<OrderMasterBean> list = dao.getAll();
-		for (OrderMasterBean omBean : list) {
-			System.out.println(omBean);
-		}
+//		List<OrderMasterBean> list = dao.getAll();
+//		for (OrderMasterBean omBean : list) {
+//			System.out.println(omBean);
+//		}
 		
 		
 	}
