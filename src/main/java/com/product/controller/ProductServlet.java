@@ -333,8 +333,28 @@ public class ProductServlet extends HttpServlet {
 		        System.out.println("圖片驗證update2222");//
 		   
 				if (product_image.length == 0) {
-					errorMsgs.add("請上傳圖片!");
+					
+					ProductImageService piSvc = new ProductImageService();
+					ProductImageBean piBean = 
+					
 				}
+/////圖片			
+//				Part part = req.getPart("upfile1");
+//		          InputStream in = part.getInputStream();
+//		          byte[] announcement_image = new byte[in.available()];
+//		          in.read(announcement_image);
+//		          in.close();
+//		   		if (announcement_image.length == 0) {
+//					AnnouncementManagementService amSvc = new AnnouncementManagementService();
+//		     		AnnouncementManagementVO VO = amSvc.getOneAnn(announcement_id);
+//		     		announcement_image = VO.getAnnouncement_image();
+//		    	}
+				
+				
+				
+				
+				
+				
 				
 				
 				System.out.println(product_image);
