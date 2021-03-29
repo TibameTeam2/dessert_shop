@@ -35,7 +35,7 @@ public class EmpServlet extends HttpServlet {
 				/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
 				String str = req.getParameter("empno");
 				if (str == null || (str.trim()).length() == 0) {
-					errorMsgs.add("請輸入員工編號");
+					errorMsgs.add("請輸入公告編號");
 				}
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
