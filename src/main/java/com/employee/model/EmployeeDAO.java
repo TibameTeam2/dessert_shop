@@ -9,7 +9,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EmployeeDAO {
+public class EmployeeDAO implements EmployeeDAO_interface {
 
     private static JdbcTemplate jdbcTemplate;
     private String driver = JDBCUtil.driver;

@@ -14,7 +14,7 @@ import com.daily_special.model.DailySpecialDAO;
 import com.util.JDBCUtil;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-public class ProductImageDAO {
+public class ProductImageDAO implements ProductImageDAO_interface{
 	private static JdbcTemplate jdbcTemplate;
 	private String driver = JDBCUtil.driver;
 	private String url = JDBCUtil.url;
@@ -284,9 +284,9 @@ public class ProductImageDAO {
 
 		// 新增
 		// 設定資料
-//		byte[] pic = getPictureByteArray("Images/chocoMacaron1.jpg");
+//		byte[] pic = getPictureByteArray("Images/cupOreo-3.jpg");
 //		ProductImageBean piBean = new ProductImageBean();
-//		piBean.setProduct_id(3);
+//		piBean.setProduct_id(1);
 //		piBean.setProduct_image(pic);
 //		dao.insert(piBean);
 
@@ -297,11 +297,11 @@ public class ProductImageDAO {
 //		ProductImageBean piBean = new ProductImageBean();
 //		piBean.setProduct_id(1);
 //		piBean.setProduct_image(pic);
-//		piBean.setImage_id(6);
+//		piBean.setImage_id(1);
 //		dao.update(piBean);
 		
 		// 刪除
-//		dao.delete(7);
+//		dao.delete(4);
 
 		// 查詢
 //		ProductImageBean piBean = dao.findByPrimaryKey(6);
@@ -313,6 +313,8 @@ public class ProductImageDAO {
 		for (ProductImageBean piBean : list) {
 			System.out.println(piBean);	
 		}
+		
+		
 //		System.out.println(list.size());
 	}
 }
