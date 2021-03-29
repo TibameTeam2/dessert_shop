@@ -5,7 +5,7 @@
 <%
   ProductBean productBean = (ProductBean) request.getAttribute("productBean");
 %>
-<%= productBean==null %>--${productBean.product_id}--  -this is add single product page-
+
 <html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -56,7 +56,7 @@ th, td {
 			</td>
 			<td>
 				<h4>
-					<a href="select_page.jsp"><img src="../product_jsp/images/chocoMacaron1.jpg"
+					<a href="select_page.jsp"><img src="images/chocoMacaron1.jpg"
 						width="100" height="100" border="0">回首頁</a>
 				</h4>
 			</td>
@@ -182,8 +182,8 @@ th, td {
 				class="com.product.model.ProductService" />
 			
 		</table>
-		<br> <input type="hidden" name="action" value="insert"> 
-		<input type="submit" value="送出新增">
+		<br> <input type="hidden" name="action" value="insert"> <input
+			type="submit" value="送出新增">
 	</FORM>
 </body>
 

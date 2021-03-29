@@ -4,7 +4,7 @@
 <%
   ProductBean productBean = (ProductBean) request.getAttribute("productBean"); //EmpServlet.java (Concroller) 存入req的empVO物件 (包括幫忙取出的empVO, 也包括輸入資料錯誤時的empVO物件)
 %>
-<%= productBean==null %>--${productBean.product_id}-- --this is Update_product_input.jsp--
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,12 +46,7 @@ table, th, td {
 th, td {
 	padding: 1px;
 }
-
-
-
 </style>
-
-
 
 </head>
 <body bgcolor="white">
@@ -61,7 +56,7 @@ th, td {
 			<td>
 				<h3>修改商品資訊 - update_product_input.jsp</h3>
 				<h4>
-					<a href="select_page.jsp"><img src="../product_jsp/images/chocoMacaron1.jpg"
+					<a href="select_page.jsp"><img src="images/chocoMacaron1.jpg"
 						width="100" height="100" border="0">回首頁</a>
 				</h4>
 			</td>
@@ -236,12 +231,15 @@ th, td {
 				<td>商品圖片：</td>
 				<td>
 					<input type="file" name="upfile1" accept="image/*">
-<%--                 	<input type="image" name="upfile1" src="/dessert_shop/product/backend_getPhoto?id=<%=productBean.getProduct_id()%>"> --%>
+					<div id="preview" class="picture_list"><span class="text">預覽圖</span></div>
+                	<input type="image" src="/dessert_shop/product/backend_getPhoto?id=<%=productBean.getProduct_id()%>" name="my_img">
 				</td>
 			</tr>
 
-			<jsp:useBean id="productSvc" scope="page"
-				class="com.product.model.ProductService" />
+
+<%--			這段的目的?? --%>
+<%-- 			<jsp:useBean id="productSvc" scope="page" --%>
+<%-- 				class="com.product.model.ProductService" /> --%>
 
 		</table>
 		<br><input type="hidden" name="action" value="update"> 
@@ -250,6 +248,15 @@ th, td {
 	</FORM>
 	
 </body>
+
+<script>
+///////////照片的
+
+
+</script>
+
+
+
 <!-- =========================================以下為 datetimepicker 之相關設定========================================== -->
 
 <!-- <link rel="stylesheet" type="text/css" -->

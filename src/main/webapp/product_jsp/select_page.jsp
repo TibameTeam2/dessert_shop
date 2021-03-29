@@ -3,12 +3,12 @@
 
 <html>
 <head>
-<title>Product: Home in Desser_shop</title>
+<title>Product: Home from Desser_shop</title>
 
 <style>
 table#table-1 {
 	width: 450px;
-	background-color: pink /*#CCCCFF*/;
+	background-color: pink;
 	margin-top: 5px;
 	margin-bottom: 10px;
 	border: 3px ridge Gray;

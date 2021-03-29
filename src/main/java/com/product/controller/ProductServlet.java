@@ -330,11 +330,31 @@ public class ProductServlet extends HttpServlet {
 		        in.read(product_image);
 		        in.close();
 		   
-		        System.out.println("圖片驗證update2");//
+		        System.out.println("圖片驗證update2222");//
 		   
 				if (product_image.length == 0) {
-					errorMsgs.add("請上傳圖片!");
+					
+					ProductImageService piSvc = new ProductImageService();
+					ProductImageBean piBean = 
+					
 				}
+/////圖片			
+//				Part part = req.getPart("upfile1");
+//		          InputStream in = part.getInputStream();
+//		          byte[] announcement_image = new byte[in.available()];
+//		          in.read(announcement_image);
+//		          in.close();
+//		   		if (announcement_image.length == 0) {
+//					AnnouncementManagementService amSvc = new AnnouncementManagementService();
+//		     		AnnouncementManagementVO VO = amSvc.getOneAnn(announcement_id);
+//		     		announcement_image = VO.getAnnouncement_image();
+//		    	}
+				
+				
+				
+				
+				
+				
 				
 				
 				System.out.println(product_image);
@@ -360,7 +380,7 @@ public class ProductServlet extends HttpServlet {
 				productBean.setTotal_review(total_review);
 				productBean.setTotal_purchase(total_purchase);
 				
-//				piBean.setProduct_id(piBean.getImage_id((productBean.getProduct_id()));//
+				piBean.setProduct_id(productBean.getProduct_id());//
 				
 				piBean.setProduct_image(product_image);//
 			
@@ -386,12 +406,12 @@ public class ProductServlet extends HttpServlet {
 				productSvc.updateProduct(productBean);
 				
 				ProductImageService piSvc = new ProductImageService();
-				
-//				piBean.setProduct_id(productBean.getProduct_id());
+// update照片會失敗		
+				piBean.setProduct_id(productBean.getProduct_id()); //
 				piSvc.updateProductImage(piBean);
 				
 				
-//				System.out.println("修改資料"+ productBean);//
+				System.out.println("修改資料"+ productBean);//
 				
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("productBean", productBean); // 資料庫update成功後,正確的的productBean物件,存入req
@@ -404,14 +424,16 @@ public class ProductServlet extends HttpServlet {
 				System.out.println("error");//
 				errorMsgs.add("修改資料失敗:"+e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/product_jsp/listAllProduct.jsp");
+						.getRequestDispatcher("/product_jsp/listAllProduct.jsp");		
+											//失敗應該在原地 update_product_input.jsp
+											//因為會nullPointerException 故先轉交給listAllProduct.jsp
 				failureView.forward(req, res);
 			}
 		}
 			
 		if ("insert".equals(action)) { // 來自addProduct.jsp的請求  
 			
-//			System.out.println("insert");//
+			System.out.println("insert");//
 			
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
@@ -642,6 +664,11 @@ public class ProductServlet extends HttpServlet {
 				Integer product_id = new Integer(req.getParameter("product_id"));
 				
 				/***************************2.開始刪除資料***************************************/
+				// 要先刪除照片
+				ProductImageService piSvc = new ProductImageService();
+				piSvc.deleteProductImage(product_id);
+				System.out.println("product_id:"+product_id+"照片刪除成功");
+				
 				ProductService productSvc = new ProductService();
 				productSvc.deleteProduct(product_id);
 				
