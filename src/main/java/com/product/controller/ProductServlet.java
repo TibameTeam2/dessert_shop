@@ -644,9 +644,13 @@ public class ProductServlet extends HttpServlet {
 				Integer product_id = new Integer(req.getParameter("product_id"));
 				
 				/***************************2.開始刪除資料***************************************/
+				// 要先刪除照片
+				ProductImageService piSvc = new ProductImageService();
+				piSvc.deleteProductImage(product_id);
+				System.out.println("product_id:"+product_id+"照片刪除成功");
+				
 				ProductService productSvc = new ProductService();
 				productSvc.deleteProduct(product_id);
-// 要先刪除照片
 				
 				/***************************3.刪除完成,準備轉交(Send the Success view)***********/								
 				String url = "/product_jsp/listAllProduct.jsp";

@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.product.model.*"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <%
 	ProductBean productBean = (ProductBean) request.getAttribute("productBean");
@@ -42,9 +43,18 @@ table, th, td {
 	border: 1px solid #CCCCFF;
 }
 
-th, td {
+th{
 	padding: 5px;
 	text-align: center;
+	white-space: nowrap;
+}
+td {
+	padding: 5px;
+	text-align: center;
+}
+img {
+	width: 150px;
+	height: 150px;
 }
 </style>
 
@@ -102,7 +112,9 @@ th, td {
 			<td><%=productBean.getExpiry_after_buying()%></td>
 			<td><%=productBean.getProduct_calorie()%></td>
 			<td><%=productBean.getDegree_of_sweetness()%></td>
-			<td><%=productBean.getTotal_star()%></td>
+			<td>
+				<fmt:formatNumber type="number" value="${productBean.total_star/productBean.total_review}" maxFractionDigits="1"/>
+			</td>
 			<td><%=productBean.getTotal_review()%></td>
 			<td><%=productBean.getTotal_purchase()%></td>
 

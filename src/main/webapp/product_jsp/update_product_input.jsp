@@ -231,6 +231,7 @@ th, td {
 				<td>商品圖片：</td>
 				<td>
 					<input type="file" name="upfile1" accept="image/*">
+					<div id="preview" class="picture_list"><span class="text">預覽圖</span></div>
                 	<input type="image" src="/dessert_shop/product/backend_getPhoto?id=<%=productBean.getProduct_id()%>" name="my_img">
 				</td>
 			</tr>
