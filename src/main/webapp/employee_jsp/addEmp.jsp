@@ -205,9 +205,9 @@ enctype="multipart/form-data">
         	var fr = new FileReader();
         	var file = $(".upload_img")[0].files[0];
         	fr.readAsDataURL(file);
-        	fr.onload = function(e){
-        		$(".show_img").attr("src", e.target.result);
-        	}
+        	$(fr).on("load",function(){
+        		$(".show_img").attr("src", this.result);
+        	});
         	
         });
         
