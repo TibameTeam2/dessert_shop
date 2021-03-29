@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.product.model.*"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <%
 	ProductBean productBean = (ProductBean) request.getAttribute("productBean");
@@ -43,18 +42,9 @@ table, th, td {
 	border: 1px solid #CCCCFF;
 }
 
-th{
+th, td {
 	padding: 5px;
 	text-align: center;
-	white-space: nowrap;
-}
-td {
-	padding: 5px;
-	text-align: center;
-}
-img {
-	width: 200px;
-	height: 200px;
 }
 </style>
 
@@ -89,7 +79,11 @@ img {
 			<th>累計星等</th>
 			<th>累計評價次數</th>
 			<th>累計銷售</th>
+
 			<th>商品圖片</th>
+
+			<!-- 			<th>修改</th> -->
+			<!-- 			<th>刪除</th> -->
 		</tr>
 		<tr>
 			<td><%=productBean.getProduct_id()%></td>
@@ -108,9 +102,7 @@ img {
 			<td><%=productBean.getExpiry_after_buying()%></td>
 			<td><%=productBean.getProduct_calorie()%></td>
 			<td><%=productBean.getDegree_of_sweetness()%></td>
-			<td>
-					<fmt:formatNumber type="number" value="${productBean.total_star/productBean.total_review}" maxFractionDigits="1"/>
-			</td>
+			<td><%=productBean.getTotal_star()%></td>
 			<td><%=productBean.getTotal_review()%></td>
 			<td><%=productBean.getTotal_purchase()%></td>
 

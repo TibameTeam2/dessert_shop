@@ -365,8 +365,8 @@ public class ProductServlet extends HttpServlet {
 				piBean.setProduct_image(product_image);//
 			
 				
-				System.out.println("update的product:"+productBean);//
-				System.out.println("update的product img:"+piBean);//
+				System.out.println("update的:"+productBean);//
+				System.out.println("update的:"+piBean);//
 				
 				
 				
@@ -386,14 +386,12 @@ public class ProductServlet extends HttpServlet {
 				productSvc.updateProduct(productBean);
 				
 				ProductImageService piSvc = new ProductImageService();
-				
 // update照片會失敗		
 				piBean.setProduct_id(productBean.getProduct_id()); //
-				piBean = piSvc.updateProductImage(piBean);
+				piSvc.updateProductImage(piBean);
 				
 				
-				System.out.println("update修改照片productImg"+ piBean);//
-				System.out.println("update修改資料"+ productBean);//
+				System.out.println("修改資料"+ productBean);//
 				
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("productBean", productBean); // 資料庫update成功後,正確的的productBean物件,存入req
@@ -646,14 +644,9 @@ public class ProductServlet extends HttpServlet {
 				Integer product_id = new Integer(req.getParameter("product_id"));
 				
 				/***************************2.開始刪除資料***************************************/
-// 先刪除照片
-				ProductImageService piSvc = new ProductImageService();
-				piSvc.deleteProductImage(product_id);
-				System.out.println("照片刪除成功");
-				
 				ProductService productSvc = new ProductService();
 				productSvc.deleteProduct(product_id);
-				System.out.println(product_id);
+// 要先刪除照片
 				
 				/***************************3.刪除完成,準備轉交(Send the Success view)***********/								
 				String url = "/product_jsp/listAllProduct.jsp";
