@@ -166,7 +166,7 @@ public class ProductServlet extends HttpServlet {
 		}
 		
 		if ("getOne_For_Update".equals(action)) { // 來自listAllProduct.jsp的請求
-
+			System.out.println("getOne_For_Update1");//
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
 			// send the ErrorPage view.
@@ -179,12 +179,18 @@ public class ProductServlet extends HttpServlet {
 				/***************************2.開始查詢資料****************************************/
 				ProductService productSvc = new ProductService();
 				ProductBean productBean = productSvc.getOneProduct(product_id);
+				
+				System.out.println("getOne_For_Update裡面的:"+productBean);//
 								
 				/***************************3.查詢完成,準備轉交(Send the Success view)************/
 				req.setAttribute("productBean", productBean);         // 資料庫取出的productBean物件,存入req
+				System.out.println("getOne_For_Update裡面的準備轉交");//
+				System.out.println("getOne_For_Update準備轉交的productBean"+productBean);//
+				
 				String url = "/product_jsp/update_product_input.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update_emp_input.jsp
 				successView.forward(req, res);
+				System.out.println("getOne_For_Update準備轉交最後一行");//
 
 				/***************************其他可能的錯誤處理**********************************/
 			} catch (Exception e) {
@@ -192,6 +198,7 @@ public class ProductServlet extends HttpServlet {
 				RequestDispatcher failureView = req
 						.getRequestDispatcher("/product_jsp/listAllProduct.jsp");
 				failureView.forward(req, res);
+				System.out.println("getOne_For_Update的錯誤");//
 			}
 		}
 		
@@ -331,33 +338,18 @@ public class ProductServlet extends HttpServlet {
 		        in.close();
 		   
 		        System.out.println("圖片驗證update2222");//
-		   
+		        
+///這裡要拿到img id
+
+		        
 				if (product_image.length == 0) {
-					
-					ProductImageService piSvc = new ProductImageService();
-					ProductImageBean piBean = 
-					
+					ProductService productSvc = new ProductService();
+					ProductBean productBean = productSvc.getOneProduct(product_id);
+					product_image =productBean.getProduct_image();					
 				}
-/////圖片			
-//				Part part = req.getPart("upfile1");
-//		          InputStream in = part.getInputStream();
-//		          byte[] announcement_image = new byte[in.available()];
-//		          in.read(announcement_image);
-//		          in.close();
-//		   		if (announcement_image.length == 0) {
-//					AnnouncementManagementService amSvc = new AnnouncementManagementService();
-//		     		AnnouncementManagementVO VO = amSvc.getOneAnn(announcement_id);
-//		     		announcement_image = VO.getAnnouncement_image();
-//		    	}
 				
 				
-				
-				
-				
-				
-				
-				
-				System.out.println(product_image);
+				System.out.println("商品照片:"+product_image);
 								
 				
 				ProductBean productBean = new ProductBean();
@@ -380,11 +372,14 @@ public class ProductServlet extends HttpServlet {
 				productBean.setTotal_review(total_review);
 				productBean.setTotal_purchase(total_purchase);
 				
+//				productBean.setProduct_image(product_image);//
+				
 				piBean.setProduct_id(productBean.getProduct_id());//
 				
 				piBean.setProduct_image(product_image);//
-			
+				piBean.setImage_id(productBean.getImage_id());	
 				
+				System.out.println("image_id:"+productBean.getImage_id());//
 				System.out.println("update的:"+productBean);//
 				System.out.println("update的:"+piBean);//
 				
@@ -404,12 +399,14 @@ public class ProductServlet extends HttpServlet {
 				ProductService productSvc = new ProductService();
 //				productBean = productSvc.updateProduct(product_id, product_name, product_type, product_intro, product_price, product_available_qty, product_status, product_calorie, degree_of_sweetness, total_star, total_review);
 				productSvc.updateProduct(productBean);
+				System.out.println("productBean update成功");
 				
 				ProductImageService piSvc = new ProductImageService();
 // update照片會失敗		
 				piBean.setProduct_id(productBean.getProduct_id()); //
 				piSvc.updateProductImage(piBean);
 				
+				System.out.println("piBean update成功");
 				
 				System.out.println("修改資料"+ productBean);//
 				

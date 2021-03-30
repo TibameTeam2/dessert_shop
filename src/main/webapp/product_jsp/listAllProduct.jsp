@@ -134,7 +134,6 @@ img {
 				<td><fmt:formatNumber type="number"
 						value="${productBean.total_star/productBean.total_review}" maxFractionDigits="1" />
 				</td>
-				<td>${productBean.total_star}</td>
 				<td>${productBean.total_review}</td>
 				<td>${productBean.total_purchase}</td>
 
@@ -144,7 +143,6 @@ img {
 				<%--                        <img src="data:image/png;base64,<%=Base64.getEncoder().encodeToString(empBean.getEmployee_photo())%>"> --%>
 				<%--                       <%}%> --%>
 				<!--            		 </td> -->
-
 
 				<td><img
 					src="<%=request.getContextPath()%>/product_jsp/product.do?action=getProductImage&id=${productBean.product_id}"
