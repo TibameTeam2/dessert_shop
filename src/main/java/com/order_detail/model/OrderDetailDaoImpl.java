@@ -14,7 +14,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import com.order_detail.model.OrderDetailBean;
 import com.util.JDBCUtil;
 
-public class OrderDetailDAO {
+public class OrderDetailDaoImpl implements OrderDetailDao{
 	private static JdbcTemplate jdbcTemplate;
 	private String driver = JDBCUtil.driver;
 	private String url = JDBCUtil.url;
@@ -294,8 +294,77 @@ public class OrderDetailDAO {
 	}
 	
 	
-	public static void main(String[] args) {
-		OrderDetailDAO dao = new OrderDetailDAO();
+	
+	public List<OrderDetailBean> getAllProductNameImageIncluded() {
+		SELECT_ALL =
+				"select  order_master_id, od.order_detail_id, od.product_id, product_qty, od.product_price, product_image, product_name"
+				+ "from order_detail od "
+				+ "join product p on od.product_id = p.product_id "
+				+ "join product_image pi on p.product_id = pi.product_id"
+				+ "order by order_master_id;";
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		List<OrderDetailBean> list_OrderDetailBean = new ArrayList<OrderDetailBean>();
+		OrderDetailBean odBean = null;
+		
+		
+		try {
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			pstmt = con.prepareStatement(SELECT_ALL);
+			
+			
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				odBean = new OrderDetailBean();
+				odBean.setOrder_detail_id(rs.getInt("order_detail_id"));
+				odBean.setOrder_master_id(rs.getInt("order_master_id"));
+				odBean.setProduct_id(rs.getInt("product_id"));
+				odBean.setProduct_qty(rs.getInt("product_qty"));
+				odBean.setProduct_price(rs.getInt("product_price"));
+				odBean.setProduct_name(rs.getString("product_name"));
+				odBean.setProduct_image(rs.getBytes("product_image"));
+				list_OrderDetailBean.add(odBean);
+			}
+			
+			
+			// Handle any driver errors
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. "
+					+ e.getMessage());
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		
+		return list_OrderDetailBean;
+		
+	}
+	
+	
+//	public static void main(String[] args) {
+//		OrderDetailDAO dao = new OrderDetailDAO();
 		
 		//insert
 		//設定資料
@@ -324,12 +393,12 @@ public class OrderDetailDAO {
 //		System.out.print(odBean);
 		
 		//select_all
-		List<OrderDetailBean> list = dao.getAll();
-		for (OrderDetailBean odBean : list) {
-			System.out.println(odBean);
-		}
+//		List<OrderDetailBean> list = dao.getAll();
+//		for (OrderDetailBean odBean : list) {
+//			System.out.println(odBean);
+//		}
 		
 	
-	}
+//	}
 
 }

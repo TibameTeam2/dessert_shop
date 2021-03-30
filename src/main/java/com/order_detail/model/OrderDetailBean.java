@@ -1,17 +1,21 @@
 package com.order_detail.model;
 
+import java.util.Arrays;
+
 public class OrderDetailBean {
 	private Integer order_detail_id;
 	private Integer order_master_id;
 	private Integer product_id;
 	private Integer product_qty;
 	private Integer product_price;
+	private String product_name;
+	private byte[] product_image;
 	
 	@Override
 	public String toString() {
 		return "OrderDetailBean [order_detail_id=" + order_detail_id + ", order_master_id=" + order_master_id
 				+ ", product_id=" + product_id + ", product_qty=" + product_qty + ", product_price=" + product_price
-				+ "]";
+				+ ", product_name=" + product_name + ", product_image=" + Arrays.toString(product_image) + "]";
 	}
 
 	public Integer getOrder_detail_id() {
@@ -53,6 +57,22 @@ public class OrderDetailBean {
 	public void setProduct_price(Integer product_price) {
 		this.product_price = product_price;
 	}
-	
 
+	public String getProduct_name() {
+		return product_name;
+	}
+
+	public void setProduct_name(String product_name) {
+		this.product_name = product_name;
+	}
+
+	public byte[] getProduct_image() {
+		return product_image;
+	}
+
+	public void setProduct_image(byte[] product_image) {
+		this.product_image = product_image;
+	}
+	
+	
 }
