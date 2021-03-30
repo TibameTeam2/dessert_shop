@@ -3,7 +3,7 @@ package com.employee.model;
 import java.sql.Date;
 import java.util.Arrays;
 
-public class EmployeeBean {
+public class EmployeeBean implements java.io.Serializable {
 
     private String employee_account;
     private String employee_name;

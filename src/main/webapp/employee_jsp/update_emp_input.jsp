@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.employee.model.*"%>
+<%@ page import="java.util.Base64" %>>
 
 <%
   EmployeeBean empBean = (EmployeeBean) request.getAttribute("empBean"); //EmpServlet.java (Concroller) 存入req的empVO物件 (包括幫忙取出的empVO, 也包括輸入資料錯誤時的empVO物件)
@@ -48,7 +49,7 @@
 
 <table id="table-1">
 	<tr><td>
-		 <h3>員工資料修改 - update_emp_input.jsp</h3>
+		 <h3>員工資料修改 - update_employee_input.jsp</h3>
 		 <h4><a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a></h4>
 	</td></tr>
 </table>
@@ -86,7 +87,13 @@ enctype="multipart/form-data">
 	</tr>
 	<tr>
 		<td>員工照片:</td>
-		<td><input type="file" name="upfile1">
+		<td><input type="file" name="upfile1" class="upload_img">
+		    <% if (empBean.getEmployee_photo() != null){
+                System.out.println(empBean.getEmployee_photo());%>
+              <img src="data:image/png;base64,<%=Base64.getEncoder().encodeToString(empBean.getEmployee_photo())%>" class="show_img">
+             <%} else {%>
+             <img src="" class="show_img">
+             <%}%>
         </td>
 	</tr>
 	<tr>
@@ -187,6 +194,19 @@ enctype="multipart/form-data">
         //              }
         //              return [true, ""];
         //      }});
+        
+        
+        
+        // 顯示上傳圖片
+        $(".upload_img").on("change", function(){
+        	var fr = new FileReader();
+        	var file = $(".upload_img")[0].files[0];
+        	fr.readAsDataURL(file);
+        	$(fr).on("load",function(){
+        		$(".show_img").attr("src", this.result);
+        	});
+        	
+        });
         
 </script>
 </html>

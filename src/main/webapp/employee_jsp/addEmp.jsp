@@ -48,7 +48,7 @@
 
 <table id="table-1">
 	<tr><td>
-		 <h3>員工資料新增 - addEmp.jsp</h3></td><td>
+		 <h3>員工資料新增 - addEmployee.jsp</h3></td><td>
 		 <h4><a href="select_page.jsp"><img src="images/tomcat.png" width="100" height="100" border="0">回首頁</a></h4>
 	</td></tr>
 </table>
@@ -90,7 +90,8 @@ enctype="multipart/form-data">
 	</tr>
 	<tr>
 		<td>員工照片:</td>
-		<td><input type="file" name="upfile1">
+		<td><input type="file" name="upfile1" class="upload_img">
+		<img src="" class="show_img">
 		</td>
 	</tr>
 	<tr>
@@ -197,6 +198,20 @@ enctype="multipart/form-data">
         //              }
         //              return [true, ""];
         //      }});
+        
+        
+        // 顯示上傳圖片
+        $(".upload_img").on("change", function(){
+        	var fr = new FileReader();
+        	var file = $(".upload_img")[0].files[0];
+        	fr.readAsDataURL(file);
+        	$(fr).on("load",function(){
+        		$(".show_img").attr("src", this.result);
+        	});
+        	
+        });
+        
+        
         
 </script>
 </html>

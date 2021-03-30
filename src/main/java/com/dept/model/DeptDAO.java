@@ -12,7 +12,7 @@ import com.emp.model.EmpVO;
 
 public class DeptDAO implements DeptDAO_interface {
 
-	// ¤@­ÓÀ³¥Îµ{¦¡¤¤,°w¹ï¤@­Ó¸ê®Æ®w ,¦@¥Î¤@­ÓDataSource§Y¥i
+	// ä¸€å€‹æ‡‰ç”¨ç¨‹å¼ä¸­,é‡å°ä¸€å€‹è³‡æ–™åº« ,å…±ç”¨ä¸€å€‹DataSourceå³å¯
 	private static DataSource ds = null;
 	static {
 		try {
@@ -127,29 +127,29 @@ pstmt.executeUpdate("set auto_increment_increment=10;");
 
 			con = ds.getConnection();
 
-			// 1¡´³]©w©ó pstm.executeUpdate()¤§«e
+			// 1â—è¨­å®šæ–¼ pstm.executeUpdate()ä¹‹å‰
 			con.setAutoCommit(false);
 
-			// ¥ı§R°£­û¤u
+			// å…ˆåˆªé™¤å“¡å·¥
 			pstmt = con.prepareStatement(DELETE_EMPs);
 			pstmt.setInt(1, deptno);
 			updateCount_EMPs = pstmt.executeUpdate();
-			// ¦A§R°£³¡ªù
+			// å†åˆªé™¤éƒ¨é–€
 			pstmt = con.prepareStatement(DELETE_DEPT);
 			pstmt.setInt(1, deptno);
 			pstmt.executeUpdate();
 
-			// 2¡´³]©w©ó pstm.executeUpdate()¤§«á
+			// 2â—è¨­å®šæ–¼ pstm.executeUpdate()ä¹‹å¾Œ
 			con.commit();
 			con.setAutoCommit(true);
-			System.out.println("§R°£³¡ªù½s¸¹" + deptno + "®É,¦@¦³­û¤u" + updateCount_EMPs
-					+ "¤H¦P®É³Q§R°£");
+			System.out.println("åˆªé™¤éƒ¨é–€ç·¨è™Ÿ" + deptno + "æ™‚,å…±æœ‰å“¡å·¥" + updateCount_EMPs
+					+ "äººåŒæ™‚è¢«åˆªé™¤");
 			
 			// Handle any SQL errors
 		} catch (SQLException se) {
 			if (con != null) {
 				try {
-					// 3¡´³]©w©ó·í¦³exceptionµo¥Í®É¤§catch°Ï¶ô¤º
+					// 3â—è¨­å®šæ–¼ç•¶æœ‰exceptionç™¼ç”Ÿæ™‚ä¹‹catchå€å¡Šå…§
 					con.rollback();
 				} catch (SQLException excep) {
 					throw new RuntimeException("rollback error occured. "
@@ -195,7 +195,7 @@ pstmt.executeUpdate("set auto_increment_increment=10;");
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// deptVO ¤]ºÙ¬° Domain objects
+				// deptVO ä¹Ÿç¨±ç‚º Domain objects
 				deptVO = new DeptVO();
 				deptVO.setDeptno(rs.getInt("deptno"));
 				deptVO.setDname(rs.getString("dname"));

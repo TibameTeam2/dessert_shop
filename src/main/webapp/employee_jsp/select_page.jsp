@@ -3,7 +3,7 @@
 
 <html>
 <head>
-<title>IBM Employee: Home</title>
+<title>IBM Emp: Home</title>
 
 <style>
   table#table-1 {

@@ -10,10 +10,12 @@ import com.emp.model.*;
 
 public class EmpServlet extends HttpServlet {
 
+
 	public void doGet(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
 		doPost(req, res);
 	}
+
 
 	public void doPost(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
