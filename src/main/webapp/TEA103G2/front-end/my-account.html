@@ -89,30 +89,28 @@
                     <div class="my-account-menu mt-6">
                         <ul class="nav account-menu-list flex-column">
                             <li>
-                                <a class="active" data-bs-toggle="pill" href="#pills-dashboard"><i
-                                        class="fa fa-tachometer"></i> Dashboard</a>
+                                <a data-bs-toggle="pill" href="#pills-dashboard"><i
+                                        class="fa fa-tachometer"></i> 導覽</a>
                             </li>
                             <li>
                                 <a data-bs-toggle="pill" href="#pills-order"><i class="fa fa-shopping-cart"></i>
-                                    Order</a>
+                                   訂單資訊</a>
                             </li>
                             <li>
                                 <a data-bs-toggle="pill" href="#pills-download"><i class="fa fa-cloud-download"></i>
-                                    Download</a>
+                                    下載(用不到)</a>
                             </li>
                             <li>
-                                <a data-bs-toggle="pill" href="#pills-payment"><i class="fa fa-credit-card"></i> Payment
-                                    Method</a>
+                                <a data-bs-toggle="pill" href="#pills-payment"><i class="fa fa-credit-card"></i> 信用卡資訊</a>
                             </li>
                             <li>
-                                <a data-bs-toggle="pill" href="#pills-address"><i class="fa fa-map-marker"></i> Address</a>
+                                <a data-bs-toggle="pill" href="#pills-address"><i class="fa fa-map-marker"></i> 地址(用不到)</a>
                             </li>
                             <li>
-                                <a data-bs-toggle="pill" href="#pills-account"><i class="fa fa-user"></i> Account
-                                    Details</a>
+                                <a class="active" data-bs-toggle="pill" href="#pills-account"><i class="fa fa-user"></i> 帳號詳細資訊</a>
                             </li>
                             <li>
-                                <a href="login.html"><i class="fa fa-sign-out"></i> Logout</a>
+                                <a href="login.html"><i class="fa fa-sign-out"></i> 登出</a>
                             </li>
                         </ul>
                     </div>
@@ -121,7 +119,7 @@
                 <div class="col-xl-9 col-md-8">
                     <!-- Tab content start -->
                     <div class="tab-content my-account-tab mt-6">
-                        <div class="tab-pane fade show active" id="pills-dashboard">
+                        <div class="tab-pane fade" id="pills-dashboard">
                             <div class="my-account-dashboard account-wrapper">
                                 <h4 class="account-title">Dashboard</h4>
                                 <div class="welcome-dashboard">
@@ -246,22 +244,22 @@
                             </div>
                         </div>
 
-                        <div class="tab-pane fade" id="pills-account">
+                        <div class="tab-pane fade show active" id="pills-account">
                             <div class="my-account-details account-wrapper">
-                                <h4 class="account-title">Account Details</h4>
+                                <h4 class="account-title">個人資料</h4>
 
                                 <div class="account-details">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="single-form">
-                                                <label class="form-label">First Name</label>
-                                                <input type="text" class="form-control">
+                                                <label class="form-label">姓名</label>
+                                                <input type="text" class="form-control" name="member_name" disabled="disabled">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="single-form">
                                                 <label class="form-label">Last Name</label>
-                                                <input type="text" class="form-control">
+                                                <input type="text" class="form-control" value="123" disabled="disabled">
                                             </div>
                                         </div>
                                         <div class="col-md-12">
