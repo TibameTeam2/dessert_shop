@@ -162,7 +162,9 @@ public class EmployeeServlet extends HttpServlet {
 		        in.read(employee_photo);
 		        in.close();
 				if (employee_photo.length == 0) {
-					errorMsgs.add("請上傳圖片!");
+					EmployeeService empSvc = new EmployeeService();
+					EmployeeBean Bean = empSvc.getOneEmp(employee_account);
+					employee_photo = Bean.getEmployee_photo();
 				}
 				
 				
@@ -236,11 +238,11 @@ public class EmployeeServlet extends HttpServlet {
 			try {
 				/***********************1.接收請求參數 - 輸入格式的錯誤處理*************************/
 				String employee_account = req.getParameter("employee_account");
-//				String enameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,10}$";
+				String enameReg = "^[(a-zA-Z0-9_)]{3,16}$";
 				if (employee_account == null || employee_account.trim().length() == 0) {
 					errorMsgs.add("員工帳號: 請勿空白");
-//				} else if(!employee_account.trim().matches(enameReg)) { //以下練習正則(規)表示式(regular-expression)
-//					errorMsgs.add("員工姓名: 只能是中、英文字母、數字和_ , 且長度必需在2到10之間");
+				} else if(!employee_account.trim().matches(enameReg)) { //以下練習正則(規)表示式(regular-expression)
+					errorMsgs.add("員工姓名: 只能是英文字母、數字和_ , 且長度必需在3到16之間");
 	            }
 				
 				String employee_name = req.getParameter("employee_name").trim();
@@ -282,11 +284,11 @@ public class EmployeeServlet extends HttpServlet {
 				
 				
 				String employee_status_str = req.getParameter("employee_status");
-				String enameReg = "^[(01)]{1}$";
+				String estatusReg = "^[(01)]{1}$";
 				Integer employee_status = 1;
 				if (employee_status_str == null || employee_status_str.trim().length() == 0) {
 					errorMsgs.add("員工狀態: 請勿空白");
-				} else if(!employee_status_str.trim().matches(enameReg)) { //以下練習正則(規)表示式(regular-expression)
+				} else if(!employee_status_str.trim().matches(estatusReg)) { //以下練習正則(規)表示式(regular-expression)
 					errorMsgs.add("員工狀態: 只能是0或1");
 	            } else {
 	            	employee_status = new Integer(employee_status_str);

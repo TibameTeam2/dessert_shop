@@ -79,7 +79,9 @@
 		<td><%=member.getRegister_time()%></td>
 		<td><%=member.getRegister_method()%></td>
 		<td><%=member.getMember_status()%></td>
-		<td><%=member.getMember_photo()%></td>
+		<td>
+			<img src="<%=request.getContextPath()%>/member/backend_getPhoto?id=${member.member_account}">
+		</td>
 	</tr>
 </table>
 

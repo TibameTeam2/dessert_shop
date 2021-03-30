@@ -126,23 +126,23 @@ pstmt.executeUpdate("set auto_increment_increment=10;");
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userid, passwd);
 
-			// 1¡´³]©w©ó pstm.executeUpdate()¤§«e
+			// 1â—è¨­å®šæ–¼ pstm.executeUpdate()ä¹‹å‰
 			con.setAutoCommit(false);
 
-			// ¥ı§R°£­û¤u
+			// å…ˆåˆªé™¤å“¡å·¥
 			pstmt = con.prepareStatement(DELETE_EMPs);
 			pstmt.setInt(1, deptno);
 			updateCount_EMPs = pstmt.executeUpdate();
-			// ¦A§R°£³¡ªù
+			// å†åˆªé™¤éƒ¨é–€
 			pstmt = con.prepareStatement(DELETE_DEPT);
 			pstmt.setInt(1, deptno);
 			pstmt.executeUpdate();
 
-			// 2¡´³]©w©ó pstm.executeUpdate()¤§«á
+			// 2â—è¨­å®šæ–¼ pstm.executeUpdate()ä¹‹å¾Œ
 			con.commit();
 			con.setAutoCommit(true);
-			System.out.println("§R°£³¡ªù½s¸¹" + deptno + "®É,¦@¦³­û¤u" + updateCount_EMPs
-					+ "¤H¦P®É³Q§R°£");
+			System.out.println("åˆªé™¤éƒ¨é–€ç·¨è™Ÿ" + deptno + "æ™‚,å…±æœ‰å“¡å·¥" + updateCount_EMPs
+					+ "äººåŒæ™‚è¢«åˆªé™¤");
 			
 			// Handle any driver errors
 		} catch (ClassNotFoundException e) {
@@ -152,7 +152,7 @@ pstmt.executeUpdate("set auto_increment_increment=10;");
 		} catch (SQLException se) {
 			if (con != null) {
 				try {
-					// 3¡´³]©w©ó·í¦³exceptionµo¥Í®É¤§catch°Ï¶ô¤º
+					// 3â—è¨­å®šæ–¼ç•¶æœ‰exceptionç™¼ç”Ÿæ™‚ä¹‹catchå€å¡Šå…§
 					con.rollback();
 				} catch (SQLException excep) {
 					throw new RuntimeException("rollback error occured. "
@@ -199,7 +199,7 @@ pstmt.executeUpdate("set auto_increment_increment=10;");
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				// deptVO ¤]ºÙ¬° Domain objects
+				// deptVO ä¹Ÿç¨±ç‚º Domain objects
 				deptVO = new DeptVO();
 				deptVO.setDeptno(rs.getInt("deptno"));
 				deptVO.setDname(rs.getString("dname"));
@@ -366,30 +366,30 @@ pstmt.executeUpdate("set auto_increment_increment=10;");
 
 		DeptJDBCDAO dao = new DeptJDBCDAO();
 
-		// ·s¼W
+		// æ–°å¢
 //		DeptVO deptVO1 = new DeptVO();
-//		deptVO1.setDname("»s³y³¡");
-//		deptVO1.setLoc("¤¤°ê¦¿¦è");
+//		deptVO1.setDname("è£½é€ éƒ¨");
+//		deptVO1.setLoc("ä¸­åœ‹æ±Ÿè¥¿");
 //		dao.insert(deptVO1);
 
-		// ­×§ï
+		// ä¿®æ”¹
 //		DeptVO deptVO2 = new DeptVO();
 //		deptVO2.setDeptno(10);
-//		deptVO2.setDname("°]°È³¡2");
-//		deptVO2.setLoc("»OÆW¥x¥_2");
+//		deptVO2.setDname("è²¡å‹™éƒ¨2");
+//		deptVO2.setLoc("è‡ºç£å°åŒ—2");
 //		dao.update(deptVO2);
 
-		// §R°£
+		// åˆªé™¤
 //		dao.delete(30);
 
-		// ¬d¸ß
+		// æŸ¥è©¢
 		DeptVO deptVO3 = dao.findByPrimaryKey(10);
 		System.out.print(deptVO3.getDeptno() + ",");
 		System.out.print(deptVO3.getDname() + ",");
 		System.out.println(deptVO3.getLoc());
 		System.out.println("---------------------");
 
-		// ¬d¸ß³¡ªù
+		// æŸ¥è©¢éƒ¨é–€
 		List<DeptVO> list = dao.getAll();
 		for (DeptVO aDept : list) {
 			System.out.print(aDept.getDeptno() + ",");
@@ -398,7 +398,7 @@ pstmt.executeUpdate("set auto_increment_increment=10;");
 			System.out.println();
 		}
 		
-		// ¬d¸ß¬Y³¡ªùªº­û¤u
+		// æŸ¥è©¢æŸéƒ¨é–€çš„å“¡å·¥
 		Set<EmpVO> set = dao.getEmpsByDeptno(10);
 		for (EmpVO aEmp : set) {
 			System.out.print(aEmp.getEmpno() + ",");
