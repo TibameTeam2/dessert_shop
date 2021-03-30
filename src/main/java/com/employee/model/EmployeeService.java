@@ -7,7 +7,11 @@ import com.emp.model.EmpVO;
 
 public class EmployeeService {
 	
-	EmployeeDAO dao = new EmployeeDAO();
+	private EmployeeDAO dao = null;
+	
+	public EmployeeService() {
+		dao = new EmployeeDAO();
+	}
 	
 	public EmployeeBean addEmp(String employee_account, String employee_name, String employee_password,
 			String employee_position, byte[] employee_photo, Date hire_date, Integer employee_status) {

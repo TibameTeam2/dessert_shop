@@ -1,10 +1,11 @@
 package com.member.model;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Arrays;
 
-public class MemberBean {
+public class MemberBean implements Serializable {
     private String member_account;
     private String member_password;
     private String member_name;

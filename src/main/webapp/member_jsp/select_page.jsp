@@ -79,11 +79,9 @@
      <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/member/backend_getOne_For_Display" >
        <b>選擇員工姓名:</b>
        <select size="1" name="member_account">
-<%--         <c:forEach var="memberBean" items="${memberSvc.all}" >--%>
-<%--          <option value="${memberBean.member_account}">${memberBean.member_name}--%>
-<%--         </c:forEach>--%>
-             <option value=1>品種1
-            <option value=2>品種2
+         <c:forEach var="memberBean" items="${memberSvc.all}" >
+          <option value="${memberBean.member_account}">${memberBean.member_name}
+         </c:forEach>
        </select>
 <%--       <input type="hidden" name="action" value="getOne_For_Display">--%>
        <input type="submit" value="送出">

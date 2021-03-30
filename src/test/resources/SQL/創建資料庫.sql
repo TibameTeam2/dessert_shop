@@ -55,11 +55,11 @@ CREATE TABLE member (
 	member_status	  TINYINT NOT NULL
 );
 INSERT INTO member (member_account,member_password,member_name,member_phone,member_email,member_photo,member_gender,member_birthday,register_method,member_status)
-VALUES ('jason','123','JASON','0956732874','jason@gmail.com',null,1,'1994-09-24',1,0);
+VALUES ('jason','123','傑森','0956732874','jason@gmail.com',null,1,'1994-09-24',1,0);
 INSERT INTO member (member_account,member_password,member_name,member_phone,member_email,member_photo,member_gender,member_birthday,register_method,member_status)
-VALUES ('tom','423','TOM','0911798243','tom@gmail.com',null,1,'2012-08-04',1,0);
+VALUES ('tom','423','湯姆貓','0911798243','tom@gmail.com',null,1,'2012-08-04',1,0);
 INSERT INTO member (member_account,member_password,member_name,member_phone,member_email,member_photo,member_gender,member_birthday,register_method,member_status)
-VALUES ('amy','783','AMY','0984471254','amy@gmail.com',null,0,'2000-01-30',1,0);
+VALUES ('amy','783','愛咪','0984471254','amy@gmail.com',null,0,'2000-01-30',1,0);
 
 
 -- 會員信用卡
@@ -137,21 +137,25 @@ CREATE TABLE product (
 	product_id				INT NOT NULL AUTO_INCREMENT  PRIMARY KEY,		
 	product_name	  		VARCHAR(50) NOT NULL,
 	product_type      		VARCHAR(50) NOT NULL,
+    product_subtype      	VARCHAR(50) NOT NULL,
 	product_intro	  		VARCHAR(500) NOT NULL,
+    product_ingredient		varchar(2000) NOT NULL,
 	product_price	  		SMALLINT NOT NULL,				
 	product_available_qty	MEDIUMINT NOT NULL,
 	product_status	  		TINYINT NOT NULL,
+    expiry_after_buying    	TINYINT NOT NULL,
 	product_calorie	  		SMALLINT NOT NULL,
 	degree_of_sweetness     TINYINT NOT NULL,
     total_star 				INT NOT NULL,					
-    total_review			INT NOT NULL
+    total_review			INT NOT NULL,
+    total_purchase			INT NOT NULL    
 ) AUTO_INCREMENT = 1;
-INSERT INTO product (product_name, product_type, product_intro, product_price, product_available_qty, product_status, product_calorie, degree_of_sweetness, total_star, total_review)
-VALUES ('巧克力熔岩蛋糕', '蛋糕', '採用義大利進口可可粉...', 600, 50, 1, 900, 2, 4, 215);
-INSERT INTO product (product_name, product_type, product_intro, product_price, product_available_qty, product_status, product_calorie, degree_of_sweetness, total_star, total_review)
-VALUES ('草莓天使蛋糕', '蛋糕', '採用當日現採新鮮草莓...', 300, 50, 1, 600, 2, 5, 115);
-INSERT INTO product (product_name, product_type, product_intro, product_price, product_available_qty, product_status, product_calorie, degree_of_sweetness, total_star, total_review)
-VALUES ('藍莓起士蛋糕', '蛋糕', '採用北海道生乳提煉...', 200, 50, 1, 500, 1, 3, 25);
+INSERT INTO product (product_name, product_type, product_subtype , product_intro, product_ingredient, product_price, product_available_qty, product_status, expiry_after_buying, product_calorie, degree_of_sweetness, total_star, total_review, total_purchase)
+VALUES ('巧克力杯子', '蛋糕', '杯子蛋糕','採用義大利進口可可粉...', '可可粉、鮮奶油、巧克力醬', 100, 50, 1, 5, 210, 2, 860, 215, 121);
+INSERT INTO product (product_name, product_type, product_subtype , product_intro, product_ingredient, product_price, product_available_qty, product_status, expiry_after_buying, product_calorie, degree_of_sweetness, total_star, total_review, total_purchase)
+VALUES ('草莓千層蛋糕', '蛋糕', '千層蛋糕','採用當日現採新鮮草莓...','鮮奶油、新鮮草莓、', 120, 50, 1, 4, 300, 2, 570, 115, 233);
+INSERT INTO product (product_name, product_type, product_subtype , product_intro, product_ingredient, product_price, product_available_qty, product_status, expiry_after_buying, product_calorie, degree_of_sweetness, total_star, total_review, total_purchase)
+VALUES ('藍莓起士蛋糕', '蛋糕', '起士蛋糕','採用北海道生乳提煉...', '新鮮藍莓、藍莓果醬、creme cheese、牛奶', 120, 50, 1, 7, 310, 1, 115, 25, 156);
 
 
 -- 收藏列表

@@ -9,6 +9,6 @@ public interface DeptDAO_interface {
           public void delete(Integer deptno);
           public DeptVO findByPrimaryKey(Integer deptno);
 	      public List<DeptVO> getAll();
-	      //¬d¸ß¬Y³¡ªùªº­û¤u(¤@¹ï¦h)(¦^¶Ç Set)
+	      //æŸ¥è©¢æŸéƒ¨é–€çš„å“¡å·¥(ä¸€å°å¤š)(å›å‚³ Set)
 	      public Set<EmpVO> getEmpsByDeptno(Integer deptno);
 }
