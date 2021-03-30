@@ -469,11 +469,12 @@ CREATE TABLE member_comment(
     comment_time 		TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     product_id			INT NOT NULL,
     comment_status 		TINYINT NOT NULL,
-    constraint fk_member_content_product foreign key (product_id) references product (product_id)
+    constraint fk_member_comment_order_detail foreign key (order_detail_id) references order_detail (order_detail_id),
+    constraint fk_member_comment_product foreign key (product_id) references product (product_id)
 ) AUTO_INCREMENT = 1;
 INSERT INTO member_comment(order_detail_id, comment_content, rating, product_id, comment_status) VALUES(1, '好', 5, 1, 1);
 INSERT INTO member_comment(order_detail_id, comment_content, rating, product_id, comment_status) VALUES(1, '好吃', 4, 2, 1);
-INSERT INTO member_comment(order_detail_id, comment_content, rating, product_id, comment_status) VALUES(1, '好吃好', 1, 3, 0);
+INSERT INTO member_comment(order_detail_id, comment_content, rating, product_id, comment_status) VALUES(1, '好吃好', 1, 3, 1);
 
 
 -- 評價圖片
