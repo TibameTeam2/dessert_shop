@@ -177,9 +177,10 @@
         $.get("/dessert_shop/member/isLogin", {}, function (data) {
             console.log(data);
             if (data.flag) {
-                // alert("帳號:" + data.data.member_account + "\n姓名:" + data.data.member_name + "\n密碼:" + data.data.member_password);
-                // console.log(data.data);
-                // if(data.redirect)
+                alert("帳號:" + data.data.member_account + "\n姓名:" + data.data.member_name + "\n密碼:" + data.data.member_password);
+//              console.log(data.data);
+                console.log("帳號:" + data.data.member_account + "\n姓名:" + data.data.member_name + "\n密碼:" + data.data.member_password);
+                 // if(data.redirect)
                 //     location.href = data.redirect;
             } else {
             }

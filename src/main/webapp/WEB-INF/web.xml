@@ -65,8 +65,19 @@
         <servlet-name>EmployeeServlet</servlet-name>
         <url-pattern>/employee_jsp/employee.do</url-pattern>
     </servlet-mapping>    
-      
     
+    <!--Employee的0201-->
+    <servlet>
+        <servlet-name>NoticeServlet</servlet-name>
+        <servlet-class>com.notice.controller.NoticeServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>NoticeServlet</servlet-name>
+        <url-pattern>/notice/*</url-pattern>
+    </servlet-mapping>   
+    
+    
+   
     
     <!--配置全局过滤的filter-->
 <!--    <filter>-->
