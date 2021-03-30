@@ -343,9 +343,11 @@ public class ProductServlet extends HttpServlet {
 
 		        
 				if (product_image.length == 0) {
+
 					ProductService productSvc = new ProductService();
 					ProductBean productBean = productSvc.getOneProduct(product_id);
 					product_image =productBean.getProduct_image();					
+
 				}
 				
 				
