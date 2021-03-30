@@ -335,7 +335,7 @@ public class ProductServlet extends HttpServlet {
 				if (product_image.length == 0) {
 					
 					ProductImageService piSvc = new ProductImageService();
-					ProductImageBean piBean = 
+					ProductImageBean piBean = null;
 					
 				}
 /////圖片			
