@@ -1,4 +1,5 @@
 /* Loading Progress */
+
 #loading-progress {
     position: fixed;
     z-index: 99999;
@@ -12,11 +13,13 @@
     text-align: center;
 }
 
-#loading-progress::before, #loading-progress::after {
+#loading-progress::before,
+#loading-progress::after {
     transition: 0.5s cubic-bezier(0.23, 1, 0.32, 1) 0.8s;
 }
 
-#loading-progress::before, #loading-progress::after {
+#loading-progress::before,
+#loading-progress::after {
     content: "";
     position: fixed;
     left: 0;
@@ -38,7 +41,8 @@
     transition-delay: 1.5s;
 }
 
-#loading-progress.hide-it::before, #loading-progress.hide-it::after {
+#loading-progress.hide-it::before,
+#loading-progress.hide-it::after {
     transform: translateY(-100%);
 }
 

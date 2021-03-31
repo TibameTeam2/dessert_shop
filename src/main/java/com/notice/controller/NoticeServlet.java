@@ -15,8 +15,13 @@ import com.util.BaseServlet;
 import com.util.ResultInfo;
 
 public class NoticeServlet extends BaseServlet {
+	
+	
+	
+	public void test(HttpServletRequest req,HttpServletResponse res) {}
+	
 
-	public void test(HttpServletRequest req, HttpServletResponse res) {
+	public void Msg(HttpServletRequest req, HttpServletResponse res) {
 
 		MemberBean member = (MemberBean) req.getSession().getAttribute("member");
 		MemberService service = new MemberService();
@@ -42,18 +47,4 @@ public class NoticeServlet extends BaseServlet {
 
 	}
 
-//	public void testMsg(HttpServletRequest req, HttpServletResponse res) {
-//
-//		NoticeService noticeSvc = new NoticeService();
-//
-//		ResultInfo info = new ResultInfo();
-//
-//		info.setFlag(true);
-//
-//		List<NoticeBean> notice = noticeSvc.getMember("testaaa");
-//
-//		info.setData(notice);
-//
-//		writeValueByWriter(res, info);
-//	}
 }
