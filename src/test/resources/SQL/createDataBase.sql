@@ -367,9 +367,10 @@ CREATE TABLE cart (
 	constraint cart_member_fk foreign key (member_account) references member (member_account),
     constraint cart_product_fk foreign key (product_id) references product (product_id)
 ) AUTO_INCREMENT = 1;
-INSERT INTO cart (member_account, product_id, product_quantity)VALUES ('jason', 1, '87');
-INSERT INTO cart (member_account, product_id, product_quantity)VALUES ('tom', 2, '872');
-INSERT INTO cart (member_account, product_id, product_quantity)VALUES ('amy', 3, '873');
+INSERT INTO cart (member_account, product_id, product_quantity)VALUES ('jason', 1, '8');
+INSERT INTO cart (member_account, product_id, product_quantity)VALUES ('tom', 2, '7');
+INSERT INTO cart (member_account, product_id, product_quantity)VALUES ('amy', 3, '8');
+INSERT INTO cart (member_account, product_id, product_quantity)VALUES ('jason', 3, '7');
 
 
 -- 訂單資料
@@ -390,11 +391,11 @@ CREATE TABLE order_master (
     constraint orderMaster_coupon_FK foreign key (coupon_id) references coupon(coupon_id)
 ) AUTO_INCREMENT = 1;
 INSERT INTO  order_master (member_account, payment_time, payment_method, coupon_id, order_status, invoice_number, order_total, order_remarks)
-VALUES ('tom', '2021-01-02 03:04:05', '1', 2, '1', 'AA12345678', '87', '紅色死神');
+VALUES ('tom', '2021-01-02 03:04:05', '1', 2, '1', 'AA12345678', '8', '紅色死神說要加糖');
 INSERT INTO  order_master (member_account, payment_time, payment_method, coupon_id, order_status, invoice_number, order_total, order_remarks)
-VALUES ('jason', '2021-01-02 03:04:06', '1', null, '1', 'AA12345672', '872', '紅色死神2');
+VALUES ('jason', '2021-01-02 03:04:06', '1', null, '1', 'AA12345672', '7', '紅色死神說要加鹽');
 INSERT INTO  order_master (member_account, payment_time, payment_method, coupon_id, order_status, invoice_number, order_total, order_remarks)
-VALUES ('amy', '2021-01-02 03:04:07', '1', null, '2', 'AA12345673', '873', '紅色死神3');
+VALUES ('amy', '2021-01-02 03:04:07', '1', null, '2', 'AA12345673', '6', '紅色死神說要加醬油');
 
 
 -- 訂單明細
@@ -410,11 +411,11 @@ CREATE TABLE order_detail (
     constraint orderDetail_product_FK foreign key (product_id) references product (product_id)
 ) AUTO_INCREMENT = 1;
 INSERT INTO order_detail (order_master_id, product_id, product_qty, product_price)
-VALUES ('1', 1, '8787', '87870');
+VALUES ('1', 1, '8', '10');
 INSERT INTO order_detail (order_master_id, product_id, product_qty, product_price)
-VALUES ('2', 2, '87872', '878702');
+VALUES ('2', 2, '7', '20');
 INSERT INTO order_detail (order_master_id, product_id, product_qty, product_price)
-VALUES ('3', 3, '87873', '878703');
+VALUES ('3', 3, '8', '30');
 
 
 -- 訂位明細
@@ -433,11 +434,11 @@ CREATE TABLE book_detail (
     constraint bookDetail_member_FK foreign key (member_account) references member (member_account)
 ) AUTO_INCREMENT = 1;
 INSERT INTO book_detail (member_account, booking_time, people_num, booking_status, book_postscript, contact_num, booking_name)
-VALUES ('jason', '2021-01-02 03:04:05', '7', '1', '紅色死神', '09-12345678', '紅色死神');
+VALUES ('jason', '2021-01-02 03:04:05', '7', '1', '紅色死神加兒童椅', '09-12345678', '紅色死神');
 INSERT INTO book_detail (member_account, booking_time, people_num, booking_status, book_postscript, contact_num, booking_name)
-VALUES ('tom', '2021-01-02 03:04:06', '8', '4', '紅色死神2', '09-12345672', '紅色死神2');
+VALUES ('tom', '2021-01-02 03:04:06', '8', '4', '藍色死神加個兒童椅', '09-12345672', '藍色死神');
 INSERT INTO book_detail (member_account, booking_time, people_num, booking_status, book_postscript, contact_num, booking_name)
-VALUES ('amy', '2021-01-02 03:04:07', '9', '1', '紅色死神3', '09-12345673', '紅色死神3');
+VALUES ('amy', '2021-01-02 03:04:07', '9', '1', '綠色死神加個兒童椅', '09-12345673', '綠色死神');
 
 
 -- 訂位紀錄
@@ -509,3 +510,7 @@ CREATE TABLE dealer_reply(
 INSERT INTO dealer_reply(review_id, reply_content, employee_account) VALUES(1, '謝謝您的惠顧1', 'jason');
 INSERT INTO dealer_reply(review_id, reply_content, employee_account) VALUES(2, '謝謝您的惠顧2', 'peter');
 INSERT INTO dealer_reply(review_id, reply_content, employee_account) VALUES(3, '謝謝您的惠顧3', 'james');
+
+
+show VARIABLES like '%max_allowed_packet%';
+set global max_allowed_packet = 400*1024*1024;
