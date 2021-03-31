@@ -24,12 +24,22 @@
     </servlet-mapping>
     
     <servlet>
+
         <servlet-name>CartServlet</servlet-name>
         <servlet-class>com.cart.controller.CartServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>CartServlet</servlet-name>
         <url-pattern>/cart/*</url-pattern>
+    </servlet-mapping>
+
+
+        <servlet-name>OrderMasterServlet</servlet-name>
+        <servlet-class>com.order_master.controller.OrderMasterServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>OrderMasterServlet</servlet-name>
+        <url-pattern>/orderMaster/*</url-pattern>
     </servlet-mapping>
 
 

@@ -244,6 +244,7 @@ public class ProductDAO implements ProductDAO_interface {
 				pstmt = con.prepareStatement("SELECT image_id FROM sweet.product_image where product_id="+productBean.getProduct_id());
 				List<String> img_url=new ArrayList<String>();
 				ResultSet rs_image = pstmt.executeQuery();
+//照片的地方
 				while (rs_image.next()) {
 					img_url.add("/product_jsp/product.do?action=getProductImage&id="+rs.getString(1));
 				}

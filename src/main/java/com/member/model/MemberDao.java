@@ -11,5 +11,9 @@ public interface MemberDao {
 
     MemberBean findByPrimaryKey(String member_account);
 
+    MemberBean findByEmail(String member_email);
+
     List<MemberBean> selectAll();
+
+
 }

@@ -36,7 +36,7 @@
 <p>This is the Home page for IBM Emp: Home</p>
 
 <h3>資料查詢:</h3>
-	
+
 <%-- 錯誤表列 --%>
 <c:if test="${not empty errorMsgs}">
 	<font style="color:red">請修正以下錯誤:</font>
@@ -49,8 +49,8 @@
 
 <ul>
   <li><a href='<%=request.getContextPath()%>/member_jsp/listAllEmp.jsp'>List</a> all Emps.  <br><br></li>
-  
-  
+
+
   <li>
     <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/member/backend_getOne_For_Display" >
         <b>輸入員工編號 (如7001):</b>

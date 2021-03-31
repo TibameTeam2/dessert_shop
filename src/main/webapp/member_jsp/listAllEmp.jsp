@@ -12,7 +12,6 @@
 %>
 
 
-
 <html>
 <head>
     <title>所有員工資料 - listAllEmp.jsp</title>
@@ -34,7 +33,8 @@
             color: blue;
             display: inline;
         }
-        img{
+
+        img {
             height: 150px;
             weight: 150px;
         }
@@ -128,15 +128,13 @@
             </td>
 
 
-
-
             <td>
-                <img src="<%=request.getContextPath()%>/member/backend_getPhoto?id=${memberBean.member_account}">
-<%--                        <% MemberBean member=(MemberBean)pageContext.getAttribute("memberBean");%>--%>
-<%--                        <% if (member.getMember_photo() != null){--%>
-<%--                            System.out.println(member.getMember_photo());%>--%>
-<%--                            <img src="data:image/png;base64,<%=Base64.getEncoder().encodeToString(member.getMember_photo())%>">--%>
-<%--                        <%}%>--%>
+                    <img src="<%=request.getContextPath()%>/member/backend_getPhoto?id=${memberBean.member_account}">
+<%--                <% MemberBean member = (MemberBean) pageContext.getAttribute("memberBean");%>--%>
+<%--                <% if (member.getMember_photo() != null) {--%>
+<%--                    System.out.println(member.getMember_photo());%>--%>
+<%--                <img src="data:image/png;base64,<%=Base64.getEncoder().encodeToString(member.getMember_photo())%>">--%>
+<%--                <%}%>--%>
             </td>
 
             <td>

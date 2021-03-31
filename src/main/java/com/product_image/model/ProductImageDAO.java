@@ -278,6 +278,8 @@ public class ProductImageDAO implements ProductImageDAO_interface{
 		return piBean;
 	}
 
+// 新增方法	findByPrimaryKey(Integer image_id)   by product_id  list
+	
 
 	public static void main(String[] args) throws IOException {
 		ProductImageDAO dao = new ProductImageDAO();
