@@ -213,6 +213,7 @@ public class ProductDAO implements ProductDAO_interface {
 	public List<ProductBean> getAll() {
 		Connection con = null;
 		PreparedStatement pstmt = null;
+		PreparedStatement pstmt1 = null;
 		ResultSet rs = null;
 		SELECT_ALL = "SELECT * FROM product";
 		List<ProductBean> list_productBean = new ArrayList<ProductBean>();
@@ -245,12 +246,12 @@ public class ProductDAO implements ProductDAO_interface {
 				productBean.setTotal_purchase(rs.getInt("total_purchase"));
 				list_productBean.add(productBean);
 
-				pstmt = con.prepareStatement("SELECT image_id FROM sweet.product_image where product_id="+productBean.getProduct_id());
+				pstmt1 = con.prepareStatement("SELECT image_id FROM sweet.product_image where product_id="+productBean.getProduct_id());
 				List<String> img_url=new ArrayList<String>();
-				ResultSet rs_image = pstmt.executeQuery();
+				ResultSet rs_image = pstmt1.executeQuery();
 //照片的地方
 				while (rs_image.next()) {
-					img_url.add("/product/product.do?action=getProductImage&id="+rs.getString(1));
+					img_url.add("/product_jsp/product.do?action=getProductImage&id="+rs_image.getString("image_id"));
 				}
 				productBean.setImage_url(img_url);
 //				System.out.println(productBean);

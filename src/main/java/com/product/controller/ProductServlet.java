@@ -70,7 +70,7 @@ public class ProductServlet extends HttpServlet {
 //			                "SELECT member_photo FROM sweet.member WHERE member_account =" + id);
 
 			       
-			        pstmt = con.prepareStatement("SELECT product_image FROM sweet.product_image where product_id=?");
+			        pstmt = con.prepareStatement("SELECT product_image FROM sweet.product_image where image_id=?");
 
 			        pstmt.setString(1, id);
 

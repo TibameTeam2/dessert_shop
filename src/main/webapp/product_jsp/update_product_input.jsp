@@ -240,27 +240,14 @@ div.picture_list{
 			
 			<tr>
 				<td>商品圖片：</td>
-<!-- 				<td> -->
-<!-- 					<input type="file" name="upfile1" accept="image/*" id="p_file"> -->
-<!-- 					<div id="preview"> -->
-<%--                 	<img src="/dessert_shop/product/backend_getPhoto?id=<%=productBean.getProduct_id()%>" name="my_img">     --%>
+				<td>
+					<input type="file" name="upfile1" accept="image/*" id="p_file">
+					<div id="preview">
+                	<img src="/dessert_shop/product/backend_getPhoto?id=<%=productBean.getProduct_id()%>" name="my_img">    
 					
-<!-- 					<span class="text">預覽圖</span> -->
-<!-- 					</div> -->
-<!--                 </td> -->
-
-<!-- 這裡沒修好 會沒辦法轉交近來 -->
-					<td><input type="file" name="upfile1" class="upload_img">
-						<% if(productBean.getProduct_image() != null) {
- 							System.out.println(productBean.getProduct_image()); %>
-						<img src="/dessert_shop/product/backend_getPhoto?id=<%=productBean.getProduct_id()%>" class="show_img"> 
-<%--  						 <img src="data:image/png;base64,<%=Base64.getEncoder().encodeToString(productBean.getProduct_image())%>" class="show_img"> --%>
- 						<%} else {%>
- 						<img src="" class="show_img">
- 						<%}%>
- 					</td>
-			</tr>
-
+					<span class="text">預覽圖</span>
+					</div>
+                </td>
 
 
 		</table>
@@ -272,7 +259,7 @@ div.picture_list{
 </body>
 
 <script>
-<!--
+
 const p_file = document.getElementById("p_file");
 p_file.addEventListener("change", function (e) {
     handleFiles(this.files);
@@ -307,10 +294,10 @@ function handleFiles(files) {
 }
 
 
--->
 
 
 
+<!--
 $(".upload_img").on("change", function(){
 	var fr = new FileReader();
 	var file = $(".upload_img")[0].files[0];
@@ -320,7 +307,7 @@ $(".upload_img").on("change", function(){
 	});
 	
 });
-
+-->
 
 </script>
 
