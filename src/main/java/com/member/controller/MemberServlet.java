@@ -117,13 +117,12 @@ public class MemberServlet extends BaseServlet {
         if (member == null) {
             info.setFlag(false);
             info.setMsg("帳號或密碼錯誤!");
-        }
-
-        if (member != null) {
+        }else if (member != null) {
             info.setFlag(true);
             req.getSession().setAttribute("member", member);//登入成功
             info.setMsg("登入成功!");
             info.setData(member);
+            info.setRedirect(req.getContextPath() + "/TEA103G2/front-end/my-account.html");
             System.out.println("member = " + member);
         }
         writeValueByWriter(res, info);
