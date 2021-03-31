@@ -24,7 +24,6 @@
     </servlet-mapping>
     
     <servlet>
-
         <servlet-name>CartServlet</servlet-name>
         <servlet-class>com.cart.controller.CartServlet</servlet-class>
     </servlet>
@@ -33,8 +32,8 @@
         <url-pattern>/cart/*</url-pattern>
     </servlet-mapping>
 
-
-        <servlet-name>OrderMasterServlet</servlet-name>
+	<servlet>
+    	<servlet-name>OrderMasterServlet</servlet-name>
         <servlet-class>com.order_master.controller.OrderMasterServlet</servlet-class>
     </servlet>
     <servlet-mapping>

@@ -29,7 +29,7 @@ public class CartServlet extends BaseServlet {
             info.setMsg("已將購物車內商品載入!");
             
             List<CartProductBean> list = svc.getCartDataByMemberAccount(member.getMember_account());   
-                      
+            
             info.setData(list);        
         }
         
