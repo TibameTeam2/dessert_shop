@@ -22,6 +22,15 @@
         <servlet-name>MemberServlet</servlet-name>
         <url-pattern>/member/*</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>CartServlet</servlet-name>
+        <servlet-class>com.cart.controller.CartServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CartServlet</servlet-name>
+        <url-pattern>/cart/*</url-pattern>
+    </servlet-mapping>
 
 
     <!--測試用Servlet-->

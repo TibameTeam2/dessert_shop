@@ -245,7 +245,7 @@ public class ProductDAO implements ProductDAO_interface {
 				List<String> img_url=new ArrayList<String>();
 				ResultSet rs_image = pstmt.executeQuery();
 				while (rs_image.next()) {
-					img_url.add("/product/product.do?action=getProductImage&id="+rs.getString(1));
+					img_url.add("/product_jsp/product.do?action=getProductImage&id="+rs.getString(1));
 				}
 				productBean.setImage_url(img_url);
 //				System.out.println(productBean);
