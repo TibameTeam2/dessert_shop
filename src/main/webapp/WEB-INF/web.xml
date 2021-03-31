@@ -65,23 +65,23 @@
     </servlet-mapping>
     
    	<!-- product相關 -->
-	<servlet>
-		<servlet-name>ProductServlet</servlet-name>
-		<servlet-class>com.product.controller.ProductServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>ProductServlet</servlet-name>
-		<url-pattern>/product_jsp/product.do</url-pattern>
-	</servlet-mapping>
+<!-- 	<servlet> -->
+<!-- 		<servlet-name>ProductServlet</servlet-name> -->
+<!-- 		<servlet-class>com.product.controller.ProductServlet</servlet-class> -->
+<!-- 	</servlet> -->
+<!-- 	<servlet-mapping> -->
+<!-- 		<servlet-name>ProductServlet</servlet-name> -->
+<!-- 		<url-pattern>/product_jsp/product.do</url-pattern> -->
+<!-- 	</servlet-mapping> -->
 	
-	<servlet>
-		<servlet-name>ProductServlet_front</servlet-name>
-		<servlet-class>com.product.controller.ProductServlet_front</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>ProductServlet_front</servlet-name>
-		<url-pattern>/product/*</url-pattern>
-	</servlet-mapping>
+<!-- 	<servlet> -->
+<!-- 		<servlet-name>ProductServlet_front</servlet-name> -->
+<!-- 		<servlet-class>com.product.controller.ProductServlet_front</servlet-class> -->
+<!-- 	</servlet> -->
+<!-- 	<servlet-mapping> -->
+<!-- 		<servlet-name>ProductServlet_front</servlet-name> -->
+<!-- 		<url-pattern>/product/*</url-pattern> -->
+<!-- 	</servlet-mapping> -->
     
 
     <!--大吳的0201-->
@@ -104,7 +104,7 @@
         <url-pattern>/employee_jsp/employee.do</url-pattern>
     </servlet-mapping>    
     
-    <!--Employee的0201-->
+    <!--Notice 測試Servlet-->
     <servlet>
         <servlet-name>NoticeServlet</servlet-name>
         <servlet-class>com.notice.controller.NoticeServlet</servlet-class>
