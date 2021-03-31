@@ -98,8 +98,9 @@ public class MemberService {
     }
 
 
-    public void update(MemberBean member) {
+    public boolean update(MemberBean member) {
         dao.update(member);
+        return true;
     }
 
     public void addMember(MemberBean member) {

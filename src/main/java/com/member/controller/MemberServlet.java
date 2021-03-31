@@ -117,7 +117,7 @@ public class MemberServlet extends BaseServlet {
         if (member == null) {
             info.setFlag(false);
             info.setMsg("帳號或密碼錯誤!");
-        }else if (member != null) {
+        } else if (member != null) {
             info.setFlag(true);
             req.getSession().setAttribute("member", member);//登入成功
             info.setMsg("登入成功!");
@@ -137,6 +137,7 @@ public class MemberServlet extends BaseServlet {
             info.setMsg("尚未登入!");
         } else {
             info.setFlag(true);
+            member = service.getOneMember(member.getMember_account());
             req.getSession().setAttribute("member", member);//登入成功
 //            System.out.println(Base64.getEncoder().encodeToString(member.getMember_photo()));
             info.setMsg("已登入!");
@@ -270,6 +271,45 @@ public class MemberServlet extends BaseServlet {
                 jedis.close();
             }
         }
+    }
+
+
+    public void update(HttpServletRequest req, HttpServletResponse res) {
+        //獲取數據
+        Map<String, String[]> map = req.getParameterMap();
+        System.out.println("map= " + Convert.toStr(map));
+
+        //封裝物件
+        MemberBean member = new MemberBean();
+        try {
+            BeanUtils.populate(member, map);
+        } catch (IllegalAccessException | InvocationTargetException e) {
+            e.printStackTrace();
+        }
+        System.out.println(member);
+
+        MemberBean m = service.getOneMember(member.getMember_account());
+
+        m.setMember_name(member.getMember_name());
+        m.setMember_phone(member.getMember_phone());
+        m.setMember_email(member.getMember_email());
+        m.setMember_gender(member.getMember_gender());
+        m.setMember_birthday(member.getMember_birthday());
+        //調用service開始修改會員資料
+        boolean flag = service.update(m);
+        ResultInfo info = new ResultInfo();
+        //創建結果 準備返回前端
+        if (flag) {
+            //註冊成功
+            info.setFlag(true);
+            info.setMsg("會員資料已更新!");
+//            info.setRedirect(req.getContextPath() + "/TEA103G2/front-end/login.html");
+        } else {
+            //註冊失敗
+            info.setFlag(false);
+            info.setMsg("資料更新失敗!");
+        }
+        writeValueByWriter(res, info);
     }
 
 

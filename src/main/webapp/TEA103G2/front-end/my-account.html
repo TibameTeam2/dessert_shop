@@ -251,7 +251,7 @@
                                 <h4 class="account-title">個人資料</h4>
 
                                 <div class="account-details">
-                                    <form id="register_form" action="#">
+                                    <form id="update_form" action="#">
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="single-form">
@@ -264,6 +264,7 @@
                                                     <label class="form-label">帳號</label>
                                                     <input type="text" class="form-control" name="member_account"
                                                            value="123" disabled="disabled">
+                                                    <!--                                                    <label class="form-label" id="member_account"></label>-->
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
@@ -298,6 +299,7 @@
                                                     <button class="btn btn-primary btn-hover-dark">儲存修改</button>
                                                 </div>
                                             </div>
+                                            <input type="hidden" name="member_account" value="">
                                         </div>
                                     </form>
                                 </div>
@@ -376,7 +378,7 @@
                 // console.log(data.data);
                 // if(data.redirect)
                 //     location.href = data.redirect;
-
+                $('#member_account').val(data.data.member_account);
                 $('input[name="member_account"]').val(data.data.member_account);
                 $('input[name="member_name"]').val(data.data.member_name);
                 $('input[name="member_phone"]').val(data.data.member_phone);
@@ -386,6 +388,35 @@
                 $('input[name="member_birthday"]').val(moment(data.data.member_birthday).format('YYYY-MM-DD'));
             } else {
             }
+        });
+
+
+        //表單送出時
+        $("#update_form").submit(function () {
+            //表單提交時檢查所有屬性合法
+            // if(checkUsername() && checkPassword() && checkEmail()){
+            //發送ajax請求，送出表單資料
+            console.log($("#register_form").serialize());
+            $.post("/dessert_shop/member/update", $(this).serialize(), function (data) {
+                //處理伺服器回應的資料  data  {flag:true,errorMsg:"註冊成功!!!"}
+                if (data.flag) {
+                    // 註冊成功後跳轉頁面
+                    // location.href="register_ok.html";
+                    Swal.fire({
+                        title: data.msg,
+                        text: "",
+                        icon: "success"
+                    });
+                } else {
+                    // 註冊失敗 彈出視窗
+                    Swal.fire({
+                        title: data.msg,
+                        text: "",
+                        icon: "error"
+                    })
+                }
+            });
+            return false;
         });
 
 
