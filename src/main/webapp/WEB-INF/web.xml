@@ -33,7 +33,6 @@
     </servlet-mapping>
 
 
-
 	<!-- product相關 -->
 	<servlet>
 		<servlet-name>ProductServlet</servlet-name>
@@ -53,14 +52,14 @@
 		<url-pattern>/product/*</url-pattern>
 	</servlet-mapping>
 	
-	<servlet>
-		<servlet-name>ProductImageServlet</servlet-name>
-		<servlet-class>com.product_image.controller.ProductImageServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>ProductImageServlet</servlet-name>
-		<url-pattern>/product_image_jsp/product.do</url-pattern>
-	</servlet-mapping>
+<!--	<servlet>-->
+<!--		<servlet-name>ProductImageServlet</servlet-name>-->
+<!--		<servlet-class>com.product_image.controller.ProductImageServlet</servlet-class>-->
+<!--	</servlet>-->
+<!--	<servlet-mapping>-->
+<!--		<servlet-name>ProductImageServlet</servlet-name>-->
+<!--		<url-pattern>/product_image_jsp/product.do</url-pattern>-->
+<!--	</servlet-mapping>-->
 	
 	
 
@@ -73,6 +72,7 @@
         <servlet-name>ServletTest</servlet-name>
         <url-pattern>/test/*</url-pattern>
     </servlet-mapping>
+
     
    
 
@@ -111,6 +111,19 @@
         <dispatcher>ERROR</dispatcher>
         <dispatcher>ASYNC</dispatcher>
     </filter-mapping>
+
+    <!--Notice 測試Servlet-->
+<!--    <servlet>-->
+<!--        <servlet-name>NoticeServlet</servlet-name>-->
+<!--        <servlet-class>com.notice.controller.NoticeServlet</servlet-class>-->
+<!--    </servlet>-->
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>NoticeServlet</servlet-name>-->
+<!--        <url-pattern>/notice/*</url-pattern>-->
+<!--    </servlet-mapping>   -->
+    
+
+
     <!--配置全局过滤的filter-->
 <!--    <filter>-->
 <!--        <filter-name>CharacterEncodingFilter</filter-name>-->
