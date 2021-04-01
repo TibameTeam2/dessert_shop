@@ -1,9 +1,9 @@
 package com.order_master.model;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class HistoryCommentOrderMasterBean {
-
+public class HistoryCommentOrderMasterBean implements Serializable{
 	String member_account;
 	Integer order_master_id;
 	Timestamp order_time;

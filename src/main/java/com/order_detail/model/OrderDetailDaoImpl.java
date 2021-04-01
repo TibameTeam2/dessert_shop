@@ -26,6 +26,11 @@ public class OrderDetailDaoImpl implements OrderDetailDao{
 	String DELETE;
 	String SELECT_ALL;
 	String SELECT_PK;
+	private static final String GetAllProductNameImageIncluded = "select order_master_id, od.order_detail_id, od.product_id, product_qty, od.product_price, image_id, product_image, product_name\r\n" + 
+			"from order_detail od \r\n" + 
+			"join product p on od.product_id = p.product_id\r\n" + 
+			"join product_image pi on p.product_id = pi.product_id\r\n" + 
+			"order by order_master_id;";
 	
 	
 	public void insert(OrderDetailBean odBean) {
@@ -296,27 +301,19 @@ public class OrderDetailDaoImpl implements OrderDetailDao{
 	
 	
 	public List<OrderDetailBean> getAllProductNameImageIncluded() {
-		SELECT_ALL =
-				"select  order_master_id, od.order_detail_id, od.product_id, product_qty, od.product_price, product_image, product_name"
-				+ "from order_detail od "
-				+ "join product p on od.product_id = p.product_id "
-				+ "join product_image pi on p.product_id = pi.product_id"
-				+ "order by order_master_id;";
+				
+		List<OrderDetailBean> list_OrderDetailBean = new ArrayList<OrderDetailBean>();
+		OrderDetailBean odBean = null;
 		
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		List<OrderDetailBean> list_OrderDetailBean = new ArrayList<OrderDetailBean>();
-		OrderDetailBean odBean = null;
-		
 		
 		try {
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userid, passwd);
-			pstmt = con.prepareStatement(SELECT_ALL);
-			
-			
+			pstmt = con.prepareStatement(GetAllProductNameImageIncluded);
 			rs = pstmt.executeQuery();
 			
 			while (rs.next()) {
@@ -327,6 +324,7 @@ public class OrderDetailDaoImpl implements OrderDetailDao{
 				odBean.setProduct_qty(rs.getInt("product_qty"));
 				odBean.setProduct_price(rs.getInt("product_price"));
 				odBean.setProduct_name(rs.getString("product_name"));
+				odBean.setImage_id(rs.getInt("image_id"));
 				odBean.setProduct_image(rs.getBytes("product_image"));
 				list_OrderDetailBean.add(odBean);
 			}
@@ -363,8 +361,9 @@ public class OrderDetailDaoImpl implements OrderDetailDao{
 	}
 	
 	
-//	public static void main(String[] args) {
-//		OrderDetailDAO dao = new OrderDetailDAO();
+	public static void main(String[] args) {
+		
+		OrderDetailDaoImpl dao = new OrderDetailDaoImpl();
 		
 		//insert
 		//設定資料
@@ -398,7 +397,20 @@ public class OrderDetailDaoImpl implements OrderDetailDao{
 //			System.out.println(odBean);
 //		}
 		
-	
-//	}
+		//getAllProductNameImageIncluded
+		List<OrderDetailBean> list = dao.getAllProductNameImageIncluded();
+		for(OrderDetailBean odBean : list) {
+			System.out.println("order_detail_id: " + odBean.getOrder_detail_id() + ",");
+			System.out.println("order_master_id: " + odBean.getOrder_master_id() + ",");
+			System.out.println("product_id: "+ odBean.getProduct_id()+ ",");
+			System.out.println("product_qty: " + odBean.getProduct_qty() + ",");
+			System.out.println("product_price: " + odBean.getProduct_price() + ",");
+			System.out.println("product_name: " + odBean.getProduct_name() + ",");
+			System.out.println("image_id: " + odBean.getImage_id() + ",");
+			System.out.println("product_image: " + odBean.getProduct_image());
+			System.out.println("---------------------------------------------------------");
+		}
+			System.out.println("----------有跑查全部----------");
+	}
 
 }

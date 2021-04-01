@@ -81,6 +81,26 @@
         <servlet-name>EmployeeServlet</servlet-name>
         <url-pattern>/employee_jsp/employee.do</url-pattern>
     </servlet-mapping>    
+    
+    <!--HistoryCommentOrderMasterServlet-->
+    <servlet>
+        <servlet-name>HistoryCommentOrderMasterServlet</servlet-name>
+        <servlet-class>com.order_master.controller.HistoryCommentOrderMasterServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HistoryCommentOrderMasterServlet</servlet-name>
+        <url-pattern>/historyCommentOrderMaster/*</url-pattern>
+    </servlet-mapping> 
+       
+    <!--OrderDetailServlet-->
+    <servlet>
+        <servlet-name>OrderDetailServlet</servlet-name>
+        <servlet-class>com.order_detail.controller.OrderDetailServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>OrderDetailServlet</servlet-name>
+        <url-pattern>/orderDetail/*</url-pattern>
+    </servlet-mapping>    
       
     
     

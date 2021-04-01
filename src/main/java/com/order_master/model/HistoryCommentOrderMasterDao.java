@@ -7,7 +7,8 @@ public interface HistoryCommentOrderMasterDao {
 //	public void insert(HistoryCommentOrderMasterBean historyCommentOrderMasterBean);
 //	public void update(HistoryCommentOrderMasterBean historyCommentOrderMasterBean);
 //	public void delete(Integer order_master_id);
-	public HistoryCommentOrderMasterBean findByPrimaryKey(String member_account);
+	List<HistoryCommentOrderMasterBean> findByMemberAccount(String member_account);
 //	public List<HistoryCommentOrderMasterBean> getAll();
+
 
 }

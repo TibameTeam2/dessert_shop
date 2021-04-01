@@ -1,8 +1,9 @@
 package com.order_master.model;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class OrderMasterBean {
+public class OrderMasterBean implements Serializable {
 	
 	private Integer order_master_id;
 	private String member_account;
