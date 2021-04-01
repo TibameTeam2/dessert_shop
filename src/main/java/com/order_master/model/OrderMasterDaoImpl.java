@@ -381,9 +381,13 @@ public class OrderMasterDaoImpl implements OrderMasterDao {
 		return list_OrderMasterBean;
 		
 	}
-	
-	
-	
+
+	@Override
+	public List<OrderMasterBean> findByMemberAccount(String member_account) {
+		return null;
+	}
+
+
 	public OrderMasterBean getOrderMaster(String member_account) {
 		
 		SELECT_PK =

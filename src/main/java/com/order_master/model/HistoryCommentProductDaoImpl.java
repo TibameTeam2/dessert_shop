@@ -51,19 +51,19 @@ public class HistoryCommentProductDaoImpl implements HistoryCommentProductDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		try {
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
-			pstmt = con.prepareStatement(HAHAHA);
-
-		}
-		
-		return hcpBean;
-	}
+//		try {
+//			Class.forName(driver);
+//			con = DriverManager.getConnection(url, userid, passwd);
+//			pstmt = con.prepareStatement(HAHAHA);
+//
+//		}
+//
+//		return hcpBean;
+//	}
 
 //	@Override
 //	public List<HistoryCommentProductBean> getAll() {
-//		return null;
-//	}
+		return null;
+	}
 
 }
