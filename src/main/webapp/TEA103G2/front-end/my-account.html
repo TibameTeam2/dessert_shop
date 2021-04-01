@@ -253,6 +253,12 @@
                                 <div class="account-details">
                                     <form id="update_form" action="#">
                                         <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="single-form" >
+                                                    <img class="img-fluid" id="member_photo" src="assets/images/logo.jpg" data-logo-alt="images/files/logo-header.png" alt="">
+<!--                                                    <input type="text" class="form-control" name="member_name">-->
+                                                </div>
+                                            </div>
                                             <div class="col-md-6">
                                                 <div class="single-form">
                                                     <label class="form-label">姓名</label>
@@ -264,7 +270,7 @@
                                                     <label class="form-label">帳號</label>
                                                     <input type="text" class="form-control" name="member_account"
                                                            value="123" disabled="disabled">
-                                                    <!--                                                    <label class="form-label" id="member_account"></label>-->
+                                                    <!--<label class="form-label" id="member_account"></label>-->
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
@@ -386,6 +392,8 @@
                 data.data.member_gender == 1 ? $('#radio1').prop('checked', true) : $('#radio2').prop('checked', true);
                 // $('input[name="member_gender"]').val(data.data.member_gender);
                 $('input[name="member_birthday"]').val(moment(data.data.member_birthday).format('YYYY-MM-DD'));
+                $('#member_photo').attr('src', "/dessert_shop/member/backend_getPhoto?id="+data.data.member_account)
+
             } else {
             }
         });

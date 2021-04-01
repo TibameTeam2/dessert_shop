@@ -45,6 +45,23 @@
             color: blue;
         }
 
+        .single-form .form-control {
+            height: 30px;
+            border-radius: 5px;
+            padding: 10px 15px;
+            border-color: #83bc2e;
+            font-size: 14px;
+        }
+
+        .single-form .form-control:focus {
+            -webkit-box-shadow: none;
+            box-shadow: none;
+            border-color: #83bc2e;
+        }
+
+        .single-form .form-control+.form-control {
+            margin-top: 20px;
+        }
     </style>
     <!--    <link rel="stylesheet" type="text/css" href="assets/css/loading.css" />-->
     <!-- Modernizer & jQuery JS -->
@@ -298,6 +315,9 @@
             } else {
                 //用户名非法,加一个红色边框
                 $("#member_account").css("border", "2px solid red");
+                $("#member_account").css("border-color", "red");
+
+
                 $("#member_account_label").html("註冊帳號");
                 return;
             }
