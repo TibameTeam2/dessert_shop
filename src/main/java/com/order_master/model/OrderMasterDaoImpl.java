@@ -380,6 +380,82 @@ public class OrderMasterDaoImpl implements OrderMasterDao {
 		
 	}
 	
+	
+	
+	public OrderMasterBean getOrderMaster(String member_account) {
+		
+		SELECT_PK =
+				"SELECT * FROM order_master where member_account = ?";
+			Connection con = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+					
+			OrderMasterBean omBean = null;
+			
+			try {
+				Class.forName(driver);
+				con = DriverManager.getConnection(url, userid, passwd);
+				pstmt = con.prepareStatement(SELECT_PK);
+				
+				pstmt.setString(1, member_account);
+				
+				rs = pstmt.executeQuery();
+				
+				while (rs.next()) {
+					omBean = new OrderMasterBean();
+					omBean.setOrder_master_id(rs.getInt("order_master_id"));
+					omBean.setMember_account(rs.getString("member_account"));
+					omBean.setOrder_time(rs.getTimestamp("order_time"));
+					omBean.setPayment_time(rs.getTimestamp("payment_time"));
+					omBean.setPayment_method(rs.getInt("payment_method"));
+					omBean.setCoupon_id(rs.getInt("coupon_id"));
+					omBean.setOrder_status(rs.getInt("order_status"));
+					omBean.setInvoice_number(rs.getString("invoice_number"));
+					omBean.setOrder_total(rs.getInt("order_total"));
+					omBean.setOrder_remarks(rs.getString("order_remarks"));
+				}
+				
+				
+				// Handle any driver errors
+			} catch (ClassNotFoundException e) {
+				throw new RuntimeException("Couldn't load database driver. "
+						+ e.getMessage());
+				// Handle any SQL errors
+			} catch (SQLException se) {
+				throw new RuntimeException("A database error occured. "
+						+ se.getMessage());
+				// Clean up JDBC resources
+			} finally {
+				if (pstmt != null) {
+					try {
+						pstmt.close();
+					} catch (SQLException se) {
+						se.printStackTrace(System.err);
+					}
+				}
+				if (con != null) {
+					try {
+						con.close();
+					} catch (Exception e) {
+						e.printStackTrace(System.err);
+					}
+				}
+			}
+			
+			return omBean;
+			
+		}
+		
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public static void main(String[] args) {
 		OrderMasterDaoImpl dao = new OrderMasterDaoImpl();
 		
@@ -425,6 +501,10 @@ public class OrderMasterDaoImpl implements OrderMasterDao {
 //			System.out.println(omBean);
 //		}
 		
+		
+//		select_member
+		OrderMasterBean omBean = dao.getOrderMaster("tom");
+		System.out.print(omBean);
 		
 	}
 	

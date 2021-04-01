@@ -61,4 +61,11 @@ public class OrderMasterService {
 	public List<OrderMasterBean> getAll(){
 		return dao.getAll();
 	}
+	
+	public OrderMasterBean getOrderMaster(String member_account) {
+		return dao.getOrderMaster(member_account);
+	}
+	
+	
+	
 }
