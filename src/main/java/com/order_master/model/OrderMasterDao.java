@@ -8,7 +8,6 @@ public interface OrderMasterDao {
 	void delete(Integer order_master_id);
 	OrderMasterBean findByPrimaryKey(Integer order_master_id);
 	List<OrderMasterBean> getAll();
-	
+	List<OrderMasterBean> findByMemberAccount(String member_account);
 	OrderMasterBean getOrderMaster(String member_account);
-
 }
