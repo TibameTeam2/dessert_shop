@@ -4,6 +4,9 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <META HTTP-EQUIV="pragma" CONTENT="no-cache">
+  <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+  <META HTTP-EQUIV="expires" CONTENT="0">
   <title>Amino - Organic & Multipurpose Bootstrap 5 Template</title>
   <meta name="robots" content="noindex, follow"/>
   <meta name="description" content="">
@@ -256,14 +259,17 @@
                 <h4 class="account-title">個人資料</h4>
 
                 <div class="account-details">
-                  <form id="update_form" action="#">
+                  <form id="update_form" action="/dessert_shop/member/update" enctype="multipart/form-data">
                     <div class="row">
                       <div class="col-md-12">
-                        <div class="single-form preview" >
-                          <img class="img-fluid " id="member_photo" src="assets/images/logo.jpg"
+                        <div class="single-form preview">
+                          <img class="img-fluid " id="member_photo"
+                               src="assets/images/logo.jpg"
                                data-logo-alt="images/files/logo-header.png" alt="">
                           <br>
-                            <input type="file" name="upfile" id="p_file">
+                        </div>
+                        <div>
+                          <input type="file" name="upfile" id="p_file">
                           <!--<input type="text" class="form-control" name="member_name">-->
                         </div>
                       </div>
@@ -408,28 +414,40 @@
 
 
         //表單送出時
-        $("#update_form").submit(function () {
+        $("#update_form").submit(function (e) {
+            e.preventDefault();
             //表單提交時檢查所有屬性合法
             // if(checkUsername() && checkPassword() && checkEmail()){
             //發送ajax請求，送出表單資料
-            console.log($("#register_form").serialize());
-            $.post("/dessert_shop/member/update", $(this).serialize(), function (data) {
-                //處理伺服器回應的資料  data  {flag:true,errorMsg:"註冊成功!!!"}
-                if (data.flag) {
-                    // 註冊成功後跳轉頁面
-                    // location.href="register_ok.html";
-                    Swal.fire({
-                        title: data.msg,
-                        text: "",
-                        icon: "success"
-                    });
-                } else {
-                    // 註冊失敗 彈出視窗
-                    Swal.fire({
-                        title: data.msg,
-                        text: "",
-                        icon: "error"
-                    })
+            console.log($("#update_form").serialize());
+
+            let form = $('#update_form')[0];
+            let data = new FormData(form);
+            $.ajax({
+                type : "POST",
+                enctype : 'multipart/form-data',
+                url : '/dessert_shop/member/update',
+                data : data,
+                processData : false,
+                contentType : false,
+                cache : false,
+                success : function(data) {
+                    if (data.flag) {
+                        // 註冊成功後跳轉頁面
+                        // location.href="register_ok.html";
+                        Swal.fire({
+                            title: data.msg,
+                            text: "",
+                            icon: "success"
+                        });
+                    } else {
+                        // 註冊失敗 彈出視窗
+                        Swal.fire({
+                            title: data.msg,
+                            text: "",
+                            icon: "error"
+                        })
+                    }
                 }
             });
             return false;
@@ -451,11 +469,13 @@
             });
         })
 
-
+        //以下上傳大頭貼
         const p_file = document.getElementById("p_file");
         p_file.addEventListener("change", function (e) {
             handleFiles(this.files);
         });
+
+        const preview = document.getElementsByClassName("preview")[0];
 
         //檔案上傳的處理函式
         function handleFiles(files) {
@@ -473,7 +493,7 @@
                 //增加img節點在預覽圖裡面
                 let img = document.createElement("img");
                 img.classList.add("preview_img");
-                img.setAttribute("id", "p_img")
+                img.setAttribute("id", "member_photo")
                 preview.appendChild(img);
 
                 let reader = new FileReader();
