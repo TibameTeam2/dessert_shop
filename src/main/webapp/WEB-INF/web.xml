@@ -94,10 +94,23 @@
     <servlet-mapping>
         <servlet-name>EmployeeServlet</servlet-name>
         <url-pattern>/employee_jsp/employee.do</url-pattern>
-    </servlet-mapping>    
-      
-    
-    
+    </servlet-mapping>
+
+
+
+    <filter>
+        <filter-name>loginFilter</filter-name>
+        <filter-class>com.filter.LoginFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>loginFilter</filter-name>
+        <url-pattern>/TEA103G2/front-end/my-account.html</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+        <dispatcher>INCLUDE</dispatcher>
+        <dispatcher>ERROR</dispatcher>
+        <dispatcher>ASYNC</dispatcher>
+    </filter-mapping>
     <!--配置全局过滤的filter-->
 <!--    <filter>-->
 <!--        <filter-name>CharacterEncodingFilter</filter-name>-->
