@@ -33,13 +33,13 @@ public class OrderDetailServlet extends BaseServlet {
 //		HistoryCommentOrderMasterBean hcomBean = (HistoryCommentOrderMasterBean) req.getSession().getAttribute("order_master");
 		ResultInfo info = new ResultInfo();
 		System.out.println(info);
-		if(hcomBean==null) {
-			info.setFlag(false);
-            info.setMsg("無order_master_id(無歷史訂單)!");
-		}else {
-			Integer order_master_id = hcomBean.getOrder_master_id();
-			
-		}
+//		if(hcomBean==null) {
+//			info.setFlag(false);
+//            info.setMsg("無order_master_id(無歷史訂單)!");
+//		}else {
+//			Integer order_master_id = hcomBean.getOrder_master_id();
+//			
+//		}
 		
 	}
 }
