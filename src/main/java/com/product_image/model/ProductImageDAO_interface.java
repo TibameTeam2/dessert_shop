@@ -9,4 +9,6 @@ public interface ProductImageDAO_interface {
 	public void delete(Integer image_id);
 	public List<ProductImageBean> getAll() throws IOException;
 	public ProductImageBean findByPrimaryKey(Integer image_id) throws IOException;
+	
+	public List<ProductImageBean> findImgByProductId(Integer product_id) throws IOException;
 }

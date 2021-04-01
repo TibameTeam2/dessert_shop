@@ -20,8 +20,30 @@ public class ProductBean implements Serializable {
     private Integer total_review;
     private Integer total_purchase;
     private List<String> image_url;
+    
+    // img
+    private byte[] product_image;
 
-    @Override
+    public byte[] getProduct_image() {
+		return product_image;
+	}
+
+	public void setProduct_image(byte[] product_image) {
+		this.product_image = product_image;
+	}
+	
+	// img_id
+	private Integer image_id;
+	
+	public Integer getImage_id() {
+		return image_id;
+	}
+
+	public void setImage_id(Integer image_id) {
+		this.image_id = image_id;
+	}
+
+	@Override
     public String toString() {
         return "ProductBean [product_id=" + product_id + ", product_name=" + product_name + ", product_type="
                 + product_type + ", product_subtype=" + product_subtype + ", product_intro=" + product_intro

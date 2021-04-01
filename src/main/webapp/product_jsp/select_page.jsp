@@ -70,8 +70,8 @@ h4 {
 		<li>
 			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/product_jsp/product.do">
 				<b>選擇商品編號:</b> <select size="1" name="product_id">
-					<c:forEach var="proBean" items="${productSvc.all}">
-						<option value="${proBean.product_id}">${proBean.product_id}
+					<c:forEach var="productBean" items="${productSvc.all}">
+						<option value="${productBean.product_id}">${productBean.product_id}
 					</c:forEach>
 				</select> <input type="hidden" name="action" value="getOne_For_Display">
 				<input type="submit" value="送出">
@@ -81,8 +81,8 @@ h4 {
 		<li>
 			<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/product_jsp/product.do">
 				<b>選擇商品名稱:</b> <select size="1" name="product_id">
-					<c:forEach var="proBean" items="${productSvc.all}">
-						<option value="${proBean.product_id}">${proBean.product_name}
+					<c:forEach var="productBean" items="${productSvc.all}">
+						<option value="${productBean.product_id}">${productBean.product_name}
 					</c:forEach>
 				</select> <input type="hidden" name="action" value="getOne_For_Display">
 				<input type="submit" value="送出">

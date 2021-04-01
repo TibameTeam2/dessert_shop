@@ -55,11 +55,11 @@ CREATE TABLE member (
 	member_status	  TINYINT NOT NULL
 );
 INSERT INTO member (member_account,member_password,member_name,member_phone,member_email,member_photo,member_gender,member_birthday,register_method,member_status)
-VALUES ('jason','123','傑森','0956732874','jason@gmail.com',null,1,'1994-09-24',1,0);
+VALUES ('jason','202cb962ac59075b964b07152d234b70','傑森','0956732874','jasonwu1994@gmail.com',null,1,'1994-09-24',1,0);
 INSERT INTO member (member_account,member_password,member_name,member_phone,member_email,member_photo,member_gender,member_birthday,register_method,member_status)
-VALUES ('tom','423','湯姆貓','0911798243','tom@gmail.com',null,1,'2012-08-04',1,0);
+VALUES ('tom','202cb962ac59075b964b07152d234b70','湯姆貓','0911798243','tom@gmail.com',null,1,'2012-08-04',1,0);
 INSERT INTO member (member_account,member_password,member_name,member_phone,member_email,member_photo,member_gender,member_birthday,register_method,member_status)
-VALUES ('amy','783','愛咪','0984471254','amy@gmail.com',null,0,'2000-01-30',1,0);
+VALUES ('amy','202cb962ac59075b964b07152d234b70','怡婷','0984471254','amy@gmail.com',null,0,'2000-01-30',1,0);
 
 
 -- 會員信用卡
@@ -153,9 +153,13 @@ CREATE TABLE product (
 INSERT INTO product (product_name, product_type, product_subtype , product_intro, product_ingredient, product_price, product_available_qty, product_status, expiry_after_buying, product_calorie, degree_of_sweetness, total_star, total_review, total_purchase)
 VALUES ('巧克力杯子', '蛋糕', '杯子蛋糕','採用義大利進口可可粉...', '可可粉、鮮奶油、巧克力醬', 100, 50, 1, 5, 210, 2, 860, 215, 121);
 INSERT INTO product (product_name, product_type, product_subtype , product_intro, product_ingredient, product_price, product_available_qty, product_status, expiry_after_buying, product_calorie, degree_of_sweetness, total_star, total_review, total_purchase)
-VALUES ('草莓千層蛋糕', '蛋糕', '千層蛋糕','採用當日現採新鮮草莓...','鮮奶油、新鮮草莓、', 120, 50, 1, 4, 300, 2, 570, 115, 233);
+VALUES ('草莓千層', '蛋糕', '千層蛋糕','採用當日現採新鮮草莓...','鮮奶油、新鮮草莓、', 120, 50, 1, 4, 300, 2, 570, 115, 233);
 INSERT INTO product (product_name, product_type, product_subtype , product_intro, product_ingredient, product_price, product_available_qty, product_status, expiry_after_buying, product_calorie, degree_of_sweetness, total_star, total_review, total_purchase)
-VALUES ('藍莓起士蛋糕', '蛋糕', '起士蛋糕','採用北海道生乳提煉...', '新鮮藍莓、藍莓果醬、creme cheese、牛奶', 120, 50, 1, 7, 310, 1, 115, 25, 156);
+VALUES ('藍莓乳酪', '蛋糕', '千層蛋糕','採用北海道生乳提煉...', '新鮮藍莓、藍莓果醬、creme cheese、牛奶', 120, 50, 1, 7, 310, 1, 115, 25, 156);
+INSERT INTO product (product_name, product_type, product_subtype , product_intro, product_ingredient, product_price, product_available_qty, product_status, expiry_after_buying, product_calorie, degree_of_sweetness, total_star, total_review, total_purchase)
+VALUES ('綜合野莓蛋糕捲', '蛋糕', '蛋糕捲','歐洲進口冷凍莓果...', '藍莓、覆盆子、莓果醬、生乳', 120, 50, 1, 7, 310, 1, 115, 25, 156);
+INSERT INTO product (product_name, product_type, product_subtype , product_intro, product_ingredient, product_price, product_available_qty, product_status, expiry_after_buying, product_calorie, degree_of_sweetness, total_star, total_review, total_purchase)
+VALUES ('香蕉拿鐵', '飲品', '香濃拿鐵','契作台灣香蕉入料...', '新鮮香蕉、牛奶、奶油、蜂蜜...', 120, 50, 1, 7, 310, 1, 115, 25, 156);
 
 
 -- 收藏列表
@@ -206,13 +210,37 @@ CREATE TABLE product_image (
 	CONSTRAINT product_image_product_FK FOREIGN KEY (product_id) REFERENCES product(product_id)
 ) AUTO_INCREMENT = 1;
 INSERT INTO product_image (product_id, product_image)
-VALUES ('001', LOAD_FILE('C:\\project\\images\\product_image\\cake1.jpg'));
+VALUES ('001', LOAD_FILE('C:\\project\\images\\product_image\\oreoCup-1.jpg'));
 INSERT INTO product_image (product_id, product_image)
-VALUES ('002', LOAD_FILE('C:\\project\\images\\product_image\\cake2.jpg'));
+VALUES ('001', LOAD_FILE('C:\\project\\images\\product_image\\oreoCup-2.jpg'));
 INSERT INTO product_image (product_id, product_image)
-VALUES ('003', LOAD_FILE('C:\\project\\images\\product_image\\cake3.jpg'));
-
-
+VALUES ('002', LOAD_FILE('C:\\project\\images\\product_image\\strawCrepe-1.jpg'));
+INSERT INTO product_image (product_id, product_image)
+VALUES ('002', LOAD_FILE('C:\\project\\images\\product_image\\strawCrepe-2.jpg'));
+INSERT INTO product_image (product_id, product_image)
+VALUES ('001', LOAD_FILE('C:\\project\\images\\product_image\\oreoCup-3.jpg'));
+INSERT INTO product_image (product_id, product_image)
+VALUES ('002', LOAD_FILE('C:\\project\\images\\product_image\\strawCrepe-3.jpg'));
+INSERT INTO product_image (product_id, product_image)
+VALUES ('002', LOAD_FILE('C:\\project\\images\\product_image\\strawCrepe-4.jpg'));
+INSERT INTO product_image (product_id, product_image)
+VALUES ('003', LOAD_FILE('C:\\project\\images\\product_image\\bBerryCrepe-1.jpg'));
+INSERT INTO product_image (product_id, product_image)
+VALUES ('003', LOAD_FILE('C:\\project\\images\\product_image\\bBerryCrepe-2.jpg'));
+INSERT INTO product_image (product_id, product_image)
+VALUES ('004', LOAD_FILE('C:\\project\\images\\product_image\\3berryRoll-1.jpg'));
+INSERT INTO product_image (product_id, product_image)
+VALUES ('003', LOAD_FILE('C:\\project\\images\\product_image\\bBerryCrepe-3.jpg'));
+INSERT INTO product_image (product_id, product_image)
+VALUES ('004', LOAD_FILE('C:\\project\\images\\product_image\\3berryRoll-3.jpg'));
+INSERT INTO product_image (product_id, product_image)
+VALUES ('004', LOAD_FILE('C:\\project\\images\\product_image\\3berryRoll-4.jpg'));
+INSERT INTO product_image (product_id, product_image)
+VALUES ('005', LOAD_FILE('C:\\project\\images\\product_image\\bananaLatte-1.jpg'));
+INSERT INTO product_image (product_id, product_image)
+VALUES ('005', LOAD_FILE('C:\\project\\images\\product_image\\bananaLatte-2.jpg'));
+INSERT INTO product_image (product_id, product_image)
+VALUES ('005', LOAD_FILE('C:\\project\\images\\product_image\\bananaLatte-3.jpg'));
 -- 謝垚筠------------------------------------------------------------------------------------------------------------
 -- 訂閱者清單
 set auto_increment_offset=1;
@@ -367,9 +395,10 @@ CREATE TABLE cart (
 	constraint cart_member_fk foreign key (member_account) references member (member_account),
     constraint cart_product_fk foreign key (product_id) references product (product_id)
 ) AUTO_INCREMENT = 1;
-INSERT INTO cart (member_account, product_id, product_quantity)VALUES ('jason', 1, '87');
-INSERT INTO cart (member_account, product_id, product_quantity)VALUES ('tom', 2, '872');
-INSERT INTO cart (member_account, product_id, product_quantity)VALUES ('amy', 3, '873');
+INSERT INTO cart (member_account, product_id, product_quantity)VALUES ('jason', 1, '8');
+INSERT INTO cart (member_account, product_id, product_quantity)VALUES ('tom', 2, '7');
+INSERT INTO cart (member_account, product_id, product_quantity)VALUES ('amy', 3, '8');
+INSERT INTO cart (member_account, product_id, product_quantity)VALUES ('jason', 3, '7');
 
 
 -- 訂單資料
@@ -390,11 +419,11 @@ CREATE TABLE order_master (
     constraint orderMaster_coupon_FK foreign key (coupon_id) references coupon(coupon_id)
 ) AUTO_INCREMENT = 1;
 INSERT INTO  order_master (member_account, payment_time, payment_method, coupon_id, order_status, invoice_number, order_total, order_remarks)
-VALUES ('tom', '2021-01-02 03:04:05', '1', 2, '1', 'AA12345678', '87', '紅色死神');
+VALUES ('tom', '2021-01-02 03:04:05', '1', 2, '1', 'AA12345678', '8', '紅色死神說要加糖');
 INSERT INTO  order_master (member_account, payment_time, payment_method, coupon_id, order_status, invoice_number, order_total, order_remarks)
-VALUES ('jason', '2021-01-02 03:04:06', '1', null, '1', 'AA12345672', '872', '紅色死神2');
+VALUES ('jason', '2021-01-02 03:04:06', '1', null, '1', 'AA12345672', '7', '紅色死神說要加鹽');
 INSERT INTO  order_master (member_account, payment_time, payment_method, coupon_id, order_status, invoice_number, order_total, order_remarks)
-VALUES ('amy', '2021-01-02 03:04:07', '1', null, '2', 'AA12345673', '873', '紅色死神3');
+VALUES ('amy', '2021-01-02 03:04:07', '1', null, '2', 'AA12345673', '6', '紅色死神說要加醬油');
 
 
 -- 訂單明細
@@ -410,11 +439,11 @@ CREATE TABLE order_detail (
     constraint orderDetail_product_FK foreign key (product_id) references product (product_id)
 ) AUTO_INCREMENT = 1;
 INSERT INTO order_detail (order_master_id, product_id, product_qty, product_price)
-VALUES ('1', 1, '8787', '87870');
+VALUES ('1', 1, '8', '10');
 INSERT INTO order_detail (order_master_id, product_id, product_qty, product_price)
-VALUES ('2', 2, '87872', '878702');
+VALUES ('2', 2, '7', '20');
 INSERT INTO order_detail (order_master_id, product_id, product_qty, product_price)
-VALUES ('3', 3, '87873', '878703');
+VALUES ('3', 3, '8', '30');
 
 
 -- 訂位明細
@@ -433,11 +462,11 @@ CREATE TABLE book_detail (
     constraint bookDetail_member_FK foreign key (member_account) references member (member_account)
 ) AUTO_INCREMENT = 1;
 INSERT INTO book_detail (member_account, booking_time, people_num, booking_status, book_postscript, contact_num, booking_name)
-VALUES ('jason', '2021-01-02 03:04:05', '7', '1', '紅色死神', '09-12345678', '紅色死神');
+VALUES ('jason', '2021-01-02 03:04:05', '7', '1', '紅色死神加兒童椅', '09-12345678', '紅色死神');
 INSERT INTO book_detail (member_account, booking_time, people_num, booking_status, book_postscript, contact_num, booking_name)
-VALUES ('tom', '2021-01-02 03:04:06', '8', '4', '紅色死神2', '09-12345672', '紅色死神2');
+VALUES ('tom', '2021-01-02 03:04:06', '8', '4', '藍色死神加個兒童椅', '09-12345672', '藍色死神');
 INSERT INTO book_detail (member_account, booking_time, people_num, booking_status, book_postscript, contact_num, booking_name)
-VALUES ('amy', '2021-01-02 03:04:07', '9', '1', '紅色死神3', '09-12345673', '紅色死神3');
+VALUES ('amy', '2021-01-02 03:04:07', '9', '1', '綠色死神加個兒童椅', '09-12345673', '綠色死神');
 
 
 -- 訂位紀錄
@@ -473,11 +502,12 @@ CREATE TABLE member_comment(
     comment_time 		TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     product_id			INT NOT NULL,
     comment_status 		TINYINT NOT NULL,
-    constraint fk_member_content_product foreign key (product_id) references product (product_id)
+    constraint fk_member_comment_order_detail foreign key (order_detail_id) references order_detail (order_detail_id),
+    constraint fk_member_comment_product foreign key (product_id) references product (product_id)
 ) AUTO_INCREMENT = 1;
 INSERT INTO member_comment(order_detail_id, comment_content, rating, product_id, comment_status) VALUES(1, '好', 5, 1, 1);
 INSERT INTO member_comment(order_detail_id, comment_content, rating, product_id, comment_status) VALUES(1, '好吃', 4, 2, 1);
-INSERT INTO member_comment(order_detail_id, comment_content, rating, product_id, comment_status) VALUES(1, '好吃好', 1, 3, 0);
+INSERT INTO member_comment(order_detail_id, comment_content, rating, product_id, comment_status) VALUES(1, '好吃好', 1, 3, 1);
 
 
 -- 評價圖片
@@ -509,3 +539,7 @@ CREATE TABLE dealer_reply(
 INSERT INTO dealer_reply(review_id, reply_content, employee_account) VALUES(1, '謝謝您的惠顧1', 'jason');
 INSERT INTO dealer_reply(review_id, reply_content, employee_account) VALUES(2, '謝謝您的惠顧2', 'peter');
 INSERT INTO dealer_reply(review_id, reply_content, employee_account) VALUES(3, '謝謝您的惠顧3', 'james');
+
+
+show VARIABLES like '%max_allowed_packet%';
+set global max_allowed_packet = 400*1024*1024;

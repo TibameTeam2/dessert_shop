@@ -21,6 +21,10 @@ public class ProductDAO implements ProductDAO_interface {
 	String DELETE;
 	String SELECT_ALL;
 	String SELECT_PK;
+	String SELECT_ONEIMGID;
+	String SELECT_ALLIMGID;
+	String SELECT_ONEIMG;
+	String SELECT_ALLIMG;
 	
 	public void init() {
 //		driver = "com.mysql.cj.jdbc.Driver";
@@ -209,6 +213,7 @@ public class ProductDAO implements ProductDAO_interface {
 	public List<ProductBean> getAll() {
 		Connection con = null;
 		PreparedStatement pstmt = null;
+		PreparedStatement pstmt1 = null;
 		ResultSet rs = null;
 		SELECT_ALL = "SELECT * FROM product";
 		List<ProductBean> list_productBean = new ArrayList<ProductBean>();
@@ -241,12 +246,12 @@ public class ProductDAO implements ProductDAO_interface {
 				productBean.setTotal_purchase(rs.getInt("total_purchase"));
 				list_productBean.add(productBean);
 
-				pstmt = con.prepareStatement("SELECT image_id FROM sweet.product_image where product_id="+productBean.getProduct_id());
+				pstmt1 = con.prepareStatement("SELECT image_id FROM sweet.product_image where product_id="+productBean.getProduct_id());
 				List<String> img_url=new ArrayList<String>();
-				ResultSet rs_image = pstmt.executeQuery();
+				ResultSet rs_image = pstmt1.executeQuery();
 //照片的地方
 				while (rs_image.next()) {
-					img_url.add("/product/product.do?action=getProductImage&id="+rs.getString(1));
+					img_url.add("/product_jsp/product.do?action=getProductImage&id="+rs_image.getString("image_id"));
 				}
 				productBean.setImage_url(img_url);
 //				System.out.println(productBean);
@@ -350,6 +355,240 @@ public class ProductDAO implements ProductDAO_interface {
 		return productBean;
 	}
 
+	
+// 新增找商品照片id的方法 getOne getAll
+	
+	public ProductBean getOneImageId(Integer product_id) {
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		SELECT_ONEIMGID = "SELECT image_id FROM product_image where product_id = ? LIMIT 1";
+		
+		//設定資料
+		ProductBean productBean = null;
+		
+		try {
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			pstmt = con.prepareStatement(SELECT_ONEIMGID);
+			
+			pstmt.setInt(1, product_id);
+				
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				productBean = new ProductBean();
+				
+				productBean.setImage_id(rs.getInt("image_id"));
+				
+//				System.out.println(productBean);
+			}
+			
+			// Handle any driver errors
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. "
+					+ e.getMessage());
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		
+		return productBean;
+		
+	}
+	public List<ProductBean> getAllImageId(Integer product_id) {
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		SELECT_ALLIMGID = "SELECT image_id FROM product_image where product_id = ? ";
+		
+		//設定資料
+		ProductBean productBean = null;
+		List<ProductBean> list_imageId = new ArrayList<ProductBean>();
+		
+		try {
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			pstmt = con.prepareStatement(SELECT_ALLIMGID);
+			
+			pstmt.setInt(1, product_id);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				productBean = new ProductBean();
+				
+				productBean.setImage_id(rs.getInt("image_id"));
+				
+				list_imageId.add(productBean);
+//				System.out.println(productBean);
+			}
+			
+			// Handle any driver errors
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. "
+					+ e.getMessage());
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return list_imageId;	
+	}
+	
+// 取得一張照片 與所有照片的方法
+	
+public ProductBean getOneImage(Integer product_id) {
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		SELECT_ONEIMG = "SELECT product_image FROM product_image where product_id = ? LIMIT 1";
+		
+		//設定資料
+		ProductBean productBean = null;
+		
+		try {
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			pstmt = con.prepareStatement(SELECT_ONEIMG);
+			
+			pstmt.setInt(1, product_id);
+				
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				productBean = new ProductBean();
+				
+				productBean.setProduct_image(rs.getBytes("product_image"));
+				
+//				System.out.println(productBean);
+			}
+			
+			// Handle any driver errors
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. "
+					+ e.getMessage());
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		
+		return productBean;
+		
+	}
+public List<ProductBean> getAllImage(Integer product_id) {
+	
+	Connection con = null;
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
+	SELECT_ALLIMG = "SELECT product_image FROM product_image where product_id = ? ";
+	
+	//設定資料
+	ProductBean productBean = null;
+	List<ProductBean> list_image = new ArrayList<ProductBean>();
+	
+	try {
+		Class.forName(driver);
+		con = DriverManager.getConnection(url, userid, passwd);
+		pstmt = con.prepareStatement(SELECT_ALLIMG);
+		
+		pstmt.setInt(1, product_id);
+		
+		rs = pstmt.executeQuery();
+		
+		while(rs.next()) {
+			productBean = new ProductBean();
+		
+			productBean.setProduct_image(rs.getBytes("product_image"));
+			
+			list_image.add(productBean);
+		
+//				System.out.println(productBean);
+		}
+		
+		// Handle any driver errors
+	} catch (ClassNotFoundException e) {
+		throw new RuntimeException("Couldn't load database driver. "
+				+ e.getMessage());
+		// Handle any SQL errors
+	} catch (SQLException se) {
+		throw new RuntimeException("A database error occured. "
+				+ se.getMessage());
+		// Clean up JDBC resources
+	} finally {
+		if (pstmt != null) {
+			try {
+				pstmt.close();
+			} catch (SQLException se) {
+				se.printStackTrace(System.err);
+			}
+		}
+		if (con != null) {
+			try {
+				con.close();
+			} catch (Exception e) {
+				e.printStackTrace(System.err);
+			}
+		}
+	}
+	
+	return list_image;
+	
+}
+	
 
 
 	public static void main(String[] args) {
@@ -357,24 +596,22 @@ public class ProductDAO implements ProductDAO_interface {
 
 //		// 新增
 //		// 設定資料
-		ProductBean productBean = new ProductBean();
-		productBean.setProduct_name("蜂蜜蛋糕");
-		productBean.setProduct_type("蛋糕");
-		productBean.setProduct_subtype("磅蛋糕");
-		productBean.setProduct_intro("使用台灣產蜂蜜......");
-		productBean.setProduct_ingredient("蜂蜜、奶油");
-		productBean.setProduct_price(100);
-		productBean.setProduct_available_qty(50);
-		productBean.setProduct_status(1);
-		productBean.setExpiry_after_buying(5);
-		productBean.setProduct_calorie(328);
-		productBean.setDegree_of_sweetness(3);
-		productBean.setTotal_star(577);
-		productBean.setTotal_review(139);
-		productBean.setTotal_purchase(166);
-		dao.insert(productBean);
-		
-		
+//		ProductBean productBean = new ProductBean();
+//		productBean.setProduct_name("柑橘檸檬磅蛋糕");
+//		productBean.setProduct_type("蛋糕");
+//		productBean.setProduct_subtype("磅蛋糕");
+//		productBean.setProduct_intro("新鮮柑橘與檸檬片......");
+//		productBean.setProduct_ingredient("柑橘、檸檬、檸檬乾...");
+//		productBean.setProduct_price(100);
+//		productBean.setProduct_available_qty(50);
+//		productBean.setProduct_status(1);
+//		productBean.setExpiry_after_buying(5);
+//		productBean.setProduct_calorie(328);
+//		productBean.setDegree_of_sweetness(3);
+//		productBean.setTotal_star(577);
+//		productBean.setTotal_review(139);
+//		productBean.setTotal_purchase(166);
+//		dao.insert(productBean);
 		
 		
 		
@@ -414,6 +651,34 @@ public class ProductDAO implements ProductDAO_interface {
 //		for (ProductBean productBean : list) {
 //			System.out.println(productBean);
 //		}
-
+		
+		
+		// 找商品第一張照片的id
+//		ProductBean productBean = dao.getOneImageId(5);
+//		System.out.println(productBean);
+//		System.out.println(productBean.getImage_id());
+		
+		
+//		//找該商品的所有照片id
+//		List<ProductBean> list_imageId = dao.getAllImageId(4);
+////		System.out.println(list_imageId);
+//		System.out.println(list_imageId.size());
+		
+		// 找商品第一張照片
+		ProductBean productBean = dao.getOneImage(4);
+//		System.out.println(productBean);
+		System.out.println(productBean.getProduct_image());
+//		
+		
+//		//找該商品的所有照片
+//		List<ProductBean> list_image = dao.getAllImage(4);
+//		for(ProductBean productBean : list_image) {
+//			
+//			System.out.println(productBean.getProduct_image());
+//		}
+//		System.out.println(list_image.size());
+	
+	
+	
 	}
 }

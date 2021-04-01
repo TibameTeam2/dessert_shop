@@ -138,7 +138,7 @@ th, td {
 				<td>商品狀態:</td>
 				<td><select size="1" name="product_status">
 					<option value="">請選擇上架狀態
-					<option value=0>未上架
+					<option value=0 selected>未上架 (預設)
 					<option value=1>上架中
 				</select></td>
 			</tr>			

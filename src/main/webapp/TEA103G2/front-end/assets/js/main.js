@@ -2,8 +2,8 @@
     "use strict";
 
     /*--
-		Header top Notification
-    -----------------------------------*/
+    		Header top Notification
+        -----------------------------------*/
     function notificationClose() {
         $('.notification-close-btn').on('click', function() {
             $('.top-notification-bar').slideUp();
@@ -12,8 +12,8 @@
     notificationClose();
 
     /*--
-		Header Sticky
-    -----------------------------------*/
+    		Header Sticky
+        -----------------------------------*/
     $(window).on('scroll', function(event) {
         var scroll = $(window).scrollTop();
         if (scroll < 350) {
@@ -24,8 +24,8 @@
     });
 
     /*--
-        Bootstrap Dropdown Animation
-	  -----------------------------------*/
+            Bootstrap Dropdown Animation
+    	  -----------------------------------*/
     // Add slideDown animation to Bootstrap dropdown when expanding.
     $('.dropdown').on('show.bs.dropdown', function() {
         $(this).find('.dropdown-menu').first().stop(true, true).slideDown();
@@ -37,8 +37,8 @@
     });
 
     /*--
-        Off Canvas Menu
-	  -----------------------------------*/
+            Off Canvas Menu
+    	  -----------------------------------*/
 
     $('.mobile-menu-open').on('click', function() {
         $('.off-canvas-box').addClass('open')
@@ -86,8 +86,8 @@
     $(".mega-sub-menu").parent("li").css("position", "static");
 
     /*--
-		    Header Category Toggle
-    -----------------------------------*/
+    		    Header Category Toggle
+        -----------------------------------*/
     function categoryToggle() {
         $('.vertical-title').on('click', function() {
             $('.vertical-menu-content').slideToggle(500);
@@ -122,8 +122,8 @@
     });
 
     /*--
-        Slider
-	  -----------------------------------*/
+            Slider
+    	  -----------------------------------*/
     var slider = new Swiper('.slider-active', {
         speed: 600,
         effect: "fade",
@@ -138,8 +138,8 @@
     });
 
     /*--
-        Category
-	  -----------------------------------*/
+            Category
+    	  -----------------------------------*/
     var category = new Swiper('.category-active', {
         slidesPerView: 5,
         spaceBetween: 30,
@@ -160,8 +160,8 @@
     });
 
     /*--
-        Product
-	  -----------------------------------*/
+            Product
+    	  -----------------------------------*/
     var product = new Swiper('.product-active', {
         slidesPerView: 4,
         spaceBetween: 30,
@@ -187,8 +187,8 @@
     });
 
     /*--
-        Product 2
-	  -----------------------------------*/
+            Product 2
+    	  -----------------------------------*/
     var product2 = new Swiper('.product-2-active .swiper-container', {
         slidesPerView: 4,
         spaceBetween: 30,
@@ -217,8 +217,8 @@
     });
 
     /*--
-        Product 3
-	  -----------------------------------*/
+            Product 3
+    	  -----------------------------------*/
     var product3 = new Swiper('.product-3-active .swiper-container', {
         slidesPerView: 4,
         spaceBetween: 30,
@@ -247,8 +247,8 @@
     });
 
     /*--
-        Product 4
-	  -----------------------------------*/
+            Product 4
+    	  -----------------------------------*/
     var product4 = new Swiper('.product-4-active .swiper-container', {
         slidesPerView: 4,
         spaceBetween: 30,
@@ -280,8 +280,8 @@
     });
 
     /*--
-        Product 5
-	  -----------------------------------*/
+            Product 5
+    	  -----------------------------------*/
     var product5 = new Swiper('.product-5-active .swiper-container', {
         slidesPerView: 4,
         spaceBetween: 30,
@@ -307,8 +307,8 @@
     });
 
     /*--
-        Testimonial
-	  -----------------------------------*/
+            Testimonial
+    	  -----------------------------------*/
     var testimonial = new Swiper('.testimonial-active', {
         slidesPerView: 3,
         spaceBetween: 30,
@@ -329,8 +329,8 @@
     });
 
     /*--
-        Testimonial 2
-	  -----------------------------------*/
+            Testimonial 2
+    	  -----------------------------------*/
     var testimonial2 = new Swiper('.testimonial-2-active', {
         slidesPerView: 3,
         spaceBetween: 30,
@@ -351,8 +351,8 @@
     });
 
     /*--
-        Blog
-	  -----------------------------------*/
+            Blog
+    	  -----------------------------------*/
     var blog = new Swiper('.blog-active', {
         slidesPerView: 3,
         spaceBetween: 30,
@@ -449,8 +449,8 @@
     });
 
     /*--
-		    Magnific Popup Activation
-    -----------------------------------*/
+    		    Magnific Popup Activation
+        -----------------------------------*/
     $('a.btn-gallery').on('click', function(event) {
         event.preventDefault();
 
@@ -576,8 +576,8 @@
     });
 
     /*--
-		    Single Product Zoom Activation
-    -----------------------------------*/
+    		    Single Product Zoom Activation
+        -----------------------------------*/
     $('.zoom').zoom();
 
     /*--
@@ -586,15 +586,15 @@
     $('.custom-select').niceSelect();
 
     /*--
-		    select2
-    -----------------------------------*/
+    		    select2
+        -----------------------------------*/
     $(".select2").select2({
         tags: true
     });
 
     /*--
-		    Product Quantity Activation
-    -----------------------------------*/
+    		    Product Quantity Activation
+        -----------------------------------*/
     $('.add').on('click', function() {
         // if ($(this).prev().val()) {
         //     $(this).prev().val(+$(this).prev().val() + 1);
@@ -615,8 +615,8 @@
     });
 
     /*--
-		    Checkout Account Active
-    -----------------------------------*/
+    		    Checkout Account Active
+        -----------------------------------*/
     $('#account').on('click', function() {
         if ($('#account:checked').length > 0) {
             $('.checkout-account').slideDown();
@@ -652,8 +652,8 @@
 
 
     /*--
-		    Price Range Activation
-    -----------------------------------*/
+    		    Price Range Activation
+        -----------------------------------*/
     $("#slider-range").slider({
         range: true,
         min: 9,
@@ -685,6 +685,5 @@
             scrollTop: 0,
         }, 1500);
     });
-
 
 })(jQuery);

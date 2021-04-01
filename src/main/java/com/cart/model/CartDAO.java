@@ -14,7 +14,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import com.cart.model.CartBean;
 import com.util.JDBCUtil;
 
-public class CartDAO {
+public class CartDAO implements CartDAO_interface {
 	private static JdbcTemplate jdbcTemplate;
 	private String driver = JDBCUtil.driver;
 	private String url = JDBCUtil.url;

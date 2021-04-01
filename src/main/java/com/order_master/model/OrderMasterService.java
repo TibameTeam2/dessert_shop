@@ -54,6 +54,10 @@ public class OrderMasterService {
 		return dao.findByPrimaryKey(order_master_id);
 	}
 	
+	public List<OrderMasterBean> getOrderMasterByMemberAccount(String member_account){
+		return dao.findByMemberAccount(member_account);
+	}
+	
 	public List<OrderMasterBean> getAll(){
 		return dao.getAll();
 	}

@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hant">
 
 <head>
     <meta charset="utf-8">
@@ -89,30 +89,30 @@
                     <div class="my-account-menu mt-6">
                         <ul class="nav account-menu-list flex-column">
                             <li>
-                                <a class="active" data-bs-toggle="pill" href="#pills-dashboard"><i
-                                        class="fa fa-tachometer"></i> Dashboard</a>
+                                <a data-bs-toggle="pill" href="#pills-dashboard"><i
+                                        class="fa fa-tachometer"></i> 導覽</a>
                             </li>
                             <li>
                                 <a data-bs-toggle="pill" href="#pills-order"><i class="fa fa-shopping-cart"></i>
-                                    Order</a>
+                                    訂單資訊</a>
                             </li>
                             <li>
                                 <a data-bs-toggle="pill" href="#pills-download"><i class="fa fa-cloud-download"></i>
-                                    Download</a>
+                                    下載(用不到)</a>
                             </li>
                             <li>
-                                <a data-bs-toggle="pill" href="#pills-payment"><i class="fa fa-credit-card"></i> Payment
-                                    Method</a>
+                                <a data-bs-toggle="pill" href="#pills-payment"><i class="fa fa-credit-card"></i>
+                                    信用卡資訊</a>
                             </li>
                             <li>
-                                <a data-bs-toggle="pill" href="#pills-address"><i class="fa fa-map-marker"></i> Address</a>
+                                <a data-bs-toggle="pill" href="#pills-address"><i class="fa fa-map-marker"></i> 地址(用不到)</a>
                             </li>
                             <li>
-                                <a data-bs-toggle="pill" href="#pills-account"><i class="fa fa-user"></i> Account
-                                    Details</a>
+                                <a class="active" data-bs-toggle="pill" href="#pills-account"><i class="fa fa-user"></i>
+                                    帳號詳細資訊</a>
                             </li>
                             <li>
-                                <a href="login.html"><i class="fa fa-sign-out"></i> Logout</a>
+                                <a href="login.html"><i class="fa fa-sign-out"></i> 登出</a>
                             </li>
                         </ul>
                     </div>
@@ -121,7 +121,7 @@
                 <div class="col-xl-9 col-md-8">
                     <!-- Tab content start -->
                     <div class="tab-content my-account-tab mt-6">
-                        <div class="tab-pane fade show active" id="pills-dashboard">
+                        <div class="tab-pane fade" id="pills-dashboard">
                             <div class="my-account-dashboard account-wrapper">
                                 <h4 class="account-title">Dashboard</h4>
                                 <div class="welcome-dashboard">
@@ -246,65 +246,68 @@
                             </div>
                         </div>
 
-                        <div class="tab-pane fade" id="pills-account">
+                        <div class="tab-pane fade show active" id="pills-account">
                             <div class="my-account-details account-wrapper">
-                                <h4 class="account-title">Account Details</h4>
+                                <h4 class="account-title">個人資料</h4>
 
                                 <div class="account-details">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="single-form">
-                                                <label class="form-label">First Name</label>
-                                                <input type="text" class="form-control">
+                                    <form id="update_form" action="#">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="single-form" >
+                                                    <img class="img-fluid" id="member_photo" src="assets/images/logo.jpg" data-logo-alt="images/files/logo-header.png" alt="">
+<!--                                                    <input type="text" class="form-control" name="member_name">-->
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="single-form">
-                                                <label class="form-label">Last Name</label>
-                                                <input type="text" class="form-control">
+                                            <div class="col-md-6">
+                                                <div class="single-form">
+                                                    <label class="form-label">姓名</label>
+                                                    <input type="text" class="form-control" name="member_name">
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="single-form">
-                                                <label class="form-label">Display Name</label>
-                                                <input type="text" class="form-control">
+                                            <div class="col-md-6">
+                                                <div class="single-form">
+                                                    <label class="form-label">帳號</label>
+                                                    <input type="text" class="form-control" name="member_account"
+                                                           value="123" disabled="disabled">
+                                                    <!--<label class="form-label" id="member_account"></label>-->
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="single-form">
-                                                <label class="form-label">Email address</label>
-                                                <input type="text" class="form-control">
+                                            <div class="col-md-12">
+                                                <div class="single-form">
+                                                    <label class="form-label">手機</label>
+                                                    <input type="text" class="form-control" name="member_phone">
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="single-form">
-                                                <h5 class="title">Password change</h5>
+                                            <div class="col-md-12">
+                                                <div class="single-form">
+                                                    <label class="form-label">信箱</label>
+                                                    <input type="text" class="form-control" name="member_email">
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="single-form">
-                                                <label class="form-label">Current Password</label>
-                                                <input type="password" class="form-control">
+                                            <div class="col-md-12">
+                                                <label class="form-label">性別</label><br>
+                                                <input class="form-check-input" type="radio" name="member_gender"
+                                                       id="radio1" value="1" checked>
+                                                <label for="radio1"><span></span>男</label>
+                                                <input class="form-check-input" type="radio" name="member_gender"
+                                                       id="radio2" value="0">
+                                                <label for="radio2"><span></span>女</label>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="single-form">
-                                                <label class="form-label">New Password</label>
-                                                <input type="password" class="form-control">
+                                            <div class="col-md-12">
+                                                <div class="single-form">
+                                                    <label class="form-label">生日</label>
+                                                    <input type="date" class="form-control" name="member_birthday">
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="single-form">
-                                                <label class="form-label">Confirm Password</label>
-                                                <input type="password" class="form-control">
+                                            <div class="col-md-12">
+                                                <div class="single-form">
+                                                    <button class="btn btn-primary btn-hover-dark">儲存修改</button>
+                                                </div>
                                             </div>
+                                            <input type="hidden" name="member_account" value="">
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="single-form">
-                                                <button class="btn btn-primary btn-hover-dark">Save Change</button>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -344,7 +347,7 @@
 
 <!-- Main JS -->
 <script src="assets/js/main.js"></script>
-
+<script src="assets/js/moment.js"></script>
 <script>
     $(document).ready(function () {
         $('.header').load('header.html')
@@ -370,8 +373,62 @@
             }), $("#lp-bar").animate({width: n + "%"}, 0)
         }, waitForAll: !0
     });
+</script>
+<script>
+
+    $(function () {
+        $.get("/dessert_shop/member/isLogin", {}, function (data) {
+            console.log(data);
+            if (data.flag) {
+                // alert("帳號:" + data.data.member_account + "\n姓名:" + data.data.member_name + "\n密碼:" + data.data.member_password);
+                // console.log(data.data);
+                // if(data.redirect)
+                //     location.href = data.redirect;
+                $('#member_account').val(data.data.member_account);
+                $('input[name="member_account"]').val(data.data.member_account);
+                $('input[name="member_name"]').val(data.data.member_name);
+                $('input[name="member_phone"]').val(data.data.member_phone);
+                $('input[name="member_email"]').val(data.data.member_email);
+                data.data.member_gender == 1 ? $('#radio1').prop('checked', true) : $('#radio2').prop('checked', true);
+                // $('input[name="member_gender"]').val(data.data.member_gender);
+                $('input[name="member_birthday"]').val(moment(data.data.member_birthday).format('YYYY-MM-DD'));
+                $('#member_photo').attr('src', "/dessert_shop/member/backend_getPhoto?id="+data.data.member_account)
+
+            } else {
+            }
+        });
 
 
+        //表單送出時
+        $("#update_form").submit(function () {
+            //表單提交時檢查所有屬性合法
+            // if(checkUsername() && checkPassword() && checkEmail()){
+            //發送ajax請求，送出表單資料
+            console.log($("#register_form").serialize());
+            $.post("/dessert_shop/member/update", $(this).serialize(), function (data) {
+                //處理伺服器回應的資料  data  {flag:true,errorMsg:"註冊成功!!!"}
+                if (data.flag) {
+                    // 註冊成功後跳轉頁面
+                    // location.href="register_ok.html";
+                    Swal.fire({
+                        title: data.msg,
+                        text: "",
+                        icon: "success"
+                    });
+                } else {
+                    // 註冊失敗 彈出視窗
+                    Swal.fire({
+                        title: data.msg,
+                        text: "",
+                        icon: "error"
+                    })
+                }
+            });
+            return false;
+        });
+
+
+    });
 </script>
 </body>
 

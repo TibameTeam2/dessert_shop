@@ -4,16 +4,6 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
 
 
-<!--    <servlet>-->
-<!--        <servlet-name>RegisterMemberServlet</servlet-name>-->
-<!--        <servlet-class>com.member.controller.RegisterMemberServlet</servlet-class>-->
-<!--    </servlet>-->
-<!--    <servlet-mapping>-->
-<!--        <servlet-name>RegisterMemberServlet</servlet-name>-->
-<!--        <url-pattern>/member/register</url-pattern>-->
-<!--    </servlet-mapping>-->
-
-
     <servlet>
         <servlet-name>MemberServlet</servlet-name>
         <servlet-class>com.member.controller.MemberServlet</servlet-class>
@@ -24,7 +14,16 @@
     </servlet-mapping>
     
     <servlet>
-        <servlet-name>OrderMasterServlet</servlet-name>
+        <servlet-name>CartServlet</servlet-name>
+        <servlet-class>com.cart.controller.CartServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CartServlet</servlet-name>
+        <url-pattern>/cart/*</url-pattern>
+    </servlet-mapping>
+
+	<servlet>
+    	<servlet-name>OrderMasterServlet</servlet-name>
         <servlet-class>com.order_master.controller.OrderMasterServlet</servlet-class>
     </servlet>
     <servlet-mapping>
@@ -34,6 +33,7 @@
 
 
 	<!-- product相關 -->
+
 	<servlet>
 		<servlet-name>ProductServlet</servlet-name>
 		<servlet-class>com.product.controller.ProductServlet</servlet-class>
@@ -52,6 +52,14 @@
 		<url-pattern>/product/*</url-pattern>
 	</servlet-mapping>
 	
+	<servlet>
+		<servlet-name>ProductImageServlet</servlet-name>
+		<servlet-class>com.product_image.controller.ProductImageServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ProductImageServlet</servlet-name>
+		<url-pattern>/product_image_jsp/product.do</url-pattern>
+	</servlet-mapping>
 	
 
     <!--測試用Servlet-->
@@ -63,26 +71,9 @@
         <servlet-name>ServletTest</servlet-name>
         <url-pattern>/test/*</url-pattern>
     </servlet-mapping>
+
     
-   	<!-- product相關 -->
-	<servlet>
-		<servlet-name>ProductServlet</servlet-name>
-		<servlet-class>com.product.controller.ProductServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>ProductServlet</servlet-name>
-		<url-pattern>/product_jsp/product.do</url-pattern>
-	</servlet-mapping>
-	
-	<servlet>
-		<servlet-name>ProductServlet_front</servlet-name>
-		<servlet-class>com.product.controller.ProductServlet_front</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>ProductServlet_front</servlet-name>
-		<url-pattern>/product/*</url-pattern>
-	</servlet-mapping>
-    
+   
 
     <!--大吳的0201-->
     <servlet>
@@ -102,10 +93,54 @@
     <servlet-mapping>
         <servlet-name>EmployeeServlet</servlet-name>
         <url-pattern>/employee_jsp/employee.do</url-pattern>
-    </servlet-mapping>    
-      
-    
-    
+    </servlet-mapping>
+
+
+    <!--Notice 測試Servlet-->
+    <servlet>
+        <servlet-name>NoticeServlet</servlet-name>
+        <servlet-class>com.notice.controller.NoticeServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>NoticeServlet</servlet-name>
+        <url-pattern>/notice/*</url-pattern>
+    </servlet-mapping>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!--全局過濾器-->
+    <filter>
+        <filter-name>loginFilter</filter-name>
+        <filter-class>com.filter.LoginFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>loginFilter</filter-name>
+        <url-pattern>/TEA103G2/front-end/my-account.html</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+        <dispatcher>INCLUDE</dispatcher>
+        <dispatcher>ERROR</dispatcher>
+        <dispatcher>ASYNC</dispatcher>
+    </filter-mapping>
+
     <!--配置全局过滤的filter-->
 <!--    <filter>-->
 <!--        <filter-name>CharacterEncodingFilter</filter-name>-->

@@ -1,6 +1,6 @@
 package com.cart.model;
 
-public class CartBean {
+public class CartBean implements java.io.Serializable {
 	
 	private Integer cart_id;
 	private String member_account;
