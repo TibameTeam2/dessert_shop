@@ -36,6 +36,21 @@ public class ProductServlet_front extends BaseServlet {
 
     }
     
+    // http://localhost:8081/dessert_shop/product/getOneProduct?id=?
+    public void getOneProduct(HttpServletRequest req, HttpServletResponse res) {
+    	Integer product_id = new Integer(req.getParameter("id"));
+    	ProductService productSvc = new ProductService();
+    	ProductBean productBean = productSvc.getOneProduct(product_id);
+
+		ResultInfo info = new ResultInfo();
+
+		info.setFlag(true);
+		info.setMsg("資料取得成功!");
+		info.setData(productBean);
+
+		writeValueByWriter(res, info);
+
+    }
     
     
     
