@@ -7,7 +7,7 @@ import com.emp.model.EmpVO;
 
 public class EmployeeService {
 	
-	private EmployeeDAO dao = null;
+	private EmployeeDAO_interface dao;
 	
 	public EmployeeService() {
 		dao = new EmployeeDAO();
