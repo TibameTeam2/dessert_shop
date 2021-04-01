@@ -686,4 +686,19 @@
         }, 1500);
     });
 
+    /******************************* 通知滑鼠移入變色 *******************************/
+    $('img.bell').on('mouseover', function() {
+        this.src = "assets/images/icon/bell2.png";
+    });
+
+    $('img.bell').on('mouseout', function() {
+        this.src = "assets/images/icon/bell.png";
+    });
+
+//    /********************************** 通知展開 **********************************/
+//    $('div.dropdown').on('click', function() {
+//        $(this).find('ul.dropdown-menu').slideToggle("slow");
+//    });
+
+
 })(jQuery);
