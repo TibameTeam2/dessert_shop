@@ -153,9 +153,13 @@ CREATE TABLE product (
 INSERT INTO product (product_name, product_type, product_subtype , product_intro, product_ingredient, product_price, product_available_qty, product_status, expiry_after_buying, product_calorie, degree_of_sweetness, total_star, total_review, total_purchase)
 VALUES ('巧克力杯子', '蛋糕', '杯子蛋糕','採用義大利進口可可粉...', '可可粉、鮮奶油、巧克力醬', 100, 50, 1, 5, 210, 2, 860, 215, 121);
 INSERT INTO product (product_name, product_type, product_subtype , product_intro, product_ingredient, product_price, product_available_qty, product_status, expiry_after_buying, product_calorie, degree_of_sweetness, total_star, total_review, total_purchase)
-VALUES ('草莓千層蛋糕', '蛋糕', '千層蛋糕','採用當日現採新鮮草莓...','鮮奶油、新鮮草莓、', 120, 50, 1, 4, 300, 2, 570, 115, 233);
+VALUES ('草莓千層', '蛋糕', '千層蛋糕','採用當日現採新鮮草莓...','鮮奶油、新鮮草莓、', 120, 50, 1, 4, 300, 2, 570, 115, 233);
 INSERT INTO product (product_name, product_type, product_subtype , product_intro, product_ingredient, product_price, product_available_qty, product_status, expiry_after_buying, product_calorie, degree_of_sweetness, total_star, total_review, total_purchase)
-VALUES ('藍莓起士蛋糕', '蛋糕', '起士蛋糕','採用北海道生乳提煉...', '新鮮藍莓、藍莓果醬、creme cheese、牛奶', 120, 50, 1, 7, 310, 1, 115, 25, 156);
+VALUES ('藍莓乳酪', '蛋糕', '千層蛋糕','採用北海道生乳提煉...', '新鮮藍莓、藍莓果醬、creme cheese、牛奶', 120, 50, 1, 7, 310, 1, 115, 25, 156);
+INSERT INTO product (product_name, product_type, product_subtype , product_intro, product_ingredient, product_price, product_available_qty, product_status, expiry_after_buying, product_calorie, degree_of_sweetness, total_star, total_review, total_purchase)
+VALUES ('綜合野莓蛋糕捲', '蛋糕', '蛋糕捲','歐洲進口冷凍莓果...', '藍莓、覆盆子、莓果醬、生乳', 120, 50, 1, 7, 310, 1, 115, 25, 156);
+INSERT INTO product (product_name, product_type, product_subtype , product_intro, product_ingredient, product_price, product_available_qty, product_status, expiry_after_buying, product_calorie, degree_of_sweetness, total_star, total_review, total_purchase)
+VALUES ('香蕉拿鐵', '飲品', '香濃拿鐵','契作台灣香蕉入料...', '新鮮香蕉、牛奶、奶油、蜂蜜...', 120, 50, 1, 7, 310, 1, 115, 25, 156);
 
 
 -- 收藏列表
@@ -206,13 +210,37 @@ CREATE TABLE product_image (
 	CONSTRAINT product_image_product_FK FOREIGN KEY (product_id) REFERENCES product(product_id)
 ) AUTO_INCREMENT = 1;
 INSERT INTO product_image (product_id, product_image)
-VALUES ('001', LOAD_FILE('C:\\project\\images\\product_image\\cake1.jpg'));
+VALUES ('001', LOAD_FILE('C:\\project\\images\\product_image\\oreoCup-1.jpg'));
 INSERT INTO product_image (product_id, product_image)
-VALUES ('002', LOAD_FILE('C:\\project\\images\\product_image\\cake2.jpg'));
+VALUES ('001', LOAD_FILE('C:\\project\\images\\product_image\\oreoCup-2.jpg'));
 INSERT INTO product_image (product_id, product_image)
-VALUES ('003', LOAD_FILE('C:\\project\\images\\product_image\\cake3.jpg'));
-
-
+VALUES ('002', LOAD_FILE('C:\\project\\images\\product_image\\strawCrepe-1.jpg'));
+INSERT INTO product_image (product_id, product_image)
+VALUES ('002', LOAD_FILE('C:\\project\\images\\product_image\\strawCrepe-2.jpg'));
+INSERT INTO product_image (product_id, product_image)
+VALUES ('001', LOAD_FILE('C:\\project\\images\\product_image\\oreoCup-3.jpg'));
+INSERT INTO product_image (product_id, product_image)
+VALUES ('002', LOAD_FILE('C:\\project\\images\\product_image\\strawCrepe-3.jpg'));
+INSERT INTO product_image (product_id, product_image)
+VALUES ('002', LOAD_FILE('C:\\project\\images\\product_image\\strawCrepe-4.jpg'));
+INSERT INTO product_image (product_id, product_image)
+VALUES ('003', LOAD_FILE('C:\\project\\images\\product_image\\bBerryCrepe-1.jpg'));
+INSERT INTO product_image (product_id, product_image)
+VALUES ('003', LOAD_FILE('C:\\project\\images\\product_image\\bBerryCrepe-2.jpg'));
+INSERT INTO product_image (product_id, product_image)
+VALUES ('004', LOAD_FILE('C:\\project\\images\\product_image\\3berryRoll-1.jpg'));
+INSERT INTO product_image (product_id, product_image)
+VALUES ('003', LOAD_FILE('C:\\project\\images\\product_image\\bBerryCrepe-3.jpg'));
+INSERT INTO product_image (product_id, product_image)
+VALUES ('004', LOAD_FILE('C:\\project\\images\\product_image\\3berryRoll-3.jpg'));
+INSERT INTO product_image (product_id, product_image)
+VALUES ('004', LOAD_FILE('C:\\project\\images\\product_image\\3berryRoll-4.jpg'));
+INSERT INTO product_image (product_id, product_image)
+VALUES ('005', LOAD_FILE('C:\\project\\images\\product_image\\bananaLatte-1.jpg'));
+INSERT INTO product_image (product_id, product_image)
+VALUES ('005', LOAD_FILE('C:\\project\\images\\product_image\\bananaLatte-2.jpg'));
+INSERT INTO product_image (product_id, product_image)
+VALUES ('005', LOAD_FILE('C:\\project\\images\\product_image\\bananaLatte-3.jpg'));
 -- 謝垚筠------------------------------------------------------------------------------------------------------------
 -- 訂閱者清單
 set auto_increment_offset=1;
