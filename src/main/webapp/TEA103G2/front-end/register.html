@@ -45,6 +45,23 @@
             color: blue;
         }
 
+        .single-form .form-control {
+            height: 30px;
+            border-radius: 5px;
+            padding: 10px 15px;
+            border-color: #83bc2e;
+            font-size: 14px;
+        }
+
+        .single-form .form-control:focus {
+            -webkit-box-shadow: none;
+            box-shadow: none;
+            border-color: #83bc2e;
+        }
+
+        .single-form .form-control+.form-control {
+            margin-top: 20px;
+        }
     </style>
     <!--    <link rel="stylesheet" type="text/css" href="assets/css/loading.css" />-->
     <!-- Modernizer & jQuery JS -->
@@ -128,10 +145,18 @@
                                 <label class="form-label">手機</label>
                                 <input type="text" class="form-control" name="member_phone">
                             </div>
+                            <!--                            <div class="single-form">-->
+                            <!--                                <label class="form-label">性別</label>-->
+                            <!--                                <input type="text" class="form-control" name="member_gender">-->
+                            <!--                            </div>-->
                             <div class="single-form">
-                                <label class="form-label">性別</label>
-                                <input type="text" class="form-control" name="member_gender">
+                                <label class="form-label">性別</label><br>
+                                <input type="radio" name="member_gender" id="radio1" value="1" checked>
+                                <label for="radio1"><span></span>男</label>
+                                <input type="radio" name="member_gender" id="radio2" value="0" >
+                                <label for="radio2"><span></span>女</label>
                             </div>
+
                             <div class="single-form">
                                 <label class="form-label">生日</label>
                                 <input type="date" class="form-control" name="member_birthday">
@@ -140,7 +165,7 @@
                                 <label class="form-label">驗證碼</label>
                                 <div class="container">
                                     <div class="row">
-                                        <div class="col-8">
+                                        <div class="col-8 justify-content-start margin-left">
                                             <input type="text" class="form-control" name="code">
                                         </div>
                                         <div class="col-4">
@@ -232,9 +257,6 @@
     });
 
 
-
-
-
     $(function () {
 
         //更換驗證碼
@@ -254,11 +276,11 @@
                     // 註冊成功後跳轉頁面
                     // location.href="register_ok.html";
                     Swal.fire({
-                            title: data.msg,
-                            text: "請至信箱收信以啟用帳號",
-                            type: "success"
-                        }).then(function (){
-                            location.href = data.redirect;
+                        title: data.msg,
+                        text: "請至信箱收信以啟用帳號",
+                        icon: "success"
+                    }).then(function () {
+                        location.href = data.redirect;
                     });
                 } else {
                     // 註冊失敗 彈出視窗
@@ -293,6 +315,9 @@
             } else {
                 //用户名非法,加一个红色边框
                 $("#member_account").css("border", "2px solid red");
+                $("#member_account").css("border-color", "red");
+
+
                 $("#member_account_label").html("註冊帳號");
                 return;
             }

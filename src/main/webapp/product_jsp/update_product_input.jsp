@@ -1,8 +1,12 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.product.model.*"%>
+<%@ page import="java.util.Base64" %>
+<%@page import="com.product_image.model.ProductImageBean"%>
+
 <%
   ProductBean productBean = (ProductBean) request.getAttribute("productBean"); //EmpServlet.java (Concroller) 存入req的empVO物件 (包括幫忙取出的empVO, 也包括輸入資料錯誤時的empVO物件)
+  ProductImageBean piBean = (ProductImageBean) request.getAttribute("piBean");
 %>
 
 <!DOCTYPE html>
@@ -30,8 +34,6 @@ h4 {
 }
 
 
-
-
 table {
 	width: 450px;
 	background-color: white;
@@ -46,6 +48,15 @@ table, th, td {
 th, td {
 	padding: 1px;
 }
+
+div.picture_list{
+	width: 200px;
+	height: 200px;
+	
+	border: 2px dashed gray;
+	
+}
+
 </style>
 
 </head>
@@ -230,16 +241,14 @@ th, td {
 			<tr>
 				<td>商品圖片：</td>
 				<td>
-					<input type="file" name="upfile1" accept="image/*">
-					<div id="preview" class="picture_list"><span class="text">預覽圖</span></div>
-                	<input type="image" src="/dessert_shop/product/backend_getPhoto?id=<%=productBean.getProduct_id()%>" name="my_img">
-				</td>
-			</tr>
+					<input type="file" name="upfile1" accept="image/*" id="p_file">
+					<div id="preview">
+                	<img src="/dessert_shop/product/backend_getPhoto?id=<%=productBean.getProduct_id()%>" name="my_img">    
+					
+					<span class="text">預覽圖</span>
+					</div>
+                </td>
 
-
-<%--			這段的目的?? --%>
-<%-- 			<jsp:useBean id="productSvc" scope="page" --%>
-<%-- 				class="com.product.model.ProductService" /> --%>
 
 		</table>
 		<br><input type="hidden" name="action" value="update"> 
@@ -250,8 +259,55 @@ th, td {
 </body>
 
 <script>
-///////////照片的
 
+const p_file = document.getElementById("p_file");
+p_file.addEventListener("change", function (e) {
+    handleFiles(this.files);
+});
+
+//檔案上傳的處理函式
+function handleFiles(files) {
+    //先刪掉預覽圖裡的img
+    while (preview.firstChild) preview.removeChild(preview.lastChild);
+
+    // 跑每個使用者選的檔案
+    for (let i = 0; i < files.length; i++) {
+        let file = files[i];
+        let imageType = /image.*/;
+        // 判斷檔案的類型，圖片才加載
+        if (!file.type.match(imageType)) {
+            continue;
+        }
+        //增加img節點在預覽圖裡面
+        let img = document.createElement("img");
+        img.classList.add("preview_img");
+        img.setAttribute("id", "p_img")
+        preview.appendChild(img);
+
+        let reader = new FileReader();
+        // reader.onload = (e => img.src = reader.result);  //監聽器 檔案讀完的事件 設定img的src
+        reader.addEventListener("load", function (e) {
+            img.src = reader.result.toString();
+        })
+        reader.readAsDataURL(file);  //讀取檔案
+    }
+}
+
+
+
+
+
+<!--
+$(".upload_img").on("change", function(){
+	var fr = new FileReader();
+	var file = $(".upload_img")[0].files[0];
+	fr.readAsDataURL(file);
+	$(fr).on("load",function(){
+		$(".show_img").attr("src", this.result);
+	});
+	
+});
+-->
 
 </script>
 
