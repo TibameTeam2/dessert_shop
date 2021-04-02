@@ -24,7 +24,6 @@ public class HistoryCommentOrderMasterServlet extends BaseServlet {
 	}
 
 	
-
 	public void getHistoryCommentOrderMaster(HttpServletRequest req, HttpServletResponse res){
     	MemberBean member = (MemberBean) req.getSession().getAttribute("member");
         ResultInfo info = new ResultInfo();

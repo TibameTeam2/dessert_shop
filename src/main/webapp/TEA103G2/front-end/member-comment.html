@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zw-Hant">
 
 <head>
   <meta charset="utf-8">
@@ -49,19 +49,6 @@
     float: right;
   }
 
-  /* .blog-details {
-  padding-top: 4px;
-  border: 1px solid lightblue;
-  } */
-
-  .blog-details .post-meta {
-    overflow: hidden;
-    position: relative;
-    padding: 15px 0;
-    margin-bottom: 10px;
-    border-color: white;
-  }
-
 
   /* 上傳圖片 開始 */
   input[type="file"] {
@@ -85,7 +72,18 @@
     display:flex;
     align-items:center;
     justify-content:center;
-
+  }
+  .review_image {
+    border: 1px solid #ccc;
+    display: inline-block;
+    /* padding: 6px 12px; */
+    width: 50px;
+    height: 50px;
+    margin: auto 0;
+    cursor: pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
   }
   /* 上傳圖片 結束 */
 
@@ -186,52 +184,8 @@
   }
   /* 評價的星號 結束 */
 
-  /* 阿賓師HTML5 開始 */
-  input[disabled]{
-    background-color: #eee;
-    cursor: not-allowed;
-  }
-  #drop_zone{
-    border: 1px dashed #ccc;
-    height: 50px;
-    position: relative;
-  }
-  #drop_zone span.text{
-    position: absolute;
-    display: inline-block;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    z-index: -1;
-    color: lightgray;
-  }
-  #drop_zone.-on{
-    border: 1px dashed lightblue;
-    box-shadow: 3px 3px 5px lightblue inset, -3px -3px 5px lightblue inset;
-  }
-  #preview{
-    border: 1px solid lightgray;
-    display: inline-block;
-    width: 100px;
-    min-height: 150px;
-    position: relative;
-  }
-  #preview span.text{
-    position: absolute;
-    display: inline-block;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    z-index: -1;
-    color: lightgray;
-  }
-  #preview img.preview_img{
-    width: 100%;
-  }
 
-  /* 阿賓師HTML5 結束 */
-
-  </style>
+</style>
 
 </head>
 
@@ -281,14 +235,9 @@
       <div class="container">
         <div class="row flex-row-reverse justify-content-between tab">
 
-
-
           <!-- 右半部 開始 -->
           <div class="col-lg-8">
-
-            <!-- 淺籃框 開始 -->
             <div class="blog-details">
-
               <div class="tab-content">
 
                 <!-- 歷史評價 開始 Blog Section Start -->
@@ -296,7 +245,7 @@
                   <h4 class="blog-title widget-title">歷史評價</h4>
                   <ul class="order_detail_comment_list">
                     <li>
-                      <div class="post-meta">
+                      <div class="post-meta" style="margin-bottom:0px; border-top: 1px solid white; border-bottom: 1px solid white">
                         <span class="detail">訂單編號 : <a href="https://tw.yahoo.com/"><span>20210313001</span></a></span>
                         <span class="detail">下訂時間 : <span>2020-11-12 13:00</span></span>
                         <span class="detail">付款時間 : <span>2020-11-13 13:00</span></span>
@@ -309,145 +258,101 @@
                         <br>
                         <span class="detail">評論時間 : <span>2020-11-14 13:00</span></span>
                         <button type="button" class="switch_btn">
-                          <span class="plus"><i class="fas fa-chevron-down" style="color:white; display:inline"></i></span>
-                          <span class="minus"><i class="fas fa-chevron-up" style="color:white; display:inline"></i></span>
+                          <span class="plus" style="width: 20px; height: 20px; margin-right: 0px;"><i class="fas fa-chevron-down" style="color:white; display:inline"></i></span>
+                          <span class="minus" style="width: 20px; height: 20px;"><i class="fas fa-chevron-up" style="color:white; display:inline"></i></span>
                         </button>
                       </div>
                       <div class="inner_block">
                         <!-- 歷史評價/某訂單/商品們 開始 -->
                         <div class="row">
-                          <div class="col-lg-2">
+
+                          <hr class="my-4">
+                          <!-- 珍珠糖粒泡芙 開始 -->
+                          <div class="single-comment">
+                            <div class="comment-author">
+                              <img src="assets/images/product/cakes/3berryRoll-a.jpg" class="" alt="">
+                            </div>
+                            <div class="comment-content">
+                              <div class="author-name-rating">
+                                <h6 class="name" style="font-size:16px">珍珠糖粒泡芙01</h6>
+                                <div class="review-star">
+                                  <div class="star" style="width: 80%;"></div>
+                                </div>
+                              </div>
+                              <div style="font-size:14px">
+                                <p>好吃! taste great!</p>
+                              </div>
+                              <div class="dec-img-wrapper">
+                                <div class="row">
+                                  <div class="col-md-2">
+                                    <div class="dec-img">
+                                      <img src="assets/images/blog/blog-dec-img2.jpg" alt="">
+                                    </div>
+                                  </div>
+                                  <div class="col-md-2">
+                                    <div class="dec-img">
+                                      <img src="assets/images/blog/blog-dec-img2.jpg" alt="">
+                                    </div>
+                                  </div>
+                                  <div class="col-md-2">
+                                    <div class="dec-img">
+                                      <img src="assets/images/blog/blog-dec-img2.jpg" alt="">
+                                    </div>
+                                  </div>
+                                </div>
+                                <p style="font-size:14px; margin-bottom:0px">商家回覆 : </p>
+                                <span style="font-size:14px">謝謝您的好評，期待您的再次蒞臨!</span>
+                              </div>
+                            </div>
                           </div>
-                          <div class="col-lg-10">
-                            <hr class="my-4">
-                            <!-- 珍珠糖粒泡芙 開始 -->
-                            <div class="single-comment">
-                              <div class="comment-author">
-                                <img src="assets/images/product/product-珍珠糖粒泡芙01.jpg" class="" alt="">
+                          <!-- 珍珠糖粒泡芙 結束 -->
+                          <hr class="my-4">
+                          <!-- 珍珠糖粒泡芙2 開始 -->
+                          <div class="single-comment">
+                            <div class="comment-author">
+                              <img src="assets/images/product/cakes/3berryRoll-a.jpg" class="" alt="">
+                            </div>
+                            <div class="comment-content">
+                              <div class="author-name-rating">
+                                <h6 class="name" style="font-size:16px">珍珠糖粒泡芙02</h6>
+                                <div class="review-star">
+                                  <div class="star" style="width: 80%;"></div>
+                                </div>
                               </div>
-                              <div class="comment-content">
-                                <div class="author-name-rating">
-                                  <h6 class="name">珍珠糖粒泡芙01</h6>
-                                  <div class="review-star">
-                                    <div class="star" style="width: 80%;"></div>
+                              <div style="font-size:14px">
+                                <p>好吃! taste great!</p>
+                              </div>
+                              <div class="dec-img-wrapper">
+                                <div class="row">
+                                  <div class="col-md-2">
+                                    <div class="dec-img">
+                                      <img src="assets/images/blog/blog-dec-img2.jpg"  alt="">
+                                    </div>
                                   </div>
-                                </div>
-                                <div>
-                                  <p>taste great!</p>
-                                </div>
-                                <div class="dec-img-wrapper">
-                                  <div class="row">
-                                    <div class="col-md-2">
-                                      <div class="dec-img">
-                                        <img src="assets/images/blog/blog-dec-img2.jpg" alt="">
-                                      </div>
+                                  <div class="col-md-2">
+                                    <div class="dec-img">
+                                      <img src="assets/images/blog/blog-dec-img2.jpg" alt="">
                                     </div>
-                                    <div class="col-md-2">
-                                      <div class="dec-img">
-                                        <img src="assets/images/blog/blog-dec-img2.jpg" alt="">
-                                      </div>
-                                    </div>
-                                    <div class="col-md-2">
-                                      <div class="dec-img">
-                                        <img src="assets/images/blog/blog-dec-img2.jpg" alt="">
-                                      </div>
+                                  </div>
+                                  <div class="col-md-2">
+                                    <div class="dec-img">
+                                      <img src="assets/images/blog/blog-dec-img2.jpg" alt="">
                                     </div>
                                   </div>
                                 </div>
-                                <p class="">商家回覆 : </p>
-                                <span>謝謝您的好評，期待您的再次蒞臨!</span>
+                                <p style="font-size:14px; margin-bottom:0px">商家回覆 : </p>
+                                <span style="font-size:14px">謝謝您的好評，期待您的再次蒞臨!</span>
                               </div>
                             </div>
-                            <!-- 珍珠糖粒泡芙 結束 -->
-                            <hr class="my-4">
-                            <!-- 珍珠糖粒泡芙 開始 -->
-                            <div class="single-comment">
-                              <div class="comment-author">
-                                <img src="assets/images/product/product-珍珠糖粒泡芙01.jpg" class="" alt="">
-                              </div>
-                              <div class="comment-content">
-                                <div class="author-name-rating">
-                                  <h6 class="name">珍珠糖粒泡芙01</h6>
-                                  <div class="review-star">
-                                    <div class="star" style="width: 80%;"></div>
-                                  </div>
-                                </div>
-                                <div>
-                                  <p>taste great!</p>
-                                </div>
-                                <div class="dec-img-wrapper">
-                                  <div class="row">
-                                    <div class="col-md-2">
-                                      <div class="dec-img">
-                                        <img src="assets/images/blog/blog-dec-img2.jpg" alt="">
-                                      </div>
-                                    </div>
-                                    <div class="col-md-2">
-                                      <div class="dec-img">
-                                        <img src="assets/images/blog/blog-dec-img2.jpg" alt="">
-                                      </div>
-                                    </div>
-                                    <div class="col-md-2">
-                                      <div class="dec-img">
-                                        <img src="assets/images/blog/blog-dec-img2.jpg" alt="">
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                                <p class="">商家回覆 : </p>
-                                <span>謝謝您的好評，期待您的再次蒞臨!</span>
-                              </div>
-                            </div>
-                            <!-- 珍珠糖粒泡芙 結束 -->
-                            <hr class="my-4">
-                            <!-- 珍珠糖粒泡芙 開始 -->
-                            <div class="single-comment">
-                              <div class="comment-author">
-                                <img src="assets/images/product/product-珍珠糖粒泡芙01.jpg" class="" alt="">
-                              </div>
-                              <div class="comment-content">
-                                <div class="author-name-rating">
-                                  <h6 class="name">珍珠糖粒泡芙01</h6>
-                                  <div class="review-star">
-                                    <div class="star" style="width: 80%;"></div>
-                                  </div>
-                                </div>
-                                <div>
-                                  <p>taste great!</p>
-                                </div>
-                                <div class="dec-img-wrapper">
-                                  <div class="row">
-                                    <div class="col-md-2">
-                                      <div class="dec-img">
-                                        <img src="assets/images/blog/blog-dec-img2.jpg" alt="">
-                                      </div>
-                                    </div>
-                                    <div class="col-md-2">
-                                      <div class="dec-img">
-                                        <img src="assets/images/blog/blog-dec-img1.jpg" alt="">
-                                      </div>
-                                    </div>
-                                    <div class="col-md-2">
-                                      <div class="dec-img">
-                                        <img src="assets/images/blog/blog-dec-img2.jpg" alt="">
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                                <p class="">商家回覆 : </p>
-                                <span>謝謝您的好評，期待您的再次蒞臨!</span>
-                              </div>
-                            </div>
-                            <!-- 珍珠糖粒泡芙 結束 -->
                           </div>
+                          <!-- 珍珠糖粒泡芙2 結束 -->
+                          <br>
                         </div>
                         <!-- 歷史評價/某訂單/商品們 結束 -->
                       </div>
                     </li>
                   </ul>
-
                   <!-- <blockquote><p>歷史評價文字內容的亮點/摘錄</p></blockquote> -->
-
                 </div>
                 <!-- 歷史評價 結束 Blog Section End -->
 
@@ -456,84 +361,69 @@
                   <h4 class="blog-title widget-title">尚未評價</h4>
                   <ul class="order_detail_comment_list">
                     <li>
-                      <div class="post-meta" style="padding-bottom:-10px">
+                      <div class="post-meta"  style="margin-bottom:0px; border-top: 1px solid white; border-bottom: 1px solid white">
                         <span class="detail">訂單編號 : <a href="https://tw.yahoo.com/"><span>20210313001</span></a></span>
                         <span class="detail">下訂時間 : <span>2020-11-12 13:00</span></span>
                         <span class="detail">付款時間 : <span>2020-11-13 13:00</span></span>
                         <br>
                         <span class="detail">發票號碼 :  <a href="https://www.einvoice.nat.gov.tw/"><span>BF-24011131</span></a></span>
-                        <span class="detail">優惠券序號<a href="http://coupon.baibai.com.tw/"> xyz456 </a></span>
+                        <span class="detail">優惠券序號 : <a href="http://coupon.baibai.com.tw/"><span>xyz456</span></a></span>
                         <span class="detail">付款方式 : <span>線上刷卡</span></span>
                         <br>
                         <span class="detail">訂單備註 : <span>無</span></span>
                         <br>
                         <span class="detail">評論時間 : <span></span></span>
                         <button type="button" class="switch_btn">
-                          <span class="plus"><i class="fas fa-chevron-down" style="color:white"></i></span>
-                          <span class="minus"><i class="fas fa-chevron-up" style="color:white"></i></span>
+                          <span class="plus"><i class="fas fa-chevron-down" style="width: 20px; height: 20px; margin-right:-5px;"></i></span>
+                          <span class="minus"><i class="fas fa-chevron-up" style="width: 20px; height: 20px;"></i></span>
                         </button>
                       </div>
                       <div class="inner_block">
-                        <div class="row">
-                          <div class="col-lg-2">
+                        <hr class="my-4">
+                        <!-- <blockquote><p>評價文字內容的亮點/摘錄</p></blockquote> -->
+                        <!-- 尚未評價/某訂單/商品們 開始 -->
+                        <div class="single-comment">
+                          <div class="comment-author">
+                            <img src="assets/images/product/cakes/bavarianCrepe-a.jpg" class="" alt="">
                           </div>
-                          <div class="col-lg-10">
-                            <hr class="my-4">
-                            <!-- <blockquote><p>評價文字內容的亮點/摘錄</p></blockquote> -->
-                            <!-- 尚未評價/某訂單/商品們 開始 -->
-                            <div class="single-comment">
-                              <div class="comment-author">
-                                <img src="assets/images/product/product-反轉蘋果塔01.jpg " class="" alt="">
+                          <div class="comment-content">
+                            <div class="author-name-rating">
+                              <h6 class="name">反轉蘋果塔</h6>
+                              <div class="star_block" style="font-size:10pt;">
+                                <span class="star" data-star="1"><i class="icon ion-star"></i></span>
+                                <span class="star" data-star="2"><i class="icon ion-star"></i></span>
+                                <span class="star" data-star="3"><i class="icon ion-star"></i></span>
+                                <span class="star" data-star="4"><i class="icon ion-star"></i></span>
+                                <span class="star" data-star="5"><i class="icon ion-star"></i></span>
                               </div>
-                              <div class="comment-content">
-                                <div class="author-name-rating">
-                                  <h6 class="name">反轉蘋果塔01</h6>
-                                  <!-- <div class="float-right"> -->
-                                  <div class="star_block" style="font-size:10pt; float:right">評價星等 :
-                                    <span class="star" data-star="1"><i class="icon ion-star"></i></span>
-                                    <span class="star" data-star="2"><i class="icon ion-star"></i></span>
-                                    <span class="star" data-star="3"><i class="icon ion-star"></i></span>
-                                    <span class="star" data-star="4"><i class="icon ion-star"></i></span>
-                                    <span class="star" data-star="5"><i class="icon ion-star"></i></span>
-                                  </div>
-                                  <!-- </div> -->
-                                </div>
-                                <textarea class="form-control" placeholder="我覺得這項商品..."></textarea>
-                                <!-- <div>
-                                <label>商品圖片：</label>
-                                <input type="file" id="file"/>
-                                <div id="drop_zone"><span class="text">拖曳圖片或點此處新增</span></div>
-                                <div id="preview"><span class="text">預覽圖</span></div>>-->
-                                <div class="row">
-                                  <label for="file-upload1" class="custom-file-upload" style="margin: 15px">
-                                    <i class="fas fa-camera-alt"></i>
-                                    <input id="file-upload1" type="file"/>
-                                  </label>
-                                  <label for="file-upload2" class="custom-file-upload" style="margin: 10px, 10px">
-                                    <i class="fas fa-camera-alt"></i>
-                                    <input id="file-upload2" type="file" multiple="multiple"/>
-                                  </label>
-                                  <label for="file-upload3" class="custom-file-upload" style="margin: 15px">
-                                    <i class="fas fa-camera-alt"></i>
-                                    <input id="file-upload3" type="file" multiple="multiple"/>
-                                  </label>
-                                  <a class="btn btn-primary float-end" href="#" role="button">送出評價</a>
-                                </div>
-                              </div>
-                              <div id="preview_upload1"></div>
-                              <div id="preview_upload2"></div>
-                              <div id="preview_upload3"></div>
-                              <br>
-                              <br>
-                              <hr class="my-4">
                             </div>
+                            <textarea class="form-control" placeholder="我覺得這項商品..."></textarea>
+                            <div class="row">
+                              <label for="file_upload1" class="custom-file-upload" style="margin: 15px; width:fit-content">
+                                <i class="fas fa-camera-alt" id="camera1"></i>
+                                <input id="file_upload1" type="file"/>
+                                <img id="review_image1" class="custom-file-upload" style="width:20%; border:none"/>
+                              </label>
+                              <label for="file_upload2" class="custom-file-upload" style="margin: 15px; width:fit-content">
+                                <i class="fas fa-camera-alt" id="camera2"></i>
+                                <input id="file_upload2" style="float:left" type="file"/>
+                                <img id="review_image2" class="custom-file-upload" style="width:20%; border:none"/>
+                              </label>
+                              <label for="file_upload3" class="custom-file-upload" style="margin: 15px; width:fit-content">
+                                <i class="fas fa-camera-alt" id="camera3"></i>
+                                <input id="file_upload3" style="float:left" type="file"/>
+                                <img id="review_image3" class="custom-file-upload" style="width:20%; border:none"/>
+                              </label>
+                            </div>
+                            <a class="btn btn-primary float-end" href="#" role="button">送出評價</a>
                           </div>
-                          <!-- 尚未評價/某訂單/商品們 結束 -->
                         </div>
+
+                        <!-- 尚未評價/某訂單/商品們 結束 -->
                       </div>
-                    </div>
-                  </li>
-                </ul>
+                    </li>
+                  </ul>
+                </div>
                 <!-- 尚未評價 結束 Blog Section End -->
 
                 <!-- 其他反饋 開始 Blog Comment Start  -->
@@ -559,7 +449,7 @@
                     <li style="padding-left: 50px">
                       <div class="single-comment">
                         <div class="comment-avater">
-                          <img src="assets/images/author/author-評價者2.jpg" alt="">
+                          <img src="assets/images/author/author-2.png" alt="">
                         </div>
                         <div class="comment-content">
                           <h4 class="avater-name">服務生親切有禮</h4>
@@ -619,49 +509,47 @@
 
               </div>
 
-            </div>
-            <!-- 淺籃框 結束 -->
 
-
-            <!-- 分享到社群 開始 -->
-            <div class="blog-dec-tags-social">
-              <div class="blog-dec-tags">
-                <span>Tags:</span>
-                <ul class="tags">
-                  <li><a href="#">Bouquet</a></li>
-                  <li><a href="#">Event</a></li>
-                  <li><a href="#">Gift</a></li>
-                  <li><a href="#">Joy</a></li>
-                </ul>
+              <!-- 分享到社群 開始 -->
+              <div class="blog-dec-tags-social">
+                <div class="blog-dec-tags">
+                  <span>Tags:</span>
+                  <ul class="tags">
+                    <li><a href="#">Bouquet</a></li>
+                    <li><a href="#">Event</a></li>
+                    <li><a href="#">Gift</a></li>
+                    <li><a href="#">Joy</a></li>
+                  </ul>
+                </div>
+                <div class="blog-dec-social">
+                  <span>Share:</span>
+                  <ul class="social">
+                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fab fa-pinterest"></i></a></li>
+                    <li><a href="#"><i class="fab fa-googleplus"></i></a></li>
+                  </ul>
+                </div>
               </div>
-              <div class="blog-dec-social">
-                <span>Share:</span>
-                <ul class="social">
-                  <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                  <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                  <li><a href="#"><i class="fab fa-pinterest"></i></a></li>
-                  <li><a href="#"><i class="fab fa-googleplus"></i></a></li>
-                </ul>
-              </div>
-            </div>
-            <!-- 分享到社群 結束 -->
+              <!-- 分享到社群 結束 -->
 
-            <!-- 上/下一則 開始 -->
-            <div class="blog-next-previous">
-              <span class="left">
-                <a href="#"><i class="fal fa-arrow-left"></i> Older Post </a>
-              </span>
-              <span class="right">
-                <a href="#">Newer Post  <i class="fal fa-arrow-right"></i></a>
-              </span>
+              <!-- 上/下一則 開始 -->
+              <div class="blog-next-previous">
+                <span class="left">
+                  <a href="#"><i class="fal fa-arrow-left"></i> Older Post </a>
+                </span>
+                <span class="right">
+                  <a href="#">Newer Post  <i class="fal fa-arrow-right"></i></a>
+                </span>
+              </div>
+              <!-- 上/下一則 結束 -->
+
+
             </div>
-            <!-- 上/下一則 結束 -->
+            <!-- 右半部 結束 -->
 
 
           </div>
-          <!-- 右半部 結束 -->
-
-
 
           <!-- 側邊欄 開始 -->
           <div class="col-xl-3 col-lg-4">
@@ -883,103 +771,7 @@ $(".star_block").on("click", "span.star", function(){
   star.nextAll().removeClass("-on")
 })
 
-// 阿賓師HTML5_js 開始
-// =========================== Drag and Drop ========================= //
-// $("#drop_zone").on("dragover", function(e){
-//   e.preventDefault();
-//   e.target.classList.add("-on");
-// });
-//
-// $("#drop_zone").on("dragleave", function(e){
-//   e.target.classList.remove("-on");
-// });
-//
-// $("#drop_zone").on("drop", function(e){
-//   e.target.classList.remove("-on");
-//   e.preventDefault();
-//   e.target.classList.remove("-on");
-//   console.log(e.dataTransfer.files); // 取得 files
-//   preview_img(e.dataTransfer.files[0]);
-//   $("#p_file").value = ""; // 將 type="file" 那個清空
-// });
 
-// =========================== 透過 File 取得預覽圖 ========================= //
-// var preview_img = function(file){
-//   var img_node = document.createElement("img");
-//   var reader = new FileReader(); // 用來讀取檔案
-//   reader.addEventListener("load", function () {
-//     //console.log(reader.result);
-//     let img_node = document.createElement("img");
-//     img_node.setAttribute("src", reader.result);
-//     img_node.setAttribute("class", "preview_img");
-//     preview_el.innerHTML = '';
-//     preview_el.append(img_node);
-//   });
-//   reader.readAsDataURL(file); // 讀取檔案
-// };
-//
-// $("p_file").on("change", function(e){
-//
-//   if(this.files.length > 0){
-//     preview_img(this.files[0]);
-//   }else{
-//     $("p_file").innerHTML = '<span class="text">預覽圖</span>';
-//   }
-// });
-
-// =========================== 資料送出 ========================= //
-// btn_submit_el.addEventListener("click", function(e){
-//   e.preventDefault();
-//
-//   var send_data = {};
-//
-//   send_data.p_name = p_name_el.value;
-//   send_data.p_count = p_count_el.value;
-//
-//   var img_base64_el = document.querySelector(".preview_img");
-//   if(img_base64_el){
-//     send_data.img_base64 = img_base64_el.getAttribute("src");
-//   }
-//
-//   if(lng_el.value != ""){
-//     send_data.position = {
-//       lng: lng_el.value,
-//       lat: lat_el.value
-//     };
-//   }
-//
-//
-//   sessionStorage.setItem("form_data", JSON.stringify(send_data));
-//   location.href="./confirm.html";
-// });
-
-
-
-// =========================== session 裡的資料回寫到表單中 ========================= //
-// var recovery_data =  function(){
-//   if(sessionStorage.getItem("form_data") != null){
-//     var form_data = JSON.parse(sessionStorage.getItem("form_data"));
-//     console.log(form_data);
-//     p_name_el.value = form_data.p_name;
-//     p_count_el.value = form_data.p_count;
-//     p_count_value_el.innerHTML = form_data.p_count;
-//     lng_el.value = form_data.position.lng;
-//     lat_el.value = form_data.position.lat;
-//     preview_el.innerHTML = "<img class='preview_img' src='" + form_data.img_base64 + "'>";
-//   }
-//
-// };
-
-// 阿賓師HTML5_js 結束
-
-// $('#file').change(function() {
-//   var file = $('#file')[0].files[0];
-//   var reader = new FileReader;
-//   reader.onload = function(e) {
-//     $('#demo').attr('src', e.target.result);
-//   };
-//   reader.readAsDataURL(file);
-// });
 
 // 歷史評價縮合
 $("button.switch_btn").on("click", function(e){
@@ -988,16 +780,8 @@ $("button.switch_btn").on("click", function(e){
   $(this).closest("li").find("div.inner_block").slideToggle();
 });
 
-// $('.custom-file-upload').on('change', function(e){
-//   console.log(this);
-//   const file = this.files[0];
-//   const objectURL = URL.createObjectURL(file);
-//
-//   $('.file-upload').attr('src', objectURL);
-// });
 
-
-// 切換分頁
+// 切換分頁(1/2)
 $("a[data-bs-toggle='tab']").each(function(index) {
   $(this).click(function(e) {
     triggletabcontent();
@@ -1008,51 +792,34 @@ $("a[data-bs-toggle='tab']").each(function(index) {
   });
 });
 
-// triggle the tab content
+// 切換分頁(2/2)
 function triggletabcontent() {
   $(".tab-pane").each(function() {
     $(this).removeClass("active");
   });
 }
 
-//上傳圖片相關
-window.addEventListener("load", function(e){
-  var cls_FileUpload = document.getElementsByClassName("custom_file_upload");
-  var tmpobj = tmpNum = file_upload1_el = preview_upload1_el = '';
-
-  for (var i = 0; i < cls_FileUpload.length; i++) {
-    // var file_upload1_el = document.getElementById("file_upload1");
-    // var preview_upload1_el = document.getElementById("preview_upload1");
-    cls_FileUpload[i].addEventListener("change", function(e){
-      tmpobj = this.getElementsByTagName("input")[0];
-      file_upload1_el = document.getElementById(tmpobj.id);
-      tmpNum = tmpobj.id.substr(11,1);
-      preview_upload1_el = document.getElementById("preview_upload"+tmpNum);
-      // alert(tmpNum);
-      if(tmpobj.files.length > 0){
-        preview_img(tmpobj.files[0]);
-      }else{
-        preview_upload1_el.innerHTML = '<span class="text">預覽圖</span>';
-      }
-    });
-  }
-
-
-  var preview_img = function(file){
-    var img_node = document.createElement("img");
-    var reader = new FileReader(); // 用來讀取檔案
-    reader.addEventListener("load", function () {
-      //console.log(reader.result);
-      let img_node = document.createElement("img");
-      img_node.setAttribute("src", reader.result);
-      img_node.setAttribute("class", "preview_img");
-      preview_upload1_el.innerHTML = '';
-      preview_upload1_el.append(img_node);
-    });
-    reader.readAsDataURL(file); // 讀取檔案
-  };
-});
-
+//上傳圖片BLOB1
+$("#file_upload1").on('change', function(e){
+  const file = this.files[0];
+  const objectURL = URL.createObjectURL(file);
+  $('#review_image1').attr('src', objectURL);
+  $("#camera1").remove(); //相機icon消失
+})
+//上傳圖片BLOB2
+$("#file_upload2").on('change', function(e){
+  const file = this.files[0];
+  const objectURL = URL.createObjectURL(file);
+  $('#review_image2').attr('src', objectURL);
+  $("#camera2").remove(); //相機icon消失
+})
+//上傳圖片BLOB3
+$("#file_upload3").on('change', function(e){
+  const file = this.files[0];
+  const objectURL = URL.createObjectURL(file);
+  $('#review_image3').attr('src', objectURL);
+  $("#camera3").remove(); //相機icon消失
+})
 
 </script>
 
