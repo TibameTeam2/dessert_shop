@@ -216,7 +216,7 @@
                             </a>
 
                             <!------------------------------------- Notice (start)------------------------------------>
-                            <div class="dropdown">
+                            <div class="dropdown notice_dropdown">
                                 <a class="action" href="#"> <img src="assets/images/icon/bell.png" alt="" style="max-width: 28px;" class="bell">
                                     <span class="number notice_num">0</span>
                                 </a>
@@ -603,13 +603,13 @@
         /********************************** 通知顯示資訊 **********************************/
         $.post("/dessert_shop/notice/Msg", function(data) {
 
-        	
-           /********************************** 通知展開  **********************************/
-            $('div.dropdown').on('click', function() {
-                $(this).find('ul.dropdown-menu').slideToggle("slow");
+
+            /********************************** 通知展開  **********************************/
+            $('div.notice_dropdown').on('click', function() {
+                $(this).find('ul.notice_content').slideToggle("slow");
             });
             /**************************************************************************/
-        	
+
             console.log(data.data);
 
             if (data.flag) {
