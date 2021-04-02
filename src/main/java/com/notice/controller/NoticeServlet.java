@@ -27,10 +27,10 @@ public class NoticeServlet extends BaseServlet {
 	public void Msg(HttpServletRequest req, HttpServletResponse res) {
 
 		MemberBean member = (MemberBean) req.getSession().getAttribute("member");
-		MemberService memberSvc = new MemberService();
+//		MemberService memberSvc = new MemberService();
 		NoticeService noticeSvc = new NoticeService();
 
-		member = memberSvc.login(member);
+//		member = memberSvc.login(member);
 		ResultInfo info = new ResultInfo();
 
 		if (member != null) {

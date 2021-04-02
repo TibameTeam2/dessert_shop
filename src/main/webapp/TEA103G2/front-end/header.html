@@ -57,7 +57,7 @@
                     <div class="col-lg-2">
                         <!-- Header Logo Start -->
                         <div class="header-logo">
-                            <a href="index-3.html"><img src="assets/images/logo.jpg" alt=""></a>
+                            <a href="index.html"><img src="assets/images/logo.jpg" alt=""></a>
                         </div>
                         <!-- Header Logo End -->
                     </div>
@@ -66,20 +66,20 @@
                         <div class="primary-menu primary-menu-02">
                             <nav>
                                 <ul>
-                                    <li class="active">
-                                        <a href="#">Home</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="index.html">Home 01</a></li>
-                                            <li><a href="index-2.html">Home 02</a></li>
-                                            <li><a href="index-3.html">Home 03</a></li>
-                                            <li><a href="index-4.html">Home 04</a></li>
-                                        </ul>
+                                    <li class="noooactive">
+                                        <a href="index.html">主頁</a>
+<!--                                        <ul class="sub-menu">-->
+<!--                                            <li><a href="index.html">Home 01</a></li>-->
+<!--                                            <li><a href="index-2.html">Home 02</a></li>-->
+<!--                                            <li><a href="index-3.html">Home 03</a></li>-->
+<!--                                            <li><a href="index-4.html">Home 04</a></li>-->
+<!--                                        </ul>-->
                                     </li>
                                     <li>
                                         <a href="#">商品總覽</a>
                                         <ul class="mega-sub-menu">
                                             <li>
-                                                <a href="shop-grid-cakes-all.html" class="menu-title">蛋糕</a>
+                                                <a href="product-all.html?type=cakes" class="menu-title">蛋糕</a>
 
                                                 <ul class="menu-item">
                                                     <li><a href="shop-grid-3-column.html">千層蛋糕</a></li>
@@ -90,7 +90,7 @@
                                                 </ul>
                                                 </li>
                                                 <li>
-                                                    <a href="shop-grid-chocolates-all.html" class="menu-title">巧克力</a>
+                                                    <a href="product-all.html?type=chocolates" class="menu-title">巧克力</a>
 
                                                     <ul class="menu-item">
                                                         <li><a href="shop-list.html">生巧克力</a></li>
@@ -99,7 +99,7 @@
                                                     </ul>
                                                 </li>
                                                 <li>
-                                                    <a href="shop-grid-others-all.html" class="menu-title">精緻小點</a>
+                                                    <a href="product-all.html?type=others" class="menu-title">精緻小點</a>
 
                                                     <ul class="menu-item">
                                                         <li><a href="shop-single.html">派 & 塔</a></li>
@@ -110,7 +110,7 @@
                                                     </ul>
                                                 </li>
                                                 <li>
-                                                    <a href="shop-grid-drinks-all.html" class="menu-title">飲品</a>
+                                                    <a href="product-all.html?type=drinks" class="menu-title">飲品</a>
 
                                                     <ul class="menu-item">
                                                         <li><a href="about.html">特調茶飲</a></li>
@@ -182,30 +182,37 @@
                     <div class="col-lg-3">
                         <!-- Header Action Start -->
                         <div class="header-actions justify-content-end">
+                            <div>
+                            <a class="action" href="compare.html">
+                                <img src="https://attach.setn.com/newsimages/2021/01/19/2991552-PH.jpg" alt="頭像"/>
+                            </a>
+                            </div>
                             <div class="dropdown">
-                                <a class="action" href="#" role="button" data-bs-toggle="dropdown"><i
-                                        class="lar la-user"></i></a>
+                                <a class="action" href="#" role="button" data-bs-toggle="dropdown">
+                                    <i class="lar la-user"></i>
+<!--                                    <img width="50" height="50"  src="https://attach.setn.com/newsimages/2021/01/19/2991552-PH.jpg" alt="頭像"/>-->
+                                </a>
 
                                 <ul class="dropdown-menu dropdown-profile">
-                                    <li><a href="my-account.html">My Account</a></li>
-                                    <li><a href="checkout.html">Checkout</a></li>
-                                    <li><a href="login.html">Sign In</a></li>
+                                    <li><a href="my-account.html">我的帳戶</a></li>
+                                    <li><a href="checkout.html">結帳</a></li>
+                                    <li class="login"><a href="login.html">登入</a></li>
                                 </ul>
                             </div>
-                            <div class="dropdown">
-                                <a class="action" href="#" role="button" data-bs-toggle="dropdown"> <i class="ion-ios-search-strong"></i> </a>
+<!--                            <div class="dropdown">-->
+<!--                                <a class="action" href="#" role="button" data-bs-toggle="dropdown"> <i class="ion-ios-search-strong"></i> </a>-->
 
-                                <div class="dropdown-menu dropdown-search">
-                                    <!-- Header Search Start -->
-                                    <div class="header-search">
-                                        <form action="#">
-                                            <input type="text" placeholder="Enter your search key ... ">
-                                            <button><i class="ion-ios-search-strong"></i></button>
-                                        </form>
-                                    </div>
-                                    <!-- Header Search End -->
-                                </div>
-                            </div>
+<!--                                <div class="dropdown-menu dropdown-search">-->
+<!--                                    &lt;!&ndash; Header Search Start &ndash;&gt;-->
+<!--                                    <div class="header-search">-->
+<!--                                        <form action="#">-->
+<!--                                            <input type="text" placeholder="Enter your search key ... ">-->
+<!--                                            <button><i class="ion-ios-search-strong"></i></button>-->
+<!--                                        </form>-->
+<!--                                    </div>-->
+<!--                                    &lt;!&ndash; Header Search End &ndash;&gt;-->
+<!--                                </div>-->
+<!--                            </div>-->
                             <a class="action" href="compare.html">
                                 <i class="ion-ios-shuffle-strong"></i>
                                 <span class="number">3</span>
@@ -644,6 +651,37 @@
 
         });
     </script>
+
+
+
+<script>
+    /********************************** 登入登出切換 **********************************/
+    $.get("/dessert_shop/member/isLogin", {}, function (data) {
+        // console.log(data);
+        if (data.flag) {
+            $('.login').html('<a href="javascript:logout()" className="logout">登出</a>')
+        } else {
+        }
+    });
+
+    function logout(){
+        $.get("/dessert_shop/member/logout", {}, function (data) {
+            console.log(data);
+            if (data.flag) {
+                if (data.redirect)
+                    location.href = data.redirect;
+            } else {
+                Swal.fire({
+                    title: '登出失敗',
+                    text: '',
+                    icon: "error"
+                })
+            }
+        });
+    }
+
+
+</script>
 </body>
 
 </html>
