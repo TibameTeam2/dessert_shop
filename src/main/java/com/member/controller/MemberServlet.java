@@ -274,7 +274,7 @@ public class MemberServlet extends BaseServlet {
     }
 
 
-    public void update(HttpServletRequest req, HttpServletResponse res) {
+    public void update(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
         //獲取數據
         Map<String, String[]> map = req.getParameterMap();
         System.out.println("map= " + Convert.toStr(map));
@@ -295,6 +295,24 @@ public class MemberServlet extends BaseServlet {
         m.setMember_email(member.getMember_email());
         m.setMember_gender(member.getMember_gender());
         m.setMember_birthday(member.getMember_birthday());
+
+        Part part = req.getPart("upfile");
+//            String dir = getServletContext().getRealPath("/images_uploaded");
+//        String filename = getFileNameFromPart(part);
+//        System.out.println("filename = " + filename);
+        InputStream in = part.getInputStream();
+        byte[] buf = new byte[in.available()];
+        in.read(buf);
+        in.close();
+
+
+        m.setMember_photo(buf);
+        if (buf.length == 0) {
+            MemberService tempSvc = new MemberService();
+            MemberBean member1 = tempSvc.getOneMember(member.getMember_account());
+            m.setMember_photo(member1.getMember_photo());
+        }
+
         //調用service開始修改會員資料
         boolean flag = service.update(m);
         ResultInfo info = new ResultInfo();

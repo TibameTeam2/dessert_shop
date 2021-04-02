@@ -2,6 +2,7 @@ package com.cart.model;
 
 public class CartProductBean implements java.io.Serializable {
 	
+	private Integer cart_id;
 	private Integer product_id;
 	private Integer product_quantity;
 	private String product_name;
@@ -9,8 +10,16 @@ public class CartProductBean implements java.io.Serializable {
 	
 	@Override
 	public String toString() {
-		return "CartProductBean [product_id=" + product_id + ", product_quantity=" + product_quantity
-				+ ", product_name=" + product_name + ", product_price=" + product_price + "]";
+		return "CartProductBean [cart_id=" + cart_id + ", product_id=" + product_id + ", product_quantity="
+				+ product_quantity + ", product_name=" + product_name + ", product_price=" + product_price + "]";
+	}
+
+	public Integer getCart_id() {
+		return cart_id;
+	}
+
+	public void setCart_id(Integer cart_id) {
+		this.cart_id = cart_id;
 	}
 
 	public Integer getProduct_id() {
