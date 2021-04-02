@@ -26,90 +26,67 @@ public class NoticeServlet extends BaseServlet {
 
 	public void Msg(HttpServletRequest req, HttpServletResponse res) {
 
-		MemberBean member = (MemberBean) req.getSession().getAttribute("member");
-//		MemberService memberSvc = new MemberService();
-		NoticeService noticeSvc = new NoticeService();
+        MemberBean member = (MemberBean) req.getSession().getAttribute("member");
+        NoticeService noticeSvc = new NoticeService();
 
-//		member = memberSvc.login(member);
-		ResultInfo info = new ResultInfo();
+        ResultInfo info = new ResultInfo();
+        if (member != null) {
 
-		if (member != null) {
-			
-			info.setFlag(true);
-			req.getSession().setAttribute("member", member);// 登入成功
-			List<NoticeBean> notice = noticeSvc.getMember(member.getMember_account());
+            info.setFlag(true);
+            req.getSession().setAttribute("member", member);// 登入成功
+            List<NoticeBean> notice = noticeSvc.getMember(member.getMember_account());
 
-			info.setMsg("登入成功!");
-			info.setData(notice);
+            info.setMsg("登入成功!");
+            info.setData(notice);
 
-			System.out.println("notice = " + notice);
-			System.out.println("member = " + member);
-		}
+            System.out.println("notice = " + notice);
+            System.out.println("member = " + member);
+        }
 
-		writeValueByWriter(res, info);
+        writeValueByWriter(res, info);
 
-	}
-	
+    }
+
+    //自動新增的API
 	public void addMsg(HttpServletRequest req,HttpServletResponse res) {
 		
-		List<String> errorMsgs = new LinkedList<String>();
-		req.setAttribute("errorMsgs", errorMsgs);
-		
-		
-		//請求參數:類型、內容、會員帳號
-		Integer noticeType = new Integer(req.getParameter("notice_type"));
-		String noticeContent = req.getParameter("notice_content");
-		String memberAccount =req.getParameter("member_account");
-		
-//		java.sql.Timestamp noticeTime = null;
-//		try {
-//			noticeTime = java.sql.Timestamp.valueOf(req.getParameter("noticeTime".trim()));
-//		} catch (IllegalArgumentException e) {
-//			noticeTime = new java.sql.Timestamp(System.currentTimeMillis());
-//			errorMsgs.add("請輸入日期!");
-//		}
+        List<String> errorMsgs = new LinkedList<String>();
+        req.setAttribute("errorMsgs", errorMsgs);
 
-		
-		NoticeBean noticeBean = new NoticeBean();
-		noticeBean.setNotice_type(noticeType);
-		noticeBean.setNotice_content(noticeContent);
-//		noticeBean.setNotice_time(noticeTime);
-		noticeBean.setRead_status(0);
-		noticeBean.setMember_account(memberAccount);
-		
-		
-		System.out.println();
-		
-		MemberBean member = (MemberBean) req.getSession().getAttribute("member");
-		MemberService memberSvc = new MemberService();
-		OrderMasterService orderSvc = new OrderMasterService();
+        // 請求參數:類型、內容、會員帳號
+        Integer noticeType = new Integer(req.getParameter("notice_type"));
+        String noticeContent = req.getParameter("notice_content");
+        String memberAccount = req.getParameter("member_account");
 
-		member = memberSvc.login(member);
-		ResultInfo info = new ResultInfo();
+        NoticeBean noticeBean = new NoticeBean();
+        noticeBean.setNotice_type(noticeType);
+        noticeBean.setNotice_content(noticeContent);
+        noticeBean.setRead_status(0);
+        noticeBean.setMember_account(memberAccount);
 
-		if (member != null) {
-			
-			
-			info.setFlag(true);
-			req.getSession().setAttribute("member", member);// 登入成功
-			OrderMasterBean order = orderSvc.getOrderMaster(member.getMember_account());
+        MemberBean member = (MemberBean) req.getSession().getAttribute("member");
+        NoticeService noticeSvc = new NoticeService();
 
-			info.setMsg("登入成功!");
-			info.setData(order);
+        ResultInfo info = new ResultInfo();
 
-			System.out.println("order = " + order);
-			System.out.println("member = " + member);
-		}
-	
-//		1.購買成功:時間、金額(會員帳號、會員名稱)
-//		2.取貨提醒:時間、金額(會員帳號、會員名稱)
+        if (member != null) {
 
-//		3.訂位成功:時間、人數(會員帳號、會員名稱)
-//		4.訂位提醒:時間、人數(會員帳號、會員名稱)
+            Boolean flag = noticeSvc.addNotice(noticeBean);
 
-//		5.取消訂位成功:時間(會員帳號、會員名稱)
-		
-		writeValueByWriter(res, info);
-	}
+            if (flag) {
+
+                info.setFlag(true);
+                info.setMsg("新增成功");
+
+            } else {
+
+                info.setFlag(false);
+                info.setMsg("新增失敗");
+
+            }
+        }
+
+        writeValueByWriter(res, info);
+    }
 
 }
