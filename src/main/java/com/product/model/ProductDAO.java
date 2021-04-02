@@ -289,6 +289,7 @@ public class ProductDAO implements ProductDAO_interface {
 	public ProductBean findByPrimaryKey(Integer product_id) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
+		PreparedStatement pstmt1 = null;
 		ResultSet rs = null;
 		SELECT_PK = "SELECT * FROM product where product_id = ?";
 		
@@ -299,7 +300,7 @@ public class ProductDAO implements ProductDAO_interface {
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(SELECT_PK);
-			
+					
 			pstmt.setInt(1, product_id);
 				
 			rs = pstmt.executeQuery();
@@ -322,6 +323,18 @@ public class ProductDAO implements ProductDAO_interface {
 				productBean.setTotal_star(rs.getInt("total_star"));
 				productBean.setTotal_review(rs.getInt("total_review"));
 				productBean.setTotal_purchase(rs.getInt("total_purchase"));
+
+// 照片
+				pstmt1 = con.prepareStatement("SELECT image_id FROM sweet.product_image WHERE product_id="+productBean.getProduct_id());
+				List<String> img_url = new ArrayList<String>();
+				ResultSet rs_image = pstmt1.executeQuery();
+				
+				while(rs_image.next()) {
+					img_url.add("/product_jsp/product.do?action=getProductImage&id="+rs_image.getString("image_id"));
+				}
+				
+				productBean.setImage_url(img_url);
+				
 				
 //				System.out.println(productBean);
 			}

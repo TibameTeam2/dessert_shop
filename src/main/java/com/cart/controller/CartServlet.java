@@ -26,16 +26,19 @@ public class CartServlet extends BaseServlet {
             info.setRedirect(req.getContextPath() + "/TEA103G2/front-end/login.html");
         } else {
             info.setFlag(true);
-            info.setMsg("已將購物車內商品載入!");
+            info.setMsg("已將購物車頁所需資料除了圖片以外全部載入!");
             
-            List<CartProductBean> list = svc.getCartDataByMemberAccount(member.getMember_account());   
-            
+            List list = svc.getCartDataByMemberAccount(member.getMember_account());
+                 
             info.setData(list);        
         }
         
         writeValueByWriter(res, info);
 		
 	}
+	
+	
+	//拿圖片方法
 	
 	
 
