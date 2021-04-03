@@ -440,6 +440,10 @@
                             text: "",
                             icon: "success"
                         });
+                        let url = location.href.split("/TEA103G2")[0];
+                        $("i.la-user").css('display', 'none');
+                        $("img.user_icon").css('display', 'inline-block');
+                        $('img.user_icon').attr("src", $('img.preview_img').attr("src"));
                     } else {
                         // 註冊失敗 彈出視窗
                         Swal.fire({

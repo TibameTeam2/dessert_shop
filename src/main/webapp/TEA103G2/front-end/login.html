@@ -70,6 +70,11 @@
 svg.abcRioButtonSvg {
     margin-left: -5px;
 }
+
+      span[id^=not_signed_]:before {
+          content: '使用Google帳號登入            ';
+          padding-right:20px;
+      }
   </style>
 </head>
 
@@ -228,6 +233,8 @@ svg.abcRioButtonSvg {
     });
 
     $(function () {
+
+
         $.get("/dessert_shop/member/isLogin", {}, function (data) {
             console.log(data);
             if (data.flag) {
@@ -454,7 +461,7 @@ svg.abcRioButtonSvg {
     }
 
     // window.onLoadCallback = function() {
-    renderButton();
+    // renderButton();
 
     function renderButton() {
         gapi.signin2.render('google-signin', {
@@ -465,7 +472,11 @@ svg.abcRioButtonSvg {
             'theme': 'dark',
             'onsuccess': onSuccess,
             'onfailure': onFailure
+        }).then(function(){
+            console.log("test");
+            $("span[id^='not_signed']").text("使用 Google 帳號登入");
         });
+
     }
 
     function onSuccess(googleUser) {
@@ -602,7 +613,6 @@ svg.abcRioButtonSvg {
             console.log('User disconnect.');
         });
     }
-
 
 </script>
 
