@@ -8,5 +8,10 @@ public interface ProductDAO_interface {
 	public void delete(Integer produc_id);
 	public List<ProductBean> getAll();
 	public ProductBean  findByPrimaryKey(Integer product_id);
+	public List<ProductBean> getAllWithOneImage();
+	
+	
+	public ProductBean getOneImageId(Integer product_id);
+	public ProductBean getOneProductOneImageId(Integer product_id);
 
 }

@@ -21,11 +21,19 @@ public class ProductServlet_front extends BaseServlet {
     	System.out.println("test");
     }   
     
-    // 呈現在http://localhost:8081/dessert_shop/product/getAllProduct
+// 呈現在http://localhost:8081/dessert_shop/product/getAllProduct
     public void getAllProduct(HttpServletRequest req, HttpServletResponse res) {
+    	String value = (String)(req.getAttribute("type"));//
+    	System.out.println("屬性:"+value);//
+    	
+    	
+    	
+    	
     	ProductService productSvc = new ProductService();
     	List<ProductBean> productList = productSvc.getAll();
-
+    	
+    	productList.stream().sorted();
+    	
 		ResultInfo info = new ResultInfo();
 
 		info.setFlag(true);
@@ -52,6 +60,10 @@ public class ProductServlet_front extends BaseServlet {
 
     }
     
+    //
+    public void sortProduct(HttpServletRequest req, HttpServletResponse res) {
+    	Integer product_id = new Integer(req.getParameter("id"));
+    }
     
     
 }

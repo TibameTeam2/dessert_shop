@@ -164,7 +164,7 @@ public class ProductServlet extends HttpServlet {
 			}
 		}
 		
-		if ("getOne_For_Update".equals(action)) { // 來自listAllProduct.jsp的請求
+		if ("getOne_For_Update".equals(action)) { // 來自listAllProduct.jsp的請求: 修改
 			System.out.println("getOne_For_Update1");//
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
@@ -174,10 +174,25 @@ public class ProductServlet extends HttpServlet {
 			try {
 				/***************************1.接收請求參數****************************************/
 				Integer product_id = new Integer(req.getParameter("product_id"));
+				System.out.println("getOne_For_Update的product_id:"+product_id);
+				
+//				System.out.println("getOne_For_Update的productBean:"+productBeanbefore);//
+//				System.out.println("getOne_For_Update的Image_id:"+Image_id);//
+//				Integer image_id = new Integer(req.getParameter("image_id"));
+//				System.out.println("getOne_For_Update的image_id:"+image_id);
 				
 				/***************************2.開始查詢資料****************************************/
 				ProductService productSvc = new ProductService();
-				ProductBean productBean = productSvc.getOneProduct(product_id);
+//				ProductBean productBean = productSvc.getOneProduct(product_id);
+				
+				
+//要取得image_id				
+//				ProductBean productBean = productSvc.getOneProduct(product_id, image_id);
+				
+				ProductBean productBean = productSvc.getOneProductOneImageId(product_id);
+				
+				Integer Image_id = productBean.getImage_id();
+				System.out.println("getOne_For_Update的Image_id:"+Image_id);//
 				
 				System.out.println("getOne_For_Update裡面的:"+productBean);//
 								
@@ -212,7 +227,9 @@ public class ProductServlet extends HttpServlet {
 			try {
 				/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
 				Integer product_id = new Integer(req.getParameter("product_id").trim());
-				System.out.println(product_id);//
+				System.out.println("update的product_id:"+product_id);//
+				
+				
 				String product_name = req.getParameter("product_name");
 				System.out.println(product_name);//
 				String product_nameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{2,10}$";
@@ -373,7 +390,7 @@ public class ProductServlet extends HttpServlet {
 				productBean.setTotal_review(total_review);
 				productBean.setTotal_purchase(total_purchase);
 				
-//				productBean.setProduct_image(product_image);//
+//				productBean.setImage_id(image_id);//
 				
 				piBean.setProduct_id(productBean.getProduct_id());//
 				

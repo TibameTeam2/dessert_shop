@@ -119,7 +119,7 @@ img {
 			<td><%=productBean.getTotal_purchase()%></td>
 
 			<td><img
-				src="<%=request.getContextPath()%>/product_jsp/product.do?action=getProductImage&id=${productBean.product_id}">
+				src="<%=request.getContextPath()%>/product_jsp/product.do?action=getProductImage&id=${productBean.image_id}">
 			</td>
 			
 	</table>

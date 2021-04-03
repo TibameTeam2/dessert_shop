@@ -37,4 +37,16 @@ public class ProductService {
 	public List<ProductBean> getAll(){
 		return dao.getAll();
 	}
+	
+	public ProductBean getOneProductOneImageId(Integer product_id) {		
+		return dao.getOneProductOneImageId(product_id);
+	}
+	
+	public List<ProductBean> getAllWithOneImage() {
+		return dao.getAllWithOneImage();
+	}
+	
+	public ProductBean getOneImageId(Integer product_id) {
+		return dao.getOneImageId(product_id);
+	}
 }
