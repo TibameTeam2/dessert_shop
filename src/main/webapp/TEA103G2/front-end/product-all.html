@@ -866,31 +866,88 @@
        	// 要取得資訊的API
        	$.get("/dessert_shop/product/getAllProduct", {}, function (data) {
        		console.log(data.msg);
-//            	console.log(data);
+       		productDisplay(data);
 //      		console.log(window.location.href);
      		     
-			let url = location.href.split("/TEA103G2")[0];
-//      		 console.log(url);
-     		    
+           		
+            });
+         
+				     	
+	<!--*******  排序功能  ******-->     
+		$(".sorting").on("change", function(){
+    		console.log("change sorting!");
+    		let sort = $(".sorting").val();
+    		console.log(sort);
+    		if (sort == 1){
+   				$.get("/dessert_shop/product/getAllSortByPurchase", {}, function (data) {
+   					console.log("sort purchase");
+					$("div#grid div.row").find("div[class='col-lg-3 col-sm-6']").remove();
+					$("div#list").find("div[class='single-product product-list']").remove();
+		     		productDisplay(data);
+			     });
+    			
+    		}else if (sort == 3){	
+    			$.get("/dessert_shop/product/getAllSortByPrice", {}, function (data) {
+		     		console.log("sort price");
+		     		$("div#grid div.row").find("div[class='col-lg-3 col-sm-6']").remove();
+					$("div#list").find("div[class='single-product product-list']").remove();
+		     		productDisplay(data);
+		     	});
+    		}else if(sort == 2){
+    			// 改為依評價高低
+    			
+    			
+     		}else if (sort == 4){
+     			$.get("/dessert_shop/product/getAllSortByCalorie", {}, function (data) {
+		     		console.log("sort calorie");
+		     		$("div#grid div.row").find("div[class='col-lg-3 col-sm-6']").remove();
+					$("div#list").find("div[class='single-product product-list']").remove();
+		     		productDisplay(data);
+			    });
+     			
+     		}else if(sort == 5){
+     			$.get("/dessert_shop/product/getAllSortBySweetness", {}, function (data) {
+		     		console.log("sort sweetness");
+		     		$("div#grid div.row").find("div[class='col-lg-3 col-sm-6']").remove();
+					$("div#list").find("div[class='single-product product-list']").remove();
+		     		productDisplay(data);
+			     });
+     			
+     		}
+   		});   // 是不是應該讓排序的條件可以顯示?熱量 甜度 銷售量 看不到
+           
+        // 讓他在取得api拿到預設的0
+       $(window).on("load", function(){
+    	   // 圖片等資源載入完成之後
+    	   console.log("sorting!");
+   			var sort = $(".sorting").val();
+    	});
+//        var sort = $(".sorting :selected").val();
+//    		console.log(sort);
+
+   		function productDisplay(data){
+   			console.log("display");
+   			let url = location.href.split("/TEA103G2")[0];
+		    
 			for(var i = 0 ; i < data.data.length; i++){
-           			// 判斷是否符合該主分類
-       			if(data.data[i].product_type == request_type){
+	      			// 判斷是否符合該主分類
+	  			if(data.data[i].product_type == request_type){
 					let product_id = data.data[i].product_id;
 					let product_name = data.data[i].product_name;
 					let product_subtype = data.data[i].product_subtype;
-       				let product_price = data.data[i].product_price;
-         			let avg_star = data.data[i].total_star/data.data[i].total_review;
-          			let fixed_star = avg_star.toFixed(1);
-          			let image_list = data.data[i].image_url.valueOf();
-//            		let image_list = [data.data[i].image_url]; //此取法為二維陣列
+	  				let product_price = data.data[i].product_price;
+	    			let avg_star = data.data[i].total_star/data.data[i].total_review;
+	     			let fixed_star = avg_star.toFixed(1);
+	     			let image_list = data.data[i].image_url.valueOf();
+	//       		let image_list = [data.data[i].image_url]; //此取法為二維陣列
 					let product_intro = data.data[i].product_intro;
 					let product_available_qty = data.data[i].product_available_qty;
-           				
-          			let product_img1 = url+image_list[0];
-          			let product_img2 = url+image_list[1];
-          	           				
-       				let single_product_grid = `
-	       				<div class="col-lg-3 col-sm-6">
+	      				
+	     			let product_img1 = url+image_list[0];
+	     			let product_img2 = url+image_list[1];
+	     	           				
+	  				let single_product_grid = `
+	      				<div class="col-lg-3 col-sm-6">
 							<!-- Single Product Start -->
 							<div class="single-product">
 								<div class="product-image">
@@ -923,7 +980,7 @@
 							</div>
 							<!-- Single Product End -->
 						</div>`
-	                   
+	                  
 						$("div#grid div.row:last-child").append(single_product_grid); 
 						
 						
@@ -973,85 +1030,17 @@
 						<!-- Single Product End -->`
 						
 		    			$("div#list").append(single_product_list); 
-           			}
-           	
-           		}
-           		
-         
-			// 取得各種排序的API
-// 			     	$.get("/dessert_shop/product/getAllSortByPurchase", {}, function (sort_purchase) {
-// 			     		console.log("sort purchase");
-// 			     		console.log(sort_purchase.data[1]);
-// 			     	});
-			     	
-			
-			     
-			     	$.get("/dessert_shop/product/getAllSortByPrice", {}, function (sort_price) {
-			     		console.log("sort price");
-			     		console.log(sort_price);
-			     		
-			     		
-			     	});
-			     	$.get("/dessert_shop/product/getAllSortByCalorie", {}, function (sort_calorie) {
-			     		console.log("sort calorie");
-			     		console.log(sort_calorie);
-			     		
-			     		
-			     	});
-			     	$.get("/dessert_shop/product/getAllSortBySweetness", {}, function (sort_sweetness) {
-			     		console.log("sort sweetness");
-			     		console.log(sort_sweetness);
-			     		
-			     		
-			     	});
-			     	
-			     	
-			     	
-			     	
-			     	
-			     	
-            });
-           
-       	
-   		
-        // 讓他在取得api拿到預設的0
-//        $(window).on("load", function(){
-//     	   // 圖片等資源載入完成之後
-//     	   console.log("sorting!");
-//    			var sort = $(".sorting").val();
-//    			console.log(sort);
-//     	 });
-        
-       
-//        var sort = $(".sorting :selected").val();
-//    		console.log(sort);
-   		function sortPurchase(){
-   			console.log("hi");
-   			$.get("/dessert_shop/product/getAllSortByPurchase", {}, function (data) {
-	     		console.log("sort purchase");
-	     		console.log(data.data[1]);
-	     		
-	     	
-	     		
-	     		
-	     	});
-   			
+	      			}
+	      	
+   				}
    		}
    		
+   	// 分頁功能	
+
    		
-       $(".sorting").on("change", function(){
-    		console.log("sorting!");
-    		var sort = $(".sorting").val();
-    		console.log(sort);
-    		if (sort = 1){
-    			sortPurchase();
-    			
-    			
-    			
-    			
-    			
-    		}
-   		});
+   		
+   		
+
         	
         	
         	
