@@ -23,17 +23,9 @@ public class ProductServlet_front extends BaseServlet {
     
 // 呈現在http://localhost:8081/dessert_shop/product/getAllProduct
     public void getAllProduct(HttpServletRequest req, HttpServletResponse res) {
-    	String value = (String)(req.getAttribute("type"));//
-    	System.out.println("屬性:"+value);//
-    	
-    	
-    	
-    	
     	ProductService productSvc = new ProductService();
     	List<ProductBean> productList = productSvc.getAll();
-    	
-    	productList.stream().sorted();
-    	
+    	   	
 		ResultInfo info = new ResultInfo();
 
 		info.setFlag(true);
@@ -60,10 +52,65 @@ public class ProductServlet_front extends BaseServlet {
 
     }
     
-    //
-    public void sortProduct(HttpServletRequest req, HttpServletResponse res) {
-    	Integer product_id = new Integer(req.getParameter("id"));
+    //  http://localhost:8081/dessert_shop/product/getAllSortByPurchase
+    public void getAllSortByPurchase(HttpServletRequest req, HttpServletResponse res) {
+    	System.out.println("銷售量排序");
+    	ProductService productSvc = new ProductService();
+    	List<ProductBean> productList = productSvc.getAllSortByPurchase();
+    	   	
+		ResultInfo info = new ResultInfo();
+
+		info.setFlag(true);
+		info.setMsg("資料取得成功!");
+		info.setData(productList);
+
+		writeValueByWriter(res, info);
     }
     
+    //  http://localhost:8081/dessert_shop/product/getAllSortByPrice
+    public void getAllSortByPrice(HttpServletRequest req, HttpServletResponse res) {
+    	System.out.println("價格排序");
+    	ProductService productSvc = new ProductService();
+    	List<ProductBean> productList = productSvc.getAllSortByPrice();
+    	
+    	ResultInfo info = new ResultInfo();
+    	
+    	info.setFlag(true);
+    	info.setMsg("資料取得成功!");
+    	info.setData(productList);
+    	
+    	writeValueByWriter(res, info);
+    }
+ 
+    //  http://localhost:8081/dessert_shop/product/getAllSortByCalorie
+    public void getAllSortByCalorie(HttpServletRequest req, HttpServletResponse res) {
+    	System.out.println("熱量排序");
+    	ProductService productSvc = new ProductService();
+    	List<ProductBean> productList = productSvc.getAllSortByCalorie();
+    	
+    	ResultInfo info = new ResultInfo();
+    	
+    	info.setFlag(true);
+    	info.setMsg("資料取得成功!");
+    	info.setData(productList);
+    	
+    	writeValueByWriter(res, info);
+    }
+
+    //  http://localhost:8081/dessert_shop/product/getAllSortBySweetness
+    public void getAllSortBySweetness(HttpServletRequest req, HttpServletResponse res) {
+    	System.out.println("甜度排序");
+    	ProductService productSvc = new ProductService();
+    	List<ProductBean> productList = productSvc.getAllSortBySweetness();
+    	
+    	ResultInfo info = new ResultInfo();
+    	
+    	info.setFlag(true);
+    	info.setMsg("資料取得成功!");
+    	info.setData(productList);
+    	
+    	writeValueByWriter(res, info);
+    }
+   
     
 }

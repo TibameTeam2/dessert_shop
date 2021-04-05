@@ -978,8 +978,41 @@
            		}
            		
          
+			// 取得各種排序的API
+// 			     	$.get("/dessert_shop/product/getAllSortByPurchase", {}, function (sort_purchase) {
+// 			     		console.log("sort purchase");
+// 			     		console.log(sort_purchase.data[1]);
+// 			     	});
+			     	
+			
+			     
+			     	$.get("/dessert_shop/product/getAllSortByPrice", {}, function (sort_price) {
+			     		console.log("sort price");
+			     		console.log(sort_price);
+			     		
+			     		
+			     	});
+			     	$.get("/dessert_shop/product/getAllSortByCalorie", {}, function (sort_calorie) {
+			     		console.log("sort calorie");
+			     		console.log(sort_calorie);
+			     		
+			     		
+			     	});
+			     	$.get("/dessert_shop/product/getAllSortBySweetness", {}, function (sort_sweetness) {
+			     		console.log("sort sweetness");
+			     		console.log(sort_sweetness);
+			     		
+			     		
+			     	});
+			     	
+			     	
+			     	
+			     	
+			     	
+			     	
             });
            
+       	
    		
         // 讓他在取得api拿到預設的0
 //        $(window).on("load", function(){
@@ -990,13 +1023,34 @@
 //     	 });
         
        
-       var sort = $(".sorting :selected").val();
-   		console.log(sort);
+//        var sort = $(".sorting :selected").val();
+//    		console.log(sort);
+   		function sortPurchase(){
+   			console.log("hi");
+   			$.get("/dessert_shop/product/getAllSortByPurchase", {}, function (data) {
+	     		console.log("sort purchase");
+	     		console.log(data.data[1]);
+	     		
+	     	
+	     		
+	     		
+	     	});
+   			
+   		}
+   		
    		
        $(".sorting").on("change", function(){
     		console.log("sorting!");
     		var sort = $(".sorting").val();
     		console.log(sort);
+    		if (sort = 1){
+    			sortPurchase();
+    			
+    			
+    			
+    			
+    			
+    		}
    		});
         	
         	

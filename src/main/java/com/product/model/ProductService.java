@@ -37,6 +37,23 @@ public class ProductService {
 	public List<ProductBean> getAll(){
 		return dao.getAll();
 	}
+// 排序*4	
+	public List<ProductBean> getAllSortByPurchase(){
+		return dao.getAllSortByPurchase();
+	}
+	public List<ProductBean> getAllSortByPrice(){
+		return dao.getAllSortByPrice();
+	}
+	public List<ProductBean> getAllSortByCalorie(){
+		return dao.getAllSortByCalorie();
+	}
+	public List<ProductBean> getAllSortBySweetness(){
+		return dao.getAllSortBySweetness();
+	}
+	
+	
+	
+	
 	
 	public ProductBean getOneProductOneImageId(Integer product_id) {		
 		return dao.getOneProductOneImageId(product_id);
