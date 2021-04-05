@@ -1,6 +1,6 @@
 package com.notice.controller;
 
-import java.util.ArrayList;
+import java.io.UnsupportedEncodingException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -8,12 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.member.model.MemberBean;
-import com.member.model.MemberService;
-import com.mysql.cj.protocol.x.Notice;
 import com.notice.model.NoticeBean;
 import com.notice.model.NoticeService;
-import com.order_master.model.OrderMasterBean;
-import com.order_master.model.OrderMasterService;
 import com.util.BaseServlet;
 import com.util.ResultInfo;
 
@@ -33,12 +29,14 @@ public class NoticeServlet extends BaseServlet {
         if (member != null) {
 
             info.setFlag(true);
-            req.getSession().setAttribute("member", member);// 登入成功
             List<NoticeBean> notice = noticeSvc.getMember(member.getMember_account());
 
-            info.setMsg("登入成功!");
+            info.setMsg("通知訊息");
             info.setData(notice);
+           
 
+          
+            
             System.out.println("notice = " + notice);
             System.out.println("member = " + member);
         }
@@ -48,14 +46,16 @@ public class NoticeServlet extends BaseServlet {
     }
 
     //自動新增的API
-	public void addMsg(HttpServletRequest req,HttpServletResponse res) {
+	public void addMsg(HttpServletRequest req,HttpServletResponse res) throws UnsupportedEncodingException {
 		
         List<String> errorMsgs = new LinkedList<String>();
         req.setAttribute("errorMsgs", errorMsgs);
 
         // 請求參數:類型、內容、會員帳號
         Integer noticeType = new Integer(req.getParameter("notice_type"));
-        String noticeContent = req.getParameter("notice_content");
+//        String noticeContent = req.getParameter("notice_content");
+        String noticeContent = new String(req.getParameter("notice_content").getBytes("ISO-8859-1"), "UTF-8");
+//        String name = new String(req.getParameter("notice_content").getBytes("ISO-8859-1"), "UTF-8");
         String memberAccount = req.getParameter("member_account");
 
         NoticeBean noticeBean = new NoticeBean();
@@ -77,7 +77,9 @@ public class NoticeServlet extends BaseServlet {
 
                 info.setFlag(true);
                 info.setMsg("新增成功");
-
+              
+                NoticeWS.sendCustomizeMessage(member.getMember_account(),noticeBean.getNotice_content());
+                
             } else {
 
                 info.setFlag(false);
@@ -89,4 +91,7 @@ public class NoticeServlet extends BaseServlet {
         writeValueByWriter(res, info);
     }
 
+	
+	
+	
 }

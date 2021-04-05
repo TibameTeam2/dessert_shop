@@ -68,12 +68,12 @@
                                 <ul>
                                     <li class="noooactive">
                                         <a href="index.html">主頁</a>
-<!--                                        <ul class="sub-menu">-->
-<!--                                            <li><a href="index.html">Home 01</a></li>-->
-<!--                                            <li><a href="index-2.html">Home 02</a></li>-->
-<!--                                            <li><a href="index-3.html">Home 03</a></li>-->
-<!--                                            <li><a href="index-4.html">Home 04</a></li>-->
-<!--                                        </ul>-->
+                                        <!--                                        <ul class="sub-menu">-->
+                                        <!--                                            <li><a href="index.html">Home 01</a></li>-->
+                                        <!--                                            <li><a href="index-2.html">Home 02</a></li>-->
+                                        <!--                                            <li><a href="index-3.html">Home 03</a></li>-->
+                                        <!--                                            <li><a href="index-4.html">Home 04</a></li>-->
+                                        <!--                                        </ul>-->
                                     </li>
                                     <li>
                                         <a href="#">商品總覽</a>
@@ -183,14 +183,14 @@
                         <!-- Header Action Start -->
                         <div class="header-actions justify-content-end">
                             <div>
-                            <a class="action" href="compare.html">
-                                <img src="https://attach.setn.com/newsimages/2021/01/19/2991552-PH.jpg" alt="頭像"/>
-                            </a>
+                                <a class="action" href="compare.html">
+                                    <img src="https://attach.setn.com/newsimages/2021/01/19/2991552-PH.jpg" alt="頭像" />
+                                </a>
                             </div>
                             <div class="dropdown">
                                 <a class="action" href="#" role="button" data-bs-toggle="dropdown">
                                     <i class="lar la-user"></i>
-<!--                                    <img width="50" height="50"  src="https://attach.setn.com/newsimages/2021/01/19/2991552-PH.jpg" alt="頭像"/>-->
+                                    <!--                                    <img width="50" height="50"  src="https://attach.setn.com/newsimages/2021/01/19/2991552-PH.jpg" alt="頭像"/>-->
                                 </a>
 
                                 <ul class="dropdown-menu dropdown-profile">
@@ -199,20 +199,20 @@
                                     <li class="login"><a href="login.html">登入</a></li>
                                 </ul>
                             </div>
-<!--                            <div class="dropdown">-->
-<!--                                <a class="action" href="#" role="button" data-bs-toggle="dropdown"> <i class="ion-ios-search-strong"></i> </a>-->
+                            <!--                            <div class="dropdown">-->
+                            <!--                                <a class="action" href="#" role="button" data-bs-toggle="dropdown"> <i class="ion-ios-search-strong"></i> </a>-->
 
-<!--                                <div class="dropdown-menu dropdown-search">-->
-<!--                                    &lt;!&ndash; Header Search Start &ndash;&gt;-->
-<!--                                    <div class="header-search">-->
-<!--                                        <form action="#">-->
-<!--                                            <input type="text" placeholder="Enter your search key ... ">-->
-<!--                                            <button><i class="ion-ios-search-strong"></i></button>-->
-<!--                                        </form>-->
-<!--                                    </div>-->
-<!--                                    &lt;!&ndash; Header Search End &ndash;&gt;-->
-<!--                                </div>-->
-<!--                            </div>-->
+                            <!--                                <div class="dropdown-menu dropdown-search">-->
+                            <!--                                    &lt;!&ndash; Header Search Start &ndash;&gt;-->
+                            <!--                                    <div class="header-search">-->
+                            <!--                                        <form action="#">-->
+                            <!--                                            <input type="text" placeholder="Enter your search key ... ">-->
+                            <!--                                            <button><i class="ion-ios-search-strong"></i></button>-->
+                            <!--                                        </form>-->
+                            <!--                                    </div>-->
+                            <!--                                    &lt;!&ndash; Header Search End &ndash;&gt;-->
+                            <!--                                </div>-->
+                            <!--                            </div>-->
                             <a class="action" href="compare.html">
                                 <i class="ion-ios-shuffle-strong"></i>
                                 <span class="number">3</span>
@@ -223,22 +223,23 @@
                             </a>
 
                             <!------------------------------------- Notice (start)------------------------------------>
-                            <div class="dropdown notice_dropdown">
-                                <a class="action" href="#"> <img src="assets/images/icon/bell.png" alt="" style="max-width: 28px;" class="bell">
+                            <div class="dropdown">
+                                <a class="action" href="#" role="button" data-bs-toggle="dropdown">
+                                    <img src="assets/images/icon/bell.png" alt="" style="max-width: 28px;" class="bell">
                                     <span class="number notice_num">0</span>
                                 </a>
 
-                                <ul class="dropdown-menu dropdown-profile notice_content">
-                                    <!-- <li><span></span></li> -->
-                                </ul>
+                                <div class="dropdown-menu notice_content dropdown-cart">
+                                    <ul></ul>
+                                </div>
 
+                                <div class="ws_content">
+                                    <ul></ul>
+                                </div>
                             </div>
+
+
                             <!------------------------------------- Notice (end)------------------------------------>
-
-
-
-
-
 
                             <div class="dropdown">
                                 <a class="action" href="#" role="button" data-bs-toggle="dropdown">
@@ -610,14 +611,7 @@
         /********************************** 通知顯示資訊 **********************************/
         $.post("/dessert_shop/notice/Msg", function(data) {
 
-
-            /********************************** 通知展開  **********************************/
-            $('div.notice_dropdown').on('click', function() {
-                $(this).find('ul.notice_content').slideToggle("slow");
-            });
-            /**************************************************************************/
-
-            console.log(data.data);
+            // console.log(data.data);
 
             if (data.flag) {
 
@@ -628,16 +622,16 @@
                     // console.log(data.data[0].member_account + "\n" + data.data[0].notice_content);
                     for (let i in data.data) { //遍歷json陣列時，這麼寫i為索引值
 
-                        $('ul.notice_content').prepend(
-                            `<li class="notice_li"><span>` + data.data[i].notice_content + `</span></li>`
-                        )
-                        console.log(i + "\n" + data.data[i].member_account + "\n" + data.data[i].notice_content);
-                        // console.log(moment(data.data[i].notice_time).format('MM-DD')); 轉換時間
+                        $('div.notice_content>ul').prepend(
+                                `<li class="notice_li"><span>` + data.data[i].notice_content + `</span></li>`
+                            )
+                            // console.log(i + "\n" + data.data[i].member_account + "\n" + data.data[i].notice_content);
+                            // console.log(moment(data.data[i].notice_time).format('MM-DD')); 轉換時間
                     }
 
                 } else {
 
-                    $('ul.notice_content').html(
+                    $('div.notice_content>ul').prepend(
                         `<li class="notice_li"><span>目前尚無訊息</span></li>`
                     )
                 }
@@ -645,43 +639,93 @@
 
             } else {
 
-                $('ul.notice_content').remove();
+                $('div.notice_content').remove();
                 $('span.notice_num').remove();
             }
+
+        });
+
+        $.post("/dessert_shop/member/isLogin", function(response) {
+
+            if (response.flag) {
+                /********************************** webSocket **********************************/
+                var MyPoint = "/NoticeWS/" + response.data.member_account;
+                var host = window.location.host;
+                var path = window.location.pathname;
+                var webCtx = path.substring(0, path.indexOf('/', 1));
+                //websocket 有自己的通訊協定(ws) 同等於http (ws://localhost:8081/WebSocketChatWeb/TogetherWS/james)
+                var endPointURL = "ws://" + window.location.host + webCtx + MyPoint;
+
+                webSocket = new WebSocket(endPointURL);
+
+                //建立連線
+                webSocket.onopen = function(e) {
+                    console.log("連線開啟");
+                }
+
+                //接收訊息
+                webSocket.onmessage = function(e) {
+
+
+                    $('div.notice_content>ul').prepend(
+                        `<li class="notice_li"><span>` + e.data + `</span></li>`
+                    )
+
+
+                    $('div.ws_content>ul').prepend(
+                        `<li class="notice_li"><span>` + e.data + `</span></li>`
+                    ).show().delay(10000).fadeOut();
+
+                    console.log("接收訊息=" + e.data);
+                }
+
+                //發生錯誤
+                webSocket.onerror = function(e) {
+                    console.log("錯誤訊息:", e);
+
+                };
+
+                //關閉連線
+                webSocket.onclose = function(e) {
+                    console.log("連線關閉");
+                }
+            } else {}
 
         });
     </script>
 
 
 
-<script>
-    /********************************** 登入登出切換 **********************************/
-    $.get("/dessert_shop/member/isLogin", {}, function (data) {
-        // console.log(data);
-        if (data.flag) {
-            $('.login').html('<a href="javascript:logout()" className="logout">登出</a>')
-        } else {
-        }
-    });
 
-    function logout(){
-        $.get("/dessert_shop/member/logout", {}, function (data) {
-            console.log(data);
+
+
+
+
+    <script>
+        /********************************** 登入登出切換 **********************************/
+        $.get("/dessert_shop/member/isLogin", {}, function(data) {
+            // console.log(data);
             if (data.flag) {
-                if (data.redirect)
-                    location.href = data.redirect;
-            } else {
-                Swal.fire({
-                    title: '登出失敗',
-                    text: '',
-                    icon: "error"
-                })
-            }
+                $('.login').html('<a href="javascript:logout()" className="logout">登出</a>')
+            } else {}
         });
-    }
 
-
-</script>
+        function logout() {
+            $.get("/dessert_shop/member/logout", {}, function(data) {
+                console.log(data);
+                if (data.flag) {
+                    if (data.redirect)
+                        location.href = data.redirect;
+                } else {
+                    Swal.fire({
+                        title: '登出失敗',
+                        text: '',
+                        icon: "error"
+                    })
+                }
+            });
+        }
+    </script>
 </body>
 
 </html>
