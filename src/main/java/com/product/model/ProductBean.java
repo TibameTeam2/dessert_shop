@@ -19,9 +19,11 @@ public class ProductBean implements Serializable {
     private Integer total_star;
     private Integer total_review;
     private Integer total_purchase;
+    private Double average_star;
     private List<String> image_url;
     
-    // img
+
+	// img
     private byte[] product_image;
 
     public byte[] getProduct_image() {
@@ -180,5 +182,13 @@ public class ProductBean implements Serializable {
 
     public void setImage_url(List<String> image_url) {
         this.image_url = image_url;
+    }
+    
+    public Double getAverage_star() {
+    	return average_star;
+    }
+    
+    public void setAverage_star(Double average_star) {
+    	this.average_star = average_star;
     }
 }

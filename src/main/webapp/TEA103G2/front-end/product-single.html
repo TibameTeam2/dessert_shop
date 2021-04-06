@@ -52,12 +52,17 @@
 /* .coverImg{
             object-fit: cover;
         } */
+        
+        
 </style>
 
 
 </head>
 
 <body>
+<!-- 分享按鈕FB的東西  -->
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v10.0" nonce="TIxFibIl"></script>
 
 <!-- Loading Progress ============================================= -->
 <div id="loading-progress">
@@ -307,28 +312,31 @@
 							</p>
 						</div>
 						<div class="product-sharing">
-							<span class="label">Share</span>
+							<span class="label">分享</span>
 							<ul class="social-sharing">
 								<li><a href="#"><i class="ion-social-facebook"></i></a></li>
 								<li><a href="#"><i class="ion-social-twitter"></i></a></li>
 								<li><a href="#"><i class="ion-social-pinterest"></i></a></li>
 								<li><a href="#"><i class="ion-social-linkedin"></i></a></li>
+								<!-- 分享按鈕的東西 body 那裏還有一段 -->
+								<div class="fb-share-button" data-href="https://www.aposo2035.com.tw/product/detail/242818?fbclid=IwAR0DoXgE45VayPiKIO9b7zmO8pSSrSl_MZj-jk7R-vTvkQ8lQ3fnA3L7V-0"
+								data-layout="button_count" data-size="small"><a target="_blank" 
+								href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.aposo2035.com.tw%2Fproduct%2Fdetail%2F242818%3Ffbclid%3DIwAR0DoXgE45VayPiKIO9b7zmO8pSSrSl_MZj-jk7R-vTvkQ8lQ3fnA3L7V-0&amp;src=sdkpreparse" 
+								class="fb-xfbml-parse-ignore">分享<i class="ion-social-facebook"></i></a></div>
 							</ul>
 						</div>
 						<div class="product-reassurance">
 							<ul>
 								<li>
 									<div class="reassurance-item">
-										<img src="assets/images/icon/icon1.png" alt="">
-										<p>Security policy (edit with Customer reassurance
-											module)</p>
+										<img src="assets/images/icon/icon4.png" alt="">
+										<p>付款方式 : 取貨付款．信用卡</p>
 									</div>
 								</li>
 								<li>
 									<div class="reassurance-item">
 										<img src="assets/images/icon/icon2.png" alt="">
-										<p>Delivery policy (edit with Customer reassurance
-											module)</p>
+										<p>運送方式 : 本店商品僅提供內用與自取</p>
 									</div>
 								</li>
 								<li>
@@ -875,7 +883,6 @@
 								</p>
 							</div>
 							<div class="product-sharing">
-								<span class="label">Share</span>
 								<ul class="social-sharing">
 									<li><a href="#"><i class="ion-social-facebook"></i></a></li>
 									<li><a href="#"><i class="ion-social-twitter"></i></a></li>

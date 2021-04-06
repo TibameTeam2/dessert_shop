@@ -71,6 +71,7 @@ public class ProductServlet extends HttpServlet {
 
 			       
 			        pstmt = con.prepareStatement("SELECT product_image FROM sweet.product_image where image_id=?");
+			       
 
 			        pstmt.setString(1, id);
 

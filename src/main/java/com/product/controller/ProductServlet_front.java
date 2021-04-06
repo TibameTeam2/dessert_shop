@@ -67,6 +67,21 @@ public class ProductServlet_front extends BaseServlet {
 		writeValueByWriter(res, info);
     }
     
+    // http://localhost:8081/dessert_shop/product/getAllSortByStar
+    public void getAllSortByStar(HttpServletRequest req, HttpServletResponse res) {
+    	System.out.println("累計星等排序");
+    	ProductService productSvc = new ProductService();
+    	List<ProductBean> productList = productSvc.getAllSortByStar();
+    	
+    	ResultInfo info = new ResultInfo();
+    	
+    	info.setFlag(true);
+    	info.setMsg("資料取得成功!");
+    	info.setData(productList);
+    	
+    	writeValueByWriter(res, info);
+    }
+    
     //  http://localhost:8081/dessert_shop/product/getAllSortByPrice
     public void getAllSortByPrice(HttpServletRequest req, HttpServletResponse res) {
     	System.out.println("價格排序");
