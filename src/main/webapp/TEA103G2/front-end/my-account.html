@@ -259,7 +259,7 @@
                 <h4 class="account-title">個人資料</h4>
 
                 <div class="account-details">
-                  <form id="update_form" action="/dessert_shop/member/update" enctype="multipart/form-data">
+                  <form id="update_form" action="javascript:void(0)" enctype="multipart/form-data">
                     <div class="row">
                       <div class="col-md-12">
                         <div class="single-form preview">
@@ -316,7 +316,10 @@
                       </div>
                       <div class="col-md-12">
                         <div class="single-form">
-                          <button class="btn btn-primary btn-hover-dark">儲存修改</button>
+                          <button class="btn btn-primary btn-hover-dark submit">儲存修改</button>
+                        </div>
+                        <div>
+                          <button class="btn btn-primary btn-hover-dark" id="bindLine">綁定Line帳號</button>
                         </div>
                       </div>
                       <input type="hidden" name="member_account" value="">
@@ -414,7 +417,8 @@
 
 
         //表單送出時
-        $("#update_form").submit(function (e) {
+        // $("#update_form").submit(function (e) {
+        $("button.submit").click(function (e) {
             e.preventDefault();
             //表單提交時檢查所有屬性合法
             // if(checkUsername() && checkPassword() && checkEmail()){
@@ -424,14 +428,14 @@
             let form = $('#update_form')[0];
             let data = new FormData(form);
             $.ajax({
-                type : "POST",
-                enctype : 'multipart/form-data',
-                url : '/dessert_shop/member/update',
-                data : data,
-                processData : false,
-                contentType : false,
-                cache : false,
-                success : function(data) {
+                type: "POST",
+                enctype: 'multipart/form-data',
+                url: '/dessert_shop/member/update',
+                data: data,
+                processData: false,
+                contentType: false,
+                cache: false,
+                success: function (data) {
                     if (data.flag) {
                         // 註冊成功後跳轉頁面
                         // location.href="register_ok.html";
@@ -440,6 +444,10 @@
                             text: "",
                             icon: "success"
                         });
+                        let url = location.href.split("/TEA103G2")[0];
+                        $("i.la-user").css('display', 'none');
+                        $("img.user_icon").css('display', 'inline-block');
+                        $('img.user_icon').attr("src", $('img.preview_img').attr("src"));
                     } else {
                         // 註冊失敗 彈出視窗
                         Swal.fire({
@@ -505,6 +513,40 @@
             }
         }
 
+
+        $("#bindLine").click(function () {
+            Swal.fire({
+                title: '掃描QRCode',
+                text: '將密文傳到嗜甜Line官方帳號即可完成綁定',
+                imageUrl: '/dessert_shop/member/getLineQRCode?' + new Date().getTime(),
+                imageWidth: 200,
+                imageHeight: 200,
+                imageAlt: 'Custom image',
+            });
+
+            Swal.mixin({
+                confirmButtonText: 'Next &rarr;',
+                showCancelButton: true,
+                progressSteps: ['1', '2']
+            }).queue([
+                {
+                    title: '請先加入嗜甜Line官方帳號',
+                    text: '',
+                    imageUrl: 'https://qr-official.line.me/sid/L/322ganxg.png',
+                    imageWidth: 200,
+                    imageHeight: 200,
+                    imageAlt: 'Custom image',
+                },
+                {
+                    title: '將密文傳到官方帳號\n即可完成綁定',
+                    text: '有效期限:30分鐘',
+                    imageUrl: '/dessert_shop/member/getLineQRCode?' + new Date().getTime(),
+                    imageWidth: 200,
+                    imageHeight: 200,
+                    imageAlt: 'Custom image',
+                }
+            ])
+        });
     });
 </script>
 </body>

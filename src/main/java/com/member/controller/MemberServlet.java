@@ -1,18 +1,21 @@
 package com.member.controller;
 
+import cn.hutool.core.codec.Base64;
 import cn.hutool.captcha.CaptchaUtil;
 import cn.hutool.captcha.LineCaptcha;
-import cn.hutool.captcha.ShearCaptcha;
 import cn.hutool.core.convert.Convert;
 import cn.hutool.core.io.IoUtil;
 import cn.hutool.core.lang.Console;
-import cn.hutool.core.util.IdUtil;
+import cn.hutool.crypto.SecureUtil;
 import cn.hutool.crypto.digest.DigestUtil;
-import com.emp.model.EmpService;
-import com.emp.model.EmpVO;
+import cn.hutool.crypto.symmetric.AES;
+import cn.hutool.crypto.symmetric.SymmetricAlgorithm;
+import cn.hutool.extra.qrcode.QrCodeUtil;
+import cn.hutool.extra.qrcode.QrConfig;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.api.client.http.javanet.NetHttpTransport;
+import com.google.api.client.json.gson.GsonFactory;
 import com.google.gson.Gson;
 import com.member.model.MemberBean;
 import com.member.model.MemberService;
@@ -35,18 +38,28 @@ import javax.servlet.http.Part;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.nio.charset.StandardCharsets;
+import java.security.GeneralSecurityException;
 import java.sql.*;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.Base64;
+import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
+import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken.Payload;
+import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
 
 @MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 50 * 1024 * 1024, maxRequestSize = 50 * 1024 * 1024)
 public class MemberServlet extends BaseServlet {
     MemberService service = new MemberService();
+    GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(new NetHttpTransport(), new GsonFactory())
+            .setAudience(Collections.singletonList("842033440075-mhrdronq0kjp1s0te2cpkgvlabihhku3.apps.googleusercontent.com"))
+            .build();
+    final String AES_KEY = "mhWv/FOMFa6MPCCBjLcnnA==";
 
-    public void register(HttpServletRequest req, HttpServletResponse res) {
-        System.out.println("MemberServlet in register");
+    public void register(HttpServletRequest req, HttpServletResponse res) throws JsonProcessingException {
+//        System.out.println("MemberServlet in register");
         //先拿出用戶輸入的驗證碼，跟伺服器驗證碼比對
         String checkCodeClient = req.getParameter("code");
         HttpSession session = req.getSession();
@@ -64,7 +77,7 @@ public class MemberServlet extends BaseServlet {
 
         //獲取數據
         Map<String, String[]> map = req.getParameterMap();
-        System.out.println("map= " + Convert.toStr(map));
+        System.out.println("map= " + new ObjectMapper().writeValueAsString(map));
 
         //封裝物件
         MemberBean member = new MemberBean();
@@ -94,6 +107,81 @@ public class MemberServlet extends BaseServlet {
         }
         writeValueByWriter(res, info);
     }
+
+    public void loginWithGoogle(HttpServletRequest req, HttpServletResponse res) throws IOException {
+        //獲取數據
+        Map<String, String[]> map = req.getParameterMap();
+        System.out.println("map= " + new ObjectMapper().writeValueAsString(map));
+        String idTokenString = req.getParameter("id_token");
+        //封裝物件
+        MemberBean member = new MemberBean();
+        try {
+            BeanUtils.populate(member, map);
+        } catch (IllegalAccessException | InvocationTargetException e) {
+            e.printStackTrace();
+        }
+//        System.out.println(member);
+
+        ResultInfo info = new ResultInfo();
+        GoogleIdToken idToken = null;
+        try {
+            idToken = verifier.verify(idTokenString);
+        } catch (Exception e) {
+            info.setFlag(false);
+            info.setMsg("token無效!");
+            System.out.println("Invalid ID token.");
+            writeValueByWriter(res, info);
+            return ;
+        }
+        if (idToken != null) {  //token 有效 可以進行註冊或登入
+            Payload payload = idToken.getPayload();
+
+            String userId = payload.getSubject();
+            System.out.println("User ID: " + userId);
+
+//            String email = payload.getEmail();
+//            boolean emailVerified = Boolean.valueOf(payload.getEmailVerified());
+//            String name = (String) payload.get("name");
+//            String pictureUrl = (String) payload.get("picture");
+//            String locale = (String) payload.get("locale");
+//            String familyName = (String) payload.get("family_name");
+//            String givenName = (String) payload.get("given_name");
+            MemberBean m = service.getOneMember(userId);
+
+            if (m == null) {  //如果m是空的表示資料庫沒有這筆資料，先註冊
+                if(member.getMember_phone()==null) member.setMember_phone("0987654321");
+                if(member.getMember_gender()==null) member.setMember_gender(1);
+                if(member.getMember_birthday()==null) member.setMember_birthday(java.sql.Date.valueOf("2021-04-28"));
+                if(member.getMember_email()==null) member.setMember_email("sweet@gmail.com");
+                boolean flag = service.registerWithGoogle(member);
+                if(flag){  //註冊成功
+                    m = service.getOneMember(member.getMember_account());
+                }else{
+                    info.setFlag(false);
+                    info.setMsg("登入失敗!");
+                    System.out.println("Google登入失敗!");
+                    writeValueByWriter(res, info);
+                    return;
+                }
+            }
+            //註冊成功之後 登入
+            info.setFlag(true);
+            req.getSession().setAttribute("member", m);//登入成功
+            info.setMsg("使用Google帳號 登入成功!");
+            info.setData(m);
+            info.setRedirect(req.getContextPath() + "/TEA103G2/front-end/my-account.html");
+            System.out.println("member = " + m);
+            writeValueByWriter(res, info);
+            return;
+
+        } else {
+            info.setFlag(false);
+            info.setMsg("token無效!");
+            System.out.println("Invalid ID token.");
+            writeValueByWriter(res, info);
+        }
+    }
+
 
     public void login(HttpServletRequest req, HttpServletResponse res) throws IOException {
         //獲取數據
@@ -185,7 +273,7 @@ public class MemberServlet extends BaseServlet {
         info.setFlag(true);
         info.setMsg("已登出!");
         info.setRedirect(req.getContextPath() + "/index.html");
-        System.out.println("info = " + toJson(info));
+//        System.out.println("info = " + toJson(info));
         writeValueByWriter(res, info);
     }
 
@@ -331,6 +419,35 @@ public class MemberServlet extends BaseServlet {
     }
 
 
+
+
+    public void getLineQRCode(HttpServletRequest req, HttpServletResponse res) throws IOException {
+        //從session取得member
+        MemberBean member = (MemberBean) req.getSession().getAttribute("member");
+        ResultInfo info = new ResultInfo();
+        if (member == null) {
+            info.setFlag(false);
+            info.setMsg("尚未登入!");
+            writeValueByWriter(res,info);
+        } else {
+            Map<String, String> content = new HashMap<>();
+            content.put("member_account", member.getMember_account());
+            content.put("member_name", member.getMember_name());
+            content.put("time", new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new java.sql.Timestamp(System.currentTimeMillis())));
+            Gson gson = new Gson();
+            String contentJson = gson.toJson(content);
+            System.out.println("contentJson = " + contentJson);
+            // 創建實體
+            AES aes = SecureUtil.aes(Base64.decode(AES_KEY));
+            // 加密
+            String encrypt = aes.encryptBase64(contentJson);
+
+            System.out.println("encrypt = " + encrypt);
+            res.setContentType("image/jpg;");
+            QrConfig config = new QrConfig(250, 250);
+            QrCodeUtil.generate(encrypt,config,"JPG",res.getOutputStream());
+        }
+    }
     /************************************以下後臺使用****************************************/
 
     public String backend_getOne_For_Update(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
@@ -734,17 +851,17 @@ public class MemberServlet extends BaseServlet {
 
     }
 
-    public void testphoto(HttpServletRequest req, HttpServletResponse res) throws IOException {
-        String imgStr = "";
-        byte[] buf = GenerateImage(imgStr);
-        res.setContentType("image/png;");
-        IoUtil.write(res.getOutputStream(), true, buf);
-    }
-
-    public byte[] GenerateImage(String imgStr) {   //對位元組陣列字串進行Base64解碼並生成圖片
-        byte[] decodedBytes = Base64.getDecoder().decode(imgStr);
-        return decodedBytes;
-    }
+//    public void testphoto(HttpServletRequest req, HttpServletResponse res) throws IOException {
+//        String imgStr = "";
+//        byte[] buf = GenerateImage(imgStr);
+//        res.setContentType("image/png;");
+//        IoUtil.write(res.getOutputStream(), true, buf);
+//    }
+//
+//    public byte[] GenerateImage(String imgStr) {   //對位元組陣列字串進行Base64解碼並生成圖片
+//        byte[] decodedBytes = Base64.getDecoder().decode(imgStr);
+//        return decodedBytes;
+//    }
 
 
 }
