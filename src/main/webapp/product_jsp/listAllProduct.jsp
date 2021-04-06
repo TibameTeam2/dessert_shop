@@ -3,12 +3,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.product.model.*"%>
+<%@ page import="com.product_image.model.*"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <%
 	ProductService productSvc = new ProductService();
 	List<ProductBean> list = productSvc.getAll();
+// 	List<ProductBean> list = productSvc.getAllWithOneImage();
 	pageContext.setAttribute("list", list);
+	ProductImageService piSvc = new ProductImageService();
 %>
 
 <!DOCTYPE html>
@@ -146,13 +149,16 @@ img {
 
 				<td><img
 					src="<%=request.getContextPath()%>/product_jsp/product.do?action=getProductImage&id=${productBean.product_id}"
+<%-- 					src="<%=request.getContextPath()%>/product_jsp/product.do?action=getProductImage&id=${productBean.image_id}" --%>
 					alt="photo"></td>
 
 				<td>
 					<form method="post"
 						action="<%=request.getContextPath()%>/product_jsp/product.do">
 						<input type="submit" value="修改"> <input type="hidden"
-							name="product_id" value="${productBean.product_id}"> <input
+							name="product_id" value="${productBean.product_id}"
+							name="image_id" value="${productBean.image_id}"
+							> <input
 							type="hidden" name="action" value="getOne_For_Update">
 					</form>
 				</td>

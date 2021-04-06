@@ -242,10 +242,9 @@ div.picture_list{
 				<td>商品圖片：</td>
 				<td>
 					<input type="file" name="upfile1" accept="image/*" id="p_file">
-					<div id="preview">
-                	<img src="/dessert_shop/product/backend_getPhoto?id=<%=productBean.getProduct_id()%>" name="my_img">    
-					
-					<span class="text">預覽圖</span>
+					<div id="preview"><span class="text">預覽圖</span>
+<%--                 	<img src="/dessert_shop/product/backend_getPhoto?id=<%=productBean.getProduct_id()%>" name="my_img">     --%>
+					<img src="<%=request.getContextPath()%>/product_jsp/product.do?action=getProductImage&id=${productBean.image_id}">
 					</div>
                 </td>
 
@@ -253,6 +252,7 @@ div.picture_list{
 		</table>
 		<br><input type="hidden" name="action" value="update"> 
 			<input type="hidden" name="product_id" value="<%=productBean.getProduct_id()%>"> 
+			<input type="hidden" name="image_id" value="<%=productBean.getImage_id()%>"> 
 			<input type="submit" value="送出修改">
 	</FORM>
 	
