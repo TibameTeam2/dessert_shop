@@ -384,6 +384,10 @@ values('amy','2021-03-01','2021-03-02','2021-03-03','不在連假給你優惠嘿
 insert into coupon(member_account,coupon_sending_time,coupon_effective_date,coupon_expire_date,
 coupon_text_content,coupon_content,discount_type,coupon_status,employee_account,coupon_code_id)
 values('jason','2021-03-02','2021-03-03','2021-03-04','去你的優惠',1,2,0,'jason','2');
+insert into coupon(member_account,coupon_sending_time,coupon_effective_date,coupon_expire_date,
+coupon_text_content,coupon_content,discount_type,coupon_status,employee_account,coupon_code_id)
+values('jason','2021-03-03','2021-03-04','2021-03-05','去你的另外一個優惠',1,2,0,'jason','1');
+
 
 
 -- 謝東陞------------------------------------------------------------------------------------------------------------
