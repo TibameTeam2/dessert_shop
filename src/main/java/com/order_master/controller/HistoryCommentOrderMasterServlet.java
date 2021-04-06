@@ -1,6 +1,8 @@
 package com.order_master.controller;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -32,10 +34,10 @@ public class HistoryCommentOrderMasterServlet extends BaseServlet {
             info.setMsg("尚未登入!");
         } else {
         	String member_account = member.getMember_account();
-        	List<HistoryCommentOrderMasterBean> list = historyCommentOrderMasterSvc.getOrderMasterByMemberAccount(member_account);
+        	List<HistoryCommentOrderMasterBean> hcomBlist = historyCommentOrderMasterSvc.getOrderMasterByMemberAccount(member_account);
         	info.setFlag(true);
-        	info.setData(list);
-        	info.setMsg(member.getMember_account()+" 的訂單資料");
+        	info.setData(hcomBlist);
+        	info.setMsg(member.getMember_account() + " 的訂單資料");
         }
         writeValueByWriter(res, info);
 
