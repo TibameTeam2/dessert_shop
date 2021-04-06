@@ -229,7 +229,7 @@
                                     <span class="number notice_num">0</span>
                                 </a>
 
-                                <div class="dropdown-menu notice_content dropdown-cart">
+                                <div class="dropdown-menu notice_content dropdown-notice">
                                     <ul></ul>
                                 </div>
 
@@ -623,10 +623,9 @@
                     for (let i in data.data) { //遍歷json陣列時，這麼寫i為索引值
 
                         $('div.notice_content>ul').prepend(
-                                `<li class="notice_li"><span>` + data.data[i].notice_content + `</span></li>`
-                            )
-                            // console.log(i + "\n" + data.data[i].member_account + "\n" + data.data[i].notice_content);
-                            // console.log(moment(data.data[i].notice_time).format('MM-DD')); 轉換時間
+                            `<li class="notice_li"><span>` + data.data[i].notice_content + `</span></li>`
+                        )
+                        console.log(i + "\n" + data.data[i].member_account + "\n" + data.data[i].notice_content);
                     }
 
                 } else {
@@ -649,7 +648,7 @@
 
             if (response.flag) {
                 /********************************** webSocket **********************************/
-                var MyPoint = "/NoticeWS/" + response.data.member_account;
+                var MyPoint = "/NoticeWS/" + response.data.member_account; //登入的帳號
                 var host = window.location.host;
                 var path = window.location.pathname;
                 var webCtx = path.substring(0, path.indexOf('/', 1));
@@ -674,7 +673,7 @@
 
                     $('div.ws_content>ul').prepend(
                         `<li class="notice_li"><span>` + e.data + `</span></li>`
-                    ).show().delay(10000).fadeOut();
+                    ).show().delay(5000).fadeOut();
 
                     console.log("接收訊息=" + e.data);
                 }
