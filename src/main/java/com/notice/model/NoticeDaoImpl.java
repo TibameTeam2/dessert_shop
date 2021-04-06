@@ -21,7 +21,7 @@ public class NoticeDaoImpl implements NoticeDao {
 	private String userid = JDBCUtil.user;
 	private String passwd = JDBCUtil.password;
 
-	private static final String INSERT_STMT = "INSERT INTO sweet.notice (notice_type,notice_content,notice_time,read_status,member_account) VALUES (?,?, ?, ?, ?)";
+	private static final String INSERT_STMT = "INSERT INTO sweet.notice (notice_type,notice_content,read_status,member_account) VALUES (?, ?, ?, ?)";
 	private static final String UPDATE = "UPDATE sweet.notice set notice_type=?,notice_content=?, read_status=?, member_account=? where notice_id = ?";
 	private static final String DELETE = "DELETE FROM sweet.notice where notice_id = ?";
 	private static final String GET_ONE_STMT = "SELECT * FROM sweet.notice where notice_id = ?";
@@ -46,9 +46,8 @@ public class NoticeDaoImpl implements NoticeDao {
 
 			pstmt.setInt(1, noticeBean.getNotice_type());
 			pstmt.setString(2, noticeBean.getNotice_content());
-			pstmt.setTimestamp(3, noticeBean.getNotice_time());
-			pstmt.setInt(4, noticeBean.getRead_status());
-			pstmt.setString(5, noticeBean.getMember_account());
+			pstmt.setInt(3, noticeBean.getRead_status());
+			pstmt.setString(4, noticeBean.getMember_account());
 
 			int count = pstmt.executeUpdate();
 			System.out.println(count);
@@ -444,9 +443,8 @@ public class NoticeDaoImpl implements NoticeDao {
 
 		// 新增
 //		NoticeBean noticeBean = new NoticeBean();
-//		noticeBean.setNotice_type(1);
-//		noticeBean.setNotice_content("33貴賓您好：您有訂購岩融巧克力蛋糕乙客，請準時來提取，謝謝!222");
-//		noticeBean.setNotice_time(new java.sql.Timestamp(System.currentTimeMillis()));
+//		noticeBean.setNotice_type(3);
+//		noticeBean.setNotice_content("QQQQQQQQQQQQQQQQQ");
 //		noticeBean.setRead_status(0);
 //		noticeBean.setMember_account("jason");
 //		dao.insert(noticeBean);
