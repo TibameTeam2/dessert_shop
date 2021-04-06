@@ -39,6 +39,18 @@ public class MemberService {
         return true;
     }
 
+    public boolean registerWithGoogle(MemberBean member){
+        MemberBean m = dao.findByPrimaryKey(member.getMember_account());
+        if (m != null) {
+            System.out.println("m=" + m);
+            return false;
+        }
+        member.setRegister_method(2);
+        member.setMember_status(1);
+        dao.insert(member);
+        return true;
+    }
+
     public MemberBean login(MemberBean member) {
         MemberBean m = dao.findByPrimaryKey(member.getMember_account());
         if (m == null) {
