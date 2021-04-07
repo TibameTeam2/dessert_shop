@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.coupon.model.CouponBean;
+import com.coupon_code.model.CouponCodeBean;
 
 public class CartProductService {	
 		
@@ -56,7 +57,27 @@ public class CartProductService {
 		dao.delete(cart_id);
 		
 	}
-
+	
+	//查詢優惠碼
+	public CouponCodeBean selectCouponCode(String coupon_code) {
+			
+		return dao.selectCouponCodeData(coupon_code);
+		
+	}
+	//使用會員帳號+優惠碼查詢單筆優惠券對照
+	public CouponBean selectCoupon(String member_account, Integer coupon_code_id) {
+		
+		return dao.selectCouponData(member_account, coupon_code_id);
+		
+	} 
+	//insert優惠券
+	public void insertCoupon(CouponBean CB) {
+		
+		dao.insertCouponData(CB);
+		
+	}
+	
+	
 	
 
 }
