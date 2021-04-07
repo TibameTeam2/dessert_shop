@@ -1,17 +1,18 @@
 package com.member.controller;
 
+import cn.hutool.core.codec.Base64;
 import cn.hutool.captcha.CaptchaUtil;
 import cn.hutool.captcha.LineCaptcha;
-import cn.hutool.captcha.ShearCaptcha;
 import cn.hutool.core.convert.Convert;
 import cn.hutool.core.io.IoUtil;
 import cn.hutool.core.lang.Console;
-import cn.hutool.core.util.IdUtil;
+import cn.hutool.crypto.SecureUtil;
 import cn.hutool.crypto.digest.DigestUtil;
-import com.emp.model.EmpService;
-import com.emp.model.EmpVO;
+import cn.hutool.crypto.symmetric.AES;
+import cn.hutool.crypto.symmetric.SymmetricAlgorithm;
+import cn.hutool.extra.qrcode.QrCodeUtil;
+import cn.hutool.extra.qrcode.QrConfig;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.gson.GsonFactory;
@@ -37,13 +38,14 @@ import javax.servlet.http.Part;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.nio.charset.StandardCharsets;
 import java.security.GeneralSecurityException;
 import java.sql.*;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.Base64;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken.Payload;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
@@ -54,6 +56,7 @@ public class MemberServlet extends BaseServlet {
     GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(new NetHttpTransport(), new GsonFactory())
             .setAudience(Collections.singletonList("842033440075-mhrdronq0kjp1s0te2cpkgvlabihhku3.apps.googleusercontent.com"))
             .build();
+    final String AES_KEY = "mhWv/FOMFa6MPCCBjLcnnA==";
 
     public void register(HttpServletRequest req, HttpServletResponse res) throws JsonProcessingException {
 //        System.out.println("MemberServlet in register");
@@ -416,6 +419,35 @@ public class MemberServlet extends BaseServlet {
     }
 
 
+
+
+    public void getLineQRCode(HttpServletRequest req, HttpServletResponse res) throws IOException {
+        //從session取得member
+        MemberBean member = (MemberBean) req.getSession().getAttribute("member");
+        ResultInfo info = new ResultInfo();
+        if (member == null) {
+            info.setFlag(false);
+            info.setMsg("尚未登入!");
+            writeValueByWriter(res,info);
+        } else {
+            Map<String, String> content = new HashMap<>();
+            content.put("member_account", member.getMember_account());
+            content.put("member_name", member.getMember_name());
+            content.put("time", new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").format(new java.sql.Timestamp(System.currentTimeMillis())));
+            Gson gson = new Gson();
+            String contentJson = gson.toJson(content);
+            System.out.println("contentJson = " + contentJson);
+            // 創建實體
+            AES aes = SecureUtil.aes(Base64.decode(AES_KEY));
+            // 加密
+            String encrypt = aes.encryptBase64(contentJson);
+
+            System.out.println("encrypt = " + encrypt);
+            res.setContentType("image/jpg;");
+            QrConfig config = new QrConfig(250, 250);
+            QrCodeUtil.generate(encrypt,config,"JPG",res.getOutputStream());
+        }
+    }
     /************************************以下後臺使用****************************************/
 
     public String backend_getOne_For_Update(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
@@ -819,17 +851,17 @@ public class MemberServlet extends BaseServlet {
 
     }
 
-    public void testphoto(HttpServletRequest req, HttpServletResponse res) throws IOException {
-        String imgStr = "";
-        byte[] buf = GenerateImage(imgStr);
-        res.setContentType("image/png;");
-        IoUtil.write(res.getOutputStream(), true, buf);
-    }
-
-    public byte[] GenerateImage(String imgStr) {   //對位元組陣列字串進行Base64解碼並生成圖片
-        byte[] decodedBytes = Base64.getDecoder().decode(imgStr);
-        return decodedBytes;
-    }
+//    public void testphoto(HttpServletRequest req, HttpServletResponse res) throws IOException {
+//        String imgStr = "";
+//        byte[] buf = GenerateImage(imgStr);
+//        res.setContentType("image/png;");
+//        IoUtil.write(res.getOutputStream(), true, buf);
+//    }
+//
+//    public byte[] GenerateImage(String imgStr) {   //對位元組陣列字串進行Base64解碼並生成圖片
+//        byte[] decodedBytes = Base64.getDecoder().decode(imgStr);
+//        return decodedBytes;
+//    }
 
 
 }

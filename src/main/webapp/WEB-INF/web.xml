@@ -1,40 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
-<!--    100~200行 傑森-->
-<!--    200~300行 東陞-->
-<!--    300~400行 玉婷-->
-<!--    400~500行 語心-->
-<!--    500~600行 浩倫-->
-<!--    600~700行 垚筠-->
-
-    <servlet>
-        <servlet-name>MemberServlet</servlet-name>
-        <servlet-class>com.member.controller.MemberServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>MemberServlet</servlet-name>
-        <url-pattern>/member/*</url-pattern>
-    </servlet-mapping>
-    
-    <servlet>
-        <servlet-name>CartServlet</servlet-name>
-        <servlet-class>com.cart.controller.CartServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>CartServlet</servlet-name>
-        <url-pattern>/cart/*</url-pattern>
-    </servlet-mapping>
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+	<!-- 100~200行 傑森 -->
+	<!-- 200~300行 東陞 -->
+	<!-- 300~400行 玉婷 -->
+	<!-- 400~500行 語心 -->
+	<!-- 500~600行 浩倫 -->
+	<!-- 600~700行 垚筠 -->
 
 	<servlet>
-    	<servlet-name>OrderMasterServlet</servlet-name>
-        <servlet-class>com.order_master.controller.OrderMasterServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>OrderMasterServlet</servlet-name>
-        <url-pattern>/orderMaster/*</url-pattern>
-    </servlet-mapping>
+		<servlet-name>MemberServlet</servlet-name>
+		<servlet-class>com.member.controller.MemberServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MemberServlet</servlet-name>
+		<url-pattern>/member/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>CartServlet</servlet-name>
+		<servlet-class>com.cart.controller.CartServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CartServlet</servlet-name>
+		<url-pattern>/cart/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>OrderMasterServlet</servlet-name>
+		<servlet-class>com.order_master.controller.OrderMasterServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>OrderMasterServlet</servlet-name>
+		<url-pattern>/orderMaster/*</url-pattern>
+	</servlet-mapping>
 
 
 	<!-- product相關 -->
@@ -47,7 +47,7 @@
 		<servlet-name>ProductServlet</servlet-name>
 		<url-pattern>/product_jsp/product.do</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<servlet-name>ProductServlet_front</servlet-name>
 		<servlet-class>com.product.controller.ProductServlet_front</servlet-class>
@@ -56,7 +56,7 @@
 		<servlet-name>ProductServlet_front</servlet-name>
 		<url-pattern>/product/*</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<servlet-name>ProductImageServlet</servlet-name>
 		<servlet-class>com.product_image.controller.ProductImageServlet</servlet-class>
@@ -65,357 +65,388 @@
 		<servlet-name>ProductImageServlet</servlet-name>
 		<url-pattern>/product_image_jsp/product.do</url-pattern>
 	</servlet-mapping>
+
+
+	<!--測試用Servlet -->
+	<servlet>
+		<servlet-name>ServletTest</servlet-name>
+		<servlet-class>com.util.ServletTest</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ServletTest</servlet-name>
+		<url-pattern>/test/*</url-pattern>
+	</servlet-mapping>
+
+
+
+
+	<!--大吳的0201 -->
+	<servlet>
+		<servlet-name>EmpServlet</servlet-name>
+		<servlet-class>com.emp.controller.EmpServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>EmpServlet</servlet-name>
+		<url-pattern>/emp/emp.do</url-pattern>
+	</servlet-mapping>
+
+	<!--Employee的0201 -->
+	<servlet>
+		<servlet-name>EmployeeServlet</servlet-name>
+		<servlet-class>com.employee.controller.EmployeeServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>EmployeeServlet</servlet-name>
+		<url-pattern>/employee_jsp/employee.do</url-pattern>
+	</servlet-mapping>
+
+
+
+
+
+
+
+	<!--Notice 測試Servlet -->
+	<servlet>
+		<servlet-name>NoticeServlet</servlet-name>
+		<servlet-class>com.notice.controller.NoticeServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>NoticeServlet</servlet-name>
+		<url-pattern>/notice/*</url-pattern>
+	</servlet-mapping>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<!--HistoryCommentOrderMasterServlet -->
+	<servlet>
+		<servlet-name>HistoryCommentOrderMasterServlet</servlet-name>
+		<servlet-class>com.order_master.controller.HistoryCommentOrderMasterServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>HistoryCommentOrderMasterServlet</servlet-name>
+		<url-pattern>/historyCommentOrderMaster/*</url-pattern>
+	</servlet-mapping>
+
+	<!--OrderDetailServlet -->
+	<servlet>
+		<servlet-name>OrderDetailServlet</servlet-name>
+		<servlet-class>com.order_detail.controller.OrderDetailServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>OrderDetailServlet</servlet-name>
+		<url-pattern>/orderDetail/*</url-pattern>
+	</servlet-mapping>
 	
-
-    <!--測試用Servlet-->
-    <servlet>
-        <servlet-name>ServletTest</servlet-name>
-        <servlet-class>com.util.ServletTest</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ServletTest</servlet-name>
-        <url-pattern>/test/*</url-pattern>
-    </servlet-mapping>
-
-    
-   
-
-    <!--大吳的0201-->
-    <servlet>
-        <servlet-name>EmpServlet</servlet-name>
-        <servlet-class>com.emp.controller.EmpServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>EmpServlet</servlet-name>
-        <url-pattern>/emp/emp.do</url-pattern>
-    </servlet-mapping>
-    
-    <!--Employee的0201-->
-    <servlet>
-        <servlet-name>EmployeeServlet</servlet-name>
-        <servlet-class>com.employee.controller.EmployeeServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>EmployeeServlet</servlet-name>
-        <url-pattern>/employee_jsp/employee.do</url-pattern>
-    </servlet-mapping>    
-    
-    <!--HistoryCommentOrderMasterServlet-->
-    <servlet>
-        <servlet-name>HistoryCommentOrderMasterServlet</servlet-name>
-        <servlet-class>com.order_master.controller.HistoryCommentOrderMasterServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>HistoryCommentOrderMasterServlet</servlet-name>
-        <url-pattern>/historyCommentOrderMaster/*</url-pattern>
-    </servlet-mapping> 
-       
-    <!--OrderDetailServlet-->
-    <servlet>
-        <servlet-name>OrderDetailServlet</servlet-name>
-        <servlet-class>com.order_detail.controller.OrderDetailServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>OrderDetailServlet</servlet-name>
-        <url-pattern>/orderDetail/*</url-pattern>
-    </servlet-mapping>    
-      
-    
-    
-
-
-    <!--Notice 測試Servlet-->
-    <servlet>
-        <servlet-name>NoticeServlet</servlet-name>
-        <servlet-class>com.notice.controller.NoticeServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>NoticeServlet</servlet-name>
-        <url-pattern>/notice/*</url-pattern>
-    </servlet-mapping>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	<!--HistoryCommentOrderDetailServlet -->
+	<servlet>
+		<servlet-name>HistoryCommentOrderDetailServlet</servlet-name>
+		<servlet-class>com.order_detail.controller.HistoryCommentOrderDetailServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>HistoryCommentOrderDetailServlet</servlet-name>
+		<url-pattern>/historyCommentOrderDetail/*</url-pattern>
+	</servlet-mapping>
+	
+	<!--HistoryCommentProductServlet -->
+	<servlet>
+		<servlet-name>HistoryCommentProductServlet</servlet-name>
+		<servlet-class>com.order_master.controller.HistoryCommentProductServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>HistoryCommentProductServlet</servlet-name>
+		<url-pattern>/historyCommentProduct/*</url-pattern>
+	</servlet-mapping>
+	
+	<!--ReviewImageUploadServlet -->
+	<servlet>
+		<servlet-name>ReviewImageUploadServlet</servlet-name>
+		<servlet-class>com.review_image_upload.controller.ReviewImageUploadServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ReviewImageUploadServlet</servlet-name>
+		<url-pattern>/reviewImageUpload/*</url-pattern>
+	</servlet-mapping>
 
 
 
@@ -747,46 +778,47 @@
         <dispatcher>ASYNC</dispatcher>
     </filter-mapping>
 
-    <!--配置全局过滤的filter-->
-<!--    <filter>-->
-<!--        <filter-name>CharacterEncodingFilter</filter-name>-->
-<!--        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>-->
-<!--        <init-param>-->
-<!--            <param-name>encoding</param-name>-->
-<!--            <param-value>UTF-8</param-value>-->
-<!--        </init-param>-->
-<!--    </filter>-->
-<!--    <filter-mapping>-->
-<!--        <filter-name>CharacterEncodingFilter</filter-name>-->
-<!--        <url-pattern>/*</url-pattern>-->
-<!--    </filter-mapping>-->
 
-    <!--配置SpringMVC的前端控制器-->
-<!--    <servlet>-->
-<!--        <servlet-name>DispatcherServlet</servlet-name>-->
-<!--        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>-->
-<!--        <init-param>-->
-<!--            <param-name>contextConfigLocation</param-name>-->
-<!--            <param-value>classpath:spring-mvc.xml</param-value>-->
-<!--        </init-param>-->
-<!--        <load-on-startup>1</load-on-startup>-->
-<!--    </servlet>-->
-<!--    <servlet-mapping>-->
-<!--        <servlet-name>DispatcherServlet</servlet-name>-->
-<!--        <url-pattern>/</url-pattern>-->
-<!--    </servlet-mapping>-->
+	<!--配置全局过滤的filter -->
+	<!-- <filter> -->
+	<!-- <filter-name>CharacterEncodingFilter</filter-name> -->
+	<!-- <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class> -->
+	<!-- <init-param> -->
+	<!-- <param-name>encoding</param-name> -->
+	<!-- <param-value>UTF-8</param-value> -->
+	<!-- </init-param> -->
+	<!-- </filter> -->
+	<!-- <filter-mapping> -->
+	<!-- <filter-name>CharacterEncodingFilter</filter-name> -->
+	<!-- <url-pattern>/*</url-pattern> -->
+	<!-- </filter-mapping> -->
+
+	<!--配置SpringMVC的前端控制器 -->
+	<!-- <servlet> -->
+	<!-- <servlet-name>DispatcherServlet</servlet-name> -->
+	<!-- <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class> -->
+	<!-- <init-param> -->
+	<!-- <param-name>contextConfigLocation</param-name> -->
+	<!-- <param-value>classpath:spring-mvc.xml</param-value> -->
+	<!-- </init-param> -->
+	<!-- <load-on-startup>1</load-on-startup> -->
+	<!-- </servlet> -->
+	<!-- <servlet-mapping> -->
+	<!-- <servlet-name>DispatcherServlet</servlet-name> -->
+	<!-- <url-pattern>/</url-pattern> -->
+	<!-- </servlet-mapping> -->
 
 
-    <!--全局初始化参数-->
-<!--    <context-param>-->
-<!--        <param-name>contextConfigLocation</param-name>-->
-<!--        <param-value>classpath:applicationContext.xml</param-value>-->
-<!--    </context-param>-->
+	<!--全局初始化参数 -->
+	<!-- <context-param> -->
+	<!-- <param-name>contextConfigLocation</param-name> -->
+	<!-- <param-value>classpath:applicationContext.xml</param-value> -->
+	<!-- </context-param> -->
 
-    <!--配置监听器-->
-<!--    <listener>-->
-<!--        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>-->
-<!--    </listener>-->
+	<!--配置监听器 -->
+	<!-- <listener> -->
+	<!-- <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class> -->
+	<!-- </listener> -->
 
 
 

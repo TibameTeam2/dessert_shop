@@ -10,8 +10,8 @@ public class OrderDetailService {
 		dao = new OrderDetailDaoImpl();
 	}
 
-	public List<OrderDetailBean> getOneOrderDetail() {
-		return dao.getAllProductNameImageIncluded();
+	public List<OrderDetailBean> findByOrderMasterId(Integer order_master_id) {
+		return dao.findByOrderMasterId(order_master_id);
 	}
 	
 }
