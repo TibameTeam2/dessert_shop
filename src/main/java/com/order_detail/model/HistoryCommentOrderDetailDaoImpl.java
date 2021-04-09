@@ -19,15 +19,15 @@ public class HistoryCommentOrderDetailDaoImpl implements HistoryCommentOrderDeta
 	private String url = JDBCUtil.url;
 	private String userid = JDBCUtil.user;
 	private String passwd = JDBCUtil.password;
-	private static final String HOHOHO = "select order_master_id, od.order_detail_id, od.product_id, product_name, image_id, product_image, rating, comment_content, reply_id, reply_content\r\n" + 
-			"from order_detail od \r\n" + 
-			"left join product p on od.product_id = p.product_id\r\n" + 
+	private static final String HOHOHO = "select order_master_id, od.order_detail_id, od.product_id, product_name, image_id, mc.review_id, product_image, rating, comment_content, reply_id, reply_content\r\n" + 
+			"from order_detail od\r\n" + 
+			"left join member_comment mc on od.order_detail_id = mc.order_detail_id\r\n" + 
+			"left join dealer_reply dr on mc.review_id = dr.review_id \r\n" + 
+			"join product p on od.product_id = p.product_id\r\n" + 
 			"left join product_image pi on p.product_id = pi.product_id\r\n" + 
-			"left join member_comment mc on p.product_id = mc.product_id\r\n" + 
-			"left join dealer_reply dr on mc.review_id = dr.review_id\r\n" + 
-			"where order_master_id = ?\r\n" + 
-			"group by order_master_id\r\n" + 
-			"order by order_master_id;";
+			"where order_master_id = ? and mc.rating is not null\r\n" + 
+			"group by order_detail_id\r\n" + 
+			"order by order_detail_id;";
 
 	
 	@Override

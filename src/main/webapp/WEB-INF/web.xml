@@ -408,15 +408,15 @@
 		<url-pattern>/historyCommentOrderMaster/*</url-pattern>
 	</servlet-mapping>
 
-	<!--OrderDetailServlet -->
-	<servlet>
-		<servlet-name>OrderDetailServlet</servlet-name>
-		<servlet-class>com.order_detail.controller.OrderDetailServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>OrderDetailServlet</servlet-name>
-		<url-pattern>/orderDetail/*</url-pattern>
-	</servlet-mapping>
+	<!--OrderDetailServlet 沒用到-->
+<!-- 	<servlet> -->
+<!-- 		<servlet-name>OrderDetailServlet</servlet-name> -->
+<!-- 		<servlet-class>com.order_detail.controller.OrderDetailServlet</servlet-class> -->
+<!-- 	</servlet> -->
+<!-- 	<servlet-mapping> -->
+<!-- 		<servlet-name>OrderDetailServlet</servlet-name> -->
+<!-- 		<url-pattern>/orderDetail/*</url-pattern> -->
+<!-- 	</servlet-mapping> -->
 	
 	<!--HistoryCommentOrderDetailServlet -->
 	<servlet>
@@ -428,15 +428,15 @@
 		<url-pattern>/historyCommentOrderDetail/*</url-pattern>
 	</servlet-mapping>
 	
-	<!--HistoryCommentProductServlet -->
-	<servlet>
-		<servlet-name>HistoryCommentProductServlet</servlet-name>
-		<servlet-class>com.order_master.controller.HistoryCommentProductServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>HistoryCommentProductServlet</servlet-name>
-		<url-pattern>/historyCommentProduct/*</url-pattern>
-	</servlet-mapping>
+	<!--HistoryCommentProductServlet 沒用到 -->
+<!-- 	<servlet> -->
+<!-- 		<servlet-name>HistoryCommentProductServlet</servlet-name> -->
+<!-- 		<servlet-class>com.order_master.controller.HistoryCommentProductServlet</servlet-class> -->
+<!-- 	</servlet> -->
+<!-- 	<servlet-mapping> -->
+<!-- 		<servlet-name>HistoryCommentProductServlet</servlet-name> -->
+<!-- 		<url-pattern>/historyCommentProduct/*</url-pattern> -->
+<!-- 	</servlet-mapping> -->
 	
 	<!--ReviewImageUploadServlet -->
 	<servlet>
@@ -447,6 +447,18 @@
 		<servlet-name>ReviewImageUploadServlet</servlet-name>
 		<url-pattern>/reviewImageUpload/*</url-pattern>
 	</servlet-mapping>
+	
+	<!--YetToLeaveCommentServlet -->
+	<servlet>
+		<servlet-name>YetToLeaveCommentServlet</servlet-name>
+		<servlet-class>com.member_comment.controller.YetToLeaveCommentServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>YetToLeaveCommentServlet</servlet-name>
+		<url-pattern>/yetToLeaveComment/*</url-pattern>
+	</servlet-mapping>
+	
+	
 
 
 
