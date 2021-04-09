@@ -126,6 +126,21 @@ public class ProductServlet_front extends BaseServlet {
     	
     	writeValueByWriter(res, info);
     }
+
+    //  http://localhost:8081/dessert_shop/product/getAllSortBySweetness
+//    public void getAllSortBySweetness(HttpServletRequest req, HttpServletResponse res) {
+//    	System.out.println("甜度排序");
+//    	ProductService productSvc = new ProductService();
+//    	List<ProductBean> productList = productSvc.getAllSortBySweetness();
+//    	
+//    	ResultInfo info = new ResultInfo();
+//    	
+//    	info.setFlag(true);
+//    	info.setMsg("資料取得成功!");
+//    	info.setData(productList);
+//    	
+//    	writeValueByWriter(res, info);
+//    }
    
     
 }
