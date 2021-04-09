@@ -360,6 +360,9 @@ values('AGQ2598',"2021-03-17","2021-03-31",'即期蛋糕享6折',0.6,0,'james');
 insert into coupon_code(coupon_code,coupon_code_effective_date,coupon_code_expire_date,
 coupon_code_text_content,coupon_code_content,discount_type,employee_account)
 values('HCJ2473',"2021-04-05","2022-04-06",'黑咖啡折20元',20,1,'james');
+insert into coupon_code(coupon_code,coupon_code_effective_date,coupon_code_expire_date,
+coupon_code_text_content,coupon_code_content,discount_type,employee_account)
+values('FUCK7414',"2021-04-05","2022-02-06",'糖料併折50元',50,1,'james');
 
 
 -- 優惠券
@@ -388,15 +391,15 @@ values('tom','2021-02-27','2021-02-27','2022-03-27','訂餐享8折',0.8,0,0,'jas
 insert into coupon(member_account,coupon_sending_time,coupon_effective_date,
 coupon_expire_date,coupon_text_content,
 coupon_content,discount_type,coupon_status,employee_account,coupon_code_id)
-values('amy','2021-03-14','2021-03-14','2021-03-15','單身者在白色情人節折價30元',30,1,0,'james','2');
-insert into coupon(member_account,coupon_sending_time,coupon_effective_date,
-coupon_expire_date,coupon_text_content,
-coupon_content,discount_type,coupon_status,employee_account,coupon_code_id)
 values('jason','2021-03-17','2021-03-17','2021-03-31','即期蛋糕享6折',0.6,0,0,'peter','3');
 insert into coupon(member_account,coupon_sending_time,coupon_effective_date,
 coupon_expire_date,coupon_text_content,
 coupon_content,discount_type,coupon_status,employee_account,coupon_code_id)
 values('jason','2021-04-05','2021-04-06','2022-04-06','黑咖啡折20元',20,1,1,'peter','4');
+insert into coupon(member_account,coupon_sending_time,coupon_effective_date,
+coupon_expire_date,coupon_text_content,
+coupon_content,discount_type,coupon_status,employee_account,coupon_code_id)
+values('jason','2021-03-11','2021-03-14','2021-03-15','單身者在白色情人節折價30元',30,1,0,'peter','2');
 
 
 

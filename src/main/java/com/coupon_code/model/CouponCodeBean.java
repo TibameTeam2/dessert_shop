@@ -17,7 +17,7 @@ public class CouponCodeBean {
 	public String toString() {
 		return "coupon_codeBean [coupon_code_id=" + coupon_code_id + ", coupon_code=" + coupon_code
 				+ ", coupon_code_effective_date=" + coupon_code_effective_date + ", coupon_code_expire_date="
-				+ coupon_code_expire_date + ", coupon_code_content_content=" + coupon_code_text_content
+				+ coupon_code_expire_date + ", coupon_code_text_content=" + coupon_code_text_content
 				+ ", coupon_code_content=" + coupon_code_content + ", discount_type=" + discount_type + ", employee_account="
 				+ employee_account + "]";
 	}
@@ -46,16 +46,16 @@ public class CouponCodeBean {
 	public void setCoupon_code_expire_date(Timestamp coupon_code_expire_date) {
 		this.coupon_code_expire_date = coupon_code_expire_date;
 	}
-	public String getcoupon_code_text_content() {
+	public String getCoupon_code_text_content() {
 		return coupon_code_text_content;
 	}
-	public void setcoupon_code_text_content(String coupon_code_text_content) {
+	public void setCoupon_code_text_content(String coupon_code_text_content) {
 		this.coupon_code_text_content = coupon_code_text_content;
 	}
-	public Float getcoupon_code_content() {
+	public Float getCoupon_code_content() {
 		return coupon_code_content;
 	}
-	public void setcoupon_code_content(Float coupon_code_content) {
+	public void setCoupon_code_content(Float coupon_code_content) {
 		this.coupon_code_content = coupon_code_content;
 	}
 	public Integer getDiscount_type() {

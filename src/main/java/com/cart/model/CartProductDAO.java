@@ -85,13 +85,13 @@ public class CartProductDAO {
 	}
 	
 	
-	//拿可使用的coupon
+	//拿所有coupon
 	public List<CouponBean> selectCouponByMemberAccount(String member_account) {
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
-		String SELECT_ALL = "SELECT * FROM sweet.coupon where member_account = ? and coupon_status = '0' and current_timestamp() < coupon_expire_date";
+		String SELECT_ALL = "SELECT * FROM sweet.coupon where member_account = ? order by coupon_status desc, coupon_expire_date asc";
 
 		CouponBean CB;
 		ResultSet rs = null;
@@ -330,8 +330,8 @@ public class CartProductDAO {
 				CCB.setCoupon_code(rs.getString("coupon_code"));
 				CCB.setCoupon_code_effective_date(rs.getTimestamp("coupon_code_effective_date"));
 				CCB.setCoupon_code_expire_date(rs.getTimestamp("coupon_code_expire_date"));
-				CCB.setcoupon_code_text_content(rs.getString("coupon_code_text_content"));
-				CCB.setcoupon_code_content(rs.getFloat("coupon_code_content"));
+				CCB.setCoupon_code_text_content(rs.getString("coupon_code_text_content"));
+				CCB.setCoupon_code_content(rs.getFloat("coupon_code_content"));
 				CCB.setDiscount_type(rs.getInt("discount_type"));
 				CCB.setEmployee_account(rs.getString("employee_account"));
 			}
@@ -414,7 +414,7 @@ public class CartProductDAO {
 	}
 	
 	
-	//select優惠券(對照用)
+	//select優惠券(對照用/回傳用)
 	public CouponBean selectCouponData(String member_account, Integer coupon_code_id) {
 
 		Connection con = null;

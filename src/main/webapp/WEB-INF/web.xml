@@ -769,7 +769,7 @@
     <filter-mapping>
         <filter-name>loginFilter</filter-name>
         <url-pattern>/TEA103G2/front-end/my-account.html</url-pattern>
-<!--         <url-pattern>/TEA103G2/front-end/cart.html</url-pattern> -->
+        <url-pattern>/TEA103G2/front-end/cart.html</url-pattern>
 <!--         <url-pattern>/TEA103G2/front-end/checkout.html</url-pattern> -->
         <dispatcher>REQUEST</dispatcher>
         <dispatcher>FORWARD</dispatcher>

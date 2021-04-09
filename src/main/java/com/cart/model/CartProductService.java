@@ -64,7 +64,7 @@ public class CartProductService {
 		return dao.selectCouponCodeData(coupon_code);
 		
 	}
-	//使用會員帳號+優惠碼查詢單筆優惠券對照
+	//使用會員帳號+優惠碼查詢單筆優惠券對照 以及回傳用
 	public CouponBean selectCoupon(String member_account, Integer coupon_code_id) {
 		
 		return dao.selectCouponData(member_account, coupon_code_id);

@@ -67,8 +67,8 @@ public class CouponCodeDAO {
 			pstmt.setString(1, CCB.getCoupon_code());
 			pstmt.setTimestamp(2, CCB.getCoupon_code_effective_date());
 			pstmt.setTimestamp(3, CCB.getCoupon_code_expire_date());
-			pstmt.setString(4, CCB.getcoupon_code_text_content());
-			pstmt.setFloat(5, CCB.getcoupon_code_content());
+			pstmt.setString(4, CCB.getCoupon_code_text_content());
+			pstmt.setFloat(5, CCB.getCoupon_code_content());
 			pstmt.setInt(6, CCB.getDiscount_type());
 			pstmt.setString(7, CCB.getEmployee_account());
 
@@ -114,8 +114,8 @@ public class CouponCodeDAO {
 			pstmt.setString(1, CCB.getCoupon_code());
 			pstmt.setTimestamp(2, CCB.getCoupon_code_effective_date());
 			pstmt.setTimestamp(3, CCB.getCoupon_code_expire_date());
-			pstmt.setString(4, CCB.getcoupon_code_text_content());
-			pstmt.setFloat(5, CCB.getcoupon_code_content());
+			pstmt.setString(4, CCB.getCoupon_code_text_content());
+			pstmt.setFloat(5, CCB.getCoupon_code_content());
 			pstmt.setInt(6, CCB.getDiscount_type());
 			pstmt.setString(7, CCB.getEmployee_account());
 			pstmt.setInt(8, CCB.getCoupon_code_id());
@@ -210,8 +210,8 @@ public class CouponCodeDAO {
 				CCB.setCoupon_code(rs.getString("coupon_code"));
 				CCB.setCoupon_code_effective_date(rs.getTimestamp("coupon_code_effective_date"));
 				CCB.setCoupon_code_expire_date(rs.getTimestamp("coupon_code_expire_date"));
-				CCB.setcoupon_code_text_content(rs.getString("coupon_code_text_content"));
-				CCB.setcoupon_code_content(rs.getFloat("coupon_code_content"));
+				CCB.setCoupon_code_text_content(rs.getString("coupon_code_text_content"));
+				CCB.setCoupon_code_content(rs.getFloat("coupon_code_content"));
 				CCB.setDiscount_type(rs.getInt("discount_type"));
 				CCB.setEmployee_account(rs.getString("employee_account"));
 
@@ -272,8 +272,8 @@ public class CouponCodeDAO {
 				CCB.setCoupon_code(rs.getString("coupon_code"));
 				CCB.setCoupon_code_effective_date(rs.getTimestamp("coupon_code_effective_date"));
 				CCB.setCoupon_code_expire_date(rs.getTimestamp("coupon_code_expire_date"));
-				CCB.setcoupon_code_text_content(rs.getString("coupon_code_text_content"));
-				CCB.setcoupon_code_content(rs.getFloat("coupon_code_content"));
+				CCB.setCoupon_code_text_content(rs.getString("coupon_code_text_content"));
+				CCB.setCoupon_code_content(rs.getFloat("coupon_code_content"));
 				CCB.setDiscount_type(rs.getInt("discount_type"));
 				CCB.setEmployee_account(rs.getString("employee_account"));
 
@@ -324,9 +324,9 @@ public class CouponCodeDAO {
 //
 //		CCB.setCoupon_code_expire_date(tse);
 //
-//		CCB.setcoupon_code_content_content("蛋糕要快,還要更快,蛋糕2折");
+//		CCB.setCoupon_code_content_content("蛋糕要快,還要更快,蛋糕2折");
 //
-//		CCB.setcoupon_code_content(1f);
+//		CCB.setCoupon_code_content(1f);
 //
 //		CCB.setDiscount_type(2);
 //
@@ -351,9 +351,9 @@ public class CouponCodeDAO {
 //
 //		CCB.setCoupon_code_expire_date(tse);
 //
-//		CCB.setcoupon_code_content_content("星爆都不星爆了,快不起來了,蛋糕9折");
+//		CCB.setCoupon_code_content_content("星爆都不星爆了,快不起來了,蛋糕9折");
 //
-//		CCB.setcoupon_code_content(1f);
+//		CCB.setCoupon_code_content(1f);
 //
 //		CCB.setDiscount_type(2);
 //
