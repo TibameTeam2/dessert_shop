@@ -417,7 +417,7 @@
 <!-- 		<servlet-name>OrderDetailServlet</servlet-name> -->
 <!-- 		<url-pattern>/orderDetail/*</url-pattern> -->
 <!-- 	</servlet-mapping> -->
-	
+
 	<!--HistoryCommentOrderDetailServlet 用在載入歷史評價的order_detail_id們-->
 	<servlet>
 		<servlet-name>HistoryCommentOrderDetailServlet</servlet-name>
@@ -437,7 +437,7 @@
 <!-- 		<servlet-name>HistoryCommentProductServlet</servlet-name> -->
 <!-- 		<url-pattern>/historyCommentProduct/*</url-pattern> -->
 <!-- 	</servlet-mapping> -->
-	
+
 	<!--ReviewImageUploadServlet 用在載入歷史評價內的評論照片等任何呼叫評論照片的setReview_image()-->
 	<servlet>
 		<servlet-name>ReviewImageUploadServlet</servlet-name>
@@ -447,7 +447,7 @@
 		<servlet-name>ReviewImageUploadServlet</servlet-name>
 		<url-pattern>/reviewImageUpload/*</url-pattern>
 	</servlet-mapping>
-	
+
 	<!--YetToLeaveCommentServlet 用在載入尚未評價頁面-->
 	<servlet>
 		<servlet-name>YetToLeaveCommentServlet</servlet-name>
@@ -477,8 +477,6 @@
 		<servlet-name>ProductCommentServlet</servlet-name>
 		<url-pattern>/productComment/*</url-pattern>
 	</servlet-mapping>
-	
-	
 
 
 
@@ -562,6 +560,75 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+	<servlet>
+		<servlet-name>AmServlet</servlet-name>
+		<servlet-class>com.announcement_management.controller.AmServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AmServlet</servlet-name>
+		<url-pattern>/am/am.do</url-pattern>
+	</servlet-mapping>
+
+
+
+	<servlet>
+		<servlet-name>AmServletF</servlet-name>
+		<servlet-class>com.announcement_management.controller.AmServletF</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AmServletF</servlet-name>
+		<url-pattern>/announcement_management/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>CouponCodeServletJsp</servlet-name>
+		<servlet-class>com.coupon_code.controller.CouponCodeServletJsp</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CouponCodeServletJsp</servlet-name>
+		<url-pattern>/coupon_code_jsp/cc.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>CouponCodeServlet</servlet-name>
+		<servlet-class>com.coupon_code.controller.CouponCodeServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CouponCodeServlet</servlet-name>
+		<url-pattern>/coupon_code/*</url-pattern>
+	</servlet-mapping>
+
+
+
+	<servlet>
+		<servlet-name>CouponServletJsp</servlet-name>
+		<servlet-class>com.coupon.controller.CouponServletJsp</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CouponServletJsp</servlet-name>
+		<url-pattern>/coupon_jsp/coupon.do</url-pattern>
+	</servlet-mapping>
+
+
+
+	<servlet>
+		<servlet-name>CouponServlet</servlet-name>
+		<servlet-class>com.coupon.controller.CouponServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CouponServlet</servlet-name>
+		<url-pattern>/coupon/*</url-pattern>
+	</servlet-mapping>
 
 
 

@@ -10,11 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.jdbc.core.JdbcTemplate;
-
-import com.announcement_management.model.AnnouncementManagementBean;
 import com.util.JDBCUtil;
 
-public class CouponCodeDAO {
+public class CouponCodeDAO implements CouponCodeDAO_interface{
 
 	private static JdbcTemplate jdbcTemplate;
 	private String driver = JDBCUtil.driver;
