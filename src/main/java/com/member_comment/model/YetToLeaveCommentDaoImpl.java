@@ -33,7 +33,7 @@ public class YetToLeaveCommentDaoImpl implements YetToLeaveCommentDao {
 			"group by od.order_master_id\r\n" + 
 			"order by order_master_id; ";
 	
-	private static final String YetToLeaveComment_FindByOrderMasterId = "select om.order_master_id, od.order_detail_id, p.product_id, product_name, product_image, comment_time\r\n" + 
+	private static final String YetToLeaveComment_FindByOrderMasterId = "select om.order_master_id, od.order_detail_id, p.product_id, product_name, image_id, product_image, comment_time\r\n" + 
 			"from order_master om\r\n" + 
 			"left join order_detail od on om.order_master_id = od.order_master_id\r\n" + 
 			"left join product p on od.product_id = p.product_id\r\n" + 
@@ -76,6 +76,7 @@ public class YetToLeaveCommentDaoImpl implements YetToLeaveCommentDao {
 //				ytlcBean.setProduct_image(rs.getBytes("product_image"));
 //				ytlcBean.setProduct_name(rs.getString("product_name"));
 //				ytlcBean.setProduct_id(rs.getInt("product_id"));
+				
 				list.add(ytlcBean);
 			}
 
@@ -139,7 +140,8 @@ public class YetToLeaveCommentDaoImpl implements YetToLeaveCommentDao {
 				ytlcBean.setOrder_detail_id(rs.getInt("order_detail_id"));
 				ytlcBean.setProduct_id(rs.getInt("product_id"));
 				ytlcBean.setProduct_name(rs.getString("product_name"));
-				ytlcBean.setProduct_image(rs.getBytes("product_image"));
+				ytlcBean.setImage_id(rs.getInt("image_id"));
+				ytlcBean.setProduct_image("/product_jsp/product.do?action=getProductImage&id="+ytlcBean.getImage_id());
 				ytlcBean.setComment_time(rs.getTimestamp("comment_time"));
 				list.add(ytlcBean);
 			}
@@ -224,6 +226,7 @@ public class YetToLeaveCommentDaoImpl implements YetToLeaveCommentDao {
 			System.out.println("order_detail_id = " + ytlcBean1.getOrder_detail_id() + ",");
 			System.out.println("product_id = " + ytlcBean1.getProduct_id() + ",");
 			System.out.println("product_name = " + ytlcBean1.getProduct_name() + ",");
+			System.out.println("image_id = " + ytlcBean1.getImage_id() + ",");
 			System.out.println("product_image = " + ytlcBean1.getProduct_image()+ ",");
 			System.out.println("comment_time = " + ytlcBean1.getComment_time()+ ",");
 			System.out.println("-----------------------------");

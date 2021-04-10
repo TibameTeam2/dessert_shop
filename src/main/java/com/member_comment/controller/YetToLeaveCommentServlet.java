@@ -26,6 +26,7 @@ public class YetToLeaveCommentServlet extends BaseServlet {
 		System.out.println("hello");
 	}
 
+	//取得尚未評價的order_master資料
 	public void getYetToLeaveComment(HttpServletRequest req, HttpServletResponse res) {
 		MemberBean member = (MemberBean) req.getSession().getAttribute("member");
 		ResultInfo info = new ResultInfo();
@@ -40,8 +41,9 @@ public class YetToLeaveCommentServlet extends BaseServlet {
 			info.setMsg(member.getMember_account() + " 的尚未評價資料");
 		}
 		writeValueByWriter(res, info);
-	}	
+	}
 
+	//取得尚未評價的order_detail資料
 	public void getYetToLeaveComment1(HttpServletRequest req, HttpServletResponse res) {
 
 		String order_master_id = req.getParameter("orderMasterId");

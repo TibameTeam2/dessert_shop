@@ -879,6 +879,7 @@
 						// console.log(data.data);
 						// console.log("------------------------");
 
+
 						//orderDetail/getHistoryCommentOrderDetail?orderMasterId=? 的data
 						//第2-1個for迴圈
 						for (let j = 0; j < data1.data.length; j++) {
@@ -906,7 +907,8 @@
 							+ '<!-- 珍珠糖粒泡芙 開始 -->\n'
 							+ '<div class="single-comment">\n'
 							+ '<div class="comment-author">\n'
-							+ '<img src="data:image/png;base64,'+ product_image +'" class="">\n'
+							+ '<img src="/dessert_shop'+ product_image +'" class="">\n'
+							// + '<img src="data:image/png;base64,'+ product_image +'" class="">\n'
 							+ '</div>\n'
 							+ '<div class="comment-content">\n'
 							+ '<div class="author-name-rating">\n'
@@ -957,7 +959,7 @@
 								$("div[class='review-star']").prepend('<div class="star" style="width:0%">');
 							}
 
-									// <!-- <blockquote><p>評價文字內容的亮點/摘錄</p></blockquote> -->
+							// <!-- <blockquote><p>評價文字內容的亮點/摘錄</p></blockquote> -->
 							let xxx = '<p style="font-size: 14px; margin-bottom: 0px;">商家回覆:</p><span style="font-size: 14px">' + reply_content + '</span>';
 							let ooo = '<blockquote><p>'+ xxx +'</p></blockquote>';
 
@@ -1071,7 +1073,7 @@
 					+ '</div>\n'
 					+ '</li>';
 
-					$("div#link2").find("ul.order_master_comment_list:last-child").append(om_list);
+					$("div#link2").find("ul.order_master_comment_list:last-child").prepend(om_list);
 
 				} //尚未評價 的 第一個for迴圈, 憑member_account抓order_master資料
 
@@ -1114,7 +1116,7 @@
 							+ '<!-- <blockquote><p>評價文字內容的亮點/摘錄</p></blockquote> -->\n'
 							+ '<div class="single-comment">\n'
 							+ '<div class="comment-author">\n'
-							+ '<img src="data:image/png;base64,'+ product_image + '" class="" alt="">\n'
+							+ '<img src="/dessert_shop'+ product_image + '" class="" alt="">\n'
 							+ '</div>\n'
 							+ '<div class="comment-content">\n'
 							+ '<div class="author-name-rating">\n'
@@ -1209,6 +1211,7 @@
 
 			}) //尚未評價 的 get請求
 
+
 		})
 		//以上為功能
 
@@ -1226,16 +1229,29 @@
 
 
 		//跟送評價星等進資料庫有關
-		// $("div#link2").find("div.star_block").on("click", "span.star", function() {
-		// 	//alert("更新成功");
-		// 	$(that).closest("div.star_block").find("span.star").each(function(i, item){
-		// 		if( parseInt($(this).attr("data-star")) <= current_star ){
-		// 			$(this).addClass("-on");
-		// 		}else{
-		// 			$(this).removeClass("-on");
-		// 		}
-		// 	});
-		// })
+		$("div#link2").find("div.star_block").on("click", "span.star", function() {
+			alert("更新成功");
+			// 	$(that).closest("div.star_block").find("span.star").each(function(i, item){
+			// 		if( parseInt($(this).attr("data-star")) <= current_star ){
+			// 			$(this).addClass("-on");
+			// 		}else{
+			// 			$(this).removeClass("-on");
+			// 		}
+			// 	});
+		})
+
+
+		//新增評論
+		$("div#link2").find("div.star_block").on("click", "span.star", function() {
+			//alert("更新成功");
+			$(that).closest("div.star_block").find("span.star").each(function(i, item){
+				if( parseInt($(this).attr("data-star")) <= current_star ){
+					$(this).addClass("-on");
+				}else{
+					$(this).removeClass("-on");
+				}
+			});
+		})
 
 
 		// // 歷史評價縮合(錯誤示範, 應該要綁父層)

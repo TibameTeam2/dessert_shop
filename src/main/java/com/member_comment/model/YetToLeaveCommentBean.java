@@ -15,17 +15,18 @@ public class YetToLeaveCommentBean implements Serializable{
 	private Integer payment_method;
 	private String order_remarks;
 	private Timestamp comment_time;
-	private byte[] product_image;
+	private String product_image;
 	private String product_name;
 	private Integer product_id;
+	private Integer image_id;
 	@Override
 	public String toString() {
 		return "YetToLeaveCommentBean [member_account=" + member_account + ", order_master_id=" + order_master_id
 				+ ", order_detail_id=" + order_detail_id + ", order_time=" + order_time + ", payment_time="
 				+ payment_time + ", invoice_number=" + invoice_number + ", coupon_id=" + coupon_id + ", payment_method="
 				+ payment_method + ", order_remarks=" + order_remarks + ", comment_time=" + comment_time
-				+ ", product_image=" + Arrays.toString(product_image) + ", product_name=" + product_name
-				+ ", product_id=" + product_id + "]";
+				+ ", product_image=" + product_image + ", product_name=" + product_name + ", product_id=" + product_id
+				+ ", image_id=" + image_id + "]";
 	}
 	public String getMember_account() {
 		return member_account;
@@ -87,10 +88,10 @@ public class YetToLeaveCommentBean implements Serializable{
 	public void setComment_time(Timestamp comment_time) {
 		this.comment_time = comment_time;
 	}
-	public byte[] getProduct_image() {
+	public String getProduct_image() {
 		return product_image;
 	}
-	public void setProduct_image(byte[] product_image) {
+	public void setProduct_image(String product_image) {
 		this.product_image = product_image;
 	}
 	public String getProduct_name() {
@@ -105,6 +106,11 @@ public class YetToLeaveCommentBean implements Serializable{
 	public void setProduct_id(Integer product_id) {
 		this.product_id = product_id;
 	}
-	
+	public Integer getImage_id() {
+		return image_id;
+	}
+	public void setImage_id(Integer image_id) {
+		this.image_id = image_id;
+	}
 	
 }

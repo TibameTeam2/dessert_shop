@@ -457,6 +457,16 @@
 		<servlet-name>YetToLeaveCommentServlet</servlet-name>
 		<url-pattern>/yetToLeaveComment/*</url-pattern>
 	</servlet-mapping>
+
+	<!--MemberCommentServlet -->
+	<servlet>
+		<servlet-name>MemberCommentServlet</servlet-name>
+		<servlet-class>com.member_comment.controller.MemberCommentServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MemberCommentServlet</servlet-name>
+		<url-pattern>/memberComment/*</url-pattern>
+	</servlet-mapping>
 	
 	
 
