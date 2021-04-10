@@ -887,19 +887,19 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form id="addProduct_form" action="page-list-product.html" data-toggle="validator">
+                        <form action="page-list-product.html" data-toggle="validator">
                             <div class="row">
                             	<div class="col-md-6">                      
                                     <div class="form-group">
                                         <label>商品名稱 *</label>
-                                        <input type="text" class="form-control" placeholder="請輸入中/英文或數字" data-errors="Please Enter Name."  name="product_name" required>
+                                        <input type="text" class="form-control" placeholder="請輸入中/英文或數字" data-errors="Please Enter Name." required>
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>商品編號 *</label>
-                                        <input type="text" class="form-control" placeholder="自動產生" data-errors="Please Enter Code." disabled>
+                                        <input type="text" class="form-control" placeholder="自動產生" data-errors="Please Enter Code." required disabled>
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>     
@@ -938,6 +938,7 @@
 										<div class="help-block with-errors"></div>
                                     </div> 
                                 </div>  
+                                
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>商品售價 *</label>
@@ -978,7 +979,7 @@
                                 <div class="col-md-4">                                    
                                     <div class="form-group">
                                         <label>商品甜度 *</label>
-                                         <select name="type" class="selectpicker form-control" data-style="py-0">
+                                         <select name="type" class="selectpicker form-control" data-style="py-0" required>
                                             <option value="">請選擇商品甜度</option>
                                             <option value=1>1</option>
                                             <option value=2>2</option>
@@ -1009,7 +1010,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>商品圖片*</label>
-                                        <input type="file" class="form-control image-file" name="pic" accept="image/*" required>
+                                        <input type="file" class="form-control image-file" name="pic" accept="image/*" multiple required>
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
@@ -1073,28 +1074,5 @@
     
     <!-- app JavaScript -->
     <script src="assets/js/app.js"></script>
-    
-    
-    <script>
-    
-    $("#addProduct_form").submit(function(){
-    	console.log("submit the form");
-    	
-    	console.log($(this));
-    	$.post("/dessert_shop/product/addProduct", $(this).serialize(), function (data) {
-    		console.log(data.flag);
-//     		if(){}
-    		
-    	});
-    });
-    
-    
-    
-    
-    
-    </script>
-    
-    
-    
   </body>
 </html>
