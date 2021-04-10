@@ -19,15 +19,15 @@ public class HistoryCommentOrderDetailDaoImpl implements HistoryCommentOrderDeta
 	private String url = JDBCUtil.url;
 	private String userid = JDBCUtil.user;
 	private String passwd = JDBCUtil.password;
-	private static final String HOHOHO = "select order_master_id, od.order_detail_id, od.product_id, product_name, image_id, product_image, rating, comment_content, reply_id, reply_content\r\n" + 
-			"from order_detail od \r\n" + 
-			"left join product p on od.product_id = p.product_id\r\n" + 
+	private static final String HOHOHO = "select order_master_id, od.order_detail_id, od.product_id, product_name, image_id, mc.review_id, rating, comment_content, reply_id, reply_content\r\n" + 
+			"from order_detail od\r\n" + 
+			"left join member_comment mc on od.order_detail_id = mc.order_detail_id\r\n" + 
+			"left join dealer_reply dr on mc.review_id = dr.review_id \r\n" + 
+			"join product p on od.product_id = p.product_id\r\n" + 
 			"left join product_image pi on p.product_id = pi.product_id\r\n" + 
-			"left join member_comment mc on p.product_id = mc.product_id\r\n" + 
-			"left join dealer_reply dr on mc.review_id = dr.review_id\r\n" + 
-			"where order_master_id = ?\r\n" + 
-			"group by order_master_id\r\n" + 
-			"order by order_master_id;";
+			"where order_master_id = ? and mc.rating is not null\r\n" + 
+			"group by order_detail_id\r\n" + 
+			"order by order_detail_id;";
 
 	
 	@Override
@@ -57,11 +57,14 @@ public class HistoryCommentOrderDetailDaoImpl implements HistoryCommentOrderDeta
 				hcodBean.setProduct_id(rs.getInt("product_id"));
 				hcodBean.setProduct_name(rs.getString("product_name"));
 				hcodBean.setImage_id(rs.getInt("image_id"));
-				hcodBean.setProduct_image(rs.getBytes("product_image"));
+//				hcodBean.setProduct_image(rs.getBytes("product_image"));
 				hcodBean.setRating(rs.getInt("rating"));
 				hcodBean.setComment_content(rs.getString("comment_content"));
 				hcodBean.setReply_id(rs.getInt("reply_id"));
 				hcodBean.setReply_content(rs.getString("reply_content"));
+				hcodBean.setProduct_image("/product_jsp/product.do?action=getProductImage&id="+hcodBean.getImage_id());
+				
+				
 				
 				//憑order_detail_id找到相對應的review_image_id, review_image們
 				pstmt1 = con.prepareStatement("select review_image_id, review_image\r\n" + 
@@ -127,7 +130,7 @@ public class HistoryCommentOrderDetailDaoImpl implements HistoryCommentOrderDeta
 			System.out.println("order_master_id: " + hcodBean.getOrder_master_id() + ",");
 			System.out.println("product_id: " + hcodBean.getProduct_id() + ",");
 			System.out.println("product_name: " + hcodBean.getProduct_name() + ",");
-			System.out.println("image_id: " + hcodBean.getImage_id() + ",");
+//			System.out.println("image_id: " + hcodBean.getImage_id() + ",");
 			System.out.println("product_image: " + hcodBean.getProduct_image() + ",");
 			System.out.println("rating: " + hcodBean.getRating() + ",");
 			System.out.println("comment_content: " + hcodBean.getComment_content() + ",");
