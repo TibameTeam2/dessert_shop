@@ -374,9 +374,8 @@
           function getParameter(param) {
               const urlParams = new URLSearchParams(window.location.search);
               return urlParams.get(param);   //取不到值時會是null
-              console.log("param裡");
           }
-         	
+
        	let request_type=getParameter("type");
        	let request_subtype= getParameter("subtype");
        	console.log("轉換前:"+request_type);	
@@ -485,7 +484,7 @@
        		productDisplay(data);
 //      		console.log(window.location.href);
            		
-            });
+        });
          
 				     	
 	<!--*******  排序功能  ******--> // 語法重複性太高，有空再修改...    
@@ -683,8 +682,7 @@
         	
         	
         	
-//    });//給function(){}跟不給的差異?
-   
+//    });
  
 	
     

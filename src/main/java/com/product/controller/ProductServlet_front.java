@@ -127,9 +127,9 @@ public class ProductServlet_front extends BaseServlet {
     	writeValueByWriter(res, info);
     }
 
-    //  http://localhost:8081/dessert_shop/product/getAllSortBySweetness
-//    public void getAllSortBySweetness(HttpServletRequest req, HttpServletResponse res) {
-//    	System.out.println("甜度排序");
+    //  http://localhost:8081/dessert_shop/product/addProduct
+    public void addProduct(HttpServletRequest req, HttpServletResponse res) {
+    	System.out.println("新增商品");
 //    	ProductService productSvc = new ProductService();
 //    	List<ProductBean> productList = productSvc.getAllSortBySweetness();
 //    	
@@ -140,7 +140,19 @@ public class ProductServlet_front extends BaseServlet {
 //    	info.setData(productList);
 //    	
 //    	writeValueByWriter(res, info);
-//    }
-   
+    }
+    
+    
+    
+    // 使用語心的API 顯示圖片 內容 商家回覆
+    
+    
+    //id?  star?  review+1
+//    在service中新增來自評論的星星與review的方法 給語心使用 
+    
+    
+    
+    
+    
     
 }
