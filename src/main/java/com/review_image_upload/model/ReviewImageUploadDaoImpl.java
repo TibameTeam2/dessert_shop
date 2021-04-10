@@ -12,16 +12,27 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReviewImageUploadBeanDAO {
+public class ReviewImageUploadDaoImpl implements ReviewImageUploadDao{
 
 	private static JdbcTemplate jdbcTemplate;
 	private String DRIVER = JDBCUtil.driver;
 	private String URL = JDBCUtil.url;
 	private String USERID = JDBCUtil.user;
 	private String PASSWORD = JDBCUtil.password;
+	
+	private static final String INSERT_STMT = "INSERT INTO review_image_upload(review_image, review_id) VALUES (?, ?)";
+
+	private static final String UPDATE = "UPDATE review_image_upload SET review_image=?, review_id=? WHERE review_image_id=?";
+
+	private static final String DELETE = "DELETE FROM review_image_upload WHERE review_image_id=?";
+
+	private static final String GET_ONE_STMT = "SELECT * FROM review_image_upload WHERE review_image_id=?";
+
+	private static final String GET_ALL_STMT = "SELECT * FROM review_image_upload";
+	
 
 	// insert
-	public void insert(ReviewImageUploadBean ReviewImageUploadBean) throws IOException {
+	public void insert(ReviewImageUploadBean ReviewImageUploadBean) {
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -30,7 +41,7 @@ public class ReviewImageUploadBeanDAO {
 
 			Class.forName(DRIVER);
 			con = DriverManager.getConnection(URL, USERID, PASSWORD);
-			pstmt = con.prepareStatement("INSERT INTO review_image_upload(review_image, review_id) VALUES (?, ?)");
+			pstmt = con.prepareStatement(INSERT_STMT);
 
 			pstmt.setBytes(1, ReviewImageUploadBean.getReview_image());
 			pstmt.setInt(2, ReviewImageUploadBean.getReview_id());
@@ -68,8 +79,7 @@ public class ReviewImageUploadBeanDAO {
 
 			Class.forName(DRIVER);
 			con = DriverManager.getConnection(URL, USERID, PASSWORD);
-			pstmt = con.prepareStatement(
-					"UPDATE review_image_upload SET review_image=?, review_id=? WHERE review_image_id=?");
+			pstmt = con.prepareStatement(UPDATE);
 
 			pstmt.setBytes(1, ReviewImageUploadBean.getReview_image());
 			pstmt.setInt(2, ReviewImageUploadBean.getReview_id());
@@ -108,7 +118,7 @@ public class ReviewImageUploadBeanDAO {
 
 			Class.forName(DRIVER);
 			con = DriverManager.getConnection(URL, USERID, PASSWORD);
-			pstmt = con.prepareStatement("DELETE FROM review_image_upload WHERE review_image_id=?");
+			pstmt = con.prepareStatement(DELETE);
 
 			pstmt.setInt(1, review_image_id);
 			pstmt.executeUpdate();
@@ -136,8 +146,8 @@ public class ReviewImageUploadBeanDAO {
 
 	}
 
-	// findByPK
-	public ReviewImageUploadBean findByPK(Integer review_image_id) {
+	// findByPrimaryKey
+	public ReviewImageUploadBean findByPrimaryKey(Integer review_image_id) {
 
 		ReviewImageUploadBean ReviewImageUploadBean = null;
 		Connection con = null;
@@ -148,7 +158,7 @@ public class ReviewImageUploadBeanDAO {
 
 			Class.forName(DRIVER);
 			con = DriverManager.getConnection(URL, USERID, PASSWORD);
-			pstmt = con.prepareStatement("SELECT * FROM review_image_upload WHERE review_image_id=?");
+			pstmt = con.prepareStatement(GET_ONE_STMT);
 
 			pstmt.setInt(1, review_image_id);
 			rs = pstmt.executeQuery();
@@ -189,6 +199,7 @@ public class ReviewImageUploadBeanDAO {
 		return ReviewImageUploadBean;
 	}
 
+	
 	// getAll
 	public List<ReviewImageUploadBean> getAll() {
 
@@ -203,7 +214,7 @@ public class ReviewImageUploadBeanDAO {
 
 			Class.forName(DRIVER);
 			con = DriverManager.getConnection(URL, USERID, PASSWORD);
-			pstmt = con.prepareStatement("SELECT * FROM review_image_upload");
+			pstmt = con.prepareStatement(GET_ALL_STMT);
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
@@ -243,10 +254,13 @@ public class ReviewImageUploadBeanDAO {
 		return list;
 	}
 
+	
+	
+	
+	/*
 	public static void main(String[] args) throws IOException {
 
-		ReviewImageUploadBeanDAO dao = new ReviewImageUploadBeanDAO();
-/*
+		ReviewImageUploadDao dao = new ReviewImageUploadDaoImpl();
 		// 新增
 		ReviewImageUploadBean riuInsert = new ReviewImageUploadBean();
 		byte[] pic3 = getPictureByteArray("C:\\project\\images\\review_image_upload\\cake1.jpg");
@@ -273,7 +287,7 @@ public class ReviewImageUploadBeanDAO {
 		System.out.println(riuFindByPK.getReview_image_id() + ",");
 		System.out.println(riuFindByPK.getReview_image() + ",");
 		System.out.println(riuFindByPK.getReview_id() + ",");
-		System.out.println("----------有跑查主鍵----------");*/
+		System.out.println("----------有跑查主鍵----------");
 
 		// 查全部
 		List<ReviewImageUploadBean> list = dao.getAll();
@@ -285,6 +299,7 @@ public class ReviewImageUploadBeanDAO {
 		}
 		System.out.println("----------有跑查全部----------");
 	}
+*/
 
 	// 使用byte[]方式
 	public static byte[] getPictureByteArray(String path) throws IOException {

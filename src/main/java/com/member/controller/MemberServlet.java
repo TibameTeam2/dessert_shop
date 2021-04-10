@@ -210,8 +210,19 @@ public class MemberServlet extends BaseServlet {
             req.getSession().setAttribute("member", member);//登入成功
             info.setMsg("登入成功!");
             info.setData(member);
-            info.setRedirect(req.getContextPath() + "/TEA103G2/front-end/my-account.html");
-            System.out.println("member = " + member);
+
+            try {
+                String location = (String) req.getSession().getAttribute("location");
+                if (location != null) {
+                    req.getSession().removeAttribute("location");   //看看有無來源網頁 (-->如有來源網頁:則重導至來源網頁)
+                    info.setRedirect(location);
+                    writeValueByWriter(res, info);
+                    return;
+                }
+            }catch (Exception ignored) { }
+
+            info.setRedirect(req.getContextPath() + "/TEA103G2/front-end/index.html");
+//            System.out.println("member = " + member);
         }
         writeValueByWriter(res, info);
     }

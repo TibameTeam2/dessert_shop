@@ -4,15 +4,15 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 
 public class HistoryCommentOrderMasterBean implements Serializable{
-	String member_account;
-	Integer order_master_id;
-	Timestamp order_time;
-	Timestamp payment_time; 
-	String invoice_number;
-	Integer coupon_id;
-	Integer payment_method;
-	String order_remarks;
-	Timestamp comment_time;
+	private String member_account;
+	private Integer order_master_id;
+	private Timestamp order_time;
+	private Timestamp payment_time; 
+	private String invoice_number;
+	private Integer coupon_id;
+	private Integer payment_method;
+	private String order_remarks;
+	private Timestamp comment_time;
 	
 	@Override
 	public String toString() {
@@ -93,7 +93,6 @@ public class HistoryCommentOrderMasterBean implements Serializable{
 	public void setComment_time(Timestamp comment_time) {
 		this.comment_time = comment_time;
 	}
-	
 	
 	
 }

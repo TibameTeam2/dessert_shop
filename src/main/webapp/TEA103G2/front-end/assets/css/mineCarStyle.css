@@ -398,3 +398,7 @@ img.send-btn {
     width: 25px;
     margin-left: 20px;
 }
+
+ul.coupon-list>li {
+    font-weight: bold;
+}

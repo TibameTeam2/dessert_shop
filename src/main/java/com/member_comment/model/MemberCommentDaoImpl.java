@@ -1,5 +1,6 @@
 package com.member_comment.model;
 
+import com.review_image_upload.model.ReviewImageUploadBean;
 import com.util.JDBCUtil;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -8,14 +9,15 @@ import java.util.*;
 
 //import org.junit.Test;
 
-
-public class MemberCommentBeanDAO {
+public class MemberCommentDaoImpl implements MemberCommentDao {
 
 	private static JdbcTemplate jdbcTemplate;
 	private String DRIVER = JDBCUtil.driver;
 	private String URL = JDBCUtil.url;
 	private String USERID = JDBCUtil.user;
 	private String PASSWORD = JDBCUtil.password;
+
+	private static final String GET_ReviewImageUpload_ByReview_id_STMT = "SELECT review_image_id, review_image, review_id FROM review_image_upload where review_id = ? order by review_image_id";
 
 	// insert
 	public void insert(MemberCommentBean MemberCommentBean) {
@@ -28,14 +30,12 @@ public class MemberCommentBeanDAO {
 			Class.forName(DRIVER);
 			con = DriverManager.getConnection(URL, USERID, PASSWORD);
 			pstmt = con.prepareStatement(
-					"INSERT INTO member_comment(order_detail_id, comment_content, rating, product_id, comment_status) VALUES (?, ?, ?, ?, ?)");
+					"INSERT INTO member_comment(order_detail_id, comment_content, rating, product_id, comment_status) VALUES (?, ?, ?, ?, 1)");
 
 			pstmt.setInt(1, MemberCommentBean.getOrder_detail_id());
 			pstmt.setString(2, MemberCommentBean.getComment_content());
 			pstmt.setInt(3, MemberCommentBean.getRating());
 			pstmt.setInt(4, MemberCommentBean.getProduct_id());
-			pstmt.setInt(5, MemberCommentBean.getComment_status());
-
 			pstmt.executeUpdate();
 
 		} catch (ClassNotFoundException e) {
@@ -72,13 +72,13 @@ public class MemberCommentBeanDAO {
 			Class.forName(DRIVER);
 			con = DriverManager.getConnection(URL, USERID, PASSWORD);
 			pstmt = con.prepareStatement(
-					"UPDATE member_comment SET order_detail_id=?, comment_content=?, rating=?, product_id=?, comment_status=? WHERE review_id=?");
+					"UPDATE member_comment SET order_detail_id=?, comment_content=?, rating=?, product_id=? WHERE review_id=?");
 
 			pstmt.setInt(1, MemberCommentBean.getOrder_detail_id());
 			pstmt.setString(2, MemberCommentBean.getComment_content());
 			pstmt.setInt(3, MemberCommentBean.getRating());
 			pstmt.setInt(4, MemberCommentBean.getProduct_id());
-			pstmt.setInt(5, MemberCommentBean.getComment_status());
+//			pstmt.setInt(5, MemberCommentBean.getComment_status());
 			pstmt.setInt(6, MemberCommentBean.getReview_id());
 
 			pstmt.executeUpdate();
@@ -145,7 +145,7 @@ public class MemberCommentBeanDAO {
 	}
 
 	// 測試查主鍵
-	public MemberCommentBean findByPK(Integer review_id) {
+	public MemberCommentBean findByPrimaryKey(Integer review_id) {
 
 		MemberCommentBean MemberCommentBean = null;
 		Connection con = null;
@@ -233,12 +233,10 @@ public class MemberCommentBeanDAO {
 			}
 
 		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
+			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
 			// Handle any SQL errors
 		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. "
-					+ se.getMessage());
+			throw new RuntimeException("A database error occured. " + se.getMessage());
 			// Clean up JDBC resources
 		} finally {
 			if (rs != null) {
@@ -266,59 +264,118 @@ public class MemberCommentBeanDAO {
 		return list;
 	}
 
-	public static void main(String[] args) {
+	@Override
+	public Set<ReviewImageUploadBean> getReviewImageUploadsByReview_id(Integer review_id) {
 
-		MemberCommentBeanDAO dao = new MemberCommentBeanDAO();
+		Set<ReviewImageUploadBean> set = new LinkedHashSet<ReviewImageUploadBean>();
+		ReviewImageUploadBean reviewImageUploadBean = null;
 
-		// 新增
-		MemberCommentBean memberCommentBean_insert = new MemberCommentBean();
-		memberCommentBean_insert.setOrder_detail_id(2);
-		memberCommentBean_insert.setComment_content("好吃好吃");
-		memberCommentBean_insert.setRating(4);
-		memberCommentBean_insert.setProduct_id(1);
-		memberCommentBean_insert.setComment_status(1);
-		dao.insert(memberCommentBean_insert);
-		System.out.println("----------有跑新增----------");
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 
-		// 修改
-		MemberCommentBean memberCommentBean_update = new MemberCommentBean();
-		memberCommentBean_update.setOrder_detail_id(1);
-		memberCommentBean_update.setComment_content("好吃好");
-		memberCommentBean_update.setRating(5);
-		memberCommentBean_update.setProduct_id(1);
-		memberCommentBean_update.setComment_status(1);
-		memberCommentBean_update.setReview_id(3);
-		dao.update(memberCommentBean_update);
-		System.out.println("----------有跑修改----------");
+		try {
 
-		// 刪除
-		dao.delete(6);
-		System.out.println("----------有跑刪除----------");
+			Class.forName(DRIVER);
+			con = DriverManager.getConnection(URL, USERID, PASSWORD);
+			pstmt = con.prepareStatement(GET_ReviewImageUpload_ByReview_id_STMT);
+			pstmt.setInt(1, review_id);
+			rs = pstmt.executeQuery();
 
-		// 查詢主鍵
-		MemberCommentBean memeber_commentBean_findByPK = dao.findByPK(2);
-		System.out.println("review_id: "+memeber_commentBean_findByPK.getReview_id() + ",");
-		System.out.println("order_detail_id: "+memeber_commentBean_findByPK.getOrder_detail_id() + ",");
-		System.out.println("comment_content: "+memeber_commentBean_findByPK.getComment_content() + ",");
-		System.out.println("rating: "+memeber_commentBean_findByPK.getRating() + ",");
-		System.out.println("current_time: "+memeber_commentBean_findByPK.getComment_time() + ",");
-		System.out.println("product_id: "+memeber_commentBean_findByPK.getProduct_id() + ",");
-		System.out.println("comment_status: "+memeber_commentBean_findByPK.getComment_status() + ",");
-		System.out.println("----------有跑查主鍵----------");
+			while (rs.next()) {
+				reviewImageUploadBean = new ReviewImageUploadBean();
+				reviewImageUploadBean.setReview_image_id(rs.getInt("review_image_id"));
+				reviewImageUploadBean.setReview_image(rs.getBytes("review_image"));
+				reviewImageUploadBean.setReview_id(rs.getInt("review_id"));
+				set.add(reviewImageUploadBean);
+			}
 
-		// 查全部
-		List<MemberCommentBean> list = dao.getAll();
-		for(MemberCommentBean mcb : list) {
-			System.out.println("review_id: "+mcb.getReview_id() + ",");
-			System.out.println("order_detail_id: "+mcb.getOrder_detail_id() + ",");
-			System.out.println("comment_content: "+mcb.getComment_content() +",");
-			System.out.println("rating: "+mcb.getRating() +",");
-			System.out.println("comment_time: "+mcb.getComment_time() +",");
-			System.out.println("product_id: "+mcb.getProduct_id() +",");
-			System.out.println("comment_status: "+mcb.getComment_status() +",");
-			System.out.println();
+			// Handle any SQL errors
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
 		}
-		System.out.println("----------有跑查全部----------");
+		return set;
 	}
+
+//	public static void main(String[] args) {
+//
+//		MemberCommentDao dao = new MemberCommentDao();
+//
+//		// 新增
+//		MemberCommentBean memberCommentBean_insert = new MemberCommentBean();
+//		memberCommentBean_insert.setOrder_detail_id(2);
+//		memberCommentBean_insert.setComment_content("好吃好吃");
+//		memberCommentBean_insert.setRating(4);
+//		memberCommentBean_insert.setProduct_id(1);
+//		memberCommentBean_insert.setComment_status(1);
+//		dao.insert(memberCommentBean_insert);
+//		System.out.println("----------有跑新增----------");
+//
+//		// 修改
+//		MemberCommentBean memberCommentBean_update = new MemberCommentBean();
+//		memberCommentBean_update.setOrder_detail_id(1);
+//		memberCommentBean_update.setComment_content("好吃好");
+//		memberCommentBean_update.setRating(5);
+//		memberCommentBean_update.setProduct_id(1);
+//		memberCommentBean_update.setComment_status(1);
+//		memberCommentBean_update.setReview_id(3);
+//		dao.update(memberCommentBean_update);
+//		System.out.println("----------有跑修改----------");
+//
+//		// 刪除
+//		dao.delete(6);
+//		System.out.println("----------有跑刪除----------");
+//
+//		// 查詢主鍵
+//		MemberCommentBean memeber_commentBean_findByPrimaryKey = dao.findByPK(2);
+//		System.out.println("review_id: "+memeber_commentBean_findByPK.getReview_id() + ",");
+//		System.out.println("order_detail_id: "+memeber_commentBean_findByPK.getOrder_detail_id() + ",");
+//		System.out.println("comment_content: "+memeber_commentBean_findByPK.getComment_content() + ",");
+//		System.out.println("rating: "+memeber_commentBean_findByPK.getRating() + ",");
+//		System.out.println("current_time: "+memeber_commentBean_findByPK.getComment_time() + ",");
+//		System.out.println("product_id: "+memeber_commentBean_findByPK.getProduct_id() + ",");
+//		System.out.println("comment_status: "+memeber_commentBean_findByPK.getComment_status() + ",");
+//		System.out.println("----------有跑查主鍵----------");
+//
+//		// 查全部
+//		List<MemberCommentBean> list = dao.getAll();
+//		for(MemberCommentBean mcb : list) {
+//			System.out.println("review_id: "+mcb.getReview_id() + ",");
+//			System.out.println("order_detail_id: "+mcb.getOrder_detail_id() + ",");
+//			System.out.println("comment_content: "+mcb.getComment_content() +",");
+//			System.out.println("rating: "+mcb.getRating() +",");
+//			System.out.println("comment_time: "+mcb.getComment_time() +",");
+//			System.out.println("product_id: "+mcb.getProduct_id() +",");
+//			System.out.println("comment_status: "+mcb.getComment_status() +",");
+//			System.out.println();
+//		}
+//		System.out.println("----------有跑查全部----------");
+//	}
 
 }

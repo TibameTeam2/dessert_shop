@@ -20,7 +20,7 @@ import com.product.model.ProductBean;
 import com.product.model.ProductDAO;
 import com.util.JDBCUtil;
 
-public class AnnouncementManagementDAO {
+public class AnnouncementManagementDAO implements AnnouncementManagementDAO_interface{
 
 	private static JdbcTemplate jdbcTemplate;
 	private String driver = JDBCUtil.driver;

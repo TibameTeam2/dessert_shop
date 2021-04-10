@@ -1,12 +1,10 @@
 package com.announcement_management.model;
 
-
-
 import java.sql.Timestamp;
 import java.util.Arrays;
 
-public class AnnouncementManagementBean {
-
+public class AnnouncementManagementBean implements java.io.Serializable{
+	
 	private Integer announcement_id;
 	private String announcement_name;
 	private String announcement_content;

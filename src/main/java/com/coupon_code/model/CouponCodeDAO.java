@@ -10,11 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.jdbc.core.JdbcTemplate;
-
-import com.announcement_management.model.AnnouncementManagementBean;
 import com.util.JDBCUtil;
 
-public class CouponCodeDAO {
+public class CouponCodeDAO implements CouponCodeDAO_interface{
 
 	private static JdbcTemplate jdbcTemplate;
 	private String driver = JDBCUtil.driver;
@@ -35,11 +33,11 @@ public class CouponCodeDAO {
 //		password = "1qaz2wsx";
 //
 //		INSERT = "INSERT INTO coupon_code(coupon_code,coupon_code_effective_date,\r\n"
-//				+ "coupon_code_expire_date,coupon_code_text_content,coupon_code_text,discount_type,employee_account) "
+//				+ "coupon_code_expire_date,coupon_code_content_content,coupon_code_content,discount_type,employee_account) "
 //				+ "VALUES(?,?,?,?,?,?,?)";
 //
 //		UPDATE = "UPDATE coupon_code set coupon_code = ?,coupon_code_effective_date = ?,"
-//				+ "coupon_code_expire_date = ?,coupon_code_text_content = ?,coupon_code_text = ?,"
+//				+ "coupon_code_expire_date = ?,coupon_code_content_content = ?,coupon_code_content = ?,"
 //				+ "discount_type = ?,employee_account = ? WHERE coupon_code_id = ?";
 //
 //		DELETE = "DELETE FROM coupon_code WHERE coupon_code_id = ?";
@@ -56,7 +54,7 @@ public class CouponCodeDAO {
 		PreparedStatement pstmt = null;
 
 		INSERT = "INSERT INTO coupon_code(coupon_code,coupon_code_effective_date,\r\n"
-				+ "coupon_code_expire_date,coupon_code_text_content,coupon_code_text,discount_type,employee_account) "
+				+ "coupon_code_expire_date,coupon_code_content_content,coupon_code_content,discount_type,employee_account) "
 				+ "VALUES(?,?,?,?,?,?,?)";
 
 		try {
@@ -68,7 +66,7 @@ public class CouponCodeDAO {
 			pstmt.setTimestamp(2, CCB.getCoupon_code_effective_date());
 			pstmt.setTimestamp(3, CCB.getCoupon_code_expire_date());
 			pstmt.setString(4, CCB.getCoupon_code_text_content());
-			pstmt.setFloat(5, CCB.getCoupon_code_text());
+			pstmt.setFloat(5, CCB.getCoupon_code_content());
 			pstmt.setInt(6, CCB.getDiscount_type());
 			pstmt.setString(7, CCB.getEmployee_account());
 
@@ -103,7 +101,7 @@ public class CouponCodeDAO {
 		PreparedStatement pstmt = null;
 
 		UPDATE = "UPDATE coupon_code set coupon_code = ?,coupon_code_effective_date = ?,"
-				+ "coupon_code_expire_date = ?,coupon_code_text_content = ?,coupon_code_text = ?,"
+				+ "coupon_code_expire_date = ?,coupon_code_content_content = ?,coupon_code_content = ?,"
 				+ "discount_type = ?,employee_account = ? WHERE coupon_code_id = ?";
 
 		try {
@@ -115,7 +113,7 @@ public class CouponCodeDAO {
 			pstmt.setTimestamp(2, CCB.getCoupon_code_effective_date());
 			pstmt.setTimestamp(3, CCB.getCoupon_code_expire_date());
 			pstmt.setString(4, CCB.getCoupon_code_text_content());
-			pstmt.setFloat(5, CCB.getCoupon_code_text());
+			pstmt.setFloat(5, CCB.getCoupon_code_content());
 			pstmt.setInt(6, CCB.getDiscount_type());
 			pstmt.setString(7, CCB.getEmployee_account());
 			pstmt.setInt(8, CCB.getCoupon_code_id());
@@ -211,7 +209,7 @@ public class CouponCodeDAO {
 				CCB.setCoupon_code_effective_date(rs.getTimestamp("coupon_code_effective_date"));
 				CCB.setCoupon_code_expire_date(rs.getTimestamp("coupon_code_expire_date"));
 				CCB.setCoupon_code_text_content(rs.getString("coupon_code_text_content"));
-				CCB.setCoupon_code_text(rs.getFloat("coupon_code_text"));
+				CCB.setCoupon_code_content(rs.getFloat("coupon_code_content"));
 				CCB.setDiscount_type(rs.getInt("discount_type"));
 				CCB.setEmployee_account(rs.getString("employee_account"));
 
@@ -273,7 +271,7 @@ public class CouponCodeDAO {
 				CCB.setCoupon_code_effective_date(rs.getTimestamp("coupon_code_effective_date"));
 				CCB.setCoupon_code_expire_date(rs.getTimestamp("coupon_code_expire_date"));
 				CCB.setCoupon_code_text_content(rs.getString("coupon_code_text_content"));
-				CCB.setCoupon_code_text(rs.getFloat("coupon_code_text"));
+				CCB.setCoupon_code_content(rs.getFloat("coupon_code_content"));
 				CCB.setDiscount_type(rs.getInt("discount_type"));
 				CCB.setEmployee_account(rs.getString("employee_account"));
 
@@ -324,9 +322,9 @@ public class CouponCodeDAO {
 //
 //		CCB.setCoupon_code_expire_date(tse);
 //
-//		CCB.setCoupon_code_text_content("蛋糕要快,還要更快,蛋糕2折");
+//		CCB.setCoupon_code_content_content("蛋糕要快,還要更快,蛋糕2折");
 //
-//		CCB.setCoupon_code_text(1f);
+//		CCB.setCoupon_code_content(1f);
 //
 //		CCB.setDiscount_type(2);
 //
@@ -351,9 +349,9 @@ public class CouponCodeDAO {
 //
 //		CCB.setCoupon_code_expire_date(tse);
 //
-//		CCB.setCoupon_code_text_content("星爆都不星爆了,快不起來了,蛋糕9折");
+//		CCB.setCoupon_code_content_content("星爆都不星爆了,快不起來了,蛋糕9折");
 //
-//		CCB.setCoupon_code_text(1f);
+//		CCB.setCoupon_code_content(1f);
 //
 //		CCB.setDiscount_type(2);
 //

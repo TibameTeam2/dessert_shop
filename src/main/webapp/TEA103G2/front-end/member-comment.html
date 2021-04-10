@@ -413,9 +413,9 @@
 												</button>
 											</div>
 											<div class="inner_block">
+												<!-- 尚未評價/某訂單/商品們 開始 -->
 												<hr class="my-4">
 												<!-- <blockquote><p>評價文字內容的亮點/摘錄</p></blockquote> -->
-												<!-- 尚未評價/某訂單/商品們 開始 -->
 												<div class="single-comment">
 													<div class="comment-author">
 														<img src="assets/images/product/cakes/bavarianCrepe-a.jpg" class="" alt="">
@@ -440,7 +440,7 @@
 															</label>
 															<label for="file_upload2" class="custom-file-upload" style="margin: 15px; padding-right: 0 !important; padding-left: 0 !important; width: 50px">
 																<i class="fas fa-camera-alt" id="camera2"></i>
-																<input	id="file_upload2" style="float: left" type="file" />
+																<input	id="file_upload2" style="float: left" type="file"  class="jason"/>
 																<img id="review_image2" class="custom-file-upload" style="width: 0%; border: none" />
 															</label>
 															<label for="file_upload3" class="custom-file-upload" style="margin: 15px; padding-right: 0 !important; padding-left: 0 !important; width: 50px">
@@ -539,7 +539,6 @@
 								</div>
 								<!-- 其他反饋 結束 Blog Comment End  -->
 							</div>
-
 
 							<!-- 分享到社群 開始 -->
 							<div class="blog-dec-tags-social">
@@ -790,85 +789,31 @@
 			}, waitForAll: !0
 		});
 
-		// 點擊星號的時候，該星號加上 -on 這個 class，
-		// 星號數( data-star )小於等於點擊的星號數的話，也要加上 -on 這個 class；反之則移除。
-		$(".star_block").on("click", "span.star", function() {
-			const star = $(this)
-			star.addClass("-on")
-			star.prevAll().addClass("-on")
-			star.nextAll().removeClass("-on")
-		})
 
-		// // 歷史評價縮合(錯誤示範, 應該要綁父層)
-		// $("button.switch_btn").on("click", function(e){
-		// 	e.preventDefault();
-		// 	$(this).closest("li").toggleClass("-on");
-		// 	$(this).closest("li").find("div.inner_block").slideToggle();
-		// });
 
-		// 歷史評價縮合
-		$("ul").on("click", "button.switch_btn", function(e) {
-			e.preventDefault();
-			$(this).closest("li").toggleClass("-on");
-			$(this).closest("li").find("div.inner_block").slideToggle();
-		});
 
-		// 切換分頁(1/2)
-		$("a[data-bs-toggle='tab']").each(function(index) {
-			$(this).click(function(e) {
-				triggletabcontent();
-				$(this).toggleClass("active");
-				$(".tab-pane").eq(index).toggleClass("active");
-			});
-		});
 
-		// 切換分頁(2/2)
-		function triggletabcontent() {
-			$(".tab-pane").each(function() {
-				$(this).removeClass("active");
-			});
-		}
 
-		//上傳圖片BLOB1
-		$("#file_upload1").on('change', function(e) {
-			const file = this.files[0];
-			const objectURL = URL.createObjectURL(file);
-			$('#review_image1').attr('src', objectURL);
-			$("#camera1").remove(); //相機icon消失
-			$('#review_image1').css('width', '100%');
-		})
-		//上傳圖片BLOB2
-		$("#file_upload2").on('change', function(e) {
-			const file = this.files[0];
-			const objectURL = URL.createObjectURL(file);
-			$('#review_image2').attr('src', objectURL);
-			$("#camera2").remove(); //相機icon消失
-			$('#review_image2').css('width', '100%');
-		})
-		//上傳圖片BLOB3
-		$("#file_upload3").on('change', function(e) {
-			const file = this.files[0];
-			const objectURL = URL.createObjectURL(file);
-			$('#review_image3').attr('src', objectURL);
-			$("#camera3").remove(); //相機icon消失
-			$('#review_image3').css('width', '100%');
-		})
+
+
 
 		//以下為功能
 		$(function() {
+
+			//歷史評價的get請求
 			$.get("/dessert_shop/historyCommentOrderMaster/getHistoryCommentOrderMaster", {}, function(data) {
-				console.log("$.get的:");
-				console.log("data.data.length = " + data.data.length);
-				console.log("data.data = " + data.data);
-				console.log(data.data);
-				console.log("------------------------");
+				// console.log("歷史評價	$.get的:");
+				// console.log("data.data.length = " + data.data.length);
+				// console.log("data.data = " + data.data);
+				// console.log(data.data);
+				// console.log("------------------------");
 
 				for (let i = 0; i < data.data.length; i++) {
-					console.log("第 1 個for迴圈的:");
-					console.log("data.data.length = " + data.data.length);
-					console.log("data.data = " + data.data);
-					console.log(data.data);
-					console.log("------------------------");
+					// console.log("歷史評價	第 1 個for迴圈的:");
+					// console.log("data.data.length = " + data.data.length);
+					// console.log("data.data = " + data.data);
+					// console.log(data.data);
+					// console.log("------------------------");
 					let order_master_id = data.data[i].order_master_id; //console.log("第 "+(i+1)+" 筆的訂單編號="+order_master_id);
 					let order_time = moment(data.data[i].order_time).format('YYYY-MM-DD HH:mm:ss');
 					let payment_time = moment(data.data[i].payment_time).format('YYYY-MM-DD HH:mm:ss');
@@ -909,38 +854,40 @@
 					+ '</button>\n'
 					+ '</div>\n'
 					+ '<div class="inner_block">\n'
-					+ '</div>\n' + '</li>';
+					+ '</div>\n'
+					+ '<div style="height:20px"></div>\n'
+					+ '</li>';
 
-					$("div#link1").children("ul.order_master_comment_list:last-child").append(om_list);
-					// $("ul.order_master_comment_list:last-child").append(om_list);
+					$("div#link1").find("ul.order_master_comment_list:last-child").prepend(om_list);
 
 				} //第一個for迴圈, 憑member_account抓order_master資料
 
 				// 第二個for迴圈
 				for (let i = 0; i < data.data.length; i++) {
-					console.log("第 2 個for迴圈的:"); //第一個API所涵蓋的值
-					console.log("data.data.length = "	+ data.data.length);
-					console.log("data.data = " + data.data);
-					console.log(data.data);
-					console.log("------------------------");
+					// console.log("歷史評價	第 2 個for迴圈的:"); //第一個API所涵蓋的值
+					// console.log("data.data.length = "	+ data.data.length);
+					// console.log("data.data = " + data.data);
+					// console.log(data.data);
+					// console.log("------------------------");
 
 					let orderMasterId = "orderMasterId=" + data.data[i].order_master_id;
 					//把orderMasterId傳給後台, 要抓出多筆order_detail
 					$.post("/dessert_shop/historyCommentOrderDetail/getHistoryCommentOrderDetail?",	orderMasterId, function(data1) {
-						console.log("$.post的:");//第二個API所涵蓋的值
+						// console.log("歷史評價	$.post的:");//第二個API所涵蓋的值
 						// console.log("data.data.length = " + data.data.length);
-						console.log("data.data = " + data1.data);
-						console.log(data1.data);
-						console.log("------------------------");
+						// console.log("data.data = " + data.data);
+						// console.log(data.data);
+						// console.log("------------------------");
+
 
 						//orderDetail/getHistoryCommentOrderDetail?orderMasterId=? 的data
 						//第2-1個for迴圈
 						for (let j = 0; j < data1.data.length; j++) {
-							console.log("第 2-1 個for迴圈的:");//第二個API所涵蓋的值
-							console.log("data.data.length = "	+ data1.data.length);
-							console.log("data.data = " + data1.data);
-							console.log(data1.data);
-							console.log("------------------------");
+							// console.log("歷史評價	第 2-1 個for迴圈的:");//第二個API所涵蓋的值
+							// console.log("data.data.length = "	+ data1.data.length);
+							// console.log("data.data = " + data1.data);
+							// console.log(data1.data);
+							// console.log("------------------------");
 
 							let order_master_id = data1.data[j].order_master_id;
 							let order_detail_id = data1.data[j].order_detail_id;
@@ -953,17 +900,19 @@
 							let reply_id = data1.data[j].reply_id;
 							let reply_content = data1.data[j].reply_content;
 
+
 							let od_list = '<!-- 歷史評價/某訂單/商品們 開始 -->\n'
 							+ '<div class="row">\n'
 							+ '<hr class="my-4">\n'
 							+ '<!-- 珍珠糖粒泡芙 開始 -->\n'
 							+ '<div class="single-comment">\n'
 							+ '<div class="comment-author">\n'
-							+ '<img src="data:image/png;base64,'+ product_image +'" class="">\n'
+							+ '<img src="/dessert_shop'+ product_image +'" class="">\n'
+							// + '<img src="data:image/png;base64,'+ product_image +'" class="">\n'
 							+ '</div>\n'
 							+ '<div class="comment-content">\n'
 							+ '<div class="author-name-rating">\n'
-							+ '<h6 class="name" style="font-size: 16px">'	+ product_name	+ '</h6>\n'
+							+ '<h6 class="name" style="font-size: 16px;">'	+ product_name	+ '</h6>\n'
 							+ '<div class="review-star" data-rating="'+ rating +'">\n'
 							+
 							// '<div class="star" style="width: 80%;"></div>\n' +
@@ -981,8 +930,8 @@
 							// '</div\n' +
 							// '</div>\n' +
 							'</div>\n'
-							+ '<p style="font-size: 14px; margin-bottom: 0px">商家回覆:</p>\n'
-							+ '<span style="font-size: 14px">' + reply_content + '</span>\n'
+							// + '<p style="font-size: 14px; margin-bottom: 0px">商家回覆:</p>\n'
+							// + '<span style="font-size: 14px">' + reply_content + '</span>\n'
 							+ '</div>\n'
 							+ '</div>\n'
 							+ '</div>\n'
@@ -990,13 +939,12 @@
 							+ '<br>\n'
 							+ '<br>\n'
 							+ '</div>\n'
-							+ '<!-- 歷史評價/某訂單/商品們 結束 -->'
+							+ '<!-- 歷史評價/某訂單/商品們 結束 -->';
 							// console.log(od_list);
 							// console.log(order_master_id);
-							// let secondLayer = $("div#link1").children('li[data-ordermasterid='+ order_master_id	+ ']');
-							// $("secondLayer").children("div.inner_block").prepend(od_list);
-							$("div#link1").children('li[data-ordermasterid='+ order_master_id	+ ']').children("div.inner_block").prepend(od_list);
-							$('li[data-ordermasterid='+ order_master_id	+ ']').children("div.inner_block").prepend(od_list);
+
+							$("div#link1").find('li[data-ordermasterid='+ order_master_id	+ ']').find("div.inner_block").prepend(od_list);
+
 							if (rating == 1) {
 								$("div[class='review-star']").prepend('<div class="star" style="width:20%">');
 							} else if (rating == 2) {
@@ -1008,30 +956,32 @@
 							} else if (rating == 5) {
 								$("div[class='review-star']").prepend('<div class="star" style="width:100%">');
 							} else {
-								$("div[class='review-star']").prepend('<div class="star" style="width:100%">');
+								$("div[class='review-star']").prepend('<div class="star" style="width:0%">');
+							}
+
+							// <!-- <blockquote><p>評價文字內容的亮點/摘錄</p></blockquote> -->
+							let xxx = '<p style="font-size: 14px; margin-bottom: 0px;">商家回覆:</p><span style="font-size: 14px">' + reply_content + '</span>';
+							let ooo = '<blockquote><p>'+ xxx +'</p></blockquote>';
+
+							if(reply_content != null){
+								$("div#link1").find("div[data-reviewimage="+ order_detail_id +"]").parents("div.dec-img-wrapper").append(ooo);
 							}
 
 
-							//以下兩行(差別在括號)結果一樣
-							console.log("review_image 的 length() = " + (data1.data[i].review_image).length);
-							console.log("review_image 的 length = " + data1.data[i].review_image.length);
-
-							//以下兩行結果一樣
-							let review_image_length = data1.data[i].review_image.length; 	console.log("data1.data[i].review_image.length = " + review_image_length);
-							let review_image_length_j = data1.data[j].review_image.length; 	console.log("data1.data[j].review_image.length = " + review_image_length_j);
+							let review_image_length = data1.data[j].review_image.length;
+							// console.log("data1.data[j].review_image.length = " + review_image_length);
 
 							//會抓出所有data1.data.review_image
-							let review_image = data1.data[i].review_image;
-							console.log("review_image = " + review_image);
+							let review_image = data1.data[j].review_image;
+							// console.log("review_image = " + review_image);
 							///reviewImageUpload/getReviewImage?review_image_id=1,/reviewImageUpload/getReviewImage?review_image_id=4,/reviewImageUpload/getReviewImage?review_image_id=5
 
 
 							//第2-1-1個for迴圈
 							for (let i = 0; i < review_image_length; i++) {
-								console.log("第2-1-1個for迴圈 開始");
+								// console.log("歷史評價	第2-1-1個for迴圈 開始");
 								let review_image = data1.data[j].review_image[i];
-								// let review_image = data1.data[i].review_image[j];
-								console.log(review_image);
+								// console.log(review_image);
 								let review_image_list = '';
 								review_image_list += '		<div class="col-md-2">';
 								review_image_list += '			<div class="dec-img">';
@@ -1039,16 +989,15 @@
 								review_image_list += '			</div>';
 								review_image_list += '		</div>';
 								$("div#link1").find('div[data-reviewimage='+ order_detail_id + ']').append(review_image_list);
-								// $('div[data-reviewimage='+ order_detail_id + ']').append(review_image_list);
-								console.log("第2-1-1個for迴圈 結束");
+								// console.log("歷史評價	第2-1-1個for迴圈 結束");
 							}//第2-1-1個for迴圈
 
 
 							//暫時用不到
-							console.log("window.location.href = " + window.location.href);
+							// console.log("window.location.href = " + window.location.href);
 							//http://localhost:8081/dessert_shop/TEA103G2/front-end/member-comment.html#
-							let url = location.href.split("/TEA103G2")[0];
-							console.log("url = " + url); //http://localhost:8081/dessert_shop
+							// let url = location.href.split("/TEA103G2")[0];
+							// console.log("url = " + url); //http://localhost:8081/dessert_shop
 
 							// $.ajaxSetup({
 							//     timeout: 100000
@@ -1057,15 +1006,319 @@
 
 						} //第2-1個for迴圈, 迴出某order_detail_id裡的東西(除了review_image以外的東西)
 
+
 					}); //第二個for迴圈裡的POST請求, 憑order_master_id到資料庫取出oredr_detail資料
 
 				} //第二個for迴圈, 迴出order_master_id
 
-			}) //get請求
+			}) //歷史評價的get請求
+
+
+			//尚未評價 的 get請求
+			$.get("/dessert_shop/yetToLeaveComment/getYetToLeaveComment", {}, function(data) {
+				console.log("尚未評價	$.get的:");
+				console.log("data.data.length = " + data.data.length);
+				console.log("data.data = " + data.data);
+				console.log(data.data);
+				console.log("------------------------");
+
+				//尚未評價 的 第一個for迴圈
+				for (let i = 0; i < data.data.length; i++) {
+					console.log("尚未評價	第 1 個for迴圈的:");
+					console.log("data.data.length = " + data.data.length);
+					console.log("data.data = " + data.data);
+					console.log(data.data);
+					console.log("------------------------");
+					let order_master_id = data.data[i].order_master_id; console.log("第 "+(i+1)+" 筆的訂單編號 = " + order_master_id);
+					let order_detail_id = data.data[i].order_detail_id;
+					let order_time = moment(data.data[i].order_time).format('YYYY-MM-DD HH:mm:ss');
+					let payment_time = moment(data.data[i].payment_time).format('YYYY-MM-DD HH:mm:ss');
+					let invoice_number = data.data[i].invoice_number;
+					let coupon_id = data.data[i].coupon_id;
+					let payment_method = data.data[i].payment_method;
+					switch (payment_method) {
+						case 0:
+						payment_method = "線上刷卡"
+						break;
+						case 1:
+						payment_method = "刷卡"
+						break;
+						case 2:
+						payment_method = "現金"
+						break;
+						default:
+						payment_method = "行動支付"
+					}
+					let order_remarks = data.data[i].order_remarks;
+					// let comment_time = moment(data.data[i].comment_time).format('YYYY-MM-DD HH:mm:ss');
+
+					let om_list = '<li data-ordermasterid = "' + order_master_id + '">\n'
+					+ '<div class="post-meta" style="margin-bottom: 0px; border-top: 1px solid white; border-bottom: 1px solid white">\n'
+					+ '<span class="detail">訂單編號 : <a href="my-account.html"><span>'+ order_master_id	+ '</span></a></span>\n'
+					+ '<span class="detail">下訂時間 : <span>'+ order_time +'</span></span>\n'
+					+ '<span class="detail">付款時間 : <span>'+ payment_time +'</span></span>\n'
+					+ '<br>\n'
+					+ '<span class="detail">發票號碼 : <span>'+ invoice_number +'</span></span>\n'
+					+ '<span class="detail">優惠券序號 : <a href="#"><span>'+ coupon_id +'</span></a></span>\n'
+					+ '<span class="detail">付款方式 : <span>' + payment_method + '</span></span>\n'
+					+ '<br>\n'
+					+ '<span class="detail">訂單備註 : <span>' + order_remarks 	+ '</span></span> <br>\n'
+					// + '<span class="detail">評論時間 : <span>' + comment_time + '</span></span>\n'
+					+ '<button type="button" class="switch_btn">\n'
+					+ '<span class="plus" style="width: 20px; height: 20px; margin-right: 0px;"><i class="fas fa-chevron-down" style="color: white; display: inline"></i></span>\n'
+					+ '<span class="minus" style="width: 20px; height: 20px;"><i class="fas fa-chevron-up" style="color: white; display: inline"></i></span>\n'
+					+ '</button>\n'
+					+ '</div>\n'
+					+ '<div class="inner_block">\n'
+					+ '</div>\n'
+					+ '</li>';
+
+					$("div#link2").find("ul.order_master_comment_list:last-child").prepend(om_list);
+
+				} //尚未評價 的 第一個for迴圈, 憑member_account抓order_master資料
+
+
+				// 尚未評價 的 第二個for迴圈
+				for (let i = 0; i < data.data.length; i++) {
+					console.log("尚未評價	第 2 個for迴圈的:"); //第一個API所涵蓋的值
+					console.log("data.data.length = "	+ data.data.length);
+					console.log("data.data = " + data.data);
+					console.log(data.data);
+					console.log("------------------------");
+
+					let orderMasterId = "orderMasterId=" + data.data[i].order_master_id;
+					console.log("orderMasterId = " + orderMasterId);
+
+					//把orderMasterId傳給後台, 要抓出多筆order_detail
+					$.post("/dessert_shop/yetToLeaveComment/getYetToLeaveComment1?",	orderMasterId, function(data1) {
+						console.log("尚未評價	$.post的:");//第二個API所涵蓋的值
+						console.log("data.data.length = " + data1.data.length);
+						console.log("data.data = " + data1.data);
+						console.log(data1.data);
+						console.log("------------------------");
+
+						//尚未評價	第 2-1 個for迴圈
+						for(let j = 0; j < data1.data.length; j++){
+							console.log("尚未評價	第 2-1 個for迴圈的:");
+							console.log("data.data.length = " + data1.data.length);
+							console.log("data.data = " + data1.data);
+							console.log(data1.data);
+							console.log("------------------------");
+
+							let order_master_id = data1.data[j].order_master_id;
+							let order_detail_id = data1.data[j].order_detail_id;
+							let product_id = data1.data[j].product_id;
+							let product_image = data1.data[j].product_image;
+							let product_name = data1.data[j].product_name;
+
+							let od_list = '<!-- 尚未評價/某訂單/商品們 開始 -->\n'
+							+ '<hr class="my-4">\n'
+							+ '<!-- <blockquote><p>評價文字內容的亮點/摘錄</p></blockquote> -->\n'
+							+ '<div class="single-comment">\n'
+							+ '<div class="comment-author">\n'
+							+ '<img src="/dessert_shop'+ product_image + '" class="" alt="">\n'
+							+ '</div>\n'
+							+ '<div class="comment-content">\n'
+							+ '<div class="author-name-rating">\n'
+							+ '<h6 class="name">'+ product_name +'</h6>\n'
+							+ '<div class="star_block" style="font-size: 10pt;">\n'
+							+ '<span class="star" data-star="1"><i class="icon ion-star"></i></span>\n'
+							+ '<span class="star" data-star="2"><i class="icon ion-star"></i></span>\n'
+							+ '<span class="star" data-star="3"><i class="icon ion-star"></i></span>\n'
+							+ '<span class="star" data-star="4"><i class="icon ion-star"></i></span>\n'
+							+ '<span class="star" data-star="5"><i class="icon ion-star"></i></span>\n'
+							+ '</div>\n'
+							+ '</div>\n'
+							+ '<textarea class="form-control" placeholder="我覺得這項商品..."></textarea>\n'
+							+ '<div class="row">\n'
+							+ '<label for="'+ order_detail_id +'-1'+'" class="custom-file-upload" style="margin: 15px; padding-right: 0 !important; padding-left: 0 !important; width: 50px">\n'
+							+ '<i class="fas fa-camera-alt" id="camera1"></i>\n'
+							+ '<input data-title="inputimg1" style="width:50%," type="file" id="'+ order_detail_id +'-1'+'">\n'
+							// + '<input id="file_upload1" style="width:50%," type="file">\n'
+							+ '<img data-name="fileupload1" class="custom-file-upload" style="width: 0%; border: none">\n'
+							// + '<img id="review_image1" class="custom-file-upload" style="width: 0%; border: none">\n'
+							+ '</label>\n'
+							+ '<label for="'+ order_detail_id +'-2'+'" class="custom-file-upload" style="margin: 15px; padding-right: 0 !important; padding-left: 0 !important; width: 50px">\n'
+							+ '<i class="fas fa-camera-alt" id="camera2"></i>\n'
+							+ '<input	data-title="inputimg2" style="float: left" type="file" id="'+ order_detail_id +'-2'+'"/>\n'
+							// + '<input	id="file_upload2" style="float: left" type="file" />\n'
+							+ '<img data-name="fileupload2" class="custom-file-upload" style="width: 0%; border: none" />\n'
+							// + '<img id="review_image2" class="custom-file-upload" style="width: 0%; border: none" />\n'
+							+ '</label>\n'
+							+ '<label for="'+ order_detail_id +'-3'+'" class="custom-file-upload" style="margin: 15px; padding-right: 0 !important; padding-left: 0 !important; width: 50px">\n'
+							+ '<i class="fas fa-camera-alt" id="camera3"></i>\n'
+							+ '<input  data-title="inputimg3"  style="float: left" type="file" id="'+ order_detail_id +'-3'+'"/>\n'
+							// + '<input id="file_upload3" style="float: left" type="file" />\n'
+							+ '<img data-name="fileupload3" class="custom-file-upload" style="width: 0%; border: none" />\n'
+							// + '<img id="review_image3" class="custom-file-upload" style="width: 0%; border: none" />\n'
+							+ '</label>\n'
+							+ '</div>\n'
+							+ '<a class="btn btn-primary float-end" href="#" role="button">送出評價</a>\n'
+							+ '</div>\n'
+							+ '</div>\n'
+							+ '<!-- 尚未評價/某訂單/商品們 結束 -->\n';
+
+							$("div#link2").find("li[data-ordermasterid = "+ order_master_id +"]").find("div.inner_block").append(od_list);
+
+
+							//評價星等
+							$("li[data-ordermasterid="+ order_master_id +"]").find("div.star_block").on("click", "span.star", function(){
+								const star = $(this)
+								star.addClass("-on")
+								star.prevAll().addClass("-on")
+								star.nextAll().removeClass("-on")
+							})
+
+							//上傳圖片BLOB1
+							$("div#link2 li[data-ordermasterid="+ order_master_id +"]").find("input[id=" + order_detail_id + '-1' + "]").on('change', function(e){
+								alert('恭喜按到正確的第一台相機!');
+								const file = this.files[0];
+								const objectURL = URL.createObjectURL(file);
+								$("input[id="+ order_detail_id + '-1' + "]").siblings("img[data-name='fileupload1']").attr('src', objectURL);
+								$("input[id="+ order_detail_id + '-1' + "]").siblings("img[data-name='fileupload1']").css('width', '100%');
+								$("input[id="+ order_detail_id + '-1' + "]").siblings("#camera1").remove(); //相機icon消失
+							})
+
+							//上傳圖片BLOB2
+							$("div#link2 li[data-ordermasterid="+ order_master_id +"]").find("input[id=" + order_detail_id + '-2' + "]").on('change', function(e){
+								alert('恭喜按到正確的第二台相機!')
+								const file = this.files[0];
+								const objectURL = URL.createObjectURL(file);
+								$("input[id="+ order_detail_id + '-2' + "]").siblings("img[data-name='fileupload2']").attr('src', objectURL);
+								$("input[id="+ order_detail_id + '-2' + "]").siblings("img[data-name='fileupload2']").css('width', '100%');
+								$("input[id="+ order_detail_id + '-2' + "]").siblings("#camera2").remove(); //相機icon消失
+							})
+
+							//上傳圖片BLOB3
+							$("div#link2 li[data-ordermasterid="+ order_master_id +"]").find("input[id=" + order_detail_id + '-3' + "]").on('change', function(e){
+								alert('恭喜按到正確的第三台相機!')
+								const file = this.files[0];
+								const objectURL = URL.createObjectURL(file);
+								$("input[id="+ order_detail_id + '-3' + "]").siblings("img[data-name='fileupload3']").attr('src', objectURL);
+								$("input[id="+ order_detail_id + '-3' + "]").siblings("img[data-name='fileupload3']").css('width', '100%');
+								$("input[id="+ order_detail_id + '-3' + "]").siblings("#camera3").remove(); //相機icon消失
+							})
+
+
+						} //尚未評價	第 2-1 個for迴圈
+
+
+					}) //尚未評價 POST請求
+
+
+				} //尚未評價 的 第二個for迴圈
+
+
+			}) //尚未評價 的 get請求
+
+
+		})
+		//以上為功能
 
 
 
-		}) //以上為功能
+
+		// (假資料的)
+		// 點擊星號的時候，該星號加上 -on 這個 class，星號數( data-star )小於等於點擊的星號數的話，也要加上 -on 這個 class；反之則移除。
+		$(".star_block").on("click", "span.star", function() {
+			const star = $(this)
+			star.addClass("-on")
+			star.prevAll().addClass("-on")
+			star.nextAll().removeClass("-on")
+		})
+
+
+		//跟送評價星等進資料庫有關
+		$("div#link2").find("div.star_block").on("click", "span.star", function() {
+			alert("更新成功");
+			// 	$(that).closest("div.star_block").find("span.star").each(function(i, item){
+			// 		if( parseInt($(this).attr("data-star")) <= current_star ){
+			// 			$(this).addClass("-on");
+			// 		}else{
+			// 			$(this).removeClass("-on");
+			// 		}
+			// 	});
+		})
+
+
+		//新增評論
+		$("div#link2").find("div.star_block").on("click", "span.star", function() {
+			//alert("更新成功");
+			$(that).closest("div.star_block").find("span.star").each(function(i, item){
+				if( parseInt($(this).attr("data-star")) <= current_star ){
+					$(this).addClass("-on");
+				}else{
+					$(this).removeClass("-on");
+				}
+			});
+		})
+
+
+		// // 歷史評價縮合(錯誤示範, 應該要綁父層)
+		// $("button.switch_btn").on("click", function(e){
+		// 	e.preventDefault();
+		// 	$(this).closest("li").toggleClass("-on");
+		// 	$(this).closest("li").find("div.inner_block").slideToggle();
+		// });
+
+		// 歷史評價縮合
+		$("ul").on("click", "button.switch_btn", function(e) {
+			e.preventDefault();
+			$(this).closest("li").toggleClass("-on");
+			$(this).closest("li").find("div.inner_block").slideToggle();
+		});
+
+		// 切換分頁(1/2)
+		$("a[data-bs-toggle='tab']").each(function(index) {
+			$(this).click(function(e) {
+				triggletabcontent();
+				$(this).toggleClass("active");
+				$(".tab-pane").eq(index).toggleClass("active");
+			});
+		});
+
+		// 切換分頁(2/2)
+		function triggletabcontent() {
+			$(".tab-pane").each(function() {
+				$(this).removeClass("active");
+			});
+		}
+
+
+		// //上傳圖片BLOB1
+		// $("#file_upload1").on('change', function(e) {
+		// 	alert('按到第一台相機!');
+		// 	const file = this.files[0];
+		// 	const objectURL = URL.createObjectURL(file);
+		// 	$('#review_image1').attr('src', objectURL);
+		// 	$("#camera1").remove(); //相機icon消失
+		// 	$('#review_image1').css('width', '100%');
+		// })
+		// //上傳圖片BLOB2
+		// $("#file_upload2").on('change', function(e) {
+		// 	alert('按到第二台相機!')
+		// 	const file = this.files[0];
+		// 	const objectURL = URL.createObjectURL(file);
+		// 	$('#review_image2').attr('src', objectURL);
+		// 	$("#camera2").remove(); //相機icon消失
+		// 	$('#review_image2').css('width', '100%');
+		// })
+		// //上傳圖片BLOB3
+		// $("#file_upload3").on('change', function(e) {
+		// 	alert('按到第三台相機!')
+		// 	const file = this.files[0];
+		// 	const objectURL = URL.createObjectURL(file);
+		// 	$('#review_image3').attr('src', objectURL);
+		// 	$("#camera3").remove(); //相機icon消失
+		// 	$('#review_image3').css('width', '100%');
+		// })
+
+
+
+
+
+
+
 		</script>
 
 	</body>
