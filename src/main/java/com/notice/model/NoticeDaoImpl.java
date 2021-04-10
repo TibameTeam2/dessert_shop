@@ -21,7 +21,7 @@ public class NoticeDaoImpl implements NoticeDao {
 	private String userid = JDBCUtil.user;
 	private String passwd = JDBCUtil.password;
 
-	private static final String INSERT_STMT = "INSERT INTO sweet.notice (notice_type,notice_content,read_status,member_account) VALUES (?, ?, ?, ?)";
+	private static final String INSERT_STMT = "INSERT INTO sweet.notice (notice_type,notice_content,read_status,member_account,) VALUES (?, ?, ?, ?)";
 	private static final String UPDATE = "UPDATE sweet.notice set notice_type=?,notice_content=?, read_status=?, member_account=? where notice_id = ?";
 	private static final String DELETE = "DELETE FROM sweet.notice where notice_id = ?";
 	private static final String GET_ONE_STMT = "SELECT * FROM sweet.notice where notice_id = ?";
@@ -209,6 +209,7 @@ public class NoticeDaoImpl implements NoticeDao {
 				noticeBean.setNotice_time(rs.getTimestamp("notice_time"));
 				noticeBean.setRead_status(rs.getInt("read_status"));
 				noticeBean.setMember_account(rs.getString("member_account"));
+				noticeBean.setNotice_dispatcher(rs.getString("notice_dispatcher"));
 			}
 
 			// Handle any driver errors
@@ -270,6 +271,7 @@ public class NoticeDaoImpl implements NoticeDao {
 				noticeBean.setNotice_time(rs.getTimestamp("notice_time"));
 				noticeBean.setRead_status(rs.getInt("read_status"));
 				noticeBean.setMember_account(rs.getString("member_account"));
+				noticeBean.setNotice_dispatcher(rs.getString("notice_dispatcher"));
 
 				list.add(noticeBean);
 			}
@@ -334,6 +336,7 @@ public class NoticeDaoImpl implements NoticeDao {
 				noticeBean.setNotice_time(rs.getTimestamp("notice_time"));
 				noticeBean.setRead_status(rs.getInt("read_status"));
 				noticeBean.setMember_account(rs.getString("member_account"));
+				noticeBean.setNotice_dispatcher(rs.getString("notice_dispatcher"));
 
 				list.add(noticeBean);
 			}
@@ -398,6 +401,7 @@ public class NoticeDaoImpl implements NoticeDao {
 				noticeBean.setNotice_time(rs.getTimestamp("notice_time"));
 				noticeBean.setRead_status(rs.getInt("read_status"));
 				noticeBean.setMember_account(rs.getString("member_account"));
+				noticeBean.setNotice_dispatcher(rs.getString("notice_dispatcher"));
 
 //				noticeBean.setMember_account(rs.getString("member_account"));
 //				noticeBean.setNotice_content(rs.getString("notice_content"));
@@ -456,7 +460,7 @@ public class NoticeDaoImpl implements NoticeDao {
 //		noticeBean.setNotice_content("貴賓您好：您有訂購岩融巧克力蛋糕乙客，請準時來提取，謝謝!");
 //		noticeBean.setRead_status(1);
 //		noticeBean.setMember_account("tom");
-//        dao.update(noticeBean);
+//      dao.update(noticeBean);
 
 		// 刪除
 //	    dao.delete(4);
