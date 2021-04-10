@@ -32,10 +32,7 @@ public class NoticeServlet extends BaseServlet {
             List<NoticeBean> notice = noticeSvc.getMember(member.getMember_account());
 
             info.setMsg("通知訊息");
-            info.setData(notice);
-           
-
-          
+            info.setData(notice);                   
             
             System.out.println("notice = " + notice);
             System.out.println("member = " + member);
@@ -53,11 +50,9 @@ public class NoticeServlet extends BaseServlet {
 
         // 請求參數:類型、內容、會員帳號
         Integer noticeType = new Integer(req.getParameter("notice_type"));
-//        String noticeContent = req.getParameter("notice_content");
         String noticeContent = new String(req.getParameter("notice_content").getBytes("ISO-8859-1"), "UTF-8");
-//        String name = new String(req.getParameter("notice_content").getBytes("ISO-8859-1"), "UTF-8");
         String memberAccount = req.getParameter("member_account");
-
+       
         NoticeBean noticeBean = new NoticeBean();
         noticeBean.setNotice_type(noticeType);
         noticeBean.setNotice_content(noticeContent);
