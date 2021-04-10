@@ -14,6 +14,7 @@ public interface ProductDAO_interface {
 	public List<ProductBean> getAllSortByPrice();
 	public List<ProductBean> getAllSortByCalorie();
 	public List<ProductBean> getAllSortBySweetness();
+	public List<ProductBean> getAllSortByStar();
 	
 	
 	

@@ -50,6 +50,9 @@ public class ProductService {
 	public List<ProductBean> getAllSortBySweetness(){
 		return dao.getAllSortBySweetness();
 	}
+	public List<ProductBean> getAllSortByStar(){
+		return dao.getAllSortByStar();
+	}
 	
 	
 	
