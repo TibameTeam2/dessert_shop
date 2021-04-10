@@ -5,9 +5,9 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.cart.model.CartProductBean;
 import com.cart.model.CartProductService;
 import com.coupon.model.CouponBean;
+import com.coupon_code.model.CouponCodeBean;
 import com.member.model.MemberBean;
 import com.util.BaseServlet;
 import com.util.ResultInfo;
@@ -27,6 +27,7 @@ public class CartServlet extends BaseServlet {
         if (member == null) {
             info.setFlag(false);
             info.setMsg("尚未登入!");
+            req.getSession().setAttribute("location", req.getRequestURI());
             info.setRedirect(req.getContextPath() + "/TEA103G2/front-end/login.html");
         } else {
             List<List> list = svc.getCartDataByMemberAccount(member.getMember_account(), req.getContextPath());    
@@ -49,6 +50,7 @@ public class CartServlet extends BaseServlet {
 		if (member == null) {
             info.setFlag(false);
             info.setMsg("尚未登入!");
+            req.getSession().setAttribute("location", req.getRequestURI());
             info.setRedirect(req.getContextPath() + "/TEA103G2/front-end/login.html");
         } else {
 	        List<CouponBean> list = svc.getCouponDataByMemberAccount(member.getMember_account());
@@ -88,6 +90,7 @@ public class CartServlet extends BaseServlet {
 		if (member == null) {
             info.setFlag(false);
             info.setMsg("尚未登入!");
+            req.getSession().setAttribute("location", req.getRequestURI());
             info.setRedirect(req.getContextPath() + "/TEA103G2/front-end/login.html");
         } else {		
 			//取資料
@@ -113,6 +116,7 @@ public class CartServlet extends BaseServlet {
 		if (member == null) {
             info.setFlag(false);
             info.setMsg("尚未登入!");
+            req.getSession().setAttribute("location", req.getRequestURI());
             info.setRedirect(req.getContextPath() + "/TEA103G2/front-end/login.html");
         } else {
         	//取資料
@@ -127,6 +131,118 @@ public class CartServlet extends BaseServlet {
 		writeValueByWriter(res, info);
 		
 	}
+	
+	
+	//使用優惠碼新增優惠券
+	public void insertCoupon(HttpServletRequest req, HttpServletResponse res) {
+		
+		MemberBean member = (MemberBean) req.getSession().getAttribute("member");
+		ResultInfo info = new ResultInfo();
+		if (member == null) {
+            info.setFlag(false);
+            info.setMsg("尚未登入!");
+            req.getSession().setAttribute("location", req.getRequestURI());
+            info.setRedirect(req.getContextPath() + "/TEA103G2/front-end/login.html");
+        } else {
+        	//取資料
+			String coupon_code = req.getParameter("coupon_code").trim();
+			System.out.println(coupon_code);
+			//新增優惠券
+			
+			//檢查優惠碼是否存在
+			CouponCodeBean CCB = svc.selectCouponCode(coupon_code);		
+			if (CCB != null) {
+				
+				//檢查優惠碼是否過期
+				java.sql.Timestamp ts_now = new java.sql.Timestamp(System.currentTimeMillis());
+				if (ts_now.getTime() < CCB.getCoupon_code_expire_date().getTime()) {
+				
+					//檢查該會員是否有該優惠碼生成的優惠券
+					CouponBean CB_exist = svc.selectCoupon(member.getMember_account(), CCB.getCoupon_code_id());
+					if (CB_exist == null) {
+						
+						CouponBean CB_new = new CouponBean();
+						CB_new.setMember_account(member.getMember_account());
+						CB_new.setCoupon_sending_time(ts_now);
+						CB_new.setCoupon_effective_date(ts_now);
+						CB_new.setCoupon_expire_date(CCB.getCoupon_code_expire_date());
+						CB_new.setCoupon_text_content(CCB.getCoupon_code_text_content());
+						CB_new.setCoupon_content(CCB.getCoupon_code_content());
+						CB_new.setDiscount_type(CCB.getDiscount_type());
+						CB_new.setCoupon_status(0);
+						CB_new.setEmployee_account(CCB.getEmployee_account());
+						CB_new.setCoupon_code_id(CCB.getCoupon_code_id());
+						svc.insertCoupon(CB_new);
+						
+						info.setFlag(true);
+				        info.setMsg("成功使用優惠碼新增優惠券!");
+				        CouponBean CB_insert_success = svc.selectCoupon(member.getMember_account(), CB_new.getCoupon_code_id());
+				        info.setData(CB_insert_success);
+						
+					} else {
+						info.setFlag(false);
+				        info.setMsg("優惠碼已使用過!");
+					}
+					
+				} else {
+					info.setFlag(false);
+			        info.setMsg("優惠碼已過期!");	
+				}
+				
+			} else {
+				info.setFlag(false);
+		        info.setMsg("優惠碼無效!");
+			}
+				
+        }
+		
+		writeValueByWriter(res, info);
+		
+	}
+	
+	
+	//session設定所選優惠券並跳轉結帳
+	public void setCouponAndCheckout(HttpServletRequest req, HttpServletResponse res) {
+		
+		MemberBean member = (MemberBean) req.getSession().getAttribute("member");
+		ResultInfo info = new ResultInfo();
+		if (member == null) {
+            info.setFlag(false);
+            info.setMsg("尚未登入!");
+            req.getSession().setAttribute("location", req.getRequestURI());
+            info.setRedirect(req.getContextPath() + "/TEA103G2/front-end/login.html");
+        } else {
+        	//檢查購物車是否為空
+        	List<List> list = svc.getCartDataByMemberAccount(member.getMember_account(), req.getContextPath());
+        	if (list.get(0).isEmpty()) {
+        		info.setFlag(false);
+        		info.setMsg("購物車內無商品!");
+        	} else {
+        		//取資料
+    			Integer coupon_id = new Integer(req.getParameter("coupon_id"));
+    			//設定coupon_id
+    			if (coupon_id == 0) {
+    				req.getSession().removeAttribute("coupon_id");
+    				info.setFlag(true);
+    		        info.setMsg("不使用優惠券前往結帳!");
+    		        System.out.println(info.getMsg());
+    		        info.setRedirect(req.getContextPath() + "/TEA103G2/front-end/checkout.html");
+    			} else {
+    				req.getSession().setAttribute("coupon_id", coupon_id);
+    				info.setFlag(true);
+    		        info.setMsg("已設定優惠券並前往結帳!");
+    		        System.out.println(info.getMsg());
+    		        info.setRedirect(req.getContextPath() + "/TEA103G2/front-end/checkout.html");
+    			}
+        		
+        	}
+			
+		}
+		
+		writeValueByWriter(res, info);
+		
+	}
+	
 	
 	
 
