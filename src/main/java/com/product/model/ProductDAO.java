@@ -48,7 +48,7 @@ public class ProductDAO implements ProductDAO_interface {
 									+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 
-		int count=0;
+		int count=0;		//product_id
 		try {
 		Class.forName(driver);
 		con = DriverManager.getConnection(url, userid, passwd);
