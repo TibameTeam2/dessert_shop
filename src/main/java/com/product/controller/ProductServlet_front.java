@@ -147,10 +147,16 @@ public class ProductServlet_front extends BaseServlet {
     // 使用語心的API 顯示圖片 內容 商家回覆
     
     
+    
+    
+// 給別人使用的API
+    
     //id?  star?  review+1
 //    在service中新增來自評論的星星與review的方法 給語心使用 
     
-    
+    public void addReviewStar(HttpServletRequest req, HttpServletResponse res) {
+    	
+    }
     
     
     
