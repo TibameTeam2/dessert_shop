@@ -23,7 +23,7 @@ public class MemberCommentService {
 		memberCommentBean.setProduct_id(product_id);
 		memberCommentBean.setRating(rating);
 		memberCommentBean.setComment_content(comment_content);
-//		memberCommentBean.setComment_time(comment_time);
+//		memberCommentBean.setComment_time(comment_time);	//由資料庫產生
 		memberCommentBean.setComment_status(1);
 		dao.insert(memberCommentBean);
 
@@ -42,7 +42,7 @@ public class MemberCommentService {
 		memberCommentBean.setProduct_id(product_id);
 		memberCommentBean.setRating(rating);
 		memberCommentBean.setComment_content(comment_content);
-//		memberCommentBean.setComment_time(comment_time);
+//		memberCommentBean.setComment_time(comment_time);	//由資料庫產生
 		memberCommentBean.setComment_status(comment_status);
 		dao.update(memberCommentBean);
 

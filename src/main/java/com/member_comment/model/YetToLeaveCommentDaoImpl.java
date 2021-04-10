@@ -76,7 +76,6 @@ public class YetToLeaveCommentDaoImpl implements YetToLeaveCommentDao {
 //				ytlcBean.setProduct_image(rs.getBytes("product_image"));
 //				ytlcBean.setProduct_name(rs.getString("product_name"));
 //				ytlcBean.setProduct_id(rs.getInt("product_id"));
-				
 				list.add(ytlcBean);
 			}
 

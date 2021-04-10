@@ -398,7 +398,7 @@
 
 
 
-	<!--HistoryCommentOrderMasterServlet -->
+	<!--HistoryCommentOrderMasterServlet 用在載入歷史評價的order_master_id們-->
 	<servlet>
 		<servlet-name>HistoryCommentOrderMasterServlet</servlet-name>
 		<servlet-class>com.order_master.controller.HistoryCommentOrderMasterServlet</servlet-class>
@@ -418,7 +418,7 @@
 <!-- 		<url-pattern>/orderDetail/*</url-pattern> -->
 <!-- 	</servlet-mapping> -->
 	
-	<!--HistoryCommentOrderDetailServlet -->
+	<!--HistoryCommentOrderDetailServlet 用在載入歷史評價的order_detail_id們-->
 	<servlet>
 		<servlet-name>HistoryCommentOrderDetailServlet</servlet-name>
 		<servlet-class>com.order_detail.controller.HistoryCommentOrderDetailServlet</servlet-class>
@@ -438,7 +438,7 @@
 <!-- 		<url-pattern>/historyCommentProduct/*</url-pattern> -->
 <!-- 	</servlet-mapping> -->
 	
-	<!--ReviewImageUploadServlet -->
+	<!--ReviewImageUploadServlet 用在載入歷史評價內的評論照片等任何呼叫評論照片的setReview_image()-->
 	<servlet>
 		<servlet-name>ReviewImageUploadServlet</servlet-name>
 		<servlet-class>com.review_image_upload.controller.ReviewImageUploadServlet</servlet-class>
@@ -448,7 +448,7 @@
 		<url-pattern>/reviewImageUpload/*</url-pattern>
 	</servlet-mapping>
 	
-	<!--YetToLeaveCommentServlet -->
+	<!--YetToLeaveCommentServlet 用在載入尚未評價頁面-->
 	<servlet>
 		<servlet-name>YetToLeaveCommentServlet</servlet-name>
 		<servlet-class>com.member_comment.controller.YetToLeaveCommentServlet</servlet-class>
@@ -458,7 +458,7 @@
 		<url-pattern>/yetToLeaveComment/*</url-pattern>
 	</servlet-mapping>
 
-	<!--MemberCommentServlet -->
+	<!--MemberCommentServlet 用在尚未評價頁面, 顧客能填寫尚未評論-->
 	<servlet>
 		<servlet-name>MemberCommentServlet</servlet-name>
 		<servlet-class>com.member_comment.controller.MemberCommentServlet</servlet-class>
@@ -466,6 +466,16 @@
 	<servlet-mapping>
 		<servlet-name>MemberCommentServlet</servlet-name>
 		<url-pattern>/memberComment/*</url-pattern>
+	</servlet-mapping>
+
+	<!--ProductCommentServlet 用在商品頁面, 載入顧客們對該商品的評論-->
+	<servlet>
+		<servlet-name>ProductCommentServlet</servlet-name>
+		<servlet-class>com.member_comment.controller.ProductCommentServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ProductCommentServlet</servlet-name>
+		<url-pattern>/productComment/*</url-pattern>
 	</servlet-mapping>
 	
 	
