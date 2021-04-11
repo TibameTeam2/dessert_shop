@@ -892,7 +892,7 @@
                             	<div class="col-md-6">                      
                                     <div class="form-group">
                                         <label>商品名稱 *</label>
-                                        <input type="text" class="form-control" placeholder="請輸入中/英文或數字" data-errors="Please Enter Name."  name="product_name" required>
+                                        <input type="text" class="form-control" placeholder="請輸入中/英文或數字" data-errors="Please Enter Name." id="product_name" name="product_name" required>
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
@@ -1077,18 +1077,24 @@
     
     <script>
     
-    $("#addProduct_form").submit(function(){
-    	console.log("submit the form");
-    	
-    	console.log($(this));
-    	$.post("/dessert_shop/product/addProduct", $(this).serialize(), function (data) {
-    		console.log(data.flag);
-//     		if(){}
-    		
-    	});
-    });
-    
-    
+	    $("#addProduct_form").submit(function(){
+	    	console.log("submit the form");
+	    	
+	    	console.log($(this));
+	    	$.post("/dessert_shop/product/addProduct", $(this).serialize(), function (data) {
+	    		console.log(data.flag);
+	//     		if(checkProductName()){}
+	    		
+	    	});
+	    	
+	    });
+	    
+		// 檢查名稱有沒有重複    
+//     $("#product_name").blur(checkProductName);
+			
+    	function checkProductName(){
+    		let addProduct_name = $("#product_name").val().trim();
+    	};
     
     
     
