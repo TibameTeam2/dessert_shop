@@ -2,14 +2,14 @@ package com.coupon_code.model;
 
 import java.sql.Timestamp;
 
-public class CouponCodeBean {
+public class CouponCodeBean implements java.io.Serializable{
 	
 	private Integer coupon_code_id;
 	private String coupon_code;
 	private Timestamp coupon_code_effective_date;
 	private Timestamp coupon_code_expire_date;
 	private String coupon_code_text_content;
-	private Float coupon_code_text;
+	private Float coupon_code_content;
 	private Integer discount_type;
 	private String employee_account;
 	
@@ -18,7 +18,7 @@ public class CouponCodeBean {
 		return "coupon_codeBean [coupon_code_id=" + coupon_code_id + ", coupon_code=" + coupon_code
 				+ ", coupon_code_effective_date=" + coupon_code_effective_date + ", coupon_code_expire_date="
 				+ coupon_code_expire_date + ", coupon_code_text_content=" + coupon_code_text_content
-				+ ", coupon_code_text=" + coupon_code_text + ", discount_type=" + discount_type + ", employee_account="
+				+ ", coupon_code_content=" + coupon_code_content + ", discount_type=" + discount_type + ", employee_account="
 				+ employee_account + "]";
 	}
 	
@@ -52,11 +52,11 @@ public class CouponCodeBean {
 	public void setCoupon_code_text_content(String coupon_code_text_content) {
 		this.coupon_code_text_content = coupon_code_text_content;
 	}
-	public Float getCoupon_code_text() {
-		return coupon_code_text;
+	public Float getCoupon_code_content() {
+		return coupon_code_content;
 	}
-	public void setCoupon_code_text(Float coupon_code_text) {
-		this.coupon_code_text = coupon_code_text;
+	public void setCoupon_code_content(Float coupon_code_content) {
+		this.coupon_code_content = coupon_code_content;
 	}
 	public Integer getDiscount_type() {
 		return discount_type;

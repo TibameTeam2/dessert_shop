@@ -18,10 +18,10 @@ public class ConvertTest {
         String dateTimeStr2 = "2018-11-29";
 //        java.sql.Timestamp ts = java.sql.Timestamp.valueOf(Convert.toDate(dateTimeStr2).getTime());
 //        System.out.println(Convert.toDate("26:22:33"));
-        java.sql.Timestamp ts2 =  new java.sql.Timestamp(Convert.toDate("2018-11-29").getTime());
-        java.sql.Timestamp ts3 =  new java.sql.Timestamp(java.sql.Date.valueOf("2018-11-29").getTime());
+        java.sql.Timestamp ts2 =  new java.sql.Timestamp(Convert.toDate("2018-11-28").getTime());
+        java.sql.Timestamp ts3 =  new java.sql.Timestamp(java.sql.Date.valueOf("2018-11-27").getTime());
 
-
+        System.out.println(ts2.getTime()-ts3.getTime());
         System.out.println("ts2 = " + ts2);
         System.out.println("ts3 = " + ts3);
 //        System.out.println(Convert.toStr(ts2));

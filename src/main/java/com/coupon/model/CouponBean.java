@@ -2,7 +2,7 @@ package com.coupon.model;
 
 import java.sql.Timestamp;
 
-public class CouponBean {
+public class CouponBean implements java.io.Serializable{
 
 	private Integer coupon_id;
 	private String member_account;

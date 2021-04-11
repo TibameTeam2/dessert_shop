@@ -4,14 +4,13 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
-<title>Amino - Organic & Multipurpose Bootstrap 5 Template</title>
+<title> 嗜甜 Sweet - 顛覆你想像的甜點 </title>
 <meta name="robots" content="noindex, follow" />
 <meta name="description" content="">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <!-- Favicon -->
-<link rel="shortcut icon" type="image/x-icon"
-	href="assets/images/favicon.png">
+<link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.png">
 
 <!-- CSS
 	============================================ -->
@@ -52,12 +51,21 @@
 /* .coverImg{
             object-fit: cover;
         } */
+        
+        
 </style>
 
 
 </head>
 
 <body>
+<!-- 分享按鈕FB的東西  -->
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v10.0" nonce="TIxFibIl"></script>
+<!-- line的分享按鈕... -->
+<script src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
+
+
 
 <!-- Loading Progress ============================================= -->
 <div id="loading-progress">
@@ -223,7 +231,7 @@
 						<ul class="shop-rating-content">
 							<li>
 								<div class="review-star">
-									<div class="star" style="width: 80%;"></div>
+									<div class="star" style="width: 90%;"></div>
 								</div>
 							</li>
 							<li>
@@ -231,7 +239,7 @@
 								查看評論 <span>(3)</span>
 								</a>
 							</li>
-							<li><a href="#"><i class="fal fa-edit"></i>撰寫評論</a></li>
+<!-- 							<li><a href="#"><i class="fal fa-edit"></i>撰寫評論</a></li> -->
 						</ul>
 						<div class="product-prices">
 							<span class="old-price">$35.90</span> <span class="sale-price">$28.72</span>
@@ -307,28 +315,38 @@
 							</p>
 						</div>
 						<div class="product-sharing">
-							<span class="label">Share</span>
+							<span class="label">分享</span>
 							<ul class="social-sharing">
-								<li><a href="#"><i class="ion-social-facebook"></i></a></li>
+<!-- 							<li><a href="#"><i class="ion-social-facebook"></i></a></li> -->
+								<li><a target="_blank" 
+								href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fab60cd46f09f.ngrok.io%2Fdessert_shop%2FTEA103G2%2Ffront-end%2Fproduct-single.html%3Fid%3D3&amp;src=sdkpreparse" 
+								class="fb-xfbml-parse-ignore"><i class="ion-social-facebook"></i></a></li>
+								
 								<li><a href="#"><i class="ion-social-twitter"></i></a></li>
 								<li><a href="#"><i class="ion-social-pinterest"></i></a></li>
-								<li><a href="#"><i class="ion-social-linkedin"></i></a></li>
+								<li><a href="#"><i class="ion-social-linkedin" href=></i></a></li>
+								<li><a href="#"><i class="fab fa-facebook fa-2x"></i></a></li>
+								<!-- 分享按鈕的東西 body 那裏還有一段 -->
+								
+								<li>
+								<div class="line-it-button" data-lang="zh_Hant" data-type="share-b" data-ver="3" data-url="https://ab60cd46f09f.ngrok.io/dessert_shop/TEA103G2/front-end/product-single.html?id=3" 
+								data-color="default" data-size="small" data-count="false" style="display: none;"></div>
+								</li>
+ 								
 							</ul>
 						</div>
 						<div class="product-reassurance">
 							<ul>
 								<li>
 									<div class="reassurance-item">
-										<img src="assets/images/icon/icon1.png" alt="">
-										<p>Security policy (edit with Customer reassurance
-											module)</p>
+										<img src="assets/images/icon/icon4.png" alt="">
+										<p>付款方式 : 取貨付款．信用卡</p>
 									</div>
 								</li>
 								<li>
 									<div class="reassurance-item">
 										<img src="assets/images/icon/icon2.png" alt="">
-										<p>Delivery policy (edit with Customer reassurance
-											module)</p>
+										<p>運送方式 : 本店商品僅提供內用與自取</p>
 									</div>
 								</li>
 								<li>
@@ -418,6 +436,7 @@
 						<!-- product reviews Start  -->
 						<div class="product-reviews mt-n6">
 							<div class="reviews-comment">
+								<!-- 插入評論的地方 -->
 								<!-- Single Comment Start  -->
 								<div class="single-comment">
 									<div class="comment-author">
@@ -431,102 +450,64 @@
 											</div>
 										</div>
 										<span class="date">11/20/2021</span>
-										<p>Lorem ipsum dolor sit amet consectetur adipisicing
+										<p>RRRRRLorem ipsum dolor sit amet consectetur adipisicing
 											elit. Esse deleniti itaque velit explicabo at eum incidunt
 											vel reprehenderit maxime eos facere ut pariatur voluptas
 											aut, porro quia molestias sequi cupiditate!</p>
 									</div>
 								</div>
-<!-- 								Single Comment Start  -->
-<!-- 								<div class="single-comment"> -->
-<!-- 									<div class="comment-author"> -->
-<!-- 										<img src="assets/images/author/author-2.png" alt=""> -->
+								
+							</div>
+<!-- 							<div class="review-form"> -->
+<!-- 								<h2 class="form-title"> 撰寫評論 </h2> -->
+
+<!-- 								<form action="#"> -->
+<!-- 									<div class="review-rating"> -->
+<!-- 										<h5 class="title">評論:</h5> -->
+
+<!-- 										<ul id='stars'> -->
+<!-- 											<li class='star' title='Poor' data-value='1'><i -->
+<!-- 												class='icon-star'></i></li> -->
+<!-- 											<li class='star' title='Fair' data-value='2'><i -->
+<!-- 												class='icon-star'></i></li> -->
+<!-- 											<li class='star' title='Good' data-value='3'><i -->
+<!-- 												class='icon-star'></i></li> -->
+<!-- 											<li class='star' title='Excellent' data-value='4'><i -->
+<!-- 												class='icon-star'></i></li> -->
+<!-- 											<li class='star' title='WOW!!!' data-value='5'><i -->
+<!-- 												class='icon-star'></i></li> -->
+<!-- 										</ul> -->
 <!-- 									</div> -->
-<!-- 									<div class="comment-content"> -->
-<!-- 										<div class="author-name-rating"> -->
-<!-- 											<h6 class="name">Rosie Silva</h6> -->
-<!-- 											<div class="review-star"> -->
-<!-- 												<div class="star" style="width: 80%;"></div> -->
+<!-- 									<div class="row"> -->
+<!-- 										<div class="col-md-6"> -->
+<!-- 											<div class="single-form"> -->
+<!-- 												<input type="text" class="form-control" placeholder="姓名"> -->
 <!-- 											</div> -->
 <!-- 										</div> -->
-<!-- 										<span class="date">11/20/2021</span> -->
-<!-- 										<p>Lorem ipsum dolor sit amet consectetur adipisicing -->
-<!-- 											elit. Esse deleniti itaque velit explicabo at eum incidunt -->
-<!-- 											vel reprehenderit maxime eos facere ut pariatur voluptas -->
-<!-- 											aut, porro quia molestias sequi cupiditate!</p> -->
-<!-- 									</div> -->
-<!-- 								</div> -->
-<!-- 								Single Comment Start  -->
-<!-- 								<div class="single-comment"> -->
-<!-- 									<div class="comment-author"> -->
-<!-- 										<img src="assets/images/author/author-3.png" alt=""> -->
-<!-- 									</div> -->
-<!-- 									<div class="comment-content"> -->
-<!-- 										<div class="author-name-rating"> -->
-<!-- 											<h6 class="name">Rosie Silva</h6> -->
-<!-- 											<div class="review-star"> -->
-<!-- 												<div class="star" style="width: 80%;"></div> -->
+<!-- 										<div class="col-md-6"> -->
+<!-- 											<div class="single-form"> -->
+<!-- 												<input type="email" class="form-control" -->
+<!-- 													placeholder="Email"> -->
 <!-- 											</div> -->
 <!-- 										</div> -->
-<!-- 										<span class="date">11/20/2021</span> -->
-<!-- 										<p>Lorem ipsum dolor sit amet consectetur adipisicing -->
-<!-- 											elit. Esse deleniti itaque velit explicabo at eum incidunt -->
-<!-- 											vel reprehenderit maxime eos facere ut pariatur voluptas -->
-<!-- 											aut, porro quia molestias sequi cupiditate!</p> -->
+<!-- 										<div class="col-lg-12"> -->
+<!-- 											<div class="single-form"> -->
+<!-- 												<textarea class="form-control" placeholder="評論內容......"></textarea> -->
+<!-- 											</div> -->
+<!-- 										</div> -->
+<!-- 										<div class="col-lg-12"> -->
+<!-- 											<div class="review-btn mt-6"> -->
+<!-- 												<button class="btn btn-primary btn-hover-dark"> 發表評論 </button> -->
+<!-- 											</div> -->
+<!-- 										</div> -->
 <!-- 									</div> -->
-<!-- 								</div> -->
-<!-- 								Single Comment Start  -->
-							</div>
-							<div class="review-form">
-								<h2 class="form-title"> 撰寫評論 </h2>
-
-								<form action="#">
-									<div class="review-rating">
-										<h5 class="title">評論:</h5>
-
-										<ul id='stars'>
-											<li class='star' title='Poor' data-value='1'><i
-												class='icon-star'></i></li>
-											<li class='star' title='Fair' data-value='2'><i
-												class='icon-star'></i></li>
-											<li class='star' title='Good' data-value='3'><i
-												class='icon-star'></i></li>
-											<li class='star' title='Excellent' data-value='4'><i
-												class='icon-star'></i></li>
-											<li class='star' title='WOW!!!' data-value='5'><i
-												class='icon-star'></i></li>
-										</ul>
-									</div>
-									<div class="row">
-										<div class="col-md-6">
-											<div class="single-form">
-												<input type="text" class="form-control" placeholder="姓名">
-											</div>
-										</div>
-										<div class="col-md-6">
-											<div class="single-form">
-												<input type="email" class="form-control"
-													placeholder="Email">
-											</div>
-										</div>
-										<div class="col-lg-12">
-											<div class="single-form">
-												<textarea class="form-control" placeholder="評論內容......"></textarea>
-											</div>
-										</div>
-										<div class="col-lg-12">
-											<div class="review-btn mt-6">
-												<button class="btn btn-primary btn-hover-dark"> 發表評論 </button>
-											</div>
-										</div>
-									</div>
-									<div class="form-check">
-										<input class="form-check-input" type="checkbox" value=""
-											id="reviewCheck"> <label class="form-check-label"
-											for="reviewCheck"> 每當有新回復時透過Email通知我 </label>
-									</div>
-								</form>
-							</div>
+<!-- 									<div class="form-check"> -->
+<!-- 										<input class="form-check-input" type="checkbox" value="" -->
+<!-- 											id="reviewCheck"> <label class="form-check-label" -->
+<!-- 											for="reviewCheck"> 每當有新回復時透過Email通知我 </label> -->
+<!-- 									</div> -->
+<!-- 								</form> -->
+<!-- 							</div> -->
 						</div>
 						<!-- product reviews End -->
 					</div>
@@ -554,9 +535,9 @@
 							<div class="single-product">
 								<div class="product-image">
 									<a class="product-thumbnail" href="product-single.html?id=${product_id}"> <img
-										src="assets/images/product/product-13.jpg" alt="product">
+										src="assets/images/product/cakes/strawRoll-a.jpg" alt="product">
 										<img class="image-hover"
-										src="assets/images/product/product-14.jpg" alt="product">
+										src="assets/images/product/cakes/strawRoll-a.jpg" alt="product">
 									</a>
 									<div class="product-action">
 										<a href="#" class="action"><i class="lar la-heart"></i></a> <a
@@ -590,9 +571,9 @@
 							<div class="single-product">
 								<div class="product-image">
 									<a class="product-thumbnail" href="product-single.html?id=${product_id}"> <img
-										src="assets/images/product/product-01.jpg" alt="product">
+										src="assets/images/product/product-16.jpg" alt="product">
 										<img class="image-hover"
-										src="assets/images/product/product-02.jpg" alt="product">
+										src="assets/images/product/product-16.jpg" alt="product">
 									</a>
 									<div class="product-action">
 										<a href="#" class="action"><i class="lar la-heart"></i></a> <a
@@ -624,9 +605,9 @@
 							<div class="single-product">
 								<div class="product-image">
 									<a class="product-thumbnail" href="product-single.html?id=${product_id}"> <img
-										src="assets/images/product/product-04.jpg" alt="product">
+										src="assets/images/product/product-16.jpg" alt="product">
 										<img class="image-hover"
-										src="assets/images/product/product-03.jpg" alt="product">
+										src="assets/images/product/product-16.jpg" alt="product">
 									</a>
 									<div class="product-action">
 										<a href="#" class="action"><i class="lar la-heart"></i></a> <a
@@ -659,7 +640,7 @@
 							<div class="single-product">
 								<div class="product-image">
 									<a class="product-thumbnail" href="product-single.html?id=${product_id}"> <img
-										src="assets/images/product/product-05.jpg" alt="product">
+										src="assets/images/product/product-16.jpg" alt="product">
 									</a>
 									<div class="product-action">
 										<a href="#" class="action"><i class="lar la-heart"></i></a> <a
@@ -692,9 +673,9 @@
 							<div class="single-product">
 								<div class="product-image">
 									<a class="product-thumbnail" href="product-single.html?id=${product_id}"> <img
-										src="assets/images/product/product-12.jpg" alt="product">
+										src="assets/images/product/product-16.jpg" alt="product">
 										<img class="image-hover"
-										src="assets/images/product/product-01.jpg" alt="product">
+										src="assets/images/product/product-16.jpg" alt="product">
 									</a>
 									<div class="product-action">
 										<a href="#" class="action"><i class="lar la-heart"></i></a> <a
@@ -762,7 +743,7 @@
 												alt="Product Image">
 										</div>
 										<div class="swiper-slide">
-											<img src="assets/images/shop-single/shop-single-02.jpg"
+											<img src="assets/images/product/cakes/strawRoll-a.jpg"
 												alt="Product Image">
 										</div>
 										<div class="swiper-slide">
@@ -875,7 +856,6 @@
 								</p>
 							</div>
 							<div class="product-sharing">
-								<span class="label">Share</span>
 								<ul class="social-sharing">
 									<li><a href="#"><i class="ion-social-facebook"></i></a></li>
 									<li><a href="#"><i class="ion-social-twitter"></i></a></li>
@@ -959,7 +939,7 @@
 
 <!-- 商品展示 -->
 <script>
-	$(function() {
+// 	$(function() {	// 不可以用function(){}包起來，否則圖片會變大
 
 		function getParameter(param) {
 			const urlParams = new URLSearchParams(window.location.search);
@@ -986,6 +966,8 @@
 				
 				let avg_star = (data.data.total_star/data.data.total_review);
 				let fixed_star = avg_star.toFixed(1);
+				let rating_star = (avg_star/5*100);
+				console.log(rating_star);
 				
 				let total_review = data.data.total_review;
 				let total_purchase = data.data.total_purchase;
@@ -996,7 +978,7 @@
 				
 				
 				// 照片迴圈
-				// 圖片可以顯示，可是效果會消失，圖片大小也會跑掉(有時候等久一點會縮小)
+				// 圖片可以顯示，可是原本的顯微鏡效果會消失
 				let url = location.href.split("/TEA103G2")[0];
 				console.log(image_list.length);
 				
@@ -1042,13 +1024,32 @@
 				$("div#tab1 .product-description ul").append("<li>"+" 現貨數量: "+product_available_qty+"</li>");
 				// 評論數只能主畫面的為此值，下牌商品列的(放大鏡quick view)不能同此
 				$("div.shop-single-content ul.shop-rating-content span").text("("+total_review+")");
+				$("div.product-prices .sale-price").text("$"+product_price);
+				$("div.shop-single-content .review-star div.star").attr("style", "width:"+rating_star+"%"); 
 
-				// 評論功能拿掉?
-				// 必須買過該商品 且會員登入才能夠寫評論
-					
+				// 是否為特價商品(設定每日優惠商品後，對該商品做操作)
+
 		});
+		
+		
+		<!-- 歷史評價 -->
+		// 評論功能拿掉，查看歷史評論
+		// member拿照片，member_comment拿內容		
+		// kenny有整合的bean
+			
+		$.get("dessert_shop/productComment/getProductComment?productId="+product_id, {}, function(data) {
+		// 等檔案merge	
+			
+			
+			
+			
+		});
+		
+		
+		
+		
 
-	});
+// 	}); // 不可以用function(){}包起來，否則圖片會變大
 </script>
 
 

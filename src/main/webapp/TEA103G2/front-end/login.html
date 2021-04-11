@@ -4,6 +4,9 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <META HTTP-EQUIV="pragma" CONTENT="no-cache">
+  <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+  <META HTTP-EQUIV="expires" CONTENT="0">
   <!--    <meta name="google-signin-scope" content="profile email https://www.googleapis.com/auth/user.gender.read https://www.googleapis.com/auth/user.birthday.read https://www.googleapis.com/auth/user.phonenumbers.read">-->
   <meta name="google-signin-client_id"
         content="842033440075-mhrdronq0kjp1s0te2cpkgvlabihhku3.apps.googleusercontent.com">
@@ -472,9 +475,6 @@ svg.abcRioButtonSvg {
             'theme': 'dark',
             'onsuccess': onSuccess,
             'onfailure': onFailure
-        }).then(function(){
-            console.log("test");
-            $("span[id^='not_signed']").text("使用 Google 帳號登入");
         });
 
     }

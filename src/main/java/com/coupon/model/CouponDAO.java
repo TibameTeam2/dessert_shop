@@ -13,7 +13,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.util.JDBCUtil;
 
-public class CouponDAO {
+public class CouponDAO implements CouponDAO_interface {
 
 	private static JdbcTemplate jdbcTemplate;
 	private String driver = JDBCUtil.driver;

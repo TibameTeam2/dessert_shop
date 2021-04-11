@@ -67,6 +67,21 @@ public class ProductServlet_front extends BaseServlet {
 		writeValueByWriter(res, info);
     }
     
+    // http://localhost:8081/dessert_shop/product/getAllSortByStar
+    public void getAllSortByStar(HttpServletRequest req, HttpServletResponse res) {
+    	System.out.println("累計星等排序");
+    	ProductService productSvc = new ProductService();
+    	List<ProductBean> productList = productSvc.getAllSortByStar();
+    	
+    	ResultInfo info = new ResultInfo();
+    	
+    	info.setFlag(true);
+    	info.setMsg("資料取得成功!");
+    	info.setData(productList);
+    	
+    	writeValueByWriter(res, info);
+    }
+    
     //  http://localhost:8081/dessert_shop/product/getAllSortByPrice
     public void getAllSortByPrice(HttpServletRequest req, HttpServletResponse res) {
     	System.out.println("價格排序");
@@ -111,6 +126,46 @@ public class ProductServlet_front extends BaseServlet {
     	
     	writeValueByWriter(res, info);
     }
-   
+
+    //  http://localhost:8081/dessert_shop/product/addProduct
+    public void addProduct(HttpServletRequest req, HttpServletResponse res) {
+    	System.out.println("新增商品");
+//    	ProductService productSvc = new ProductService();
+//    	List<ProductBean> productList = productSvc.getAllSortBySweetness();
+//    	
+//    	ResultInfo info = new ResultInfo();
+//    	
+//    	info.setFlag(true);
+//    	info.setMsg("資料取得成功!");
+//    	info.setData(productList);
+//    	
+//    	writeValueByWriter(res, info);
+    }
+    
+    
+    
+    // 使用語心的API 顯示圖片 內容 商家回覆
+    
+    
+    
+    
+// 給別人使用的API
+    
+    //id?  star?  review+1
+//    在service中新增來自評論的星星與review的方法 給語心使用 
+    
+    public void addReviewStar(HttpServletRequest req, HttpServletResponse res) {
+    	
+    }
+    
+
+    public void checkProductName(HttpServletRequest req, HttpServletResponse res) {
+    	//獲取數據
+    	String product_name = req.getParameter("product_name");
+//    	ProductBean productBean = 
+    	
+    }
+    
+    
     
 }
