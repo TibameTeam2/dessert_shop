@@ -1033,7 +1033,7 @@
                 <th>Action</th>
               </tr>
               </thead>
-              <tbody class="ligth-body">
+              <tbody class="ligth-body" id="content">
               <tr>
                 <td>
                   <div class="checkbox d-inline-block">
@@ -1427,15 +1427,52 @@
 <script src="assets/js/backend-bundle.min.js"></script>
 
 <!-- Table Treeview JavaScript -->
-<script src="assets/js/table-treeview.js"></script>
+<!--<script src="assets/js/table-treeview.js"></script>-->
 
 <!-- Chart Custom JavaScript -->
-<script src="assets/js/customizer.js"></script>
+<!--<script src="assets/js/customizer.js"></script>-->
 
 <!-- Chart Custom JavaScript -->
-<script async src="assets/js/chart-custom.js"></script>
+<!--<script async src="assets/js/chart-custom.js"></script>-->
 
 <!-- app JavaScript -->
 <script src="assets/js/app.js"></script>
+
+
+
+
+<script>
+    $.get("/dessert_shop/member/backend_getAll", {}, function (data) {
+        console.log(data);
+        if (data.flag) {
+            let table = $(".data-table").DataTable();
+            table.clear().draw();
+            for(let i=0; i<data.data.length; i++) {
+
+
+                table.row.add( [
+                    null,
+                    data.data[i].member_name,
+                    'null',
+                    null,
+                   '$88.00',
+                    'null',
+                    'null',
+                    'null',
+                    'null'
+                ]).draw(false);
+            }
+
+        } else {
+        }
+    });
+
+
+
+
+
+</script>
+
+
 </body>
 </html>
