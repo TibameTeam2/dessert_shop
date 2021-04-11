@@ -21,7 +21,7 @@ public class NoticeDaoImpl implements NoticeDao {
 	private String userid = JDBCUtil.user;
 	private String passwd = JDBCUtil.password;
 
-	private static final String INSERT_STMT = "INSERT INTO sweet.notice (notice_type,notice_content,read_status,member_account,) VALUES (?, ?, ?, ?)";
+	private static final String INSERT_STMT = "INSERT INTO sweet.notice (notice_type,notice_content,read_status,member_account) VALUES (?, ?, ?, ?)";
 	private static final String UPDATE = "UPDATE sweet.notice set notice_type=?,notice_content=?, read_status=?, member_account=? where notice_id = ?";
 	private static final String DELETE = "DELETE FROM sweet.notice where notice_id = ?";
 	private static final String GET_ONE_STMT = "SELECT * FROM sweet.notice where notice_id = ?";

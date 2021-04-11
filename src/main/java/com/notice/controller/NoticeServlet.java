@@ -33,8 +33,8 @@ public class NoticeServlet extends BaseServlet {
 			info.setMsg("通知訊息");
 			info.setData(notice);
 
-			System.out.println("notice = " + notice);
-			System.out.println("member = " + member);
+//			System.out.println("notice = " + notice);
+//			System.out.println("member = " + member);
 		}
 
 		writeValueByWriter(res, info);
@@ -42,18 +42,20 @@ public class NoticeServlet extends BaseServlet {
 	}
 
 	/********************************* 新增時呼叫websocket ********************************/
-	public void addMsg(HttpServletRequest req, HttpServletResponse res) throws UnsupportedEncodingException {
+	public void addNotice(HttpServletRequest req, HttpServletResponse res) throws UnsupportedEncodingException {
 
 		// 請求參數:類型、內容、會員帳號
 		Integer noticeType = new Integer(req.getParameter("notice_type"));
 		String noticeContent = new String(req.getParameter("notice_content").getBytes("ISO-8859-1"), "UTF-8");
 		String memberAccount = req.getParameter("member_account");
+		String noticeDispatcher = req.getParameter("notice_dispatcher");
 
 		NoticeBean noticeBean = new NoticeBean();
 		noticeBean.setNotice_type(noticeType);
 		noticeBean.setNotice_content(noticeContent);
 		noticeBean.setRead_status(0);
 		noticeBean.setMember_account(memberAccount);
+		noticeBean.setNotice_dispatcher(noticeDispatcher);
 
 		MemberBean member = (MemberBean) req.getSession().getAttribute("member");
 		NoticeService noticeSvc = new NoticeService();
