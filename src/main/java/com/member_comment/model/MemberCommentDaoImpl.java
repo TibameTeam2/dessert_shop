@@ -17,7 +17,7 @@ public class MemberCommentDaoImpl implements MemberCommentDao {
 	private String USERID = JDBCUtil.user;
 	private String PASSWORD = JDBCUtil.password;
 
-	private static final String GET_ReviewImageUpload_ByReview_id_STMT = "SELECT review_image_id, review_image, review_id FROM review_image_upload where review_id = ? order by review_image_id";
+	private static final String GetReviewImageUploadByReviewId = "SELECT review_image_id, review_image, review_id FROM review_image_upload where review_id = ? order by review_image_id";
 
 	// insert
 	public void insert(MemberCommentBean MemberCommentBean) {
@@ -265,7 +265,7 @@ public class MemberCommentDaoImpl implements MemberCommentDao {
 	}
 
 	@Override
-	public Set<ReviewImageUploadBean> getReviewImageUploadsByReview_id(Integer review_id) {
+	public Set<ReviewImageUploadBean> getReviewImageUploadsByReviewId(Integer review_id) {
 
 		Set<ReviewImageUploadBean> set = new LinkedHashSet<ReviewImageUploadBean>();
 		ReviewImageUploadBean reviewImageUploadBean = null;
@@ -278,7 +278,7 @@ public class MemberCommentDaoImpl implements MemberCommentDao {
 
 			Class.forName(DRIVER);
 			con = DriverManager.getConnection(URL, USERID, PASSWORD);
-			pstmt = con.prepareStatement(GET_ReviewImageUpload_ByReview_id_STMT);
+			pstmt = con.prepareStatement(GetReviewImageUploadByReviewId);
 			pstmt.setInt(1, review_id);
 			rs = pstmt.executeQuery();
 
@@ -322,6 +322,74 @@ public class MemberCommentDaoImpl implements MemberCommentDao {
 		}
 		return set;
 	}
+
+	@Override
+	public MemberCommentBean findReviewIdByOrderDetailId(Integer order_detail_id) {
+		MemberCommentBean MemberCommentBean = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			Class.forName(DRIVER);
+			con = DriverManager.getConnection(URL, USERID, PASSWORD);
+			pstmt = con.prepareStatement("select mc.review_id from member_comment mc where order_detail_id = ?;");
+
+			pstmt.setInt(1, order_detail_id);
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				MemberCommentBean = new MemberCommentBean();
+				MemberCommentBean.setReview_id(rs.getInt("review_id"));
+				MemberCommentBean.setOrder_detail_id(rs.getInt("order_detail_id"));
+				MemberCommentBean.setComment_content(rs.getString("comment_content"));
+				MemberCommentBean.setRating(rs.getInt("rating"));
+				MemberCommentBean.setComment_time(rs.getTimestamp("comment_time"));
+				MemberCommentBean.setProduct_id(rs.getInt("product_id"));
+				MemberCommentBean.setComment_status(rs.getInt("comment_status"));
+			}
+
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return MemberCommentBean;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 //	public static void main(String[] args) {
 //

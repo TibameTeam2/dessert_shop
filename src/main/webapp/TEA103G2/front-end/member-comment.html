@@ -943,7 +943,7 @@
 							// console.log(od_list);
 							// console.log(order_master_id);
 
-							$("div#link1").find('li[data-ordermasterid='+ order_master_id	+ ']').find("div.inner_block").prepend(od_list);
+							$("div#link1").find('li[data-ordermasterid='+ order_master_id	+']').find("div.inner_block").prepend(od_list);
 
 							if (rating == 1) {
 								$("div[class='review-star']").prepend('<div class="star" style="width:20%">');
@@ -1029,7 +1029,7 @@
 					console.log("data.data = " + data.data);
 					console.log(data.data);
 					console.log("------------------------");
-					let order_master_id = data.data[i].order_master_id; console.log("第 "+(i+1)+" 筆的訂單編號 = " + order_master_id);
+					let order_master_id = data.data[i].order_master_id; console.log("第 "+ (i+1) +" 筆的訂單編號 = " + order_master_id);
 					let order_detail_id = data.data[i].order_detail_id;
 					let order_time = moment(data.data[i].order_time).format('YYYY-MM-DD HH:mm:ss');
 					let payment_time = moment(data.data[i].payment_time).format('YYYY-MM-DD HH:mm:ss');
@@ -1171,7 +1171,7 @@
 
 							//上傳圖片BLOB1
 							$("div#link2 li[data-ordermasterid="+ order_master_id +"]").find("input[id=" + order_detail_id + '-1' + "]").on('change', function(e){
-								alert('恭喜按到正確的第一台相機!');
+								// alert('恭喜按到正確的第一台相機!');
 								const file = this.files[0];
 								const objectURL = URL.createObjectURL(file);
 								$("input[id="+ order_detail_id + '-1' + "]").siblings("img[data-name='fileupload1']").attr('src', objectURL);
@@ -1181,7 +1181,7 @@
 
 							//上傳圖片BLOB2
 							$("div#link2 li[data-ordermasterid="+ order_master_id +"]").find("input[id=" + order_detail_id + '-2' + "]").on('change', function(e){
-								alert('恭喜按到正確的第二台相機!')
+								// alert('恭喜按到正確的第二台相機!')
 								const file = this.files[0];
 								const objectURL = URL.createObjectURL(file);
 								$("input[id="+ order_detail_id + '-2' + "]").siblings("img[data-name='fileupload2']").attr('src', objectURL);
@@ -1191,7 +1191,7 @@
 
 							//上傳圖片BLOB3
 							$("div#link2 li[data-ordermasterid="+ order_master_id +"]").find("input[id=" + order_detail_id + '-3' + "]").on('change', function(e){
-								alert('恭喜按到正確的第三台相機!')
+								// alert('恭喜按到正確的第三台相機!')
 								const file = this.files[0];
 								const objectURL = URL.createObjectURL(file);
 								$("input[id="+ order_detail_id + '-3' + "]").siblings("img[data-name='fileupload3']").attr('src', objectURL);
