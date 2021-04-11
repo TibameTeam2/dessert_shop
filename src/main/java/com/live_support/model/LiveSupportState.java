@@ -3,6 +3,8 @@ package com.live_support.model;
 import java.util.Set;
 
 public class LiveSupportState {
+	
+	
 	private String type;
 	// 使用者改變狀態
 	private String user;

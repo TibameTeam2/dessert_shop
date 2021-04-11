@@ -13,11 +13,17 @@ public class NameServlet extends HttpServlet {
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
-		String userName = req.getParameter("userName");
+		String uesrId = req.getParameter("uesrId");
 		
-		req.setAttribute("userName", userName);
+		req.setAttribute("uesrId", uesrId);
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/liveSupport_jsp/chat.jsp");
 		dispatcher.forward(req, res);
 	}
+	
+	
+	
+	
+	
+	
 }

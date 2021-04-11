@@ -29,6 +29,7 @@ public class NoticeWS {
 		
 		if (receiverSession != null && receiverSession.isOpen()) {
 			receiverSession.getAsyncRemote().sendText(message);
+			
 		}
 		
 

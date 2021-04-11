@@ -22,7 +22,7 @@
 	</div>
 </body>
 <script>
-	var MyPoint = "/LiveSupportWS/${userName}";
+	var MyPoint = "/LiveSupportWS/${uesrId}";
 	var host = window.location.host;
 	var path = window.location.pathname;
 	var webCtx = path.substring(0, path.indexOf('/', 1));
@@ -30,7 +30,7 @@
 
 	var statusOutput = document.getElementById("statusOutput");
 	var messagesArea = document.getElementById("messagesArea");
-	var self = '${userName}';
+	var self = '${uesrId}';
 	var webSocket;
 
 	function connect() {

@@ -1,21 +1,36 @@
 package com.live_support.model;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 public class LiveSupportMessage {
 
-	private String type;
+	private String type; //類似action
 	private String sender;
 	private String receiver;
-	private String chat_history;
-
-	public LiveSupportMessage(String type, String sender, String receiver, String chat_history) {
-		super();
+	private String message;
+	private Date chatTime;
+	
+	public LiveSupportMessage(String type, String sender, String receiver, String message, Date chatTime) {
 		this.type = type;
 		this.sender = sender;
 		this.receiver = receiver;
-		this.chat_history = chat_history;
+		this.message = message;
+		this.chatTime = chatTime;
 	}
+	
+	
+
+	@Override
+	public String toString() {
+		return "LiveSupportMessage ["
+				+ "type=" + type 
+				+ ", sender=" + sender 
+				+ ", receiver=" + receiver 
+				+ ", message="	+ message 
+				+ ", chatTime=" + chatTime + "]";
+	}
+
+
 
 	public String getType() {
 		return type;
@@ -41,12 +56,23 @@ public class LiveSupportMessage {
 		this.receiver = receiver;
 	}
 
-	public String getChat_history() {
-		return chat_history;
+	public String getMessage() {
+		return message;
 	}
 
-	public void setChat_history(String chat_history) {
-		this.chat_history = chat_history;
+	public void setMessage(String message) {
+		this.message = message;
 	}
 
+	public Date getChatTime() {
+		return chatTime;
+	}
+
+	public void setChatTime(Date chatTime) {
+		this.chatTime = chatTime;
+	}
+	
+	
+
+	
 }

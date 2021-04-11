@@ -1,5 +1,6 @@
 package idv.david.websocketchat.jedis;
 
+import java.util.Date;
 import java.util.List;
 
 import redis.clients.jedis.Jedis;
