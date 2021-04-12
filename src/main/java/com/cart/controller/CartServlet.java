@@ -406,6 +406,7 @@ public class CartServlet extends BaseServlet {
 				Jedis jedis = JedisUtil.getJedis();
 				jedis.hset(member.getMember_account(), "payCode_id-" + new_order_master_id, payCode);
 				jedis.close();
+				System.out.println("123");
 				}).start();
 			}				
 
