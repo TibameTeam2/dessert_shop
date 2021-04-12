@@ -53,7 +53,8 @@ public class ProductCommentDaoImpl implements ProductCommentDao {
 				pcBean = new ProductCommentBean();
 				pcBean.setMember_account(rs.getString("member_account"));
 				pcBean.setMember_name(rs.getString("member_name"));
-				pcBean.setMember_photo("/member/backend_getPhoto?member_account=" + pcBean.getMember_account());
+//				pcBean.setMember_photo("/member/backend_getPhoto?member_account=" + pcBean.getMember_account());
+				pcBean.setMember_photo("/member/backend_getPhoto?id=" + pcBean.getMember_account());
 				pcBean.setProduct_id(rs.getInt("product_id"));
 				pcBean.setReview_id(rs.getInt("review_id"));
 				pcBean.setRating(rs.getInt("rating"));

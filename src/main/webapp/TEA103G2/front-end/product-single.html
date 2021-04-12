@@ -48,24 +48,35 @@
 	border: 1px solid green;
 }
 
-/* .coverImg{
-            object-fit: cover;
-        } */
+/* 商品評價的照片區塊 */
+.dec-img{
+	display: flex;
+}
+.dec-img-wrapper{
+	display: flex;
+	flex-direction: row;
+	
+}
+.dec-img-wrapper .dec-img{
+	width: 200px;
+	height: 200px;
+	
+}
+
+
         
         
 </style>
+
+<!-- 分享按鈕 from SHARETHIS -->
+<script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=6073dff91ec66e0011e92ec0&product=inline-share-buttons" async="async"></script>
+<!-- 分享按鈕結束 -->
+
 
 
 </head>
 
 <body>
-<!-- 分享按鈕FB的東西  -->
-<div id="fb-root"></div>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v10.0" nonce="TIxFibIl"></script>
-<!-- line的分享按鈕... -->
-<script src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
-
-
 
 <!-- Loading Progress ============================================= -->
 <div id="loading-progress">
@@ -259,36 +270,6 @@
 									freedom of movement.</li>
 							</ul>
 						</div>
-<!--                             <div class="product-variants"> -->
-<!--                                 <div class="product-variant-item"> -->
-<!--                                     <span class="label">Size</span> -->
-<!--                                     <div class="size-select"> -->
-<!--                                         <select> -->
-<!--                                             <option value="0">S</option> -->
-<!--                                             <option value="0">M</option> -->
-<!--                                             <option value="0">L</option> -->
-<!--                                             <option value="0">XL</option> -->
-<!--                                         </select> -->
-<!--                                     </div> -->
-<!--                                 </div> -->
-<!--                                 <div class="product-variant-item"> -->
-<!--                                     <span class="label">Color</span> -->
-<!--                                     <div class="color-select"> -->
-<!--                                         <div class="color-label"> -->
-<!--                                             <input id="color1" name="color" type="radio"> -->
-<!--                                             <label for="color1"><span data-color="#fff"></span></label> -->
-<!--                                         </div> -->
-<!--                                         <div class="color-label"> -->
-<!--                                             <input id="color2" name="color" type="radio"> -->
-<!--                                             <label for="color2"><span data-color="#555"></span></label> -->
-<!--                                         </div> -->
-<!--                                         <div class="color-label"> -->
-<!--                                             <input id="color3" name="color" type="radio"> -->
-<!--                                             <label for="color3"><span data-color="#C19A6B"></span></label> -->
-<!--                                         </div> -->
-<!--                                     </div> -->
-<!--                                 </div> -->
-<!--                             </div> -->
 						<div class="product-quantity-cart">
 							<div class="product-quantity-cart-wrapper d-flex">
 								<div class="product-quantity d-inline-flex">
@@ -317,23 +298,32 @@
 							</p>
 						</div>
 						<div class="product-sharing">
+<!-- 分享按鈕 -->
 							<span class="label">分享</span>
 							<ul class="social-sharing">
 <!-- 							<li><a href="#"><i class="ion-social-facebook"></i></a></li> -->
-								<li><a target="_blank" 
-								href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fab60cd46f09f.ngrok.io%2Fdessert_shop%2FTEA103G2%2Ffront-end%2Fproduct-single.html%3Fid%3D3&amp;src=sdkpreparse" 
-								class="fb-xfbml-parse-ignore"><i class="ion-social-facebook"></i></a></li>
 								
-								<li><a href="#"><i class="ion-social-twitter"></i></a></li>
-								<li><a href="#"><i class="ion-social-pinterest"></i></a></li>
-								<li><a href="#"><i class="ion-social-linkedin" href=></i></a></li>
-								<li><a href="#"><i class="fab fa-facebook fa-2x"></i></a></li>
+<!-- 								<li><a target="_blank"  -->
+<!-- 								href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fab60cd46f09f.ngrok.io%2Fdessert_shop%2FTEA103G2%2Ffront-end%2Fproduct-single.html%3Fid%3D3&amp;src=sdkpreparse"  -->
+<!-- 								class="fb-xfbml-parse-ignore"><i class="ion-social-facebook"></i></a></li> -->
+								
+<!-- 								<li><a href="#"><i class="ion-social-twitter"></i></a></li> -->
+<!-- 								<li><a href="#"><i class="ion-social-pinterest"></i></a></li> -->
+<!-- 								<li><a href="#"><i class="ion-social-linkedin" href=></i></a></li> -->
+<!-- 								<li><a href="#"><i class="fab fa-facebook fa-2x"></i></a></li> -->
 								<!-- 分享按鈕的東西 body 那裏還有一段 -->
 								
+
+								<!-- 分享按鈕 from SHAR THIS -->
 								<li>
-								<div class="line-it-button" data-lang="zh_Hant" data-type="share-b" data-ver="3" data-url="https://ab60cd46f09f.ngrok.io/dessert_shop/TEA103G2/front-end/product-single.html?id=3" 
-								data-color="default" data-size="small" data-count="false" style="display: none;"></div>
+								<div class="sharethis-inline-share-buttons"></div>
 								</li>
+								
+								
+<!-- 								<li> -->
+<!-- 								<div class="line-it-button" data-lang="zh_Hant" data-type="share-b" data-ver="3" data-url="https://ab60cd46f09f.ngrok.io/dessert_shop/TEA103G2/front-end/product-single.html?id=3"  -->
+<!-- 								data-color="default" data-size="large" data-count="false" style="display: none;"></div> -->
+<!-- 								</li> -->
  								
 							</ul>
 						</div>
@@ -354,7 +344,7 @@
 								<li>
 									<div class="reassurance-item">
 										<img src="assets/images/icon/icon3.png" alt="">
-										<p>Return policy (edit with Customer reassurance module)</p>
+										<p>退換政策 : 食品類商品售出後一律不予退換</p>
 									</div>
 								</li>
 							</ul>
@@ -942,7 +932,7 @@
 
 <!-- 商品展示 -->
 <script>
-// 	$(function() {	// 不可以用function(){}包起來，否則圖片會變大
+// 	$(function() {}// 不可以用function(){}包起來，否則圖片會變大
 
 		function getParameter(param) {
 			const urlParams = new URLSearchParams(window.location.search);
@@ -975,13 +965,10 @@
 				
 				let total_review = data.data.total_review;
 				let total_purchase = data.data.total_purchase;
-				
 
 				let image_list = data.data.image_url.valueOf();
 				let product_images=[];
 				
-				
-				// 照片迴圈
 				// 圖片可以顯示，可是原本的顯微鏡效果會消失
 				let url = location.href.split("/TEA103G2")[0];
 				
@@ -1034,11 +1021,7 @@
 		});
 		
 		
-<!-- 歷史評價 -->
-		// 評論功能拿掉，查看歷史評論
-		// member拿照片，member_comment拿內容		
-		// kenny有整合的bean
-			
+<!-- 商品評價 -->
 		$.get("/dessert_shop/productComment/getProductComment?productId="+product_id, {}, function(data) {
 			console.log("productComment:"+data.msg);
 			for(var i = 0; i< data.data.length; i++){
@@ -1046,16 +1029,16 @@
 				let member_account = data.data[i].member_account;
 				let member_name = data.data[i].member_name;
 				let member_photo = url + data.data[i].member_photo;
-				console.log(member_photo);
+				console.log("會員照片:"+member_photo);
 				let review_rating = data.data[i].rating;
 				let review_star = (review_rating/5*100);
 				let comment_content = data.data[i].comment_content;
 				let commemt_time = moment(data.data[i].comment_time).format("YYYY-MM-DD HH:mm:ss");
 				
 				let single_comment=`
-					<div class="single-comment" id="${member_account}">
+					<div class="single-comment" data-memberaccount="${member_account}">
 						<div class="comment-author">
-							<img src="${member_photo}" alt="">
+							<img src="${member_photo}" alt="MemberPhoto" style="width: 100px; height: 100px">
 						</div>
 						<div class="comment-content">
 							<div class="author-name-rating">
@@ -1066,8 +1049,22 @@
 							</div>
 							<span class="date">${commemt_time}</span>
 							<p>${comment_content}</p>
+							<div class="dec-img-wrapper">
+							</div>	
 						</div>
 					</div>`
+							
+					
+// !!!!!收縮功能未完成!!!!
+// 							<button type="button" class="switch_btn">\n
+// 							<span class="plus" style="width: 20px; height: 20px; margin-right: 0px;"><i class="fas fa-chevron-down" style="color: white; display: inline"></i></span>\n
+// 							<span class="minus" style="width: 20px; height: 20px;"><i class="fas fa-chevron-up" style="color: white; display: inline"></i></span>\n
+// 							</button>\n
+// 							</div>\n
+// 							<div class="inner_block">\n
+// 							</div>\n
+// 							<div style="height:20px"></div>\n
+						
 					
 				$("#tab3 div.reviews-comment").append(single_comment);
 				console.log("comment!");
@@ -1081,10 +1078,12 @@
 					// 插入image的位置
 					let upload_image =`	
 						<div class="col-md-2">
-							<img src="${review_images[j]}" alt="ReviewImage">
+							<div class="dec-img">
+								<img src="${review_images[j]}" alt="ReviewImage">
+							</div>
 						</div>`
 					
-					$('div[id='+ member_account + '] .comment-content').append(upload_image);
+					$('div[data-memberaccount='+ member_account + '] .dec-img-wrapper').append(upload_image);
 					console.log(member_account);
 					console.log("uploaded!");
 					console.log(review_images[j]);
@@ -1101,17 +1100,16 @@
 					let reply_time = moment(data.data[i].reply_time).format("YYYY-MM-DD HH:mm:ss");
 	
 					// <!-- <blockquote><p>評價文字內容的亮點/摘錄</p></blockquote> -->
-					let reply_form = '<p style="font-size: 14px; margin-bottom: 0px;">商家回覆:</p><span style="font-size: 14px">' + reply_content + '</span>';
+					let reply_form = '<p style="font-size: 14px; margin-bottom: 0px;">商家回覆( '+ reply_time +' ):</p><span style="font-size: 14px">' + reply_content + '</span>';
 					let reply_area = '<blockquote><p>'+ reply_form +'</p></blockquote>';
 					
-					let seller_reply=`
-					
-					`
+					$('div[data-memberaccount='+ member_account + '] .comment-content').append(reply_area);
 					
 				}
 
 			}
-			
+// 加入收藏清單			
+// 加入比較列表			
 			
 			
 		});
@@ -1119,7 +1117,6 @@
 		
 		
 
-// 	}); // 不可以用function(){}包起來，否則圖片會變大
 </script>
 
 
