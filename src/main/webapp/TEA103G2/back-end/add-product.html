@@ -1,5 +1,4 @@
-﻿
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -1079,19 +1078,19 @@
     
 	    $("#addProduct_form").submit(function(){
 	    	console.log("submit the form");
-	    	
+
 	    	console.log($(this));
 	    	$.post("/dessert_shop/product/addProduct", $(this).serialize(), function (data) {
 	    		console.log(data.flag);
 	//     		if(checkProductName()){}
-	    		
+
 	    	});
-	    	
+
 	    });
-	    
-		// 檢查名稱有沒有重複    
+
+		// 檢查名稱有沒有重複
 //     $("#product_name").blur(checkProductName);
-			
+
     	function checkProductName(){
     		let addProduct_name = $("#product_name").val().trim();
     	};

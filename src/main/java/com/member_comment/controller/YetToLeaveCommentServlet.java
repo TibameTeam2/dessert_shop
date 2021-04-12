@@ -34,8 +34,8 @@ public class YetToLeaveCommentServlet extends BaseServlet {
 			info.setFlag(false);
 			info.setMsg("尚未登入!");
 		} else {
-			String member_account = member.getMember_account();
-			List<YetToLeaveCommentBean> ytlcBlist = yetToLeaveCommentSvc.findByMemberAccount(member_account);
+			String memberAccount = member.getMember_account();
+			List<YetToLeaveCommentBean> ytlcBlist = yetToLeaveCommentSvc.findByMemberAccount(memberAccount);
 			info.setFlag(true);
 			info.setData(ytlcBlist);
 			info.setMsg(member.getMember_account() + " 的尚未評價資料");

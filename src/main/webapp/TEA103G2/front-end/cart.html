@@ -1367,7 +1367,8 @@
         /*==================================== 前往結帳 ==========================================*/
         $("a.btn-go-checkout").on("click", function () {
             let coupon_id = $("div.show-coupon").attr("data-coupon_id");
-            $.get("/dessert_shop/cart/setCouponAndCheckout", {"coupon_id": coupon_id}, function (data) {
+            let coupon_price = $('span.coupon-price').text();
+            $.get("/dessert_shop/cart/setCouponAndCheckout", {"coupon_id": coupon_id , "coupon_price": coupon_price}, function (data) {
                 console.log(data);
                 if (data.flag) {
 

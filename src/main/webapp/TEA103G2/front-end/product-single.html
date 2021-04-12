@@ -1034,7 +1034,7 @@
 				let review_star = (review_rating/5*100);
 				let comment_content = data.data[i].comment_content;
 				let commemt_time = moment(data.data[i].comment_time).format("YYYY-MM-DD HH:mm:ss");
-				
+
 				let single_comment=`
 					<div class="single-comment" data-memberaccount="${member_account}">
 						<div class="comment-author">
@@ -1066,17 +1066,18 @@
 // 							<div style="height:20px"></div>\n
 						
 					
+
 				$("#tab3 div.reviews-comment").append(single_comment);
 				console.log("comment!");
-				
+
 				// 圖片的地方
 				// 希望點了可以放大，可能要從產品縮圖的地方複製過來
 				let review_images = [];
 				for(var j=0; j< data.data[i].review_image.length; j++){
 					review_images[j] = url+ data.data[i].review_image[j];
-					
+
 					// 插入image的位置
-					let upload_image =`	
+					let upload_image =`
 						<div class="col-md-2">
 							<div class="dec-img">
 								<img src="${review_images[j]}" alt="ReviewImage">
@@ -1087,18 +1088,18 @@
 					console.log(member_account);
 					console.log("uploaded!");
 					console.log(review_images[j]);
-					
+
 				}
-				
-				
-			
+
+
+
 				// 店家回覆
 				let reply_id = data.data[i].reply_id;
 				if(reply_id != null){
 					let reply_content = data.data[i].comment_content;
 					console.log(reply_content);
 					let reply_time = moment(data.data[i].reply_time).format("YYYY-MM-DD HH:mm:ss");
-	
+
 					// <!-- <blockquote><p>評價文字內容的亮點/摘錄</p></blockquote> -->
 					let reply_form = '<p style="font-size: 14px; margin-bottom: 0px;">商家回覆( '+ reply_time +' ):</p><span style="font-size: 14px">' + reply_content + '</span>';
 					let reply_area = '<blockquote><p>'+ reply_form +'</p></blockquote>';

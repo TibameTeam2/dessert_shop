@@ -2,6 +2,8 @@ package com.notice.model;
 
 import java.util.List;
 
+import com.mysql.cj.protocol.x.Notice;
+
 public class NoticeService {
 
 	private NoticeDaoImpl dao;
@@ -29,19 +31,9 @@ public class NoticeService {
 	}
 
 	/*********************** 修改 ***********************/
-	public NoticeBean updateNotice(Integer notice_id, Integer notice_type, String notice_content,
-			java.sql.Timestamp notice_time, Integer read_status, String member_account) {
+	public NoticeBean updateNotice(NoticeBean noticeBean) {
 
-		NoticeBean noticeBean = new NoticeBean();
-
-		noticeBean.setNotice_id(notice_id);
-		noticeBean.setNotice_type(notice_type);
-		noticeBean.setNotice_content(notice_content);
-		noticeBean.setNotice_time(notice_time);
-		noticeBean.setRead_status(read_status);
-		noticeBean.setMember_account(member_account);
 		dao.update(noticeBean);
-
 		return noticeBean;
 	}
 
@@ -69,6 +61,28 @@ public class NoticeService {
 	/*********************** 查詢(會員) ***********************/
 	public List<NoticeBean> getMember(String member_account) {
 		return dao.getMember(member_account);
+	}
+
+	/*********************** 更新讀取狀態 ***********************/
+	public Boolean updateRead(NoticeBean notice) {
+
+//	1.透過dao.findByPrimaryKey取得完整的noticeBean
+//	2.比對getMember_account是否一樣(equals)
+//	3.Read_status:set(1)
+//	4.再呼叫updateNotice(noticeBean)
+
+		NoticeBean noticeId = dao.findByPrimaryKey(notice.getNotice_id());
+		
+		if (notice.getMember_account().equals(noticeId.getMember_account())) {
+
+			noticeId.setRead_status(1);
+			dao.update(noticeId);
+
+		}
+		
+		System.out.println("已更新"+noticeId+"狀態");
+
+		return true;
 	}
 
 }

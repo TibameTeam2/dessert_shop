@@ -376,7 +376,7 @@ public class MemberServlet extends BaseServlet {
     public void update(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
         //獲取數據
         Map<String, String[]> map = req.getParameterMap();
-        System.out.println("map= " + Convert.toStr(map));
+        System.out.println("map= " + new ObjectMapper().writeValueAsString(map));
 
         //封裝物件
         MemberBean member = new MemberBean();
@@ -874,5 +874,12 @@ public class MemberServlet extends BaseServlet {
 //        return decodedBytes;
 //    }
 
-
+    public void backend_getAll(HttpServletRequest req, HttpServletResponse res) {
+        List<MemberBean> list = service.getAll();
+        ResultInfo info = new ResultInfo();
+        info.setFlag(true);
+        info.setMsg("取得所有會員資料!");
+        info.setData(list);
+        writeValueByWriter(res, info);
+    }
 }
