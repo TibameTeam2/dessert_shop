@@ -431,7 +431,7 @@
 																<span class="star" data-star="5"><i	class="icon ion-star"></i></span>
 															</div>
 														</div>
-														<textarea class="form-control" placeholder="我覺得這項商品..."></textarea>
+														<textarea class="form-control" placeholder="我覺得這項商品..." name="commentContent"></textarea>
 														<div class="row">
 															<label for="file_upload1" class="custom-file-upload" style="margin: 15px; padding-right: 0 !important; padding-left: 0 !important; width: 50px">
 																<i class="fas fa-camera-alt" id="camera1"></i>
@@ -440,7 +440,7 @@
 															</label>
 															<label for="file_upload2" class="custom-file-upload" style="margin: 15px; padding-right: 0 !important; padding-left: 0 !important; width: 50px">
 																<i class="fas fa-camera-alt" id="camera2"></i>
-																<input	id="file_upload2" style="float: left" type="file"  class="jason"/>
+																<input	id="file_upload2" style="float: left" type="file" />
 																<img id="review_image2" class="custom-file-upload" style="width: 0%; border: none" />
 															</label>
 															<label for="file_upload3" class="custom-file-upload" style="margin: 15px; padding-right: 0 !important; padding-left: 0 !important; width: 50px">
@@ -593,7 +593,7 @@
 									<ul class="">
 										<li style="margin: 12px"><a class="active" data-bs-toggle="tab" href="#link1"><b>歷史評價</b></a></li>
 										<li style="margin: 12px"><a data-bs-toggle="tab" href="#link2"><b>尚未評價</b></a></li>
-										<li style="margin: 12px"><a data-bs-toggle="tab" href="#link3"><b>其他反饋</b></a></li>
+										<!-- <li style="margin: 12px"><a data-bs-toggle="tab" href="#link3"><b>其他反饋</b></a></li> -->
 									</ul>
 
 									<!-- </div> -->
@@ -1054,7 +1054,7 @@
 
 					let om_list = '<li data-ordermasterid = "' + order_master_id + '">\n'
 					+ '<div class="post-meta" style="margin-bottom: 0px; border-top: 1px solid white; border-bottom: 1px solid white">\n'
-					+ '<span class="detail">訂單編號 : <a href="my-account.html"><span>'+ order_master_id	+ '</span></a></span>\n'
+					+ '<span class="detail">訂單編號 : <a href="my-account.html"><span>'+ order_master_id	+'</span></a></span>\n'
 					+ '<span class="detail">下訂時間 : <span>'+ order_time +'</span></span>\n'
 					+ '<span class="detail">付款時間 : <span>'+ payment_time +'</span></span>\n'
 					+ '<br>\n'
@@ -1090,7 +1090,7 @@
 					console.log("orderMasterId = " + orderMasterId);
 
 					//把orderMasterId傳給後台, 要抓出多筆order_detail
-					$.post("/dessert_shop/yetToLeaveComment/getYetToLeaveComment1?",	orderMasterId, function(data1) {
+					$.post("/dessert_shop/yetToLeaveComment/getYetToLeaveComment1?", orderMasterId, function(data1) {
 						console.log("尚未評價	$.post的:");//第二個API所涵蓋的值
 						console.log("data.data.length = " + data1.data.length);
 						console.log("data.data = " + data1.data);
@@ -1112,15 +1112,18 @@
 							let product_name = data1.data[j].product_name;
 
 							let od_list = '<!-- 尚未評價/某訂單/商品們 開始 -->\n'
+							//加<form> 開始, 使用「action="javascript:void(0)」是為了不由前台提交,而是發AJAX(前台中的背景)
+							//data-orderdetailid=0是什麼?有要刪嗎?
+							+ '<form id="'+ order_detail_id +'" data-star=0 data-orderdetailid="'+order_detail_id+'" action="javascript:void(0)" enctype="multipart/form-data">\n'
 							+ '<hr class="my-4">\n'
 							+ '<!-- <blockquote><p>評價文字內容的亮點/摘錄</p></blockquote> -->\n'
 							+ '<div class="single-comment">\n'
 							+ '<div class="comment-author">\n'
-							+ '<img src="/dessert_shop'+ product_image + '" class="" alt="">\n'
+							+ '<img src="/dessert_shop'+ product_image +'" class="" alt="">\n'
 							+ '</div>\n'
 							+ '<div class="comment-content">\n'
 							+ '<div class="author-name-rating">\n'
-							+ '<h6 class="name">'+ product_name +'</h6>\n'
+							+ '<h6 class="name" data-productid="'+ product_id +'">'+ product_name +'</h6>\n'
 							+ '<div class="star_block" style="font-size: 10pt;">\n'
 							+ '<span class="star" data-star="1"><i class="icon ion-star"></i></span>\n'
 							+ '<span class="star" data-star="2"><i class="icon ion-star"></i></span>\n'
@@ -1129,33 +1132,48 @@
 							+ '<span class="star" data-star="5"><i class="icon ion-star"></i></span>\n'
 							+ '</div>\n'
 							+ '</div>\n'
-							+ '<textarea class="form-control" placeholder="我覺得這項商品..."></textarea>\n'
+
+							// 在<textarea>內加name屬性是為了給FormData封裝, 讓commentContent(這個key)裝進FormData, 再透過API傳給MemberCommentServlet
+							+ '<textarea class="form-control" placeholder="我覺得這項商品..." name="CommentContent"></textarea>\n'
 							+ '<div class="row">\n'
+
+
+							// 第一台相機
+							// 在<input>內加name屬性是為了給FormData封裝, 讓upload1(這個key)裝進FormData, 再透過API傳給MemberCommentServlet
+							// 網頁/F12/Network/addMemberComment/Headers/最下面的Form Data展開, 即可檢視
 							+ '<label for="'+ order_detail_id +'-1'+'" class="custom-file-upload" style="margin: 15px; padding-right: 0 !important; padding-left: 0 !important; width: 50px">\n'
 							+ '<i class="fas fa-camera-alt" id="camera1"></i>\n'
-							+ '<input data-title="inputimg1" style="width:50%," type="file" id="'+ order_detail_id +'-1'+'">\n'
-							// + '<input id="file_upload1" style="width:50%," type="file">\n'
+							+ '<input data-title="inputimg1" style="width:50%," type="file" name="upload1" id="'+ order_detail_id +'-1'+'">\n'
 							+ '<img data-name="fileupload1" class="custom-file-upload" style="width: 0%; border: none">\n'
-							// + '<img id="review_image1" class="custom-file-upload" style="width: 0%; border: none">\n'
 							+ '</label>\n'
+
+
+							// 第二台相機
+							// 在<input>內加name屬性是為了給FormData封裝, 讓upload2(這個key)裝進FormData, 再透過API傳給MemberCommentServlet
+							// 網頁/F12/Network/addMemberComment/Headers/最下面的Form Data展開, 即可檢視
 							+ '<label for="'+ order_detail_id +'-2'+'" class="custom-file-upload" style="margin: 15px; padding-right: 0 !important; padding-left: 0 !important; width: 50px">\n'
 							+ '<i class="fas fa-camera-alt" id="camera2"></i>\n'
-							+ '<input	data-title="inputimg2" style="float: left" type="file" id="'+ order_detail_id +'-2'+'"/>\n'
-							// + '<input	id="file_upload2" style="float: left" type="file" />\n'
+							+ '<input	data-title="inputimg2" style="float: left" type="file" name="upload2" id="'+ order_detail_id +'-2'+'"/>\n'
 							+ '<img data-name="fileupload2" class="custom-file-upload" style="width: 0%; border: none" />\n'
-							// + '<img id="review_image2" class="custom-file-upload" style="width: 0%; border: none" />\n'
 							+ '</label>\n'
+
+
+							// 第三台相機
+							// 在<input>內加name屬性是為了給FormData封裝, 讓upload3(這個key)裝進FormData, 再透過API傳給MemberCommentServlet
+							// 網頁/F12/Network/addMemberComment/Headers/最下面的Form Data展開, 即可檢視
 							+ '<label for="'+ order_detail_id +'-3'+'" class="custom-file-upload" style="margin: 15px; padding-right: 0 !important; padding-left: 0 !important; width: 50px">\n'
 							+ '<i class="fas fa-camera-alt" id="camera3"></i>\n'
-							+ '<input  data-title="inputimg3"  style="float: left" type="file" id="'+ order_detail_id +'-3'+'"/>\n'
-							// + '<input id="file_upload3" style="float: left" type="file" />\n'
+							+ '<input  data-title="inputimg3"  style="float: left" type="file" name="upload3" id="'+ order_detail_id +'-3'+'"/>\n'
 							+ '<img data-name="fileupload3" class="custom-file-upload" style="width: 0%; border: none" />\n'
-							// + '<img id="review_image3" class="custom-file-upload" style="width: 0%; border: none" />\n'
 							+ '</label>\n'
+
+
 							+ '</div>\n'
 							+ '<a class="btn btn-primary float-end" href="#" role="button">送出評價</a>\n'
 							+ '</div>\n'
 							+ '</div>\n'
+							+ '</form>\n'
+							//加<form> 結束
 							+ '<!-- 尚未評價/某訂單/商品們 結束 -->\n';
 
 							$("div#link2").find("li[data-ordermasterid = "+ order_master_id +"]").find("div.inner_block").append(od_list);
@@ -1167,11 +1185,12 @@
 								star.addClass("-on")
 								star.prevAll().addClass("-on")
 								star.nextAll().removeClass("-on")
+								console.log($(this).attr("data-star"));
+								$(this).closest("form").attr("data-star", $(this).attr("data-star"));
 							})
 
 							//上傳圖片BLOB1
 							$("div#link2 li[data-ordermasterid="+ order_master_id +"]").find("input[id=" + order_detail_id + '-1' + "]").on('change', function(e){
-								// alert('恭喜按到正確的第一台相機!');
 								const file = this.files[0];
 								const objectURL = URL.createObjectURL(file);
 								$("input[id="+ order_detail_id + '-1' + "]").siblings("img[data-name='fileupload1']").attr('src', objectURL);
@@ -1181,7 +1200,6 @@
 
 							//上傳圖片BLOB2
 							$("div#link2 li[data-ordermasterid="+ order_master_id +"]").find("input[id=" + order_detail_id + '-2' + "]").on('change', function(e){
-								// alert('恭喜按到正確的第二台相機!')
 								const file = this.files[0];
 								const objectURL = URL.createObjectURL(file);
 								$("input[id="+ order_detail_id + '-2' + "]").siblings("img[data-name='fileupload2']").attr('src', objectURL);
@@ -1191,7 +1209,6 @@
 
 							//上傳圖片BLOB3
 							$("div#link2 li[data-ordermasterid="+ order_master_id +"]").find("input[id=" + order_detail_id + '-3' + "]").on('change', function(e){
-								// alert('恭喜按到正確的第三台相機!')
 								const file = this.files[0];
 								const objectURL = URL.createObjectURL(file);
 								$("input[id="+ order_detail_id + '-3' + "]").siblings("img[data-name='fileupload3']").attr('src', objectURL);
@@ -1216,6 +1233,66 @@
 		//以上為功能
 
 
+		//按下尚未評價的「確認送出」按鈕
+		$("div#link2").on("click", "a[role='button']", function(e){
+			e.preventDefault();
+			console.log($(this));
+			console.log($(this).closest('form').serialize());
+
+			let form = $(this).closest('form')[0]; //轉成js物件
+			let data = new FormData(form); //此FormData物件用來裝著要傳給MemberCommentServlet的key-value
+
+			order_detail_id = $(this).closest('form').attr('data-orderdetailid');
+			product_id = $(this).closest('form').find('h6[data-productid]').attr('data-productid');
+			star = $(this).closest('form').attr('data-star'); //因為.star為<span>標籤, 不是<input>標籤或<textarea>標籤等,所以用attr()取星等
+
+			if(star == "0"){
+				alert("請評價星等, 謝謝!");
+				return;
+			}
+			console.log(order_detail_id);
+			console.log(product_id);
+			console.log(star);
+
+			data.append("OrderDetailId", order_detail_id);
+			data.append("ProductId", product_id);
+			data.append("Rating", star);
+			console.log(data);
+
+
+			$.ajax({
+				type: "POST",
+				enctype: 'multipart/form-data',
+				url: '/dessert_shop/memberComment/addMemberComment',
+				data: data,
+				processData: false,
+				contentType: false,
+				cache: false,
+				success: function (data) {
+					console.log(data);
+					if (data.flag) {
+						location.href="member-comment.html";
+						Swal.fire({
+							title: data.msg,
+							text: "",
+							icon: "success"
+						});
+						// let url = location.href.split("/TEA103G2")[0];
+						// console.log(url);
+					} else {
+						// 新增評論失敗 彈出視窗
+						Swal.fire({
+							title: data.msg,
+							text: "",
+							icon: "error"
+						})
+					}
+				}
+			});
+			return false;
+		})
+
+
 
 
 		// (假資料的)
@@ -1228,9 +1305,9 @@
 		})
 
 
-		//跟送評價星等進資料庫有關
-		$("div#link2").find("div.star_block").on("click", "span.star", function() {
-			alert("更新成功");
+		//(阿賓賓)跟送評價星等進資料庫有關
+		// $("div#link2").find("div.star_block").on("click", "span.star", function() {
+		// 	alert("更新成功");
 			// 	$(that).closest("div.star_block").find("span.star").each(function(i, item){
 			// 		if( parseInt($(this).attr("data-star")) <= current_star ){
 			// 			$(this).addClass("-on");
@@ -1238,7 +1315,7 @@
 			// 			$(this).removeClass("-on");
 			// 		}
 			// 	});
-		})
+		// })
 
 
 		//新增評論
@@ -1283,6 +1360,7 @@
 				$(this).removeClass("active");
 			});
 		}
+
 
 
 		// //上傳圖片BLOB1

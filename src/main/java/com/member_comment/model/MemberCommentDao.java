@@ -6,7 +6,7 @@ import java.util.Set;
 import com.review_image_upload.model.ReviewImageUploadBean;
 
 public interface MemberCommentDao {
-	public void insert(MemberCommentBean memberCommentBean);
+	public int insert(MemberCommentBean memberCommentBean);
 
 	public void update(MemberCommentBean memberCommentBean);
 

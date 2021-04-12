@@ -20,24 +20,31 @@ public class MemberCommentDaoImpl implements MemberCommentDao {
 	private static final String GetReviewImageUploadByReviewId = "SELECT review_image_id, review_image, review_id FROM review_image_upload where review_id = ? order by review_image_id";
 
 	// insert
-	public void insert(MemberCommentBean MemberCommentBean) {
+	public int insert(MemberCommentBean MemberCommentBean) {
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
-
+		int key=0;
 		try {
-
 			Class.forName(DRIVER);
 			con = DriverManager.getConnection(URL, USERID, PASSWORD);
 			pstmt = con.prepareStatement(
-					"INSERT INTO member_comment(order_detail_id, comment_content, rating, product_id, comment_status) VALUES (?, ?, ?, ?, 1)");
+					"INSERT INTO member_comment(order_detail_id, comment_content, rating, product_id, comment_status) VALUES (?, ?, ?, ?, ?)",Statement.RETURN_GENERATED_KEYS);
 
 			pstmt.setInt(1, MemberCommentBean.getOrder_detail_id());
 			pstmt.setString(2, MemberCommentBean.getComment_content());
 			pstmt.setInt(3, MemberCommentBean.getRating());
 			pstmt.setInt(4, MemberCommentBean.getProduct_id());
+			pstmt.setInt(5, 1);
 			pstmt.executeUpdate();
-
+			
+			ResultSet rsKey = pstmt.getGeneratedKeys();
+			if(rsKey.next()) {
+				key=rsKey.getInt(1);
+			}
+			
+			
+			
 		} catch (ClassNotFoundException e) {
 			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
 		} catch (SQLException se) {
@@ -58,6 +65,7 @@ public class MemberCommentDaoImpl implements MemberCommentDao {
 				}
 			}
 		}
+		return key;
 
 	}
 

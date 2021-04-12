@@ -14,10 +14,10 @@ public class MemberCommentService {
 		dao = new MemberCommentDaoImpl();
 	}
 
-	//用在使用者填完尚未評價後、評價資料進資料庫
-	public Boolean addMemberComment(Integer order_detail_id, Integer product_id, Integer rating, String comment_content,
+	// 用在使用者填完尚未評價後、評價資料進資料庫
+	public int addMemberComment(Integer order_detail_id, Integer product_id, Integer rating, String comment_content,
 			Integer comment_status) {
-
+		int key = 0;
 		MemberCommentBean memberCommentBean = new MemberCommentBean();
 
 		memberCommentBean.setOrder_detail_id(order_detail_id);
@@ -28,12 +28,12 @@ public class MemberCommentService {
 		memberCommentBean.setComment_status(1);
 
 		try {
-			dao.insert(memberCommentBean);
+			key = dao.insert(memberCommentBean);
 		} catch (Exception e) {
-			return false;
+			e.printStackTrace(System.err);
 		}
+		return key;
 
-		return true;
 	}
 
 	public MemberCommentBean updateMemberComment(Integer review_id, Integer order_detail_id, Integer product_id,

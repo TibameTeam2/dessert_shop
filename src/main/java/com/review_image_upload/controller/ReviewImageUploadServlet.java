@@ -11,6 +11,7 @@ import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.order_master.model.HistoryCommentProductBean;
 import com.order_master.model.HistoryCommentProductService;
+import com.review_image_upload.model.ReviewImageUploadBean;
 import com.util.BaseServlet;
 import com.util.JDBCUtil;
 import com.util.ResultInfo;
@@ -25,13 +27,14 @@ import com.util.ResultInfo;
 import cn.hutool.core.convert.Convert;
 import cn.hutool.core.io.IoUtil;
 
+@MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 50 * 1024 * 1024, maxRequestSize = 50 * 1024 * 1024)
 public class ReviewImageUploadServlet extends BaseServlet {
 
 	public void test(HttpServletRequest req, HttpServletResponse res) {
 		System.out.println("hello");
 	}
 
-	
+	//用在
 	//在web.xml註冊/reviewImageUpload/*的網址會來到這支Servlet
 	//http://localhost:8081/dessert_shop/reviewImageUpload/getReviewImage?review_image_id=1
 	public void getReviewImage(HttpServletRequest req, HttpServletResponse res) {
@@ -78,5 +81,14 @@ public class ReviewImageUploadServlet extends BaseServlet {
 
 		}
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }
