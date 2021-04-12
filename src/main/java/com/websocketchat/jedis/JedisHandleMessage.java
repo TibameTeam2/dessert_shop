@@ -1,4 +1,5 @@
-package idv.david.websocketchat.jedis;
+package com.websocketchat.jedis;
+
 
 import java.util.Date;
 import java.util.List;
@@ -28,7 +29,8 @@ public class JedisHandleMessage {
 		Jedis jedis = pool.getResource();
 		jedis.auth("123456");
 		jedis.rpush(senderKey, message);
-		jedis.rpush(receiverKey, message);
+		jedis.rpush(receiverKey, message);	
+
 
 		jedis.close();
 	}

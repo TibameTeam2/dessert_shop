@@ -872,7 +872,35 @@
         </a> -->
         <!--Back To End-->
 
+        <!--------------------------------------------------- LiveSupport --------------------------------------------------->
 
+        <div class="messages">
+            <img type="button" class="message-btn" src="assets/images/icon/messenger.png">;
+        </div>
+
+        <div class="message-table">
+            <article cla="message-article">
+
+
+                <div class="message-title">
+                    <div class="tilte-span-div">
+                        <span class="tilte-span">即&emsp;時&emsp;客&emsp;服</span>
+                    </div>
+                    <div>
+                        <button class="message-close"><i class="fas fa-times"></i></button>
+                    </div>
+                </div>
+
+                <div class="message-input-div">
+                    <input class="message-input" type="text" placeholder="請輸入文字...">
+                    <!-- <img type="button" class="send-btn" src="assets/images/icon/icon-send.png"> -->
+                    <input type="submit" id="sendMessage" class="send-btn" value="Send" onclick="sendMessage();" />
+
+            </article>
+            </div>
+
+
+        </div>
 
 
 
@@ -1335,7 +1363,6 @@
 
 
 
-<<<<<<< HEAD
             /*==================================== 前往結帳 ==========================================*/
             $("a.btn-go-checkout").on("click", function() {
                 let coupon_id = $("div.show-coupon").attr("data-coupon_id");
@@ -1344,15 +1371,6 @@
                     }, function(data) {
                         console.log(data);
                         if (data.flag) {
-=======
-        /*==================================== 前往結帳 ==========================================*/
-        $("a.btn-go-checkout").on("click", function () {
-            let coupon_id = $("div.show-coupon").attr("data-coupon_id");
-            let coupon_price = $('span.coupon-price').text();
-            $.get("/dessert_shop/cart/setCouponAndCheckout", {"coupon_id": coupon_id , "coupon_price": coupon_price}, function (data) {
-                console.log(data);
-                if (data.flag) {
->>>>>>> master
 
                             location.href = data.redirect;
 
@@ -1370,11 +1388,7 @@
 
 
         <script>
-            $.post("/dessert_shop/member/isLogin", function(response) {
-                /*********************************** chat 測試 **************************************/
-
-
-            });
+            /*********************************** chat 測試 **************************************/
         </script>
 
 </body>

@@ -23799,24 +23799,10 @@ div.messagesArea {
 } */
 
 div.test01 {
-    background: yellow;
-    color: rgb(245, 24, 24);
-    width: 500px;
-    height: 500px;
-    /* line-height: 40px; */
-    /* border-radius: 100%; */
-    /* display: none; */
-    text-align: center;
-    /* text-decoration: none; */
-    /* -webkit-transition: all 500ms ease-in-out;
-    -o-transition: all 500ms ease-in-out;
-    transition: all 500ms ease-in-out; */
-    float: right;
-    position: fixed;
-    right: 50px;
-    bottom: 100px;
-    font-size: 20px;
     z-index: 50;
+    background-color: yellow;
+    height: 500px;
+    width: 500px;
 }
 
 
