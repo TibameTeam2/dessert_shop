@@ -30,6 +30,7 @@ public class LiveSupportBean {
 		this.customer_service_id = customer_service_id;
 	}
 
+
 	public String getChat_history() {
 		return chat_history;
 	}

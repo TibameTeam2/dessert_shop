@@ -687,15 +687,4 @@
     });
 
 
-
-    /******************************* 通知滑鼠移入變色 *******************************/
-    $('img.bell').on('mouseover', function() {
-        this.src = "assets/images/icon/bell2.png";
-    });
-
-    $('img.bell').on('mouseout', function() {
-        this.src = "assets/images/icon/bell.png";
-    });
-
-
 })(jQuery);

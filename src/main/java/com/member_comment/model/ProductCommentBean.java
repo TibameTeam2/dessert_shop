@@ -1,9 +1,10 @@
 package com.member_comment.model;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.List;
 
-public class ProductCommentBean {
+public class ProductCommentBean implements Serializable {
 	private String member_account; //PK
 	private String member_name;
 	private String member_photo;

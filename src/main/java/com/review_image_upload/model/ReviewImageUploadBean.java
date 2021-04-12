@@ -25,8 +25,8 @@ public class ReviewImageUploadBean implements java.io.Serializable {
 		return review_image;
 	}
 
-	public void setReview_image(byte[] bs) {
-		this.review_image = bs;
+	public void setReview_image(byte[] review_image) {
+		this.review_image = review_image;
 	}
 
 	public Integer getReview_id() {

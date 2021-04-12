@@ -24,7 +24,6 @@ public interface NoticeDao {
     
     /*************************** 查會員 **************************/
     public List<NoticeBean> getMember(String member_account);
-    
-    
+     
 
 }
