@@ -27,6 +27,8 @@ public class ProductDAO implements ProductDAO_interface {
 	String SELECT_SORT_PRICE;
 	String SELECT_SORT_CALORIE;
     String SELECT_SORT_SWEETNESS;
+    String UPDATE_REVIEW;
+    
 	
 	String SELECT_ONEIMGID;
 	String SELECT_ALLIMGID;
@@ -172,6 +174,59 @@ public class ProductDAO implements ProductDAO_interface {
 		}
 		
 	}
+// 給評論(語心)的addReviewStar使用
+// 寫到一半未完成	
+	public ProductBean updateReviewStar(ProductBean productBean) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		UPDATE_REVIEW = "UPDATE product set total_star = ?, total_review = ? where product_id = ?";
+
+		try {
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			pstmt = con.prepareStatement(UPDATE_REVIEW);
+			
+			pstmt.setInt(1, productBean.getTotal_star());
+			pstmt.setInt(2, productBean.getTotal_review());
+	
+			pstmt.setInt(3, productBean.getProduct_id());
+			
+			pstmt.executeUpdate();
+			
+			
+			// Handle any driver errors
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. "
+					+ e.getMessage());
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return productBean;
+	}
+	
+	
+	
+	
+	
 	
 	public void delete(Integer product_id) {
 		Connection con = null;
@@ -1215,13 +1270,27 @@ public List<ProductBean> getAllImage(Integer product_id) {
 //		productBean.setExpiry_after_buying(5);
 //		productBean.setProduct_calorie(328);
 //		productBean.setDegree_of_sweetness(3);
-//		productBean.setTotal_star(577);
-//		productBean.setTotal_review(139);
+//		productBean.setTotal_star(+4);
+//		productBean.setTotal_review(+1);
 //		productBean.setTotal_purchase(166);
 //		productBean.setProduct_id(4);
 //		
 //		dao.update(productBean);
-
+		
+		
+		
+		// 更新評論
+//		ProductBean productBean = new ProductBean();
+//		
+//		productBean.setTotal_star(115);
+//		productBean.setTotal_review(25);
+//		productBean.setProduct_id(4);
+//		
+//		dao.updateReviewStar(productBean);
+//
+//		
+		
+		
 
 //        // 刪除
 //		dao.delete(4);
@@ -1250,9 +1319,9 @@ public List<ProductBean> getAllImage(Integer product_id) {
 //		System.out.println(list_imageId.size());
 		
 		// 找商品第一張照片
-		ProductBean productBean = dao.getOneImage(4);
+//		ProductBean productBean = dao.getOneImage(4);
 //		System.out.println(productBean);
-		System.out.println(productBean.getProduct_image());
+//		System.out.println(productBean.getProduct_image());
 //		
 		
 //		//找該商品的所有照片

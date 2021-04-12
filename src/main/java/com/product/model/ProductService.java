@@ -25,6 +25,17 @@ public class ProductService {
 		
 		return productBean;
 	}
+// 給評論用	
+//	public ProductBean addReviewStar(ProductBean productBean) {
+//		
+//		dao.updateReviewStar(productBean);
+//		
+//		return productBean;
+//	}
+	
+	
+	
+	
 	
 	public void deleteProduct(Integer product_id) {
 		dao.delete(product_id);

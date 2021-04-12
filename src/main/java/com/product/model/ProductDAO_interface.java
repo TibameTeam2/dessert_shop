@@ -16,6 +16,10 @@ public interface ProductDAO_interface {
 	public List<ProductBean> getAllSortBySweetness();
 	public List<ProductBean> getAllSortByStar();
 	
+// 給評論用
+//	public ProductBean updateReviewStar(ProductBean productBean) ;
+	
+	
 	
 	
 	public ProductBean getOneImageId(Integer product_id);

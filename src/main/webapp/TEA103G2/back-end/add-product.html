@@ -886,7 +886,9 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form id="addProduct_form" action="page-list-product.html" data-toggle="validator">
+<!--                         <form id="addProduct_form" action="page-list-product.html" data-toggle="validator"> -->
+						<!-- 為了開發 先不跳轉 -->
+                        <form id="addProduct_form" action=" " >
                             <div class="row">
                             	<div class="col-md-6">                      
                                     <div class="form-group">
@@ -898,14 +900,14 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>商品編號 *</label>
-                                        <input type="text" class="form-control" placeholder="自動產生" data-errors="Please Enter Code." disabled>
+                                        <input type="text" class="form-control" placeholder="自動產生" data-errors="Please Enter Code."  id="product_id" name="product_id" disabled>
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>     
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>商品類別 *</label>
-                                        <select name="type" class="selectpicker form-control" data-style="py-0">
+                                        <select name="type" class="selectpicker form-control" data-style="py-0" id="type">
                                             <option value="">請選擇商品種類</option>
 											<optgroup label="蛋糕">
 												<option value="蛋糕:千層蛋糕">千層蛋糕</option>
@@ -940,21 +942,21 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>商品售價 *</label>
-                                        <input type="text" class="form-control" placeholder="請輸入數字" data-errors="Please Enter Cost." required>
+                                        <input type="text" class="form-control" placeholder="請輸入數字" data-errors="Please Enter Cost." id="product_price" name="product_price" required>
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>現貨數量 *</label>
-                                        <input type="text" class="form-control" placeholder="請輸入數字" data-errors="Please Enter Price." required>
+                                        <input type="text" class="form-control" placeholder="請輸入數字" data-errors="Please Enter Price." id="product_available_qty" name="product_available_qty" required>
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>商品狀態 *</label>
-                                        <select name="type" class="selectpicker form-control" data-style="py-0">
+                                        <select name="product_status" class="selectpicker form-control" data-style="py-0" id="product_status">
                                             <option value=0 selected>未上架 (預設)</option>
                                             <option value=1>上架中</option>
                                         </select>
@@ -963,21 +965,21 @@
                                 <div class="col-md-4">                                    
                                     <div class="form-group">
                                         <label>賞味天數 *</label>
-                                        <input type="text" class="form-control" placeholder="請輸入數字" required>
+                                        <input type="text" class="form-control" placeholder="請輸入數字" id="expiry_after_buying" name="expiry_after_buying" required>
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">                                    
                                     <div class="form-group">
                                         <label>商品熱量 *</label>
-                                        <input type="text" class="form-control" placeholder="請輸入數字" required>
+                                        <input type="text" class="form-control" placeholder="請輸入數字" id="product_calorie" name="product_calorie" required>
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
                                 <div class="col-md-4">                                    
                                     <div class="form-group">
                                         <label>商品甜度 *</label>
-                                         <select name="type" class="selectpicker form-control" data-style="py-0">
+                                         <select name="degree_of_sweetness" class="selectpicker form-control" data-style="py-0" id="degree_of_sweetness">
                                             <option value="">請選擇商品甜度</option>
                                             <option value=1>1</option>
                                             <option value=2>2</option>
@@ -990,39 +992,39 @@
                                 <div class="col-md-4">                                    
                                     <div class="form-group">
                                         <label>累計星等</label>
-                                        <input type="text" class="form-control" placeholder="預設為 0" >
+                                        <input type="text" class="form-control" placeholder="預設為 0" id="total_star" name="total_star">
                                     </div>
                                 </div>
                                 <div class="col-md-4">                                    
                                     <div class="form-group">
                                         <label>累計評價次數</label>
-                                        <input type="text" class="form-control" placeholder="預設為 0" >
+                                        <input type="text" class="form-control" placeholder="預設為 0" id="total_review" name="total_review">
                                     </div>
                                 </div>
                                 <div class="col-md-4">                                    
                                     <div class="form-group">
                                         <label>累計銷售</label>
-                                        <input type="text" class="form-control" placeholder="預設為 0" >
+                                        <input type="text" class="form-control" placeholder="預設為 0"id="total_purchase" name="total_purchase">
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>商品圖片*</label>
-                                        <input type="file" class="form-control image-file" name="pic" accept="image/*" required>
+                                        <input type="file" class="form-control image-file" accept="image/*" name="pic" required>
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>商品介紹</label>
-                                        <textarea class="form-control" rows="4" required></textarea>
+                                        <textarea class="form-control" rows="4" id="product_intro" name="product_intro" required></textarea>
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>商品成分</label>
-                                        <textarea class="form-control" rows="4" required></textarea>
+                                        <textarea class="form-control" rows="4" id="product_ingredient" name="product_ingredient" required></textarea>
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
@@ -1078,12 +1080,17 @@
     
 	    $("#addProduct_form").submit(function(){
 	    	console.log("submit the form");
-
-	    	console.log($(this));
-	    	$.post("/dessert_shop/product/addProduct", $(this).serialize(), function (data) {
+// 			提交表單時，檢查屬性合法與否
+// 	     	if(checkProductName()){}
+		    	console.log($("#addProduct_form").serialize());
+	    	$.post("/dessert_shop/product/backend_addProduct", $(this).serialize(), function (data) {
 	    		console.log(data.flag);
-	//     		if(checkProductName()){}
-
+				if(data.flag){
+					// 提交成功跳轉業面到list_all_product
+					// sweetalert
+				}else {
+					// 新增商品失敗，彈出視窗
+				}
 	    	});
 
 	    });
