@@ -1,4 +1,4 @@
-package idv.david.websocketchat.jedis;
+package com.websocketchat.jedis;
 
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;

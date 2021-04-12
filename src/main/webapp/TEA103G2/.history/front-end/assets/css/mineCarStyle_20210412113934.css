@@ -365,3 +365,46 @@ div.coupon-form {
 a.btn-go-shopping {
     margin-right: 15px;
 }
+
+img.message-btn {
+    width: 65px;
+}
+
+div.tilte-span-div {
+    padding-top: 10px;
+    font-size: 20px;
+    font-weight: bolder;
+    width: 330px;
+}
+
+span.tilte-span {
+    color: white;
+}
+
+button.message-close {
+    color: white;
+    font-size: 25px;
+    position: absolute;
+    top: 5px;
+}
+
+input.message-input {
+    width: 250px;
+    padding-left: 5px;
+    margin-left: 15px;
+}
+
+input.send-btn {
+    width: 50px;
+    margin-left: 10px;
+}
+
+ul.coupon-list>li {
+    font-weight: bold;
+}
+
+div.messagesArea {
+    background-color: yellow;
+    height: 310px;
+    margin-top: 44px;
+}

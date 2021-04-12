@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class LiveSupportMessage {
 
-	private String type; //類似action
+	private String type; //分辨為聊天還是歷史訊息
 	private String sender;
 	private String receiver;
 	private String message;
@@ -17,20 +17,6 @@ public class LiveSupportMessage {
 		this.message = message;
 		this.chatTime = chatTime;
 	}
-	
-	
-
-	@Override
-	public String toString() {
-		return "LiveSupportMessage ["
-				+ "type=" + type 
-				+ ", sender=" + sender 
-				+ ", receiver=" + receiver 
-				+ ", message="	+ message 
-				+ ", chatTime=" + chatTime + "]";
-	}
-
-
 
 	public String getType() {
 		return type;
@@ -72,6 +58,7 @@ public class LiveSupportMessage {
 		this.chatTime = chatTime;
 	}
 	
+
 	
 
 	
