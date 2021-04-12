@@ -10,116 +10,166 @@ import com.coupon_code.model.CouponCodeBean;
 import com.order_detail.model.OrderDetailBean;
 import com.order_master.model.OrderMasterBean;
 
-public class CartProductService {	
-		
+import cn.hutool.core.util.RandomUtil;
+
+public class CartProductService {
+
 	CartProductDAO dao = new CartProductDAO();
-	
-	//拿cart_id, cart.product_id, product_quantity, product_name, product_price/ product_image的src
+
+	// 拿cart_id, cart.product_id, product_quantity, product_name, product_price/
+	// product_image的src
 	public List<List> getCartDataByMemberAccount(String member_account, String contextPath) {
-		
+
 		List<List> list = new ArrayList<List>();
-		
+
 		List<CartProductBean> list1 = dao.selectByMemberAccount(member_account);
 		list.add(list1);
-		
+
 		List<String> list2 = new ArrayList<String>();
 		for (int i = 0; i < list1.size(); i++) {
-			String src = contextPath+"/cart/getProductImage?product_id="+list1.get(i).getProduct_id();
+			String src = contextPath + "/cart/getProductImage?product_id=" + list1.get(i).getProduct_id();
 			list2.add(src);
 		}
 		list.add(list2);
-		
+
 		return list;
-		
+
 	}
-	
-	//拿coupon資料
+
+	// 拿coupon資料
 	public List<CouponBean> getCouponDataByMemberAccount(String member_account) {
-		
-		return dao.selectCouponByMemberAccount(member_account);		
-		
-	}	
-	
-	//回傳圖片資料流
+
+		return dao.selectCouponByMemberAccount(member_account);
+
+	}
+
+	// 回傳圖片資料流
 	public InputStream getProductImageByProductId(Integer product_id) {
-		
+
 		return dao.getFirstImageByProductId(product_id);
-		
-	}	
-	
-	//update購物車內商品數量
+
+	}
+
+	// update購物車內商品數量
 	public void updateQuantityAtCart(Integer cart_id, Integer product_quantity) {
-		
+
 		dao.updateProductQuantity(cart_id, product_quantity);
-		
+
 	}
-	
-	//delete購物車內商品
+
+	// delete購物車內商品
 	public void deleteProductAtCart(Integer cart_id) {
-		
+
 		dao.deleteCart(cart_id);
-		
+
 	}
-	
-	//查詢優惠碼
+
+	// 查詢優惠碼
 	public CouponCodeBean selectCouponCode(String coupon_code) {
-			
+
 		return dao.selectCouponCodeData(coupon_code);
-		
+
 	}
-	//使用會員帳號+優惠碼查詢單筆優惠券對照 以及回傳用
+
+	// 使用會員帳號+優惠碼查詢單筆優惠券對照 以及回傳用
 	public CouponBean selectCoupon(String member_account, Integer coupon_code_id) {
-		
+
 		return dao.selectCouponData(member_account, coupon_code_id);
-		
-	} 
-	//insert優惠券
+
+	}
+
+	// insert優惠券
 	public void insertCoupon(CouponBean CB) {
-		
+
 		dao.insertCouponData(CB);
-		
+
 	}
-	
-	//查詢全部信用卡
+
+	// 查詢全部信用卡
 	public List<CardDetailBean> selectAllCard(String member_account) {
-	
+
 		return dao.selectCardByMember(member_account);
-		
+
 	}
-	
-	//insert信用卡並回傳Id
+
+	// insert信用卡並回傳Id
 	public Integer insertCard(CardDetailBean card_detailBean) {
-		
+
 		return dao.insertCard(card_detailBean);
-		
+
 	}
-	
-	//查詢單筆信用卡ById
+
+	// 查詢單筆信用卡ById
 	public CardDetailBean selectOneCard(Integer card_id) {
-		
+
 		return dao.selectCardById(card_id);
-		
+
 	}
-	
-	//刪除信用卡
+
+	// 刪除信用卡
 	public void deleteCardById(Integer card_id) {
-		
+
 		dao.deleteCard(card_id);
+
+	}
+
+	// 拿cart_id, cart.product_id, product_quantity, product_name, product_price
+	public List<CartProductBean> getCartDataBeforeOrder(String member_account) {
+
+		return dao.selectByMemberAccount(member_account);
+
+	}
+
+	// 新增訂單資料
+	public Integer insertOrder(OrderMasterBean orderMasterBean, List<OrderDetailBean> list_orderDetailBean) {
+
+		return dao.insertOrderMaster(orderMasterBean, list_orderDetailBean);
+
+	}
+
+	// 發票亂生成
+	public String invoice_random() {
+
+		return RandomUtil.randomString(RandomUtil.BASE_CHAR, 2).toUpperCase() + RandomUtil.randomNumbers(8);
+
+	}
+
+	// 匯款帳戶亂生成
+	public String payCode_random() {
+
+		return RandomUtil.randomNumbers(16);
+
+	}
+
+	// 修改優惠券狀態
+	public void updateCouponStatus(Integer coupon_id, Integer coupon_status) {
+
+		dao.updateCouponStatusById(coupon_id, coupon_status);
+
+	}
+	
+	
+	
+	
+	/* ==================== 商品頁面新增商品到購物車 ==================== */
+	public void insertOrUpdateCart(CartBean cartBean) {
+		
+		String member_account = cartBean.getMember_account();
+		Integer product_id = cartBean.getProduct_id();
+		Integer product_quantity = cartBean.getProduct_quantity();
+			
+		CartBean cartBean_exist = dao.findCart(member_account, product_id);
+		if (cartBean_exist == null) {
+			dao.insertCart(cartBean);
+		} else {
+			Integer new_product_quantity = cartBean_exist.getProduct_quantity() + product_quantity;
+			cartBean_exist.setProduct_quantity(new_product_quantity);
+			dao.updateCart(cartBean_exist);
+		}
 		
 	}
 	
-	//拿cart_id, cart.product_id, product_quantity, product_name, product_price
-	public List<CartProductBean> getCartDataBeforeOrder(String member_account) {
-		
-		return dao.selectByMemberAccount(member_account);
-		
-	}
-	//新增訂單資料
-	public void insertOrder(OrderMasterBean orderMasterBean, List<OrderDetailBean> list_orderDetailBean) {
-		
-		dao.insertOrderMaster(orderMasterBean, list_orderDetailBean);
-		
-	}
+	
 	
 
 }

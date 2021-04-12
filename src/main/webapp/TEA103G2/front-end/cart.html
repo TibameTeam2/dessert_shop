@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Amino - Organic & Multipurpose Bootstrap 5 Template</title>
+    <title>嗜甜-購物車</title>
     <meta name="robots" content="noindex, follow" />
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -749,7 +749,7 @@
                                     </table>
                                 </div>
                                 <div class="cart-total-btn mt-20 ">
-                                    <a href="shop-grid-left-sidebar.html "
+                                    <a href="shop-grid-left-sidebar.html"
                                         class="btn btn-shopping btn-hover-primary btn-go-shopping">繼續購物</a>
                                     <a class="btn btn-shopping btn-hover-primary btn-go-checkout">前往結帳</a>
                                 </div>
@@ -1092,7 +1092,7 @@
 
             if (quantity.val() < 20) {
 
-                $.get("/dessert_shop/cart/updateQuantity", {"cart_id": cart.attr("data-cart_id"), "product_quantity": parseInt(quantity.val()) + 1 }, function (data) {
+                $.post("/dessert_shop/cart/updateQuantity", {"cart_id": cart.attr("data-cart_id"), "product_quantity": parseInt(quantity.val()) + 1 }, function (data) {
                     console.log(data);
                     if (data.flag) {
 
@@ -1110,7 +1110,7 @@
                         }
                     }
 
-                });  //get
+                });  //post
 
 
             } else {
@@ -1129,7 +1129,7 @@
 
             if (quantity.val() > 1) {
 
-                $.get("/dessert_shop/cart/updateQuantity", {"cart_id": cart.attr("data-cart_id"), "product_quantity": parseInt(quantity.val()) - 1 }, function (data) {
+                $.post("/dessert_shop/cart/updateQuantity", {"cart_id": cart.attr("data-cart_id"), "product_quantity": parseInt(quantity.val()) - 1 }, function (data) {
                     console.log(data);
                     if (data.flag) {
 
@@ -1147,7 +1147,7 @@
                         }
                     }
 
-                });  //get
+                });  //post
 
 
             } else {
@@ -1164,7 +1164,7 @@
             let cart = $(this).closest("tr");
             
 
-            $.get("/dessert_shop/cart/deleteProduct", {"cart_id": cart.attr("data-cart_id")}, function (data) {
+            $.post("/dessert_shop/cart/deleteProduct", {"cart_id": cart.attr("data-cart_id")}, function (data) {
                 console.log(data);
                 if (data.flag) {
 
@@ -1186,7 +1186,7 @@
                 }
 
 
-            });  //get
+            });  //post
 
 
         });
@@ -1299,7 +1299,7 @@
                 alert("請輸入優惠碼!");
             } else {
 
-                $.get("/dessert_shop/cart/insertCoupon", { "coupon_code": code }, function (data) {
+                $.post("/dessert_shop/cart/insertCoupon", { "coupon_code": code }, function (data) {
                     console.log(data);
                     if (data.flag) {
 
@@ -1339,7 +1339,7 @@
                     }
 
 
-                });  //get
+                });  //post
 
             }
 
@@ -1368,7 +1368,7 @@
         $("a.btn-go-checkout").on("click", function () {
             let coupon_id = $("div.show-coupon").attr("data-coupon_id");
             let coupon_price = $('span.coupon-price').text();
-            $.get("/dessert_shop/cart/setCouponAndCheckout", {"coupon_id": coupon_id , "coupon_price": coupon_price}, function (data) {
+            $.post("/dessert_shop/cart/setCouponAndCheckout", {"coupon_id": coupon_id , "coupon_price": coupon_price}, function (data) {
                 console.log(data);
                 if (data.flag) {
 
@@ -1381,7 +1381,7 @@
                     }
                 }
 
-            })  //get  
+            })  //post  
 
         }); 
          

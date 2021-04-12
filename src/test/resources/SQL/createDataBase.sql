@@ -621,15 +621,15 @@ CREATE TABLE order_master (
     invoice_number		 varchar(50),
     order_total			 int not null,
     order_remarks	  	 varchar(2000),
-    constraint orderMaster_member_FK foreign key (member_account) references member (member_account)
---  constraint orderMaster_coupon_FK foreign key (coupon_id) references coupon(coupon_id)
+    constraint orderMaster_member_FK foreign key (member_account) references member (member_account),
+    constraint orderMaster_coupon_FK foreign key (coupon_id) references coupon(coupon_id)
 ) AUTO_INCREMENT = 1;
 INSERT INTO  order_master (member_account, payment_time, payment_method, coupon_id, order_status, invoice_number, order_total, order_remarks)
-VALUES ('tom', '2021-01-02 03:04:05', '1', 2, '1', 'AA12345678', '8', '紅色死神說要加糖');
+VALUES ('tom', '2021-01-02 03:04:05', '1', 2, '1', 'AA12345678', '800', '紅色死神說要加糖');
 INSERT INTO  order_master (member_account, payment_time, payment_method, coupon_id, order_status, invoice_number, order_total, order_remarks)
-VALUES ('jason', '2021-01-02 03:04:06', '1', null, '1', 'AA12345672', '7', '紅色死神說要加鹽');
+VALUES ('jason', '2021-01-02 03:04:06', '1', null, '1', 'AA12345672', '700', '紅色死神說要加鹽');
 INSERT INTO  order_master (member_account, payment_time, payment_method, coupon_id, order_status, invoice_number, order_total, order_remarks)
-VALUES ('amy', '2021-01-02 03:04:07', '1', null, '2', 'AA12345673', '6', '紅色死神說要加醬油');
+VALUES ('amy', '2021-01-02 03:04:07', '1', null, '2', 'AA12345673', '600', '紅色死神說要加醬油');
 
 
 -- 訂單明細
