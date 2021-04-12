@@ -6,13 +6,19 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import com.card_detail.model.CardDetailBean;
 import com.coupon.model.CouponBean;
 import com.coupon_code.model.CouponCodeBean;
+import com.emp.model.EmpJDBCDAO;
+import com.emp.model.EmpVO;
+import com.order_detail.model.OrderDetailBean;
+import com.order_master.model.OrderMasterBean;
 import com.util.JDBCUtil;
 
 public class CartProductDAO {
@@ -260,7 +266,7 @@ public class CartProductDAO {
 	
 	
 	//delete商品
-	public void delete(Integer cart_id) {
+	public void deleteCart(Integer cart_id) {
 		String DELETE =
 			"DELETE FROM sweet.cart where cart_id = ?";
 		Connection con = null;
@@ -472,6 +478,393 @@ public class CartProductDAO {
 		
 		
 	}
+	
+	
+	//select信用卡By會員
+	public List<CardDetailBean> selectCardByMember(String member_account) {
+		Connection con = null;
+	    PreparedStatement pstmt = null;
+		String SELECT = "SELECT * FROM sweet.card_detail where member_account = ?";
+		
+        List<CardDetailBean> list = new ArrayList<CardDetailBean>();
+        CardDetailBean card_detailBean = null;    
+        ResultSet rs = null;
+        
+        try {
+            Class.forName(driver);
+            con = DriverManager.getConnection(url, userid, passwd);
+            pstmt = con.prepareStatement(SELECT);
+            
+            pstmt.setString(1, member_account);
+            
+            rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                card_detailBean = new CardDetailBean();
+                card_detailBean.setCard_id(rs.getInt("card_id"));
+                card_detailBean.setMember_account(rs.getString("member_account"));
+                card_detailBean.setCard_number(rs.getString("card_number"));
+                card_detailBean.setCard_expired_day(rs.getString("card_expired_day"));
+                card_detailBean.setCard_cvc(rs.getString("card_cvc"));
+                card_detailBean.setCard_addedDate(rs.getTimestamp("card_addedDate"));
+                list.add(card_detailBean);
+            }
+            
+            // Handle any driver errors
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException("Couldn't load database driver. "
+                    + e.getMessage());
+            // Handle any SQL errors
+        } catch (SQLException se) {
+            throw new RuntimeException("A database error occured. "
+                    + se.getMessage());
+            // Clean up JDBC resources
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException se) {
+                    se.printStackTrace(System.err);
+                }
+            }
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException se) {
+                    se.printStackTrace(System.err);
+                }
+            }
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (Exception e) {
+                    e.printStackTrace(System.err);
+                }
+            }
+        }
+        
+        return list;
+        
+    }
+	
+	
+	//insert信用卡並回傳card_id
+	public Integer insertCard(CardDetailBean card_detailBean) {
+
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        String INSERT = "INSERT INTO sweet.card_detail (member_account, card_number, card_expired_day, card_cvc) VALUES (?, ?, ?, ?)";
+
+        ResultSet rs = null;
+        Integer card_id = null;
+        
+        try {
+
+            Class.forName(driver);
+            con = DriverManager.getConnection(url, userid, passwd);
+            String cols[] = {"card_id"};
+            pstmt = con.prepareStatement(INSERT, cols);
+
+            pstmt.setString(1, card_detailBean.getMember_account());
+            pstmt.setString(2, card_detailBean.getCard_number());
+            pstmt.setString(3, card_detailBean.getCard_expired_day());
+            pstmt.setString(4, card_detailBean.getCard_cvc());
+
+            pstmt.executeUpdate();
+            
+            rs = pstmt.getGeneratedKeys();
+            card_id = rs.getInt(1);
+
+            // Handle any driver errors
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException("Couldn't load database driver. "
+                    + e.getMessage());
+            // Handle any SQL errors
+        } catch (SQLException se) {
+            throw new RuntimeException("A database error occured. "
+                    + se.getMessage());
+            // Clean up JDBC resources
+        } finally {
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException se) {
+                    se.printStackTrace(System.err);
+                }
+            }
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (Exception e) {
+                    e.printStackTrace(System.err);
+                }
+            }
+        }
+        
+        return card_id;
+
+    }
+	
+	
+	//select單筆信用卡byID
+	public CardDetailBean selectCardById(Integer card_id) {
+
+      Connection con = null;
+      PreparedStatement pstmt = null;
+      String SELECT = "SELECT * FROM sweet.card_detail where card_id = ?";
+      
+      CardDetailBean card_detailBean = null;
+      ResultSet rs = null;
+
+      try {
+
+          Class.forName(driver);
+          con = DriverManager.getConnection(url, userid, passwd);
+          pstmt = con.prepareStatement(SELECT);
+
+          pstmt.setInt(1, card_id);
+
+          rs = pstmt.executeQuery();
+
+          while (rs.next()) {
+              card_detailBean = new CardDetailBean();
+              card_detailBean.setCard_id(rs.getInt("card_id"));
+              card_detailBean.setMember_account(rs.getString("member_account"));
+              card_detailBean.setCard_number(rs.getString("card_number"));
+              card_detailBean.setCard_expired_day(rs.getString("card_expired_day"));
+              card_detailBean.setCard_cvc(rs.getString("card_cvc"));
+              card_detailBean.setCard_addedDate(rs.getTimestamp("card_addedDate"));
+          }
+
+          // Handle any driver errors
+      } catch (ClassNotFoundException e) {
+          throw new RuntimeException("Couldn't load database driver. "
+                  + e.getMessage());
+          // Handle any SQL errors
+      } catch (SQLException se) {
+          throw new RuntimeException("A database error occured. "
+                  + se.getMessage());
+          // Clean up JDBC resources
+      } finally {
+          if (rs != null) {
+              try {
+                  rs.close();
+              } catch (SQLException se) {
+                  se.printStackTrace(System.err);
+              }
+          }
+          if (pstmt != null) {
+              try {
+                  pstmt.close();
+              } catch (SQLException se) {
+                  se.printStackTrace(System.err);
+              }
+          }
+          if (con != null) {
+              try {
+                  con.close();
+              } catch (Exception e) {
+                  e.printStackTrace(System.err);
+              }
+          }
+      }
+      
+      return card_detailBean;
+      
+	}
+	
+	
+	//delete信用卡
+	public void deleteCard(Integer card_id) {
+
+      Connection con = null;
+      PreparedStatement pstmt = null;
+      String DELETE = "DELETE FROM sweet.card_detail where card_id = ?";
+
+      try {
+
+          Class.forName(driver);
+          con = DriverManager.getConnection(url, userid, passwd);
+          pstmt = con.prepareStatement(DELETE);
+
+          pstmt.setInt(1, card_id);
+
+          pstmt.executeUpdate();
+
+          // Handle any driver errors
+      } catch (ClassNotFoundException e) {
+          throw new RuntimeException("Couldn't load database driver. "
+                  + e.getMessage());
+          // Handle any SQL errors
+      } catch (SQLException se) {
+          throw new RuntimeException("A database error occured. "
+                  + se.getMessage());
+          // Clean up JDBC resources
+      } finally {
+          if (pstmt != null) {
+              try {
+                  pstmt.close();
+              } catch (SQLException se) {
+                  se.printStackTrace(System.err);
+              }
+          }
+          if (con != null) {
+              try {
+                  con.close();
+              } catch (Exception e) {
+                  e.printStackTrace(System.err);
+              }
+          }
+      }
+  
+	}
+	
+	
+	//OrderMaster和Detail一起insert
+	public void insertOrderMaster(OrderMasterBean orderMasterBean, List<OrderDetailBean> list_orderDetailBean) {
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String INSERT = "INSERT INTO sweet.order_master (member_account, payment_time, payment_method, coupon_id, order_status, invoice_number, order_total, order_remarks) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+		
+		try {
+
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			
+			// 1●設定於 pstm.executeUpdate()之前
+			con.setAutoCommit(false);
+			
+    		// 先新增訂單資料
+			String cols[] = {"order_master_id"};
+			pstmt = con.prepareStatement(INSERT, cols);
+			
+			pstmt.setString(1, orderMasterBean.getMember_account());
+			pstmt.setTimestamp(2, orderMasterBean.getPayment_time());
+			pstmt.setInt(3, orderMasterBean.getPayment_method());
+			pstmt.setInt(4, orderMasterBean.getCoupon_id());
+			pstmt.setInt(5, orderMasterBean.getOrder_status());
+			pstmt.setString(6, orderMasterBean.getInvoice_number());
+			pstmt.setInt(7, orderMasterBean.getOrder_total());
+			pstmt.setString(8, orderMasterBean.getOrder_remarks());	
+			
+//			Statement stmt=	con.createStatement();
+//			stmt.executeUpdate("set auto_increment_offset=10;");    //自增主鍵-初始值
+//			stmt.executeUpdate("set auto_increment_increment=10;"); //自增主鍵-遞增
+			pstmt.executeUpdate();
+			//掘取對應的自增主鍵值
+			String next_order_master_id = null;
+			ResultSet rs = pstmt.getGeneratedKeys();
+			if (rs.next()) {
+				next_order_master_id = rs.getString(1);
+				System.out.println("自增主鍵值= " + next_order_master_id +"(剛新增成功的訂單資料Id)");
+			} else {
+				System.out.println("未取得自增主鍵值");
+			}
+			rs.close();
+			// 再同時新增訂單明細
+			System.out.println("list_orderDetailBean.size()-A="+list_orderDetailBean.size());
+			for (OrderDetailBean orderDetailBean : list_orderDetailBean) {
+				orderDetailBean.setOrder_master_id(new Integer(next_order_master_id)) ;
+				insertOrderDetail(orderDetailBean, con);
+			}
+
+			// 2●設定於 pstm.executeUpdate()之後
+			con.commit();
+			con.setAutoCommit(true);
+			System.out.println("list_orderDetailBean.size()-B="+list_orderDetailBean.size());
+			System.out.println("新增訂單資料" + next_order_master_id + "時,共有明細" + list_orderDetailBean.size()
+					+ "筆同時被新增");
+			
+			// Handle any driver errors
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. "
+					+ e.getMessage());
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			if (con != null) {
+				try {
+					// 3●設定於當有exception發生時之catch區塊內
+					System.err.print("Transaction is being ");
+					System.err.println("rolled back-由-orderMaster");
+					con.rollback();
+				} catch (SQLException excep) {
+					throw new RuntimeException("rollback error occured. "
+							+ excep.getMessage());
+				}
+			}
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+			
+		
+	}
+	//insert OrderDetail
+	public void insertOrderDetail(OrderDetailBean orderDetailBean, Connection con) {
+		
+		PreparedStatement pstmt = null;
+		String INSERT = "INSERT INTO order_detail (order_master_id, product_id, product_qty, product_price) VALUES (?, ?, ?, ?)";
+
+		try {
+
+     		pstmt = con.prepareStatement(INSERT);
+
+     		pstmt.setInt(1, orderDetailBean.getOrder_master_id());
+			pstmt.setInt(2, orderDetailBean.getProduct_id());
+			pstmt.setInt(3, orderDetailBean.getProduct_qty());
+			pstmt.setInt(4, orderDetailBean.getProduct_price());
+
+//			Statement stmt=	con.createStatement();
+//			stmt.executeUpdate("set auto_increment_offset=7001;"); //自增主鍵-初始值
+//			stmt.executeUpdate("set auto_increment_increment=1;");   //自增主鍵-遞增
+			pstmt.executeUpdate();
+
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			if (con != null) {
+				try {
+					// 3●設定於當有exception發生時之catch區塊內
+					System.err.print("Transaction is being ");
+					System.err.println("rolled back-由-orderDetail");
+					con.rollback();
+				} catch (SQLException excep) {
+					throw new RuntimeException("rollback error occured. "
+							+ excep.getMessage());
+				}
+			}
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+		}
+		
+		
+		
+	}
+	
 	
 	
 
