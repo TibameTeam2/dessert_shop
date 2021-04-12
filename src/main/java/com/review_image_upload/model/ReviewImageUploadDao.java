@@ -10,5 +10,9 @@ public interface ReviewImageUploadDao {
 	public List<ReviewImageUploadBean> getAll();
 //	萬用複合查詢(傳入參數型態Map)(回傳 List)
 //  public List<ReviewImageUploadBean> getAll(Map<String, String[]> map);
+	
+	
+	//用在使用者填尚未評價時有上傳照片
+	
 }
 	
