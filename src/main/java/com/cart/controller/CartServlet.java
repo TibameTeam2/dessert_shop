@@ -1,14 +1,19 @@
 package com.cart.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.card_detail.model.CardDetailBean;
+import com.cart.model.CartProductBean;
 import com.cart.model.CartProductService;
 import com.coupon.model.CouponBean;
 import com.coupon_code.model.CouponCodeBean;
 import com.member.model.MemberBean;
+import com.order_detail.model.OrderDetailBean;
+import com.order_master.model.OrderMasterBean;
 import com.util.BaseServlet;
 import com.util.ResultInfo;
 
@@ -220,15 +225,18 @@ public class CartServlet extends BaseServlet {
         	} else {
         		//取資料
     			Integer coupon_id = new Integer(req.getParameter("coupon_id"));
+    			Integer coupon_price = new Integer(req.getParameter("coupon_price"));
     			//設定coupon_id
     			if (coupon_id == 0) {
     				req.getSession().removeAttribute("coupon_id");
+    				req.getSession().removeAttribute("coupon_price");
     				info.setFlag(true);
     		        info.setMsg("不使用優惠券前往結帳!");
     		        System.out.println(info.getMsg());
     		        info.setRedirect(req.getContextPath() + "/TEA103G2/front-end/checkout.html");
     			} else {
     				req.getSession().setAttribute("coupon_id", coupon_id);
+    				req.getSession().setAttribute("coupon_price", coupon_price);
     				info.setFlag(true);
     		        info.setMsg("已設定優惠券並前往結帳!");
     		        System.out.println(info.getMsg());
@@ -242,6 +250,154 @@ public class CartServlet extends BaseServlet {
 		writeValueByWriter(res, info);
 		
 	}
+	
+	
+	
+	//checkout載入資料
+	public void checkoutData(HttpServletRequest req, HttpServletResponse res) {
+		
+		MemberBean member = (MemberBean) req.getSession().getAttribute("member");
+		Integer coupon_price = (Integer) req.getSession().getAttribute("coupon_price");
+		ResultInfo info = new ResultInfo();
+		if (member == null) {
+            info.setFlag(false);
+            info.setMsg("尚未登入!");
+            req.getSession().setAttribute("location", req.getRequestURI());
+            info.setRedirect(req.getContextPath() + "/TEA103G2/front-end/login.html");
+        } else {
+        	List list = svc.getCartDataByMemberAccount(member.getMember_account(), req.getContextPath());
+        	List<CardDetailBean> list_card = svc.selectAllCard(member.getMember_account());
+        	list.add(list_card);
+            list.add(member);
+            list.add(coupon_price);
+            
+        	info.setData(list);    
+            info.setFlag(true);
+            info.setMsg("已將會員+購物車+優惠券+信用卡資料載入!");
+        }
+		
+		writeValueByWriter(res, info);
+		
+	}
+	
+	
+	//新增信用卡資料
+	public void insertCreditCard(HttpServletRequest req, HttpServletResponse res) {
+		
+		MemberBean member = (MemberBean) req.getSession().getAttribute("member");
+		ResultInfo info = new ResultInfo();
+		if (member == null) {
+            info.setFlag(false);
+            info.setMsg("尚未登入!");
+            req.getSession().setAttribute("location", req.getRequestURI());
+            info.setRedirect(req.getContextPath() + "/TEA103G2/front-end/login.html");
+        } else {
+        	//取資料並包裝
+        	String card_number = req.getParameter("card_number").trim();
+        	String card_expired_day = req.getParameter("card_expired_day").trim();
+        	String card_cvc = req.getParameter("card_cvc").trim();
+        	
+        	CardDetailBean card_detailBean = new CardDetailBean();
+        	card_detailBean.setMember_account(member.getMember_account());
+        	card_detailBean.setCard_number(card_number);
+        	card_detailBean.setCard_expired_day(card_expired_day);
+        	card_detailBean.setCard_cvc(card_cvc);
+        	
+        	//insert信用卡取得Id並取得該信用卡資料
+        	Integer card_id = svc.insertCard(card_detailBean);
+        	card_detailBean = svc.selectOneCard(card_id);
+        	
+        	info.setData(card_detailBean);    
+            info.setFlag(true);
+            info.setMsg("已新增信用卡!");
+        }
+		
+		writeValueByWriter(res, info);
+		
+	}
+	
+	
+	//刪除信用卡資料
+	public void deleteCreditCard(HttpServletRequest req, HttpServletResponse res) {
+		
+		MemberBean member = (MemberBean) req.getSession().getAttribute("member");
+		ResultInfo info = new ResultInfo();
+		if (member == null) {
+            info.setFlag(false);
+            info.setMsg("尚未登入!");
+            req.getSession().setAttribute("location", req.getRequestURI());
+            info.setRedirect(req.getContextPath() + "/TEA103G2/front-end/login.html");
+        } else {
+        	//取資料
+        	Integer card_id = new Integer(req.getParameter("card_id"));
+        	//delete信用卡
+        	svc.deleteCardById(card_id);
+			
+			info.setFlag(true);
+	        info.setMsg("已刪除信用卡!");   	      	
+        }
+		
+		writeValueByWriter(res, info);
+		
+	}
+	
+	
+	//送出訂單
+	public void setOrder(HttpServletRequest req, HttpServletResponse res) {
+		
+		MemberBean member = (MemberBean) req.getSession().getAttribute("member");
+		Integer coupon_id = (Integer) req.getSession().getAttribute("coupon_id");
+		if (coupon_id == null) {
+			coupon_id = 0;
+		}
+		ResultInfo info = new ResultInfo();
+		if (member == null) {
+            info.setFlag(false);
+            info.setMsg("尚未登入!");
+            req.getSession().setAttribute("location", req.getRequestURI());
+            info.setRedirect(req.getContextPath() + "/TEA103G2/front-end/login.html");
+        } else {
+        	//取資料並包裝
+        	//orderMaster
+        	OrderMasterBean orderMasterBean = new OrderMasterBean();
+        	java.sql.Timestamp payment_time = null;
+        	Integer payment_method = new Integer(req.getParameter("payment_method"));
+        	Integer order_status = 0;
+        	String invoice_number = null;
+        	Integer order_total = new Integer(req.getParameter("order_total"));
+        	String order_remarks = req.getParameter("order_remarks");
+        	
+        	orderMasterBean.setMember_account(member.getMember_account());
+        	orderMasterBean.setPayment_time(payment_time);
+        	orderMasterBean.setPayment_method(payment_method);
+        	orderMasterBean.setCoupon_id(coupon_id);
+        	orderMasterBean.setOrder_status(order_status);
+        	orderMasterBean.setInvoice_number(invoice_number);
+        	orderMasterBean.setOrder_total(order_total);
+        	orderMasterBean.setOrder_remarks(order_remarks);
+        	
+        	//list_orderDetailBean
+        	List<CartProductBean> list_cartProductBean = svc.getCartDataBeforeOrder(member.getMember_account());
+        	List<OrderDetailBean> list_orderDetailBean = new ArrayList<OrderDetailBean>();
+        	for (CartProductBean CPBean : list_cartProductBean) {
+        		OrderDetailBean ODBean = new OrderDetailBean();
+        		ODBean.setProduct_id(CPBean.getProduct_id());
+        		ODBean.setProduct_qty(CPBean.getProduct_quantity());
+        		ODBean.setProduct_price(CPBean.getProduct_price());
+        		list_orderDetailBean.add(ODBean);
+        	}
+        	
+        	//insert訂單
+        	svc.insertOrder(orderMasterBean, list_orderDetailBean);
+			
+			info.setFlag(true);
+	        info.setMsg("已新增訂單資料!");   	      	
+        }
+		
+		writeValueByWriter(res, info);
+		
+	}
+	
 	
 	
 	

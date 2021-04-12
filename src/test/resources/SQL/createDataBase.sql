@@ -618,11 +618,11 @@ CREATE TABLE order_master (
     payment_method       tinyint not null,
     coupon_id			 int,
     order_status		 tinyint not null,
-    invoice_number		 varchar(50) not null,
+    invoice_number		 varchar(50),
     order_total			 int not null,
     order_remarks	  	 varchar(2000),
-    constraint orderMaster_member_FK foreign key (member_account) references member (member_account),
-    constraint orderMaster_coupon_FK foreign key (coupon_id) references coupon(coupon_id)
+    constraint orderMaster_member_FK foreign key (member_account) references member (member_account)
+--  constraint orderMaster_coupon_FK foreign key (coupon_id) references coupon(coupon_id)
 ) AUTO_INCREMENT = 1;
 INSERT INTO  order_master (member_account, payment_time, payment_method, coupon_id, order_status, invoice_number, order_total, order_remarks)
 VALUES ('tom', '2021-01-02 03:04:05', '1', 2, '1', 'AA12345678', '8', '紅色死神說要加糖');
@@ -645,11 +645,11 @@ CREATE TABLE order_detail (
     constraint orderDetail_product_FK foreign key (product_id) references product (product_id)
 ) AUTO_INCREMENT = 1;
 INSERT INTO order_detail (order_master_id, product_id, product_qty, product_price)
-VALUES ('1', 1, '8', '10');
+VALUES ('1', 1, '8', '100');
 INSERT INTO order_detail (order_master_id, product_id, product_qty, product_price)
-VALUES ('2', 2, '7', '20');
+VALUES ('2', 2, '7', '120');
 INSERT INTO order_detail (order_master_id, product_id, product_qty, product_price)
-VALUES ('3', 3, '8', '30');
+VALUES ('3', 3, '8', '120');
 
 
 -- 訂位明細

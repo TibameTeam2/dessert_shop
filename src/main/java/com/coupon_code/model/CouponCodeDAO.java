@@ -33,11 +33,11 @@ public class CouponCodeDAO implements CouponCodeDAO_interface{
 //		password = "1qaz2wsx";
 //
 //		INSERT = "INSERT INTO coupon_code(coupon_code,coupon_code_effective_date,\r\n"
-//				+ "coupon_code_expire_date,coupon_code_content_content,coupon_code_content,discount_type,employee_account) "
+//				+ "coupon_code_expire_date,coupon_code_text_content,coupon_code_content,discount_type,employee_account) "
 //				+ "VALUES(?,?,?,?,?,?,?)";
 //
 //		UPDATE = "UPDATE coupon_code set coupon_code = ?,coupon_code_effective_date = ?,"
-//				+ "coupon_code_expire_date = ?,coupon_code_content_content = ?,coupon_code_content = ?,"
+//				+ "coupon_code_expire_date = ?,coupon_code_text_content = ?,coupon_code_content = ?,"
 //				+ "discount_type = ?,employee_account = ? WHERE coupon_code_id = ?";
 //
 //		DELETE = "DELETE FROM coupon_code WHERE coupon_code_id = ?";
@@ -54,7 +54,7 @@ public class CouponCodeDAO implements CouponCodeDAO_interface{
 		PreparedStatement pstmt = null;
 
 		INSERT = "INSERT INTO coupon_code(coupon_code,coupon_code_effective_date,\r\n"
-				+ "coupon_code_expire_date,coupon_code_content_content,coupon_code_content,discount_type,employee_account) "
+				+ "coupon_code_expire_date,coupon_code_text_content,coupon_code_content,discount_type,employee_account) "
 				+ "VALUES(?,?,?,?,?,?,?)";
 
 		try {
@@ -101,7 +101,7 @@ public class CouponCodeDAO implements CouponCodeDAO_interface{
 		PreparedStatement pstmt = null;
 
 		UPDATE = "UPDATE coupon_code set coupon_code = ?,coupon_code_effective_date = ?,"
-				+ "coupon_code_expire_date = ?,coupon_code_content_content = ?,coupon_code_content = ?,"
+				+ "coupon_code_expire_date = ?,coupon_code_text_content = ?,coupon_code_content = ?,"
 				+ "discount_type = ?,employee_account = ? WHERE coupon_code_id = ?";
 
 		try {
@@ -349,7 +349,7 @@ public class CouponCodeDAO implements CouponCodeDAO_interface{
 //
 //		CCB.setCoupon_code_expire_date(tse);
 //
-//		CCB.setCoupon_code_content_content("星爆都不星爆了,快不起來了,蛋糕9折");
+//		CCB.setCoupon_code_text_content("星爆都不星爆了,快不起來了,蛋糕9折");
 //
 //		CCB.setCoupon_code_content(1f);
 //
