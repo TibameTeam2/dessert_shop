@@ -26,9 +26,13 @@ public class NoticeWS {
 	public static void sendCustomizeMessage(String memberAccount, String message) {
 
 		Session receiverSession = sessionsMap.get(memberAccount);
+		
 		if (receiverSession != null && receiverSession.isOpen()) {
 			receiverSession.getAsyncRemote().sendText(message);
+			
 		}
+		
+
 	}
 
 	@OnOpen
@@ -44,7 +48,7 @@ public class NoticeWS {
 	@OnMessage
 	public void onMessage(Session memberAccount, String message) {
 
-		System.out.println("123");
+	
 	}
 
 	@OnError

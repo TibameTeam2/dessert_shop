@@ -10,18 +10,23 @@ public class NoticeBean {
 	private Timestamp   notice_time;
 	private Integer		read_status;
 	private String  	member_account;
+	private String		notice_dispatcher;
+	
+	
+
 	
 	
 	@Override
 	public String toString() {
-		return "noticeBean ["
-				+ "notice_id=" + notice_id 
+		return "NoticeBean [notice_id=" + notice_id 
 				+ ", notice_type=" + notice_type 
-				+ ", notice_content=" + notice_content 
+				+ ", notice_content="+ notice_content
 				+ ", notice_time=" + notice_time 
 				+ ", read_status=" + read_status 
-				+ ", member_account=" + member_account + "]";
+				+ ", member_account="+ member_account 
+				+ ", notice_dispatcher=" + notice_dispatcher + "]";
 	}
+	
 	
 	
 	public Integer getNotice_id() {
@@ -60,7 +65,14 @@ public class NoticeBean {
 	public void setMember_account(String member_account) {
 		this.member_account = member_account;
 	}
-	
+
+	public String getNotice_dispatcher() {
+		return notice_dispatcher;
+	}
+
+	public void setNotice_dispatcher(String notice_dispatcher) {
+		this.notice_dispatcher = notice_dispatcher;
+	}
 	
 	
 }
