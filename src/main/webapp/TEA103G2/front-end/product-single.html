@@ -122,6 +122,7 @@
 						<div class="gallery-top">
 							<div class="swiper-container">
 								<div class="swiper-wrapper">
+										<!-- 插入區塊 -->
 <!-- 									<div class="swiper-slide"> -->
 <!-- 										<div class="single-img zoom"> -->
 <!-- 											<img src="assets/images/shop-single/shop-single-01.jpg" alt="Product Image"> -->
@@ -185,6 +186,7 @@
 						<div class="product-thumbnail gallery-thumbs">
 							<div class="swiper-container">
 								<div class="swiper-wrapper">
+										<!-- 插入區塊 -->
 <!-- 									<div class="swiper-slide"> -->
 <!-- 										<img src="assets/images/shop-single/shop-single-01.jpg" alt="Product Thumbnail"> -->
 <!-- 									</div> -->
@@ -378,7 +380,7 @@
 						<!-- product Description Start  -->
 						<div class="product-description">
 							<ul>
-								<li>唷唷喔Calvin Klein® Jeans hoodie with reflective logo
+								<li>Calvin Klein® Jeans hoodie with reflective logo
 									detailing at the sleeves.</li>
 								<li>Sweatshirt crafted in a soft-knit fabric for superior
 									comfort.</li>
@@ -436,26 +438,26 @@
 						<!-- product reviews Start  -->
 						<div class="product-reviews mt-n6">
 							<div class="reviews-comment">
-								<!-- Single Comment Start  -->
-								<div class="single-comment">
-									<div class="comment-author">
-										<img src="assets/images/author/author-1.png" alt="">
-									</div>
-									<div class="comment-content">
-										<div class="author-name-rating">
-											<h6 class="name">Rosie Silva</h6>
-											<div class="review-star">
-												<div class="star" style="width: 80%;"></div>
-											</div>
-										</div>
-										<span class="date">11/20/2021</span>
-										<p>RRRRRLorem ipsum dolor sit amet consectetur adipisicing
-											elit. Esse deleniti itaque velit explicabo at eum incidunt
-											vel reprehenderit maxime eos facere ut pariatur voluptas
-											aut, porro quia molestias sequi cupiditate!</p>
-									</div>
-								</div>
 								<!-- 插入評論的地方 -->
+								<!-- Single Comment Start  -->
+<!-- 								<div class="single-comment"> -->
+<!-- 									<div class="comment-author"> -->
+<!-- 										<img src="assets/images/author/author-1.png" alt=""> -->
+<!-- 									</div> -->
+<!-- 									<div class="comment-content"> -->
+<!-- 										<div class="author-name-rating"> -->
+<!-- 											<h6 class="name">Rosie Silva</h6> -->
+<!-- 											<div class="review-star"> -->
+<!-- 												<div class="star" style="width: 80%;"></div> -->
+<!-- 											</div> -->
+<!-- 										</div> -->
+<!-- 										<span class="date">11/20/2021</span> -->
+<!-- 										<p>RRRRRLorem ipsum dolor sit amet consectetur adipisicing -->
+<!-- 											elit. Esse deleniti itaque velit explicabo at eum incidunt -->
+<!-- 											vel reprehenderit maxime eos facere ut pariatur voluptas -->
+<!-- 											aut, porro quia molestias sequi cupiditate!</p> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
 								
 							</div>
 <!-- 							<div class="review-form"> -->
@@ -907,6 +909,7 @@
 
 <!-- Main JS -->
 <script src="assets/js/main.js"></script>
+<script src="assets/js/moment.js"></script>
 
 <!-- Header Footer LoadingAnimation -->
 <script>
@@ -948,6 +951,7 @@
 
 		
 		let product_id = getParameter("id");
+		let url = location.href.split("/TEA103G2")[0];
 		// 要取得資訊的API
 		$.get("/dessert_shop/product/getOneProduct?id="+product_id, {}, function(data) {
 // 				console.log(window.location.href);
@@ -967,7 +971,7 @@
 				let avg_star = (data.data.total_star/data.data.total_review);
 				let fixed_star = avg_star.toFixed(1);
 				let rating_star = (avg_star/5*100);
-				console.log(rating_star);
+// 				console.log(rating_star);
 				
 				let total_review = data.data.total_review;
 				let total_purchase = data.data.total_purchase;
@@ -980,11 +984,9 @@
 				// 照片迴圈
 				// 圖片可以顯示，可是原本的顯微鏡效果會消失
 				let url = location.href.split("/TEA103G2")[0];
-				console.log(image_list.length);
 				
 				for(var i = 0 ; i < image_list.length ; i++){
 					product_images[i]= url + image_list[i];
-					console.log(product_images[i]);
 
 					let gallery_top_images=`
 						<div class="swiper-slide">
@@ -1036,9 +1038,83 @@
 		// 評論功能拿掉，查看歷史評論
 		// member拿照片，member_comment拿內容		
 		// kenny有整合的bean
-					
-		
-		
+			
+		$.get("/dessert_shop/productComment/getProductComment?productId="+product_id, {}, function(data) {
+			console.log("productComment:"+data.msg);
+			for(var i = 0; i< data.data.length; i++){
+				//??? member_name是必填嗎?
+				let member_account = data.data[i].member_account;
+				let member_name = data.data[i].member_name;
+				let member_photo = url + data.data[i].member_photo;
+				console.log(member_photo);
+				let review_rating = data.data[i].rating;
+				let review_star = (review_rating/5*100);
+				let comment_content = data.data[i].comment_content;
+				let commemt_time = moment(data.data[i].comment_time).format("YYYY-MM-DD HH:mm:ss");
+
+				let single_comment=`
+					<div class="single-comment" id="${member_account}">
+						<div class="comment-author">
+							<img src="${member_photo}" alt="">
+						</div>
+						<div class="comment-content">
+							<div class="author-name-rating">
+								<h6 class="name">${member_name}</h6>
+								<div class="review-star">
+									<div class="star" style="width: ${review_star}%"></div>
+								</div>
+							</div>
+							<span class="date">${commemt_time}</span>
+							<p>${comment_content}</p>
+						</div>
+					</div>`
+
+				$("#tab3 div.reviews-comment").append(single_comment);
+				console.log("comment!");
+
+				// 圖片的地方
+				// 希望點了可以放大，可能要從產品縮圖的地方複製過來
+				let review_images = [];
+				for(var j=0; j< data.data[i].review_image.length; j++){
+					review_images[j] = url+ data.data[i].review_image[j];
+
+					// 插入image的位置
+					let upload_image =`
+						<div class="col-md-2">
+							<img src="${review_images[j]}" alt="ReviewImage">
+						</div>`
+
+					$('div[id='+ member_account + '] .comment-content').append(upload_image);
+					console.log(member_account);
+					console.log("uploaded!");
+					console.log(review_images[j]);
+
+				}
+
+
+
+				// 店家回覆
+				let reply_id = data.data[i].reply_id;
+				if(reply_id != null){
+					let reply_content = data.data[i].comment_content;
+					console.log(reply_content);
+					let reply_time = moment(data.data[i].reply_time).format("YYYY-MM-DD HH:mm:ss");
+
+					// <!-- <blockquote><p>評價文字內容的亮點/摘錄</p></blockquote> -->
+					let reply_form = '<p style="font-size: 14px; margin-bottom: 0px;">商家回覆:</p><span style="font-size: 14px">' + reply_content + '</span>';
+					let reply_area = '<blockquote><p>'+ reply_form +'</p></blockquote>';
+
+					let seller_reply=`
+
+					`
+
+				}
+
+			}
+
+
+
+		});
 		
 		
 		
