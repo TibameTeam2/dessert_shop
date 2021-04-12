@@ -158,6 +158,14 @@ public class ProductServlet_front extends BaseServlet {
     	
     }
     
+
+    public void checkProductName(HttpServletRequest req, HttpServletResponse res) {
+    	//獲取數據
+    	String product_name = req.getParameter("product_name");
+    	System.out.println(product_name);
+//    	ProductBean productBean =
+    	
+    }
     
     
     

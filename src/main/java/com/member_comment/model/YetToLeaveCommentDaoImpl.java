@@ -22,7 +22,7 @@ public class YetToLeaveCommentDaoImpl implements YetToLeaveCommentDao {
 	private String userid = JDBCUtil.user;
 	private String passwd = JDBCUtil.password;
 
-	// 某order_master_id沒有comment_time表示是尚未評價, select這些資料顯示在尚未評價頁面
+	// (傳入member_account)某member_account沒有comment_time表示是尚未評價, select這些資料顯示在尚未評價頁面
 	private static final String YetToLeaveComment_FindByMemberAccount = "select member_account, om.order_master_id, od.order_detail_id, order_time, payment_time, invoice_number, coupon_id, payment_method, order_remarks, comment_time\r\n" + 
 			"from order_master om\r\n" + 
 			"left join order_detail od on om.order_master_id = od.order_master_id\r\n" + 
@@ -33,6 +33,7 @@ public class YetToLeaveCommentDaoImpl implements YetToLeaveCommentDao {
 			"group by od.order_master_id\r\n" + 
 			"order by order_master_id; ";
 	
+	//(傳入order_master_id)某order_master_id沒有comment_time表示是尚未評價, select這些資料顯示在尚未評價頁面
 	private static final String YetToLeaveComment_FindByOrderMasterId = "select om.order_master_id, od.order_detail_id, p.product_id, product_name, image_id, product_image, comment_time\r\n" + 
 			"from order_master om\r\n" + 
 			"left join order_detail od on om.order_master_id = od.order_master_id\r\n" + 
@@ -73,9 +74,6 @@ public class YetToLeaveCommentDaoImpl implements YetToLeaveCommentDao {
 				ytlcBean.setPayment_method(rs.getInt("payment_method"));
 				ytlcBean.setOrder_remarks(rs.getString("order_remarks"));
 				ytlcBean.setComment_time(rs.getTimestamp("comment_time"));
-//				ytlcBean.setProduct_image(rs.getBytes("product_image"));
-//				ytlcBean.setProduct_name(rs.getString("product_name"));
-//				ytlcBean.setProduct_id(rs.getInt("product_id"));
 				list.add(ytlcBean);
 			}
 

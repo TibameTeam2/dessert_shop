@@ -4,8 +4,11 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.card_detail.model.CardDetailBean;
 import com.coupon.model.CouponBean;
 import com.coupon_code.model.CouponCodeBean;
+import com.order_detail.model.OrderDetailBean;
+import com.order_master.model.OrderMasterBean;
 
 public class CartProductService {	
 		
@@ -54,7 +57,7 @@ public class CartProductService {
 	//delete購物車內商品
 	public void deleteProductAtCart(Integer cart_id) {
 		
-		dao.delete(cart_id);
+		dao.deleteCart(cart_id);
 		
 	}
 	
@@ -77,7 +80,46 @@ public class CartProductService {
 		
 	}
 	
+	//查詢全部信用卡
+	public List<CardDetailBean> selectAllCard(String member_account) {
 	
+		return dao.selectCardByMember(member_account);
+		
+	}
+	
+	//insert信用卡並回傳Id
+	public Integer insertCard(CardDetailBean card_detailBean) {
+		
+		return dao.insertCard(card_detailBean);
+		
+	}
+	
+	//查詢單筆信用卡ById
+	public CardDetailBean selectOneCard(Integer card_id) {
+		
+		return dao.selectCardById(card_id);
+		
+	}
+	
+	//刪除信用卡
+	public void deleteCardById(Integer card_id) {
+		
+		dao.deleteCard(card_id);
+		
+	}
+	
+	//拿cart_id, cart.product_id, product_quantity, product_name, product_price
+	public List<CartProductBean> getCartDataBeforeOrder(String member_account) {
+		
+		return dao.selectByMemberAccount(member_account);
+		
+	}
+	//新增訂單資料
+	public void insertOrder(OrderMasterBean orderMasterBean, List<OrderDetailBean> list_orderDetailBean) {
+		
+		dao.insertOrderMaster(orderMasterBean, list_orderDetailBean);
+		
+	}
 	
 
 }
