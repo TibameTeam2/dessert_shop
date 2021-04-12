@@ -1064,32 +1064,27 @@
                 let quantity = cart.find('input.quantity-input');
                 let unit_price = cart.find('span.unit-price');
 
-                if (quantity.val() < 20) {
 
-                    $.post("/dessert_shop/cart/updateQuantity", { "cart_id": cart.attr("data-cart_id"), "product_quantity": parseInt(quantity.val()) + 1 }, function (data) {
-                        console.log(data);
-                        if (data.flag) {
+                $.post("/dessert_shop/cart/updateQuantity", { "cart_id": cart.attr("data-cart_id"), "product_quantity": parseInt(quantity.val()) + 1 }, function (data) {
+                    console.log(data);
+                    if (data.flag) {
 
-                            quantity.val(parseInt(quantity.val()) + 1);
-                            total.text(quantity.val() * unit_price.text());
+                        quantity.val(parseInt(quantity.val()) + 1);
+                        total.text(quantity.val() * unit_price.text());
 
-                            count_total();
-                            coupon();
-                            sum_total();
+                        count_total();
+                        coupon();
+                        sum_total();
 
-                        } else {
-                            alert(data.msg);
-                            if (data.redirect) {
-                                location.href = data.redirect;
-                            }
+                    } else {
+                        alert(data.msg);
+                        if (data.redirect) {
+                            location.href = data.redirect;
                         }
+                    }
 
-                    });  //post
+                });  //post
 
-
-                } else {
-                    alert("商品訂購數量最多20個");
-                }
 
             });
 
@@ -1340,9 +1335,8 @@
             /*==================================== 前往結帳 ==========================================*/
             $("a.btn-go-checkout").on("click", function () {
                 let coupon_id = $("div.show-coupon").attr("data-coupon_id");
-                $.get("/dessert_shop/cart/setCouponAndCheckout", {
-                    "coupon_id": coupon_id
-                }, function (data) {
+                let coupon_price = $('span.coupon-price').text();
+                $.post("/dessert_shop/cart/setCouponAndCheckout", { "coupon_id": coupon_id, "coupon_price": coupon_price }, function (data) {
                     console.log(data);
                     if (data.flag) {
 

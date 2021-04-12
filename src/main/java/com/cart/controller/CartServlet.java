@@ -96,7 +96,7 @@ public class CartServlet extends BaseServlet {
 		if (member == null) {
 			info.setFlag(false);
 			info.setMsg("尚未登入!");
-			req.getSession().setAttribute("location", req.getRequestURI());
+			req.getSession().setAttribute("location", req.getContextPath() + "/TEA103G2/front-end/cart.html");
 			info.setRedirect(req.getContextPath() + "/TEA103G2/front-end/login.html");
 		} else {
 			// 取資料
@@ -121,7 +121,7 @@ public class CartServlet extends BaseServlet {
 		if (member == null) {
 			info.setFlag(false);
 			info.setMsg("尚未登入!");
-			req.getSession().setAttribute("location", req.getRequestURI());
+			req.getSession().setAttribute("location", req.getContextPath() + "/TEA103G2/front-end/cart.html");
 			info.setRedirect(req.getContextPath() + "/TEA103G2/front-end/login.html");
 		} else {
 			// 取資料
@@ -145,7 +145,7 @@ public class CartServlet extends BaseServlet {
 		if (member == null) {
 			info.setFlag(false);
 			info.setMsg("尚未登入!");
-			req.getSession().setAttribute("location", req.getRequestURI());
+			req.getSession().setAttribute("location", req.getContextPath() + "/TEA103G2/front-end/cart.html");
 			info.setRedirect(req.getContextPath() + "/TEA103G2/front-end/login.html");
 		} else {
 			// 取資料
@@ -213,7 +213,7 @@ public class CartServlet extends BaseServlet {
 		if (member == null) {
 			info.setFlag(false);
 			info.setMsg("尚未登入!");
-			req.getSession().setAttribute("location", req.getRequestURI());
+			req.getSession().setAttribute("location", req.getContextPath() + "/TEA103G2/front-end/cart.html");
 			info.setRedirect(req.getContextPath() + "/TEA103G2/front-end/login.html");
 		} else {
 			// 檢查購物車是否為空
@@ -285,7 +285,7 @@ public class CartServlet extends BaseServlet {
 		if (member == null) {
 			info.setFlag(false);
 			info.setMsg("尚未登入!");
-			req.getSession().setAttribute("location", req.getRequestURI());
+			req.getSession().setAttribute("location", req.getContextPath() + "/TEA103G2/front-end/checkout.html");
 			info.setRedirect(req.getContextPath() + "/TEA103G2/front-end/login.html");
 		} else {
 			// 取資料並包裝
@@ -320,7 +320,7 @@ public class CartServlet extends BaseServlet {
 		if (member == null) {
 			info.setFlag(false);
 			info.setMsg("尚未登入!");
-			req.getSession().setAttribute("location", req.getRequestURI());
+			req.getSession().setAttribute("location", req.getContextPath() + "/TEA103G2/front-end/checkout.html");
 			info.setRedirect(req.getContextPath() + "/TEA103G2/front-end/login.html");
 		} else {
 			// 取資料
@@ -344,18 +344,17 @@ public class CartServlet extends BaseServlet {
 		OrderMasterBean orderMasterBean = new OrderMasterBean();
 		// 取付款方式
 		Integer payment_method = new Integer(req.getParameter("payment_method"));
-		// 取購物車資料
-		List<CartProductBean> list_cartProductBean = svc.getCartDataBeforeOrder(member.getMember_account());
+		
 		ResultInfo info = new ResultInfo();
 		if (member == null) {
 			info.setFlag(false);
 			info.setMsg("尚未登入!");
-			req.getSession().setAttribute("location", req.getRequestURI());
+			req.getSession().setAttribute("location", req.getContextPath() + "/TEA103G2/front-end/checkout.html");
 			info.setRedirect(req.getContextPath() + "/TEA103G2/front-end/login.html");
 		} else if (payment_method == 0) {
 			info.setFlag(false);
 			info.setMsg("付款方式未設定完成!");
-		} else if (list_cartProductBean.isEmpty()) {
+		} else if (svc.getCartDataBeforeOrder(member.getMember_account()).isEmpty()) {
 			info.setFlag(false);
 			info.setMsg("購物車內無商品!");
 			info.setRedirect(req.getContextPath() + "/TEA103G2/front-end/cart.html");
@@ -385,6 +384,7 @@ public class CartServlet extends BaseServlet {
 			orderMasterBean.setOrder_remarks(order_remarks);
 
 			// list_orderDetailBean
+			List<CartProductBean> list_cartProductBean = svc.getCartDataBeforeOrder(member.getMember_account());
 			List<OrderDetailBean> list_orderDetailBean = new ArrayList<OrderDetailBean>();
 			for (CartProductBean CPBean : list_cartProductBean) {
 				OrderDetailBean ODBean = new OrderDetailBean();
@@ -438,7 +438,7 @@ public class CartServlet extends BaseServlet {
 		if (member == null) {
 			info.setFlag(false);
 			info.setMsg("尚未登入!");
-			req.getSession().setAttribute("location", req.getRequestURI());
+			req.getSession().setAttribute("location", req.getContextPath() + "/TEA103G2/front-end/shop-grid-left-sidebar.html");
 			info.setRedirect(req.getContextPath() + "/TEA103G2/front-end/login.html");
 		} else {
 			Integer product_id = new Integer(req.getParameter("product_id"));
