@@ -513,11 +513,14 @@ create table announcement_management (
     foreign key (employee_account) references employee (employee_account)
 )AUTO_INCREMENT=1;
 insert into announcement_management (announcement_name,announcement_content,
-announcement_image,announcement_type,announcement_status,employee_account)
-values('提拉米蘇特價','提拉米蘇超好吃der',null,1,1,'jason');
+announcement_image,announcement_time,announcement_type,announcement_status,employee_account)
+values('提拉米蘇特價','提拉米蘇超好吃derrrrrr',LOAD_FILE('C:/project/images/announcement_management/a.jpg'),'2021-02-26',1,1,'jason');
 insert into announcement_management (announcement_name,announcement_content,
-announcement_image,announcement_type,announcement_status,employee_account)
-values('檸檬塔暫停供應','員工擠檸檬噴到眼睛',null,1,1,'peter');
+announcement_image,announcement_time,announcement_type,announcement_status,employee_account)
+values('檸檬塔暫停供應','員工擠檸檬噴到眼睛',LOAD_FILE('C:/project/images/announcement_management/b.PNG'),"2021-02-27",1,1,'peter');
+insert into announcement_management (announcement_name,announcement_content,
+announcement_image,announcement_time,announcement_type,announcement_status,employee_account)
+values('草莓蛋糕下架','草莓農藥太多',LOAD_FILE('C:/project/images/announcement_management/c.PNG'),'2021-02-28',1,1,'james');
 
 
 -- 優惠碼
