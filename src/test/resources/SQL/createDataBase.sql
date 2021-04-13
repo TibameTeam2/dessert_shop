@@ -141,7 +141,7 @@ CREATE TABLE product (
 	product_intro	  		VARCHAR(500) NOT NULL,
     product_ingredient		varchar(2000) NOT NULL,
 	product_price	  		SMALLINT NOT NULL,				
-	product_available_qty	MEDIUMINT NOT NULL,
+	product_available_qty	MEDIUMINT UNSIGNED NOT NULL,
 	product_status	  		TINYINT NOT NULL,
     expiry_after_buying    	TINYINT NOT NULL,
 	product_calorie	  		SMALLINT NOT NULL,
@@ -621,8 +621,8 @@ CREATE TABLE order_master (
     invoice_number		 varchar(50),
     order_total			 int not null,
     order_remarks	  	 varchar(2000),
-    constraint orderMaster_member_FK foreign key (member_account) references member (member_account)
---  constraint orderMaster_coupon_FK foreign key (coupon_id) references coupon(coupon_id)
+    constraint orderMaster_member_FK foreign key (member_account) references member (member_account),
+    constraint orderMaster_coupon_FK foreign key (coupon_id) references coupon(coupon_id)
 ) AUTO_INCREMENT = 1;
 INSERT INTO  order_master (member_account, payment_time, payment_method, coupon_id, order_status, invoice_number, order_total, order_remarks)
 VALUES ('tom', '2021-01-02 03:04:05', '1', 2, '1', 'AA12345678', '200', '希望能吃到好吃的巧克力杯子');
@@ -636,6 +636,7 @@ INSERT INTO  order_master (member_account, payment_time, payment_method, coupon_
 VALUES ('amy', '2021-01-04 03:04:07', '1', null, '2', 'AA12345675', '360', '藍莓乳酪要濃郁才好吃');
 INSERT INTO  order_master (member_account, payment_time, payment_method, coupon_id, order_status, invoice_number, order_total, order_remarks)
 VALUES ('amy', '2021-01-06 03:04:07', '1', null, '2', 'AA12345676', '460', '無');
+
 
 
 -- 訂單明細

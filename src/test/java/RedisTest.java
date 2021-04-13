@@ -16,6 +16,7 @@ public class RedisTest {
         //設定有效期限
         jedis.expire("Member_account", 15);
         jedis.close();
+        System.out.println("activeCode = " + activeCode);
 
     }
     @Test
