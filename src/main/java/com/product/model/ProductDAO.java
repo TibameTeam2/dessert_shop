@@ -28,6 +28,7 @@ public class ProductDAO implements ProductDAO_interface {
 	String SELECT_SORT_CALORIE;
     String SELECT_SORT_SWEETNESS;
     String UPDATE_REVIEW;
+    String SELECT_PNAME;
     
 	
 	String SELECT_ONEIMGID;
@@ -818,6 +819,92 @@ public class ProductDAO implements ProductDAO_interface {
 		
 		return productBean;
 	}
+	
+	// 使用procut_name找商品，backend_checkProductName用
+	public ProductBean findByProductName(String product_name) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		PreparedStatement pstmt1 = null;
+		ResultSet rs = null;
+		SELECT_PNAME = "SELECT * FROM product where product_name = ?";
+		
+		//設定資料
+		ProductBean productBean = null;
+		
+		try {
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			pstmt = con.prepareStatement(SELECT_PNAME);
+			
+			pstmt.setString(1, product_name);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				productBean = new ProductBean();
+				
+//				productBean.setProduct_id(rs.getInt("product_id"));
+				productBean.setProduct_name(rs.getString("product_name"));
+//				productBean.setProduct_type(rs.getString("product_type"));
+//				productBean.setProduct_subtype(rs.getString("product_subtype"));
+//				productBean.setProduct_intro(rs.getString("product_intro"));
+//				productBean.setProduct_ingredient(rs.getString("Product_ingredient"));
+//				productBean.setProduct_price(rs.getInt("product_price"));
+//				productBean.setProduct_available_qty(rs.getInt("product_available_qty"));
+//				productBean.setProduct_status(rs.getInt("product_status"));
+//				productBean.setExpiry_after_buying(rs.getInt("expiry_after_buying"));
+//				productBean.setProduct_calorie(rs.getInt("product_calorie"));
+//				productBean.setDegree_of_sweetness(rs.getInt("degree_of_sweetness"));
+//				productBean.setTotal_star(rs.getInt("total_star"));
+//				productBean.setTotal_review(rs.getInt("total_review"));
+//				productBean.setTotal_purchase(rs.getInt("total_purchase"));
+//				
+// 照片
+//				pstmt1 = con.prepareStatement("SELECT image_id FROM sweet.product_image WHERE product_id="+productBean.getProduct_id());
+//				List<String> img_url = new ArrayList<String>();
+//				ResultSet rs_image = pstmt1.executeQuery();
+				
+//				while(rs_image.next()) {
+//					img_url.add("/product_jsp/product.do?action=getProductImage&id="+rs_image.getString("image_id"));
+//				}
+				
+//				productBean.setImage_url(img_url);
+				
+				
+				System.out.println("DAO : findByProductName" + productBean);
+			}
+			
+			// Handle any driver errors
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. "
+					+ e.getMessage());
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		
+		return productBean;
+	}
+	
+	
+	
 	
 	// with one picture
 	public List<ProductBean> getAllWithOneImage() {

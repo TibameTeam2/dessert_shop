@@ -195,6 +195,27 @@ public class ProductServlet_front extends BaseServlet {
 //    	writeValueByWriter(res, info);
     }
     
+//  http://localhost:8081/dessert_shop/product/backend_checkProductName
+    public void backend_checkProductName(HttpServletRequest req, HttpServletResponse res) {
+    	//獲取數據
+    	String product_name = req.getParameter("product_name");
+    	System.out.println("商品名稱:" + product_name);//
+    	ProductService producSvc = new ProductService();
+ // 新增getOneProductByName的service dao
+    	ProductBean productBean = producSvc.getOneProductByName(product_name);
+    	ResultInfo info = new ResultInfo();
+    	System.out.println("ResultInfo");//
+    	if(productBean == null) {
+    		System.out.println("ResultInfo的null,flag要設true");//
+    		info.setFlag(true);
+    		info.setMsg("\""+ product_name +"\"" + "可以使用");
+    	}else {
+    		System.out.println("ResultInfo的else,flag要設false");//
+    		info.setFlag(false);
+    		info.setMsg("\"" + product_name + "\"" + "名稱重複，請重新輸入");
+    	}
+    	writeValueByWriter(res, info);
+    }
     
     
     
@@ -227,14 +248,6 @@ public class ProductServlet_front extends BaseServlet {
     
     
     
-
-    public void checkProductName(HttpServletRequest req, HttpServletResponse res) {
-    	//獲取數據
-    	String product_name = req.getParameter("product_name");
-    	System.out.println(product_name);
-//    	ProductBean productBean =
-    	
-    }
     
     
     

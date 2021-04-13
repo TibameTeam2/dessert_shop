@@ -45,6 +45,12 @@ public class ProductService {
 		return dao.findByPrimaryKey(product_id);
 	}
 	
+// 檢查新增商品的名稱
+	public ProductBean getOneProductByName(String product_name) {
+		return dao.findByProductName(product_name);
+	}
+	
+	
 	public List<ProductBean> getAll(){
 		return dao.getAll();
 	}
