@@ -1016,23 +1016,23 @@
                 console.log(data);
                 if (data.flag) {
                     //會員
-                    let member_name = data.data[3].member_name;
-                    if (data.data[3].member_gender == 1) {
+                    let member_name = data.data[4].member_name;
+                    if (data.data[4].member_gender == 1) {
                         $("span.show_name").text(member_name + "\t先生");
                     } else {
                         $("span.show_name").text(member_name + "\t小姐");
                     }
 
-                    let show_phone = data.data[3].member_phone;
+                    let show_phone = data.data[4].member_phone;
                     $("span.show_phone").text(show_phone);
 
-                    let show_email = data.data[3].member_email;
+                    let show_email = data.data[4].member_email;
                     $("span.show_email").text(show_email);
 
                     //購物車+優惠券
                     let total_quantity = 0;
                     let total_price = 0;
-                    let coupon_price = data.data[4];
+                    let coupon_price = data.data[5];
 
                     if (data.data[0].length == 0) {
 
@@ -1085,6 +1085,7 @@
 
                         $("span.card_empty").text("");
                     }
+
 
 
                 } else {

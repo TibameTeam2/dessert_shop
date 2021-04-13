@@ -22,15 +22,21 @@ public class CartProductService {
 
 		List<List> list = new ArrayList<List>();
 
-		List<CartProductBean> list1 = dao.selectByMemberAccount(member_account);
-		list.add(list1);
+		List<CartProductBean> list_cartproductBean = dao.selectByMemberAccount(member_account);
+		list.add(list_cartproductBean);
 
-		List<String> list2 = new ArrayList<String>();
-		for (int i = 0; i < list1.size(); i++) {
-			String src = contextPath + "/cart/getProductImage?product_id=" + list1.get(i).getProduct_id();
-			list2.add(src);
+		List<String> list_img_src = new ArrayList<String>();
+		List<Integer> list_max_product_quantity = new ArrayList<Integer>();
+		for (int i = 0; i < list_cartproductBean.size(); i++) {
+			// img_src
+			String img_src = contextPath + "/cart/getProductImage?product_id=" + list_cartproductBean.get(i).getProduct_id();
+			list_img_src.add(img_src);
+			// max_product_quantity
+			Integer max_product_quantity = dao.selectProductAvailableQty(list_cartproductBean.get(i).getProduct_id());
+			list_max_product_quantity.add(max_product_quantity);
 		}
-		list.add(list2);
+		list.add(list_img_src);
+		list.add(list_max_product_quantity);
 
 		return list;
 
@@ -50,11 +56,27 @@ public class CartProductService {
 
 	}
 
-	// update購物車內商品數量
-	public void updateQuantityAtCart(Integer cart_id, Integer product_quantity) {
-
-		dao.updateProductQuantity(cart_id, product_quantity);
-
+	// update購物車內商品數量並回傳更新後的數量值
+	public List<Integer> updateQuantityAtCart(Integer cart_id, Integer product_id, Integer product_quantity) {
+		
+		List<Integer> list = new ArrayList<Integer>();
+		Integer max_product_quantity = dao.selectProductAvailableQty(product_id);
+		if (product_quantity <= max_product_quantity) {
+			dao.updateProductQuantity(cart_id, product_quantity);
+			list.add(product_quantity);
+			list.add(max_product_quantity);
+		} else if (max_product_quantity == null || max_product_quantity == 0) {	
+			dao.deleteCart(cart_id);
+			list.add(0);
+			list.add(0);
+		} else {
+			dao.updateProductQuantity(cart_id, max_product_quantity);
+			list.add(max_product_quantity);
+			list.add(max_product_quantity);
+		}
+		
+		return list;
+		
 	}
 
 	// delete購物車內商品
@@ -63,6 +85,14 @@ public class CartProductService {
 		dao.deleteCart(cart_id);
 
 	}
+	
+	// 查詢商品現貨數量
+	public Integer getProductAvailableQty(Integer product_id) {
+		
+		return dao.selectProductAvailableQty(product_id);
+		
+	}	
+	
 
 	// 查詢優惠碼
 	public CouponCodeBean selectCouponCode(String coupon_code) {
@@ -140,12 +170,30 @@ public class CartProductService {
 		return RandomUtil.randomNumbers(16);
 
 	}
+	
+	// 刪除購物車商品+減少商品現貨數量
+	public void deleteCartAndReduceProductQty(List<CartProductBean> list_cartProductBean) {
+		
+		dao.deleteCartAndUpdateProductQty(list_cartProductBean);
+		
+	}
+	
+	
+	
+	
 
 	// 修改優惠券狀態
 	public void updateCouponStatus(Integer coupon_id, Integer coupon_status) {
 
 		dao.updateCouponStatusById(coupon_id, coupon_status);
 
+	}
+	
+	// Line發通知
+	public void lineMessage(String member_account, String message) {
+		
+		
+		
 	}
 	
 	
@@ -157,14 +205,21 @@ public class CartProductService {
 		String member_account = cartBean.getMember_account();
 		Integer product_id = cartBean.getProduct_id();
 		Integer product_quantity = cartBean.getProduct_quantity();
+		Integer max_product_quantity = dao.selectProductAvailableQty(product_id);
 			
 		CartBean cartBean_exist = dao.findCart(member_account, product_id);
 		if (cartBean_exist == null) {
 			dao.insertCart(cartBean);
 		} else {
 			Integer new_product_quantity = cartBean_exist.getProduct_quantity() + product_quantity;
-			cartBean_exist.setProduct_quantity(new_product_quantity);
-			dao.updateCart(cartBean_exist);
+			if (new_product_quantity <= max_product_quantity) {
+				cartBean_exist.setProduct_quantity(new_product_quantity);
+				dao.updateCart(cartBean_exist);		
+			} else {
+				cartBean_exist.setProduct_quantity(max_product_quantity);
+				dao.updateCart(cartBean_exist);
+			}
+			
 		}
 		
 	}

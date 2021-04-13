@@ -941,7 +941,7 @@
                             for (var i = 0; i < data.data[0].length; i++) {
 
                                 let cart_product =
-                                    `<tr id="cart_id-${data.data[0][i].cart_id}" data-cart_id="${data.data[0][i].cart_id}">
+                                    `<tr id="cart_id-${data.data[0][i].cart_id}" data-cart_id="${data.data[0][i].cart_id}" data-product_id="${data.data[0][i].product_id}">
                                     <td class="Product-thumb" colspan="1">
                                         <img class="td-img" src="${data.data[1][i]}" alt="">
                                     </td>
@@ -962,6 +962,7 @@
                                             <input type="text " value="${data.data[0][i].product_quantity}" readonly class="quantity-input" />
                                             <button type="button " class="add "><i class="fas fa-plus "></i></i></button>
                                         </div>
+                                        <div class="max-product-quantity">現貨數量:${data.data[2][i]}</div>
                                     </td>
 
 
@@ -1063,18 +1064,44 @@
                 let total = cart.find("span.total-span ");
                 let quantity = cart.find('input.quantity-input');
                 let unit_price = cart.find('span.unit-price');
+                let max_product_quantity = cart.find("div.max-product-quantity");
 
-
-                $.post("/dessert_shop/cart/updateQuantity", { "cart_id": cart.attr("data-cart_id"), "product_quantity": parseInt(quantity.val()) + 1 }, function (data) {
+                $.post("/dessert_shop/cart/updateQuantity", { "cart_id": cart.attr("data-cart_id"), "product_id": cart.attr("data-product_id"), "product_quantity": parseInt(quantity.val()) + 1 }, function (data) {
                     console.log(data);
                     if (data.flag) {
+                        
+                        if ((parseInt(data.data[0]) <= parseInt(quantity.val())) && (data.data[0] != 0) && (data.data[0] != null)) {                       
+                            alert("已達現貨數量上限!");
+                            quantity.val(data.data[0]);
+                            total.text(quantity.val() * unit_price.text());
 
-                        quantity.val(parseInt(quantity.val()) + 1);
-                        total.text(quantity.val() * unit_price.text());
+                            count_total();
+                            coupon();
+                            sum_total();
 
-                        count_total();
-                        coupon();
-                        sum_total();
+                        } else if (data.data[0] == 0 || data.data[0] == null) {  
+                            alert("現貨已無!");
+
+                            cart.remove();
+
+                            if ($("td.Product-thumb").length == 0) {
+                                $("span.count-price ").text(0);
+                            }
+
+                            count_total();
+                            coupon();
+                            sum_total();
+                            
+                        } else {
+                            quantity.val(data.data[0]);
+                            total.text(quantity.val() * unit_price.text());
+
+                            count_total();
+                            coupon();
+                            sum_total();
+                        }
+
+                        max_product_quantity.text("現貨數量:" + data.data[1]);
 
                     } else {
                         alert(data.msg);
@@ -1095,19 +1122,46 @@
                 let total = cart.find("span.total-span");
                 let quantity = cart.find('input.quantity-input');
                 let unit_price = cart.find('span.unit-price');
+                let max_product_quantity = cart.find("div.max-product-quantity");
 
                 if (quantity.val() > 1) {
 
-                    $.post("/dessert_shop/cart/updateQuantity", { "cart_id": cart.attr("data-cart_id"), "product_quantity": parseInt(quantity.val()) - 1 }, function (data) {
+                    $.post("/dessert_shop/cart/updateQuantity", { "cart_id": cart.attr("data-cart_id"), "product_id": cart.attr("data-product_id"), "product_quantity": parseInt(quantity.val()) - 1 }, function (data) {
                         console.log(data);
                         if (data.flag) {
 
-                            quantity.val(parseInt(quantity.val()) - 1);
-                            total.text(quantity.val() * unit_price.text());
+                            if ((parseInt(data.data[0]) <= (parseInt(quantity.val())-2) ) && (data.data[0] != 0) && (data.data[0] != null)) {
+                                alert("已達現貨數量上限!");
+                                quantity.val(data.data[0]);
+                                total.text(quantity.val() * unit_price.text());
 
-                            count_total();
-                            coupon();
-                            sum_total();
+                                count_total();
+                                coupon();
+                                sum_total();
+
+                            } else if (data.data[0] == 0 || data.data[0] == null) {  
+                                alert("現貨已無!");
+
+                                cart.remove();
+
+                                if ($("td.Product-thumb").length == 0) {
+                                    $("span.count-price ").text(0);
+                                }
+
+                                count_total();
+                                coupon();
+                                sum_total();
+                                
+                            } else {
+                                quantity.val(data.data[0]);
+                                total.text(quantity.val() * unit_price.text());
+
+                                count_total();
+                                coupon();
+                                sum_total();
+                            }
+
+                            max_product_quantity.text("現貨數量:" + data.data[1]);
 
                         } else {
                             alert(data.msg);

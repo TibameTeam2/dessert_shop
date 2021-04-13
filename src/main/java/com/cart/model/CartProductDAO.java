@@ -217,8 +217,6 @@ public class CartProductDAO {
 
 			pstmt.executeUpdate();
 
-			System.out.println(1);
-
 			// Handle any driver errors
 		} catch (ClassNotFoundException e) {
 			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
@@ -283,6 +281,53 @@ public class CartProductDAO {
 				}
 			}
 		}
+
+	}
+
+	// select商品現貨數量
+	public Integer selectProductAvailableQty(Integer product_id) {
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String SELECT = "SELECT product_available_qty FROM sweet.product WHERE product_id = ?";
+		ResultSet rs = null;
+		Integer product_available_qty = null;
+
+		try {
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			pstmt = con.prepareStatement(SELECT);
+
+			pstmt.setInt(1, product_id);
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				product_available_qty = rs.getInt("product_available_qty");
+			}
+
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+
+		return product_available_qty;
 
 	}
 
@@ -686,9 +731,9 @@ public class CartProductDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		String INSERT = "INSERT INTO sweet.order_master (member_account, payment_time, payment_method, coupon_id, order_status, invoice_number, order_total, order_remarks) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-		
+
 		Integer next_order_master_id = null;
-		
+
 		try {
 
 			Class.forName(driver);
@@ -776,7 +821,7 @@ public class CartProductDAO {
 		}
 
 		return next_order_master_id;
-		
+
 	}
 
 	// insert OrderDetail
@@ -864,6 +909,82 @@ public class CartProductDAO {
 		}
 
 	}
+
+	// 減少商品現貨數量+刪除該購物車
+	public void deleteCartAndUpdateProductQty(List<CartProductBean> list_cartProductBean) {
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String UPDATE = "UPDATE sweet.product set product_available_qty = ? WHERE product_id = ?";
+		String DELETE = "DELETE FROM sweet.cart where cart_id = ?";
+		
+		try {
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);		
+			con.setAutoCommit(false);
+			
+			for (CartProductBean CPBean : list_cartProductBean) {
+				
+				// update現貨數量
+				Integer new_product_available_qty = selectProductAvailableQty(CPBean.getProduct_id()) - CPBean.getProduct_quantity();
+				
+				pstmt = con.prepareStatement(UPDATE);
+				
+				pstmt.setInt(1, new_product_available_qty);
+				pstmt.setInt(2, CPBean.getProduct_id());
+				
+				pstmt.executeUpdate();
+				
+				// delete購物車商品
+				pstmt = con.prepareStatement(DELETE);
+				
+				pstmt.setInt(1, CPBean.getCart_id());
+				
+				pstmt.executeUpdate();
+			}
+			
+			con.commit();
+			con.setAutoCommit(true);
+
+			// Handle any driver errors
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			if (con != null) {
+				try {
+					// 設定於當有exception發生時之catch區塊內
+					System.err.print("Transaction is being ");
+					System.err.println("rolled back");
+					con.rollback();
+				} catch (SQLException excep) {
+					throw new RuntimeException("rollback error occured. " + excep.getMessage());
+				}
+			}
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+						// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		
+		
+	}
+	
+	
+	
 
 	/* ==================== 商品頁面新增商品到購物車 ==================== */
 	// 新增商品到購物車
@@ -1006,8 +1127,13 @@ public class CartProductDAO {
 		return cartBean;
 
 	}
-	
-	
-	
 
+	
+	
+	
+	
+	
+	
+	
+	
 }

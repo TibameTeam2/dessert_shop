@@ -141,7 +141,7 @@ CREATE TABLE product (
 	product_intro	  		VARCHAR(500) NOT NULL,
     product_ingredient		varchar(2000) NOT NULL,
 	product_price	  		SMALLINT NOT NULL,				
-	product_available_qty	MEDIUMINT NOT NULL,
+	product_available_qty	MEDIUMINT UNSIGNED NOT NULL,
 	product_status	  		TINYINT NOT NULL,
     expiry_after_buying    	TINYINT NOT NULL,
 	product_calorie	  		SMALLINT NOT NULL,

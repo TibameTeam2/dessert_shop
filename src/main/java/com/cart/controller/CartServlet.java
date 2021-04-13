@@ -35,14 +35,14 @@ public class CartServlet extends BaseServlet {
 		if (member == null) {
 			info.setFlag(false);
 			info.setMsg("尚未登入!");
-			req.getSession().setAttribute("location", req.getRequestURI());
+			req.getSession().setAttribute("location", req.getContextPath() + "/TEA103G2/front-end/cart.html");
 			info.setRedirect(req.getContextPath() + "/TEA103G2/front-end/login.html");
 		} else {
 			List<List> list = svc.getCartDataByMemberAccount(member.getMember_account(), req.getContextPath());
 			info.setData(list);
 
 			info.setFlag(true);
-			info.setMsg("已將購物車和圖片src資料載入!");
+			info.setMsg("已將購物車+圖片src+現貨數量資料載入!");
 		}
 
 		writeValueByWriter(res, info);
@@ -57,7 +57,7 @@ public class CartServlet extends BaseServlet {
 		if (member == null) {
 			info.setFlag(false);
 			info.setMsg("尚未登入!");
-			req.getSession().setAttribute("location", req.getRequestURI());
+			req.getSession().setAttribute("location", req.getContextPath() + "/TEA103G2/front-end/cart.html");
 			info.setRedirect(req.getContextPath() + "/TEA103G2/front-end/login.html");
 		} else {
 			List<CouponBean> list = svc.getCouponDataByMemberAccount(member.getMember_account());
@@ -101,10 +101,12 @@ public class CartServlet extends BaseServlet {
 		} else {
 			// 取資料
 			Integer cart_id = new Integer(req.getParameter("cart_id"));
+			Integer product_id = new Integer(req.getParameter("product_id"));
 			Integer product_quantity = new Integer(req.getParameter("product_quantity"));
 			// 更新數量
-			svc.updateQuantityAtCart(cart_id, product_quantity);
-
+			List<Integer> list_product_qty_and_max_qty = svc.updateQuantityAtCart(cart_id, product_id, product_quantity);		
+			info.setData(list_product_qty_and_max_qty);
+			
 			info.setFlag(true);
 			info.setMsg("已更新數量!");
 		}
@@ -217,14 +219,37 @@ public class CartServlet extends BaseServlet {
 			info.setRedirect(req.getContextPath() + "/TEA103G2/front-end/login.html");
 		} else {
 			// 檢查購物車是否為空
-			List<List> list = svc.getCartDataByMemberAccount(member.getMember_account(), req.getContextPath());
-			if (list.get(0).isEmpty()) {
+			if (svc.getCartDataBeforeOrder(member.getMember_account()).isEmpty()) {
 				info.setFlag(false);
 				info.setMsg("購物車內無商品!");
 			} else {
+							
+				List<CartProductBean> list_cartProductBean = svc.getCartDataBeforeOrder(member.getMember_account());
+				//檢查購物車商品數量是否有商品超過現貨
+				boolean overlimit = false;
+				for (CartProductBean CPBean : list_cartProductBean) {
+					Integer max_product_quantity = svc.getProductAvailableQty(CPBean.getProduct_id());
+					if (CPBean.getProduct_quantity() > max_product_quantity && max_product_quantity != 0 && max_product_quantity != null) {
+						svc.updateQuantityAtCart(CPBean.getCart_id(), CPBean.getProduct_id(), max_product_quantity);
+						overlimit = true;
+					} else if (max_product_quantity == null || max_product_quantity == 0) {
+						svc.deleteProductAtCart(CPBean.getCart_id());
+						overlimit = true;
+					}
+				}
+				if(overlimit) {
+					info.setFlag(false);
+					info.setMsg("購物車內商品現貨不足!");
+					info.setRedirect(req.getContextPath() + "/TEA103G2/front-end/cart.html");
+					writeValueByWriter(res, info);
+					return ;
+				}		
+						
+				
 				// 取資料
 				Integer coupon_id = new Integer(req.getParameter("coupon_id"));
 				Integer coupon_price = new Integer(req.getParameter("coupon_price"));
+				
 				// 設定coupon_id
 				if (coupon_id == 0) {
 					req.getSession().removeAttribute("coupon_id");
@@ -260,9 +285,10 @@ public class CartServlet extends BaseServlet {
 		if (member == null) {
 			info.setFlag(false);
 			info.setMsg("尚未登入!");
-			req.getSession().setAttribute("location", req.getRequestURI());
+			req.getSession().setAttribute("location", req.getContextPath() + "/TEA103G2/front-end/checkout.html");
 			info.setRedirect(req.getContextPath() + "/TEA103G2/front-end/login.html");
 		} else {
+			
 			List<CardDetailBean> list_card = svc.selectAllCard(member.getMember_account());
 			list.add(list_card);
 			list.add(member);
@@ -270,7 +296,7 @@ public class CartServlet extends BaseServlet {
 
 			info.setData(list);
 			info.setFlag(true);
-			info.setMsg("已將會員+購物車+優惠券+信用卡資料載入!");
+			info.setMsg("已將購物車+圖片src+現貨數量+信用卡+會員+優惠券資料載入!");
 		}
 
 		writeValueByWriter(res, info);
@@ -383,8 +409,30 @@ public class CartServlet extends BaseServlet {
 			orderMasterBean.setOrder_total(order_total);
 			orderMasterBean.setOrder_remarks(order_remarks);
 
-			// list_orderDetailBean
+			
 			List<CartProductBean> list_cartProductBean = svc.getCartDataBeforeOrder(member.getMember_account());
+			//檢查購物車商品數量是否有商品超過現貨
+			boolean overlimit = false;
+			for (CartProductBean CPBean : list_cartProductBean) {
+				Integer max_product_quantity = svc.getProductAvailableQty(CPBean.getProduct_id());
+				if (CPBean.getProduct_quantity() > max_product_quantity && max_product_quantity != 0 && max_product_quantity != null) {
+					svc.updateQuantityAtCart(CPBean.getCart_id(), CPBean.getProduct_id(), max_product_quantity);
+					overlimit = true;
+				} else if (max_product_quantity == null || max_product_quantity == 0) {
+					svc.deleteProductAtCart(CPBean.getCart_id());
+					overlimit = true;
+				}
+			}
+			if(overlimit) {
+				info.setFlag(false);
+				info.setMsg("購物車內商品現貨不足!");
+				info.setRedirect(req.getContextPath() + "/TEA103G2/front-end/cart.html");
+				writeValueByWriter(res, info);
+				return ;
+			}
+			
+			
+			// list_orderDetailBean
 			List<OrderDetailBean> list_orderDetailBean = new ArrayList<OrderDetailBean>();
 			for (CartProductBean CPBean : list_cartProductBean) {
 				OrderDetailBean ODBean = new OrderDetailBean();
@@ -402,18 +450,16 @@ public class CartServlet extends BaseServlet {
 				String payCode = svc.payCode_random(); // 生成匯款帳戶
 				info.setData(payCode);
 				// 存Redis
-				new Thread(() -> {
 				Jedis jedis = JedisUtil.getJedis();
 				jedis.hset(member.getMember_account(), "payCode_id-" + new_order_master_id, payCode);
 				jedis.close();
 				System.out.println("123");
-				}).start();
 			}				
 
-			// 清除購物車+改優惠券狀態
-			for (CartProductBean CPBean : list_cartProductBean) {
-				svc.deleteProductAtCart(CPBean.getCart_id());
-			}
+			// 清除購物車+減少商品現貨數量
+			svc.deleteCartAndReduceProductQty(list_cartProductBean);
+		
+			// 改優惠券狀態
 			if (coupon_id != null) {
 				svc.updateCouponStatus(coupon_id, 1);
 			}
@@ -423,6 +469,14 @@ public class CartServlet extends BaseServlet {
 			info.setFlag(true);
 			info.setMsg("訂單完成!");
 			info.setRedirect(req.getContextPath() + "/TEA103G2/front-end/my-account.html");
+			 
+			
+			// Line發通知
+			
+			
+			
+			
+			
 		}
 
 		writeValueByWriter(res, info);
