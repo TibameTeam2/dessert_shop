@@ -625,11 +625,17 @@ CREATE TABLE order_master (
 --  constraint orderMaster_coupon_FK foreign key (coupon_id) references coupon(coupon_id)
 ) AUTO_INCREMENT = 1;
 INSERT INTO  order_master (member_account, payment_time, payment_method, coupon_id, order_status, invoice_number, order_total, order_remarks)
-VALUES ('tom', '2021-01-02 03:04:05', '1', 2, '1', 'AA12345678', '8', '紅色死神說要加糖');
+VALUES ('tom', '2021-01-02 03:04:05', '1', 2, '1', 'AA12345678', '200', '希望能吃到好吃的巧克力杯子');
 INSERT INTO  order_master (member_account, payment_time, payment_method, coupon_id, order_status, invoice_number, order_total, order_remarks)
-VALUES ('jason', '2021-01-02 03:04:06', '1', null, '1', 'AA12345672', '7', '紅色死神說要加鹽');
+VALUES ('jason', '2021-01-02 03:04:06', '1', null, '1', 'AA12345672', '120', '希望能吃到好吃的草莓千層');
 INSERT INTO  order_master (member_account, payment_time, payment_method, coupon_id, order_status, invoice_number, order_total, order_remarks)
-VALUES ('amy', '2021-01-02 03:04:07', '1', null, '2', 'AA12345673', '6', '紅色死神說要加醬油');
+VALUES ('amy', '2021-01-02 03:04:07', '1', null, '2', 'AA12345673', '720', '最期待香蕉拿鐵!');
+INSERT INTO  order_master (member_account, payment_time, payment_method, coupon_id, order_status, invoice_number, order_total, order_remarks)
+VALUES ('amy', '2021-01-03 03:04:07', '1', null, '2', 'AA12345674', '340', '最期待巧克力杯子! 想念草莓千層!');
+INSERT INTO  order_master (member_account, payment_time, payment_method, coupon_id, order_status, invoice_number, order_total, order_remarks)
+VALUES ('amy', '2021-01-04 03:04:07', '1', null, '2', 'AA12345675', '360', '藍莓乳酪要濃郁才好吃');
+INSERT INTO  order_master (member_account, payment_time, payment_method, coupon_id, order_status, invoice_number, order_total, order_remarks)
+VALUES ('amy', '2021-01-06 03:04:07', '1', null, '2', 'AA12345676', '460', '無');
 
 
 -- 訂單明細
@@ -645,11 +651,29 @@ CREATE TABLE order_detail (
     constraint orderDetail_product_FK foreign key (product_id) references product (product_id)
 ) AUTO_INCREMENT = 1;
 INSERT INTO order_detail (order_master_id, product_id, product_qty, product_price)
-VALUES ('1', 1, '8', '100');
+VALUES ('1', 1, '2', '100');
 INSERT INTO order_detail (order_master_id, product_id, product_qty, product_price)
-VALUES ('2', 2, '7', '120');
+VALUES ('2', 2, '1', '120');
 INSERT INTO order_detail (order_master_id, product_id, product_qty, product_price)
-VALUES ('3', 3, '8', '120');
+VALUES ('3', 3, '3', '120');
+INSERT INTO order_detail (order_master_id, product_id, product_qty, product_price)
+VALUES ('3', 4, '2', '120');
+INSERT INTO order_detail (order_master_id, product_id, product_qty, product_price)
+VALUES ('3', 5, '1', '120');
+INSERT INTO order_detail (order_master_id, product_id, product_qty, product_price)
+VALUES ('4', 1, '1', '100');
+INSERT INTO order_detail (order_master_id, product_id, product_qty, product_price)
+VALUES ('4', 2, '2', '120');
+INSERT INTO order_detail (order_master_id, product_id, product_qty, product_price)
+VALUES ('5', 3, '3', '120');
+INSERT INTO order_detail (order_master_id, product_id, product_qty, product_price)
+VALUES ('6', 1, '1', '100');
+INSERT INTO order_detail (order_master_id, product_id, product_qty, product_price)
+VALUES ('6', 2, '1', '120');
+INSERT INTO order_detail (order_master_id, product_id, product_qty, product_price)
+VALUES ('6', 3, '1', '120');
+INSERT INTO order_detail (order_master_id, product_id, product_qty, product_price)
+VALUES ('6', 4, '1', '120');
 
 
 -- 訂位明細
@@ -711,9 +735,13 @@ CREATE TABLE member_comment(
     constraint fk_member_comment_order_detail foreign key (order_detail_id) references order_detail (order_detail_id),
     constraint fk_member_comment_product foreign key (product_id) references product (product_id)
 ) AUTO_INCREMENT = 1;
-INSERT INTO member_comment(order_detail_id, comment_content, rating, product_id, comment_status) VALUES(1, '好', 5, 1, 1);
-INSERT INTO member_comment(order_detail_id, comment_content, rating, product_id, comment_status) VALUES(1, '好吃', 4, 2, 1);
-INSERT INTO member_comment(order_detail_id, comment_content, rating, product_id, comment_status) VALUES(1, '好吃好', 1, 3, 1);
+INSERT INTO member_comment(order_detail_id, comment_content, rating, product_id, comment_status) VALUES(1, '口感綿密，濕潤濃郁，好吃!', 1, 1, 1);
+INSERT INTO member_comment(order_detail_id, comment_content, rating, product_id, comment_status) VALUES(2, '新鮮草莓，在一層層細緻的餅皮中，與香滑柔順的奶醬交織，草莓香氣濃郁，酸甜不膩口。', 5, 2, 1);
+INSERT INTO member_comment(order_detail_id, comment_content, rating, product_id, comment_status) VALUES(3, '完全沒有地雷，至今吃過的三款蛋糕都很好吃! 最推薦的是藍莓乳酪，值得回購!', 5, 3, 1);
+INSERT INTO member_comment(order_detail_id, comment_content, rating, product_id, comment_status) VALUES(5, '完全被香蕉拿鐵征服味蕾', 4, 5, 1);
+INSERT INTO member_comment(order_detail_id, comment_content, rating, product_id, comment_status) VALUES(6, '高級巧克力的香氣!', 5, 1, 1);
+INSERT INTO member_comment(order_detail_id, comment_content, rating, product_id, comment_status) VALUES(7, '清爽的鮮奶油搭配酸酸甜甜的草莓，已融化!', 1, 2, 1);
+INSERT INTO member_comment(order_detail_id, comment_content, rating, product_id, comment_status) VALUES(8, '全台灣最好吃的藍莓乳酪!', 5, 3, 1);
 
 
 -- 評價圖片
@@ -725,9 +753,13 @@ CREATE TABLE review_image_upload(
 	review_id 			INT NOT NULL,
 	constraint fk_review_image_upload_member_comment foreign key (review_id) references member_comment(review_id)
 ) AUTO_INCREMENT = 1;
-INSERT INTO review_image_upload(review_image, review_id) VALUES (LOAD_FILE('C:\\project\\images\\review_image_upload\\pie1.jpg'), 1);
-INSERT INTO review_image_upload(review_image, review_id) VALUES (LOAD_FILE('C:\\project\\images\\review_image_upload\\pie2.jpg'), 2);
-INSERT INTO review_image_upload(review_image, review_id) VALUES (LOAD_FILE('C:\\project\\images\\review_image_upload\\pie3.jpg'), 3);
+INSERT INTO review_image_upload(review_image, review_id) VALUES (LOAD_FILE('C:\\project\\images\\review_image_upload\\oreoCup-1.jpg'), 1);
+INSERT INTO review_image_upload(review_image, review_id) VALUES (LOAD_FILE('C:\\project\\images\\review_image_upload\\strawCrepe-1.jpg'), 2);
+INSERT INTO review_image_upload(review_image, review_id) VALUES (LOAD_FILE('C:\\project\\images\\review_image_upload\\strawCrepe-2.jpg'), 2);
+INSERT INTO review_image_upload(review_image, review_id) VALUES (LOAD_FILE('C:\\project\\images\\review_image_upload\\bananaLatte-2.jpg'), 4);
+INSERT INTO review_image_upload(review_image, review_id) VALUES (LOAD_FILE('C:\\project\\images\\review_image_upload\\strawCrepe-1.jpg'), 6);
+INSERT INTO review_image_upload(review_image, review_id) VALUES (LOAD_FILE('C:\\project\\images\\review_image_upload\\strawCrepe-2.jpg'), 6);
+INSERT INTO review_image_upload(review_image, review_id) VALUES (LOAD_FILE('C:\\project\\images\\review_image_upload\\strawCrepe-3.jpg'), 6);
 
 
 -- 業者回覆
@@ -742,9 +774,11 @@ CREATE TABLE dealer_reply(
  constraint FK_dealerReply_memberComment foreign key (review_id) references member_comment(review_id),
  constraint FK_dealerReply_employee foreign key (employee_account) references employee(employee_account)
 ) AUTO_INCREMENT = 1;
-INSERT INTO dealer_reply(review_id, reply_content, employee_account) VALUES(1, '謝謝您的惠顧1', 'jason');
-INSERT INTO dealer_reply(review_id, reply_content, employee_account) VALUES(2, '謝謝您的惠顧2', 'peter');
-INSERT INTO dealer_reply(review_id, reply_content, employee_account) VALUES(3, '謝謝您的惠顧3', 'james');
+INSERT INTO dealer_reply(review_id, reply_content, employee_account) VALUES(1, '謝謝您購買巧克力杯子', 'peter');
+INSERT INTO dealer_reply(review_id, reply_content, employee_account) VALUES(2, '謝謝您購買草莓千層蛋糕', 'peter');
+INSERT INTO dealer_reply(review_id, reply_content, employee_account) VALUES(3, '謝謝您購買藍莓乳酪', 'peter');
+INSERT INTO dealer_reply(review_id, reply_content, employee_account) VALUES(5, '謝謝您購買巧克力杯子', 'peter');
+INSERT INTO dealer_reply(review_id, reply_content, employee_account) VALUES(6, '謝謝您購買草莓千層蛋糕', 'peter');
 
 
 show VARIABLES like '%max_allowed_packet%';
