@@ -141,7 +141,7 @@ CREATE TABLE product (
 	product_intro	  		VARCHAR(500) NOT NULL,
     product_ingredient		varchar(2000) NOT NULL,
 	product_price	  		SMALLINT NOT NULL,				
-	product_available_qty	MEDIUMINT NOT NULL,
+	product_available_qty	MEDIUMINT UNSIGNED NOT NULL,
 	product_status	  		TINYINT NOT NULL,
     expiry_after_buying    	TINYINT NOT NULL,
 	product_calorie	  		SMALLINT NOT NULL,
@@ -521,11 +521,14 @@ create table announcement_management (
     foreign key (employee_account) references employee (employee_account)
 )AUTO_INCREMENT=1;
 insert into announcement_management (announcement_name,announcement_content,
-announcement_image,announcement_type,announcement_status,employee_account)
-values('提拉米蘇特價','提拉米蘇超好吃der',null,1,1,'jason');
+announcement_image,announcement_time,announcement_type,announcement_status,employee_account)
+values('提拉米蘇特價','提拉米蘇超好吃derrrrrr',LOAD_FILE('C:/project/images/announcement_management/a.jpg'),'2021-02-26',1,1,'jason');
 insert into announcement_management (announcement_name,announcement_content,
-announcement_image,announcement_type,announcement_status,employee_account)
-values('檸檬塔暫停供應','員工擠檸檬噴到眼睛',null,1,1,'peter');
+announcement_image,announcement_time,announcement_type,announcement_status,employee_account)
+values('檸檬塔暫停供應','員工擠檸檬噴到眼睛',LOAD_FILE('C:/project/images/announcement_management/b.PNG'),"2021-02-27",1,1,'peter');
+insert into announcement_management (announcement_name,announcement_content,
+announcement_image,announcement_time,announcement_type,announcement_status,employee_account)
+values('草莓蛋糕下架','草莓農藥太多',LOAD_FILE('C:/project/images/announcement_management/c.PNG'),'2021-02-28',1,1,'james');
 
 
 -- 優惠碼
@@ -629,8 +632,8 @@ CREATE TABLE order_master (
     invoice_number		 varchar(50),
     order_total			 int not null,
     order_remarks	  	 varchar(2000),
-    constraint orderMaster_member_FK foreign key (member_account) references member (member_account)
---  constraint orderMaster_coupon_FK foreign key (coupon_id) references coupon(coupon_id)
+    constraint orderMaster_member_FK foreign key (member_account) references member (member_account),
+    constraint orderMaster_coupon_FK foreign key (coupon_id) references coupon(coupon_id)
 ) AUTO_INCREMENT = 1;
 INSERT INTO  order_master (member_account, payment_time, payment_method, coupon_id, order_status, invoice_number, order_total, order_remarks)
 VALUES ('tom', '2021-01-02 03:04:05', '1', 2, '1', 'AA12345678', '200', '希望能吃到好吃的巧克力杯子');
@@ -644,6 +647,7 @@ INSERT INTO  order_master (member_account, payment_time, payment_method, coupon_
 VALUES ('amy', '2021-01-04 03:04:07', '1', null, '2', 'AA12345675', '360', '藍莓乳酪要濃郁才好吃');
 INSERT INTO  order_master (member_account, payment_time, payment_method, coupon_id, order_status, invoice_number, order_total, order_remarks)
 VALUES ('amy', '2021-01-06 03:04:07', '1', null, '2', 'AA12345676', '460', '無');
+
 
 
 -- 訂單明細
