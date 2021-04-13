@@ -620,6 +620,7 @@
         $.post("/dessert_shop/notice/getAllNotice", function(data) {
             // console.log(data.data);
             if (data.flag) {
+                console.log(data.data);
                 let count = 0;
                 if (data.data.length != 0) {
                     // console.log(data.data[0].member_account + "\n" + data.data[0].notice_content);
@@ -637,17 +638,20 @@
                         if (noticeStatus == 0) {
                             count += 1;
                         }
-                        $('li.notice_li').on("click", function() {
-                                // 更新的請求 
-                                $.post("/dessert_shop/notice/alreadyReadNotice?notice_id=" + noticeId + "&member_account=" + memberAccount, function(response) {
-                                    console.log("sucess");
-                                    console.log(noticeId + memberAccount + noticeStatus);
-                                })
 
+
+                        $('li[id=' + noticeId + ']').on("click", function() {
+                            // 更新的請求 
+                            $.post("/dessert_shop/notice/alreadyReadNotice?notice_id=" + noticeId + "&member_account=" + memberAccount, function(response) {
+                                console.log("sucess");
                             })
-                            // console.log("sum" + count);
+                        })
+
+                        // console.log("sum" + count);
                         $('span.notice_num').html(count);
                     }
+
+
                 } else {
                     $('div.notice_content>ul').prepend(
                         `<li class="notice_li"><span>目前尚無訊息</span></li>`

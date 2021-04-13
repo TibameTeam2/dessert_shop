@@ -118,6 +118,8 @@ public class NoticeServlet extends BaseServlet {
 		}
 		writeValueByWriter(res, info);
 	}
+	
+	
 
 	/****************************** 後台管理員區   ***********************************/
 	public void backend_getAllNotice(HttpServletRequest req,HttpServletResponse res) {
