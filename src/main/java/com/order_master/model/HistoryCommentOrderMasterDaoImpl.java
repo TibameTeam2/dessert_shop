@@ -24,7 +24,7 @@ public class HistoryCommentOrderMasterDaoImpl implements HistoryCommentOrderMast
 			"from order_master om\r\n" + 
 			"left join order_detail od on om.order_master_id = od.order_master_id\r\n" + 
 			"left join member_comment mc on od.order_detail_id = mc.order_detail_id\r\n" + 
-			"where member_account = ?\r\n" + 
+			"where member_account = ? and comment_time is not null\r\n" + 
 			"group by order_master_id; ";
 
 

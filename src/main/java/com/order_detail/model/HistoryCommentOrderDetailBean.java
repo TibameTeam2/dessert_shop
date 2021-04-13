@@ -11,7 +11,7 @@ public class HistoryCommentOrderDetailBean implements Serializable{
 	private Integer product_id;
 	private String product_name;
 	private Integer image_id;
-	private byte[] product_image;
+	private String product_image;
 	private Integer rating;
 	private String comment_content;
 	private Integer reply_id;
@@ -21,9 +21,9 @@ public class HistoryCommentOrderDetailBean implements Serializable{
 	public String toString() {
 		return "HistoryCommentOrderDetailBean [order_master_id=" + order_master_id + ", order_detail_id="
 				+ order_detail_id + ", product_id=" + product_id + ", product_name=" + product_name + ", image_id="
-				+ image_id + ", product_image=" + Arrays.toString(product_image) + ", rating=" + rating
-				+ ", comment_content=" + comment_content + ", reply_id=" + reply_id + ", reply_content=" + reply_content
-				+ ", review_image=" + review_image + "]";
+				+ image_id + ", product_image=" + product_image + ", rating=" + rating + ", comment_content="
+				+ comment_content + ", reply_id=" + reply_id + ", reply_content=" + reply_content + ", review_image="
+				+ review_image + "]";
 	}
 	public Integer getOrder_master_id() {
 		return order_master_id;
@@ -55,10 +55,10 @@ public class HistoryCommentOrderDetailBean implements Serializable{
 	public void setImage_id(Integer image_id) {
 		this.image_id = image_id;
 	}
-	public byte[] getProduct_image() {
+	public String getProduct_image() {
 		return product_image;
 	}
-	public void setProduct_image(byte[] product_image) {
+	public void setProduct_image(String product_image) {
 		this.product_image = product_image;
 	}
 	public Integer getRating() {

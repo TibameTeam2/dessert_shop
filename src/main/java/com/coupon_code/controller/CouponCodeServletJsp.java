@@ -193,7 +193,7 @@ if ("update".equals(action)) {
 				CCB.setCoupon_code_effective_date(coupon_code_effective_date);
 				CCB.setCoupon_code_expire_date(coupon_code_expire_date);
 				CCB.setCoupon_code_text_content(coupon_code_text_content);
-				CCB.setCoupon_code_text(coupon_code_text);
+				CCB.setCoupon_code_content(coupon_code_text);
 				CCB.setDiscount_type(discount_type);
 				CCB.setEmployee_account(employee_account);
 				
@@ -297,7 +297,7 @@ if ("update".equals(action)) {
 				CCB.setCoupon_code_effective_date(coupon_code_effective_date);
 				CCB.setCoupon_code_expire_date(coupon_code_expire_date);
 				CCB.setCoupon_code_text_content(coupon_code_text_content);
-				CCB.setCoupon_code_text(coupon_code_text);
+				CCB.setCoupon_code_content(coupon_code_text);
 				CCB.setDiscount_type(discount_type);
 				CCB.setEmployee_account(employee_account);
 				

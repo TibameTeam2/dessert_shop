@@ -210,8 +210,19 @@ public class MemberServlet extends BaseServlet {
             req.getSession().setAttribute("member", member);//登入成功
             info.setMsg("登入成功!");
             info.setData(member);
-            info.setRedirect(req.getContextPath() + "/TEA103G2/front-end/my-account.html");
-            System.out.println("member = " + member);
+
+            try {
+                String location = (String) req.getSession().getAttribute("location");
+                if (location != null) {
+                    req.getSession().removeAttribute("location");   //看看有無來源網頁 (-->如有來源網頁:則重導至來源網頁)
+                    info.setRedirect(location);
+                    writeValueByWriter(res, info);
+                    return;
+                }
+            }catch (Exception ignored) { }
+
+            info.setRedirect(req.getContextPath() + "/TEA103G2/front-end/index.html");
+//            System.out.println("member = " + member);
         }
         writeValueByWriter(res, info);
     }
@@ -365,7 +376,7 @@ public class MemberServlet extends BaseServlet {
     public void update(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
         //獲取數據
         Map<String, String[]> map = req.getParameterMap();
-        System.out.println("map= " + Convert.toStr(map));
+        System.out.println("map= " + new ObjectMapper().writeValueAsString(map));
 
         //封裝物件
         MemberBean member = new MemberBean();
@@ -863,5 +874,12 @@ public class MemberServlet extends BaseServlet {
 //        return decodedBytes;
 //    }
 
-
+    public void backend_getAll(HttpServletRequest req, HttpServletResponse res) {
+        List<MemberBean> list = service.getAll();
+        ResultInfo info = new ResultInfo();
+        info.setFlag(true);
+        info.setMsg("取得所有會員資料!");
+        info.setData(list);
+        writeValueByWriter(res, info);
+    }
 }

@@ -20,7 +20,7 @@ public class CouponCodeService {
 		ccBean.setCoupon_code_effective_date(coupon_code_effective_date);
 		ccBean.setCoupon_code_expire_date(coupon_code_expire_date);
 		ccBean.setCoupon_code_text_content(coupon_code_text_content);
-		ccBean.setCoupon_code_text(coupon_code_text);
+		ccBean.setCoupon_code_content(coupon_code_text);
 		ccBean.setDiscount_type(discount_type);
 		ccBean.setEmployee_account(employee_account);
 		
@@ -39,7 +39,7 @@ public class CouponCodeService {
 		ccBean.setCoupon_code_effective_date(coupon_code_effective_date);
 		ccBean.setCoupon_code_expire_date(coupon_code_expire_date);
 		ccBean.setCoupon_code_text_content(coupon_code_text_content);
-		ccBean.setCoupon_code_text(coupon_code_text);
+		ccBean.setCoupon_code_content(coupon_code_text);
 		ccBean.setDiscount_type(discount_type);
 		ccBean.setEmployee_account(employee_account);
 		ccBean.setCoupon_code_id(coupon_code_id);

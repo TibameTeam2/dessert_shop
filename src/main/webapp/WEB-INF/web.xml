@@ -105,6 +105,7 @@
 
 
 
+
 	<!--Notice 測試Servlet -->
 	<servlet>
 		<servlet-name>NoticeServlet</servlet-name>
@@ -116,6 +117,15 @@
 	</servlet-mapping>
 
 
+	<!--LiveSupport 測試 -->
+	<servlet>
+		<servlet-name>NameServlet</servlet-name>
+		<servlet-class>com.live_support.controller.NameServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>NameServlet</servlet-name>
+		<url-pattern>/liveSupport_jsp/chat.do</url-pattern>
+	</servlet-mapping>
 
 
 
@@ -389,17 +399,7 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-	<!--HistoryCommentOrderMasterServlet -->
+	<!--HistoryCommentOrderMasterServlet 用在載入歷史評價的order_master_id們 -->
 	<servlet>
 		<servlet-name>HistoryCommentOrderMasterServlet</servlet-name>
 		<servlet-class>com.order_master.controller.HistoryCommentOrderMasterServlet</servlet-class>
@@ -409,17 +409,17 @@
 		<url-pattern>/historyCommentOrderMaster/*</url-pattern>
 	</servlet-mapping>
 
-	<!--OrderDetailServlet -->
-	<servlet>
-		<servlet-name>OrderDetailServlet</servlet-name>
-		<servlet-class>com.order_detail.controller.OrderDetailServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>OrderDetailServlet</servlet-name>
-		<url-pattern>/orderDetail/*</url-pattern>
-	</servlet-mapping>
-	
-	<!--HistoryCommentOrderDetailServlet -->
+	<!--OrderDetailServlet 沒用到 -->
+	<!-- <servlet> -->
+	<!-- <servlet-name>OrderDetailServlet</servlet-name> -->
+	<!-- <servlet-class>com.order_detail.controller.OrderDetailServlet</servlet-class> -->
+	<!-- </servlet> -->
+	<!-- <servlet-mapping> -->
+	<!-- <servlet-name>OrderDetailServlet</servlet-name> -->
+	<!-- <url-pattern>/orderDetail/*</url-pattern> -->
+	<!-- </servlet-mapping> -->
+
+	<!--HistoryCommentOrderDetailServlet 用在載入歷史評價的order_detail_id們 -->
 	<servlet>
 		<servlet-name>HistoryCommentOrderDetailServlet</servlet-name>
 		<servlet-class>com.order_detail.controller.HistoryCommentOrderDetailServlet</servlet-class>
@@ -428,18 +428,18 @@
 		<servlet-name>HistoryCommentOrderDetailServlet</servlet-name>
 		<url-pattern>/historyCommentOrderDetail/*</url-pattern>
 	</servlet-mapping>
-	
-	<!--HistoryCommentProductServlet -->
-	<servlet>
-		<servlet-name>HistoryCommentProductServlet</servlet-name>
-		<servlet-class>com.order_master.controller.HistoryCommentProductServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>HistoryCommentProductServlet</servlet-name>
-		<url-pattern>/historyCommentProduct/*</url-pattern>
-	</servlet-mapping>
-	
-	<!--ReviewImageUploadServlet -->
+
+	<!--HistoryCommentProductServlet 沒用到 -->
+	<!-- <servlet> -->
+	<!-- <servlet-name>HistoryCommentProductServlet</servlet-name> -->
+	<!-- <servlet-class>com.order_master.controller.HistoryCommentProductServlet</servlet-class> -->
+	<!-- </servlet> -->
+	<!-- <servlet-mapping> -->
+	<!-- <servlet-name>HistoryCommentProductServlet</servlet-name> -->
+	<!-- <url-pattern>/historyCommentProduct/*</url-pattern> -->
+	<!-- </servlet-mapping> -->
+
+	<!--ReviewImageUploadServlet 用在載入歷史評價內的評論照片等任何呼叫評論照片的setReview_image() -->
 	<servlet>
 		<servlet-name>ReviewImageUploadServlet</servlet-name>
 		<servlet-class>com.review_image_upload.controller.ReviewImageUploadServlet</servlet-class>
@@ -448,6 +448,39 @@
 		<servlet-name>ReviewImageUploadServlet</servlet-name>
 		<url-pattern>/reviewImageUpload/*</url-pattern>
 	</servlet-mapping>
+
+	<!--YetToLeaveCommentServlet 用在載入尚未評價頁面 -->
+	<servlet>
+		<servlet-name>YetToLeaveCommentServlet</servlet-name>
+		<servlet-class>com.member_comment.controller.YetToLeaveCommentServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>YetToLeaveCommentServlet</servlet-name>
+		<url-pattern>/yetToLeaveComment/*</url-pattern>
+	</servlet-mapping>
+
+	<!--MemberCommentServlet 用在尚未評價頁面, 顧客能填寫尚未評論 -->
+	<servlet>
+		<servlet-name>MemberCommentServlet</servlet-name>
+		<servlet-class>com.member_comment.controller.MemberCommentServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MemberCommentServlet</servlet-name>
+		<url-pattern>/memberComment/*</url-pattern>
+	</servlet-mapping>
+
+	<!--ProductCommentServlet 用在商品頁面, 載入顧客們對該商品的評論 -->
+	<servlet>
+		<servlet-name>ProductCommentServlet</servlet-name>
+		<servlet-class>com.member_comment.controller.ProductCommentServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ProductCommentServlet</servlet-name>
+		<url-pattern>/productComment/*</url-pattern>
+	</servlet-mapping>
+
+
+
 
 
 
@@ -575,8 +608,8 @@
 		<servlet-name>CouponCodeServlet</servlet-name>
 		<url-pattern>/coupon_code/*</url-pattern>
 	</servlet-mapping>
-	
-	
+
+
 
 	<servlet>
 		<servlet-name>CouponServletJsp</servlet-name>
@@ -837,13 +870,14 @@
 		<filter-name>loginFilter</filter-name>
 		<url-pattern>/TEA103G2/front-end/my-account.html</url-pattern>
 		<url-pattern>/TEA103G2/front-end/cart.html</url-pattern>
-		<url-pattern>/TEA103G2/front-end/checkout.html</url-pattern>
+		<!-- <url-pattern>/TEA103G2/front-end/checkout.html</url-pattern> -->
 		<dispatcher>REQUEST</dispatcher>
 		<dispatcher>FORWARD</dispatcher>
 		<dispatcher>INCLUDE</dispatcher>
 		<dispatcher>ERROR</dispatcher>
 		<dispatcher>ASYNC</dispatcher>
 	</filter-mapping>
+
 
 	<!--配置全局过滤的filter -->
 	<!-- <filter> -->

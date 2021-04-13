@@ -7,7 +7,7 @@
   <META HTTP-EQUIV="pragma" CONTENT="no-cache">
   <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
   <META HTTP-EQUIV="expires" CONTENT="0">
-  <title>Amino - Organic & Multipurpose Bootstrap 5 Template</title>
+  <title>嗜甜-我的帳號</title>
   <meta name="robots" content="noindex, follow"/>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -45,6 +45,12 @@
   <style>
       #member_photo {
           max-height: 200px;
+      }
+      #bindLine{
+          margin-top:20px;
+      }
+      button.submit{
+          margin-top:20px;
       }
   </style>
 </head>
@@ -105,8 +111,9 @@
                   訂單資訊</a>
               </li>
               <li>
-                <a data-bs-toggle="pill" href="#pills-download"><i class="fa fa-cloud-download"></i>
-                  下載(用不到)</a>
+                <a href="member-comment.html" class="member-comment"><i class="fa fa-sign-out"></i> 我的評價</a>
+<!--                <a data-bs-toggle="pill" href="#pills-download"><i class="fa fa-cloud-download"></i>-->
+<!--                  下載(用不到)</a>-->
               </li>
               <li>
                 <a data-bs-toggle="pill" href="#pills-payment"><i class="fa fa-credit-card"></i>
@@ -476,6 +483,7 @@
                 }
             });
         })
+
 
         //以下上傳大頭貼
         const p_file = document.getElementById("p_file");
