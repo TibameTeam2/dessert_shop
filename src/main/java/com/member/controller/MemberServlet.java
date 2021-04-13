@@ -876,6 +876,9 @@ public class MemberServlet extends BaseServlet {
 
     public void backend_getAll(HttpServletRequest req, HttpServletResponse res) {
         List<MemberBean> list = service.getAll();
+        for(MemberBean member:list){
+            member.setMember_photo(null);
+        }
         ResultInfo info = new ResultInfo();
         info.setFlag(true);
         info.setMsg("取得所有會員資料!");
