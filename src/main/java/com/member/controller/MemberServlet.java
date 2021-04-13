@@ -50,6 +50,8 @@ import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken.Payload;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
 
+import static com.util.LineUtil.linePushMessage;
+
 @MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 50 * 1024 * 1024, maxRequestSize = 50 * 1024 * 1024)
 public class MemberServlet extends BaseServlet {
     MemberService service = new MemberService();
@@ -196,7 +198,7 @@ public class MemberServlet extends BaseServlet {
         } catch (InvocationTargetException e) {
             e.printStackTrace();
         }
-        System.out.println(member);
+//        System.out.println(member);
         member.setMember_password(DigestUtil.md5Hex(member.getMember_password()));
 
         member = service.login(member);
@@ -241,7 +243,7 @@ public class MemberServlet extends BaseServlet {
 //            System.out.println(Base64.getEncoder().encodeToString(member.getMember_photo()));
             info.setMsg("已登入!");
             info.setData(member);
-            System.out.println("member = " + member);
+//            System.out.println("member = " + member);
         }
         writeValueByWriter(res, info);
     }
