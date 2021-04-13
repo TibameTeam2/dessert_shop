@@ -618,74 +618,49 @@
     <script>
         /********************************** 通知顯示資訊 **********************************/
         $.post("/dessert_shop/notice/getAllNotice", function(data) {
-
             // console.log(data.data);
-
             if (data.flag) {
-
-
                 let count = 0;
-
                 if (data.data.length != 0) {
                     // console.log(data.data[0].member_account + "\n" + data.data[0].notice_content);
                     for (let i in data.data) { //遍歷json陣列時，這麼寫i為索引值
-
-
                         let noticeId = data.data[i].notice_id;
                         let noticeStatus = data.data[i].read_status;
                         let memberAccount = data.data[i].member_account;
-
                         let isOn = data.data[i].read_status == 0 ? "-on" : "";
                         // console.log(isOn);
-
                         $('div.notice_content>ul').prepend(
-                            `<a href=` + data.data[i].notice_dispatcher + `><li class="notice_li" type="button" id="` + noticeId + `"><div class="noticeLeft` + isOn + `">` + data.data[i].notice_content + `</div><div class="noticeRight` + isOn + `"></div></li></a>`
-                        )
-
-                        // console.log(i + "\n" + data.data[i].member_account + "\n" + data.data[i].notice_content);
-                        // console.log("noticeId=" + noticeId);
-
+                                `<a href=` + data.data[i].notice_dispatcher + `><li class="notice_li" type="button" id="` + noticeId + `"><div class="noticeLeft` + isOn + `">` + data.data[i].notice_content + `</div><div class="noticeRight` + isOn + `"></div></li></a>`
+                            )
+                            //                         console.log(i + "\n" + data.data[i].member_account + "\n" + data.data[i].notice_content);
+                            //                         console.log("noticeId=" + noticeId);
                         if (noticeStatus == 0) {
                             count += 1;
                         }
-
-
                         $('li.notice_li').on("click", function() {
+                                // 更新的請求 
+                                $.post("/dessert_shop/notice/alreadyReadNotice?notice_id=" + noticeId + "&member_account=" + memberAccount, function(response) {
+                                    console.log("sucess");
+                                    console.log(noticeId + memberAccount + noticeStatus);
+                                })
 
-
-                            // 更新的請求 
-                            $.post("/dessert_shop/notice/alreadyReadNotice?notice_id=" + noticeId + "&member_account=" + memberAccount, function(response) {
-                                console.log("sucess");
                             })
-
-
-
-                        })
-
-                        // console.log("sum" + count);
+                            // console.log("sum" + count);
                         $('span.notice_num').html(count);
-
                     }
-
                 } else {
-
                     $('div.notice_content>ul').prepend(
                         `<li class="notice_li"><span>目前尚無訊息</span></li>`
                     )
                 }
-
-
             } else {
-
                 $('div.notice_content').remove();
                 $('span.notice_num').remove();
             }
-
         });
 
 
         $.post("/dessert_shop/member/isLogin", function(response) {
-
             if (response.flag) {
                 /********************************** webSocket **********************************/
                 var MyPoint = "/NoticeWS/" + response.data.member_account; //登入的帳號
@@ -694,36 +669,25 @@
                 var webCtx = path.substring(0, path.indexOf('/', 1));
                 //websocket 有自己的通訊協定(ws) 同等於http (ws://localhost:8081/WebSocketChatWeb/TogetherWS/james)
                 var endPointURL = "ws://" + window.location.host + webCtx + MyPoint;
-
                 webSocket = new WebSocket(endPointURL);
-
                 //建立連線
                 webSocket.onopen = function(e) {
-                    console.log("連線開啟");
-                }
-
-                //接收訊息
+                        console.log("連線開啟");
+                    }
+                    //接收訊息
                 webSocket.onmessage = function(e) {
-
-
-                    $('div.notice_content>ul').prepend(
-                        `<li class="notice_li" type="button"><div class="noticeLeft-on" > ` + e.data + ` </div><div class="noticeRight-on"></div ></li>`
-                    )
-
-                    $('div.ws_content>ul').prepend(
-                        `<li class="ws_content_li" type="button"><span>` + e.data + `</span></li>`
-                    )
-
-                    timeout();
-
-                    console.log("接收訊息=" + e.data);
-
-                }
-
-                //發生錯誤
+                        $('div.notice_content>ul').prepend(
+                            `<li class="notice_li" type="button"><div class="noticeLeft-on" > ` + e.data + ` </div><div class="noticeRight-on"></div ></li>`
+                        )
+                        $('div.ws_content>ul').prepend(
+                            `<li class="ws_content_li" type="button"><span>` + e.data + `</span></li>`
+                        )
+                        timeout();
+                        console.log("接收訊息=" + e.data);
+                    }
+                    //發生錯誤
                 webSocket.onerror = function(e) {
                     console.log("錯誤訊息:", e);
-
                 };
 
                 //關閉連線
@@ -731,30 +695,23 @@
                     console.log("連線關閉");
                 }
             } else {}
-
         });
 
         /******************************* 通知滑鼠移入變色 *******************************/
         $('img.bell').on('mouseover', function() {
             this.src = "assets/images/icon/bell2.png";
         });
-
         $('img.bell').on('mouseout', function() {
             this.src = "assets/images/icon/bell.png";
         });
 
         /********************************** Funtion **********************************/
         function timeout() {
-
             setTimeout(function() {
                 $('li.ws_content_li').last().fadeOut(300, function() {
-
                     $(this).last().remove();
-
                 });
-
             }, 5000);
-
         }
     </script>
 
@@ -772,9 +729,7 @@
                     $("img.user_icon").css('display', 'inline-block');
                     $('img.user_icon').attr("src", url + "/member/backend_getPhoto?id=" + data.data.member_account);
                 }
-            } else {
-
-            }
+            } else {}
         });
 
         function logout() {
