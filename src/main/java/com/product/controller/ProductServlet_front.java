@@ -206,11 +206,11 @@ public class ProductServlet_front extends BaseServlet {
     	ResultInfo info = new ResultInfo();
     	System.out.println("ResultInfo");//
     	if(productBean == null) {
-    		System.out.println("ResultInfo的null,flag要設true");//
+//    		System.out.println("ResultInfo的null,flag要設true");//
     		info.setFlag(true);
     		info.setMsg("\""+ product_name +"\"" + "可以使用");
     	}else {
-    		System.out.println("ResultInfo的else,flag要設false");//
+//    		System.out.println("ResultInfo的else,flag要設false");//
     		info.setFlag(false);
     		info.setMsg("\"" + product_name + "\"" + "名稱重複，請重新輸入");
     	}

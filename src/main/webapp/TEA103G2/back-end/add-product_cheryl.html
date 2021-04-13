@@ -907,9 +907,9 @@
                                 </div>     
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>商品類別 *</label>
-                                        <select name="type" class="selectpicker form-control" data-style="py-0" id="type">
-                                            <option value="">請選擇商品種類</option>
+                                        <label id="product_category_label">商品類別 *</label>
+                                        <select name="product_category" class="selectpicker form-control" data-style="py-0" id="product_category" required>
+                                            <option value="未選擇">請選擇商品種類</option>
 											<optgroup label="蛋糕">
 												<option value="蛋糕:千層蛋糕">千層蛋糕</option>
 												<option value="蛋糕:杯子蛋糕">杯子蛋糕</option>
@@ -980,7 +980,7 @@
                                 <div class="col-md-4">                                    
                                     <div class="form-group">
                                         <label>商品甜度 *</label>
-                                         <select name="degree_of_sweetness" class="selectpicker form-control" data-style="py-0" id="degree_of_sweetness">
+                                         <select name="degree_of_sweetness" class="selectpicker form-control" data-style="py-0" id="degree_of_sweetness" required>
                                             <option value="">請選擇商品甜度</option>
                                             <option value=1>1</option>
                                             <option value=2>2</option>
@@ -1082,7 +1082,7 @@
 	    $("#addProduct_form").submit(function(){
 	    	console.log("submit the form");
 // 			提交表單時，檢查屬性合法與否
-// 	     	if(checkProductName()){}
+// 	     	if(checkProductName() & checkPrice() & checkQuantity() & checkExpiry() & checkCalorie() & checkCategory()){}
 
 		    	console.log($("#addProduct_form").serialize());
 	    	$.post("/dessert_shop/product/backend_addProduct", $(this).serialize(), function (data) {
@@ -1105,13 +1105,16 @@
 		$("#expiry_after_buying").blur(checkExpiry);
 		$("#product_calorie").blur(checkCalorie);
 		
-		// 選單的檢查??
-// 		$("#degree_of_sweetness").blur(checkSweetness);
+		// 選單的檢查
+		$("#product_category").on("change", checkCategory);
+// 		$("#product_category").on("change", function(){
+// 			console.log("選擇種類:"+($("#product_category").val()));
+// 		});
+			
+// 		$("#degree_of_sweetness").on("change", checkSweetness);
+		// checkSweetness還沒寫
+		
 
-		// 以下為不應該被更改的變數，先不寫
-// 		$("#total_star").blur(checkStar);
-// 		$("#total_review").blur(checkReview);
-// 		$("#total_purchase").blur(checkPurchase);
 
     	function checkProductName(){
 			console.log("檢查名稱");
@@ -1126,7 +1129,7 @@
     				// 名稱不重複 vs 名稱重複
     				console.log("add_product.html裡跑checkProductName的:"+data.flag);
     				if(data.flag){
-    					console.log("data.flag"+data.flag);
+    					console.log("data.flag:"+data.flag);
     					$("#product_name").css("border", "");
     					// 不重複不設提醒 以下測試用 拿掉?
     					$("#product_name_label").html("商品名稱*&nbsp&nbsp&nbsp&nbsp" + data.msg);
@@ -1141,8 +1144,8 @@
     			console.log("名稱不合法");
     			$("#product_name").css("border", "1px solid red");
     			$("#product_name_label").html("商品名稱*&nbsp&nbsp&nbsp&nbsp不符合語法，請重新輸入！");
-    			return flag;
     		}
+    		return flag;
     	};
     	
     	function checkPrice(){
@@ -1154,23 +1157,18 @@
     		if(flag){
     			// 合法
     			console.log("售價合法!");
-    			// 要還原預設值
 //     			$("#product_price").css("border","1px solid #DCDFE8").css("background-color", "rgb(232, 240, 254)");
     			// 上面的格式 好像是因為選取紀錄值的關係 
     			
     			$("#product_price").css("border", "");
     			$("#product_price_label").html("商品售價*");
-    			
-    			
-    			//已有預設css
-//     			$("#product_price").css("border", "1px solid green")
     		}else {
     			// 不合法
 				console.log("售價不合法");
     			$("#product_price").css("border", "1px solid #E08DB4")
-    			
     			$("#product_price_label").html("商品售價*&nbsp&nbsp&nbsp&nbsp請輸入數字!!")
     		}
+    		return flag;
     	}
     	
     	function checkQuantity(){
@@ -1182,14 +1180,15 @@
     		if(flag){
     			// 合法
     			console.log("數量合法");
-    			//已有預設css
-//     			$("#product_price").css("border", "1px solid green")
+    			$("#product_available_qty").css("border", "");
+    			$("#product_available_qty_label").html("現貨數量*");
     		}else {
     			// 不合法
 				console.log("數量不合法");
     			$("#product_available_qty").css("border", "1px solid #E08DB4")
     			$("#product_available_qty_label").html("現貨數量*&nbsp&nbsp&nbsp&nbsp請輸入數字!!")
     		}
+    		return flag;
     	}
     	
     	function checkExpiry(){
@@ -1201,18 +1200,19 @@
     		if(flag){
     			// 合法
     			console.log("天數合法");
-    			//已有預設css
     			$("#expiry_after_buying").css("border", "");
+    			$("#expiry_after_buying_label").html("賞味天數*");
     		}else {
     			// 不合法
 				console.log("天數不合法");
-    			$("#expiry_after_buying").css("border", "1px solid red");
+    			$("#expiry_after_buying").css("border", "1px solid #E08DB4");
     			$("#expiry_after_buying_label").html("賞味天數*&nbsp&nbsp&nbsp&nbsp請輸入數字!!");
     		}
+    		return flag;
     	}
     	
     	function checkCalorie(){
-    		console.log("檢查賞味天數");
+    		console.log("檢查熱量");
     		let calorie = $("#product_calorie").val().trim();
     		let regNumber = /^[0-9]{1,4}$/;
     		let flag = regNumber.test(calorie);
@@ -1220,17 +1220,34 @@
     		if(flag){
     			// 合法
     			console.log("熱量合法");
-    			//已有預設css
-//     			$("#product_price").css("border", "1px solid green")
+    			$("#expiry_after_buying").css("border", "");
+    			$("#expiry_after_buying_label").html("商品熱量*");
     		}else {
     			// 不合法
 				console.log("熱量不合法");
-    			$("#product_calorie").css("border", "1px solid red")
+    			$("#product_calorie").css("border", "1px solid #E08DB4")
     			$("#product_calorie_label").html("商品熱量*&nbsp&nbsp&nbsp&nbsp請輸入數字!!")
     		}
+    		return flag;
+    	}
+    	// 以下為開發用，不檢查提交表單時會提醒(已設為required)
+    	function checkCategory(){
+    		console.log("檢查類別");
+    		let category = $("#product_category").val();
+			if(category == "未選擇"){
+// 				$("#product_category").css("border", "1px solid #E08DB4");//無效
+				$("#product_category_label").html("商品類別*&nbsp&nbsp&nbsp&nbsp請選擇商品類別!!")
+				return false;
+			}else{
+				console.log("category選擇:"+category);
+				$("#product_category_label").html("商品類別*")
+				return true;
+			}
+			// ""跟null?
+    		
     	}
     	
-    	// 星等 評價 銷售 不應該被更改 先不寫
+    	// 星等 評價 銷售 理論上不應該被更改 先不寫
 //     	function checkStar(){
 //     		console.log("檢查星等");
 //     		let star = $("#total_star").val().trim();
