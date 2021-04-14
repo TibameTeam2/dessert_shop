@@ -2,6 +2,7 @@ package com.product.controller;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -153,46 +154,49 @@ public class ProductServlet_front extends BaseServlet {
     
     //  http://localhost:8081/dessert_shop/product/backend_addProduct
     public void backend_addProduct(HttpServletRequest req, HttpServletResponse res) throws JsonProcessingException {
-    	System.out.println("新增商品");
+    	System.out.println("backend_addProduct 新增商品");
     	System.out.println(req.getParameter("product_name"));
     	// 所有form表單裡的資訊，已由form表單傳遞，使用name為key去取對應的值
+    	String product_category = req.getParameter("product_category");
+    	System.out.println("收到的產品分類:"+product_category);//
+
+    	String[] product_type = {product_category.split(":")[0]};
+    	System.out.println("product_type:"+product_type[0]);//
+    	
+    	String[] product_subtype = {product_category.split(":")[1]};
+    	System.out.println("product_subtype:"+product_subtype[0]);//
     	
     	// 獲取addProduct_form的數據
     	Map<String, String[]> map = req.getParameterMap();
+    	Map parameterMap = new HashMap(map);
+    	parameterMap.put("product_type", product_type);
+    	parameterMap.put("product_subtype", product_subtype);
     	
-// 這裡要把type跟subtype擷取出來設定給Map
-
-// 圖片的部分?
-    	
-    	System.out.println("map="+new ObjectMapper().writeValueAsString(map)); // 需要丟出JsonProcessingException
+    	System.out.println("parameterMap="+new ObjectMapper().writeValueAsString(parameterMap)); // 需要丟出JsonProcessingException
     	
     	// 封裝物件
     	ProductBean productBean = new ProductBean();
+    	System.out.println(productBean);
     	try {
-    		BeanUtils.populate(productBean, map);
+    		BeanUtils.populate(productBean, parameterMap);
+    		
+    		// 調用service將商品新增至DB
+    		ProductService productSvc = new ProductService();
+    		productSvc.addProduct(productBean);
+    		
+    		
     	}catch(IllegalAccessException | InvocationTargetException e) {
     	    e.printStackTrace();
     	}
-    	System.out.println(productBean);
-    	
-    	
-    	
-    	// 調用service將商品新增至DB
-    	
     	
     	// 將product_id塞給productBean反回前端
     	
     	
-//    	ProductService productSvc = new ProductService();
-//    	List<ProductBean> productList = productSvc.getAllSortBySweetness();
-//    	
-//    	ResultInfo info = new ResultInfo();
-//    	
-//    	info.setFlag(true);
-//    	info.setMsg("資料取得成功!");
-//    	info.setData(productList);
-//    	
-//    	writeValueByWriter(res, info);
+    	ResultInfo info = new ResultInfo();
+    	info.setFlag(true);
+    	info.setMsg("新增商品成功!");
+    	
+    	writeValueByWriter(res, info);
     }
     
 //  http://localhost:8081/dessert_shop/product/backend_checkProductName

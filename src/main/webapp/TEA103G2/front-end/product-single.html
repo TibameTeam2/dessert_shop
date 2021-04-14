@@ -63,6 +63,75 @@
 	
 }
 
+/* 縮合 開始 */
+ul.order_master_comment_list {
+	margin: 24px 0 0 0;
+	padding: 0;
+	list-style: none;
+}
+
+ul.order_master_comment_list>li {
+	margin-bottom: 30px;
+}
+
+ul.order_master_comment_list>li:last-child {
+	margin-bottom: 0;
+}
+
+ul.order_master_comment_list>li {
+	/* ul.order_master_comment_list > li > a.link_title{ */
+	display: block;
+	width: 100%;
+	color: white;
+	background-color: #ffffff;
+	box-shadow: 2px 2px 8px 0 rgba(56, 55, 53, 0.33);
+	border-radius: 26px;
+	padding: 4px 40px;
+	text-decoration: none;
+	font-size: 24px;
+	font-weight: normal;
+}
+
+ul.order_master_comment_list>li::after {
+	/* ul.order_master_comment_list > li > a.link_title::after{ */
+	content: "";
+	display: block;
+	clear: both;
+}
+
+button.switch_btn {
+	/* ul.order_master_comment_list > li > a.link_title button.switch_btn{ */
+	float: right;
+	display: inline-block;
+	background: #83bc2e;
+	border: 1px solid white;
+	border-radius: 50px;
+	outline: none;
+	color: white;
+	font-size: 24px;
+}
+
+ul.order_master_comment_list>li>div.inner_block {
+	font-size: 18px;
+	color: #4a4a4a;
+	margin-top: 8px;
+	padding: 0 40px;
+	line-height: 1.6;
+	display: none;
+}
+
+ul.order_master_comment_list>li button.switch_btn span.minus {
+	display: none;
+}
+
+ul.order_master_comment_list>li.-on button.switch_btn span.plus {
+	display: none;
+}
+
+ul.order_master_comment_list>li.-on button.switch_btn span.minus {
+	display: inline-block;
+}
+/* 縮合 結束 */
 
         
         
@@ -1107,6 +1176,12 @@
 					$('div[data-memberaccount='+ member_account + '] .comment-content').append(reply_area);
 					
 				}
+				// 收縮功能
+// 				$("ul").on("click", "button.switch_btn", function(e) {
+// 					e.preventDefault();
+// 					$(this).closest("li").toggleClass("-on");
+// 					$(this).closest("li").find("div.inner_block").slideToggle();
+// 				});
 
 			}
 // 加入收藏清單			
