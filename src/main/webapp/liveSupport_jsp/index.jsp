@@ -57,7 +57,7 @@ html, body {
 	</div>
 </body>
 <script>
-	var inputUserName = document.getElementById("uesrId");
+	var inputUserName = document.getElementById("userName");
 	inputUserName.focus();
 	
 	function sendName() {
