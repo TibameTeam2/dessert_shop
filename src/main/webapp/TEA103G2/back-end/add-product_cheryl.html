@@ -145,19 +145,22 @@
                                 <div class="col-md-4">                                    
                                     <div class="form-group">
                                         <label id="total_star_label">累計星等</label>
-                                        <input type="text" class="form-control" placeholder="0" id="total_star" name="total_star" disabled>
+                                        <input type="text" class="form-control" placeholder="0" disabled>
+                                        <input type="hidden" class="form-control" id="total_star" name="total_star" value="0">
                                     </div>
                                 </div>
                                 <div class="col-md-4">                                    
                                     <div class="form-group">
                                         <label id="total_review_label">累計評價次數</label>
-                                        <input type="text" class="form-control" placeholder="0" id="total_review" name="total_review" disabled>
+                                        <input type="text" class="form-control" placeholder="0" disabled>
+                                        <input type="hidden" class="form-control" id="total_review" name="total_review" value="0">
                                     </div>
                                 </div>
                                 <div class="col-md-4">                                    
                                     <div class="form-group">
                                         <label id="total_purchase_label">累計銷售</label>
-                                        <input type="text" class="form-control" placeholder="0"id="total_purchase" name="total_purchase" disabled>
+                                        <input type="text" class="form-control" placeholder="0"disabled>
+                                        <input type="hidden" class="form-control" id="total_purchase" name="total_purchase" value="0">
                                     </div>
                                 </div>
                                 <div class="col-md-12">
@@ -227,9 +230,9 @@
 // 			提交表單時，檢查屬性合法與否
 			
 // 	     	if(checkProductName() & checkPrice() & checkQuantity() & checkExpiry() & checkCalorie() & checkCategory()){
-				console.log($("#addProduct_form").serialize());
+// 				console.log($("#addProduct_form").serialize());
 				$.post("/dessert_shop/product/backend_addProduct", $(this).serialize(), function (data) {
-		    		console.log(data.flag);
+// 		    		console.log(data.flag);
 					if(data.flag){
 						// 提交成功跳轉業面到list_all_product
 						// sweetalert
