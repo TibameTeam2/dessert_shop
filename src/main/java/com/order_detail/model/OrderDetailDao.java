@@ -11,5 +11,6 @@ public interface OrderDetailDao {
 	public OrderDetailBean findByPrimaryKey(Integer order_detail_id);
 	public List<OrderDetailBean> getAll();
 	public List<OrderDetailBean> findByOrderMasterId(Integer order_master_id);
+	public List<OrderDetailBean> getAllByOrderMasterId(Integer order_master_id);
 	
 }
