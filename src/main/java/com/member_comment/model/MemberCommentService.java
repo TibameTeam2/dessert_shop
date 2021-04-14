@@ -28,11 +28,12 @@ public class MemberCommentService {
 		memberCommentBean.setComment_status(1);
 
 		try {
-			key = dao.insert(memberCommentBean);
+			//insert()用在新增評論並查詢資料庫內的自增主鍵(剛新增的自增主鍵幾號)
+			key = dao.insert(memberCommentBean); 
 		} catch (Exception e) {
 			e.printStackTrace(System.err);
 		}
-		return key;
+		return key; // 顧客剛寫完送出的評論的review_id(自增主鍵)的編號
 
 	}
 
@@ -65,6 +66,7 @@ public class MemberCommentService {
 		return dao.getAll();
 	}
 
+	// 用在0201, memberComment_jsp/select_page.jsp 的 「選擇訂單明細編號」
 	public Set<ReviewImageUploadBean> getReviewImageUploadsByReview_id(Integer review_id) {
 		return dao.getReviewImageUploadsByReviewId(review_id);
 	}
