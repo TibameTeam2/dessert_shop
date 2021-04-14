@@ -52,6 +52,157 @@
       button.submit{
           margin-top:20px;
       }
+
+      * {
+		box-sizing: border-box;
+	}
+
+	.single-comment .comment-author img {
+		border-radius: 50%;
+		width: 70px;
+		height: 70px;
+		float: right;
+	}
+
+	/* 上傳圖片 開始 */
+	input[type="file"] {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+		border: 0;
+	}
+
+	.custom-file-upload {
+		border: 1px solid #ccc;
+		/* border: 1px solid red; */
+		display: inline-block;
+		/* padding: 6px 12px; */
+		width: 50px;
+		height: 50px;
+		margin: auto 0;
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.review_image {
+		border: 8px solid green;
+		/* border: 1px solid #ccc; */
+		display: inline-block;
+		/* padding: 6px 12px; */
+		/* width: 100%; */
+		width: 50px;
+		height: 50px;
+		margin: auto 0;
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	/* 上傳圖片 結束 */
+
+	/* 縮合 開始 */
+	ul.order_master_comment_list {
+		margin: 24px 0 0 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	ul.order_master_comment_list>li {
+		margin-bottom: 30px;
+	}
+
+	ul.order_master_comment_list>li:last-child {
+		margin-bottom: 0;
+	}
+
+	ul.order_master_comment_list>li {
+		/* ul.order_master_comment_list > li > a.link_title{ */
+		display: block;
+		width: 100%;
+		color: white;
+		background-color: #ffffff;
+		box-shadow: 2px 2px 8px 0 rgba(56, 55, 53, 0.33);
+		border-radius: 26px;
+		padding: 4px 40px;
+		text-decoration: none;
+		font-size: 24px;
+		font-weight: normal;
+	}
+
+	ul.order_master_comment_list>li::after {
+		/* ul.order_master_comment_list > li > a.link_title::after{ */
+		content: "";
+		display: block;
+		clear: both;
+	}
+
+	button.switch_btn {
+		/* ul.order_master_comment_list > li > a.link_title button.switch_btn{ */
+		float: right;
+		display: inline-block;
+		background: #83bc2e;
+		border: 1px solid white;
+		border-radius: 50px;
+		outline: none;
+		color: white;
+		font-size: 24px;
+	}
+
+	ul.order_master_comment_list>li>div.inner_block {
+		font-size: 18px;
+		color: #4a4a4a;
+		margin-top: 8px;
+		padding: 0 40px;
+		line-height: 1.6;
+		display: none;
+	}
+
+	ul.order_master_comment_list>li button.switch_btn span.minus {
+		display: none;
+	}
+
+	ul.order_master_comment_list>li.-on button.switch_btn span.plus {
+		display: none;
+	}
+
+	ul.order_master_comment_list>li.-on button.switch_btn span.minus {
+		display: inline-block;
+	}
+	/* 縮合 結束 */
+	.detail {
+		color: black;
+	}
+
+	/* 關乎尚未評價 送出評價按鈕 */
+	.float-end {
+		width: fit-content;
+		height: fit-content;
+		float: right bottom !important;
+		margin: 15px;
+	}
+
+	/* 評價的星號 開始 */
+	div.star_block {
+		display: inline-block;
+	}
+
+	div.star_block>span.star {
+		cursor: pointer;
+		display: inline-block;
+		margin-right: 3px;
+	}
+
+	div.star_block>span.star.-on {
+		color: yellow;
+	}
+	/* 評價的星號 結束 */
+
   </style>
 </head>
 
@@ -132,7 +283,7 @@
             </ul>
           </div>
           <!-- My Account Menu End -->
-        </div>
+        </div class="tab-pane fade" id="pills-order">
         <div class="col-xl-9 col-md-8">
           <!-- Tab content start -->
           <div class="tab-content my-account-tab mt-6">
@@ -149,51 +300,103 @@
               </div>
             </div>
 
-            <div class="tab-pane fade" id="pills-order">
-              <div class="my-account-order account-wrapper">
-                <h4 class="account-title">Orders</h4>
-                <div class="account-table text-center mt-30 table-responsive">
-                  <table class="table">
-                    <thead>
-                    <tr>
-                      <th class="no">No</th>
-                      <th class="name">Name</th>
-                      <th class="date">Date</th>
-                      <th class="status">Status</th>
-                      <th class="total">Total</th>
-                      <th class="action">Action</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td>Mostarizing Oil</td>
-                      <td>Aug 22, 2020</td>
-                      <td>Pending</td>
-                      <td>$100</td>
-                      <td><a href="#">View</a></td>
-                    </tr>
-                    <tr>
-                      <td>2</td>
-                      <td>Katopeno Altuni</td>
-                      <td>July 22, 2020</td>
-                      <td>Approved</td>
-                      <td>$45</td>
-                      <td><a href="#">View</a></td>
-                    </tr>
-                    <tr>
-                      <td>3</td>
-                      <td>Murikhete Paris</td>
-                      <td>June 22, 2020</td>
-                      <td>On Hold</td>
-                      <td>$99</td>
-                      <td><a href="#">View</a></td>
-                    </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
+            <div>
+            <div class="tab-pane fade show active" href="#pills-order" id="pills-order">
+              <h4 class="blog-title widget-title">歷史評價</h4>
+              <ul class="order_master_comment_list">
+
+                <li>
+                  <div class="post-meta" style="margin-bottom: 0px; border-top: 1px solid white; border-bottom: 1px solid white">
+                    <span class="detail">訂單編號 : <a href="my-account.html"><span class="order_master_id"></span></a></span>
+                    <span class="detail">下訂時間 : <span class="order_time"></span></span>
+                    <span class="detail">付款時間 : <span class="payment_time"></span></span>
+                    <br>
+                    <span class="detail">發票號碼	: <span class="invoice_number"></span></span>
+                    <span class="detail">優惠券序號 : <a href="#"><span	class="coupon_id"></span></a></span>
+                    <span class="detail">付款方式	: <span class="payment_method"></span> </span>
+                    <br>
+                    <span class="detail">訂單備註 : <span	class="order_remarks"></span></span>
+                    <br>
+                    <span class="detail">評論時間 : <span class="comment_time"></span></span>
+                    <button type="button" class="switch_btn">
+                      <span class="plus" style="width: 20px; height: 20px; margin-right: 0px;"><i class="fas fa-chevron-down" style="color: white; display: inline"></i></span>
+                      <span class="minus" style="width: 20px; height: 20px;"><i class="fas fa-chevron-up" style="color: white; display: inline"></i></span>
+                    </button>
+                  </div>
+                  <div class="inner_block">
+                    <!-- 歷史評價/某訂單/商品們 開始 -->
+                    <div class="row">
+                      <hr class="my-4">
+                      <!-- 珍珠糖粒泡芙 開始 -->
+                      <div class="single-comment">
+
+                        <!-- 商品照片 開始 -->
+                        <div class="comment-author">
+                          <img src="assets/images/product/cakes/3berryRoll-a.jpg" class="" alt="">
+                        </div>
+                        <!-- 商品照片 結束 -->
+
+                        <div class="comment-content">
+
+                          <!-- 商品名稱 開始 -->
+                          <div class="author-name-rating">
+                            <h6 class="name" style="font-size: 16px">珍珠糖粒泡芙01</h6>
+
+                            <!-- 評價星等 開始 -->
+                            <div class="review-star">
+                              <div class="star" style="width: 60%;"></div>
+                            </div>
+                            <!-- 評價星等 結束 -->
+                          </div>
+                          <!-- 商品名稱 結束 -->
+                          <!-- comment_content開始 -->
+                          <div style="font-size: 14px">
+                            <p>好吃! taste great!</p>
+                          </div>
+                          <!-- comment_content結束 -->
+                          <!-- 評論照片們 開始 -->
+                          <div class="dec-img-wrapper">
+                            <div class="row">
+                              <!-- 第一個review_image開始 -->
+                              <div class="col-md-2">
+                                <div class="dec-img">
+                                  <img src="assets/images/blog/blog-dec-img2.jpg" alt="">
+                                </div>
+                              </div>
+                              <!-- 第一個review_image結束 -->
+                              <!-- 第二個review_image開始 -->
+                              <div class="col-md-2">
+                                <div class="dec-img">
+                                  <img src="assets/images/blog/blog-dec-img2.jpg" alt="">
+                                </div>
+                              </div>
+                              <!-- 第二個review_image結束 -->
+                              <!-- 第三個review_image開始 -->
+                              <div class="col-md-2">
+                                <div class="dec-img">
+                                  <img src="assets/images/blog/blog-dec-img2.jpg" alt="">
+                                </div>
+                              </div>
+                              <!-- 第三個review_image結束 -->
+                            </div>
+                            <p style="font-size: 14px; margin-bottom: 0px">商家回覆:</p>
+                            <!-- 商家回覆 開始 -->
+                            <span style="font-size: 14px">謝謝您的好評，期待您的再次蒞臨!</span>
+                            <!-- 商家回覆 結束 -->
+                          </div>
+                          <!-- 評論照片們 結束 -->
+                        </div>
+                      </div>
+                      <!-- 珍珠糖粒泡芙 結束 -->
+
+                    </div>
+                    <!-- 歷史評價/某訂單/商品們 結束 -->
+                  </div>
+                </li>
+
+              </ul>
             </div>
+          </div>
 
             <div class="tab-pane fade" id="pills-download">
               <div class="my-account-download account-wrapper">
@@ -556,6 +759,33 @@
             ])
         });
     });
+
+
+    // 歷史評價縮合
+    $("ul").on("click", "button.switch_btn", function(e) {
+          e.preventDefault();
+          $(this).closest("li").toggleClass("-on");
+          $(this).closest("li").find("div.inner_block").slideToggle();
+        });
+
+        // 切換分頁(1/2)
+        $("a[data-bs-toggle='tab']").each(function(index) {
+          $(this).click(function(e) {
+            triggletabcontent();
+            $(this).toggleClass("active");
+            $(".tab-pane").eq(index).toggleClass("active");
+          });
+        });
+
+        // 切換分頁(2/2)
+        function triggletabcontent() {
+          $(".tab-pane").each(function() {
+            $(this).removeClass("active");
+          });
+        }
+
+
+
 </script>
 </body>
 

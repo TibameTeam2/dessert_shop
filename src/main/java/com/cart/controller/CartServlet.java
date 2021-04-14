@@ -466,8 +466,15 @@ public class CartServlet extends BaseServlet {
 			req.getSession().removeAttribute("coupon_id");
 			req.getSession().removeAttribute("coupon_price");
 
+			
+			if (payment_method == 1) {
+				info.setMsg("信用卡付款方式完成!");
+			} else if (payment_method == 3) {
+				info.setMsg("匯款方式的訂單完成!");
+			}
+			
 			info.setFlag(true);
-			info.setMsg("訂單完成!");
+			
 			info.setRedirect(req.getContextPath() + "/TEA103G2/front-end/my-account.html");
 			 
 			
