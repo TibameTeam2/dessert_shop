@@ -1072,13 +1072,13 @@
                     }
 
                     //信用卡
-                    if (data.data[2].length != 0) {
+                    if (data.data[3].length != 0) {
 
-                        for (var i = 0; i < data.data[2].length; i++) {
+                        for (var i = 0; i < data.data[3].length; i++) {
 
-                            let card = `<div><input type="radio" class="card" id="card-${data.data[2][i].card_id}" name="card_list">
-                                        <label for="card-${data.data[2][i].card_id}" data-card_id="${data.data[2][i].card_id}" data-card_number="${data.data[2][i].card_number}" data-card_expired_day="${data.data[2][i].card_expired_day}" data-card_cvc="${data.data[2][i].card_cvc}">
-                                        ${data.data[2][i].card_number}</label><button type="button" class="delete_card">刪除</button></div>`;
+                            let card = `<div><input type="radio" class="card" id="card-${data.data[3][i].card_id}" name="card_list">
+                                        <label for="card-${data.data[3][i].card_id}" data-card_id="${data.data[3][i].card_id}" data-card_number="${data.data[3][i].card_number}" data-card_expired_day="${data.data[3][i].card_expired_day}" data-card_cvc="${data.data[3][i].card_cvc}">
+                                        ${data.data[3][i].card_number}</label><button type="button" class="delete_card">刪除</button></div>`;
 
                             $("div.card_list").prepend(card);
                         }

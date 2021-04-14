@@ -25,14 +25,14 @@ public class OrderMasterServlet extends BaseServlet {
         if (member == null) {
             info.setFlag(false);
             info.setMsg("尚未登入!");
-            req.getSession().setAttribute("location", req.getContextPath() + "/TEA103G2/front-end/my-account2..html");
+            req.getSession().setAttribute("location", req.getContextPath() + "/TEA103G2/front-end/my-account..html");
 			info.setRedirect(req.getContextPath() + "/TEA103G2/front-end/login.html");
         } else {
         	
-        	List<OrderMasterBean> list_OM = OrderMasterSvc.getOrderMasterByMemberAccount(member.getMember_account());
+        	List<OrderMasterBean> list_OM = OrderMasterSvc.getOrderMaster(member.getMember_account());
         	List<List> list_OD_All = new ArrayList<List>();
         	for (OrderMasterBean OMBean : list_OM) {
-        		List<OrderDetailBean> list_OD = OrderDetailSvc.findByOrderMasterId(OMBean.getOrder_master_id());
+        		List<OrderDetailBean> list_OD = OrderDetailSvc.getAllByOrderMasterId(OMBean.getOrder_master_id());
         		list_OD_All.add(list_OD);
         	}
         	
