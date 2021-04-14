@@ -8,7 +8,7 @@
 <style type="text/css">
 
 </style>
-<title>最大私人聊天室</title>
+<title>即時客服</title>
 </head>
 <body onload="connect();" onunload="disconnect();">
 	<h3 id="statusOutput" class="statusOutput"></h3>
@@ -99,7 +99,7 @@
 				"type" : "chat",
 				"sender" : self,
 				"receiver" : friend,
-				"chat_history" : message
+				"message" : message
 			};
 			webSocket.send(JSON.stringify(jsonObj));
 			inputMessage.value = "";
@@ -128,7 +128,7 @@
 					"type" : "history",
 					"sender" : self,
 					"receiver" : friend,
-					"chat_history" : ""
+					"message" : ""
 				};
 			webSocket.send(JSON.stringify(jsonObj));
 		});

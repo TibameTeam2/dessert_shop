@@ -1,0 +1,408 @@
+.cart-table .table thead tr th {
+    color: #fff;
+    background-color: #000;
+    border: 2px solid #000;
+    /* #6DD0CD */
+}
+
+.cart-table .table thead tr th.Product-info {
+    text-align: center;
+}
+
+.table> :not(:last-child)> :last-child>* {
+    border-bottom-color: rgb(0 0 0 / 0%);
+}
+
+.cart-table .table thead tr th.Product-unit-price {
+    min-width: 90px;
+}
+
+.cart-table .table tbody tr td.Product-unit-price {
+    text-align: center;
+}
+
+.cart-table .table tbody tr td.Product-unit-price {
+    font-size: 18px;
+}
+
+td.Product-thumb {
+    text-align: center;
+    width: 200px;
+}
+
+.cart-table .table tbody tr td {
+    padding: 10px;
+    background-color: #f7fffe;
+}
+
+.cart-table .table tbody tr td.Product-info .name a {
+    font-size: 20px;
+}
+
+.cart-table .table thead tr th {
+    font-size: 22px;
+}
+
+.la-trash-alt:before {
+    font-size: 30px;
+}
+
+button.sub {
+    border-radius: 20px 0 0 20px;
+}
+
+button.add {
+    border-radius: 0px 20px 20px 0;
+}
+
+button.remove,
+button.message-close {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    border-radius: 0;
+    border: 1px solid transparent;
+    background-color: transparent;
+    line-height: inherit;
+    width: max-content;
+}
+
+.cart-table .table {
+    border-collapse: separate;
+    border-spacing: 0 8px;
+}
+
+img {
+    border-radius: 5px;
+}
+
+li {
+    list-style: none;
+}
+
+.btn-shopping {
+    color: #fff;
+    background-color: #000;
+    border-color: #000;
+    border-radius: 10px;
+}
+
+.btn_delete {
+    /* #6DD0CD */
+    background-color: transparent;
+    border: 1px solid transparent;
+    color: #fff;
+    background-color: #000;
+    border-color: #000;
+    border-radius: 5px;
+    width: 60px;
+    height: 30px;
+    font-size: 14px;
+    font-weight: bolder;
+}
+
+.total-key {
+    text-align: right;
+    width: 100px;
+}
+
+.total-val {
+    text-align: right;
+    width: 100px;
+}
+
+.right-btn {
+    padding-right: 0;
+}
+
+.detail {
+    background-color: #FCFCFC;
+    width: 465px;
+    margin-top: 15px;
+    padding-top: 8px;
+    border: 1px solid #e2e2e2;
+    font-size: 18px;
+    height: 50px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.left_block {
+    display: inline-block;
+    width: 100px;
+    margin-left: 5px;
+    text-align: center;
+}
+
+.middle_block {
+    display: inline-block;
+    width: 270px;
+    text-align: left;
+    padding-top: 5px;
+}
+
+.right_block {
+    display: inline-block;
+    width: 70px;
+    margin-right: 5px;
+}
+
+div.img-coupon {
+    width: 100px;
+    height: 100px;
+    border: 10px solid black;
+}
+
+div.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: hsla(0, 0%, 0%, .5);
+    display: none;
+}
+
+
+/* 元素 article 置中及基本樣式 */
+
+article.coupon-article {
+    background-color: white;
+    width: 90%;
+    max-width: 550px;
+    border-radius: 10px;
+    padding: 20px;
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+button.btn-coupon {
+    margin: 5px;
+    padding: 5px;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #888;
+    background-color: #FFF;
+    line-height: inherit;
+    width: 60px;
+    height: 35px;
+    font-size: 16px;
+}
+
+button.btn-coupon:hover {
+    border-color: #E8E8D0;
+    background-color: #E8E8D0;
+}
+
+div.messages {
+    position: fixed;
+    right: 60px;
+    bottom: 40px;
+    z-index: 30;
+}
+
+div.message-table {
+    position: fixed;
+    right: 60px;
+    bottom: 40px;
+    width: 350px;
+    height: 400px;
+    display: none;
+    border: 2px solid black;
+    background-color: white;
+}
+
+article.message-article {
+    border-radius: 10px;
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow: auto;
+}
+
+button.message-close {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+}
+
+div.message-title {
+    position: absolute;
+    top: -1px;
+    left: -2px;
+    background: #000;
+    height: 45px;
+    text-align: center;
+    font-size: 18px;
+    width: 350px;
+}
+
+div.message-input-div {
+    position: absolute;
+    height: 40px;
+    bottom: 0px;
+    left: 0px;
+    border-top: 1px solid black;
+    padding: 7px;
+    width: 100%;
+    margin: 0;
+}
+
+span.unit-price,
+span.total-span {
+    font-size: 20px;
+}
+
+td.Product-action {
+    border-left: 0;
+}
+
+div.left-btn {
+    padding-left: 5px;
+}
+
+div.cart-shipping {
+    margin-top: 0px;
+}
+
+div.cart-form {
+    margin-top: 10px;
+}
+
+div.coupon-icons {
+    width: 90px;
+    display: inline-block;
+}
+
+img.img-coupon {
+    width: 40px;
+}
+
+div.choose-coupon-div {
+    display: inline-block;
+    position: relative;
+    top: -35px;
+    left: 45px;
+}
+
+span.choose-coupon {
+    margin-left: 5px;
+    font-size: 20px;
+    color: #000093;
+}
+
+.coupon-list-title {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: black;
+}
+
+.coupon-list-add {
+    background-color: #F0F0F0;
+    height: 65px;
+    padding: 10px;
+    color: black;
+    font-size: 16px;
+}
+
+.coupon-list-add>span {
+    margin-right: 10px;
+}
+
+.coupon-list-add>input {
+    height: 35px;
+    width: 280px;
+    margin-right: 10px;
+    padding-left: 10px;
+    font-size: 13px;
+    border: 1px solid #888;
+}
+
+.coupon-non {
+    height: 300px;
+    margin-top: 25px;
+    overflow-y: auto;
+    text-align: center;
+}
+
+.coupon-non>img {
+    width: 120px;
+    margin-top: 60px;
+}
+
+.coupon-non>p {
+    margin-top: 20px;
+    font-weight: bolder;
+    font-size: 18px;
+}
+
+div.coupon-list-parent {
+    height: 280px;
+    margin-top: 25px;
+    overflow-y: auto;
+    text-align: center;
+    border: 1px solid black;
+    overflow: auto;
+    margin-bottom: 20px;
+    display: none;
+}
+
+div.coupn-btn-div>button.btn_modal_check {
+    margin-left: 100px;
+}
+
+div.coupon-form-div {
+    margin-right: 20px;
+}
+
+div.coupon-form {
+    margin-top: 5px;
+}
+
+a.btn-go-shopping {
+    margin-right: 15px;
+}
+
+img.message-btn {
+    width: 65px;
+}
+
+div.tilte-span-div {
+    padding-top: 10px;
+    font-size: 20px;
+    font-weight: bolder;
+    width: 330px;
+}
+
+span.tilte-span {
+    color: white;
+}
+
+button.message-close {
+    color: white;
+    font-size: 25px;
+    position: absolute;
+    top: 5px;
+}
+
+input.message-input {
+    width: 250px;
+    padding-left: 5px;
+    margin-left: 15px;
+}
+
+input.send-btn {
+    width: 50px;
+    margin-left: 10px;
+}
+
+ul.coupon-list>li {
+    font-weight: bold;
+}
+
+div.message-area {
+    background-color: yellow;
+}

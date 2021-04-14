@@ -14,12 +14,12 @@ public class LinePushMessage {
     final String url="https://sc.linebotweb.xyz:5002/pushMessage";
     @Test
     public void pushMessageTest(){
-        String member_account="jason33";
+        String member_account="jason";
         String message="提醒您!明日下午3點有訂位哦!!";
 
-        System.out.println(pushMessage(member_account,message));
+        System.out.println(linePushMessage(member_account,message));
     }
-    public String pushMessage(String member_account,String message){
+    public String linePushMessage(String member_account,String message){
         Map<String, String> content = new HashMap<>();
         content.put("member_account",member_account);
         content.put("message",message);

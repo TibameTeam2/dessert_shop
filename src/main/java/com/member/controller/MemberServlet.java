@@ -50,6 +50,8 @@ import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken.Payload;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
 
+import static com.util.LineUtil.linePushMessage;
+
 @MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 50 * 1024 * 1024, maxRequestSize = 50 * 1024 * 1024)
 public class MemberServlet extends BaseServlet {
     MemberService service = new MemberService();
@@ -196,7 +198,7 @@ public class MemberServlet extends BaseServlet {
         } catch (InvocationTargetException e) {
             e.printStackTrace();
         }
-        System.out.println(member);
+//        System.out.println(member);
         member.setMember_password(DigestUtil.md5Hex(member.getMember_password()));
 
         member = service.login(member);
@@ -241,7 +243,7 @@ public class MemberServlet extends BaseServlet {
 //            System.out.println(Base64.getEncoder().encodeToString(member.getMember_photo()));
             info.setMsg("已登入!");
             info.setData(member);
-            System.out.println("member = " + member);
+//            System.out.println("member = " + member);
         }
         writeValueByWriter(res, info);
     }
@@ -459,8 +461,76 @@ public class MemberServlet extends BaseServlet {
             QrCodeUtil.generate(encrypt,config,"JPG",res.getOutputStream());
         }
     }
-    /************************************以下後臺使用****************************************/
 
+    public void backend_getPhoto(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException, SQLException {
+        res.setContentType("image/png");
+        Connection con = null;
+        String driver = JDBCUtil.driver;
+        String url = JDBCUtil.url;
+        String userid = JDBCUtil.user;
+        String passwd = JDBCUtil.password;
+        ResultSet rs;
+        con = DriverManager.getConnection(url, userid, passwd);
+        ServletOutputStream out = res.getOutputStream();
+        Statement stmt = con.createStatement();
+        String id = req.getParameter("id").trim();
+//        ResultSet rs = stmt.executeQuery(
+//                "SELECT member_photo FROM sweet.member WHERE member_account =" + id);
+
+        PreparedStatement pstmt = null;
+        pstmt = con.prepareStatement("SELECT member_photo FROM sweet.member WHERE member_account =?");
+
+        pstmt.setString(1, id);
+
+        rs = pstmt.executeQuery();
+
+        try {
+            if (rs.next()) {
+//            BufferedInputStream in = new BufferedInputStream(rs.getBinaryStream("member_photo"));
+                IoUtil.write(res.getOutputStream(), true, IoUtil.readBytes(rs.getBinaryStream("member_photo"), true));
+            }
+        } catch (Exception e) {
+
+        } finally {
+            rs.close();
+            pstmt.close();
+            con.close();
+        }
+
+
+//        try {
+//            if (rs.next()) {
+//                BufferedInputStream in = new BufferedInputStream(rs.getBinaryStream("member_photo"));
+//                byte[] buf = new byte[4 * 1024]; // 4K buffer
+//                int len;
+//                while ((len = in.read(buf)) != -1) {
+//                    out.write(buf, 0, len);
+//                }
+//                in.close();
+//            } else {
+////				res.sendError(HttpServletResponse.SC_NOT_FOUND);
+//                InputStream in = getServletContext().getResourceAsStream("/NoData/none.jpg");
+//                byte[] b = new byte[in.available()];
+//                in.read(b);
+//                out.write(b);
+//                in.close();
+//            }
+//            rs.close();
+//            stmt.close();
+//        } catch (Exception e) {
+////			System.out.println(e);
+////            InputStream in = getServletContext().getResourceAsStream("/NoData/null.jpg");
+////            byte[] b = new byte[in.available()];
+////            in.read(b);
+////            out.write(b);
+////            in.close();
+//        }
+
+    }
+
+
+    /************************************以下後臺使用****************************************/
+    public void backkkkkkkkkkkkkkkkkkkkkkkk(){}
     public String backend_getOne_For_Update(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         List<String> errorMsgs = new LinkedList<String>();
         // Store this set in the request scope, in case we need to
@@ -796,71 +866,7 @@ public class MemberServlet extends BaseServlet {
         }
     }
 
-    public void backend_getPhoto(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException, SQLException {
-        res.setContentType("image/png");
-        Connection con = null;
-        String driver = JDBCUtil.driver;
-        String url = JDBCUtil.url;
-        String userid = JDBCUtil.user;
-        String passwd = JDBCUtil.password;
-        ResultSet rs;
-        con = DriverManager.getConnection(url, userid, passwd);
-        ServletOutputStream out = res.getOutputStream();
-        Statement stmt = con.createStatement();
-        String id = req.getParameter("id").trim();
-//        ResultSet rs = stmt.executeQuery(
-//                "SELECT member_photo FROM sweet.member WHERE member_account =" + id);
 
-        PreparedStatement pstmt = null;
-        pstmt = con.prepareStatement("SELECT member_photo FROM sweet.member WHERE member_account =?");
-
-        pstmt.setString(1, id);
-
-        rs = pstmt.executeQuery();
-
-        try {
-            if (rs.next()) {
-//            BufferedInputStream in = new BufferedInputStream(rs.getBinaryStream("member_photo"));
-                IoUtil.write(res.getOutputStream(), true, IoUtil.readBytes(rs.getBinaryStream("member_photo"), true));
-            }
-        } catch (Exception e) {
-
-        } finally {
-            rs.close();
-            pstmt.close();
-            con.close();
-        }
-
-
-//        try {
-//            if (rs.next()) {
-//                BufferedInputStream in = new BufferedInputStream(rs.getBinaryStream("member_photo"));
-//                byte[] buf = new byte[4 * 1024]; // 4K buffer
-//                int len;
-//                while ((len = in.read(buf)) != -1) {
-//                    out.write(buf, 0, len);
-//                }
-//                in.close();
-//            } else {
-////				res.sendError(HttpServletResponse.SC_NOT_FOUND);
-//                InputStream in = getServletContext().getResourceAsStream("/NoData/none.jpg");
-//                byte[] b = new byte[in.available()];
-//                in.read(b);
-//                out.write(b);
-//                in.close();
-//            }
-//            rs.close();
-//            stmt.close();
-//        } catch (Exception e) {
-////			System.out.println(e);
-////            InputStream in = getServletContext().getResourceAsStream("/NoData/null.jpg");
-////            byte[] b = new byte[in.available()];
-////            in.read(b);
-////            out.write(b);
-////            in.close();
-//        }
-
-    }
 
 //    public void testphoto(HttpServletRequest req, HttpServletResponse res) throws IOException {
 //        String imgStr = "";
@@ -873,13 +879,36 @@ public class MemberServlet extends BaseServlet {
 //        byte[] decodedBytes = Base64.getDecoder().decode(imgStr);
 //        return decodedBytes;
 //    }
+    public void backkkkkkkkkkkkkkkkkkend(){}
 
     public void backend_getAll(HttpServletRequest req, HttpServletResponse res) {
         List<MemberBean> list = service.getAll();
+        for(MemberBean member:list){
+            member.setMember_photo(null);
+        }
         ResultInfo info = new ResultInfo();
         info.setFlag(true);
         info.setMsg("取得所有會員資料!");
         info.setData(list);
+        writeValueByWriter(res, info);
+    }
+    public void backend_delete1(HttpServletRequest req, HttpServletResponse res) {
+        String member_account= req.getParameter("member_account");
+        ResultInfo info = new ResultInfo();
+        if(member_account==null){
+            info.setFlag(false);
+            info.setMsg("未傳入參數!");
+            writeValueByWriter(res, info);
+            return;
+        }
+        try {
+            service.deleteMember(member_account);
+            info.setFlag(true);
+            info.setMsg("已刪除會員!");
+        }catch(Exception e){
+            info.setFlag(false);
+            info.setMsg("刪除會員失敗，請注意外鍵!");
+        }
         writeValueByWriter(res, info);
     }
 }
