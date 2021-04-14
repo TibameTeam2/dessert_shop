@@ -12,6 +12,7 @@ public class ListMemberCommentBean implements Serializable {
 	private String comment_content;
 	private Integer rating;
 	private Timestamp comment_time;
+	private Integer comment_status;
 	private Integer reply_id;
 	private String reply_content;
 	private Timestamp reply_time;
@@ -23,9 +24,10 @@ public class ListMemberCommentBean implements Serializable {
 	public String toString() {
 		return "ListMemberCommentBean [review_id=" + review_id + ", order_detail_id=" + order_detail_id
 				+ ", product_id=" + product_id + ", comment_content=" + comment_content + ", rating=" + rating
-				+ ", comment_time=" + comment_time + ", reply_id=" + reply_id + ", reply_content=" + reply_content
-				+ ", reply_time=" + reply_time + ", employee_account=" + employee_account + ", product_name="
-				+ product_name + ", review_image_id=" + review_image_id + ", review_image=" + review_image + "]";
+				+ ", comment_time=" + comment_time + ", comment_status=" + comment_status + ", reply_id=" + reply_id
+				+ ", reply_content=" + reply_content + ", reply_time=" + reply_time + ", employee_account="
+				+ employee_account + ", product_name=" + product_name + ", review_image_id=" + review_image_id
+				+ ", review_image=" + review_image + "]";
 	}
 	public Integer getReview_id() {
 		return review_id;
@@ -62,6 +64,12 @@ public class ListMemberCommentBean implements Serializable {
 	}
 	public void setComment_time(Timestamp comment_time) {
 		this.comment_time = comment_time;
+	}
+	public Integer getComment_status() {
+		return comment_status;
+	}
+	public void setComment_status(Integer comment_status) {
+		this.comment_status = comment_status;
 	}
 	public Integer getReply_id() {
 		return reply_id;
@@ -105,6 +113,6 @@ public class ListMemberCommentBean implements Serializable {
 	public void setReview_image(List<String> review_image) {
 		this.review_image = review_image;
 	}
-
+	
 	
 }
