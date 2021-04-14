@@ -118,5 +118,25 @@ public class NoticeServlet extends BaseServlet {
 		}
 		writeValueByWriter(res, info);
 	}
+	
+	
 
+	/****************************** 後台管理員區   ***********************************/
+	public void backend_getAllNotice(HttpServletRequest req,HttpServletResponse res) {
+		
+		NoticeService noticeSvc =new NoticeService();
+		List<NoticeBean> noticeList = noticeSvc.getAll();
+		
+		ResultInfo info = new ResultInfo();
+		
+		info.setFlag(true);
+		info.setMsg("取得所有通知訊息");
+		info.setData(noticeList);
+		
+		writeValueByStream(res, info);
+		
+	}
+	
+	
+	
 }

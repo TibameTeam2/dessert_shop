@@ -490,11 +490,19 @@ CREATE TABLE notice (
     notice_time			TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     read_status			TINYINT NOT NULL,
 	member_account		VARCHAR(50) NOT NULL,
+    notice_dispatcher   VARCHAR(1000),
     CONSTRAINT notice_member_FK FOREIGN KEY(member_account) REFERENCES  member(member_account)
 )AUTO_INCREMENT=1;
-INSERT INTO notice(notice_type,notice_content,read_status,member_account) VALUES ('1','提醒您：03/01 14:00 有訂位，位子保留10分鐘，逾期不候，若不克前來，請提前通知，謝謝!','0','amy');
-INSERT INTO notice(notice_type,notice_content,read_status,member_account) VALUES ('1','提醒您：04/01 16:00 有訂位，位子保留10分鐘，逾期不候，若不克前來，請提前通知，謝謝!','0','jason');
-INSERT INTO notice(notice_type,notice_content,read_status,member_account) VALUES ('0','提醒您：05/01 12:00 有訂位，位子保留10分鐘，逾期不候，若不克前來，請提前通知，謝謝!','0','tom');
+INSERT INTO notice(notice_type,notice_content,read_status,member_account,notice_dispatcher) VALUES ('1','購買成功，請準時前來提取，謝謝!','0','amy','my-account.html');
+INSERT INTO notice(notice_type,notice_content,read_status,member_account,notice_dispatcher) VALUES ('1','購買成功，請準時前來提取，謝謝!','0','jason','my-account.html');
+INSERT INTO notice(notice_type,notice_content,read_status,member_account,notice_dispatcher) VALUES ('1','購買成功，請準時前來提取，謝謝!','0','tom','my-account.html');
+INSERT INTO notice(notice_type,notice_content,read_status,member_account,notice_dispatcher) VALUES ('2','提醒您：您有訂購商品，於 05/01 提取商品，謝謝!','0','amy','my-account.html');
+INSERT INTO notice(notice_type,notice_content,read_status,member_account,notice_dispatcher) VALUES ('2','提醒您：您有訂購商品，於 05/05 提取商品，謝謝!','0','amy','my-account.html');
+INSERT INTO notice(notice_type,notice_content,read_status,member_account,notice_dispatcher) VALUES ('3','訂位成功，05/05，12:00，3人，請準時前往，謝謝!','0','amy','my-account.html');
+INSERT INTO notice(notice_type,notice_content,read_status,member_account,notice_dispatcher) VALUES ('3','訂位成功，05/10，16:00，4人，請準時前往，謝謝!','0','amy','my-account.html');
+INSERT INTO notice(notice_type,notice_content,read_status,member_account,notice_dispatcher) VALUES ('4','提醒您：05/05 12:00 有訂位，位子保留10分鐘，逾期不候，若不克前來，請提前通知，謝謝!','0','amy','my-account.html');
+INSERT INTO notice(notice_type,notice_content,read_status,member_account,notice_dispatcher) VALUES ('4','提醒您：05/10 16:00 有訂位，位子保留10分鐘，逾期不候，若不克前來，請提前通知，謝謝!','0','tom','my-account.html');
+
 
 
 -- 張浩倫------------------------------------------------------------------------------------------------------------
@@ -513,11 +521,14 @@ create table announcement_management (
     foreign key (employee_account) references employee (employee_account)
 )AUTO_INCREMENT=1;
 insert into announcement_management (announcement_name,announcement_content,
-announcement_image,announcement_type,announcement_status,employee_account)
-values('提拉米蘇特價','提拉米蘇超好吃der',null,1,1,'jason');
+announcement_image,announcement_time,announcement_type,announcement_status,employee_account)
+values('提拉米蘇特價','提拉米蘇超好吃derrrrrr',LOAD_FILE('C:/project/images/announcement_management/a.jpg'),'2021-02-26',1,1,'jason');
 insert into announcement_management (announcement_name,announcement_content,
-announcement_image,announcement_type,announcement_status,employee_account)
-values('檸檬塔暫停供應','員工擠檸檬噴到眼睛',null,1,1,'peter');
+announcement_image,announcement_time,announcement_type,announcement_status,employee_account)
+values('檸檬塔暫停供應','員工擠檸檬噴到眼睛',LOAD_FILE('C:/project/images/announcement_management/b.PNG'),"2021-02-27",1,1,'peter');
+insert into announcement_management (announcement_name,announcement_content,
+announcement_image,announcement_time,announcement_type,announcement_status,employee_account)
+values('草莓蛋糕下架','草莓農藥太多',LOAD_FILE('C:/project/images/announcement_management/c.PNG'),'2021-02-28',1,1,'james');
 
 
 -- 優惠碼

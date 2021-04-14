@@ -163,6 +163,7 @@
 		display: inline-block;
 	}
 	/* 縮合 結束 */
+
 	.detail {
 		color: black;
 	}
@@ -1113,8 +1114,7 @@
 
 							let od_list = '<!-- 尚未評價/某訂單/商品們 開始 -->\n'
 							//加<form> 開始, 使用「action="javascript:void(0)」是為了不由前台提交,而是發AJAX(前台中的背景)
-							//data-orderdetailid=0是什麼?有要刪嗎?
-							+ '<form id="'+ order_detail_id +'" data-star=0 data-orderdetailid="'+order_detail_id+'" action="javascript:void(0)" enctype="multipart/form-data">\n'
+							+ '<form id="'+ order_detail_id +'" data-star = 0 data-orderdetailid="'+order_detail_id+'" action="javascript:void(0)" enctype="multipart/form-data">\n'
 							+ '<hr class="my-4">\n'
 							+ '<!-- <blockquote><p>評價文字內容的亮點/摘錄</p></blockquote> -->\n'
 							+ '<div class="single-comment">\n'
@@ -1185,7 +1185,6 @@
 								star.addClass("-on")
 								star.prevAll().addClass("-on")
 								star.nextAll().removeClass("-on")
-								console.log($(this).attr("data-star"));
 								$(this).closest("form").attr("data-star", $(this).attr("data-star"));
 							})
 
@@ -1237,7 +1236,7 @@
 		$("div#link2").on("click", "a[role='button']", function(e){
 			e.preventDefault();
 			console.log($(this));
-			console.log($(this).closest('form').serialize());
+			// console.log($(this).closest('form').serialize()); //會只抓到 CommentContent
 
 			let form = $(this).closest('form')[0]; //轉成js物件
 			let data = new FormData(form); //此FormData物件用來裝著要傳給MemberCommentServlet的key-value
@@ -1252,7 +1251,7 @@
 			}
 			console.log(order_detail_id);
 			console.log(product_id);
-			console.log(star);
+			console.log(star); //印出顧客所評的星等
 
 			data.append("OrderDetailId", order_detail_id);
 			data.append("ProductId", product_id);
@@ -1338,6 +1337,7 @@
 		// 	$(this).closest("li").find("div.inner_block").slideToggle();
 		// });
 
+
 		// 歷史評價縮合
 		$("ul").on("click", "button.switch_btn", function(e) {
 			e.preventDefault();
@@ -1362,7 +1362,7 @@
 		}
 
 
-
+		// (假資料用)
 		// //上傳圖片BLOB1
 		// $("#file_upload1").on('change', function(e) {
 		// 	alert('按到第一台相機!');

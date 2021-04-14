@@ -736,8 +736,9 @@
             });
 
             Swal.mixin({
-                confirmButtonText: 'Next &rarr;',
+                confirmButtonText: '下一步',
                 showCancelButton: true,
+                cancelButtonText: '取消',
                 progressSteps: ['1', '2']
             }).queue([
                 {
@@ -755,6 +756,8 @@
                     imageWidth: 200,
                     imageHeight: 200,
                     imageAlt: 'Custom image',
+                    confirmButtonText: '完成',
+                    showCancelButton: false,
                 }
             ])
         });
