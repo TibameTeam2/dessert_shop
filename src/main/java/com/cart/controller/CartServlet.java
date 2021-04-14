@@ -469,6 +469,8 @@ public class CartServlet extends BaseServlet {
 			
 			if (payment_method == 1) {
 				info.setMsg("信用卡付款方式完成!");
+				//呼叫Product的svc更新銷售數量
+//				producysvc.method( id, total);
 			} else if (payment_method == 3) {
 				info.setMsg("匯款方式的訂單完成!");
 			}
@@ -513,11 +515,17 @@ public class CartServlet extends BaseServlet {
 			svc.insertOrUpdateCart(cartBean);
 
 			info.setFlag(true);
-			info.setMsg("已將商品新增到購物車!");
+			info.setData(svc.getProductAvailableQty(product_id));
+			info.setMsg("已將商品新增購物車並回傳現貨數量!");
 		}
 
 		writeValueByWriter(res, info);
 
 	}
 
+	
+	
+	
+	
+	
 }

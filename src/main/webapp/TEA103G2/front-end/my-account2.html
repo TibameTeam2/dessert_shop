@@ -52,6 +52,84 @@
       button.submit{
           margin-top:20px;
       }
+
+
+
+
+	/* 縮合 開始 */
+	ul.order_master_comment_list {
+		margin: 24px 0 0 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	ul.order_master_comment_list>li {
+		margin-bottom: 30px;
+	}
+
+	ul.order_master_comment_list>li:last-child {
+		margin-bottom: 0;
+	}
+
+	ul.order_master_comment_list>li {
+		/* ul.order_master_comment_list > li > a.link_title{ */
+		display: block;
+		width: 100%;
+		color: white;
+		background-color: #ffffff;
+		box-shadow: 2px 2px 8px 0 rgba(56, 55, 53, 0.33);
+		border-radius: 26px;
+		padding: 4px 40px;
+		text-decoration: none;
+		font-size: 24px;
+		font-weight: normal;
+	}
+
+	ul.order_master_comment_list>li::after {
+		/* ul.order_master_comment_list > li > a.link_title::after{ */
+		content: "";
+		display: block;
+		clear: both;
+	}
+
+	button.switch_btn {
+		/* ul.order_master_comment_list > li > a.link_title button.switch_btn{ */
+		float: right;
+		display: inline-block;
+		background: #83bc2e;
+		border: 1px solid white;
+		border-radius: 50px;
+		outline: none;
+		color: white;
+		font-size: 24px;
+	}
+
+	ul.order_master_comment_list>li>div.inner_block {
+		font-size: 18px;
+		color: #4a4a4a;
+		margin-top: 8px;
+		padding: 0 40px;
+		line-height: 1.6;
+		display: none;
+	}
+
+	ul.order_master_comment_list>li button.switch_btn span.minus {
+		display: none;
+	}
+
+	ul.order_master_comment_list>li.-on button.switch_btn span.plus {
+		display: none;
+	}
+
+	ul.order_master_comment_list>li.-on button.switch_btn span.minus {
+		display: inline-block;
+	}
+	/* 縮合 結束 */
+	.detail {
+		color: black;
+	}
+
+
   </style>
 </head>
 
@@ -132,7 +210,7 @@
             </ul>
           </div>
           <!-- My Account Menu End -->
-        </div>
+        </div class="tab-pane fade" id="pills-order">
         <div class="col-xl-9 col-md-8">
           <!-- Tab content start -->
           <div class="tab-content my-account-tab mt-6">
@@ -149,51 +227,42 @@
               </div>
             </div>
 
+            
             <div class="tab-pane fade" id="pills-order">
-              <div class="my-account-order account-wrapper">
-                <h4 class="account-title">Orders</h4>
-                <div class="account-table text-center mt-30 table-responsive">
-                  <table class="table">
-                    <thead>
-                    <tr>
-                      <th class="no">No</th>
-                      <th class="name">Name</th>
-                      <th class="date">Date</th>
-                      <th class="status">Status</th>
-                      <th class="total">Total</th>
-                      <th class="action">Action</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td>Mostarizing Oil</td>
-                      <td>Aug 22, 2020</td>
-                      <td>Pending</td>
-                      <td>$100</td>
-                      <td><a href="#">View</a></td>
-                    </tr>
-                    <tr>
-                      <td>2</td>
-                      <td>Katopeno Altuni</td>
-                      <td>July 22, 2020</td>
-                      <td>Approved</td>
-                      <td>$45</td>
-                      <td><a href="#">View</a></td>
-                    </tr>
-                    <tr>
-                      <td>3</td>
-                      <td>Murikhete Paris</td>
-                      <td>June 22, 2020</td>
-                      <td>On Hold</td>
-                      <td>$99</td>
-                      <td><a href="#">View</a></td>
-                    </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
+              <h4 class="account-title">訂單資料</h4>
+              <ul class="order_master_comment_list">
+
+                <li>
+                  <div class="post-meta" style="margin-bottom: 0px; border-top: 1px solid white; border-bottom: 1px solid white">
+                    <span class="detail">訂單編號 : <span class="order_master_id"></span></span>
+                    <span class="detail">下訂時間 : <span class="order_time"></span></span>
+                    <span class="detail">付款時間 : <span class="payment_time"></span></span>
+                    <br>
+                    <span class="detail">發票號碼	: <span class="invoice_number"></span></span>
+                    <span class="detail">優惠券編號 : <span	class="coupon_id"></span></span>
+                    <span class="detail">付款方式	: <span class="payment_method"></span> </span>
+                    <br>
+                    <span class="detail">訂單金額 : <span	class="order_total"></span></span>
+                    <br>
+                    <span class="detail">訂單備註 : <span	class="order_remarks"></span></span>
+                    <br>
+                    <span class="detail">訂單狀態 : <span class="order_status"></span></span>
+                    <button type="button" class="switch_btn">
+                      <span class="plus" style="width: 20px; height: 20px; margin-right: 0px;"><i class="fas fa-chevron-down" style="color: white; display: inline"></i></span>
+                      <span class="minus" style="width: 20px; height: 20px;"><i class="fas fa-chevron-up" style="color: white; display: inline"></i></span>
+                    </button>
+                  </div>
+                  <div class="inner_block">
+                    
+                    <!-- 訂單明細 -->
+                    <div>這裡是明細</div>
+
+                  </div>
+                </li>
+
+              </ul>
             </div>
+          
 
             <div class="tab-pane fade" id="pills-download">
               <div class="my-account-download account-wrapper">
@@ -533,8 +602,9 @@
             });
 
             Swal.mixin({
-                confirmButtonText: 'Next &rarr;',
+                confirmButtonText: '下一步',
                 showCancelButton: true,
+                cancelButtonText: '取消',
                 progressSteps: ['1', '2']
             }).queue([
                 {
@@ -552,10 +622,109 @@
                     imageWidth: 200,
                     imageHeight: 200,
                     imageAlt: 'Custom image',
+                    confirmButtonText: '完成',
+                    showCancelButton: false,
                 }
             ])
         });
+
+
+
+
+
+
+
+        // 載入訂單資料
+        $.get("/dessert_shop/orderMaster/getOrderMaster", { }, function (data) {
+          console.log(data);
+          if (data.flag) {
+
+            for (var i = 0; i < data.data[0].length; i++) {
+
+              let order_master_list = `<li>
+                    <div class="post-meta" style="margin-bottom: 0px; border-top: 1px solid white; border-bottom: 1px solid white">
+                      <span class="detail">訂單編號 : <span class="order_master_id">${data.data[0][i].order_master_id}</span></span>
+                      <span class="detail">下訂時間 : <span class="order_time">${data.data[0][i].order_time}</span></span>
+                      <span class="detail">付款時間 : <span class="payment_time">${data.data[0][i].payment_time}</span></span>
+                      <br>
+                      <span class="detail">發票號碼	: <span class="invoice_number">${data.data[0][i].invoice_number}</span></span>
+                      <span class="detail">優惠券編號 : <span	class="coupon_id">${data.data[0][i].coupon_id}</span></span>
+                      <span class="detail">付款方式	: <span class="payment_method">${data.data[0][i].payment_method}</span> </span>
+                      <br>
+                      <span class="detail">訂單金額 : <span	class="order_total">${data.data[0][i].order_total}</span></span>
+                      <br>
+                      <span class="detail">訂單備註 : <span	class="order_remarks">${data.data[0][i].order_remarks}</span></span>
+                      <br>
+                      <span class="detail">訂單狀態 : <span class="order_status">${data.data[0][i].order_status}</span></span>
+                      <button type="button" class="switch_btn">
+                        <span class="plus" style="width: 20px; height: 20px; margin-right: 0px;"><i class="fas fa-chevron-down" style="color: white; display: inline"></i></span>
+                        <span class="minus" style="width: 20px; height: 20px;"><i class="fas fa-chevron-up" style="color: white; display: inline"></i></span>
+                      </button>
+                    </div>
+                    <div class="inner_block">
+                      
+                      <!-- 訂單明細 -->
+                      <div>這裡是明細</div>
+
+                    </div>
+                  </li>`;
+
+                  $("ul.order_master_comment_list").prepend(order_master_list);
+            }
+
+
+          } else {
+            alert(data.msg);
+            if (data.redirect) {
+                location.href = data.redirect;
+            }
+          }
+
+
+        });  //get
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+    });  //function
+
+
+
+
+
+
+
+
+
+    //訂單明細縮合
+    $("ul").on("click", "button.switch_btn", function(e) {
+          e.preventDefault();
+          $(this).closest("li").toggleClass("-on");
+          $(this).closest("li").find("div.inner_block").slideToggle();
     });
+
+
+    
+    
+
+
+
+
 </script>
 </body>
 
