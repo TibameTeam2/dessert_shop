@@ -37,7 +37,7 @@ public class MemberCommentDaoImpl implements MemberCommentDao {
 			pstmt.setString(2, MemberCommentBean.getComment_content());
 			pstmt.setInt(3, MemberCommentBean.getRating());
 			pstmt.setInt(4, MemberCommentBean.getProduct_id());
-			pstmt.setInt(5, 1);
+			pstmt.setInt(5, 0);
 			pstmt.executeUpdate();
 
 			// getGeneratedKeys() : 擷取執行這個 SQLServerStatement 物件最後所建立的任何自動產生索引鍵。
