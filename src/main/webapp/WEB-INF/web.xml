@@ -479,7 +479,15 @@
 		<url-pattern>/productComment/*</url-pattern>
 	</servlet-mapping>
 
-
+	<!--ListMemberCommentServlet 用在後臺顯示所有顧客評論 -->
+	<servlet>
+		<servlet-name>ListMemberCommentServlet</servlet-name>
+		<servlet-class>com.dealer_reply.controller.ListMemberCommentServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ListMemberCommentServlet</servlet-name>
+		<url-pattern>/listMemberComment/*</url-pattern>
+	</servlet-mapping>
 
 
 

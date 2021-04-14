@@ -24,27 +24,39 @@ public class MemberCommentDaoImpl implements MemberCommentDao {
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		int key=0;
+		int key = 0;
+
 		try {
 			Class.forName(DRIVER);
 			con = DriverManager.getConnection(URL, USERID, PASSWORD);
 			pstmt = con.prepareStatement(
-					"INSERT INTO member_comment(order_detail_id, comment_content, rating, product_id, comment_status) VALUES (?, ?, ?, ?, ?)",Statement.RETURN_GENERATED_KEYS);
+					"INSERT INTO member_comment(order_detail_id, comment_content, rating, product_id, comment_status) VALUES (?, ?, ?, ?, ?)",
+					Statement.RETURN_GENERATED_KEYS);
 
 			pstmt.setInt(1, MemberCommentBean.getOrder_detail_id());
 			pstmt.setString(2, MemberCommentBean.getComment_content());
 			pstmt.setInt(3, MemberCommentBean.getRating());
 			pstmt.setInt(4, MemberCommentBean.getProduct_id());
-			pstmt.setInt(5, 1);
+			pstmt.setInt(5, 0);
 			pstmt.executeUpdate();
-			
+
+			// getGeneratedKeys() : 擷取執行這個 SQLServerStatement 物件最後所建立的任何自動產生索引鍵。
 			ResultSet rsKey = pstmt.getGeneratedKeys();
-			if(rsKey.next()) {
-				key=rsKey.getInt(1);
+			System.out.println("rsKey = " + rsKey); // com.mysql.cj.jdbc.result.ResultSetImpl@199d585c
+			
+			/*
+			System.out.println("key.getMetaData() = " + rsKey.getMetaData());
+			 com.mysql.cj.jdbc.result.ResultSetMetaData@3b195b60 - Field level
+			 information:
+			 com.mysql.cj.result.Field@48b5abe7[dbName=null,tableName=,originalTableName=null,columnName=GENERATED_KEY,originalColumnName=null,mysqlType=-1(FIELD_TYPE_BIGINT
+			 UNSIGNED),sqlType=-5,flags= UNSIGNED, charsetIndex=0, charsetName=US-ASCII]
+			*/
+
+			if (rsKey.next()) {
+				key = rsKey.getInt(1); // 顧客剛寫完送出的評論的review_id(自增主鍵)的編號
+				System.out.println("rsKey.getInt(1) = " + rsKey.getInt(1));
 			}
-			
-			
-			
+
 		} catch (ClassNotFoundException e) {
 			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
 		} catch (SQLException se) {
@@ -65,7 +77,7 @@ public class MemberCommentDaoImpl implements MemberCommentDao {
 				}
 			}
 		}
-		return key;
+		return key; // 顧客剛寫完送出的評論的review_id(自增主鍵)的編號
 
 	}
 
@@ -388,16 +400,6 @@ public class MemberCommentDaoImpl implements MemberCommentDao {
 		}
 		return MemberCommentBean;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 //	public static void main(String[] args) {
 //

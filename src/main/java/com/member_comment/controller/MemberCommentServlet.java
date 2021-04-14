@@ -31,7 +31,7 @@ public class MemberCommentServlet extends BaseServlet {
 		System.out.println("hello");
 	}
 
-	// 接收前台送來的資料, 用在使用者填完尚未評價後、評價資料進資料庫
+	// 接收前台送來的資料, 用在使用者填完尚未評價後, 將評價資料進資料庫
 	public void addMemberComment(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
 		String order_detail_id = req.getParameter("OrderDetailId");
 		String product_id = req.getParameter("ProductId");
@@ -40,7 +40,7 @@ public class MemberCommentServlet extends BaseServlet {
 
 		
 		Integer review_id = memberCommentSvc.addMemberComment(Convert.toInt(order_detail_id), Convert.toInt(product_id),
-				Convert.toInt(rating), comment_content, 1);
+				Convert.toInt(rating), comment_content, 0);
 
 		
 		// 用getPart()抓前台送來的照片
@@ -71,7 +71,7 @@ public class MemberCommentServlet extends BaseServlet {
 		in2.close();
 		in3.close();
 		
-		// addReviewImageUpload()會回傳reviewImageUploadBean
+		// addReviewImageUpload()將評論照片寫進資料庫
         if (buf1.length != 0) {
         	ReviewImageUploadService riuSvc = new ReviewImageUploadService(); 
         	riuSvc.addReviewImageUpload(buf1, review_id);
@@ -89,15 +89,15 @@ public class MemberCommentServlet extends BaseServlet {
 		ResultInfo info = new ResultInfo();
 
 		if (review_id != 0) {
-			System.out.println("成功");
 			info.setFlag(true);
 			info.setMsg("成功新增!!!");
-			info.setRedirect("/dessert_shop/TEA103G2/front-end/member-comment.html"); // 請記得確認正確網址
+			info.setRedirect(req.getContextPath() + req.getServletPath() + "/member-comment.html"); 
+			System.out.println("成功的跳轉");
 		} else {
-			System.out.println("失敗");
 			info.setFlag(false);
 			info.setMsg("插入失敗");
-			info.setRedirect("/dessert_shop/TEA103G2/front-end/member-comment.html"); // 請記得確認正確網址
+			info.setRedirect(req.getContextPath() + req.getServletPath() + "/member-comment.html");
+			System.out.println("失敗的跳轉");
 		}
 		writeValueByWriter(res, info);
 

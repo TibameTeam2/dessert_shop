@@ -1,0 +1,962 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- 以下三行為取消快取 -->
+  <META HTTP-EQUIV="pragma" CONTENT="no-cache">
+    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+      <META HTTP-EQUIV="expires" CONTENT="0">
+        <!-- 以上三行為取消快取 -->
+
+        <title>POS Dash | Responsive Bootstrap 4 Admin Dashboard Template</title>
+
+        <!-- Favicon -->
+        <link rel="shortcut icon" href="assets/images/favicon.ico"/>
+        <link rel="stylesheet" href="assets/css/backend-plugin.min.css">
+        <link rel="stylesheet" href="assets/css/backend.css?v=1.0.0">
+        <link rel="stylesheet" href="assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
+        <link rel="stylesheet" href="assets/vendor/line-awesome/dist/line-awesome/css/line-awesome.min.css">
+        <link rel="stylesheet" href="assets/vendor/remixicon/fonts/remixicon.css">
+
+
+        <style media="screen">
+
+        /* .row {
+        --bs-gutter-x: 30px;
+        --bs-gutter-y: 0;
+        border: 1px solid red;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        margin-top: calc(var(--bs-gutter-y) * -1);
+        margin-right: calc(var(--bs-gutter-x) / -2);
+        margin-left: calc(var(--bs-gutter-x) / -2);
+      }
+
+      .row>* {
+      border: 1px solid pink;
+      -webkit-flex-shrink: 0;
+      -ms-flex-negative: 0;
+      flex-shrink: 0;
+      width: 100%;
+      max-width: 100%;
+      padding-right: calc(var(--bs-gutter-x) / 2);
+      padding-left: calc(var(--bs-gutter-x) / 2);
+      margin-top: var(--bs-gutter-y);
+      } */
+
+
+      /* quick-view-content 開始 */
+      .quick-view-content {
+        margin-top: 25px;
+      }
+
+      .quick-view-content .product-name {
+        color: #1d1d1d;
+        font-size: 24px;
+        line-height: 1.3;
+        text-transform: capitalize;
+        font-weight: 700;
+        margin-bottom: 20px;
+      }
+
+      @media only screen and (min-width: 992px) and (max-width: 1199px) {
+        .quick-view-content .product-name {
+          font-size: 20px;
+        }
+      }
+
+      @media only screen and (max-width: 575px) {
+        .quick-view-content .product-name {
+          font-size: 20px;
+        }
+      }
+
+      .quick-view-content .reference {
+        margin-bottom: 10px;
+        font-weight: 700;
+        color: #253237;
+      }
+
+      .quick-view-content .reference span {
+        font-weight: 400;
+      }
+
+      .quick-view-content .shop-rating-content {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+      }
+
+      .quick-view-content .shop-rating-content li {
+        margin: 2px 8px 10px 0;
+        display: inline-block;
+      }
+
+      .quick-view-content .shop-rating-content li .review-star {
+        position: relative;
+        display: inline-block;
+      }
+
+      .quick-view-content .shop-rating-content li .review-star::before {
+        content: "\f2fc" "\f2fc" "\f2fc" "\f2fc" "\f2fc";
+        font-family: Ionicons;
+        display: inline-block;
+        color: #dbdbdb;
+        font-weight: 400;
+        line-height: 1;
+        vertical-align: middle;
+        font-size: 18px;
+      }
+
+      .quick-view-content .shop-rating-content li .review-star .star {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        z-index: 2;
+        overflow: hidden;
+      }
+
+      .quick-view-content .shop-rating-content li .review-star .star::before {
+        content: "\f2fc" "\f2fc" "\f2fc" "\f2fc" "\f2fc";
+        font-family: Ionicons;
+        display: inline-block;
+        color: #ffc600;
+        font-weight: 400;
+        line-height: 1;
+        vertical-align: middle;
+        font-size: 18px;
+      }
+
+      .quick-view-content .shop-rating-content li a {
+        color: #253237;
+        position: relative;
+        line-height: 21px;
+        padding: 0;
+        font-size: 14px;
+        cursor: pointer;
+        display: inline-block;
+        -webkit-transition: all 0.3s linear;
+        -o-transition: all 0.3s linear;
+        transition: all 0.3s linear;
+      }
+
+      @media only screen and (max-width: 575px) {
+        .quick-view-content .shop-rating-content li a {
+          font-size: 13px;
+        }
+      }
+
+      .quick-view-content .shop-rating-content li a:hover {
+        color: #83bc2e;
+      }
+
+      .quick-view-content .product-prices {
+        margin-top: 15px;
+      }
+
+      .quick-view-content .product-prices .old-price {
+        font-weight: 400;
+        line-height: 20px;
+        color: #9b9b9b;
+        font-size: 22px;
+        color: #b1b1b1;
+        margin-right: 13px;
+        text-decoration: line-through;
+        display: inline-block;
+      }
+
+      @media only screen and (max-width: 575px) {
+        .quick-view-content .product-prices .old-price {
+          font-size: 18px;
+        }
+      }
+
+      .quick-view-content .product-prices .sale-price {
+        color: #83bc2e;
+        font-size: 30px;
+        font-weight: 600;
+        line-height: 30px;
+        display: inline-block;
+        margin-right: 13px;
+      }
+
+      @media only screen and (max-width: 575px) {
+        .quick-view-content .product-prices .sale-price {
+          font-size: 24px;
+        }
+      }
+
+      .quick-view-content .product-prices .discount-percentage {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 25px;
+        color: white;
+        padding: 0 10px 0 10px;
+        background: #253237;
+        vertical-align: 5px;
+        text-transform: capitalize;
+        display: inline-block;
+      }
+
+      @media only screen and (max-width: 575px) {
+        .quick-view-content .product-prices .discount-percentage {
+          font-size: 13px;
+          padding: 0 8px 0 8px;
+        }
+      }
+
+      .quick-view-content .product-description {
+        padding-top: 35px;
+        border-bottom: 1px solid #ebebeb;
+        margin-bottom: 0px;
+        padding-bottom: 35px;
+      }
+
+      .quick-view-content .product-description ul {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+      }
+
+      .quick-view-content .product-description ul li {
+        color: #5a5a5a;
+        font-size: 14px;
+        font-weight: normal;
+        line-height: 24px;
+      }
+
+      .quick-view-content .label {
+        font-size: 14px;
+        font-weight: 700;
+        color: #253237;
+        display: block;
+        margin-bottom: 5px;
+        text-transform: uppercase;
+      }
+
+      .quick-view-content .product-quantity-cart {
+        padding-top: 25px;
+      }
+
+      .quick-view-content .product-quantity {
+        position: relative;
+        padding-right: 24px;
+        margin-right: 30px;
+        margin-top: 10px;
+      }
+
+      @media only screen and (max-width: 575px) {
+        .quick-view-content .product-quantity {
+          margin-right: 15px;
+        }
+      }
+
+      .quick-view-content .product-quantity button {
+        position: absolute;
+        background: none;
+        top: 0;
+        right: 0;
+        border: 1px solid #ebebeb;
+        padding: 0;
+        width: 24px;
+        height: 24px;
+        font-size: 14px;
+        -webkit-transition: all 0.3s linear;
+        -o-transition: all 0.3s linear;
+        transition: all 0.3s linear;
+      }
+
+      .quick-view-content .product-quantity button:hover {
+        background-color: #f1f1f1;
+      }
+
+      .quick-view-content .product-quantity input {
+        width: 60px;
+        height: 48px;
+        border: 1px solid #ebebeb;
+        border-right: 0;
+        padding: 5px 8px;
+        font-size: 14px;
+        outline: none;
+      }
+
+      .quick-view-content .product-quantity *:first-child {
+        top: auto;
+        bottom: 0;
+      }
+
+      .quick-view-content .product-cart {
+        margin-top: 10px;
+      }
+
+      @media only screen and (max-width: 575px) {
+        .quick-view-content .product-cart .btn {
+          padding: 0 20px;
+        }
+      }
+
+      .quick-view-content .product-additional-info {
+        padding-top: 10px;
+      }
+
+      .quick-view-content .product-additional-info .panel-product-actions {
+        display: inline-block;
+        margin-bottom: 0;
+        margin-top: 10px;
+      }
+
+      .quick-view-content .product-additional-info .panel-product-actions .action-btn {
+        line-height: 30px;
+        padding: 0;
+        border: none;
+        color: #626262;
+        font-size: 14px;
+        background: transparent;
+        margin-right: 15px;
+        cursor: pointer;
+        -webkit-transition: all 0.3s linear;
+        -o-transition: all 0.3s linear;
+        transition: all 0.3s linear;
+      }
+
+      .quick-view-content .product-additional-info .panel-product-actions .action-btn:hover {
+        color: #83bc2e;
+      }
+
+      .quick-view-content .product-sharing {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        -ms-flex-align: center;
+        align-items: center;
+        padding-top: 10px;
+      }
+
+      .quick-view-content .product-sharing .social-sharing {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+      }
+
+      .quick-view-content .product-sharing .social-sharing li {
+        margin-bottom: 5px;
+        margin-left: 20px;
+      }
+
+      @media only screen and (min-width: 992px) and (max-width: 1199px) {
+        .quick-view-content .product-sharing .social-sharing li {
+          margin-left: 15px;
+        }
+      }
+
+      .quick-view-content .product-sharing .social-sharing li a {
+        line-height: 30px;
+        text-align: center;
+        color: #b4b4b4;
+        white-space: normal;
+        text-indent: 0;
+        font-size: 18px;
+        display: inline-block;
+        -webkit-transition: all 0.3s linear;
+        -o-transition: all 0.3s linear;
+        transition: all 0.3s linear;
+      }
+
+      .quick-view-content .product-sharing .social-sharing li a:hover {
+        color: #83bc2e;
+      }
+      /* quick-view-content 結束 */
+
+
+
+      /* 評價的星號 開始 */
+      div.star_block {
+        display: inline-block;
+      }
+
+      div.star_block>span.star {
+        cursor: pointer;
+        display: inline-block;
+        margin-right: 3px;
+      }
+
+      div.star_block>span.star.-on {
+        color: yellow;
+      }
+      /* 評價的星號 結束 */
+
+      /* 評價的星號_1 開始 */
+      .single-comment .comment-content .author-name-rating {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        -ms-flex-align: center;
+        align-items: center;
+        margin-bottom: 10px;
+      }
+      .single-comment .comment-content .author-name-rating .name {
+        font-weight: 600;
+        text-transform: capitalize;
+        font-size: 14px;
+        color: #6c6c6c;
+        margin-bottom: 0;
+        line-height: 1;
+        margin-right: 10px;
+      }
+      .single-comment .comment-content .author-name-rating .review-star {
+        position: relative;
+        display: inline-block;
+      }
+      .single-comment .comment-content .author-name-rating .review-star::before {
+        content: "\2605" "\2605" "\2605" "\2605" "\2605";
+        font-family: Ionicons;
+        display: inline-block;
+        color: #dbdbdb;
+        font-weight: 400;
+        line-height: 1;
+        vertical-align: middle;
+      }
+      .single-comment .comment-content .author-name-rating .review-star .star {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        z-index: 2;
+        overflow: hidden;
+      }
+      .single-comment .comment-content .author-name-rating .review-star .star::before {
+        content: "\2605" "\2605" "\2605" "\2605" "\2605";
+        /* content: "\f2fc" "\f2fc" "\f2fc" "\f2fc" "\f2fc"; */
+        font-family: Ionicons;
+        display: inline-block;
+        color: #ffc600;
+        font-weight: 400;
+        line-height: 1;
+        vertical-align: middle;
+      }
+      /* 評價的星號_1 結束 */
+
+      </style>
+
+
+
+
+    </head>
+    <body class="  ">
+      <!-- loader Start -->
+      <div id="loading">
+        <div id="loading-center">
+        </div>
+      </div>
+      <!-- loader END -->
+
+
+      <!-- Wrapper Start -->
+      <div class="wrapper">
+
+        <!--Header-->
+        <div class="header"></div>
+
+
+        <!-- 本頁標題 開始 (我是誰? 結束在哪?) -->
+        <div class="content-page">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="d-flex flex-wrap align-items-center justify-content-between mb-4">
+                  <div>
+                    <h4 class="mb-3">顧客評論</h4>
+                    <p class="mb-0">顯示所有顧客的評論，要記得回覆客人喔!</p><br>
+
+                  </div>
+                  <a href="page-add-return.html" class="btn btn-primary add-list"><i class="las la-plus mr-3"></i>Add Returns</a>
+                </div>
+              </div>
+
+
+
+
+
+
+
+              <div class="col-lg-12">
+                <div class="table-responsive rounded mb-3">
+                  <table class="data-table table mb-0 tbl-server-info">
+
+                    <!-- 項目名稱 開始 -->
+                    <thead class="bg-white text-uppercase">
+                      <tr class="ligth ligth-data">
+                        <th>
+                          <div class="checkbox d-inline-block">
+                            <input type="checkbox" class="checkbox-input" id="checkbox1">
+                            <label for="checkbox1" class="mb-0"></label>
+                          </div>
+                        </th>
+                        <th>評論時間</th>
+                        <th>訂單明細編號</th>
+                        <th>商品名稱</th>
+                        <th>星等</th>
+                        <th>是否回覆</th> <!--請去 Sale-List 抓元素 -->
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <!-- 項目名稱 結束 -->
+
+
+                    <!-- 客戶評論們 開始 -->
+                    <tbody class="ligth-body">
+
+                      <tr>
+                        <td>
+                          <div class="checkbox d-inline-block">
+                            <input type="checkbox" class="checkbox-input" id="checkbox2">
+                            <label for="checkbox2" class="mb-0"></label>
+                          </div>
+                        </td>
+                        <td>2021-04-13 15:28</td>
+                        <td>1</td>
+                        <td>巧克力杯子</td>
+
+                        <!-- 評價星等_1 開始 -->
+                        <td>
+                          <div class="single-comment">
+                            <div class="comment-content">
+                              <div class="author-name-rating">
+                                <div class="review-star">
+                                  <div class="star" style="width: 80%;"></div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                        <!-- 評價星等_1 結束 -->
+
+                        <td><div class="badge badge-success">Done</div></td>
+
+                        <td>
+                          <div class="d-flex align-items-center list-action">
+                            <a class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View" href="#"><i class="ri-eye-line mr-0"></i></a>
+                            <a class="badge bg-success mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit" href="#"><i class="ri-pencil-line mr-0"></i></a>
+                            <a class="badge bg-warning mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" href="#"><i class="ri-delete-bin-line mr-0"></i></a>
+                          </div>
+                        </td>
+                      </tr>
+
+
+                      <tr>
+                        <td>
+                          <div class="checkbox d-inline-block">
+                            <input type="checkbox" class="checkbox-input" id="checkbox2">
+                            <label for="checkbox2" class="mb-0"></label>
+                          </div>
+                        </td>
+                        <td>2021-04-13 15:28</td>
+                        <td>1</td>
+                        <td>巧克力杯子</td>
+
+                        <!-- 評價星等_1 開始 -->
+                        <td>
+                          <div class="single-comment">
+                            <div class="comment-content">
+                              <div class="author-name-rating">
+                                <div class="review-star">
+                                  <div class="star" style="width: 80%;"></div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                        <!-- 評價星等_1 結束 -->
+
+                        <td><div class="badge badge-success">Done</div></td>
+
+                        <td>
+                          <div class="d-flex align-items-center list-action">
+                            <a class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View" href="#"><i class="ri-eye-line mr-0"></i></a>
+                            <a class="badge bg-success mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit" href="#"><i class="ri-pencil-line mr-0"></i></a>
+                            <a class="badge bg-warning mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" href="#"><i class="ri-delete-bin-line mr-0"></i></a>
+                          </div>
+                        </td>
+                      </tr>
+
+
+                      <tr>
+                        <td>
+                          <div class="checkbox d-inline-block">
+                            <input type="checkbox" class="checkbox-input" id="checkbox2">
+                            <label for="checkbox2" class="mb-0"></label>
+                          </div>
+                        </td>
+                        <td>2021-04-13 15:28</td>
+                        <td>1</td>
+                        <td>巧克力杯子</td>
+
+                        <!-- 評價星等_1 開始 -->
+                        <td>
+                          <div class="single-comment">
+                            <div class="comment-content">
+                              <div class="author-name-rating">
+                                <div class="review-star">
+                                  <div class="star" style="width: 80%;"></div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                        <!-- 評價星等_1 結束 -->
+
+                        <td><div class="badge badge-success">Done</div></td>
+
+                        <td>
+                          <div class="d-flex align-items-center list-action">
+                            <a class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View" href="#"><i class="ri-eye-line mr-0"></i></a>
+                            <a class="badge bg-success mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit" href="#"><i class="ri-pencil-line mr-0"></i></a>
+                            <a class="badge bg-warning mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" href="#"><i class="ri-delete-bin-line mr-0"></i></a>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="checkbox d-inline-block">
+                            <input type="checkbox" class="checkbox-input" id="checkbox2">
+                            <label for="checkbox2" class="mb-0"></label>
+                          </div>
+                        </td>
+                        <td>2021-04-13 15:28</td>
+                        <td>1</td>
+                        <td>巧克力杯子</td>
+
+                        <!-- 評價星等_1 開始 -->
+                        <td>
+                          <div class="single-comment">
+                            <div class="comment-content">
+                              <div class="author-name-rating">
+                                <div class="review-star">
+                                  <div class="star" style="width: 80%;"></div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                        <!-- 評價星等_1 結束 -->
+
+                        <td><div class="badge badge-success">Done</div></td>
+
+                        <td>
+                          <div class="d-flex align-items-center list-action">
+                            <a class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View" href="#"><i class="ri-eye-line mr-0"></i></a>
+                            <a class="badge bg-success mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit" href="#"><i class="ri-pencil-line mr-0"></i></a>
+                            <a class="badge bg-warning mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" href="#"><i class="ri-delete-bin-line mr-0"></i></a>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <div class="checkbox d-inline-block">
+                            <input type="checkbox" class="checkbox-input" id="checkbox2">
+                            <label for="checkbox2" class="mb-0"></label>
+                          </div>
+                        </td>
+                        <td>2021-04-13 15:28</td>
+                        <td>1</td>
+                        <td>巧克力杯子</td>
+
+                        <!-- 評價星等_1 開始 -->
+                        <td>
+                          <div class="single-comment">
+                            <div class="comment-content">
+                              <div class="author-name-rating">
+                                <div class="review-star">
+                                  <div class="star" style="width: 80%;"></div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                        <!-- 評價星等_1 結束 -->
+
+                        <td><div class="badge badge-success">Done</div></td>
+
+                        <td>
+                          <div class="d-flex align-items-center list-action">
+                            <a class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View" href="#"><i class="ri-eye-line mr-0"></i></a>
+                            <a class="badge bg-success mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit" href="#"><i class="ri-pencil-line mr-0"></i></a>
+                            <a class="badge bg-warning mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" href="#"><i class="ri-delete-bin-line mr-0"></i></a>
+                          </div>
+                        </td>
+                      </tr>
+
+                    </tbody>
+                    <!-- 客戶評論們 結束 -->
+                  </table>
+                </div>
+              </div>
+            </div>
+            <!-- Page end  -->
+          </div>
+          <!-- Modal Edit -->
+          <div class="modal fade" id="edit-note" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-body">
+                  <div class="popup text-left">
+                    <div class="media align-items-top justify-content-between">
+                      <h3 class="mb-3">Product</h3>
+                      <div class="btn-cancel p-0" data-dismiss="modal"><i class="las la-times"></i></div>
+                    </div>
+                    <div class="content edit-notes">
+                      <div class="card card-transparent card-block card-stretch event-note mb-0">
+                        <div class="card-body px-0 bukmark">
+                          <div class="d-flex align-items-center justify-content-between pb-2 mb-3 border-bottom">
+                            <div class="quill-tool">
+                            </div>
+                          </div>
+                          <div id="quill-toolbar1">
+                            <p>Virtual Digital Marketing Course every week on Monday, Wednesday and Saturday.Virtual Digital Marketing Course every week on Monday</p>
+                          </div>
+                        </div>
+                        <div class="card-footer border-0">
+                          <div class="d-flex flex-wrap align-items-ceter justify-content-end">
+                            <div class="btn btn-primary mr-3" data-dismiss="modal">Cancel</div>
+                            <div class="btn btn-outline-primary" data-dismiss="modal">Save</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+
+      <!-- Backend Bundle JavaScript -->
+      <script src="assets/js/backend-bundle.min.js"></script>
+
+      <!-- Table Treeview JavaScript -->
+      <script src="assets/js/table-treeview.js"></script>
+
+      <!-- Chart Custom JavaScript -->
+      <script src="assets/js/customizer.js"></script>
+
+      <!-- Chart Custom JavaScript -->
+      <script async src="assets/js/chart-custom.js"></script>
+
+      <!-- app JavaScript -->
+      <script src="assets/js/app.js"></script>
+
+      <!-- Timestamp轉指定格式 -->
+      <script src="assets/js/moment.js"></script>
+
+      <!-- 加入script   footer用不到 -->
+      <script>
+      $(document).ready(function () {
+        $('.header').load('header.html')
+        // $('.footer').load('footer.html')
+      })
+      </script>
+
+
+      <!-- 以下為js功能 -->
+      <script type="text/javascript">
+
+      //以下為功能
+      $(function(){
+        //欲得到所有評論資料(listMemberComment)的get請求
+        $.get("/dessert_shop/listMemberComment/getListMemberComment", {}, function(data){
+          console.log("欲得到所有評論資料(listMemberComment)的	$.get的:");
+          console.log("data.data.length = " + data.data.length);
+          console.log("data.data = " + data.data);
+          console.log(data.data);
+          console.log("------------------------");
+
+          for(let i = 0; i < data.data.length; i++){
+            console.log("欲得到所有評論資料(listMemberComment)的	第 1 個for迴圈的:");
+            console.log("data.data.length = " + data.data.length);
+            console.log("data.data = " + data.data);
+            console.log(data.data);
+            console.log("------------------------");
+            let review_id = data.data[i].review_id;
+            let order_detail_id = data.data[i].order_detail_id;
+            let product_id = data.data[i].product_id;
+            let comment_content = data.data[i].comment_content;
+            let rating = data.data[i].rating;
+            let comment_time = moment(data.data[i].comment_time).format('YYYY-MM-DD HH:mm:ss');
+            let comment_status = data.data[i].comment_status;
+            let reply_id = data.data[i].reply_id;
+            let reply_content = data.data[i].reply_content;
+            let reply_time = moment(data.data[i].reply_time).format('YYYY-MM-DD HH:mm:ss');
+            let employee_account = data.data[i].employee_account;
+            let product_name = data.data[i].product_name;
+            let review_image_id = data.data[i].review_image_id;
+            let review_image = data.data[i].review_image;
+
+            let review_list = '<tr>\n'
+            + '<td>\n'
+            + '<div class="checkbox d-inline-block">\n'
+            + '<input type="checkbox" class="checkbox-input" id="checkbox2">\n'
+            + '<label for="checkbox2" class="mb-0"></label>\n'
+            + '</div>\n'
+            + '</td>\n'
+            + '<td>'+ order_time +'</td>\n'
+            + '<td>1</td>\n'
+            + '<td>'+ product_name +'</td>\n'
+
+            + '<!-- 評價星等_1 開始 -->\n'
+            + '<td>\n'
+            + '<div class="single-comment">\n'
+            + '<div class="comment-content">\n'
+            + '<div class="author-name-rating">\n'
+            + '<div class="review-star">\n'
+            + '<div class="review-star" data-rating="'+ rating +'"></div>\n'
+            + '</div>\n'
+            + '</div>\n'
+            + '</div>\n'
+            + '</div>\n'
+            + '</td>\n'
+            + '<!-- 評價星等_1 結束 -->\n'
+
+            + '<td><div class="badge badge-success">Done</div></td>\n' //以comment_status做判斷
+
+            + '<td>\n'
+            + '<div class="d-flex align-items-center list-action">\n'
+            + '<a class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View" href="#"><i class="ri-eye-line mr-0"></i></a>\n'
+            + '<a class="badge bg-success mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit" href="#"><i class="ri-pencil-line mr-0"></i></a>\n'
+            + '<a class="badge bg-warning mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" href="#"><i class="ri-delete-bin-line mr-0"></i></a>\n'
+            + '</div>\n'
+            + '</td>\n'
+            + '</tr>';
+
+            if(comment_status == 0){
+              $(this).closest("td").append('<div class="badge badge-warning">Yet</div>')
+            } else {
+              $(this).closest("td").append('<div class="badge badge-success">Done</div>')
+            }
+
+            $("tbody.ligth-body:last-child").append(review_list);
+
+
+          }
+
+
+
+
+
+
+
+
+
+        }) //欲得到所有評論資料(listMemberComment)的get請求
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // 歷史評價縮合
+      // $("ul").on("click", "button.switch_btn", function(e) {
+      //   e.preventDefault();
+      //   $(this).closest("li").toggleClass("-on");
+      //   $(this).closest("li").find("div.inner_block").slideToggle();
+      // });
+      //
+      // $("tr").find('a[data-original-title="View"]').on('click','a[data-reviewid="'+ review_id +']', function(e){
+      //   e.preventDefault();
+      //   alert(444444444);
+      //
+      //   console.log(this);
+      //   $(this).closest("td").append(content1);
+      //   // $(this).closest("li").find("div.inner_block").slideToggle();
+      //   // $(this).closest("li").toggleClass("-on");
+      //   // $(this).closest("li").find("div.inner_block").slideToggle();
+      // })
+
+
+
+
+
+
+
+
+
+
+
+
+      </script>
+
+
+
+
+    </body>
+    </html>
