@@ -15,6 +15,7 @@ public interface MemberCommentDao {
 	public MemberCommentBean findByPrimaryKey(Integer review_id);
 
 	public List<MemberCommentBean> getAll();
+
 //	萬用複合查詢(傳入參數型態Map)(回傳 List)
 //  public List<MemberCommentBean> getAll(Map<String, String[]> map);
 
