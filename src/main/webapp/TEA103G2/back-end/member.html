@@ -53,15 +53,9 @@
             <table class="data-table table mb-0 tbl-server-info">
               <thead class="bg-white text-uppercase">
               <tr class="ligth ligth-data">
-                <!--                <th>-->
-                <!--                  <div class="checkbox d-inline-block">-->
-                <!--                    <input type="checkbox" class="checkbox-input" id="checkbox1">-->
-                <!--                    <label for="checkbox1" class="mb-0"></label>-->
-                <!--                  </div>-->
-                <!--                </th>-->
-                <th class="sorting">會員帳號</th>
+                <th>會員帳號</th>
                 <th>會員密碼</th>
-                <th style="width:1000px">姓名</th>
+                <th>姓名</th>
                 <th>電話</th>
                 <th>信箱</th>
                 <th>性別</th>
@@ -119,26 +113,6 @@
   </div>
 </div>
 <!-- Wrapper End-->
-<footer class="iq-footer">
-  <div class="container-fluid">
-    <div class="card">
-      <div class="card-body">
-        <div class="row">
-          <div class="col-lg-6">
-            <ul class="list-inline mb-0">
-              <li class="list-inline-item"><a href="privacy-policy.html">Privacy Policy</a></li>
-              <li class="list-inline-item"><a href="terms-of-service.html">Terms of Use</a></li>
-            </ul>
-          </div>
-          <div class="col-lg-6 text-right">
-            <span class="mr-1"><script>document.write(new Date().getFullYear())</script>©</span> By <a
-                  href="http://www.bootstrapmb.com/">bootstrapmb</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</footer>
 
 
 
@@ -187,7 +161,6 @@
                 let table = $(".data-table").DataTable()
                 table.destroy();
                 table = $(".data-table").DataTable({
-                    "autoWidth": false,
                     "lengthMenu": [3, 5, 10, 20],     //顯示XX像結果
                     "language": {
                         "processing": "處理中...",
@@ -306,7 +279,6 @@ function getRegisterMethod(method){
                 })
             }
         })
-
     });
 
 </script>
