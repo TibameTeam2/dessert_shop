@@ -125,8 +125,8 @@ th, td {
 <!-- 			</tr> -->
 			<tr>
 				<td>Àu´f½X??????:</td>
-				<td><input type="TEXT" name="coupon_code_text" size="45"
-					value="<%=CCB.getCoupon_code_text()%>" /></td>
+				<td><input type="TEXT" name="coupon_code_content" size="45"
+					value="<%=CCB.getCoupon_code_content()%>" /></td>
 			</tr>
 			<tr>
 				<td>Àu´f½X§é»ùºØÃþ:</td>
