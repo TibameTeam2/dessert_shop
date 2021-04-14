@@ -4,30 +4,28 @@ import java.util.Date;
 
 public class LiveSupportMessage {
 
-	private String type; //分辨為聊天還是歷史訊息
+	private String type; // 分辨為聊天還是歷史訊息
 	private String sender;
 	private String receiver;
 	private String message;
-//	private Date chatTime;
-	
-//	public LiveSupportMessage(String type, String sender, String receiver, String message, Date chatTime) {
-//		this.type = type;
-//		this.sender = sender;
-//		this.receiver = receiver;
-//		this.message = message;
-//		this.chatTime = chatTime;
-//	}
-//	
+	private Date chatTime;
 
-	public LiveSupportMessage(String type, String sender, String receiver, String message) {
-		super();
+	public LiveSupportMessage(String type, String sender, String receiver, String message, Date chatTime) {
 		this.type = type;
 		this.sender = sender;
 		this.receiver = receiver;
 		this.message = message;
+		this.chatTime = chatTime;
 	}
+	
 
-
+//	public LiveSupportMessage(String type, String sender, String receiver, String message) {
+//		super();
+//		this.type = type;
+//		this.sender = sender;
+//		this.receiver = receiver;
+//		this.message = message;
+//	}
 
 	public String getType() {
 		return type;
@@ -61,16 +59,20 @@ public class LiveSupportMessage {
 		this.message = message;
 	}
 
-//	public Date getChatTime() {
-//		return chatTime;
-//	}
-//
-//	public void setChatTime(Date chatTime) {
-//		this.chatTime = chatTime;
-//	}
-//	
+	public Date getChatTime() {
+		return chatTime;
+	}
 
+	public void setChatTime(Date chatTime) {
+		this.chatTime = chatTime;
+	}
+
+
+	@Override
+	public String toString() {
+		return "LiveSupportMessage [type=" + type + ", sender=" + sender + ", receiver=" + receiver + ", message="
+				+ message + ", chatTime=" + chatTime + "]";
+	}
 	
 
-	
 }
