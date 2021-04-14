@@ -4,11 +4,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/friendchat.css" type="text/css" />
+<link rel="stylesheet" href="<%=request.getContextPath() %>/css/friendchat.css" type="text/css" />
 <style type="text/css">
 
 </style>
-<title>即時客服</title>
+<title>最大私人聊天室</title>
 </head>
 <body onload="connect();" onunload="disconnect();">
 	<h3 id="statusOutput" class="statusOutput"></h3>
@@ -22,7 +22,7 @@
 	</div>
 </body>
 <script>
-	var MyPoint = "/LiveSupportWS/${uesrId}";
+	var MyPoint = "/LiveSupportWS/${userName}";
 	var host = window.location.host;
 	var path = window.location.pathname;
 	var webCtx = path.substring(0, path.indexOf('/', 1));
@@ -30,7 +30,7 @@
 
 	var statusOutput = document.getElementById("statusOutput");
 	var messagesArea = document.getElementById("messagesArea");
-	var self = '${uesrId}';
+	var self = '${userName}';
 	var webSocket;
 
 	function connect() {
@@ -54,22 +54,21 @@
 				ul.id = "area";
 				messagesArea.appendChild(ul);
 				// 這行的jsonObj.message是從redis撈出跟好友的歷史訊息，再parse成JSON格式處理
-				var chat_history = JSON.parse(jsonObj.chat_history);
-				for (var i = 0; i < chat_history.length; i++) {
-					var historyData = JSON.parse(chat_history[i]);
-					var showMsg = historyData.chat_history;
+				var messages = JSON.parse(jsonObj.message);
+				for (var i = 0; i < messages.length; i++) {
+					var historyData = JSON.parse(messages[i]);
+					var showMsg = historyData.message;
 					var li = document.createElement('li');
 					// 根據發送者是自己還是對方來給予不同的class名, 以達到訊息左右區分
 					historyData.sender === self ? li.className += 'me' : li.className += 'friend';
 					li.innerHTML = showMsg;
 					ul.appendChild(li);
 				}
-
 				messagesArea.scrollTop = messagesArea.scrollHeight;
 			} else if ("chat" === jsonObj.type) {
 				var li = document.createElement('li');
 				jsonObj.sender === self ? li.className += 'me' : li.className += 'friend';
-				li.innerHTML = jsonObj.chat_history;
+				li.innerHTML = jsonObj.message;
 				console.log(li);
 				document.getElementById("area").appendChild(li);
 				messagesArea.scrollTop = messagesArea.scrollHeight;

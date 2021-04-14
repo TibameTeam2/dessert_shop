@@ -1,8 +1,9 @@
 package com.dealer_reply.model;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class DealerReplyBean {
+public class DealerReplyBean implements Serializable{
 	
 	private Integer reply_id;
 	private Integer review_id;

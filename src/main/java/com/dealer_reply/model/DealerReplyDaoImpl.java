@@ -11,7 +11,7 @@ import java.util.List;
 import com.util.JDBCUtil;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-public class DealerReplyBeanDAO {
+public class DealerReplyDaoImpl implements DealerReplyDao{
 
 	private static JdbcTemplate jdbcTemplate;
 	private String DRIVER = JDBCUtil.driver;
@@ -135,8 +135,8 @@ public class DealerReplyBeanDAO {
 		}
 	}
 
-	// findByPK
-	public DealerReplyBean findByPK(Integer reply_id) {
+	// findByPrimaryKey
+	public DealerReplyBean findByPrimaryKey(Integer reply_id) {
 
 		DealerReplyBean DealerReplyBean = null;
 		Connection con = null;
@@ -248,9 +248,10 @@ public class DealerReplyBeanDAO {
 		return list;
 	}
 
+	/*
 	public static void main(String[] args) {
 
-		DealerReplyBeanDAO dao = new DealerReplyBeanDAO();
+		DealerReplyBeanDaoImpl dao = new DealerReplyBeanDaoImpl();
 
 		// 新增
 		DealerReplyBean drInsert = new DealerReplyBean();
@@ -272,7 +273,7 @@ public class DealerReplyBeanDAO {
 		System.out.println("----------有跑刪除----------");
 
 		//查詢主鍵
-		DealerReplyBean drFindByPK = dao.findByPK(1);
+		DealerReplyBean drFindByPK = dao.findByPrimaryKey(1);
 		System.out.println("reply_id: "+drFindByPK.getReply_id() + ",");
 		System.out.println("review_id: "+drFindByPK.getReview_id() + ",");
 		System.out.println("reply_content: "+drFindByPK.getReply_content() + ",");
@@ -292,5 +293,6 @@ public class DealerReplyBeanDAO {
 		}
 		System.out.println("----------有跑查全部----------");
 	}
+	*/
 
 }
