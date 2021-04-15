@@ -204,7 +204,7 @@ public class ProductServlet_front extends BaseServlet {
 
 		for (Part part : parts) {
 			String header = part.getHeader("Content-Disposition");
-//			System.out.println("Part Header:"+header);//
+			System.out.println("Part Header:"+header);//
 			
 			if (header.contains("pic")) { //找到每張照片
 				System.out.println("OKOK");//
@@ -223,7 +223,6 @@ public class ProductServlet_front extends BaseServlet {
 				System.out.println("附加一張照片");
 			}  
 		}
-		// 這裡應該有出錯 照片會一張將一張 兩張:先加一張 又加一張跟兩張
 		System.out.println("for 完的piBeanList:"+ piBeanList);
 		ProductImageService piSvc = new ProductImageService();
 		piSvc.addMultiProductImages(piBeanList);
