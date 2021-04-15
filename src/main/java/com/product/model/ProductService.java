@@ -25,26 +25,42 @@ public class ProductService {
 		
 		return productBean;
 	}
-// 給評論用	
-//	public Boolean addReviewStar(ProductBean productBean) {
-//		
-//		dao.updateReviewStar(productBean);
-//		
-//		return productBean;
-//	}
+// 給評論與星等用
+	// 星等依傳過來的數字，review直接加1
+	public Boolean addReviewStar(Integer product_id, Integer single_star) {
+		ProductBean productBean = new ProductBean();
+		productBean = dao.findByPrimaryKey(product_id);
+		if(productBean == null) {
+			System.out.println("更新商品評價失敗！");
+			return false;
+		}else {
+			Integer databaseTotal_star = productBean.getTotal_star();
+			Integer newTotal_star = databaseTotal_star + single_star;
+			productBean.setTotal_star(newTotal_star);
+			
+			Integer newTotal_view = productBean.getTotal_review()+1;
+			productBean.setTotal_review(newTotal_view);
+			dao.update(productBean);
+			System.out.println("新增商品評價成功！");
+			return true;
+		}
+		
+	}
 	
 // 給更新銷售	
 	public Boolean addProductPurchase(Integer product_id, Integer single_purchase) {
 	
 		ProductBean productBean = new ProductBean();
 		productBean = dao.findByPrimaryKey(product_id);
-		if(productBean == null ) {
+		if(productBean == null | single_purchase <= 0 ) {
+			System.out.println("更新商品銷售失敗！");
 			return false;
 		}else {
 			Integer databaseTotal_purchase = productBean.getTotal_purchase();
 			Integer newTotal_purchase = databaseTotal_purchase + single_purchase;
 			productBean.setTotal_purchase(newTotal_purchase);
 			dao.update(productBean);
+			System.out.println("更新商品銷售成功！");
 			return true;
 		}
 	}

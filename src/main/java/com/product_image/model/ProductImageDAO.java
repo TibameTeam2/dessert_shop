@@ -78,7 +78,7 @@ public class ProductImageDAO implements ProductImageDAO_interface{
 			rs = pstmt.executeQuery();
 			if(rs.next()) {			
 				img_count =rs.getInt(1);
-				System.out.println(img_count);
+				System.out.println("piDAO裡面的img_count:" + img_count);
 			}
 			rs.close();
 

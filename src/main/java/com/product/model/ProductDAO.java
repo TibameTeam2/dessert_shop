@@ -1367,24 +1367,13 @@ public List<ProductBean> getAllImage(Integer product_id) {
 		
 //給別人用，測試:		
 		//更新銷售
-//		ProductBean productBean = new ProductBean();
-//		productBean = dao.findByPrimaryKey(23);
-//		Integer databaseTotal_purchase = productBean.getTotal_purchase();
-//		Integer newTotal_purchase = databaseTotal_purchase + 10;
-//		productBean.setTotal_purchase(newTotal_purchase);
-//		dao.update(productBean);
+//		ProductService productSvc = new ProductService();
+//		productSvc.addProductPurchase(25, 5);
 		
 		
-		// 更新評論
-//		ProductBean productBean = new ProductBean();
-//		
-//		productBean.setTotal_star(115);
-//		productBean.setTotal_review(25);
-//		productBean.setProduct_id(4);
-//		
-//		dao.updateReviewStar(productBean);
-//
-//		
+		// 更新評論與星等
+//		ProductService productSvc = new ProductService();
+//		productSvc.addReviewStar(25, 4);
 		
 		
 		
