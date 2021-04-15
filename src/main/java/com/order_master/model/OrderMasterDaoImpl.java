@@ -388,7 +388,7 @@ public class OrderMasterDaoImpl implements OrderMasterDao {
 	}
 
 
-	public OrderMasterBean getOrderMaster(String member_account) {
+	public List<OrderMasterBean> getOrderMaster(String member_account) {
 		
 		SELECT_PK =
 				"SELECT * FROM order_master where member_account = ?";
@@ -396,6 +396,7 @@ public class OrderMasterDaoImpl implements OrderMasterDao {
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
 					
+			List<OrderMasterBean> list = new ArrayList<OrderMasterBean>();
 			OrderMasterBean omBean = null;
 			
 			try {
@@ -419,6 +420,7 @@ public class OrderMasterDaoImpl implements OrderMasterDao {
 					omBean.setInvoice_number(rs.getString("invoice_number"));
 					omBean.setOrder_total(rs.getInt("order_total"));
 					omBean.setOrder_remarks(rs.getString("order_remarks"));
+					list.add(omBean);
 				}
 				
 				
@@ -448,71 +450,11 @@ public class OrderMasterDaoImpl implements OrderMasterDao {
 				}
 			}
 			
-			return omBean;
+			return list;
 			
 		}
 		
 		
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	public static void main(String[] args) {
-		OrderMasterDaoImpl dao = new OrderMasterDaoImpl();
-		
-		//insert
-		//設定資料
-//		OrderMasterBean omBean = new OrderMasterBean();
-//		omBean.setMember_account("tom");
-//		Timestamp ts = Timestamp.valueOf("2021-02-01 01:02:03");
-//		omBean.setPayment_time(ts);
-//		omBean.setPayment_method(1);
-//		omBean.setCoupon_id(1);
-//		omBean.setOrder_status(1);
-//		omBean.setInvoice_number("BB12345678");
-//		omBean.setOrder_total(877);
-//		omBean.setOrder_remarks("紅色死神4");
-//		dao.insert(omBean);
-		
-		//update
-		//設定資料
-//		OrderMasterBean omBean = new OrderMasterBean();
-//		omBean.setOrder_master_id(3);
-//		omBean.setMember_account("jason");
-//		Timestamp ts = Timestamp.valueOf("2021-02-02 03:04:05");
-//		omBean.setPayment_time(ts);
-//		omBean.setPayment_method(1);
-//		omBean.setCoupon_id(2);
-//		omBean.setOrder_status(1);
-//		omBean.setInvoice_number("CC12345678");
-//		omBean.setOrder_total(8777);
-//		omBean.setOrder_remarks("紅色死神666");
-//		dao.update(omBean);
-		
-		//delete
-//		dao.delete(4);
-		
-		//select_pk
-//		OrderMasterBean omBean = dao.findByPrimaryKey(1);
-//		System.out.print(omBean);
-		
-		//select_all
-//		List<OrderMasterBean> list = dao.getAll();
-//		for (OrderMasterBean omBean : list) {
-//			System.out.println(omBean);
-//		}
-		
-		
-//		select_member
-		OrderMasterBean omBean = dao.getOrderMaster("tom");
-		System.out.print(omBean);
-		
-	}
 	
 	
 }

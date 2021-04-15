@@ -105,7 +105,7 @@ th, td {
 			<tr>
 				<td>Àu´f½X¤º®e:</td>
 				<td><input type="TEXT" name="coupon_code_text" size="45"
-					value="<%=(CCB == null) ? "" : CCB.getCoupon_code_text()%>" /></td>
+					value="<%=(CCB == null) ? "" : CCB.getCoupon_code_content()%>" /></td>
 			</tr>
 
  		
