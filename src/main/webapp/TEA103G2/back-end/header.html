@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Header</title>
 
+  <!--  50~150行 傑森 -->
+  <!-- 150~250行 玉婷 -->
+  <!-- 250~350行 東陞 -->
+  <!-- 350~450行 語心 -->
+  <!-- 450~550行 浩倫 -->
+  <!-- 550~650行 垚筠 -->
+
   <!-- Favicon -->
   <link rel="shortcut icon" href="assets/images/favicon.ico"/>
   <link rel="stylesheet" href="assets/css/backend-plugin.min.css">
@@ -39,6 +46,14 @@
             <span class="ml-4">Dashboards</span>
           </a>
         </li>
+
+
+
+
+
+
+
+
         <li class="">
           <a href="member.html" class="svg-icon">
             <svg class="svg-icon" id="p-dash1" width="20" height="20" xmlns="http://www.w3.org/2000/svg"
@@ -51,6 +66,94 @@
             <span class="ml-4">會員管理</span>
           </a>
         </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         <li class=" ">
           <a href="#product" class="collapsed" data-toggle="collapse" aria-expanded="false">
             <svg class="svg-icon" id="p-dash2" width="20" height="20" xmlns="http://www.w3.org/2000/svg"
@@ -101,6 +204,464 @@
             </li>
           </ul>
         </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         <li class=" ">
           <a href="#category" class="collapsed" data-toggle="collapse" aria-expanded="false">
             <svg class="svg-icon" id="p-dash3" width="20" height="20" xmlns="http://www.w3.org/2000/svg"
@@ -1039,5 +1600,47 @@
 
 <!--&lt;!&ndash; moment &ndash;&gt;-->
 <!--<script src="assets/js/moment.js"></script>-->
+
+<script>
+    /*---------------------------------------------------------------------
+      Sidebar Widget
+      -----------------------------------------------------------------------*/
+
+    // jQuery(document).on("click", ".iq-menu > li > a", function () {
+    //     jQuery(".iq-menu > li > a").parent().removeClass("active");
+    //     jQuery(this).parent().addClass("active");
+    // });
+    //
+    // // Active menu
+    // var parents = jQuery("li.active").parents(".iq-submenu.collapse");
+    //
+    // parents.addClass("show");
+    //
+    // parents.parents("li").addClass("active");
+    // jQuery('li.active > a[aria-expanded="false"]').attr("aria-expanded", "true");
+
+    /*---------------------------------------------------------------------
+        Scrollbar
+        -----------------------------------------------------------------------*/
+
+    jQuery(window)
+        .on("resize", function () {
+            if (jQuery(this).width() <= 1299) {
+                jQuery("#salon-scrollbar").addClass("data-scrollbar");
+            } else {
+                jQuery("#salon-scrollbar").removeClass("data-scrollbar");
+            }
+        })
+        .trigger("resize");
+
+    jQuery(".data-scrollbar").each(function () {
+        var attr = $(this).attr("data-scroll");
+        if (typeof attr !== typeof undefined && attr !== false) {
+            let Scrollbar = window.Scrollbar;
+            var a = jQuery(this).data("scroll");
+            Scrollbar.init(document.querySelector('div[data-scroll= "' + a + '"]'));
+        }
+    });
+</script>
 </body>
 </html>

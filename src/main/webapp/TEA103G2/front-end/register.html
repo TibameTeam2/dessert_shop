@@ -418,7 +418,7 @@
         /**************檢查信箱****************/
         function checkEmail() {
             let email = $("#member_email").val().trim()
-            let reg = /^\w{3,20}$/;
+            let reg =  /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/;
             let flag = reg.test(email);
             if (flag) {
                 //密碼合法

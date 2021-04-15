@@ -206,6 +206,9 @@ public class CartProductService {
 		Integer product_id = cartBean.getProduct_id();
 		Integer product_quantity = cartBean.getProduct_quantity();
 		Integer max_product_quantity = dao.selectProductAvailableQty(product_id);
+		if (product_quantity <= 0 || max_product_quantity == 0) {
+			return ;
+		}
 			
 		CartBean cartBean_exist = dao.findCart(member_account, product_id);
 		if (cartBean_exist == null) {

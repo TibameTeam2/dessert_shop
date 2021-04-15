@@ -270,6 +270,9 @@ public class OrderDetailDaoImpl implements OrderDetailDao {
 		return list_OrderDetailBean;
 
 	}
+	
+	
+	
 
 	@Override
 	public List<OrderDetailBean> findByOrderMasterId(Integer order_master_id) {
@@ -336,6 +339,80 @@ public class OrderDetailDaoImpl implements OrderDetailDao {
 		return list_OrderDetailBean;
 
 	}
+	
+	
+	
+	public List<OrderDetailBean> getAllByOrderMasterId(Integer order_master_id) {
+
+		List<OrderDetailBean> list_OrderDetailBean = new ArrayList<OrderDetailBean>();
+		OrderDetailBean odBean = null;
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			pstmt = con.prepareStatement("SELECT order_detail_id, order_detail.product_id, product.product_name, product_qty, order_detail.product_price FROM order_detail\r\n" + 
+					"left join product on order_detail.product_id = product.product_id\r\n" + 
+					"where order_master_id = ?");
+
+			pstmt.setInt(1, order_master_id);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				odBean = new OrderDetailBean();
+				odBean.setOrder_detail_id(rs.getInt("order_detail_id"));
+				odBean.setProduct_id(rs.getInt("product_id"));
+				odBean.setProduct_qty(rs.getInt("product_qty"));
+				odBean.setProduct_price(rs.getInt("product_price"));
+				odBean.setProduct_name(rs.getString("product_name"));
+				list_OrderDetailBean.add(odBean);
+			}
+
+			// Handle any driver errors
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+
+		return list_OrderDetailBean;
+
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 
 	public static void main(String[] args) {
 

@@ -91,7 +91,7 @@ th, td {
 						
 						<td><%=CCB.getCoupon_code_expire_date() %></td>
 						<td><%=CCB.getCoupon_code_text_content() %></td>
-						<td><%=CCB.getCoupon_code_text() %></td>
+						<td><%=CCB.getCoupon_code_content() %></td>
 						<td><%=CCB.getDiscount_type() %></td>
 						<td><%=CCB.getEmployee_account() %></td>
 						
