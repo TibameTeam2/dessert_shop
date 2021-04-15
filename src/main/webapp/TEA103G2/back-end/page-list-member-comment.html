@@ -563,114 +563,6 @@
                         </td>
                       </tr>
 
-
-                      <tr>
-                        <td>
-                          <div class="checkbox d-inline-block">
-                            <input type="checkbox" class="checkbox-input" id="checkbox2">
-                            <label for="checkbox2" class="mb-0"></label>
-                          </div>
-                        </td>
-                        <td>2021-04-13 15:28</td>
-                        <td>1</td>
-                        <td>巧克力杯子</td>
-
-                        <!-- 評價星等_1 開始 -->
-                        <td>
-                          <div class="single-comment">
-                            <div class="comment-content">
-                              <div class="author-name-rating">
-                                <div class="review-star">
-                                  <div class="star" style="width: 80%;"></div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </td>
-                        <!-- 評價星等_1 結束 -->
-
-                        <td><div class="badge badge-success">Done</div></td>
-
-                        <td>
-                          <div class="d-flex align-items-center list-action">
-                            <a class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View" href="#"><i class="ri-eye-line mr-0"></i></a>
-                            <a class="badge bg-success mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit" href="#"><i class="ri-pencil-line mr-0"></i></a>
-                            <a class="badge bg-warning mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" href="#"><i class="ri-delete-bin-line mr-0"></i></a>
-                          </div>
-                        </td>
-                      </tr>
-
-
-                      <tr>
-                        <td>
-                          <div class="checkbox d-inline-block">
-                            <input type="checkbox" class="checkbox-input" id="checkbox2">
-                            <label for="checkbox2" class="mb-0"></label>
-                          </div>
-                        </td>
-                        <td>2021-04-13 15:28</td>
-                        <td>1</td>
-                        <td>巧克力杯子</td>
-
-                        <!-- 評價星等_1 開始 -->
-                        <td>
-                          <div class="single-comment">
-                            <div class="comment-content">
-                              <div class="author-name-rating">
-                                <div class="review-star">
-                                  <div class="star" style="width: 80%;"></div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </td>
-                        <!-- 評價星等_1 結束 -->
-
-                        <td><div class="badge badge-success">Done</div></td>
-
-                        <td>
-                          <div class="d-flex align-items-center list-action">
-                            <a class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View" href="#"><i class="ri-eye-line mr-0"></i></a>
-                            <a class="badge bg-success mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit" href="#"><i class="ri-pencil-line mr-0"></i></a>
-                            <a class="badge bg-warning mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" href="#"><i class="ri-delete-bin-line mr-0"></i></a>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <div class="checkbox d-inline-block">
-                            <input type="checkbox" class="checkbox-input" id="checkbox2">
-                            <label for="checkbox2" class="mb-0"></label>
-                          </div>
-                        </td>
-                        <td>2021-04-13 15:28</td>
-                        <td>1</td>
-                        <td>巧克力杯子</td>
-
-                        <!-- 評價星等_1 開始 -->
-                        <td>
-                          <div class="single-comment">
-                            <div class="comment-content">
-                              <div class="author-name-rating">
-                                <div class="review-star">
-                                  <div class="star" style="width: 80%;"></div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </td>
-                        <!-- 評價星等_1 結束 -->
-
-                        <td><div class="badge badge-success">Done</div></td>
-
-                        <td>
-                          <div class="d-flex align-items-center list-action">
-                            <a class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View" href="#"><i class="ri-eye-line mr-0"></i></a>
-                            <a class="badge bg-success mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit" href="#"><i class="ri-pencil-line mr-0"></i></a>
-                            <a class="badge bg-warning mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" href="#"><i class="ri-delete-bin-line mr-0"></i></a>
-                          </div>
-                        </td>
-                      </tr>
                       <tr>
                         <td>
                           <div class="checkbox d-inline-block">
@@ -784,6 +676,11 @@
       <!-- 以下為js功能 -->
       <script type="text/javascript">
 
+      getAllComment();
+      function getAllComment(){
+        var action =
+      }
+
       //以下為功能
       $(function(){
         //欲得到所有評論資料(listMemberComment)的get請求
@@ -793,6 +690,86 @@
           console.log("data.data = " + data.data);
           console.log(data.data);
           console.log("------------------------");
+
+          if(data.flag){
+            let table = $(".data-table").DataTable();
+            table.destroy();
+            table = $(".data-table").DataTable({
+              "autoWidth": false,
+              "lengthMenu": [3, 5, 10, 20],     //顯示XX像結果
+              "language": {
+                "processing": "處理中...",
+                "loadingRecords": "載入中...",
+                "lengthMenu": "顯示 _MENU_ 項結果",
+                "zeroRecords": "沒有符合的結果",
+                "info": "顯示第 _START_ 至 _END_ 項結果，共 _TOTAL_ 項",
+                "infoEmpty": "顯示第 0 至 0 項結果，共 0 項",
+                "infoFiltered": "(從 _MAX_ 項結果中過濾)",
+                "infoPostFix": "",
+                "search": "搜尋:",
+                "paginate": {
+                  "first": "第一頁",
+                  "previous": "上一頁",
+                  "next": "下一頁",
+                  "last": "最後一頁"
+                },
+                "aria": {
+                  "sortAscending": ": 升冪排列",
+                  "sortDescending": ": 降冪排列"
+                }
+              },
+              // "columns": [
+              //     { "data": "name" }, //第一欄使用data中的name
+              //     { "data": "age" } //第二欄使用data中的age
+              // ],
+              // "columns": [
+              //     {
+              //         title: "會員帳號",
+              //         data: "member_account"
+              //     },
+              //     {
+              //         title: "會員密碼",
+              //         data: "member_password"
+              //     },
+              // ]
+              "columnDefs": [
+                {
+                  "targets": [1],    //欄位從0開始算
+                  "visible": true,   //欄位是否顯示 預設是true
+                  "orderable": false  //是否可以排序
+                },
+                {
+                  "targets": [2],    //欄位從0開始算
+                  "visible": true,   //欄位是否顯示 預設是true
+                  "orderable": false,  //是否可以排序
+                  "width": "1%"
+                }
+
+              ]
+            })
+            table.clear().draw();
+            for(let i = 0; i < data.data.length; i++){
+              table.row.add([
+                data.data[i].review_id,
+                data.data[i].order_detail_id,
+                data.data[i].product_id,
+                data.data[i].comment_content,
+                data.data[i].rating,
+                moment(data.data[i].comment_time).format('YYYY-MM-DD HH:mm:ss'),
+                data.data[i].comment_status == 1 ? "已回覆" : "未回覆",
+                data.data[i].reply_id,
+                data.data[i].reply_content,
+                data.data[i].product_id,
+                moment(data.data[i].reply_time).format('YYYY-MM-DD HH:mm:ss'),
+                data.data[i].employee_account,
+                data.data[i].product_name,
+                data.data[i].review_image_id,
+                data.data[i].review_image,
+
+
+              ]).draw(false);
+            }
+          }
 
           for(let i = 0; i < data.data.length; i++){
             console.log("欲得到所有評論資料(listMemberComment)的	第 1 個for迴圈的:");
@@ -822,8 +799,8 @@
             + '<label for="checkbox2" class="mb-0"></label>\n'
             + '</div>\n'
             + '</td>\n'
-            + '<td>'+ order_time +'</td>\n'
-            + '<td>1</td>\n'
+            + '<td>'+ comment_time +'</td>\n'
+            + '<td>'+ order_detail_id +'</td>\n'
             + '<td>'+ product_name +'</td>\n'
 
             + '<!-- 評價星等_1 開始 -->\n'
@@ -832,16 +809,21 @@
             + '<div class="comment-content">\n'
             + '<div class="author-name-rating">\n'
             + '<div class="review-star">\n'
-            + '<div class="review-star" data-rating="'+ rating +'"></div>\n'
+            + '<div class="review-star" data-rating="'+ rating +'">\n'
+            + '<div class="star"></div>\n'
+            + '</div>\n'
             + '</div>\n'
             + '</div>\n'
             + '</div>\n'
             + '</div>\n'
             + '</td>\n'
             + '<!-- 評價星等_1 結束 -->\n'
+            + '<td data-commentstatus="comment_status">\n'
+            +
 
-            + '<td><div class="badge badge-success">Done</div></td>\n' //以comment_status做判斷
+            // '<div class="badge badge-success">Done</div>\n'
 
+            + '</td>\n' //以comment_status做判斷
             + '<td>\n'
             + '<div class="d-flex align-items-center list-action">\n'
             + '<a class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View" href="#"><i class="ri-eye-line mr-0"></i></a>\n'
@@ -851,10 +833,31 @@
             + '</td>\n'
             + '</tr>';
 
-            if(comment_status == 0){
-              $(this).closest("td").append('<div class="badge badge-warning">Yet</div>')
+
+            if (rating == 1) {
+              $("div[class='star']").css('style', 'width:20%');
+              // $("div[class='review-star']").prepend('<div class="star" style="width:20%">');
+            } else if (rating == 2) {
+              $("div[class='star']").css('style', 'width:40%');
+              // $("div[class='review-star']").prepend('<div class="star" style="width:40%">');
+            } else if (rating == 3) {
+              $("div[class='star']").css('style', 'width:60%');
+              // $("div[class='review-star']").prepend('<div class="star" style="width:60%">');
+            } else if (rating == 4) {
+              $("div[class='star']").css('style', 'width:80%');
+              // $("div[class='review-star']").prepend('<div class="star" style="width:80%">');
+            } else if (rating == 5) {
+              $("div[class='star']").css('style', 'width:100%');
+              // $("div[class='review-star']").prepend('<div class="star" style="width:100%">');
             } else {
-              $(this).closest("td").append('<div class="badge badge-success">Done</div>')
+              $("div[class='star']").css('style', 'width:0%');
+              // $("div[class='review-star']").prepend('<div class="star" style="width:0%">');
+            }
+
+            if(comment_status == 0){
+              $("td[data-commentstatus='comment_status']").append('<div class="badge badge-warning">Yet</div>')
+            }else {
+              $("td[data-commentstatus='comment_status']").append('<div class="badge badge-success">Done</div>')
             }
 
             $("tbody.ligth-body:last-child").append(review_list);
