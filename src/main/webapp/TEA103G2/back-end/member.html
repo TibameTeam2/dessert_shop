@@ -47,12 +47,12 @@
         <div class="col-lg-12">
           <div class="d-flex flex-wrap flex-wrap align-items-center justify-content-between mb-4">
             <div>
-              <h4 class="mb-3">Product List</h4>
-              <p class="mb-0">The product list effectively dictates product presentation and provides space<br> to list
-                your products and offering in the most appealing way.</p>
+              <h4 class="mb-3">會員列表</h4>
+              <!--              <p class="mb-0">The product list effectively dictates product presentation and provides space<br> to list-->
+              <!--                your products and offering in the most appealing way.</p>-->
             </div>
             <a href="page-add-product.html" class="btn btn-primary add-list" data-toggle="modal"
-               data-target="#new-order1"><i class="las la-plus mr-3"></i>Add Product</a>
+               data-target="#new-order1"><i class="las la-plus mr-3"></i>新增會員</a>
           </div>
         </div>
         <div class="col-lg-12">
@@ -82,487 +82,409 @@
       </div>
       <!-- Page end  -->
     </div>
-    <!-- Modal Edit -->
-    <div class="modal fade" id="edit-note" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Wrapper End-->
+
+    <!--新增會員燈箱-->
+    <div class="modal fade" id="new-order1" tabindex="-1" role="dialog" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-body">
             <div class="popup text-left">
-              <div class="media align-items-top justify-content-between">
-                <h3 class="mb-3">Product</h3>
-                <div class="btn-cancel p-0" data-dismiss="modal"><i class="las la-times"></i></div>
-              </div>
-              <div class="content edit-notes">
-                <div class="card card-transparent card-block card-stretch event-note mb-0">
-                  <div class="card-body px-0 bukmark">
-                    <div class="d-flex align-items-center justify-content-between pb-2 mb-3 border-bottom">
-                      <div class="quill-tool">
+
+              <div class="container-fluid add-form-list">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="card">
+                      <div class="card-header d-flex justify-content-between">
+                        <div class="header-title">
+                          <h4 class="card-title">新增會員</h4>
+                        </div>
                       </div>
-                    </div>
-                    <div id="quill-toolbar1">
-                      <p>Virtual Digital Marketing Course every week on Monday, Wednesday and Saturday.Virtual Digital
-                        Marketing Course every week on Monday</p>
-                    </div>
-                  </div>
-                  <div class="card-footer border-0">
-                    <div class="d-flex flex-wrap align-items-ceter justify-content-end">
-                      <div class="btn btn-primary mr-3" data-dismiss="modal">Cancel</div>
-                      <div class="btn btn-outline-primary" data-dismiss="modal">Save</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Wrapper End-->
+                      <div class="card-body">
+                        <form id="addMemberForm" action="page-list-product.html" data-toggle="validator"
+                              enctype="multipart/form-data">
+                          <div class="row">
 
-
-<div class="modal fade" id="new-order1" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-body">
-        <div class="popup text-left">
-
-          <div class="container-fluid add-form-list">
-            <div class="row">
-              <div class="col-sm-12">
-                <div class="card">
-                  <div class="card-header d-flex justify-content-between">
-                    <div class="header-title">
-                      <h4 class="card-title">新增會員</h4>
-                    </div>
-                  </div>
-                  <div class="card-body">
-                    <form id="addMemberForm" action="page-list-product.html" data-toggle="validator" enctype="multipart/form-data">
-                      <div class="row">
-
-                        <div class="col-md-12">
-                          <div class="form-group">
-                            <label>會員帳號</label>
-                            <input type="text" class="form-control" placeholder="" data-errors="Please Enter Name."
-                                   required name="member_account">
-                            <div class="help-block with-errors"></div>
-                          </div>
-                        </div>
-                        <div class="col-md-12">
-                          <div class="form-group">
-                            <label>會員密碼</label>
-                            <input type="text" class="form-control" placeholder="" data-errors="Please Enter Name."
-                                   required name="member_password">
-                            <div class="help-block with-errors"></div>
-                          </div>
-                        </div>
-                        <div class="col-md-12">
-                          <div class="form-group">
-                            <label>姓名</label>
-                            <input type="text" class="form-control" placeholder="" data-errors="Please Enter Name."
-                                   required name="member_name">
-                            <div class="help-block with-errors"></div>
-                          </div>
-                        </div>
-                        <div class="col-md-12">
-                          <div class="form-group">
-                            <label>電話</label>
-                            <input type="text" class="form-control" placeholder="" data-errors="Please Enter Name."
-                                   required>
-                            <div class="help-block with-errors"></div>
-                          </div>
-                        </div>
-                        <div class="col-md-12">
-                          <div class="form-group">
-                            <label>信箱</label>
-                            <input type="text" class="form-control" placeholder="" data-errors="Please Enter Name."
-                                   required>
-                            <div class="help-block with-errors"></div>
-                          </div>
-                        </div>
-                        <div class="col-md-12">
-                          <div class="form-group">
-                            <label>性別</label>
-                            <div class="form-control">
-                              <div class="custom-control custom-radio custom-radio-color-checked custom-control-inline">
-                                <input type="radio" id="customRadio-1" name="customRadio-10"
-                                       class="custom-control-input bg-primary" checked>
-                                <label class="custom-control-label" for="customRadio-1"> 男 </label>
-                              </div>
-
-                              <div class="custom-control custom-radio custom-radio-color-checked custom-control-inline">
-                                <input type="radio" id="customRadio-3" name="customRadio-10"
-                                       class="custom-control-input bg-danger">
-                                <label class="custom-control-label" for="customRadio-3"> 女 </label>
+                            <div class="col-md-12">
+                              <div class="form-group">
+                                <label>會員帳號</label>
+                                <input type="text" class="form-control" placeholder="" data-errors="Please Enter Name."
+                                       required name="member_account">
+                                <div class="help-block with-errors"></div>
                               </div>
                             </div>
-                            <div class="help-block with-errors"></div>
-                          </div>
-                        </div>
-                        <div class="col-md-12">
-                          <div class="form-group">
-                            <label>生日</label>
-                            <input type="date" class="form-control" placeholder="" data-errors="Please Enter Name."
-                                   required>
-                            <div class="help-block with-errors"></div>
-                          </div>
-                        </div>
-                        <div class="col-md-12">
-                          <div class="form-group">
-                            <label>註冊時間</label>
-                            <input type="date" class="form-control" placeholder="" data-errors="Please Enter Name."
-                                   required>
-                            <div class="help-block with-errors"></div>
-                          </div>
-                        </div>
-                        <div class="col-md-12">
-                          <div class="form-group">
-                            <label>註冊方法</label>
-                            <input type="text" class="form-control" placeholder="" data-errors="Please Enter Name."
-                                   required>
-                            <div class="help-block with-errors"></div>
-                          </div>
-                        </div>
-                        <div class="col-md-12">
-                          <div class="form-group">
-                            <label>狀態</label>
-                            <input type="text" class="form-control" placeholder="" data-errors="Please Enter Name."
-                                   required>
-                            <div class="help-block with-errors"></div>
-                          </div>
-                        </div>
-                        <div class="col-md-12">
-                          <div class="form-group">
-                            <label>照片</label>
-                            <input type="text" class="form-control" placeholder="" data-errors="Please Enter Name."
-                                   required>
-                            <div class="help-block with-errors"></div>
-                          </div>
-                        </div>
+                            <div class="col-md-12">
+                              <div class="form-group">
+                                <label>會員密碼</label>
+                                <input type="text" class="form-control" placeholder="" data-errors="Please Enter Name."
+                                       required name="member_password">
+                                <div class="help-block with-errors"></div>
+                              </div>
+                            </div>
+                            <div class="col-md-12">
+                              <div class="form-group">
+                                <label>姓名</label>
+                                <input type="text" class="form-control" placeholder="" data-errors="Please Enter Name."
+                                       required name="member_name">
+                                <div class="help-block with-errors"></div>
+                              </div>
+                            </div>
+                            <div class="col-md-12">
+                              <div class="form-group">
+                                <label>電話</label>
+                                <input type="text" class="form-control" placeholder="" data-errors="Please Enter Name."
+                                       required name="member_phone">
+                                <div class="help-block with-errors"></div>
+                              </div>
+                            </div>
+                            <div class="col-md-12">
+                              <div class="form-group">
+                                <label>信箱</label>
+                                <input type="text" class="form-control" placeholder="" data-errors="Please Enter Name."
+                                       required name="member_email">
+                                <div class="help-block with-errors"></div>
+                              </div>
+                            </div>
+                            <div class="col-md-12">
+                              <div class="form-group">
+                                <label>性別</label>
+                                <div class="form-control">
+                                  <div class="custom-control custom-radio custom-radio-color-checked custom-control-inline">
+                                    <input type="radio" id="customRadio-1" name="member_gender" value="1"
+                                           class="custom-control-input bg-primary" checked>
+                                    <label class="custom-control-label" for="customRadio-1"> 男 </label>
+                                  </div>
 
+                                  <div class="custom-control custom-radio custom-radio-color-checked custom-control-inline">
+                                    <input type="radio" id="customRadio-2" name="member_gender" value="0"
+                                           class="custom-control-input bg-danger">
+                                    <label class="custom-control-label" for="customRadio-2"> 女 </label>
+                                  </div>
+                                </div>
+                                <div class="help-block with-errors"></div>
+                              </div>
+                            </div>
+                            <div class="col-md-12">
+                              <div class="form-group">
+                                <label>生日</label>
+                                <input type="date" class="form-control" placeholder="" data-errors="Please Enter Name."
+                                       required name="member_birthday">
+                                <div class="help-block with-errors"></div>
+                              </div>
+                            </div>
+                            <div class="col-md-12">
+                              <div class="form-group">
+                                <label>狀態</label>
+                                <select name="member_status" class="selectpicker form-control" data-style="py-0">
+                                  <option value="0">未啟用</option>
+                                  <option value="1">已啟用</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-md-12">
+                              <div class="form-group">
+                                <label>照片</label>
+                                <input type="file" class="form-control image-file" name="member_photo" accept="image/*">
+                              </div>
+                            </div>
 
-                        <div class="col-md-12">
-                          <div class="form-group">
-                            <label>Product Type *</label>
-                            <select name="type" class="selectpicker form-control" data-style="py-0">
-                              <option>Standard</option>
-                              <option>Combo</option>
-                              <option>Digital</option>
-                              <option>Service</option>
-                            </select>
                           </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-group">
-                            <label>Name *</label>
-                            <input type="text" class="form-control" placeholder="Enter Name"
-                                   data-errors="Please Enter Name."
-                                   required>
-                            <div class="help-block with-errors"></div>
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-group">
-                            <label>Code *</label>
-                            <input type="text" class="form-control" placeholder="Enter Code"
-                                   data-errors="Please Enter Code."
-                                   required>
-                            <div class="help-block with-errors"></div>
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-group">
-                            <label>Barcode Symbology *</label>
-                            <select name="type" class="selectpicker form-control" data-style="py-0">
-                              <option>CREM01</option>
-                              <option>UM01</option>
-                              <option>SEM01</option>
-                              <option>COF01</option>
-                              <option>FUN01</option>
-                              <option>DIS01</option>
-                              <option>NIS01</option>
-                            </select>
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-group">
-                            <label>Category *</label>
-                            <select name="type" class="selectpicker form-control" data-style="py-0">
-                              <option>Beauty</option>
-                              <option>Grocery</option>
-                              <option>Food</option>
-                              <option>Furniture</option>
-                              <option>Shoes</option>
-                              <option>Frames</option>
-                              <option>Jewellery</option>
-                            </select>
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-group">
-                            <label>Cost *</label>
-                            <input type="text" class="form-control" placeholder="Enter Cost"
-                                   data-errors="Please Enter Cost."
-                                   required>
-                            <div class="help-block with-errors"></div>
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-group">
-                            <label>Price *</label>
-                            <input type="text" class="form-control" placeholder="Enter Price"
-                                   data-errors="Please Enter Price." required>
-                            <div class="help-block with-errors"></div>
-                          </div>
-                        </div>
-                        <div class="col-md-12">
-                          <div class="form-group">
-                            <label>Tax Method *</label>
-                            <select name="type" class="selectpicker form-control" data-style="py-0">
-                              <option>Exclusive</option>
-                              <option>Inclusive</option>
-                            </select>
-                          </div>
-                        </div>
-                        <div class="col-md-12">
-                          <div class="form-group">
-                            <label>Quantity *</label>
-                            <input type="text" class="form-control" placeholder="Enter Quantity" required>
-                            <div class="help-block with-errors"></div>
-                          </div>
-                        </div>
-                        <div class="col-md-12">
-                          <div class="form-group">
-                            <label>Image</label>
-                            <input type="file" class="form-control image-file" name="pic" accept="image/*">
-                          </div>
-                        </div>
-                        <div class="col-md-12">
-                          <div class="form-group">
-                            <label>Description / Product Details</label>
-                            <textarea class="form-control" rows="4"></textarea>
-                          </div>
-                        </div>
+                          <button type="submit" id="addMember" class="btn btn-primary mr-2">新增</button>
+                          <button type="reset" class="btn btn-danger">重置</button>
+                        </form>
                       </div>
-                      <button type="submit" id="addMember" class="btn btn-primary mr-2">Add Product</button>
-                      <button type="reset" class="btn btn-danger">Reset</button>
-                    </form>
+                    </div>
                   </div>
                 </div>
+                <!-- Page end  -->
               </div>
-            </div>
-            <!-- Page end  -->
-          </div>
 
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
 
+    <!--更新會員燈箱-->
+    <div class="modal fade" id="update_modal" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div class="popup text-left">
 
-<!-- Backend Bundle JavaScript -->
-<script src="assets/js/backend-bundle.min.js"></script>
+              <div class="container-fluid add-form-list">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="card">
+                      <div class="card-header d-flex justify-content-between">
+                        <div class="header-title">
+                          <h4 class="card-title">修改會員</h4>
+                        </div>
+                      </div>
+                      <div class="card-body">
+                        <form id="updateMemberForm" action="page-list-product.html" data-toggle="validator"
+                              enctype="multipart/form-data">
+                          <div class="row">
 
-<!-- Table Treeview JavaScript -->
-<script src="assets/js/table-treeview.js"></script>
+                            <div class="col-md-12">
+                              <div class="form-group">
+                                <label>會員帳號</label>
+                                <input type="text" class="form-control update_member_account" placeholder="" data-errors="Please Enter Name."
+                                       required name="member_account" readonly>
+                                <div class="help-block with-errors"></div>
+                              </div>
+                            </div>
+                            <div class="col-md-12">
+                              <div class="form-group">
+                                <label>會員密碼</label>
+                                <input type="text" class="form-control update_member_password" placeholder="不填寫則保持原密碼" data-errors="Please Enter Name."
+                                       name="member_password">
+                                <div class="help-block with-errors"></div>
+                              </div>
+                            </div>
+                            <div class="col-md-12">
+                              <div class="form-group">
+                                <label>姓名</label>
+                                <input type="text" class="form-control update_member_name" placeholder="" data-errors="Please Enter Name."
+                                       required name="member_name">
+                                <div class="help-block with-errors"></div>
+                              </div>
+                            </div>
+                            <div class="col-md-12">
+                              <div class="form-group">
+                                <label>電話</label>
+                                <input type="text" class="form-control update_member_phone" placeholder="" data-errors="Please Enter Name."
+                                       required name="member_phone">
+                                <div class="help-block with-errors"></div>
+                              </div>
+                            </div>
+                            <div class="col-md-12">
+                              <div class="form-group">
+                                <label>信箱</label>
+                                <input type="text" class="form-control update_member_email" placeholder="" data-errors="Please Enter Name."
+                                       required name="member_email">
+                                <div class="help-block with-errors"></div>
+                              </div>
+                            </div>
+                            <div class="col-md-12">
+                              <div class="form-group">
+                                <label>性別</label>
+                                <div class="form-control">
+                                  <div class="custom-control custom-radio custom-radio-color-checked custom-control-inline">
+                                    <input type="radio" name="member_gender" value="1"
+                                           class="custom-control-input bg-primary member_radio1" id="customRadio-3" checked>
+                                    <label class="custom-control-label" for="customRadio-3"> 男 </label>
+                                  </div>
 
-<!-- Chart Custom JavaScript -->
-<script src="assets/js/customizer.js"></script>
+                                  <div class="custom-control custom-radio custom-radio-color-checked custom-control-inline">
+                                    <input type="radio" name="member_gender" value="0"
+                                           class="custom-control-input bg-danger member_radio0"  id="customRadio-4">
+                                    <label class="custom-control-label" for="customRadio-4"> 女 </label>
+                                  </div>
+                                </div>
+                                <div class="help-block with-errors"></div>
+                              </div>
+                            </div>
+                            <div class="col-md-12">
+                              <div class="form-group">
+                                <label>生日</label>
+                                <input type="date" class="form-control update_member_birthday" placeholder="" data-errors="Please Enter Name."
+                                       required name="member_birthday">
+                                <div class="help-block with-errors"></div>
+                              </div>
+                            </div>
+                            <div class="col-md-12">
+                              <div class="form-group">
+                                <label>狀態</label>
+                                <select name="member_status" class="selectpicker form-control update_member_status" data-style="py-0">
+                                  <option value="0">未啟用</option>
+                                  <option value="1">已啟用</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-md-12">
+                              <div class="form-group">
+                                <label>照片</label>
+                                <input type="file" class="form-control image-file" name="member_photo" accept="image/*">
+                              </div>
+                            </div>
 
-<!-- Chart Custom JavaScript -->
-<script async src="assets/js/chart-custom.js"></script>
+                          </div>
+                          <button type="submit" id="updateMember" class="btn btn-primary mr-2">更新</button>
+<!--                          <button type="reset" class="btn btn-danger">重置</button>-->
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
-<!-- app JavaScript -->
-<script src="assets/js/app.js"></script>
+                <!-- Page end  -->
+              </div>
 
-<!-- moment -->
-<script src="assets/js/moment.js"></script>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Backend Bundle JavaScript -->
+    <script src="assets/js/backend-bundle.min.js"></script>
 
-<script>
-    $(document).ready(function () {
-        $('.header').load('header.html')
-        // $('.footer').load('footer.html')
-    })
-</script>
-<script>
-    getAllMember();
+    <!-- Table Treeview JavaScript -->
+    <script src="assets/js/table-treeview.js"></script>
 
-    function getAllMember() {
-        var action = '                  <div class="d-flex align-items-center list-action">\n' +
-            // '                    <a class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title=""\n' +
-            // '                       data-original-title="View"\n' +
-            // '                       href="#"><i class="ri-eye-line mr-0"></i></a>\n' +
-            '                    <a class="badge bg-success mr-2" data-toggle="tooltip" data-placement="top" title=""\n' +
-            '                       data-original-title="Edit"\n' +
-            '                       href="javascript:void(0)"><i class="ri-pencil-line mr-0"></i></a>\n' +
-            '                    <a class="badge bg-warning mr-2 delete" data-toggle="tooltip" data-placement="top" title=""\n' +
-            '                       data-original-title="Delete"\n' +
-            '                       href="javascript:void(0)"><i class="ri-delete-bin-line mr-0"></i></a>\n' +
-            '                  </div>'
-        $.get("/dessert_shop/member/backend_getAll", {}, function (data) {
-            console.log(data);
-            if (data.flag) {
-                let table = $(".data-table").DataTable()
-                table.destroy();
-                table = $(".data-table").DataTable({
-                    "lengthMenu": [3, 5, 10, 20],     //顯示XX像結果
-                    "language": {
-                        "processing": "處理中...",
-                        "loadingRecords": "載入中...",
-                        "lengthMenu": "顯示 _MENU_ 項結果",
-                        "zeroRecords": "沒有符合的結果",
-                        "info": "顯示第 _START_ 至 _END_ 項結果，共 _TOTAL_ 項",
-                        "infoEmpty": "顯示第 0 至 0 項結果，共 0 項",
-                        "infoFiltered": "(從 _MAX_ 項結果中過濾)",
-                        "infoPostFix": "",
-                        "search": "搜尋:",
-                        "paginate": {
-                            "first": "第一頁",
-                            "previous": "上一頁",
-                            "next": "下一頁",
-                            "last": "最後一頁"
-                        },
-                        "aria": {
-                            "sortAscending": ": 升冪排列",
-                            "sortDescending": ": 降冪排列"
-                        }
-                    },
-                    // "columns": [
-                    //     { "data": "name" }, //第一欄使用data中的name
-                    //     { "data": "age" } //第二欄使用data中的age
-                    // ],
-                    // "columns": [
-                    //     {
-                    //         title: "會員帳號",
-                    //         data: "member_account"
-                    //     },
-                    //     {
-                    //         title: "會員密碼",
-                    //         data: "member_password"
-                    //     },
-                    // ]
-                    "columnDefs": [
-                        {
-                            "targets": [1],    //欄位從0開始算
-                            "visible": true,   //欄位是否顯示 預設是true
-                            "orderable": false  //是否可以排序
-                        },
-                        {
-                            "targets": [2],    //欄位從0開始算
-                            "visible": true,   //欄位是否顯示 預設是true
-                            "orderable": false,  //是否可以排序
-                            "width": "1%"
-                        }
+    <!-- Chart Custom JavaScript -->
+    <script src="assets/js/customizer.js"></script>
 
-                    ]
-                })
-                table.clear().draw();
-                for (let i = 0; i < data.data.length; i++) {
+    <!-- Chart Custom JavaScript -->
+    <script async src="assets/js/chart-custom.js"></script>
 
+    <!-- app JavaScript -->
+    <script src="assets/js/app.js"></script>
 
-                    table.row.add([
-                        data.data[i].member_account,
-                        data.data[i].member_password,
-                        data.data[i].member_name,
-                        data.data[i].member_phone,
-                        data.data[i].member_email,
-                        data.data[i].member_gender == 1 ? "男" : "女",
-                        getTime(data.data[i].member_birthday),
-                        getTime(data.data[i].register_time),
-                        getRegisterMethod(data.data[i].register_method),
-                        data.data[i].member_status == 1 ? "已啟用" : "未啟用",
-                        '<img class="table-img" src="/dessert_shop/member/backend_getPhoto?id=' + data.data[i].member_account + '">',
-                        action
-                    ]).draw(false);
+    <!-- moment -->
+    <script src="assets/js/moment.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('.header').load('header.html')
+            // $('.footer').load('footer.html')
+        })
+    </script>
+    <script>
+        /****************進頁面先初始化表格*********************/
+        let table = $(".data-table").DataTable()
+        table.destroy();
+        table = $(".data-table").DataTable({
+            "lengthMenu": [3, 5, 10, 20],     //顯示XX像結果
+            "language": {
+                "processing": "處理中...",
+                "loadingRecords": "載入中...",
+                "lengthMenu": "顯示 _MENU_ 項結果",
+                "zeroRecords": "沒有符合的結果",
+                "info": "顯示第 _START_ 至 _END_ 項結果，共 _TOTAL_ 項",
+                "infoEmpty": "顯示第 0 至 0 項結果，共 0 項",
+                "infoFiltered": "(從 _MAX_ 項結果中過濾)",
+                "infoPostFix": "",
+                "search": "搜尋:",
+                "paginate": {
+                    "first": "第一頁",
+                    "previous": "上一頁",
+                    "next": "下一頁",
+                    "last": "最後一頁"
+                },
+                "aria": {
+                    "sortAscending": ": 升冪排列",
+                    "sortDescending": ": 降冪排列"
+                }
+            },
+            // "columns": [
+            //     { "data": "name" }, //第一欄使用data中的name
+            //     { "data": "age" } //第二欄使用data中的age
+            // ],
+            // "columns": [
+            //     {
+            //         title: "會員帳號",
+            //         data: "member_account"
+            //     },
+            //     {
+            //         title: "會員密碼",
+            //         data: "member_password"
+            //     },
+            // ]
+            "columnDefs": [
+                {
+                    "targets": [1],    //欄位從0開始算
+                    "visible": true,   //欄位是否顯示 預設是true
+                    "orderable": false  //是否可以排序
+                },
+                {
+                    "targets": [2],    //欄位從0開始算
+                    "visible": true,   //欄位是否顯示 預設是true
+                    "orderable": false,  //是否可以排序
+                    // "width": "1%"
                 }
 
-
-            } else {
-            }
-        });
-    }
-
-    function getTime(time) {
-        return moment(time).format('YYYY-MM-DD HH:mm:ss')
-    }
-
-    function getRegisterMethod(method) {
-        switch (Number(method)) {
-            case 1:
-                return "一般";
-            case 2:
-                return "Google";
-            default:
-                return method;
-        }
-    }
-
-</script>
-<script>
-    /*******************動作********************/
-    $("tbody").on("click", "a.delete", function () {
-        // console.log(123);
-        let table = $(".data-table").DataTable()
-        let data = table.row($(this).closest('tr')).data();
-        // alert( 'You clicked on '+data[0]+'\'s row' );
-
-        $.get("/dessert_shop/member/backend_delete1", {"member_account": data[0]}, function (data) {
-            console.log(data);
-            if (data.flag) {
-                // 註冊成功後跳轉頁面
-                getAllMember();
-                Swal.fire({
-                    title: data.msg,
-                    text: "",
-                    icon: "success"
-                });
-            } else {
-                // 註冊失敗 彈出視窗
-                Swal.fire({
-                    title: data.msg,
-                    text: "",
-                    icon: "error"
-                })
-            }
+            ]
         })
-    });
+        getAllMember();
 
-</script>
+        function getAllMember() {
+            var action = '                  <div class="d-flex align-items-center list-action">\n' +
+                // '                    <a class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title=""\n' +
+                // '                       data-original-title="View"\n' +
+                // '                       href="#"><i class="ri-eye-line mr-0"></i></a>\n' +
+                '                    <a class="badge bg-success mr-2 edit" data-toggle="modal"\n' +
+                '               data-target="#update_modal" data-placement="top" title=""\n' +
+                '                       data-original-title="Edit"\n' +
+                '                       href="javascript:void(0)"><i class="ri-pencil-line mr-0"></i></a>\n' +
+                '                    <a class="badge bg-warning mr-2 delete" data-toggle="tooltip" data-placement="top" title=""\n' +
+                '                       data-original-title="Delete"\n' +
+                '                       href="javascript:void(0)"><i class="ri-delete-bin-line mr-0"></i></a>\n' +
+                '                  </div>'
+            $.get("/dessert_shop/member/backend_getAll", {}, function (data) {
+                console.log(data);
+                if (data.flag) {
+                    let table = $(".data-table").DataTable()
+                    table.clear().draw();
+                    for (let i = 0; i < data.data.length; i++) {
+                        table.row.add([
+                            data.data[i].member_account,
+                            data.data[i].member_password,
+                            data.data[i].member_name,
+                            data.data[i].member_phone,
+                            data.data[i].member_email,
+                            data.data[i].member_gender == 1 ? "男" : "女",
+                            getBirthday(data.data[i].member_birthday),
+                            getTime(data.data[i].register_time),
+                            getRegisterMethod(data.data[i].register_method),
+                            data.data[i].member_status == 1 ? "已啟用" : "未啟用",
+                            '<img class="table-img" src="/dessert_shop/member/backend_getPhoto?id=' + data.data[i].member_account + '">',
+                            action
+                        ]).draw(false);
+                    }
+                } else {
+                }
+            });
+        }
 
+        function getTime(time) {
+            return moment(time).format('YYYY-MM-DD HH:mm:ss')
+        }
 
-<script>
-    $("#addMember").click(function (e) {
-        e.preventDefault();
-        //表單提交時檢查所有屬性合法
-        // if(checkUsername() && checkPassword() && checkEmail()){
-        //發送ajax請求，送出表單資料
-        console.log($("#addMemberForm").serialize());
+        function getBirthday(time) {
+            return moment(time).format('YYYY-MM-DD')
+        }
+        function getRegisterMethod(method) {
+            switch (Number(method)) {
+                case 1:
+                    return "一般";
+                case 2:
+                    return "Google";
+                default:
+                    return method;
+            }
+        }
 
-        let form = $("#addMemberForm")[0];
-        let data = new FormData(form);
-        $.ajax({
-            type: "POST",
-            enctype: 'multipart/form-data',
-            url: '/dessert_shop/member/update',
-            data: data,
-            processData: false,
-            contentType: false,
-            cache: false,
-            success: function (data) {
+    </script>
+    <script>
+        /*******************動作********************/
+        /*******************刪除********************/
+        $("tbody").on("click", "a.delete", function () {
+            let table = $(".data-table").DataTable()
+            let data = table.row($(this).closest('tr')).data();
+            // alert( 'You clicked on '+data[0]+'\'s row' );
+
+            $.get("/dessert_shop/member/backend_delete1", {"member_account": data[0]}, function (data) {
+                console.log(data);
                 if (data.flag) {
                     // 註冊成功後跳轉頁面
-                    // location.href="register_ok.html";
+                    getAllMember();
                     Swal.fire({
                         title: data.msg,
                         text: "",
                         icon: "success"
                     });
-                    let url = location.href.split("/TEA103G2")[0];
-                    $("i.la-user").css('display', 'none');
-                    $("img.user_icon").css('display', 'inline-block');
-                    $('img.user_icon').attr("src", $('img.preview_img').attr("src"));
                 } else {
                     // 註冊失敗 彈出視窗
                     Swal.fire({
@@ -571,10 +493,68 @@
                         icon: "error"
                     })
                 }
-            }
+            })
         });
-        return false;
-    });
-</script>
+
+
+        /*******************修改********************/
+        $("tbody").on("click", "a.edit", function () {
+            let table = $(".data-table").DataTable()
+            let data = table.row($(this).closest('tr')).data();
+            // console.log(data);
+            // alert( 'You clicked on '+data[0]+'\'s row' );
+
+            $(".update_member_account").val(data[0]);
+            $(".update_member_name").val(data[2]);
+            $(".update_member_phone").val(data[3]);
+            $(".update_member_email").val(data[4]);
+            $(".update_member_birthday").val(moment(data[6]).format('YYYY-MM-DD'));
+            data[5]=="男"?$(".member_radio1").prop('checked', true):$(".member_radio0").prop('checked', true)
+            data[9]=="未啟用"?$(".update_member_status option[value=0]").attr('selected','selected'):$(".update_member_status option[value=1]").attr('selected','selected')
+
+        });
+    </script>
+
+
+    <script>
+        /*****************燈箱中的新增會員*********************/
+        $("#addMember").click(function (e) {
+            e.preventDefault();
+            //表單提交時檢查所有屬性合法
+            //發送ajax請求，送出表單資料
+            console.log($("#addMemberForm").serialize());
+
+            let form = $("#addMemberForm")[0];
+            let data = new FormData(form);
+            $.ajax({
+                type: "POST",
+                enctype: 'multipart/form-data',
+                url: '/dessert_shop/member/backend_addMember',
+                data: data,
+                processData: false,
+                contentType: false,
+                cache: false,
+                success: function (data) {
+                    if (data.flag) {
+                        Swal.fire({
+                            title: data.msg,
+                            text: "",
+                            icon: "success"
+                        });
+                        getAllMember();
+                        $("#new-order1").modal('hide');
+                        $("#addMemberForm").trigger("reset");
+                    } else {
+                        Swal.fire({
+                            title: data.msg,
+                            text: "",
+                            icon: "error"
+                        })
+                    }
+                }
+            });
+            return false;
+        });
+    </script>
 </body>
 </html>
