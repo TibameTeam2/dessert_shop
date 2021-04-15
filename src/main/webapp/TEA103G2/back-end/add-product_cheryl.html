@@ -37,15 +37,12 @@
                         </div>
                     </div>
                     <div class="card-body">
-<!--                         <form id="addProduct_form" action="page-list-product.html" data-toggle="validator"> -->
-						<!-- 為了開發 先不跳轉 -->
-<!--                         <form id="addProduct_form" action=" " > -->
-                        <form id="addProduct_form" action="#">
+                        <form id="addProduct_form" action="list-all-product_cheryl.html" data-toggle="validator">
                             <div class="row">
                             	<div class="col-md-6">                      
                                     <div class="form-group">
                                         <label id="product_name_label">商品名稱 *</label>
-<!--                                         <label>商品名稱 *</label> -->
+								<!-- <label>商品名稱 *</label> -->
                                         <input type="text" class="form-control" placeholder="請輸入中/英文或數字" data-errors="Please Enter Name." id="product_name" name="product_name" required>
                                         <div class="help-block with-errors"></div>
                                     </div>
@@ -232,7 +229,8 @@
 // 	     	if(checkProductName() & checkPrice() & checkQuantity() & checkExpiry() & checkCalorie() & checkCategory()){
 // 				console.log($("#addProduct_form").serialize());
 				$.post("/dessert_shop/product/backend_addProduct", $(this).serialize(), function (data) {
-// 		    		console.log(data.flag);
+		    		console.log(data.flag);
+		    		console.log("!!!!!!!");
 					if(data.flag){
 						// 提交成功跳轉業面到list_all_product
 						// sweetalert

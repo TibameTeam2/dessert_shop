@@ -26,12 +26,28 @@ public class ProductService {
 		return productBean;
 	}
 // 給評論用	
-//	public ProductBean addReviewStar(ProductBean productBean) {
+//	public Boolean addReviewStar(ProductBean productBean) {
 //		
 //		dao.updateReviewStar(productBean);
 //		
 //		return productBean;
 //	}
+	
+// 給更新銷售	
+	public Boolean addProductPurchase(Integer product_id, Integer single_purchase) {
+	
+		ProductBean productBean = new ProductBean();
+		productBean = dao.findByPrimaryKey(product_id);
+		if(productBean == null ) {
+			return false;
+		}else {
+			Integer databaseTotal_purchase = productBean.getTotal_purchase();
+			Integer newTotal_purchase = databaseTotal_purchase + single_purchase;
+			productBean.setTotal_purchase(newTotal_purchase);
+			dao.update(productBean);
+			return true;
+		}
+	}
 	
 	
 	

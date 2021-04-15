@@ -1365,6 +1365,15 @@ public List<ProductBean> getAllImage(Integer product_id) {
 //		dao.update(productBean);
 		
 		
+//給別人用，測試:		
+		//更新銷售
+//		ProductBean productBean = new ProductBean();
+//		productBean = dao.findByPrimaryKey(23);
+//		Integer databaseTotal_purchase = productBean.getTotal_purchase();
+//		Integer newTotal_purchase = databaseTotal_purchase + 10;
+//		productBean.setTotal_purchase(newTotal_purchase);
+//		dao.update(productBean);
+		
 		
 		// 更新評論
 //		ProductBean productBean = new ProductBean();
@@ -1376,6 +1385,8 @@ public List<ProductBean> getAllImage(Integer product_id) {
 //		dao.updateReviewStar(productBean);
 //
 //		
+		
+		
 		
 		
 

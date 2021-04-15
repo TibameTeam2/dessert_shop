@@ -182,14 +182,14 @@ public class ProductServlet_front extends BaseServlet {
     		
     		// 調用service將商品新增至DB
     		ProductService productSvc = new ProductService();
-    		productSvc.addProduct(productBean);
-    		
+    		productBean = productSvc.addProduct(productBean);
+    		System.out.println("插入後的productBean:"+productBean);
     		
     	}catch(IllegalAccessException | InvocationTargetException e) {
     	    e.printStackTrace();
     	}
     	
-    	// 將product_id塞給productBean反回前端
+    	// 將product_id塞給productBean反回前端 → 跳轉到listAllProduct 直接從DB撈
     	
     	
     	ResultInfo info = new ResultInfo();
@@ -201,20 +201,18 @@ public class ProductServlet_front extends BaseServlet {
     
 //  http://localhost:8081/dessert_shop/product/backend_checkProductName
     public void backend_checkProductName(HttpServletRequest req, HttpServletResponse res) {
-    	//獲取數據
+    	// 獲取數據
     	String product_name = req.getParameter("product_name");
     	System.out.println("商品名稱:" + product_name);//
     	ProductService producSvc = new ProductService();
- // 新增getOneProductByName的service dao
+    	// 新增getOneProductByName的service dao
     	ProductBean productBean = producSvc.getOneProductByName(product_name);
     	ResultInfo info = new ResultInfo();
     	System.out.println("ResultInfo");//
     	if(productBean == null) {
-//    		System.out.println("ResultInfo的null,flag要設true");//
     		info.setFlag(true);
     		info.setMsg("\""+ product_name +"\"" + "可以使用");
     	}else {
-//    		System.out.println("ResultInfo的else,flag要設false");//
     		info.setFlag(false);
     		info.setMsg("\"" + product_name + "\"" + "名稱重複，請重新輸入");
     	}
@@ -227,7 +225,47 @@ public class ProductServlet_front extends BaseServlet {
     
     
     
-// 給別人使用的API
+// 給別人使用的API >>>>> 改成用service的方法
+    
+////  http://localhost:8081/dessert_shop/product/addProductPruchase
+//    public Boolean addProductPruchase(HttpServletRequest req, HttpServletResponse res) {
+//    	System.out.println("Servlet的addProductPruchase");
+//    	
+//    		
+//    	
+////    	Integer product_id = new Integer(req.getParameter("product_id"));
+////    	Integer single_purchase = new Integer(req.getParameter("product_purchase"));
+//    	//以下兩行測試
+//    	Integer product_id = new Integer(req.getParameter("product_id"));
+//    	Integer single_purchase = new Integer(req.getParameter("product_purchase"));
+//    	ProductService productSvc = new ProductService();
+//    	ProductBean productBean = productSvc.getOneProduct(product_id);
+//    	
+//    	try {
+//    	Integer databaseTotal_purchase = productBean.getTotal_purchase();
+//    	System.out.println("databaseTotal_purchase:"+databaseTotal_purchase);
+//    	Integer newTotal_purchase = databaseTotal_purchase + single_purchase;
+//    	System.out.println("newTotal_purchase:"+newTotal_purchase);
+//    	
+//    	productBean.setTotal_purchase(newTotal_purchase);
+//    	System.out.println("更新銷售後的productBean:"+productBean);
+// 	
+//    	return true;
+//    	
+//    	} catch(Exception e) {
+//    	
+//    		ResultInfo info = new ResultInfo();
+////        	
+//        	info.setFlag(false);
+//        	info.setMsg("商品銷售量更新失敗!");
+//        	info.setData(productBean);
+//        	
+//        	writeValueByWriter(res, info);	
+//    	return false;
+//    	}
+//    }
+//    
+    
     
     //id?  star?  review+1
 //    在service中新增來自評論的星星與review的方法 給語心使用 
