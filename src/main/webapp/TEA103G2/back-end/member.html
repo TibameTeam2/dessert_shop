@@ -18,9 +18,10 @@
           max-width: 100px;
           max-height: 100px;
       }
-      @media (min-width: 576px){
-          .modal-dialog{
-              max-width:1000px !important;
+
+      @media (min-width: 576px) {
+          .modal-dialog {
+              max-width: 500px !important;
           }
       }
   </style>
@@ -50,7 +51,8 @@
               <p class="mb-0">The product list effectively dictates product presentation and provides space<br> to list
                 your products and offering in the most appealing way.</p>
             </div>
-            <a href="page-add-product.html" class="btn btn-primary add-list" data-toggle="modal" data-target="#new-order1"><i class="las la-plus mr-3"></i>Add Product</a>
+            <a href="page-add-product.html" class="btn btn-primary add-list" data-toggle="modal"
+               data-target="#new-order1"><i class="las la-plus mr-3"></i>Add Product</a>
           </div>
         </div>
         <div class="col-lg-12">
@@ -120,7 +122,6 @@
 <!-- Wrapper End-->
 
 
-
 <div class="modal fade" id="new-order1" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -133,12 +134,114 @@
                 <div class="card">
                   <div class="card-header d-flex justify-content-between">
                     <div class="header-title">
-                      <h4 class="card-title">Add Product</h4>
+                      <h4 class="card-title">新增會員</h4>
                     </div>
                   </div>
                   <div class="card-body">
-                    <form action="page-list-product.html" data-toggle="validator">
+                    <form id="addMemberForm" action="page-list-product.html" data-toggle="validator" enctype="multipart/form-data">
                       <div class="row">
+
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label>會員帳號</label>
+                            <input type="text" class="form-control" placeholder="" data-errors="Please Enter Name."
+                                   required name="member_account">
+                            <div class="help-block with-errors"></div>
+                          </div>
+                        </div>
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label>會員密碼</label>
+                            <input type="text" class="form-control" placeholder="" data-errors="Please Enter Name."
+                                   required name="member_password">
+                            <div class="help-block with-errors"></div>
+                          </div>
+                        </div>
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label>姓名</label>
+                            <input type="text" class="form-control" placeholder="" data-errors="Please Enter Name."
+                                   required name="member_name">
+                            <div class="help-block with-errors"></div>
+                          </div>
+                        </div>
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label>電話</label>
+                            <input type="text" class="form-control" placeholder="" data-errors="Please Enter Name."
+                                   required>
+                            <div class="help-block with-errors"></div>
+                          </div>
+                        </div>
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label>信箱</label>
+                            <input type="text" class="form-control" placeholder="" data-errors="Please Enter Name."
+                                   required>
+                            <div class="help-block with-errors"></div>
+                          </div>
+                        </div>
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label>性別</label>
+                            <div class="form-control">
+                              <div class="custom-control custom-radio custom-radio-color-checked custom-control-inline">
+                                <input type="radio" id="customRadio-1" name="customRadio-10"
+                                       class="custom-control-input bg-primary" checked>
+                                <label class="custom-control-label" for="customRadio-1"> 男 </label>
+                              </div>
+
+                              <div class="custom-control custom-radio custom-radio-color-checked custom-control-inline">
+                                <input type="radio" id="customRadio-3" name="customRadio-10"
+                                       class="custom-control-input bg-danger">
+                                <label class="custom-control-label" for="customRadio-3"> 女 </label>
+                              </div>
+                            </div>
+                            <div class="help-block with-errors"></div>
+                          </div>
+                        </div>
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label>生日</label>
+                            <input type="date" class="form-control" placeholder="" data-errors="Please Enter Name."
+                                   required>
+                            <div class="help-block with-errors"></div>
+                          </div>
+                        </div>
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label>註冊時間</label>
+                            <input type="date" class="form-control" placeholder="" data-errors="Please Enter Name."
+                                   required>
+                            <div class="help-block with-errors"></div>
+                          </div>
+                        </div>
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label>註冊方法</label>
+                            <input type="text" class="form-control" placeholder="" data-errors="Please Enter Name."
+                                   required>
+                            <div class="help-block with-errors"></div>
+                          </div>
+                        </div>
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label>狀態</label>
+                            <input type="text" class="form-control" placeholder="" data-errors="Please Enter Name."
+                                   required>
+                            <div class="help-block with-errors"></div>
+                          </div>
+                        </div>
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label>照片</label>
+                            <input type="text" class="form-control" placeholder="" data-errors="Please Enter Name."
+                                   required>
+                            <div class="help-block with-errors"></div>
+                          </div>
+                        </div>
+
+
                         <div class="col-md-12">
                           <div class="form-group">
                             <label>Product Type *</label>
@@ -153,7 +256,8 @@
                         <div class="col-md-6">
                           <div class="form-group">
                             <label>Name *</label>
-                            <input type="text" class="form-control" placeholder="Enter Name" data-errors="Please Enter Name."
+                            <input type="text" class="form-control" placeholder="Enter Name"
+                                   data-errors="Please Enter Name."
                                    required>
                             <div class="help-block with-errors"></div>
                           </div>
@@ -161,7 +265,8 @@
                         <div class="col-md-6">
                           <div class="form-group">
                             <label>Code *</label>
-                            <input type="text" class="form-control" placeholder="Enter Code" data-errors="Please Enter Code."
+                            <input type="text" class="form-control" placeholder="Enter Code"
+                                   data-errors="Please Enter Code."
                                    required>
                             <div class="help-block with-errors"></div>
                           </div>
@@ -197,7 +302,8 @@
                         <div class="col-md-6">
                           <div class="form-group">
                             <label>Cost *</label>
-                            <input type="text" class="form-control" placeholder="Enter Cost" data-errors="Please Enter Cost."
+                            <input type="text" class="form-control" placeholder="Enter Cost"
+                                   data-errors="Please Enter Cost."
                                    required>
                             <div class="help-block with-errors"></div>
                           </div>
@@ -239,7 +345,7 @@
                           </div>
                         </div>
                       </div>
-                      <button type="submit" class="btn btn-primary mr-2">Add Product</button>
+                      <button type="submit" id="addMember" class="btn btn-primary mr-2">Add Product</button>
                       <button type="reset" class="btn btn-danger">Reset</button>
                     </form>
                   </div>
@@ -254,7 +360,6 @@
     </div>
   </div>
 </div>
-
 
 
 <!-- Backend Bundle JavaScript -->
@@ -283,6 +388,7 @@
 </script>
 <script>
     getAllMember();
+
     function getAllMember() {
         var action = '                  <div class="d-flex align-items-center list-action">\n' +
             // '                    <a class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title=""\n' +
@@ -377,19 +483,21 @@
             }
         });
     }
-function getTime(time){
-    return moment(time).format('YYYY-MM-DD HH:mm:ss')
-}
-function getRegisterMethod(method){
-    switch (Number(method)) {
-        case 1:
-            return "一般";
-        case 2:
-            return "Google";
-        default:
-            return method;
+
+    function getTime(time) {
+        return moment(time).format('YYYY-MM-DD HH:mm:ss')
     }
-}
+
+    function getRegisterMethod(method) {
+        switch (Number(method)) {
+            case 1:
+                return "一般";
+            case 2:
+                return "Google";
+            default:
+                return method;
+        }
+    }
 
 </script>
 <script>
@@ -400,7 +508,7 @@ function getRegisterMethod(method){
         let data = table.row($(this).closest('tr')).data();
         // alert( 'You clicked on '+data[0]+'\'s row' );
 
-        $.get("/dessert_shop/member/backend_delete1", {"member_account":data[0]}, function (data) {
+        $.get("/dessert_shop/member/backend_delete1", {"member_account": data[0]}, function (data) {
             console.log(data);
             if (data.flag) {
                 // 註冊成功後跳轉頁面
@@ -423,5 +531,50 @@ function getRegisterMethod(method){
 
 </script>
 
+
+<script>
+    $("#addMember").click(function (e) {
+        e.preventDefault();
+        //表單提交時檢查所有屬性合法
+        // if(checkUsername() && checkPassword() && checkEmail()){
+        //發送ajax請求，送出表單資料
+        console.log($("#addMemberForm").serialize());
+
+        let form = $("#addMemberForm")[0];
+        let data = new FormData(form);
+        $.ajax({
+            type: "POST",
+            enctype: 'multipart/form-data',
+            url: '/dessert_shop/member/update',
+            data: data,
+            processData: false,
+            contentType: false,
+            cache: false,
+            success: function (data) {
+                if (data.flag) {
+                    // 註冊成功後跳轉頁面
+                    // location.href="register_ok.html";
+                    Swal.fire({
+                        title: data.msg,
+                        text: "",
+                        icon: "success"
+                    });
+                    let url = location.href.split("/TEA103G2")[0];
+                    $("i.la-user").css('display', 'none');
+                    $("img.user_icon").css('display', 'inline-block');
+                    $('img.user_icon').attr("src", $('img.preview_img').attr("src"));
+                } else {
+                    // 註冊失敗 彈出視窗
+                    Swal.fire({
+                        title: data.msg,
+                        text: "",
+                        icon: "error"
+                    })
+                }
+            }
+        });
+        return false;
+    });
+</script>
 </body>
 </html>

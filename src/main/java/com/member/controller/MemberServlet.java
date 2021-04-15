@@ -911,4 +911,19 @@ public class MemberServlet extends BaseServlet {
         }
         writeValueByWriter(res, info);
     }
+
+    public void backend_addMember(HttpServletRequest req, HttpServletResponse res) throws JsonProcessingException {
+        //獲取數據
+        Map<String, String[]> map = req.getParameterMap();
+        System.out.println("map= " + new ObjectMapper().writeValueAsString(map));
+
+        //封裝物件
+        MemberBean member = new MemberBean();
+        try {
+            BeanUtils.populate(member, map);
+        } catch (IllegalAccessException | InvocationTargetException e) {
+            e.printStackTrace();
+        }
+        System.out.println(member);
+    }
 }
