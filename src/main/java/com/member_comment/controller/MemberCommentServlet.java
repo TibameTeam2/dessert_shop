@@ -15,6 +15,7 @@ import com.member.model.MemberBean;
 import com.member.model.MemberService;
 import com.member_comment.model.MemberCommentBean;
 import com.member_comment.model.MemberCommentService;
+import com.product.model.ProductService;
 import com.review_image_upload.model.ReviewImageUploadBean;
 import com.review_image_upload.model.ReviewImageUploadService;
 import com.util.BaseServlet;
@@ -100,6 +101,9 @@ public class MemberCommentServlet extends BaseServlet {
 			System.out.println("失敗的跳轉");
 		}
 		writeValueByWriter(res, info);
+		
+		ProductService productSvc = new ProductService();
+		productSvc.addReviewStar(product_id, rating);
 
 	}
 
