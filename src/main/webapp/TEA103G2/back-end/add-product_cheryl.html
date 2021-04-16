@@ -37,9 +37,10 @@
                         </div>
                     </div>
                     <div class="card-body">
-<!--                         <form id="addProduct_form" action="list-all-product_cheryl.html" data-toggle="validator" enctype="multipart/form-data"> -->
+                        <form id="addProduct_form" action="javascript:void(0)" data-toggle="validator" enctype="multipart/form-data">
+<!--                         <form id="addProduct_form" action="index.html" data-toggle="validator" enctype="multipart/form-data"> -->
                        <!-- 以下為開發時先使用 先不跳轉 -->
-                        <form id="addProduct_form" action="" data-toggle="validator" enctype="multipart/form-data">
+<!--                         <form id="addProduct_form" action="" data-toggle="validator" enctype="multipart/form-data"> -->
                             <div class="row">
                             	<div class="col-md-6">                      
                                     <div class="form-group">
@@ -59,8 +60,9 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label id="product_category_label">商品類別 *</label>
-                                        <select name="product_category" class="selectpicker form-control" data-style="py-0" id="product_category" required>
-                                            <option value="未選擇">請選擇商品種類</option>
+<!--                                         <select name="product_category" class="selectpicker form-control" data-style="py-0" id="product_category" required> -->
+                                        <select name="product_category" class="form-control" data-style="py-0" id="product_category" required>
+                                            <option value>請選擇商品種類</option>
 											<optgroup label="蛋糕">
 												<option value="蛋糕:千層蛋糕">千層蛋糕</option>
 												<option value="蛋糕:杯子蛋糕">杯子蛋糕</option>
@@ -88,7 +90,6 @@
 <!-- 											<option value="飲品:其他">其他</option> -->
 											</optgroup>
                                         </select>
-										<div class="help-block with-errors"></div>
                                     </div> 
                                 </div>  
                                 <div class="col-md-6">
@@ -105,15 +106,17 @@
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                               	<div class="col-md-6">                                    
                                     <div class="form-group">
                                         <label id="product_status_label">商品狀態 *</label>
-                                        <select name="product_status" class="selectpicker form-control" data-style="py-0" id="product_status">
+<!--                                         <select name="product_status" class="selectpicker form-control" data-style="py-0" id="product_status" required> -->
+                                        <select name="product_status" class="form-control" data-style="py-0" id="product_status" required>
+                                            <option value>請選擇商品狀態</option>
                                             <option value=0 selected>未上架 (預設)</option>
                                             <option value=1>上架中</option>
                                         </select>
                                     </div>
-                                </div>
+                                </div>     
                                 <div class="col-md-4">     
                                 	<div class="form-group">
                                         <label id="expiry_after_buying_label">賞味天數 *</label>
@@ -131,8 +134,9 @@
                                 <div class="col-md-4">                                    
                                     <div class="form-group">
                                         <label>商品甜度 *</label>
-                                         <select name="degree_of_sweetness" class="selectpicker form-control" data-style="py-0" id="degree_of_sweetness" required>
-                                            <option value="">請選擇商品甜度</option>
+<!--                                         <select name="degree_of_sweetness" class="selectpicker form-control" data-style="py-0" id="degree_of_sweetness" required> -->
+                                        <select name="degree_of_sweetness" class="form-control" data-style="py-0" id="degree_of_sweetness" required>
+                                            <option value>請選擇商品甜度</option>
                                             <option value=1>1</option>
                                             <option value=2>2</option>
                                             <option value=3>3</option>
@@ -274,24 +278,27 @@
 				success: function (data) {
 					console.log("ajax:"+data);
 					if (data.flag) {
-						location.href="add-product_cheryl.html";
+						   
 						Swal.fire({
 							title: data.msg,
-							text: "",
+							text: "提交成功",
 							icon: "success"
+						}).then(function(){
+							location.href="list-all-product_cheryl.html";
 						});
+							
 					} else {
 						// 新增失敗 彈出視窗
 						Swal.fire({
 							title: data.msg,
-							text: "",
+							text: "提交失敗",
 							icon: "error"
 						})
 					}
 				}
 			});
 			
-			
+			return false;	
 			
 	    });//form表單submit
 
@@ -304,17 +311,15 @@
 		$("#product_calorie").blur(checkCalorie);
 		
 		// 選單的檢查
-// 		$("#product_category").on("change", checkCategory);
-// 		$("#product_category").on("change", function(){
-// 			console.log("選擇種類:"+($("#product_category").val()));
-// 		});
+		$("#product_category").on("change", checkCategory);
+		$("#product_category").on("change", function(){
+			console.log("選擇種類:"+($("#product_category").val()));
+		});
 			
 // 		$("#degree_of_sweetness").on("change", checkSweetness);
 		// checkSweetness還沒寫
 		
 		// 檢查圖片
-		
-		// 檢查評論
 
 
     	function checkProductName(){
@@ -336,14 +341,14 @@
     					$("#product_name_label").html("商品名稱 *&nbsp&nbsp&nbsp&nbsp" + data.msg);
     				}else{
     					console.log(data.flag);
-    					$("#product_name").css("border", "1px solid red");
+    					$("#product_name").css("border", "1px solid #E08DB4");
     					$("#product_name_label").html("商品名稱 *&nbsp&nbsp&nbsp&nbsp" + data.msg);
     				}
     			});
     		}else{
     			// 產品名稱不合法
     			console.log("名稱不合法");
-    			$("#product_name").css("border", "1px solid red");
+    			$("#product_name").css("border", "1px solid #E08DB4");
     			$("#product_name_label").html("商品名稱*&nbsp&nbsp&nbsp&nbsp不符合語法，請重新輸入！");
     		}
     		return flag;
@@ -435,8 +440,8 @@
     	function checkCategory(){
     		console.log("檢查類別");
     		let category = $("#product_category").val();
-			if(category == "未選擇"){
-// 				$("#product_category").css("border", "1px solid #E08DB4");//無效
+			if(category == null){
+				$("#product_category").css("border", "1px solid #E08DB4");//無效
 				$("#product_category_label").html("商品類別 *&nbsp&nbsp&nbsp&nbsp請選擇商品類別!!")
 				return false;
 			}else{
