@@ -115,7 +115,13 @@ public class MemberService {
         return true;
     }
 
-    public void addMember(MemberBean member) {
-        dao.insert(member);
+    public boolean addMember(MemberBean member) {
+        try {
+            dao.insert(member);
+            return true;
+        }catch (Exception e){
+
+            return false;
+        }
     }
 }
