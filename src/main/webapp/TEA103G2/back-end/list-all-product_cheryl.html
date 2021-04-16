@@ -182,7 +182,7 @@ function getAllProduct(){
         console.log("data msg:"+data.msg);
 //         productDisplay(data);
 		if(data.flag){
-			let table=$("table[class='data-table']").DataTable();
+			let table=$(".data-table").DataTable();
 			
 			console.log("test1");
 			
@@ -194,7 +194,7 @@ function getAllProduct(){
 			
 			
 			
-			table = $("table[class='data-table']").DataTable({
+			table = $(".data-table").DataTable({
                 "lengthMenu": [3, 5, 10, 20],     //顯示XX像結果
                 "language": {
                     "processing": "處理中...",
