@@ -83,10 +83,16 @@ public class ProductService {
 	}
 	
 	
+// 後台getAll，全部都要顯示	
 	public List<ProductBean> getAll(){
 		return dao.getAll();
 	}
-// 排序*4	
+
+// 前台的方法，需過慮上架狀態	
+	public List<ProductBean> getAllAvailable(){
+		return dao.getAllAvailable();
+	}
+// 前台排序*5	
 	public List<ProductBean> getAllSortByPurchase(){
 		return dao.getAllSortByPurchase();
 	}

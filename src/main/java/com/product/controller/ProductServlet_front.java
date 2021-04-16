@@ -35,11 +35,29 @@ public class ProductServlet_front extends BaseServlet {
 	public void test(HttpServletRequest req, HttpServletResponse res) {
 		System.out.println("test");
 	}
-
+	
+// 後端的getAll，所有商品皆出現
+// 呈現在http://localhost:8081/dessert_shop/product/backend_getAllProduct
+	public void backend_getAllProduct(HttpServletRequest req, HttpServletResponse res) {
+		ProductService productSvc = new ProductService();
+		List<ProductBean> productList = productSvc.getAll();
+		
+		ResultInfo info = new ResultInfo();
+		
+		info.setFlag(true);
+		info.setMsg("資料取得成功!");
+		info.setData(productList);
+		
+		writeValueByWriter(res, info);
+		
+	}
+	
+	
+// 前端的getAll，只有上架的可以出現
 // 呈現在http://localhost:8081/dessert_shop/product/getAllProduct
 	public void getAllProduct(HttpServletRequest req, HttpServletResponse res) {
 		ProductService productSvc = new ProductService();
-		List<ProductBean> productList = productSvc.getAll();
+		List<ProductBean> productList = productSvc.getAllAvailable();
 
 		ResultInfo info = new ResultInfo();
 
@@ -50,6 +68,7 @@ public class ProductServlet_front extends BaseServlet {
 		writeValueByWriter(res, info);
 
 	}
+	
 
 	// http://localhost:8081/dessert_shop/product/getOneProduct?id=?
 	public void getOneProduct(HttpServletRequest req, HttpServletResponse res) {
