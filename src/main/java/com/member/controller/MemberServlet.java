@@ -911,4 +911,41 @@ public class MemberServlet extends BaseServlet {
         }
         writeValueByWriter(res, info);
     }
+
+    public void backend_addMember(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+        //獲取數據
+        Map<String, String[]> map = req.getParameterMap();
+        System.out.println("map= " + new ObjectMapper().writeValueAsString(map));
+        //封裝物件
+        MemberBean member = new MemberBean();
+        try {
+            BeanUtils.populate(member, map);
+        } catch (IllegalAccessException | InvocationTargetException e) {
+            e.printStackTrace();
+        }
+        Part part = req.getPart("member_photo");
+        InputStream in = part.getInputStream();
+        byte[] buf = new byte[in.available()];
+        in.read(buf);
+        in.close();
+        member.setMember_photo(buf);
+        member.setRegister_method(1);
+        System.out.println(member);
+        member.setMember_password(DigestUtil.md5Hex(member.getMember_password()));
+        boolean flag = service.addMember(member);
+
+        ResultInfo info = new ResultInfo();
+        //創建結果 準備返回前端
+        if (flag) {
+            //註冊成功
+            info.setFlag(true);
+            info.setMsg("新增成功!");
+        } else {
+            //註冊失敗
+            info.setFlag(false);
+            info.setMsg("新增失敗!");
+        }
+        writeValueByWriter(res, info);
+
+    }
 }
