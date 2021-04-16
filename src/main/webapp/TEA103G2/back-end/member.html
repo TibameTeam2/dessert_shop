@@ -510,9 +510,28 @@
             $(".update_member_email").val(data[4]);
             $(".update_member_birthday").val(moment(data[6]).format('YYYY-MM-DD'));
             data[5]=="男"?$(".member_radio1").prop('checked', true):$(".member_radio0").prop('checked', true)
-            data[9]=="未啟用"?$(".update_member_status option[value=0]").attr('selected','selected'):$(".update_member_status option[value=1]").attr('selected','selected')
+            getUpdate_member_status(data[9]);
 
         });
+
+        function getUpdate_member_status(status){
+            switch (status) {
+                case "未啟用":
+                    $('.selectpicker').val('0');
+                    break;
+                case "已啟用":
+                    $('.selectpicker').val('1');
+                    break;
+                default:
+                    $('.selectpicker').val('0');
+                    break;
+            }
+            $('.selectpicker').selectpicker('render');
+        }
+
+
+
+
     </script>
 
 
