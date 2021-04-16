@@ -38,7 +38,7 @@ public class NoticeWS {
 	@OnOpen
 	public void onOpen(@PathParam("memberAccount") String memberAccount, Session userSession) {
 
-		System.out.println("連線已經開啟" + memberAccount);
+		System.out.println("Notice連線已經開啟" + memberAccount);
 
 		sessionsMap.put(memberAccount, userSession);
 //		sendCustomizeMessage(memberAccount, memberAccount + " ~ Hello 歡迎登入");
@@ -59,6 +59,7 @@ public class NoticeWS {
 
 	@OnClose
 	public void onClose(Session userSession) {
+		sessionsMap.remove(userSession);
 		System.out.println("連線已經關閉");
 
 	}

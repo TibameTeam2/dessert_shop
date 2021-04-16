@@ -676,7 +676,7 @@
                 webSocket = new WebSocket(endPointURL);
                 //建立連線
                 webSocket.onopen = function(e) {
-                        console.log("連線開啟");
+                        console.log(response.data.member_account + "通知連線開啟");
                     }
                     //接收訊息
                 webSocket.onmessage = function(e) {

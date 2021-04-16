@@ -38,7 +38,7 @@
 <!--    <script src="assets/js/vendor/jquery-3.5.1.min.js"></script>-->
 <!--</head>-->
 
-<body onload="connect();" onunload="disconnect();">
+<body>
     <!-- Footer Start-->
     <div class="section footer-section">
         <!-- Footer widget Start -->
@@ -162,16 +162,16 @@
         <div class="message-title">
             <div class="message-title-name">Sweetness</div><button class="message-close"><img class="message-close-img" src="assets/images/icon/cancel.png"></button></div>
         <div id="messagesArea" class="panel message-area">
-            <ul id="area">
-                <li class="message-li-friend">我是朋友我是朋友我是朋友我是朋友我是朋友我是朋友我是朋友</li>
+            <!--             <ul id="area"> -->
+            <!-- <li class="message-li-friend">我是朋友我是朋友我是朋友我是朋友我是朋友我是朋友我是朋友</li>
                 <li class="message-li-me">我是自己我是自己我是自己我是自己我是自己我是自己我是自己</li>
                 <li class="message-li-friend">我是朋友</li>
-                <li class="message-li-me">我是自己</li>
-            </ul>
+                <li class="message-li-me">我是自己</li> -->
+            <!--             </ul> -->
         </div>
         <div class="panel input-area">
             <input id="message" type="text" class="text-field" placeholder="請輸入訊息..." onkeydown="if(event.keyCode==13) sendMessage();" />
-            <button type="submit " id="sendMessage" class="send-message-button" value="Send" onclick="sendMessage();">
+            <button type="submit " id="sendMessage" class="send-message-button" value="Send" onclick="sendMessage()">
 			<img class="send-message-img" src="assets/images/icon/icon-send.png">
 			</button>
         </div>
@@ -212,76 +212,89 @@
     <!--<script src="assets/js/main.js "></script>-->
 
     <script>
-        //         $.post("/dessert_shop/member/isLogin", function(response) {
+        $.post("/dessert_shop/member/isLogin", function(response) {
+            if (response.flag) {
 
-        //             if (response.flag) {
-        /********************************** webSocket **********************************/
-        //                 var MyPoint = "/LiveSupportWS/" + response.data.member_account; //登入的帳號
-        //                 var host = window.location.host;
-        //                 var path = window.location.pathname;
-        //                 var webCtx = path.substring(0, path.indexOf('/', 1));
-        //websocket 有自己的通訊協定(ws) 同等於http (ws://localhost:8081/WebSocketChatWeb/TogetherWS/james)
-        //                 var endPointURL = "ws://" + window.location.host + webCtx + MyPoint;
+                /********************************** webSocket **********************************/
+                var MyPoint = "/FriendWS2/" + response.data.member_account; //登入的帳號
+                var host = window.location.host;
+                var path = window.location.pathname;
+                var webCtx = path.substring(0, path.indexOf('/', 1));
+                //websocket 有自己的通訊協定(ws) 同等於http (ws://localhost:8081/WebSocketChatWeb/TogetherWS/james)
+                var endPointURL = "ws://" + window.location.host + webCtx + MyPoint;
+                webSocket = new WebSocket(endPointURL);
 
-        // var messagesArea = $('.messagesArea');
-        // var self = response.data.member_account;
-        //                 webSocket = new WebSocket(endPointURL);
+                var self = response.data.member_account;
 
-        //建立連線
-        //                 webSocket.onopen = function(e) {
-        //                     console.log("連線成功");
-        // $('.sendMessage').disabled = false;
-        //                 }
 
-        //接收訊息
-        //                 webSocket.onmessage = function(e) {
-        // var jsonObj = JSON.parse(e.data);
-        // if ("history" === jsonObj.type) {
-        //     messagesArea.innerHTML = '';
-        //     var ul = document.createElement('ul');
-        //     ul.id = "area";
-        //     messagesArea.appendChild(ul);
-        //     // 這行的jsonObj.message是從redis撈出跟好友的歷史訊息，再parse成JSON格式處理
-        //     var messages = JSON.parse(jsonObj.message);
-        //     for (var i = 0; i < messages.length; i++) {
-        //         var historyData = JSON.parse(messages[i]);
-        //         var showMsg = historyData.message;
-        //         var li = document.createElement('li');
-        //         // 根據發送者是自己還是對方來給予不同的class名, 以達到訊息左右區分
-        //         historyData.sender === self ? li.className += 'me' : li.className += 'friend';
-        //         li.innerHTML = showMsg;
-        //         ul.appendChild(li);
-        //     }
-        //     messagesArea.scrollTop = messagesArea.scrollHeight;
-        //      } else if ("chat" === jsonObj.type) {
-        //     var li = document.createElement('li');
-        //     jsonObj.sender === self ? li.className += 'me' : li.className += 'friend';
-        //     li.innerHTML = jsonObj.message;
-        //     console.log(li);
-        //     document.getElementById("area").appendChild(li);
-        //     messagesArea.scrollTop = messagesArea.scrollHeight;
-        //      }
-        //                 }
+                //建立連線
+                webSocket.onopen = function(e) {
+                    console.log(response.data.member_account + "客服連線開啟");
 
-        //                 //發生錯誤
-        //                 webSocket.onerror = function(e) {
-        //                     console.log("錯誤訊息:", e);
-        //                 };
+                }
 
-        //                 //關閉連線
-        //                 webSocket.onclose = function(e) {
-        //                     console.log("連線關閉");
-        //                 }
+                //接收訊息
+                webSocket.onmessage = function(e) {
 
-        //                 // function disconnect() {
-        //                 //     webSocket.close();
-        //                 //     $('.sendMessage').disabled = true;
-        //                 // }
+                    var jsonObj = JSON.parse(e.data);
+                    console.log(jsonObj);
+                    console.log(jsonObj.type);
 
-        //             } else {}
+                    addListener();
 
-        //         });
 
+                    if ("history" == jsonObj.type) {
+
+
+                        $('#messagesArea').html('');
+                        $('#messagesArea').append(`<ul id="area"></ul>`)
+
+                        var message = JSON.parse(jsonObj.message);
+
+                        console.log(message);
+
+                        for (var i in message) {
+
+                            console.log(message[i]);
+                            console.log(message[i].sender);
+
+
+                            var historyData = JSON.parse(message[i]);
+                            console.log("historyData" + historyData);
+
+                            var showMsg = historyData.message;
+                            console.log("showMsg" + showMsg);
+                            var whose = historyData.sender == self ? 'me' : 'friend';
+                            $('#area').append(`<li class="message-li-` + whose + `">` + showMsg + `</li>`)
+                            console.log(whose + "=>" + showMsg);
+
+                        }
+
+                        $('#messagesArea').scrollTop(520);
+                    } else if ("chat" == jsonObj.type) {
+
+                        var whose = jsonObj.sender == self ? 'me' : 'friend';
+                        $('#area').append(`<li class="message-li-` + whose + `">` + jsonObj.message + `</li>`)
+
+                    }
+
+                    $('#messagesArea').scrollTop(520);
+                }
+
+                //發生錯誤
+                webSocket.onerror = function(e) {
+                    console.log("錯誤訊息:", e);
+                };
+
+                //關閉連線
+                webSocket.onclose = function(e) {
+                    console.log("客服連線關閉");
+                }
+
+            } else {}
+
+
+        });
 
         /*======================================= MessageLightBox =======================================*/
         // 開啟 Modal 彈跳視窗
@@ -306,32 +319,61 @@
 
         function sendMessage() {
 
-            let input_text = $.trim($('#message').val());
-            if (input_text == "") {
-                alert("請輸入資料");
-                $('#message').focus();
-            } else {
-                console.log(($.trim($('#message').val())));
-            }
+            $.post("/dessert_shop/member/isLogin", function(response) {
 
-            //     var inputMessage = $("#message");
-            //     var friend = response.data.member_account;
-            //     var message = inputMessage.value.trim();
+                var inputMessage = $('#message');
+                var message = $.trim($('#message').val());
+                var friend = 'james';
+                var self = response.data.member_account;
 
-            //     if (message === "") {
-            //         alert("Input a message");
-            //         inputMessage.focus();
-            //     } else {
-            //         var jsonObj = {
-            //             "type": "chat",
-            //             "sender": self,
-            //             "receiver": friend,
-            //             "message": message
-            //         };
-            //         webSocket.send(JSON.stringify(jsonObj));
-            //         inputMessage.value = "";
-            //         inputMessage.focus();
-            //     }
+
+                if (message == "") {
+
+                    alert("請輸入資料");
+                    $('#message').focus();
+
+                } else {
+
+                    var dataObj = {
+                        "type": "chat",
+                        "sender": self,
+                        "receiver": friend,
+                        "message": message
+                    }
+
+                    webSocket.send(JSON.stringify(dataObj));
+                    inputMessage.val("");
+                    inputMessage.focus();
+
+
+                    console.log(dataObj);
+
+                }
+            })
+        }
+
+        // addListener(jsonObj);
+        function addListener() {
+            $('.message-btn').on("click", function() {
+
+                $.post("/dessert_shop/member/isLogin", function(response) {
+                    if (response.flag) {
+                        var self = response.data.member_account;
+                        var friend = 'james';
+
+                        var jsonObj = {
+                            "type": "history",
+                            "sender": self,
+                            "receiver": friend,
+                            "message": ""
+                        };
+
+                        console.log(jsonObj);
+                        webSocket.send(JSON.stringify(jsonObj));
+
+                    } else {}
+                })
+            })
         }
     </script>
 </body>

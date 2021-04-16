@@ -23755,27 +23755,27 @@ div.ws_content li:hover {
 
 /*-------------------- scrollbar CSS ----------------------------*/
 
+
+/*整個滾動條*/
+
 div.message-area::-webkit-scrollbar {
-    width: 18px;
+    width: 10px;
 }
 
 
-/*整個滾動條*/
+/*滾動條的軌道*/
 
 div.message-area::-webkit-scrollbar-track {
     background-color: #ECFFFF;
 }
 
 
-/*滾動條的軌道*/
+/*滾動條的滾動划塊*/
 
 div.message-area::-webkit-scrollbar-thumb {
     background-color: #D1E9E9;
     border-radius: 5px;
 }
-
-
-/*滾動條的滾動划塊*/
 
 
 /*---------------- LiveSupport CSS --------------------*/

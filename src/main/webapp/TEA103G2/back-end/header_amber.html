@@ -35,12 +35,11 @@
         }
         
         div.message-table-left {
-            border-right: 1px solid black;
+            border-right: 2px solid #E0E0E0;
             padding: 0;
         }
         
         div.message-table-right {
-            /*      border: 1px solid black; */
             padding: 0;
         }
         
@@ -53,7 +52,8 @@
             z-index: 50;
             width: 700px;
             height: 500px;
-            border-radius: 5px
+            border-radius: 5px;
+            box-shadow: 1px 1px 3px 0 #E0E0E0, 1px 1px 3px 0 #E0E0E0 inset;
         }
         
         div.message-title {
@@ -62,12 +62,13 @@
             border-radius: 0 5px 0 0;
             border-color: #F0F0F0;
             box-shadow: 0 1px 5px 0 #E0E0E0;
+            background-color: #0abab5;
+            color: white;
         }
         
         div.message-title-name {
             display: inline-block;
             margin: 13px 0 0 150px;
-            color: #0abab5;
             font-weight: bolder;
             font-size: 22px;
         }
@@ -89,16 +90,12 @@
             width: 15px;
         }
         
-        div.message-area {
-            height: 400px;
-        }
-        
         div.input-area {
             width: 350px;
             height: 48px;
             border-color: #F0F0F0;
             border-radius: 0 0 5px 0;
-            box-shadow: 1px 0 3px 0 #E0E0E0 inset;
+            box-shadow: 0px 2px 3px 0 #E0E0E0 inset;
         }
         
         input.text-field {
@@ -128,13 +125,101 @@
             width: 30px;
         }
         
+        div.cutomer-row-title {
+            width: 350px;
+            height: 50px;
+            border-color: #F0F0F0;
+            box-shadow: 0 1px 5px 0 #E0E0E0;
+            border-radius: 5px 5px 0 0;
+            font-size: 25px;
+            font-weight: bolder;
+            padding: 10px 10px 0 150px;
+            margin-bottom: 5px;
+            background-color: #0abab5;
+            color: white;
+        }
+        
         ul.customer-row-ul {
-            padding: 5px;
+            padding: 0px;
+            height: 445px;
+            overflow-x: hidden;
+            overflow-y: hidden;
+        }
+        
+        ul.customer-row-ul:hover {
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+        
+        ul.customer-row-ul::-webkit-scrollbar-track {
+            background-color: white;
+        }
+        
+        ul.customer-row-ul::-webkit-scrollbar-thumb {
+            background-color: #87CECB;
         }
         
         li.customer-row-list {
-            width: 300px;
-            border: 1px solid black;
+            font-size: 20px;
+            width: 342px;
+            height: 65px;
+            border-radius: 10px;
+            border: 1px solid #c7cbd3;
+            padding: 15px 15px 10px 15px;
+            margin-bottom: 1px;
+            margin-left: 3px;
+        }
+        
+        li.customer-row-list:not(.chooseLi):hover {
+            box-shadow: 1px 2px 3px 0 #EAF5F5;
+            background-color: #F0F0F0;
+        }
+        
+        .chooseLi {
+            background-color: #B0E0E6;
+        }
+        
+        div.message-area {
+            width: 350px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            height: 400px;
+        }
+        
+        div.message-area::-webkit-scrollbar-track {
+            background-color: white;
+        }
+        
+        div.message-area::-webkit-scrollbar-thumb {
+            background-color:#D1E9E9;
+        }
+        
+        div.message-area ul {
+            padding: 0;
+        }
+        
+        div.message-area ul li {
+            display: inline-block;
+            clear: both;
+            padding: 10px;
+            border-radius: 15px;
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 15px;
+        }
+        
+        li.message-li-friend {
+            display: inline;
+            background:#F0F0F0;
+            float: left;
+            max-width: 220px;
+            margin: 8px 0 0 10px;
+        }
+        
+        li.message-li-me {
+            float: right;
+            background:#e5f4f5;
+            max-width: 220px;
+            margin: 8px 10px 0 0;
         }
     </style>
 </head>
@@ -771,38 +856,9 @@
                     </li>
 
 
-                    <!------------------------------------ liveSupport ------------------------------------------>
+                    <!------------------------------------ liveSupportButton------------------------------------------>
                     <button class="liveSupportBtn">Live Support</button>
-
-                    <div class="row message-table">
-
-                        <div class="col-lg-6 message-table-left" id="customer-row">
-                            <ul class="customer-row-ul">
-                                <li class="customer-row-list">RRRRRRRRRRRRRRRRRRRRRRRRRRRRR</li>
-                            </ul>
-
-                        </div>
-                        <div class="col-lg-6 message-table-right">
-                            <div class="message-title">
-                                <div id="statusOutput" class="statusOutput message-title-name">Tom</div><button class="message-close"><img class="message-close-img" src="assets/images/cancel.png"></button></div>
-                            <div id="messagesArea" class="panel message-area">
-                                <!-- <ul id="area"> -->
-                                <!-- <li class="message-li-friend">我是朋友我是朋友我是朋友我是朋友我是朋友我是朋友我是朋友</li> -->
-                                <!--<li class="message-li-me">我是自己我是自己我是自己我是自己我是自己我是自己我是自己</li> -->
-                                <!--<li class="message-li-friend">我是朋友</li> -->
-                                <!--<li class="message-li-me">我是自己</li> -->
-                                <!-- </ul> -->
-                            </div>
-                            <div class="panel input-area">
-                                <input id="message" type="text" class="text-field" placeholder="請輸入訊息..." onkeydown="if(event.keyCode==13) sendMessage();" />
-                                <button type="submit " id="sendMessage" class="send-message-button" value="Send" onclick="sendMessage();">
-                            	<img class="send-message-img" src="assets/images/send.png">
-                            	</button>
-                            </div>
-                        </div>
-
-                    </div>
-                    <!--------------------------------------------------------------------------------------------->
+                    <!------------------------------------------------------------------------------------------------>
 
                 </ul>
             </nav>
@@ -1080,6 +1136,43 @@
         </div>
     </div>
 
+    <!----------------------------------------- LiveSupport Table ----------------------------------------->
+    <div class="row message-table">
+        <div class="col-lg-6 message-table-left" id="customer-row">
+            <div class="cutomer-row-title">List</div>
+            <ul class="customer-row-ul">
+                <li class="customer-row-list">Json</li>
+                <li class="customer-row-list">Tommy</li>
+                <li class="customer-row-list">Ammy</li>
+            </ul>
+        </div>
+        <div class="col-lg-6 message-table-right">
+            <div class="message-title">
+                <div id="statusOutput" class="statusOutput message-title-name">Tom</div><button class="message-close"><img class="message-close-img" src="assets/images/cancel.png"></button></div>
+            <div id="messagesArea" class="panel message-area">
+                <ul id="area">
+                    <li class="message-li-friend">我是朋友我是朋友 我是朋友我是朋友我是朋友我是朋友我是朋友</li>
+                    <li class="message-li-me">我是自己我是自己我是自己 我是自己我是自己我是自己我是自己</li>
+                    <li class="message-li-friend">我是朋友</li>
+                    <li class="message-li-me">我是自己</li>
+                    <li class="message-li-friend">我是朋友</li>
+                    <li class="message-li-me">我是自己</li>
+                    <li class="message-li-friend">我是朋友</li>
+                    <li class="message-li-me">我是自己</li>
+                    <li class="message-li-friend">我是朋友</li>
+                    <li class="message-li-me">我是自己</li>
+                </ul>
+            </div>
+            <div class="panel input-area">
+                <input id="message" type="text" class="text-field" placeholder="請輸入訊息..." onkeydown="if(event.keyCode==13) sendMessage();" />
+                <button type="submit " id="sendMessage" class="send-message-button" value="Send" onclick="sendMessage();">
+                <img class="send-message-img" src="assets/images/send.png">
+                </button>
+            </div>
+        </div>
+    </div>
+    <!----------------------------------------------------------------------------------------------------->
+
     <!--<script src="assets/js/backend-bundle.min.js"></script>-->
 
     <!--&lt;!&ndash; Table Treeview JavaScript &ndash;&gt;-->
@@ -1098,8 +1191,17 @@
     <!--<script src="assets/js/moment.js"></script>-->
 
     <script>
+        /*************************** LiveSupport 視窗彈跳  ***************************/
         $('button.liveSupportBtn').on("click", function() {
             $('div.message-table').toggle();
+        });
+
+        $('button.message-close').on("click", function() {
+            $('div.message-table').toggle();
+        });
+
+        $('li.customer-row-list').on("click", function() {
+            $(this).addClass("chooseLi").siblings().removeClass("chooseLi");
         })
     </script>
 </body>
