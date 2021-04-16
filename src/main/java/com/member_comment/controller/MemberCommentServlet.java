@@ -102,8 +102,8 @@ public class MemberCommentServlet extends BaseServlet {
 		}
 		writeValueByWriter(res, info);
 		
-		ProductService productSvc = new ProductService();
-		productSvc.addReviewStar(product_id, rating);
+//		ProductService productSvc = new ProductService();
+//		productSvc.addReviewStar(product_id, rating);
 
 	}
 
