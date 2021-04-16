@@ -1,5 +1,8 @@
 package com.employee.model;
 
+import com.dealer_reply.model.ListMemberCommentBean;
+import com.employee_authority.model.EmployeeAuthorityBean;
+import com.employee_authority.model.EmployeeAuthorityDAO;
 import com.util.JDBCUtil;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -16,15 +19,16 @@ public class EmployeeDAO implements EmployeeDAO_interface {
     private String url = JDBCUtil.url;
     private String userid = JDBCUtil.user;
     private String passwd = JDBCUtil.password;
+    private EmployeeAuthorityDAO empAuthDao = new EmployeeAuthorityDAO();
 
     /**
      * 初始化
      */
     public static void init() {
         // 得到Spring配置文件
-        ApplicationContext app = new ClassPathXmlApplicationContext("applicationContext.xml");
+//        ApplicationContext app = new ClassPathXmlApplicationContext("applicationContext.xml");
         // 取得JDBC模板物件
-        jdbcTemplate = (JdbcTemplate) app.getBean("jdbcTemplate");
+//        jdbcTemplate = (JdbcTemplate) app.getBean("jdbcTemplate");
 
 
 //        driver = "com.mysql.cj.jdbc.Driver";
@@ -56,7 +60,7 @@ public class EmployeeDAO implements EmployeeDAO_interface {
             pstmt.setDate(6, emp_Insert.getHire_date());
             pstmt.setInt(7, emp_Insert.getEmployee_status());
 
-            
+
             pstmt.executeUpdate();
 
             // Handle any driver errors
@@ -86,7 +90,6 @@ public class EmployeeDAO implements EmployeeDAO_interface {
         }
 
     }
-
 
 
     public void update(EmployeeBean emp_Update) {
@@ -187,7 +190,7 @@ public class EmployeeDAO implements EmployeeDAO_interface {
 
     public EmployeeBean findByPrimaryKey(String employee_account) {
 
-        EmployeeBean EmployeeBean = null;
+        EmployeeBean employeeBean = null;
         Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
@@ -204,14 +207,19 @@ public class EmployeeDAO implements EmployeeDAO_interface {
 
             while (rs.next()) {
                 // EmpgetAll 也稱為 Domain objects
-                EmployeeBean = new EmployeeBean();
-                EmployeeBean.setEmployee_account(rs.getString("employee_account"));
-                EmployeeBean.setEmployee_name(rs.getString("employee_name"));
-                EmployeeBean.setEmployee_password(rs.getString("employee_password"));
-                EmployeeBean.setEmployee_position(rs.getString("employee_position"));
-                EmployeeBean.setEmployee_photo(rs.getBytes("employee_photo"));
-                EmployeeBean.setHire_date(rs.getDate("hire_date"));
-                EmployeeBean.setEmployee_status(rs.getInt("employee_status"));
+                employeeBean = new EmployeeBean();
+                employeeBean.setEmployee_account(rs.getString("employee_account"));
+                employeeBean.setEmployee_name(rs.getString("employee_name"));
+                employeeBean.setEmployee_password(rs.getString("employee_password"));
+                employeeBean.setEmployee_position(rs.getString("employee_position"));
+                employeeBean.setEmployee_photo(rs.getBytes("employee_photo"));
+                employeeBean.setHire_date(rs.getDate("hire_date"));
+                employeeBean.setEmployee_status(rs.getInt("employee_status"));
+                List<EmployeeAuthorityBean> list = empAuthDao.findByEmployee(employee_account);
+                employeeBean.employee_auth = new ArrayList<Integer>();
+                for (EmployeeAuthorityBean bean : list) {
+                    employeeBean.employee_auth.add(bean.getAuthority_Content_id());
+                }
             }
 
 
@@ -247,7 +255,7 @@ public class EmployeeDAO implements EmployeeDAO_interface {
                 }
             }
         }
-        return EmployeeBean;
+        return employeeBean;
     }
 //
 //
@@ -278,6 +286,11 @@ public class EmployeeDAO implements EmployeeDAO_interface {
                 EmpgetAll.setEmployee_photo(rs.getBytes("employee_photo"));
                 EmpgetAll.setHire_date(rs.getDate("hire_date"));
                 EmpgetAll.setEmployee_status(rs.getInt("employee_status"));
+                List<EmployeeAuthorityBean> authList = empAuthDao.findByEmployee(EmpgetAll.getEmployee_account());
+                EmpgetAll.employee_auth = new ArrayList<Integer>();
+                for (EmployeeAuthorityBean bean : authList) {
+                    EmpgetAll.employee_auth.add(bean.getAuthority_Content_id());
+                }
 
                 list.add(EmpgetAll); // Store the row in the list
 
@@ -346,7 +359,6 @@ public class EmployeeDAO implements EmployeeDAO_interface {
 //        dao.update(emp_Update);
 
 
-
 //
 //        // 刪除
 //       dao.delete("james");
@@ -359,7 +371,6 @@ public class EmployeeDAO implements EmployeeDAO_interface {
         // 查詢
 //        List<EmployeeBean> list = dao.getAll();
 
-        
 
     }
 }

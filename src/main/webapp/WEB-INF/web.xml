@@ -137,7 +137,15 @@
 
 
 
-
+	<!--後台員工 -->
+	<servlet>
+		<servlet-name>Employee_backendServlet</servlet-name>
+		<servlet-class>com.employee.controller.Employee_backendServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Employee_backendServlet</servlet-name>
+		<url-pattern>/employee/*</url-pattern>
+	</servlet-mapping>
 
 
 

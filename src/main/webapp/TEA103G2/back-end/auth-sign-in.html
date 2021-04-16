@@ -31,20 +31,20 @@
               <div class="d-flex align-items-center auth-content">
                 <div class="col-lg-7 align-self-center">
                   <div class="p-3">
-                    <h2 class="mb-2">Sign In</h2>
+                    <h2 class="mb-2">登入</h2>
                     <p>Login to stay connected.</p>
-                    <form>
+                    <form id="login_form">
                       <div class="row">
                         <div class="col-lg-12">
                           <div class="floating-label form-group">
-                            <input class="floating-input form-control" type="email" placeholder=" ">
-                            <label>Email</label>
+                            <input class="floating-input form-control" type="text" placeholder=" " name="employee_account">
+                            <label>帳號</label>
                           </div>
                         </div>
                         <div class="col-lg-12">
                           <div class="floating-label form-group">
-                            <input class="floating-input form-control" type="password" placeholder=" ">
-                            <label>Password</label>
+                            <input class="floating-input form-control" type="password" placeholder=" " name="employee_password">
+                            <label>密碼</label>
                           </div>
                         </div>
                         <div class="col-lg-6">
@@ -54,13 +54,13 @@
                           </div>
                         </div>
                         <div class="col-lg-6">
-                          <a href="auth-recoverpw.html" class="text-primary float-right">Forgot Password?</a>
+                          <a href="auth-recoverpw.html" class="text-primary float-right">忘記密碼?</a>
                         </div>
                       </div>
-                      <button type="submit" class="btn btn-primary">Sign In</button>
-                      <p class="mt-3">
-                        Create an Account <a href="auth-sign-up.html" class="text-primary">Sign Up</a>
-                      </p>
+                      <button type="submit" class="btn btn-primary">登入</button>
+<!--                      <p class="mt-3">-->
+<!--                        Create an Account <a href="auth-sign-up.html" class="text-primary">註冊</a>-->
+<!--                      </p>-->
                     </form>
                   </div>
                 </div>
@@ -90,5 +90,43 @@
 
 <!-- app JavaScript -->
 <script src="assets/js/app.js"></script>
+
+
+<script>
+  $(function(){
+      //表單送出時
+      $("#login_form").submit(function () {
+          //表單提交時檢查所有屬性合法
+          // if(checkUsername() && checkPassword() && checkEmail()){
+          //發送ajax請求，送出表單資料
+          console.log($("#login_form").serialize());
+          $.post("/dessert_shop/employee/login", $(this).serialize(), function (data) {
+              //處理伺服器回應的資料  data  {flag:true,errorMsg:"註冊成功!!!"}
+              if (data.flag) {
+                  // 註冊成功後跳轉頁面
+                  // location.href="register_ok.html";
+                  // alert("註冊成功!!!");
+                  // alert(data.msg);
+                  if (data.redirect)
+                      location.href = data.redirect;
+              } else {
+                  // 註冊失敗 彈出視窗
+                  // $("#errorMsg").html(data.errorMsg);
+                  Swal.fire({
+                      title: data.msg,
+                      text: '',
+                      icon: "error"
+                  })
+              }
+          });
+
+          //2.不跳轉頁面，等資料回來會做跳轉
+          return false;
+          //如果為true，表單提交，如果為false，不提交
+          //在這裡不管怎樣都是false，因為跳轉的功能在ajax中實現了
+      });
+  })
+
+</script>
 </body>
 </html>

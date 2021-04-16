@@ -2,17 +2,18 @@ package com.employee.model;
 
 import java.sql.Date;
 import java.util.Arrays;
+import java.util.List;
 
 public class EmployeeBean implements java.io.Serializable {
 
     private String employee_account;
-    private String employee_name;
     private String employee_password;
+    private String employee_name;
     private String employee_position;
-    private byte[] employee_photo;
     private Date hire_date;
     private Integer employee_status;
-
+    private byte[] employee_photo;
+    public List<Integer> employee_auth;
 
 
     @Override
@@ -22,10 +23,19 @@ public class EmployeeBean implements java.io.Serializable {
                 ", employee_name='" + employee_name + '\'' +
                 ", employee_password='" + employee_password + '\'' +
                 ", employee_position='" + employee_position + '\'' +
-                ", employee_photo=" + Arrays.toString(employee_photo) +
+                ", employee_photo=" + employee_photo +
                 ", hire_date=" + hire_date +
                 ", employee_status=" + employee_status +
+                ", employee_auth=" + employee_auth +
                 '}';
+    }
+
+    public List<Integer> getEmployee_auth() {
+        return employee_auth;
+    }
+
+    public void setEmployee_auth(List<Integer> employee_auth) {
+        this.employee_auth = employee_auth;
     }
 
     public String getEmployee_account() {

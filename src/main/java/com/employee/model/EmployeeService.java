@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.List;
 
 import com.emp.model.EmpVO;
+import com.member.model.MemberBean;
 
 public class EmployeeService {
 	
@@ -12,7 +13,23 @@ public class EmployeeService {
 	public EmployeeService() {
 		dao = new EmployeeDAO();
 	}
-	
+
+	public EmployeeBean login(EmployeeBean employee) {
+		EmployeeBean emp = dao.findByPrimaryKey(employee.getEmployee_account());
+		if (emp == null) {
+			return null;
+		}
+		if (employee.getEmployee_password().equals(emp.getEmployee_password()))
+			return emp;
+		return null;
+	}
+
+
+
+
+
+
+
 	public EmployeeBean addEmp(String employee_account, String employee_name, String employee_password,
 			String employee_position, byte[] employee_photo, Date hire_date, Integer employee_status) {
 		
