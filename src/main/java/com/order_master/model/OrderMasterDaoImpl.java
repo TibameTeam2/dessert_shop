@@ -388,7 +388,7 @@ public class OrderMasterDaoImpl implements OrderMasterDao {
 	}
 
 
-	public OrderMasterBean getOrderMaster(String member_account) {
+	public List<OrderMasterBean> getOrderMaster(String member_account) {
 		
 		SELECT_PK =
 				"SELECT * FROM order_master where member_account = ?";
@@ -396,6 +396,7 @@ public class OrderMasterDaoImpl implements OrderMasterDao {
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
 					
+			List<OrderMasterBean> list = new ArrayList<OrderMasterBean>();
 			OrderMasterBean omBean = null;
 			
 			try {
@@ -419,6 +420,7 @@ public class OrderMasterDaoImpl implements OrderMasterDao {
 					omBean.setInvoice_number(rs.getString("invoice_number"));
 					omBean.setOrder_total(rs.getInt("order_total"));
 					omBean.setOrder_remarks(rs.getString("order_remarks"));
+					list.add(omBean);
 				}
 				
 				
@@ -448,7 +450,7 @@ public class OrderMasterDaoImpl implements OrderMasterDao {
 				}
 			}
 			
-			return omBean;
+			return list;
 			
 		}
 		

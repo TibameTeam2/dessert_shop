@@ -8,7 +8,7 @@
   <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
   <META HTTP-EQUIV="expires" CONTENT="0">
   <title>嗜甜-我的帳號</title>
-  <meta name="robots" content="noindex, follow"/>
+  <meta name="robots" content="noindex, follow" />
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <!-- Favicon -->
@@ -43,172 +43,256 @@
   <script src="assets/js/vendor/jquery.waitforimages.min.js"></script>
   <script src="assets/js/plugins/sweetalert2.all.min.js"></script>
   <style>
-      #member_photo {
-          max-height: 200px;
-      }
-      #bindLine{
-          margin-top:20px;
-      }
-      button.submit{
-          margin-top:20px;
-      }
+    #member_photo {
+      max-height: 200px;
+    }
+
+    #bindLine {
+      margin-top: 20px;
+    }
+
+    button.submit {
+      margin-top: 20px;
+    }
+
+
+
+    /* 縮合 開始 */
+    ul.order_master_comment_list {
+      margin: 24px 0 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    ul.order_master_comment_list>li {
+      margin-bottom: 30px;
+    }
+
+    ul.order_master_comment_list>li:last-child {
+      margin-bottom: 0;
+    }
+
+    ul.order_master_comment_list>li {
+      /* ul.order_master_comment_list > li > a.link_title{ */
+      display: block;
+      width: 100%;
+      color: white;
+      background-color: #ffffff;
+      box-shadow: 2px 2px 8px 0 rgba(56, 55, 53, 0.33);
+      border-radius: 26px;
+      padding: 4px 40px;
+      text-decoration: none;
+      font-size: 24px;
+      font-weight: normal;
+    }
+
+    ul.order_master_comment_list>li::after {
+      /* ul.order_master_comment_list > li > a.link_title::after{ */
+      content: "";
+      display: block;
+      clear: both;
+    }
+
+    button.switch_btn {
+      /* ul.order_master_comment_list > li > a.link_title button.switch_btn{ */
+      float: right;
+      display: inline-block;
+      background: #83bc2e;
+      border: 1px solid white;
+      border-radius: 50px;
+      outline: none;
+      color: white;
+      font-size: 24px;
+    }
+
+    ul.order_master_comment_list>li>div.inner_block {
+      font-size: 18px;
+      color: #4a4a4a;
+      margin-top: 8px;
+      padding: 0 40px;
+      line-height: 1.6;
+      display: none;
+    }
+
+    ul.order_master_comment_list>li button.switch_btn span.minus {
+      display: none;
+    }
+
+    ul.order_master_comment_list>li.-on button.switch_btn span.plus {
+      display: none;
+    }
+
+    ul.order_master_comment_list>li.-on button.switch_btn span.minus {
+      display: inline-block;
+    }
+
+    /* 縮合 結束 */
+    .detail {
+      color: black;
+    }
   </style>
 </head>
 
 <body>
-<!-- Loading Progress
+  <!-- Loading Progress
 ============================================= -->
-<div id="loading-progress">
-  <a class="logo" href="#">
-    <img src="assets/images/logo.jpg" data-logo-alt="images/files/logo-header.png" alt="">
-    <!--        <h3><span class="colored">Astron</span></h3>-->
-    <!--        <span>HTML Template</span>-->
-  </a><!-- .logo end -->
-  <div class="lp-content">
-    <div class="lp-counter">
-      Loading
-      <div id="lp-counter">0%</div>
-    </div><!-- .lp-counter end -->
-    <div class="lp-bar">
-      <div id="lp-bar"></div>
-    </div><!-- .lp-bar end -->
-  </div><!-- .lp-content end -->
-</div>
-<!-- #loading-progress end -->
+  <div id="loading-progress">
+    <a class="logo" href="#">
+      <img src="assets/images/logo.jpg" data-logo-alt="images/files/logo-header.png" alt="">
+      <!--        <h3><span class="colored">Astron</span></h3>-->
+      <!--        <span>HTML Template</span>-->
+    </a><!-- .logo end -->
+    <div class="lp-content">
+      <div class="lp-counter">
+        Loading
+        <div id="lp-counter">0%</div>
+      </div><!-- .lp-counter end -->
+      <div class="lp-bar">
+        <div id="lp-bar"></div>
+      </div><!-- .lp-bar end -->
+    </div><!-- .lp-content end -->
+  </div>
+  <!-- #loading-progress end -->
 
-<div class="main-wrapper">
+  <div class="main-wrapper">
 
-  <!--Header-->
-  <div class="header"></div>
+    <!--Header-->
+    <div class="header"></div>
 
-  <!--Page Banner Start-->
-  <div class="section page-banner-wrapper bg-cover" style="background-image: url(assets/images/page-banner.jpg);">
-    <div class="container">
-      <div class="page-banner">
-        <ul class="breadcrumb justify-content-center">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item active">My Account</li>
-        </ul>
+    <!--Page Banner Start-->
+    <div class="section page-banner-wrapper bg-cover" style="background-image: url(assets/images/page-banner.jpg);">
+      <div class="container">
+        <div class="page-banner">
+          <ul class="breadcrumb justify-content-center">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item active">My Account</li>
+          </ul>
+        </div>
       </div>
     </div>
-  </div>
-  <!--Page Banner Start-->
+    <!--Page Banner Start-->
 
-  <!-- My Account Section Start -->
-  <div class="section section-padding-02 mt-n6">
-    <div class="container">
-      <div class="row">
-        <div class="col-xl-3 col-md-4">
-          <!-- My Account Menu Start -->
-          <div class="my-account-menu mt-6">
-            <ul class="nav account-menu-list flex-column">
-              <li>
-                <a data-bs-toggle="pill" href="#pills-dashboard"><i
-                        class="fa fa-tachometer"></i> 導覽</a>
+    <!-- My Account Section Start -->
+    <div class="section section-padding-02 mt-n6">
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-3 col-md-4">
+            <!-- My Account Menu Start -->
+            <div class="my-account-menu mt-6">
+              <ul class="nav account-menu-list flex-column">
+                <li>
+                  <a data-bs-toggle="pill" href="#pills-dashboard"><i class="fa fa-tachometer"></i> 導覽</a>
+                </li>
+                <li>
+                  <a data-bs-toggle="pill" href="#pills-order"><i class="fa fa-shopping-cart"></i>
+                    訂單資訊</a>
+                </li>
+                <li>
+                  <a href="member-comment.html" class="member-comment"><i class="fa fa-sign-out"></i> 我的評價</a>
+                  <!--                <a data-bs-toggle="pill" href="#pills-download"><i class="fa fa-cloud-download"></i>-->
+                  <!--                  下載(用不到)</a>-->
+                </li>
+                <li>
+                  <a data-bs-toggle="pill" href="#pills-payment"><i class="fa fa-credit-card"></i>
+                    信用卡資訊</a>
+                </li>
+                <li>
+                  <a data-bs-toggle="pill" href="#pills-address"><i class="fa fa-map-marker"></i> 地址(用不到)</a>
+                </li>
+                <li>
+                  <a class="active" data-bs-toggle="pill" href="#pills-account"><i class="fa fa-user"></i>
+                    帳號詳細資訊</a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)" class="logout"><i class="fa fa-sign-out"></i> 登出</a>
+                </li>
+              </ul>
+            </div>
+            <!-- My Account Menu End -->
+          </div class="tab-pane fade" id="pills-order">
+          <div class="col-xl-9 col-md-8">
+            <!-- Tab content start -->
+            <div class="tab-content my-account-tab mt-6">
+              <div class="tab-pane fade" id="pills-dashboard">
+                <div class="my-account-dashboard account-wrapper">
+                  <h4 class="account-title">Dashboard</h4>
+                  <div class="welcome-dashboard">
+                    <p>Hello, <strong>Alex Tuntuni</strong> (If Not <strong>Tuntuni !</strong> <a
+                        href="login.html">Logout</a> )</p>
+                  </div>
+                  <p class="mt-25">From your account dashboard. you can easily check & view your recent
+                    orders, manage your shipping and billing addresses and edit your password and
+                    account details.</p>
+                </div>
+              </div>
+
+
+              <div class="tab-pane fade" id="pills-order">
+                <h4 class="account-title">訂單資料</h4>
+                <ul class="order_master_comment_list">
+
+                  <li>
+                    <div class="post-meta"
+                      style="margin-bottom: 0px; border-top: 1px solid white; border-bottom: 1px solid white">
+                      <span class="detail">訂單編號 : <span class="order_master_id"></span></span>
+                      <span class="detail">下訂時間 : <span class="order_time"></span></span>
+                      <span class="detail">付款時間 : <span class="payment_time"></span></span>
+                      <br>
+                      <span class="detail">發票號碼 : <span class="invoice_number"></span></span>
+                      <span class="detail">優惠券編號 : <span class="coupon_id"></span></span>
+                      <span class="detail">付款方式 : <span class="payment_method"></span> </span>
+                      <br>
+                      <span class="detail">訂單金額 : ((((這是範例用))))<span class="order_total"></span></span>
+                      <br>
+                      <span class="detail">訂單備註 : ((((用雙重迴圈印的))))<span class="order_remarks"></span></span>
+                      <br>
+                      <span class="detail">訂單狀態 : ((((好難刻版!!求CSS大師幫忙美化!!))))<span class="order_status"></span></span>
+                      <button type="button" class="switch_btn">
+                        <span class="plus" style="width: 20px; height: 20px; margin-right: 0px;"><i
+                            class="fas fa-chevron-down" style="color: white; display: inline"></i></span>
+                        <span class="minus" style="width: 20px; height: 20px;"><i class="fas fa-chevron-up"
+                            style="color: white; display: inline"></i></span>
+                      </button>
+                    </div>
+                    <div class="inner_block">
+                      <!-- 訂單明細 -->
+
+                      <span class="product_name">商品名稱：</span>
+                      <span class="product_qty">商品數量：</span>
+                      <span class="product_price">商品價格：</span>
+                      <br>
+                      <span class="product_name">商品名稱：</span>
+                      <span class="product_qty">商品數量：</span>
+                      <span class="product_price">商品價格：</span>
+                      <br>
+                      <span class="product_name">商品名稱：</span>
+                      <span class="product_qty">商品數量：</span>
+                      <span class="product_price">商品價格：</span>
+                      <br>
+
+                    </div>
+                  
+                
               </li>
-              <li>
-                <a data-bs-toggle="pill" href="#pills-order"><i class="fa fa-shopping-cart"></i>
-                  訂單資訊</a>
-              </li>
-              <li>
-                <a href="member-comment.html" class="member-comment"><i class="fa fa-sign-out"></i> 我的評價</a>
-<!--                <a data-bs-toggle="pill" href="#pills-download"><i class="fa fa-cloud-download"></i>-->
-<!--                  下載(用不到)</a>-->
-              </li>
-              <li>
-                <a data-bs-toggle="pill" href="#pills-payment"><i class="fa fa-credit-card"></i>
-                  信用卡資訊</a>
-              </li>
-              <li>
-                <a data-bs-toggle="pill" href="#pills-address"><i class="fa fa-map-marker"></i> 地址(用不到)</a>
-              </li>
-              <li>
-                <a class="active" data-bs-toggle="pill" href="#pills-account"><i class="fa fa-user"></i>
-                  帳號詳細資訊</a>
-              </li>
-              <li>
-                <a href="javascript:void(0)" class="logout"><i class="fa fa-sign-out"></i> 登出</a>
-              </li>
+
             </ul>
           </div>
-          <!-- My Account Menu End -->
-        </div>
-        <div class="col-xl-9 col-md-8">
-          <!-- Tab content start -->
-          <div class="tab-content my-account-tab mt-6">
-            <div class="tab-pane fade" id="pills-dashboard">
-              <div class="my-account-dashboard account-wrapper">
-                <h4 class="account-title">Dashboard</h4>
-                <div class="welcome-dashboard">
-                  <p>Hello, <strong>Alex Tuntuni</strong> (If Not <strong>Tuntuni !</strong> <a
-                          href="login.html">Logout</a> )</p>
-                </div>
-                <p class="mt-25">From your account dashboard. you can easily check & view your recent
-                  orders, manage your shipping and billing addresses and edit your password and
-                  account details.</p>
-              </div>
-            </div>
 
-            <div class="tab-pane fade" id="pills-order">
-              <div class="my-account-order account-wrapper">
-                <h4 class="account-title">Orders</h4>
-                <div class="account-table text-center mt-30 table-responsive">
-                  <table class="table">
-                    <thead>
-                    <tr>
-                      <th class="no">No</th>
-                      <th class="name">Name</th>
-                      <th class="date">Date</th>
-                      <th class="status">Status</th>
-                      <th class="total">Total</th>
-                      <th class="action">Action</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td>Mostarizing Oil</td>
-                      <td>Aug 22, 2020</td>
-                      <td>Pending</td>
-                      <td>$100</td>
-                      <td><a href="#">View</a></td>
-                    </tr>
-                    <tr>
-                      <td>2</td>
-                      <td>Katopeno Altuni</td>
-                      <td>July 22, 2020</td>
-                      <td>Approved</td>
-                      <td>$45</td>
-                      <td><a href="#">View</a></td>
-                    </tr>
-                    <tr>
-                      <td>3</td>
-                      <td>Murikhete Paris</td>
-                      <td>June 22, 2020</td>
-                      <td>On Hold</td>
-                      <td>$99</td>
-                      <td><a href="#">View</a></td>
-                    </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
 
-            <div class="tab-pane fade" id="pills-download">
-              <div class="my-account-download account-wrapper">
-                <h4 class="account-title">Download</h4>
-                <div class="account-table text-center mt-30 table-responsive">
-                  <table class="table">
-                    <thead>
+          <div class="tab-pane fade" id="pills-download">
+            <div class="my-account-download account-wrapper">
+              <h4 class="account-title">Download</h4>
+              <div class="account-table text-center mt-30 table-responsive">
+                <table class="table">
+                  <thead>
                     <tr>
                       <th class="name">Product</th>
                       <th class="date">Date</th>
                       <th class="status">Expire</th>
                       <th class="action">Download</th>
                     </tr>
-                    </thead>
-                    <tbody>
+                  </thead>
+                  <tbody>
                     <tr>
                       <td>Mostarizing Oil</td>
                       <td>Aug 22, 2020</td>
@@ -221,342 +305,449 @@
                       <td>Never</td>
                       <td><a href="#">Download File</a></td>
                     </tr>
-                    </tbody>
-                  </table>
-                </div>
+                  </tbody>
+                </table>
               </div>
             </div>
+          </div>
 
-            <div class="tab-pane fade" id="pills-payment">
-              <div class="my-account-payment account-wrapper">
-                <h4 class="account-title">Payment Method</h4>
-                <p class="mt-30">You Can't Saved Your Payment Method yet.</p>
-              </div>
+          <div class="tab-pane fade" id="pills-payment">
+            <div class="my-account-payment account-wrapper">
+              <h4 class="account-title">Payment Method</h4>
+              <p class="mt-30">You Can't Saved Your Payment Method yet.</p>
             </div>
+          </div>
 
-            <div class="tab-pane fade" id="pills-address">
-              <div class="my-account-address account-wrapper">
-                <div class="row">
-                  <div class="col-md-6">
-                    <h4 class="account-title">Billing address</h4>
-                    <div class="account-address mt-30">
-                      <h6 class="name">Alex Tuntuni</h6>
-                      <p>1355 Market St, Suite 900 <br> San Francisco, CA 94103</p>
-                      <p>Mobile: (123) 456-7890</p>
-                      <a class="btn btn-primary btn-hover-dark" href="#"><i
-                              class="fa fa-edit"></i> Edit Address</a>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <h4 class="account-title">Shipping address</h4>
-                    <div class="account-address mt-30">
-                      <h6 class="name">Alex Tuntuni</h6>
-                      <p>1355 Market St, Suite 900 <br> San Francisco, CA 94103</p>
-                      <p>Mobile: (123) 456-7890</p>
-                      <a class="btn btn-primary btn-hover-dark" href="#"><i
-                              class="fa fa-edit"></i> Edit Address</a>
-                    </div>
+          <div class="tab-pane fade" id="pills-address">
+            <div class="my-account-address account-wrapper">
+              <div class="row">
+                <div class="col-md-6">
+                  <h4 class="account-title">Billing address</h4>
+                  <div class="account-address mt-30">
+                    <h6 class="name">Alex Tuntuni</h6>
+                    <p>1355 Market St, Suite 900 <br> San Francisco, CA 94103</p>
+                    <p>Mobile: (123) 456-7890</p>
+                    <a class="btn btn-primary btn-hover-dark" href="#"><i class="fa fa-edit"></i> Edit Address</a>
                   </div>
                 </div>
-              </div>
-            </div>
-
-            <div class="tab-pane fade show active" id="pills-account">
-              <div class="my-account-details account-wrapper">
-                <h4 class="account-title">個人資料</h4>
-
-                <div class="account-details">
-                  <form id="update_form" action="javascript:void(0)" enctype="multipart/form-data">
-                    <div class="row">
-                      <div class="col-md-12">
-                        <div class="single-form preview">
-                          <img class="img-fluid " id="member_photo"
-                               src="assets/images/logo.jpg"
-                               data-logo-alt="images/files/logo-header.png" alt="">
-                          <br>
-                        </div>
-                        <div>
-                          <input type="file" name="upfile" id="p_file">
-                          <!--<input type="text" class="form-control" name="member_name">-->
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="single-form">
-                          <label class="form-label">姓名</label>
-                          <input type="text" class="form-control" name="member_name">
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="single-form">
-                          <label class="form-label">帳號</label>
-                          <input type="text" class="form-control" name="member_account"
-                                 value="123" disabled="disabled">
-                          <!--<label class="form-label" id="member_account"></label>-->
-                        </div>
-                      </div>
-                      <div class="col-md-12">
-                        <div class="single-form">
-                          <label class="form-label">手機</label>
-                          <input type="text" class="form-control" name="member_phone">
-                        </div>
-                      </div>
-                      <div class="col-md-12">
-                        <div class="single-form">
-                          <label class="form-label">信箱</label>
-                          <input type="text" class="form-control" name="member_email">
-                        </div>
-                      </div>
-                      <div class="col-md-12">
-                        <label class="form-label">性別</label><br>
-                        <input class="form-check-input" type="radio" name="member_gender"
-                               id="radio1" value="1" checked>
-                        <label for="radio1"><span></span>男</label>
-                        <input class="form-check-input" type="radio" name="member_gender"
-                               id="radio2" value="0">
-                        <label for="radio2"><span></span>女</label>
-                      </div>
-                      <div class="col-md-12">
-                        <div class="single-form">
-                          <label class="form-label">生日</label>
-                          <input type="date" class="form-control" name="member_birthday">
-                        </div>
-                      </div>
-                      <div class="col-md-12">
-                        <div class="single-form">
-                          <button class="btn btn-primary btn-hover-dark submit">儲存修改</button>
-                        </div>
-                        <div>
-                          <button class="btn btn-primary btn-hover-dark" id="bindLine">綁定Line帳號</button>
-                        </div>
-                      </div>
-                      <input type="hidden" name="member_account" value="">
-                    </div>
-                  </form>
+                <div class="col-md-6">
+                  <h4 class="account-title">Shipping address</h4>
+                  <div class="account-address mt-30">
+                    <h6 class="name">Alex Tuntuni</h6>
+                    <p>1355 Market St, Suite 900 <br> San Francisco, CA 94103</p>
+                    <p>Mobile: (123) 456-7890</p>
+                    <a class="btn btn-primary btn-hover-dark" href="#"><i class="fa fa-edit"></i> Edit Address</a>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-          <!-- Tab content End -->
+
+          <div class="tab-pane fade show active" id="pills-account">
+            <div class="my-account-details account-wrapper">
+              <h4 class="account-title">個人資料</h4>
+
+              <div class="account-details">
+                <form id="update_form" action="javascript:void(0)" enctype="multipart/form-data">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="single-form preview">
+                        <img class="img-fluid " id="member_photo" src="assets/images/logo.jpg"
+                          data-logo-alt="images/files/logo-header.png" alt="">
+                        <br>
+                      </div>
+                      <div>
+                        <input type="file" name="upfile" id="p_file">
+                        <!--<input type="text" class="form-control" name="member_name">-->
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="single-form">
+                        <label class="form-label">姓名</label>
+                        <input type="text" class="form-control" name="member_name">
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="single-form">
+                        <label class="form-label">帳號</label>
+                        <input type="text" class="form-control" name="member_account" value="123" disabled="disabled">
+                        <!--<label class="form-label" id="member_account"></label>-->
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="single-form">
+                        <label class="form-label">手機</label>
+                        <input type="text" class="form-control" name="member_phone">
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="single-form">
+                        <label class="form-label">信箱</label>
+                        <input type="text" class="form-control" name="member_email">
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <label class="form-label">性別</label><br>
+                      <input class="form-check-input" type="radio" name="member_gender" id="radio1" value="1" checked>
+                      <label for="radio1"><span></span>男</label>
+                      <input class="form-check-input" type="radio" name="member_gender" id="radio2" value="0">
+                      <label for="radio2"><span></span>女</label>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="single-form">
+                        <label class="form-label">生日</label>
+                        <input type="date" class="form-control" name="member_birthday">
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="single-form">
+                        <button class="btn btn-primary btn-hover-dark submit">儲存修改</button>
+                      </div>
+                      <div>
+                        <button class="btn btn-primary btn-hover-dark" id="bindLine">綁定Line帳號</button>
+                      </div>
+                    </div>
+                    <input type="hidden" name="member_account" value="">
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
+        <!-- Tab content End -->
       </div>
     </div>
+  </div>
   </div>
   <!-- My Account Section End -->
 
   <!--Footer-->
   <div class="footer"></div>
 
-</div>
+  </div>
 
 
-<!-- JS
+  <!-- JS
 ============================================ -->
 
-<!-- Bootstrap JS -->
-<script src="assets/js/plugins/popper.min.js"></script>
-<script src="assets/js/plugins/bootstrap.min.js"></script>
+  <!-- Bootstrap JS -->
+  <script src="assets/js/plugins/popper.min.js"></script>
+  <script src="assets/js/plugins/bootstrap.min.js"></script>
 
-<!-- Plugins JS -->
-<script src="assets/js/plugins/swiper-bundle.min.js"></script>
-<script src="assets/js/plugins/jquery.nice-select.min.js"></script>
-<script src="assets/js/plugins/select2.min.js"></script>
-<script src="assets/js/plugins/jquery-ui.min.js"></script>
-<script src="assets/js/plugins/jquery.magnific-popup.min.js"></script>
-<script src="assets/js/plugins/jquery.zoom.min.js"></script>
-<script src="assets/js/plugins/ajax-contact.js"></script>
+  <!-- Plugins JS -->
+  <script src="assets/js/plugins/swiper-bundle.min.js"></script>
+  <script src="assets/js/plugins/jquery.nice-select.min.js"></script>
+  <script src="assets/js/plugins/select2.min.js"></script>
+  <script src="assets/js/plugins/jquery-ui.min.js"></script>
+  <script src="assets/js/plugins/jquery.magnific-popup.min.js"></script>
+  <script src="assets/js/plugins/jquery.zoom.min.js"></script>
+  <script src="assets/js/plugins/ajax-contact.js"></script>
 
-<!--====== Use the minified version files listed below for better performance and remove the files listed above ======-->
-<!-- <script src="assets/js/plugins.min.js"></script> -->
+  <!--====== Use the minified version files listed below for better performance and remove the files listed above ======-->
+  <!-- <script src="assets/js/plugins.min.js"></script> -->
 
 
-<!-- Main JS -->
-<script src="assets/js/main.js"></script>
-<script src="assets/js/moment.js"></script>
-<script>
+  <!-- Main JS -->
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/moment.js"></script>
+  <script>
     $(document).ready(function () {
-        $('.header').load('header.html')
-        $('.footer').load('footer.html')
+      $('.header').load('header.html')
+      $('.footer').load('footer.html')
     })
 
     $("body").waitForImages({
-        finished: function () {
+      finished: function () {
+        setTimeout(function () {
+          $(".lp-content, #loading-progress .logo").css({ opacity: 0 })
+          $("#loading-progress").addClass("hide-it"),
             setTimeout(function () {
-                $(".lp-content, #loading-progress .logo").css({opacity: 0})
-                $("#loading-progress").addClass("hide-it"),
-                    setTimeout(function () {
-                        $(".banner-parallax > .bg-element, .banner-parallax > .overlay-pattern").addClass("appeared")
-                    }, 1000)
-            }, 0)
-        }, each: function (a, t, e) {
-            var n = Math.floor((a + 1) / t * 100);
-            $("#lp-counter").animate({$this: n}, {
-                duration: 150, easing: "", queue: !1, step: function (a) {
-                    var t = Math.round(a);
-                    $("#lp-counter").text(t + "%")
-                }
-            }), $("#lp-bar").animate({width: n + "%"}, 0)
-        }, waitForAll: !0
+              $(".banner-parallax > .bg-element, .banner-parallax > .overlay-pattern").addClass("appeared")
+            }, 1000)
+        }, 0)
+      }, each: function (a, t, e) {
+        var n = Math.floor((a + 1) / t * 100);
+        $("#lp-counter").animate({ $this: n }, {
+          duration: 150, easing: "", queue: !1, step: function (a) {
+            var t = Math.round(a);
+            $("#lp-counter").text(t + "%")
+          }
+        }), $("#lp-bar").animate({ width: n + "%" }, 0)
+      }, waitForAll: !0
     });
-</script>
-<script>
+  </script>
+  <script>
 
     $(function () {
-        $.get("/dessert_shop/member/isLogin", {}, function (data) {
-            console.log(data);
+      $.get("/dessert_shop/member/isLogin", {}, function (data) {
+        console.log(data);
+        if (data.flag) {
+          // alert("帳號:" + data.data.member_account + "\n姓名:" + data.data.member_name + "\n密碼:" + data.data.member_password);
+          // console.log(data.data);
+          // if(data.redirect)
+          //     location.href = data.redirect;
+          $('#member_account').val(data.data.member_account);
+          $('input[name="member_account"]').val(data.data.member_account);
+          $('input[name="member_name"]').val(data.data.member_name);
+          $('input[name="member_phone"]').val(data.data.member_phone);
+          $('input[name="member_email"]').val(data.data.member_email);
+          data.data.member_gender == 1 ? $('#radio1').prop('checked', true) : $('#radio2').prop('checked', true);
+          // $('input[name="member_gender"]').val(data.data.member_gender);
+          $('input[name="member_birthday"]').val(moment(data.data.member_birthday).format('YYYY-MM-DD'));
+          $('#member_photo').attr('src', "/dessert_shop/member/backend_getPhoto?id=" + data.data.member_account)
+
+        } else {
+        }
+      });
+
+
+      //表單送出時
+      // $("#update_form").submit(function (e) {
+      $("button.submit").click(function (e) {
+        e.preventDefault();
+        //表單提交時檢查所有屬性合法
+        // if(checkUsername() && checkPassword() && checkEmail()){
+        //發送ajax請求，送出表單資料
+        console.log($("#update_form").serialize());
+
+        let form = $('#update_form')[0];
+        let data = new FormData(form);
+        $.ajax({
+          type: "POST",
+          enctype: 'multipart/form-data',
+          url: '/dessert_shop/member/update',
+          data: data,
+          processData: false,
+          contentType: false,
+          cache: false,
+          success: function (data) {
             if (data.flag) {
-                // alert("帳號:" + data.data.member_account + "\n姓名:" + data.data.member_name + "\n密碼:" + data.data.member_password);
-                // console.log(data.data);
-                // if(data.redirect)
-                //     location.href = data.redirect;
-                $('#member_account').val(data.data.member_account);
-                $('input[name="member_account"]').val(data.data.member_account);
-                $('input[name="member_name"]').val(data.data.member_name);
-                $('input[name="member_phone"]').val(data.data.member_phone);
-                $('input[name="member_email"]').val(data.data.member_email);
-                data.data.member_gender == 1 ? $('#radio1').prop('checked', true) : $('#radio2').prop('checked', true);
-                // $('input[name="member_gender"]').val(data.data.member_gender);
-                $('input[name="member_birthday"]').val(moment(data.data.member_birthday).format('YYYY-MM-DD'));
-                $('#member_photo').attr('src', "/dessert_shop/member/backend_getPhoto?id=" + data.data.member_account)
-
+              // 註冊成功後跳轉頁面
+              // location.href="register_ok.html";
+              Swal.fire({
+                title: data.msg,
+                text: "",
+                icon: "success"
+              });
+              let url = location.href.split("/TEA103G2")[0];
+              $("i.la-user").css('display', 'none');
+              $("img.user_icon").css('display', 'inline-block');
+              $('img.user_icon').attr("src", $('img.preview_img').attr("src"));
             } else {
+              // 註冊失敗 彈出視窗
+              Swal.fire({
+                title: data.msg,
+                text: "",
+                icon: "error"
+              })
             }
+          }
+        });
+        return false;
+      });
+
+      $('.logout').click(function () {
+        $.get("/dessert_shop/member/logout", {}, function (data) {
+          console.log(data);
+          if (data.flag) {
+            if (data.redirect)
+              location.href = data.redirect;
+          } else {
+            Swal.fire({
+              title: '登出失敗',
+              text: '',
+              icon: "error"
+            })
+          }
+        });
+      })
+
+
+      //以下上傳大頭貼
+      const p_file = document.getElementById("p_file");
+      p_file.addEventListener("change", function (e) {
+        handleFiles(this.files);
+      });
+
+      const preview = document.getElementsByClassName("preview")[0];
+
+      //檔案上傳的處理函式
+      function handleFiles(files) {
+        //先刪掉預覽圖裡的img
+        while (preview.firstChild) preview.removeChild(preview.lastChild);
+
+        // 跑每個使用者選的檔案
+        for (let i = 0; i < files.length; i++) {
+          let file = files[i];
+          let imageType = /image.*/;
+          // 判斷檔案的類型，圖片才加載
+          if (!file.type.match(imageType)) {
+            continue;
+          }
+          //增加img節點在預覽圖裡面
+          let img = document.createElement("img");
+          img.classList.add("preview_img");
+          img.setAttribute("id", "member_photo")
+          preview.appendChild(img);
+
+          let reader = new FileReader();
+          // reader.onload = (e => img.src = reader.result);  //監聽器 檔案讀完的事件 設定img的src
+          reader.addEventListener("load", function (e) {
+            img.src = reader.result.toString();
+          })
+          reader.readAsDataURL(file);  //讀取檔案
+        }
+      }
+
+
+      $("#bindLine").click(function () {
+        Swal.fire({
+          title: '掃描QRCode',
+          text: '將密文傳到嗜甜Line官方帳號即可完成綁定',
+          imageUrl: '/dessert_shop/member/getLineQRCode?' + new Date().getTime(),
+          imageWidth: 200,
+          imageHeight: 200,
+          imageAlt: 'Custom image',
         });
 
-
-        //表單送出時
-        // $("#update_form").submit(function (e) {
-        $("button.submit").click(function (e) {
-            e.preventDefault();
-            //表單提交時檢查所有屬性合法
-            // if(checkUsername() && checkPassword() && checkEmail()){
-            //發送ajax請求，送出表單資料
-            console.log($("#update_form").serialize());
-
-            let form = $('#update_form')[0];
-            let data = new FormData(form);
-            $.ajax({
-                type: "POST",
-                enctype: 'multipart/form-data',
-                url: '/dessert_shop/member/update',
-                data: data,
-                processData: false,
-                contentType: false,
-                cache: false,
-                success: function (data) {
-                    if (data.flag) {
-                        // 註冊成功後跳轉頁面
-                        // location.href="register_ok.html";
-                        Swal.fire({
-                            title: data.msg,
-                            text: "",
-                            icon: "success"
-                        });
-                        let url = location.href.split("/TEA103G2")[0];
-                        $("i.la-user").css('display', 'none');
-                        $("img.user_icon").css('display', 'inline-block');
-                        $('img.user_icon').attr("src", $('img.preview_img').attr("src"));
-                    } else {
-                        // 註冊失敗 彈出視窗
-                        Swal.fire({
-                            title: data.msg,
-                            text: "",
-                            icon: "error"
-                        })
-                    }
-                }
-            });
-            return false;
-        });
-
-        $('.logout').click(function () {
-            $.get("/dessert_shop/member/logout", {}, function (data) {
-                console.log(data);
-                if (data.flag) {
-                    if (data.redirect)
-                        location.href = data.redirect;
-                } else {
-                    Swal.fire({
-                        title: '登出失敗',
-                        text: '',
-                        icon: "error"
-                    })
-                }
-            });
-        })
+        Swal.mixin({
+          confirmButtonText: '下一步',
+          showCancelButton: true,
+          cancelButtonText: '取消',
+          progressSteps: ['1', '2']
+        }).queue([
+          {
+            title: '請先加入嗜甜Line官方帳號',
+            text: '',
+            imageUrl: 'https://qr-official.line.me/sid/L/322ganxg.png',
+            imageWidth: 200,
+            imageHeight: 200,
+            imageAlt: 'Custom image',
+          },
+          {
+            title: '將密文傳到官方帳號\n即可完成綁定',
+            text: '有效期限:30分鐘',
+            imageUrl: '/dessert_shop/member/getLineQRCode?' + new Date().getTime(),
+            imageWidth: 200,
+            imageHeight: 200,
+            imageAlt: 'Custom image',
+            confirmButtonText: '完成',
+            showCancelButton: false,
+          }
+        ])
+      });
 
 
-        //以下上傳大頭貼
-        const p_file = document.getElementById("p_file");
-        p_file.addEventListener("change", function (e) {
-            handleFiles(this.files);
-        });
 
-        const preview = document.getElementsByClassName("preview")[0];
 
-        //檔案上傳的處理函式
-        function handleFiles(files) {
-            //先刪掉預覽圖裡的img
-            while (preview.firstChild) preview.removeChild(preview.lastChild);
 
-            // 跑每個使用者選的檔案
-            for (let i = 0; i < files.length; i++) {
-                let file = files[i];
-                let imageType = /image.*/;
-                // 判斷檔案的類型，圖片才加載
-                if (!file.type.match(imageType)) {
-                    continue;
-                }
-                //增加img節點在預覽圖裡面
-                let img = document.createElement("img");
-                img.classList.add("preview_img");
-                img.setAttribute("id", "member_photo")
-                preview.appendChild(img);
 
-                let reader = new FileReader();
-                // reader.onload = (e => img.src = reader.result);  //監聽器 檔案讀完的事件 設定img的src
-                reader.addEventListener("load", function (e) {
-                    img.src = reader.result.toString();
-                })
-                reader.readAsDataURL(file);  //讀取檔案
+
+      // 載入訂單資料
+      $.get("/dessert_shop/orderMaster/getOrderMaster", {}, function (data) {
+        console.log(data);
+        if (data.flag) {
+
+          for (var i = 0; i < data.data[0].length; i++) {
+
+            let order_master_list = `<li>
+                    <div class="post-meta" style="margin-bottom: 0px; border-top: 1px solid white; border-bottom: 1px solid white">
+                      <span class="detail">訂單編號 : <span class="order_master_id">${data.data[0][i].order_master_id}</span></span>
+                      <span class="detail">下訂時間 : <span class="order_time">${data.data[0][i].order_time}</span></span>
+                      <span class="detail">付款時間 : <span class="payment_time">${data.data[0][i].payment_time}</span></span>
+                      <br>
+                      <span class="detail">發票號碼	: <span class="invoice_number">${data.data[0][i].invoice_number}</span></span>
+                      <span class="detail">優惠券編號 : <span	class="coupon_id">${data.data[0][i].coupon_id}</span></span>
+                      <span class="detail">付款方式	: <span class="payment_method">${data.data[0][i].payment_method}</span> </span>
+                      <br>
+                      <span class="detail">訂單金額 : <span	class="order_total">${data.data[0][i].order_total}</span></span>
+                      <br>
+                      <span class="detail">訂單備註 : <span	class="order_remarks">${data.data[0][i].order_remarks}</span></span>
+                      <br>
+                      <span class="detail">訂單狀態 : <span class="order_status">${data.data[0][i].order_status}</span></span>
+                      <button type="button" class="switch_btn">
+                        <span class="plus" style="width: 20px; height: 20px; margin-right: 0px;"><i class="fas fa-chevron-down" style="color: white; display: inline"></i></span>
+                        <span class="minus" style="width: 20px; height: 20px;"><i class="fas fa-chevron-up" style="color: white; display: inline"></i></span>
+                      </button>
+                    </div>
+                    <div class="inner_block order_master_${data.data[0][i].order_master_id}">
+
+
+                    </div>
+                  </li>`;
+
+            $("ul.order_master_comment_list").prepend(order_master_list);
+
+            for (var j = 0; j < data.data[1][i].length; j++) {
+
+              let order_detail = `<span class="product_name">商品名稱：${data.data[1][i][j].product_name}</span>
+                      <span class="product_price">商品價格：${data.data[1][i][j].product_price}</span>
+                      <span class="product_qty">商品數量：${data.data[1][i][j].product_qty}</span>
+                      <br>`;
+
+              $(`div.order_master_${data.data[0][i].order_master_id}`).prepend(order_detail);
+
             }
+
+
+
+          }
+
+
+
+        } else {
+          alert(data.msg);
+          if (data.redirect) {
+            location.href = data.redirect;
+          }
         }
 
 
-        $("#bindLine").click(function () {
-            Swal.fire({
-                title: '掃描QRCode',
-                text: '將密文傳到嗜甜Line官方帳號即可完成綁定',
-                imageUrl: '/dessert_shop/member/getLineQRCode?' + new Date().getTime(),
-                imageWidth: 200,
-                imageHeight: 200,
-                imageAlt: 'Custom image',
-            });
+      });  //get
 
-            Swal.mixin({
-                confirmButtonText: 'Next &rarr;',
-                showCancelButton: true,
-                progressSteps: ['1', '2']
-            }).queue([
-                {
-                    title: '請先加入嗜甜Line官方帳號',
-                    text: '',
-                    imageUrl: 'https://qr-official.line.me/sid/L/322ganxg.png',
-                    imageWidth: 200,
-                    imageHeight: 200,
-                    imageAlt: 'Custom image',
-                },
-                {
-                    title: '將密文傳到官方帳號\n即可完成綁定',
-                    text: '有效期限:30分鐘',
-                    imageUrl: '/dessert_shop/member/getLineQRCode?' + new Date().getTime(),
-                    imageWidth: 200,
-                    imageHeight: 200,
-                    imageAlt: 'Custom image',
-                }
-            ])
-        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    });  //function
+
+
+
+
+
+
+
+
+
+    //訂單明細縮合
+    $("ul").on("click", "button.switch_btn", function (e) {
+      e.preventDefault();
+      $(this).closest("li").toggleClass("-on");
+      $(this).closest("li").find("div.inner_block").slideToggle();
     });
-</script>
+
+
+
+
+
+
+
+
+  </script>
 </body>
 
 </html>
