@@ -20,6 +20,9 @@
     <link rel="stylesheet" href="assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
     <link rel="stylesheet" href="assets/vendor/line-awesome/dist/line-awesome/css/line-awesome.min.css">
     <link rel="stylesheet" href="assets/vendor/remixicon/fonts/remixicon.css">
+
+    <!-- Amber CSS Link-->
+    <link rel="stylesheet" href="assets/css/liveSupport.css">
 </head>
 
 <body>
@@ -544,13 +547,21 @@
 
 
 
+                    <!---------------------------------------------------- 通知系統 --------------------------------------------->
+
+                    <li class="">
+                        <a href="noticeManager.html" class="svg-icon">
+                            <svg class="svg-icon" id="p-dash3" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+                            <span class="ml-4">通知管理</span>
+                        </a>
+                    </li>
 
 
 
-
-
-
-
+ 
 
 
 
@@ -1536,8 +1547,8 @@
 
     <script>
         /*---------------------------------------------------------------------
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        Scrollbar
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        -----------------------------------------------------------------------*/
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Scrollbar
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                -----------------------------------------------------------------------*/
 
         jQuery(window)
             .on("resize", function() {
@@ -1596,7 +1607,9 @@
 
 
             if ("open" == jsonObj.type) {
+
                 refreshFriendList(jsonObj);
+
             } else if ("history" == jsonObj.type) {
 
                 $('#messagesArea').html('');
@@ -1667,7 +1680,8 @@
                     "type": "chat",
                     "sender": self,
                     "receiver": friend,
-                    "message": message
+                    "message": message,
+                    "time": new Date()
                 };
 
                 webSocket.send(JSON.stringify(jsonObj));
@@ -1714,7 +1728,8 @@
                     "type": "history",
                     "sender": self,
                     "receiver": friend,
-                    "message": ""
+                    "message": "",
+                    "time": ""
                 };
                 console.log(jsonObj);
                 webSocket.send(JSON.stringify(jsonObj));

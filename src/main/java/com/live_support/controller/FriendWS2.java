@@ -1,7 +1,10 @@
 package com.live_support.controller;
 
 import java.io.IOException;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -17,6 +20,7 @@ import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.live_support.model.ChatMessage;
 import com.live_support.model.UserState;
 import com.websocketchat.jedis.JedisHandleMessage;
@@ -49,10 +53,12 @@ public class FriendWS2 {
 		String sender = chatMessage.getSender();
 		String receiver = chatMessage.getReceiver();
 
+
 		if ("history".equals(chatMessage.getType())) {
 			List<String> historyData = JedisHandleMessage.getHistoryMsg(sender, receiver);
 			String historyMsg = gson.toJson(historyData);
 			ChatMessage cmHistory = new ChatMessage("history", sender, receiver, historyMsg);
+	
 
 			if (userSession != null && userSession.isOpen()) {
 				userSession.getAsyncRemote().sendText(gson.toJson(cmHistory));

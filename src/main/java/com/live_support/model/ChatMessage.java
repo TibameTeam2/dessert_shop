@@ -1,5 +1,7 @@
 package com.live_support.model;
 
+import java.util.Date;
+
 public class ChatMessage {
 	private String type;
 	private String sender;
@@ -11,6 +13,7 @@ public class ChatMessage {
 		this.sender = sender;
 		this.receiver = receiver;
 		this.message = message;
+
 	}
 
 	public String getSender() {
@@ -44,4 +47,5 @@ public class ChatMessage {
 	public void setType(String type) {
 		this.type = type;
 	}
+
 }
