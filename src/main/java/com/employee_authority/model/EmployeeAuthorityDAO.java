@@ -1,6 +1,7 @@
 package com.employee_authority.model;
 
 
+import com.employee.model.EmployeeDAO;
 import com.util.JDBCUtil;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -79,6 +80,38 @@ public class EmployeeAuthorityDAO {
             }
         }
 
+    }
+
+    //插入員工同時插入權限，交易管理，需要傳入con
+    public void backend_insert(EmployeeAuthorityBean emp_ath_Insert,Connection con) {
+        PreparedStatement pstmt = null;
+        try {
+            pstmt = con.prepareStatement("INSERT INTO employee_authority (employee_account,authority_Content_id)\n" +
+                    "VALUES (?,?)");
+
+            pstmt.setString(1, emp_ath_Insert.getEmployee_account());
+            pstmt.setInt(2, emp_ath_Insert.getAuthority_Content_id());
+            pstmt.executeUpdate();
+            // Handle any driver errors
+        } catch (SQLException se) {
+            try {
+                System.err.println("rolled back by 新增員工權限");
+                con.rollback();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+            throw new RuntimeException("A database error occured. "
+                    + se.getMessage());
+            // Clean up JDBC resources
+        } finally {
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException se) {
+                    se.printStackTrace(System.err);
+                }
+            }
+        }
     }
 
 
@@ -169,6 +202,100 @@ public class EmployeeAuthorityDAO {
         }
 
     }
+
+    //刪除員工之前 先刪除權限  裡面會刪除員工，要把con傳下去
+    public void deleteByEmployee(String employee_account) {
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        try {
+
+            Class.forName(driver);
+            con = DriverManager.getConnection(url, userid, passwd);
+
+            // 1●設定於 pstm.executeUpdate()之前
+            con.setAutoCommit(false);
+
+            pstmt = con.prepareStatement("DELETE FROM employee_authority where employee_account=?");
+
+            pstmt.setString(1, employee_account);
+
+            pstmt.executeUpdate();
+
+            EmployeeDAO empDao = new EmployeeDAO();
+            empDao.backend_delete(employee_account,con);
+
+
+
+
+            // 2●設定於 pstm.executeUpdate()之後
+            con.commit();
+            con.setAutoCommit(true);
+            // Handle any driver errors
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException("Couldn't load database driver. "
+                    + e.getMessage());
+            // Handle any SQL errors
+        } catch (SQLException se) {
+            if (con != null) {
+                try {
+                    // 3●設定於當有exception發生時之catch區塊內
+                    System.err.println("rolled back by 刪除員工權限");
+                    con.rollback();
+                } catch (SQLException excep) {
+                    throw new RuntimeException("rollback error occured. " + excep.getMessage());
+                }
+            }
+            throw new RuntimeException("A database error occured. " + se.getMessage());
+            // Clean up JDBC resources
+        } finally {
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException se) {
+                    se.printStackTrace(System.err);
+                }
+            }
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (Exception e) {
+                    e.printStackTrace(System.err);
+                }
+            }
+        }
+
+    }
+
+    //刪除員工之前 先刪除權限  裡面會刪除員工，要把con傳下去
+    public void deleteByEmployee(String employee_account,Connection con) {
+        PreparedStatement pstmt = null;
+        try {
+            pstmt = con.prepareStatement("DELETE FROM employee_authority where employee_account=?");
+            pstmt.setString(1, employee_account);
+            pstmt.executeUpdate();
+            // Handle any driver errors
+        } catch (SQLException se) {
+            try {
+                System.err.println("rolled back by 刪除員工權限");
+                con.rollback();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+            throw new RuntimeException("A database error occured. "
+                    + se.getMessage());
+            // Clean up JDBC resources
+        } finally {
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException se) {
+                    se.printStackTrace(System.err);
+                }
+            }
+        }
+
+    }
+
 
 
     public EmployeeAuthorityBean findByPrimaryKey(Integer authority_id) {

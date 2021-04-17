@@ -156,4 +156,111 @@ public class Employee_backendServlet extends BaseServlet {
         }
     }
 
+
+    public void backend_addEmployee(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+        //獲取數據
+        Map<String, String[]> map = req.getParameterMap();
+        System.out.println("map= " + new ObjectMapper().writeValueAsString(map));
+        //封裝物件
+        EmployeeBean employee = new EmployeeBean();
+        try {
+            BeanUtils.populate(employee, map);
+        } catch (IllegalAccessException | InvocationTargetException e) {
+            e.printStackTrace();
+        }
+        Part part = req.getPart("employee_photo");
+        InputStream in = part.getInputStream();
+        byte[] buf = new byte[in.available()];
+        in.read(buf);
+        in.close();
+        employee.setEmployee_photo(buf);
+
+        String[] auth = req.getParameterValues("employee_auth1");
+        employee.setEmployee_auth(Arrays.asList(Convert.toIntArray(auth)));
+
+        System.out.println(employee);
+        employee.setEmployee_password(DigestUtil.md5Hex(employee.getEmployee_password()));
+        boolean flag = empSvc.addEmp(employee);
+
+        ResultInfo info = new ResultInfo();
+        //創建結果 準備返回前端
+        if (flag) {
+            //註冊成功
+            info.setFlag(true);
+            info.setMsg("新增成功!");
+        } else {
+            //註冊失敗
+            info.setFlag(false);
+            info.setMsg("新增失敗!");
+        }
+        writeValueByWriter(res, info);
+
+    }
+
+
+    public void backend_delete(HttpServletRequest req, HttpServletResponse res) {
+        String employee_account = req.getParameter("employee_account");
+        ResultInfo info = new ResultInfo();
+        if (employee_account == null) {
+            info.setFlag(false);
+            info.setMsg("未傳入參數!");
+            writeValueByWriter(res, info);
+            return;
+        }
+        try {
+            empSvc.backend_deleteEmp(employee_account);
+            info.setFlag(true);
+            info.setMsg("已刪除員工!");
+        } catch (Exception e) {
+            e.printStackTrace(System.err);
+            info.setFlag(false);
+            info.setMsg("刪除員工失敗，請注意外鍵!");
+        }
+        writeValueByWriter(res, info);
+    }
+
+
+    public void backend_update(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+        //獲取數據
+        Map<String, String[]> map = req.getParameterMap();
+        System.out.println("map= " + new ObjectMapper().writeValueAsString(map));
+        //封裝物件
+        EmployeeBean employee = new EmployeeBean();
+        try {
+            BeanUtils.populate(employee, map);
+        } catch (IllegalAccessException | InvocationTargetException e) {
+            e.printStackTrace();
+        }
+        Part part = req.getPart("employee_photo");
+        InputStream in = part.getInputStream();
+        byte[] buf = new byte[in.available()];
+        in.read(buf);
+        in.close();
+        if (buf.length != 0) {
+            employee.setEmployee_photo(buf);
+        }
+        if (!employee.getEmployee_password().equals("")) {
+            employee.setEmployee_password(DigestUtil.md5Hex(employee.getEmployee_password()));
+        }
+        String[] auth = req.getParameterValues("employee_auth1");
+        if (auth != null) {
+            employee.setEmployee_auth(Arrays.asList(Convert.toIntArray(auth)));
+        }else{
+            employee.setEmployee_auth(new ArrayList<Integer>());
+        }
+        boolean flag = empSvc.backend_update(employee);
+        ResultInfo info = new ResultInfo();
+        //創建結果 準備返回前端
+        if (flag) {
+            //註冊成功
+            info.setFlag(true);
+            info.setMsg("修改成功!");
+        } else {
+            //註冊失敗
+            info.setFlag(false);
+            info.setMsg("修改失敗!");
+        }
+        writeValueByWriter(res, info);
+    }
+
 }
