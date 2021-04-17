@@ -5,11 +5,9 @@ import cn.hutool.captcha.CaptchaUtil;
 import cn.hutool.captcha.LineCaptcha;
 import cn.hutool.core.convert.Convert;
 import cn.hutool.core.io.IoUtil;
-import cn.hutool.core.lang.Console;
 import cn.hutool.crypto.SecureUtil;
 import cn.hutool.crypto.digest.DigestUtil;
 import cn.hutool.crypto.symmetric.AES;
-import cn.hutool.crypto.symmetric.SymmetricAlgorithm;
 import cn.hutool.extra.qrcode.QrCodeUtil;
 import cn.hutool.extra.qrcode.QrConfig;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -24,7 +22,6 @@ import com.util.JDBCUtil;
 import com.util.JedisUtil;
 import com.util.ResultInfo;
 import org.apache.commons.beanutils.BeanUtils;
-import org.apache.commons.io.IOUtils;
 import redis.clients.jedis.Jedis;
 
 import javax.servlet.RequestDispatcher;
@@ -35,22 +32,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
-import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.lang.reflect.InvocationTargetException;
-import java.nio.charset.StandardCharsets;
-import java.security.GeneralSecurityException;
 import java.sql.*;
-import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.*;
+
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken.Payload;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
 
-import static com.util.LineUtil.linePushMessage;
+
 
 @MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 50 * 1024 * 1024, maxRequestSize = 50 * 1024 * 1024)
 public class MemberServlet extends BaseServlet {
@@ -133,7 +127,7 @@ public class MemberServlet extends BaseServlet {
             info.setMsg("token無效!");
             System.out.println("Invalid ID token.");
             writeValueByWriter(res, info);
-            return ;
+            return;
         }
         if (idToken != null) {  //token 有效 可以進行註冊或登入
             Payload payload = idToken.getPayload();
@@ -151,14 +145,14 @@ public class MemberServlet extends BaseServlet {
             MemberBean m = service.getOneMember(userId);
 
             if (m == null) {  //如果m是空的表示資料庫沒有這筆資料，先註冊
-                if(member.getMember_phone()==null) member.setMember_phone("0987654321");
-                if(member.getMember_gender()==null) member.setMember_gender(1);
-                if(member.getMember_birthday()==null) member.setMember_birthday(java.sql.Date.valueOf("2021-04-28"));
-                if(member.getMember_email()==null) member.setMember_email("sweet@gmail.com");
+                if (member.getMember_phone() == null) member.setMember_phone("0987654321");
+                if (member.getMember_gender() == null) member.setMember_gender(1);
+                if (member.getMember_birthday() == null) member.setMember_birthday(java.sql.Date.valueOf("2021-04-28"));
+                if (member.getMember_email() == null) member.setMember_email("sweet@gmail.com");
                 boolean flag = service.registerWithGoogle(member);
-                if(flag){  //註冊成功
+                if (flag) {  //註冊成功
                     m = service.getOneMember(member.getMember_account());
-                }else{
+                } else {
                     info.setFlag(false);
                     info.setMsg("登入失敗!");
                     System.out.println("Google登入失敗!");
@@ -221,7 +215,8 @@ public class MemberServlet extends BaseServlet {
                     writeValueByWriter(res, info);
                     return;
                 }
-            }catch (Exception ignored) { }
+            } catch (Exception ignored) {
+            }
 
             info.setRedirect(req.getContextPath() + "/TEA103G2/front-end/index.html");
 //            System.out.println("member = " + member);
@@ -432,8 +427,6 @@ public class MemberServlet extends BaseServlet {
     }
 
 
-
-
     public void getLineQRCode(HttpServletRequest req, HttpServletResponse res) throws IOException {
         //從session取得member
         MemberBean member = (MemberBean) req.getSession().getAttribute("member");
@@ -441,7 +434,7 @@ public class MemberServlet extends BaseServlet {
         if (member == null) {
             info.setFlag(false);
             info.setMsg("尚未登入!");
-            writeValueByWriter(res,info);
+            writeValueByWriter(res, info);
         } else {
             Map<String, String> content = new HashMap<>();
             content.put("member_account", member.getMember_account());
@@ -458,7 +451,7 @@ public class MemberServlet extends BaseServlet {
             System.out.println("encrypt = " + encrypt);
             res.setContentType("image/jpg;");
             QrConfig config = new QrConfig(250, 250);
-            QrCodeUtil.generate(encrypt,config,"JPG",res.getOutputStream());
+            QrCodeUtil.generate(encrypt, config, "JPG", res.getOutputStream());
         }
     }
 
@@ -530,7 +523,9 @@ public class MemberServlet extends BaseServlet {
 
 
     /************************************以下後臺使用****************************************/
-    public void backkkkkkkkkkkkkkkkkkkkkkkk(){}
+    public void backkkkkkkkkkkkkkkkkkkkkkkk() {
+    }
+
     public String backend_getOne_For_Update(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         List<String> errorMsgs = new LinkedList<String>();
         // Store this set in the request scope, in case we need to
@@ -867,8 +862,7 @@ public class MemberServlet extends BaseServlet {
     }
 
 
-
-//    public void testphoto(HttpServletRequest req, HttpServletResponse res) throws IOException {
+    //    public void testphoto(HttpServletRequest req, HttpServletResponse res) throws IOException {
 //        String imgStr = "";
 //        byte[] buf = GenerateImage(imgStr);
 //        res.setContentType("image/png;");
@@ -879,11 +873,12 @@ public class MemberServlet extends BaseServlet {
 //        byte[] decodedBytes = Base64.getDecoder().decode(imgStr);
 //        return decodedBytes;
 //    }
-    public void backkkkkkkkkkkkkkkkkkend(){}
+    public void backkkkkkkkkkkkkkkkkkend() {
+    }
 
     public void backend_getAll(HttpServletRequest req, HttpServletResponse res) {
         List<MemberBean> list = service.getAll();
-        for(MemberBean member:list){
+        for (MemberBean member : list) {
             member.setMember_photo(null);
         }
         ResultInfo info = new ResultInfo();
@@ -892,10 +887,11 @@ public class MemberServlet extends BaseServlet {
         info.setData(list);
         writeValueByWriter(res, info);
     }
+
     public void backend_delete1(HttpServletRequest req, HttpServletResponse res) {
-        String member_account= req.getParameter("member_account");
+        String member_account = req.getParameter("member_account");
         ResultInfo info = new ResultInfo();
-        if(member_account==null){
+        if (member_account == null) {
             info.setFlag(false);
             info.setMsg("未傳入參數!");
             writeValueByWriter(res, info);
@@ -905,7 +901,7 @@ public class MemberServlet extends BaseServlet {
             service.deleteMember(member_account);
             info.setFlag(true);
             info.setMsg("已刪除會員!");
-        }catch(Exception e){
+        } catch (Exception e) {
             info.setFlag(false);
             info.setMsg("刪除會員失敗，請注意外鍵!");
         }
@@ -948,4 +944,67 @@ public class MemberServlet extends BaseServlet {
         writeValueByWriter(res, info);
 
     }
+    public void backend_update1(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+        //獲取數據
+        Map<String, String[]> map = req.getParameterMap();
+        System.out.println("map= " + new ObjectMapper().writeValueAsString(map));
+        //封裝物件
+        MemberBean member = new MemberBean();
+        try {
+            BeanUtils.populate(member, map);
+        } catch (IllegalAccessException | InvocationTargetException e) {
+            e.printStackTrace();
+        }
+        Part part = req.getPart("member_photo");
+        InputStream in = part.getInputStream();
+        byte[] buf = new byte[in.available()];
+        in.read(buf);
+        in.close();
+        if (buf.length != 0) {
+            member.setMember_photo(buf);
+        }
+        if(!member.getMember_password().equals("")){
+            member.setMember_password(DigestUtil.md5Hex(member.getMember_password()));
+        }
+        boolean flag = service.backend_update(member);
+        ResultInfo info = new ResultInfo();
+        //創建結果 準備返回前端
+        if (flag) {
+            //註冊成功
+            info.setFlag(true);
+            info.setMsg("修改成功!");
+        } else {
+            //註冊失敗
+            info.setFlag(false);
+            info.setMsg("修改失敗!");
+        }
+        writeValueByWriter(res, info);
+    }
+//    public void dontCallMe() {
+//        List<LApostImageBean> laimgbeans = new ArrayList<LApostImageBean>();
+//        String del = req.getParameter("imgdelname");
+//        String[] delimg = del.split(",");
+//        Collection<Part> parts = req.getParts();
+//        for (Part part : parts) {
+//            String header = part.getHeader("Content-Disposition");
+//            if (header.contains("lapostimage") && !Arrays.asList(delimg).contains(header.split("filename=\"")[1].split("\"")[0])) {
+//                LApostImageBean lapostimagebean = new LApostImageBean();
+//                lapostimagebean.setLapostId(lapostid);
+//                InputStream in = part.getInputStream();
+//                byte[] buf = new byte[in.available()];
+//                in.read(buf);
+//                lapostimagebean.setLapostImage(buf);
+//                laimgbeans.add(lapostimagebean);
+//                in.close();
+//            }
+//        }
+//        System.out.println(laimgbeans);
+//        LApostImageService lapostimageSvc = new LApostImageService();
+//        lapostimageSvc.addallLApostImage(laimgbeans);
+//        jsonobj.put("lapostid", lapostid);
+//        System.out.println(lapostid);
+//        String json = gson.toJson(jsonobj);
+//        out.println(json);
+//        return;
+//    }
 }
