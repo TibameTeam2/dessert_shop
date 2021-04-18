@@ -279,8 +279,7 @@ public class CartServlet extends BaseServlet {
 	public void checkoutData(HttpServletRequest req, HttpServletResponse res) {
 
 		MemberBean member = (MemberBean) req.getSession().getAttribute("member");
-		Integer coupon_price = (Integer) req.getSession().getAttribute("coupon_price");
-		List list = svc.getCartDataByMemberAccount(member.getMember_account(), req.getContextPath());
+		Integer coupon_price = (Integer) req.getSession().getAttribute("coupon_price");		
 		ResultInfo info = new ResultInfo();
 		if (member == null) {
 			info.setFlag(false);
@@ -288,7 +287,7 @@ public class CartServlet extends BaseServlet {
 			req.getSession().setAttribute("location", req.getContextPath() + "/TEA103G2/front-end/checkout.html");
 			info.setRedirect(req.getContextPath() + "/TEA103G2/front-end/login.html");
 		} else {
-			
+			List list = svc.getCartDataByMemberAccount(member.getMember_account(), req.getContextPath());
 			List<CardDetailBean> list_card = svc.selectAllCard(member.getMember_account());
 			list.add(list_card);
 			list.add(member);
@@ -450,10 +449,9 @@ public class CartServlet extends BaseServlet {
 				String payCode = svc.payCode_random(); // 生成匯款帳戶
 				info.setData(payCode);
 				// 存Redis
-				Jedis jedis = JedisUtil.getJedis();
-				jedis.hset(member.getMember_account(), "payCode_id-" + new_order_master_id, payCode);
-				jedis.close();
-				System.out.println("123");
+//				Jedis jedis = JedisUtil.getJedis();
+//				jedis.hset(member.getMember_account(), "payCode_id-" + new_order_master_id, payCode);
+//				jedis.close();
 			}				
 
 			// 清除購物車+減少商品現貨數量

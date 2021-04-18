@@ -1,11 +1,20 @@
 package com.order_master.controller;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
+import org.apache.commons.beanutils.BeanUtils;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.member.model.MemberBean;
 import com.order_detail.model.OrderDetailBean;
 import com.order_detail.model.OrderDetailService;
@@ -13,6 +22,8 @@ import com.order_master.model.OrderMasterBean;
 import com.order_master.model.OrderMasterService;
 import com.util.BaseServlet;
 import com.util.ResultInfo;
+
+import cn.hutool.crypto.digest.DigestUtil;
 
 public class OrderMasterServlet extends BaseServlet {
 	
@@ -76,6 +87,41 @@ public class OrderMasterServlet extends BaseServlet {
         writeValueByWriter(res, info);
 	
 	}
+	
+	
+	public void backend_addOrderMaster(HttpServletRequest req, HttpServletResponse res) throws IOException {
+		
+		//獲取數據
+        Map<String, String[]> map = req.getParameterMap();
+        System.out.println("map= " + new ObjectMapper().writeValueAsString(map));
+        //封裝物件
+        OrderMasterBean orderMasterBean = new OrderMasterBean();
+        try {
+            BeanUtils.populate(orderMasterBean, map);
+        } catch (IllegalAccessException | InvocationTargetException e) {
+            e.printStackTrace();
+        }
+        
+        boolean flag = OrderMasterSvc.addOrderMaster(orderMasterBean);
+        
+        ResultInfo info = new ResultInfo();
+        //創建結果 準備返回前端
+        if (flag) {
+            //新增成功
+            info.setFlag(true);
+            info.setMsg("新增成功!");
+        } else {
+            //新增失敗
+            info.setFlag(false);
+            info.setMsg("新增失敗!");
+        }
+        
+        writeValueByWriter(res, info);
+	
+	}
+	
+	
+	
 
 	
 }

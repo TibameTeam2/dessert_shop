@@ -67,6 +67,19 @@ public class OrderMasterService {
 	}
 	
 	
+	public boolean addOrderMaster(OrderMasterBean orderMasterBean) {
+		
+		try {
+            dao.insert(orderMasterBean);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }	
+		
+	}
+	
+	
+	
 	
 	
 	
