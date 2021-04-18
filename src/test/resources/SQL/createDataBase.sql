@@ -95,11 +95,11 @@ CREATE TABLE employee (
     employee_status      TINYINT NOT NULL
 ) AUTO_INCREMENT = 1;
 INSERT INTO employee (employee_account,employee_name,employee_password,employee_position,employee_photo,hire_date,employee_status)
-VALUES ('jason','傑森','1895','工讀生',null,'2021-02-21',1);
+VALUES ('jason','傑森','202cb962ac59075b964b07152d234b70','工讀生',null,'2021-02-21',1);
 INSERT INTO employee (employee_account,employee_name,employee_password,employee_position,employee_photo,hire_date,employee_status)
-VALUES ('peter','小吳','1234','主管',null,'2021-01-02',1);
+VALUES ('peter','張偉','202cb962ac59075b964b07152d234b70','主管',null,'2021-01-02',1);
 INSERT INTO employee (employee_account,employee_name,employee_password,employee_position,employee_photo,hire_date,employee_status)
-VALUES ('james','君岳','666','老闆',null,'2020-03-21',1);
+VALUES ('james','小明','202cb962ac59075b964b07152d234b70','老闆',null,'2020-03-21',1);
 
 
 -- 員工權限內容
