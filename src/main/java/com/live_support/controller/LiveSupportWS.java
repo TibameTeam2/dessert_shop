@@ -1,7 +1,7 @@
 package com.live_support.controller;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.io.IOException;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -18,84 +18,92 @@ import javax.websocket.server.ServerEndpoint;
 
 import com.google.gson.Gson;
 import com.live_support.model.LiveSupportMessage;
+import com.live_support.model.LiveSupportState;
 import com.websocketchat.jedis.JedisHandleMessage;
 
-@ServerEndpoint("/LiveSupportWS/{userId}")
+@ServerEndpoint("/LiveSupportWS/{userName}")
 public class LiveSupportWS {
-
-	private static Map<String, Session> sessionMap = new ConcurrentHashMap<>();
-	private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+	private static Map<String, Session> sessionsMap = new ConcurrentHashMap<>();
 	Gson gson = new Gson();
 
 	@OnOpen
-	public void onOpen(@PathParam("userId") String userId, Session userSession) {
+	public void onOpen(@PathParam("userName") String userName, Session userSession) throws IOException {
+		/* save the new user in the map */
+		sessionsMap.put(userName, userSession);
+		/* Sends all the connected users to the new user */
+		Set<String> userNames = sessionsMap.keySet();
+		
+		LiveSupportState stateMessage = new LiveSupportState("open", userName, userNames);
+		String stateMessageJson = gson.toJson(stateMessage);
+		Collection<Session> sessions = sessionsMap.values();
+		for (Session session : sessions) {
+			if (session.isOpen()) {
+				session.getAsyncRemote().sendText(stateMessageJson);
+			}
+		}
 
-		// 當前websocket的用戶
-		sessionMap.put(userId, userSession);
-		Set<String> usersId = sessionMap.keySet();
-
-		System.out
-				.println(String.format("Session ID = %s;userId= %s%nusers: %s", userSession.getId(), userId, usersId));
+		String text = String.format("Session ID = %s, connected; userName = %s%nusers: %s", userSession.getId(),
+				userName, userNames);
+		System.out.println(text);
 	}
 
 	@OnMessage
-	public void OnMessage(Session userSession, String message) {
-
-		LiveSupportMessage liveSuportMessage = gson.fromJson(message, LiveSupportMessage.class);
-
-		String sender = liveSuportMessage.getSender();
-		String receiver = liveSuportMessage.getReceiver();
-		Date chatTime = liveSuportMessage.getChatTime();
-
-		if ("history".equals(liveSuportMessage.getType())) {
-
+	public void onMessage(Session userSession, String message) {
+		LiveSupportMessage chatMessage = gson.fromJson(message, LiveSupportMessage.class);
+		String sender = chatMessage.getSender();
+		String receiver = chatMessage.getReceiver();
+		
+		if ("history".equals(chatMessage.getType())) {
 			List<String> historyData = JedisHandleMessage.getHistoryMsg(sender, receiver);
-			String historyMesage = gson.toJson(historyData);
-
-			LiveSupportMessage liveSupportHistory = new LiveSupportMessage("history", sender, receiver, message,
-					chatTime);
-
-			// 傳送訊息
+			String historyMsg = gson.toJson(historyData);
+			LiveSupportMessage cmHistory = new LiveSupportMessage("history", sender, receiver, historyMsg);
+			
 			if (userSession != null && userSession.isOpen()) {
-				userSession.getAsyncRemote().sendText(gson.toJson(liveSupportHistory));
-				System.out.println("history" + gson.toJson(liveSupportHistory));
+				userSession.getAsyncRemote().sendText(gson.toJson(cmHistory));
+				System.out.println("history = " + gson.toJson(cmHistory));
 				return;
 			}
-
-			// 接收訊息
-			Session receiverSession = sessionMap.get(receiver);
-			if (receiverSession != null && receiverSession.isOpen()) {
-				receiverSession.getAsyncRemote().sendText(gson.toJson(message));
-				userSession.getAsyncRemote().sendText(gson.toJson(message));
-				JedisHandleMessage.saveChatMessage(sender, receiver, message);
-			}
-
-			System.out.println("Message received: " + message);
 		}
-
+		
+		
+		Session receiverSession = sessionsMap.get(receiver);
+		if (receiverSession != null && receiverSession.isOpen()) {
+			receiverSession.getAsyncRemote().sendText(message);
+			userSession.getAsyncRemote().sendText(message);
+			JedisHandleMessage.saveChatMessage(sender, receiver, message);
+		}
+		System.out.println("Message received: " + message);
 	}
 
 	@OnError
-	public void OnError(Session userSession, Throwable e) {
-		System.out.println("發生錯誤" + e.toString());
-		e.printStackTrace();
+	public void onError(Session userSession, Throwable e) {
+		System.out.println("Error: " + e.toString());
 	}
 
 	@OnClose
 	public void onClose(Session userSession, CloseReason reason) {
-
-		String userIdClose = null;
-		Set<String> usersId = sessionMap.keySet();
-		for (String uesrId : usersId) {
-			if (sessionMap.get(uesrId).equals(userSession)) {
-				userIdClose = uesrId;
-				sessionMap.remove(uesrId);
+		String userNameClose = null;
+		Set<String> userNames = sessionsMap.keySet();
+		for (String userName : userNames) {
+			if (sessionsMap.get(userName).equals(userSession)) {
+				userNameClose = userName;
+				sessionsMap.remove(userName);
+				break;
 			}
+		}
 
+		if (userNameClose != null) {
+			LiveSupportState stateMessage = new LiveSupportState("close", userNameClose, userNames);
+			String stateMessageJson = gson.toJson(stateMessage);
+			Collection<Session> sessions = sessionsMap.values();
+			for (Session session : sessions) {
+				session.getAsyncRemote().sendText(stateMessageJson);
+			}
 		}
 
 		String text = String.format("session ID = %s, disconnected; close code = %d%nusers: %s", userSession.getId(),
-				reason.getCloseCode().getCode(), usersId);
+				reason.getCloseCode().getCode(), userNames);
 		System.out.println(text);
 	}
+	
 }

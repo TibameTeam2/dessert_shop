@@ -25,6 +25,17 @@ public class ProductService {
 		
 		return productBean;
 	}
+// 給評論用	
+//	public ProductBean addReviewStar(ProductBean productBean) {
+//		
+//		dao.updateReviewStar(productBean);
+//		
+//		return productBean;
+//	}
+	
+	
+	
+	
 	
 	public void deleteProduct(Integer product_id) {
 		dao.delete(product_id);
@@ -33,6 +44,12 @@ public class ProductService {
 	public ProductBean getOneProduct(Integer product_id) {		
 		return dao.findByPrimaryKey(product_id);
 	}
+	
+// 檢查新增商品的名稱
+	public ProductBean getOneProductByName(String product_name) {
+		return dao.findByProductName(product_name);
+	}
+	
 	
 	public List<ProductBean> getAll(){
 		return dao.getAll();

@@ -141,7 +141,7 @@ CREATE TABLE product (
 	product_intro	  		VARCHAR(500) NOT NULL,
     product_ingredient		varchar(2000) NOT NULL,
 	product_price	  		SMALLINT NOT NULL,				
-	product_available_qty	MEDIUMINT NOT NULL,
+	product_available_qty	MEDIUMINT UNSIGNED NOT NULL,
 	product_status	  		TINYINT NOT NULL,
     expiry_after_buying    	TINYINT NOT NULL,
 	product_calorie	  		SMALLINT NOT NULL,
@@ -490,11 +490,19 @@ CREATE TABLE notice (
     notice_time			TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     read_status			TINYINT NOT NULL,
 	member_account		VARCHAR(50) NOT NULL,
+    notice_dispatcher   VARCHAR(1000),
     CONSTRAINT notice_member_FK FOREIGN KEY(member_account) REFERENCES  member(member_account)
 )AUTO_INCREMENT=1;
-INSERT INTO notice(notice_type,notice_content,read_status,member_account) VALUES ('1','提醒您：03/01 14:00 有訂位，位子保留10分鐘，逾期不候，若不克前來，請提前通知，謝謝!','0','amy');
-INSERT INTO notice(notice_type,notice_content,read_status,member_account) VALUES ('1','提醒您：04/01 16:00 有訂位，位子保留10分鐘，逾期不候，若不克前來，請提前通知，謝謝!','0','jason');
-INSERT INTO notice(notice_type,notice_content,read_status,member_account) VALUES ('0','提醒您：05/01 12:00 有訂位，位子保留10分鐘，逾期不候，若不克前來，請提前通知，謝謝!','0','tom');
+INSERT INTO notice(notice_type,notice_content,read_status,member_account,notice_dispatcher) VALUES ('1','購買成功，請準時前來提取，謝謝!','0','amy','my-account.html');
+INSERT INTO notice(notice_type,notice_content,read_status,member_account,notice_dispatcher) VALUES ('1','購買成功，請準時前來提取，謝謝!','0','jason','my-account.html');
+INSERT INTO notice(notice_type,notice_content,read_status,member_account,notice_dispatcher) VALUES ('1','購買成功，請準時前來提取，謝謝!','0','tom','my-account.html');
+INSERT INTO notice(notice_type,notice_content,read_status,member_account,notice_dispatcher) VALUES ('2','提醒您：您有訂購商品，於 05/01 提取商品，謝謝!','0','amy','my-account.html');
+INSERT INTO notice(notice_type,notice_content,read_status,member_account,notice_dispatcher) VALUES ('2','提醒您：您有訂購商品，於 05/05 提取商品，謝謝!','0','amy','my-account.html');
+INSERT INTO notice(notice_type,notice_content,read_status,member_account,notice_dispatcher) VALUES ('3','訂位成功，05/05，12:00，3人，請準時前往，謝謝!','0','amy','my-account.html');
+INSERT INTO notice(notice_type,notice_content,read_status,member_account,notice_dispatcher) VALUES ('3','訂位成功，05/10，16:00，4人，請準時前往，謝謝!','0','amy','my-account.html');
+INSERT INTO notice(notice_type,notice_content,read_status,member_account,notice_dispatcher) VALUES ('4','提醒您：05/05 12:00 有訂位，位子保留10分鐘，逾期不候，若不克前來，請提前通知，謝謝!','0','amy','my-account.html');
+INSERT INTO notice(notice_type,notice_content,read_status,member_account,notice_dispatcher) VALUES ('4','提醒您：05/10 16:00 有訂位，位子保留10分鐘，逾期不候，若不克前來，請提前通知，謝謝!','0','tom','my-account.html');
+
 
 
 -- 張浩倫------------------------------------------------------------------------------------------------------------
@@ -538,7 +546,10 @@ create table coupon_code(
 	foreign key (employee_account) references employee(employee_account)
 )AUTO_INCREMENT=1;
 insert into coupon_code(coupon_code,coupon_code_effective_date,coupon_code_expire_date,
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
 coupon_code_text_content,coupon_code_content,discount_type,employee_account)
 values('MAH6203',"2021-02-27","2022-03-27",'訂餐享8折',0.8,0,'jason');
 insert into coupon_code(coupon_code,coupon_code_effective_date,coupon_code_expire_date,
@@ -553,7 +564,10 @@ values('HCJ2473',"2021-04-05","2022-04-06",'黑咖啡折20元',20,1,'james');
 insert into coupon_code(coupon_code,coupon_code_effective_date,coupon_code_expire_date,
 coupon_code_text_content,coupon_code_content,discount_type,employee_account)
 values('FUCK7414',"2021-04-05","2022-02-06",'糖料併折50元',50,1,'james');
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
 
 
 -- 優惠券
@@ -578,7 +592,10 @@ create table coupon(
 insert into coupon(member_account,coupon_sending_time,coupon_effective_date,
 coupon_expire_date,coupon_text_content,
 coupon_content,discount_type,coupon_status,employee_account,coupon_code_id)
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
 values('tom','2021-02-27','2021-02-27','2022-03-27','訂餐享8折',0.8,0,0,'jason',1);
 insert into coupon(member_account,coupon_sending_time,coupon_effective_date,
 coupon_expire_date,coupon_text_content,
@@ -592,7 +609,10 @@ insert into coupon(member_account,coupon_sending_time,coupon_effective_date,
 coupon_expire_date,coupon_text_content,
 coupon_content,discount_type,coupon_status,employee_account,coupon_code_id)
 values('jason','2021-03-11','2021-03-14','2021-03-15','單身者在白色情人節折價30元',30,1,0,'peter','2');
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
 
 
 
@@ -628,8 +648,8 @@ CREATE TABLE order_master (
     invoice_number		 varchar(50),
     order_total			 int not null,
     order_remarks	  	 varchar(2000),
-    constraint orderMaster_member_FK foreign key (member_account) references member (member_account)
---  constraint orderMaster_coupon_FK foreign key (coupon_id) references coupon(coupon_id)
+    constraint orderMaster_member_FK foreign key (member_account) references member (member_account),
+    constraint orderMaster_coupon_FK foreign key (coupon_id) references coupon(coupon_id)
 ) AUTO_INCREMENT = 1;
 INSERT INTO  order_master (member_account, payment_time, payment_method, coupon_id, order_status, invoice_number, order_total, order_remarks)
 VALUES ('tom', '2021-01-02 03:04:05', '1', 2, '1', 'AA12345678', '200', '希望能吃到好吃的巧克力杯子');
@@ -643,6 +663,7 @@ INSERT INTO  order_master (member_account, payment_time, payment_method, coupon_
 VALUES ('amy', '2021-01-04 03:04:07', '1', null, '2', 'AA12345675', '360', '藍莓乳酪要濃郁才好吃');
 INSERT INTO  order_master (member_account, payment_time, payment_method, coupon_id, order_status, invoice_number, order_total, order_remarks)
 VALUES ('amy', '2021-01-06 03:04:07', '1', null, '2', 'AA12345676', '460', '無');
+
 
 
 -- 訂單明細
