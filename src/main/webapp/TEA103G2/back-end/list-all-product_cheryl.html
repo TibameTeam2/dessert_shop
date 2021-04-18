@@ -29,6 +29,18 @@
               max-width: 1000px !important;
           }
       }
+      
+	/*更新燈箱的照片預覽*/
+	.database_image_wrapper{
+		display: flex; 
+ 		flex-direction: row; 
+	}
+
+
+  	.database_image{
+  		width: 150px;
+  		height: 150px;
+  	}    
    
 /*   燈箱 結束  */
   
@@ -294,6 +306,8 @@
 	                                    <div class="form-group">
 	                                        <label id="avrage_star_label">平均星等</label>
 	                                        <input type="text" class="form-control update_average_star" placeholder="0" name="average_star" required readonly>
+	                                        <input type="hidden" class="form-control update_total_star" placeholder="0" name="total_star" required readonly>
+	                                        <p>累計星等:<span class="show_total_star">0</span></p>
 	                                    </div>
 	                                </div>
 	                                <div class="col-md-4">                                    
@@ -315,9 +329,9 @@
 	                                        <div class="help-block with-errors"></div>
 	                                    </div>
 	<!-- 圖片預覽 還未做好 -->             
-<!-- 	                                    <div > -->
+	                                    <div class="database_image_wrapper">
 <!-- 	                                    	<img class="product_image" id="product_image" src="" alt> -->
-<!-- 	                                    </div> -->
+	                                    </div>
 	                                </div>
 	                                <div class="col-md-12">
 	                                    <div class="form-group">
@@ -548,14 +562,27 @@ $("tbody").on("click", "a.bg-success", function(){
 		let product_ingredient = data.data.product_ingredient;
 	    $(".update_product_intro").val(product_intro);
 	    $(".update_product_ingredient").val(product_ingredient);
+	    
+	    //total_star不在form中，故再給予 
+	    let total_star = data.data.total_star;
+	    $(".update_total_star").val(total_star);
+	    $(".show_total_star").text(total_star);
+	    console.log("total_star:"+ total_star)
 
 	    // 撈所有照片
-// 		for (var i = 0; i < data.data.image_url.length; i++) {
-// 	            // 撈第一張照片
-// 	    	let product_img[i] = url + data.data[i].image_url[0];
-// 	            table.row.add([
-// 	            	'<img class="table-img avatar-50" src="'+product_img1+'">',
-	    
+	    $(".database_image_wrapper").html(""); //清空照片
+	    let product_images=[];
+		for (var i = 0; i < data.data.image_url.length; i++) {
+	    	product_images[i] = url + data.data.image_url[i];
+	    	console.log("product_images:"+product_images[i]);
+	    	let image_div = `
+	    			<div class="col-md-2">
+		    			<div>
+		    				<img class="database_image" src="${product_images[i]}" alt="ProductImage">
+		    			</div>
+	    			</div>`
+	        $(".database_image_wrapper").append(image_div); 
+		}
 
 	});// 更新燈箱的$.get
 	
@@ -586,8 +613,7 @@ $("tbody").on("click", "a.bg-success", function(){
                         icon: "success"
                     });
                     getAllProduct();
-                    $("#new-order1").modal('hide');///這是???????????????????????????????????
-                    // $("#updateMemberForm").trigger("reset");
+                    $("#update-product").modal('hide');
                 } else {
                     Swal.fire({
                         title: data.msg,

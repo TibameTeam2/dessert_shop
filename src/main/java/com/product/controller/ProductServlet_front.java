@@ -283,9 +283,78 @@ public class ProductServlet_front extends BaseServlet {
 
 	// 後端_修改商品資訊
 	// http://localhost:8081/dessert_shop/product/backend_updateProuct
-	public void backend_updateProuct(HttpServletRequest req, HttpServletResponse res) {
-		System.out.println("update");
-		
+	public void backend_updateProuct(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+		System.out.println("更新商品資訊");
+		// 所有form表單裡的資訊，已由form表單傳遞，使用name為key去取對應的值
+				String product_category = req.getParameter("product_category");
+				System.out.println("更新的產品分類:" + product_category);//
+
+				String[] product_type = { product_category.split(":")[0] };
+				System.out.println("product_type:" + product_type[0]);//
+
+				String[] product_subtype = { product_category.split(":")[1] };
+				System.out.println("product_subtype:" + product_subtype[0]);//
+
+				// 獲取updateProduct_form的數據
+		    	Map<String, String[]> map = req.getParameterMap();
+		    	Map parameterMap = new HashMap(map);
+		    	parameterMap.put("product_type", product_type);
+		    	parameterMap.put("product_subtype", product_subtype);
+
+		    	System.out.println("parameterMap="+new ObjectMapper().writeValueAsString(parameterMap)); // 需要丟出JsonProcessingException
+
+				// 封裝物件
+		    	ProductBean productBean = new ProductBean();
+		    	try {
+		    		BeanUtils.populate(productBean, parameterMap);
+		    		System.out.println("封裝好的productBean:" + productBean);
+		    		
+		    		// 調用service將商品"更新"至DB
+		    		ProductService productSvc = new ProductService();
+		    		productBean = productSvc.updateProduct(productBean);
+		    		System.out.println("更新後的productBean:" + productBean);
+		    		
+		    	}catch(IllegalAccessException | InvocationTargetException e) {
+		    	    e.printStackTrace();
+		    	}
+// 照片的部分 修改???		    	
+		    	List<ProductImageBean> piBeanList =  new ArrayList<ProductImageBean>();
+
+				Collection<Part> parts = req.getParts();
+
+				for (Part part : parts) {
+					String header = part.getHeader("Content-Disposition");
+					System.out.println("Part Header:"+header);//
+					
+					if (header.contains("pic")) { //找到每張照片
+						System.out.println("OKOK");//
+						ProductImageBean piBean = new ProductImageBean();
+						piBean.setProduct_id(productBean.getProduct_id());
+						
+						System.out.println("backend_addProduct回傳的product_id:"+productBean.getProduct_id());//
+						
+						InputStream in = part.getInputStream();
+						byte[] buf = new byte[in.available()];
+						in.read(buf);
+
+						piBean.setProduct_image(buf);
+						piBeanList.add(piBean);
+						in.close();
+						System.out.println("附加一張照片");//
+					}  
+				}
+				System.out.println("for 完的piBeanList:"+ piBeanList);
+				ProductImageService piSvc = new ProductImageService();
+				piSvc.addMultiProductImages(piBeanList);
+				
+				System.out.println("backend_addProduct跑完!");//
+				ResultInfo info = new ResultInfo();
+				info.setFlag(true);
+				info.setMsg("修改商品&照片成功!");
+
+				writeValueByWriter(res, info);
+
+				System.out.println("修改商品&照片成功!");//
 		
 	}
 
