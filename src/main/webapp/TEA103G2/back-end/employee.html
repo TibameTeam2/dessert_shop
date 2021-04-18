@@ -26,13 +26,13 @@
       }
 
       .employee_auth {
-          height: 110px !important;
+          height: 195px !important;
           margin-bottom: 12px;
       }
   </style>
 
 </head>
-<body class="  ">
+<body>
 <!-- loader Start -->
 <div id="loading">
   <div id="loading-center">
@@ -171,7 +171,8 @@
                             <div class="col-md-12">
                               <div class="form-group">
                                 <label>照片</label>
-                                <input type="file" class="form-control image-file update_employee_photo" name="employee_photo"
+                                <input type="file" class="form-control image-file update_employee_photo"
+                                       name="employee_photo"
                                        accept="image/*">
                               </div>
                             </div>
@@ -188,23 +189,38 @@
                                 <div class="custom-control custom-checkbox custom-checkbox-color-check custom-control-inline">
                                   <input type="checkbox" class="custom-control-input bg-primary" id="customCheck-1"
                                          name="employee_auth1" value="1">
-                                  <label class="custom-control-label" for="customCheck-1">權限1</label>
+                                  <label class="custom-control-label" for="customCheck-1">員工管理</label>
                                 </div>
 
                                 <div class="custom-control custom-checkbox custom-checkbox-color-check custom-control-inline">
                                   <input type="checkbox" class="custom-control-input bg-primary" id="customCheck-2"
                                          name="employee_auth1" value="2">
-                                  <label class="custom-control-label" for="customCheck-2">權限2</label>
+                                  <label class="custom-control-label" for="customCheck-2">會員管理</label>
                                 </div>
                                 <div class="custom-control custom-checkbox custom-checkbox-color-check custom-control-inline">
                                   <input type="checkbox" class="custom-control-input bg-primary" id="customCheck-3"
                                          name="employee_auth1" value="3">
-                                  <label class="custom-control-label" for="customCheck-3">權限3</label>
+                                  <label class="custom-control-label" for="customCheck-3">公告管理</label>
                                 </div>
                                 <div class="custom-control custom-checkbox custom-checkbox-color-check custom-control-inline">
                                   <input type="checkbox" class="custom-control-input bg-primary" id="customCheck-4"
                                          name="employee_auth1" value="4">
-                                  <label class="custom-control-label" for="customCheck-4">權限4</label>
+                                  <label class="custom-control-label" for="customCheck-4">訂單管理</label>
+                                </div>
+                                <div class="custom-control custom-checkbox custom-checkbox-color-check custom-control-inline">
+                                  <input type="checkbox" class="custom-control-input bg-primary" id="customCheck-5"
+                                         name="employee_auth1" value="5">
+                                  <label class="custom-control-label" for="customCheck-5">評價管理</label>
+                                </div>
+                                <div class="custom-control custom-checkbox custom-checkbox-color-check custom-control-inline">
+                                  <input type="checkbox" class="custom-control-input bg-primary" id="customCheck-6"
+                                         name="employee_auth1" value="6">
+                                  <label class="custom-control-label" for="customCheck-6">優惠碼管理</label>
+                                </div>
+                                <div class="custom-control custom-checkbox custom-checkbox-color-check custom-control-inline">
+                                  <input type="checkbox" class="custom-control-input bg-primary" id="customCheck-7"
+                                         name="employee_auth1" value="7">
+                                  <label class="custom-control-label" for="customCheck-7">優惠券管理</label>
                                 </div>
                               </div>
                             </div>
@@ -368,7 +384,7 @@
         $("tbody").on("click", "a.edit", function () {
             let table = $(".data-table").DataTable()
             let data = table.row($(this).closest('tr')).data();
-            console.log(data);
+            // console.log(data);
             // alert( 'You clicked on '+data[0]+'\'s row' );
 
             $(".update_employee_account").val(data[0]);
@@ -383,14 +399,15 @@
             // console.log(data[7])
             //設定權限
             $("input[type=checkbox]").prop("checked", false);
-            for(let i=0;i<data[7].length;i++){
-                $("input[type=checkbox][value="+data[7][i]+"]").prop("checked", true);
+            for (let i = 0; i < data[7].length; i++) {
+                $("input[type=checkbox][value=" + data[7][i] + "]").prop("checked", true);
             }
             //切換送出鈕的class
             $("#addEmployee").text("更新");
             $("#addEmployee").removeClass("type_add_employee")
-            $(".update_employee_account").attr("readonly",true);
+            $(".update_employee_account").attr("readonly", true);
 
+            checkbox_auth_all();
         });
 
         function getUpdate_employee_status(status) {
@@ -445,22 +462,22 @@
             //切換送出鈕的class
             $("#addEmployee").text("新增");
             $("#addEmployee").addClass("type_add_employee")
-            $(".update_employee_account").attr("readonly",false);
+            $(".update_employee_account").attr("readonly", false);
         });
 
         /*****************燈箱中的新增員工以及更新員工 送出按鈕*********************/
         $("#addEmployee").click(function (e) {
             e.preventDefault();
-            if($(this).hasClass("type_add_employee")){
+            if ($(this).hasClass("type_add_employee")) {
                 addEmployee();
-            }else{
+            } else {
                 updateEmployee();
             }
             return false;
         });
 
         /*****************燈箱中的修改員工資料 送出按鈕*****************/
-        function updateEmployee(){
+        function updateEmployee() {
             //表單提交時檢查所有屬性合法
             //發送ajax請求，送出表單資料
             console.log($("#addEmployeeForm").serialize());
@@ -497,7 +514,7 @@
         }
 
 
-        function addEmployee(){
+        function addEmployee() {
             //表單提交時檢查所有屬性合法
             //發送ajax請求，送出表單資料
             console.log($("#addEmployeeForm").serialize());
@@ -546,8 +563,25 @@
                 $("input[type=checkbox]").prop("checked", false);
             }
         });
+        //檢查所有權限選項是否有被選取 有的話就把全選打勾
+        $("input[class*=bg-primary]").on("click", function () {
+            // console.log($(this))
+            checkbox_auth_all()
+        });
 
-
+        function checkbox_auth_all(){
+            let flag = false
+            $("input[class*=bg-primary]").each(function () {
+                if (!$(this).prop("checked")) {
+                    flag = true;
+                }
+            })
+            if (flag === false) {
+                $(".checkbox_auth_all").prop("checked", true);
+            }else{
+                $(".checkbox_auth_all").prop("checked", false);
+            }
+        }
     </script>
 </body>
 </html>
