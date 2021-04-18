@@ -102,7 +102,7 @@ public class Employee_backendServlet extends BaseServlet {
         ResultInfo info = new ResultInfo();
         info.setFlag(true);
         info.setMsg("後台已登出!");
-        info.setRedirect(req.getContextPath() + "/TEA103G2/back-end/index.html");
+        info.setRedirect(req.getContextPath() + "/TEA103G2/back-end/login.html");
 //        System.out.println("info = " + toJson(info));
         writeValueByWriter(res, info);
     }

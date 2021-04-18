@@ -113,10 +113,11 @@ INSERT INTO authority_content (authority_content) VALUES ('員工管理');
 INSERT INTO authority_content (authority_content) VALUES ('會員管理');
 INSERT INTO authority_content (authority_content) VALUES ('公告管理');
 INSERT INTO authority_content (authority_content) VALUES ('訂單管理');
-INSERT INTO authority_content (authority_content) VALUES ('評價管理');
+INSERT INTO authority_content (authority_content) VALUES ('評價管理');    # 5
 INSERT INTO authority_content (authority_content) VALUES ('優惠碼管理');
 INSERT INTO authority_content (authority_content) VALUES ('優惠券管理');
-
+INSERT INTO authority_content (authority_content) VALUES ('商品管理');
+INSERT INTO authority_content (authority_content) VALUES ('通知管理');     #9
 -- 員工權限
 set auto_increment_offset=1;
 set auto_increment_increment=1;
@@ -134,6 +135,8 @@ INSERT INTO employee_authority (employee_account,authority_content_id) VALUES ('
 INSERT INTO employee_authority (employee_account,authority_content_id) VALUES ('jason',5);
 INSERT INTO employee_authority (employee_account,authority_content_id) VALUES ('jason',6);
 INSERT INTO employee_authority (employee_account,authority_content_id) VALUES ('jason',7);
+INSERT INTO employee_authority (employee_account,authority_content_id) VALUES ('jason',8);
+INSERT INTO employee_authority (employee_account,authority_content_id) VALUES ('jason',9);
 INSERT INTO employee_authority (employee_account,authority_content_id) VALUES ('peter',2);
 INSERT INTO employee_authority (employee_account,authority_content_id) VALUES ('peter',3);
 INSERT INTO employee_authority (employee_account,authority_content_id) VALUES ('peter',5);

@@ -886,7 +886,7 @@
 
 
 
-    <!--全局過濾器-->
+    <!--前台登入過濾器-->
     <filter>
         <filter-name>loginFilter</filter-name>
         <filter-class>com.filter.LoginFilter</filter-class>
@@ -903,22 +903,27 @@
         <dispatcher>ASYNC</dispatcher>
     </filter-mapping>
 
+	<!--後台登入全局過濾器-->
+<!--	<filter>-->
+<!--		<filter-name>backendLoginFilter</filter-name>-->
+<!--		<filter-class>com.filter.BackendLoginFilter</filter-class>-->
+<!--		<init-param>-->
+<!--			<param-name>excludedPages</param-name>-->
+<!--			<param-value>/TEA103G2/back-end/login.html</param-value>-->
+<!--		</init-param>-->
+<!--	</filter>-->
+<!--	<filter-mapping>-->
+<!--		<filter-name>backendLoginFilter</filter-name>-->
+<!--		<url-pattern>/TEA103G2/back-end/employee.html</url-pattern>-->
+<!--		<dispatcher>REQUEST</dispatcher>-->
+<!--		<dispatcher>FORWARD</dispatcher>-->
+<!--		<dispatcher>INCLUDE</dispatcher>-->
+<!--		<dispatcher>ERROR</dispatcher>-->
+<!--		<dispatcher>ASYNC</dispatcher>-->
+<!--	</filter-mapping>-->
 
 
 
-	<!--配置全局过滤的filter -->
-	<!-- <filter> -->
-	<!-- <filter-name>CharacterEncodingFilter</filter-name> -->
-	<!-- <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class> -->
-	<!-- <init-param> -->
-	<!-- <param-name>encoding</param-name> -->
-	<!-- <param-value>UTF-8</param-value> -->
-	<!-- </init-param> -->
-	<!-- </filter> -->
-	<!-- <filter-mapping> -->
-	<!-- <filter-name>CharacterEncodingFilter</filter-name> -->
-	<!-- <url-pattern>/*</url-pattern> -->
-	<!-- </filter-mapping> -->
 
 	<!--配置SpringMVC的前端控制器 -->
 	<!-- <servlet> -->
