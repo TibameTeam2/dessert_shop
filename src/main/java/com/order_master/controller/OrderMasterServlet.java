@@ -48,6 +48,34 @@ public class OrderMasterServlet extends BaseServlet {
 	}
 
 	
+	
+	public void backend_getAll(HttpServletRequest req, HttpServletResponse res) {
+		
+		List<OrderMasterBean> list = OrderMasterSvc.getAll();
+        ResultInfo info = new ResultInfo();
+        info.setFlag(true);
+        info.setMsg("取得所有訂單資料!");
+        info.setData(list);
+        writeValueByWriter(res, info);
+		
+	}
+	
+	
+	public void backend_delete(HttpServletRequest req, HttpServletResponse res) {
+		
+		Integer order_master_id = new Integer(req.getParameter("order_master_id"));
+        ResultInfo info = new ResultInfo();
+        try {
+        	OrderMasterSvc.deleteOrderMaster(order_master_id);
+            info.setFlag(true);
+            info.setMsg("已刪除訂單資料!");
+        } catch(Exception e) {
+            info.setFlag(false);
+            info.setMsg("刪除訂單資料失敗，請注意外鍵!");
+        }
+        writeValueByWriter(res, info);
+	
+	}
 
 	
 }
