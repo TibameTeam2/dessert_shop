@@ -27,15 +27,17 @@ public class ListMemberCommentDaoImpl implements ListMemberCommentDao {
 	private static final String UPDATE = "";
 	private static final String DELETE = "";
 	private static final String GET_ONE = "";
-	private static final String FindAllCommentContent = "select mc.review_id, mc.order_detail_id, mc.product_id, comment_content, rating, comment_time, comment_status, \r\n"
-			+ "reply_id, dr.review_id, reply_content, reply_time, dr.employee_account, p.product_name\r\n"
+	private static final String FindAllCommentContent = "select mc.review_id, mc.order_detail_id, mc.product_id, comment_content, rating, comment_time, comment_status,\r\n"
+			+ "reply_id, dr.review_id, reply_content, reply_time, dr.employee_account, p.product_name, pi.image_id, om.member_account\r\n"
 			+ "from member_comment mc\r\n" + "left join dealer_reply dr on mc.review_id = dr.review_id\r\n"
-			+ "left join product p on mc.product_id = p.product_id\r\n" + "group by mc.review_id;";
-	private static final String FindReviewImage = "select review_image_id, review_image, mc.review_id\r\n" + 
-			"from review_image_upload riu\r\n" + 
-			"right join member_comment mc on riu.review_id = mc.review_id\r\n" + 
-			"where mc.review_id = ?\r\n" + 
-			"group by review_image_id;";
+			+ "left join product p on mc.product_id = p.product_id\r\n"
+			+ "left join product_image pi on mc.product_id = pi.product_id\r\n"
+			+ "left join order_detail od on mc.order_detail_id = od.order_detail_id\r\n"
+			+ "left join order_master om on od.order_master_id = om.order_master_id\r\n" + "group by mc.review_id\r\n"
+			+ "order by mc.review_id desc;";
+	private static final String FindReviewImage = "select review_image_id, review_image, mc.review_id\r\n"
+			+ "from review_image_upload riu\r\n" + "right join member_comment mc on riu.review_id = mc.review_id\r\n"
+			+ "where mc.review_id = ?\r\n" + "group by review_image_id;";
 
 	@Override
 	public void update(ListMemberCommentBean listMemberCommentBean) {
@@ -87,6 +89,12 @@ public class ListMemberCommentDaoImpl implements ListMemberCommentDao {
 				listMemberCommentBean.setReply_time(rs.getTimestamp("reply_time"));
 				listMemberCommentBean.setEmployee_account(rs.getString("employee_account"));
 				listMemberCommentBean.setProduct_name(rs.getString("product_name"));
+				listMemberCommentBean.setImage_id(rs.getInt("image_id"));
+				listMemberCommentBean.setProduct_image(
+						"/product_jsp/product.do?action=getProductImage&id=" + listMemberCommentBean.getImage_id());
+				listMemberCommentBean.setMember_account(rs.getString("member_account"));
+				listMemberCommentBean
+						.setMember_photo("/member/backend_getPhoto?id=" + listMemberCommentBean.getMember_account());
 
 				pstmt1 = con.prepareStatement(FindReviewImage);
 
@@ -155,6 +163,10 @@ public class ListMemberCommentDaoImpl implements ListMemberCommentDao {
 			System.out.println("reply_time: " + listMemberCommentBean.getReply_time() + ",");
 			System.out.println("employee_account: " + listMemberCommentBean.getEmployee_account() + ",");
 			System.out.println("product_name: " + listMemberCommentBean.getProduct_name() + ",");
+			System.out.println("image_id: " + listMemberCommentBean.getImage_id() + ",");
+			System.out.println("product_image: " + listMemberCommentBean.getProduct_image() + ",");
+			System.out.println("member_account: " + listMemberCommentBean.getMember_account() + ",");
+			System.out.println("member_photo: " + listMemberCommentBean.getMember_photo() + ",");
 			System.out.println("review_image_id: " + listMemberCommentBean.getReview_image_id() + ",");
 			System.out.println("review_image: " + listMemberCommentBean.getReview_image() + ",");
 			System.out.println("---------------------------------------------------------");
