@@ -124,4 +124,27 @@ public class MemberService {
             return false;
         }
     }
+
+    public boolean backend_update(MemberBean member) {
+        try {
+            MemberBean m = dao.findByPrimaryKey(member.getMember_account());
+            m.setMember_phone(member.getMember_phone());
+            m.setMember_name(member.getMember_name());
+            m.setMember_email(member.getMember_email());
+            m.setMember_gender(member.getMember_gender());
+            m.setMember_birthday(member.getMember_birthday());
+            m.setMember_status(member.getMember_status());
+            if(!member.getMember_password().equals("")){
+                m.setMember_password(member.getMember_password());
+            }
+            if(member.getMember_photo()!=null){
+                m.setMember_photo(member.getMember_photo());
+            }
+            dao.update(m);
+            return true;
+        }catch (Exception e){
+            e.printStackTrace(System.err);
+            return false;
+        }
+    }
 }
