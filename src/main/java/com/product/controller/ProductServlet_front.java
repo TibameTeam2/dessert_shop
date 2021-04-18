@@ -286,6 +286,7 @@ public class ProductServlet_front extends BaseServlet {
 	public void backend_updateProuct(HttpServletRequest req, HttpServletResponse res) {
 		System.out.println("update");
 		
+		
 	}
 
 
