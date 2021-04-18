@@ -57,14 +57,15 @@
 		<url-pattern>/product/*</url-pattern>
 	</servlet-mapping>
 
-	<servlet>
-		<servlet-name>ProductImageServlet</servlet-name>
-		<servlet-class>com.product_image.controller.ProductImageServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>ProductImageServlet</servlet-name>
-		<url-pattern>/product_image_jsp/product.do</url-pattern>
-	</servlet-mapping>
+	<!-- 本來要給0201用的，後來沒用到先註解 -->
+<!-- 	<servlet> -->
+<!-- 		<servlet-name>ProductImageServlet</servlet-name> -->
+<!-- 		<servlet-class>com.product_image.controller.ProductImageServlet</servlet-class> -->
+<!-- 	</servlet> -->
+<!-- 	<servlet-mapping> -->
+<!-- 		<servlet-name>ProductImageServlet</servlet-name> -->
+<!-- 		<url-pattern>/product_image_jsp/product.do</url-pattern> -->
+<!-- 	</servlet-mapping> -->
 
 
 	<!--測試用Servlet -->
@@ -304,8 +305,15 @@
 
 
 
-
-
+	<!--  ProductImage 玉婷  -->
+	<servlet>
+		<servlet-name>ProductImageServlet</servlet-name>
+		<servlet-class>com.product_image.controller.ProductImageServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ProductImageServlet</servlet-name>
+		<url-pattern>/productImage/*</url-pattern>
+	</servlet-mapping>
 
 
 
