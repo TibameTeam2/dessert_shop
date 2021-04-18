@@ -2,16 +2,14 @@ package com.live_support.model;
 
 import java.util.Set;
 
-public class LiveSupportState {
-	
-	
+public class State {
 	private String type;
-	// 使用者改變狀態
+	// the user changing the state
 	private String user;
-	// 全部使用者
-	private Set<String> users;
+	// total users
+	private String users;
 
-	public LiveSupportState(String type, String user, Set<String> users) {
+	public State(String type, String user, String users) {
 		super();
 		this.type = type;
 		this.user = user;
@@ -34,11 +32,11 @@ public class LiveSupportState {
 		this.user = user;
 	}
 
-	public Set<String> getUsers() {
+	public String getUsers() {
 		return users;
 	}
 
-	public void setUsers(Set<String> users) {
+	public void setUsers(String users) {
 		this.users = users;
 	}
 
