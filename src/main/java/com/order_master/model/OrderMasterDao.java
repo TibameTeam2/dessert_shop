@@ -9,5 +9,5 @@ public interface OrderMasterDao {
 	OrderMasterBean findByPrimaryKey(Integer order_master_id);
 	List<OrderMasterBean> getAll();
 	List<OrderMasterBean> findByMemberAccount(String member_account);
-	OrderMasterBean getOrderMaster(String member_account);
+	List<OrderMasterBean> getOrderMaster(String member_account);
 }

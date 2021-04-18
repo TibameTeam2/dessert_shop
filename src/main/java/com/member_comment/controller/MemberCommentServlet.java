@@ -40,7 +40,7 @@ public class MemberCommentServlet extends BaseServlet {
 
 		
 		Integer review_id = memberCommentSvc.addMemberComment(Convert.toInt(order_detail_id), Convert.toInt(product_id),
-				Convert.toInt(rating), comment_content, 1);
+				Convert.toInt(rating), comment_content, 0);
 
 		
 		// 用getPart()抓前台送來的照片

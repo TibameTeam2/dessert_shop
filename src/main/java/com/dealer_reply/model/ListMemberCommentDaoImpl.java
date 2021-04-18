@@ -27,7 +27,7 @@ public class ListMemberCommentDaoImpl implements ListMemberCommentDao {
 	private static final String UPDATE = "";
 	private static final String DELETE = "";
 	private static final String GET_ONE = "";
-	private static final String FindAllCommentContent = "select mc.review_id, mc.order_detail_id, mc.product_id, comment_content, rating, comment_time, \r\n"
+	private static final String FindAllCommentContent = "select mc.review_id, mc.order_detail_id, mc.product_id, comment_content, rating, comment_time, comment_status, \r\n"
 			+ "reply_id, dr.review_id, reply_content, reply_time, dr.employee_account, p.product_name\r\n"
 			+ "from member_comment mc\r\n" + "left join dealer_reply dr on mc.review_id = dr.review_id\r\n"
 			+ "left join product p on mc.product_id = p.product_id\r\n" + "group by mc.review_id;";
@@ -81,6 +81,7 @@ public class ListMemberCommentDaoImpl implements ListMemberCommentDao {
 				listMemberCommentBean.setComment_content(rs.getString("comment_content"));
 				listMemberCommentBean.setRating(rs.getInt("rating"));
 				listMemberCommentBean.setComment_time(rs.getTimestamp("comment_time"));
+				listMemberCommentBean.setComment_status(rs.getInt("comment_status"));
 				listMemberCommentBean.setReply_id(rs.getInt("reply_id"));
 				listMemberCommentBean.setReply_content(rs.getString("reply_content"));
 				listMemberCommentBean.setReply_time(rs.getTimestamp("reply_time"));
@@ -148,6 +149,7 @@ public class ListMemberCommentDaoImpl implements ListMemberCommentDao {
 			System.out.println("comment_content: " + listMemberCommentBean.getComment_content() + ",");
 			System.out.println("rating: " + listMemberCommentBean.getRating() + ",");
 			System.out.println("comment_time: " + listMemberCommentBean.getComment_time() + ",");
+			System.out.println("comment_status: " + listMemberCommentBean.getComment_status() + ",");
 			System.out.println("reply_id: " + listMemberCommentBean.getReply_id() + ",");
 			System.out.println("reply_content: " + listMemberCommentBean.getReply_content() + ",");
 			System.out.println("reply_time: " + listMemberCommentBean.getReply_time() + ",");

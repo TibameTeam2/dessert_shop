@@ -546,10 +546,6 @@ create table coupon_code(
 	foreign key (employee_account) references employee(employee_account)
 )AUTO_INCREMENT=1;
 insert into coupon_code(coupon_code,coupon_code_effective_date,coupon_code_expire_date,
-<<<<<<< HEAD
-
-=======
->>>>>>> master
 coupon_code_text_content,coupon_code_content,discount_type,employee_account)
 values('MAH6203',"2021-02-27","2022-03-27",'訂餐享8折',0.8,0,'jason');
 insert into coupon_code(coupon_code,coupon_code_effective_date,coupon_code_expire_date,
@@ -564,10 +560,6 @@ values('HCJ2473',"2021-04-05","2022-04-06",'黑咖啡折20元',20,1,'james');
 insert into coupon_code(coupon_code,coupon_code_effective_date,coupon_code_expire_date,
 coupon_code_text_content,coupon_code_content,discount_type,employee_account)
 values('FUCK7414',"2021-04-05","2022-02-06",'糖料併折50元',50,1,'james');
-<<<<<<< HEAD
-
-=======
->>>>>>> master
 
 
 -- 優惠券
@@ -592,10 +584,6 @@ create table coupon(
 insert into coupon(member_account,coupon_sending_time,coupon_effective_date,
 coupon_expire_date,coupon_text_content,
 coupon_content,discount_type,coupon_status,employee_account,coupon_code_id)
-<<<<<<< HEAD
-
-=======
->>>>>>> master
 values('tom','2021-02-27','2021-02-27','2022-03-27','訂餐享8折',0.8,0,0,'jason',1);
 insert into coupon(member_account,coupon_sending_time,coupon_effective_date,
 coupon_expire_date,coupon_text_content,
@@ -609,10 +597,6 @@ insert into coupon(member_account,coupon_sending_time,coupon_effective_date,
 coupon_expire_date,coupon_text_content,
 coupon_content,discount_type,coupon_status,employee_account,coupon_code_id)
 values('jason','2021-03-11','2021-03-14','2021-03-15','單身者在白色情人節折價30元',30,1,0,'peter','2');
-<<<<<<< HEAD
-
-=======
->>>>>>> master
 
 
 

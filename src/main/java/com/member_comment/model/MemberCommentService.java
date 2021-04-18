@@ -25,7 +25,7 @@ public class MemberCommentService {
 		memberCommentBean.setRating(rating);
 		memberCommentBean.setComment_content(comment_content);
 //		memberCommentBean.setComment_time(comment_time);	//由資料庫產生
-		memberCommentBean.setComment_status(1);
+		memberCommentBean.setComment_status(0);
 
 		try {
 			//insert()用在新增評論並查詢資料庫內的自增主鍵(剛新增的自增主鍵幾號)
