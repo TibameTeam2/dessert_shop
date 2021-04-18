@@ -160,6 +160,36 @@
 </div>
 <!-- Wrapper End-->
 
+
+<!-- 燈箱的內容 -->
+<div class="modal fade" id="new-order" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="popup text-left">
+          <h4 class="mb-3">New Order</h4>
+          <div class="content create-workform bg-body">
+            <div class="pb-3">
+              <label class="mb-2">Email</label>
+              <input type="text" class="form-control" placeholder="Enter Name or Email">
+            </div>
+            <div class="col-lg-12 mt-4">
+              <div class="d-flex flex-wrap align-items-ceter justify-content-center">
+                <div class="btn btn-primary mr-4" data-dismiss="modal">Cancel</div>
+                <div class="btn btn-outline-primary" data-dismiss="modal">Create</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
 <!-- Backend Bundle JavaScript -->
 <script src="assets/js/backend-bundle.min.js"></script>
 
@@ -189,18 +219,11 @@
 
 getAllProduct();
 
-function getAllProduct(){
-	
-$("tbody").on("click", "a.bg-success", function(){
-	console.log("edit");
-	<!--update的API-->
-	///////
-	
-});
 
+function getAllProduct(){
+<!--因為有商品成分跟介紹的部分 所以應該要做預覽-->		
     $.get("/dessert_shop/product/backend_getAllProduct", {}, function (data) {
 		var action = `<div class="d-flex align-items-center list-action">
-<!--因為有商品成分跟介紹的部分 所以應該要做預覽-->		
             			<a class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View"
                  			href="#"><i class="ri-eye-line mr-0"></i></a>
                  			
@@ -237,30 +260,24 @@ $("tbody").on("click", "a.bg-success", function(){
                         "sortDescending": ": 降冪排列"
                     }
                 },
+                "createdRow": function (row, data, dataIndex) {
+			    	if(data[7] == "未上架"){
+// 			    		console.log(this);
+	            		$(row).css("background-color", "#EFF0F2");
+			    	}
+			   
+				},
                 "columnDefs": [
                     {
                         "targets": [0],    //欄位從0開始算
                         "visible": true,   //欄位是否顯示 預設是true
                         "orderable": false,  //是否可以排序
-                        "width": "1%"
                     },
                     {
-                        "targets": [1],    //欄位從0開始算
+                        "targets": [1, 2],    //欄位從0開始算
                         "visible": true,   //欄位是否顯示 預設是true
                         "orderable": true,  //是否可以排序
                         "width": "1%"
-                    },
-                    {
-                        "targets": [2],    //欄位從0開始算
-                        "visible": true,   //欄位是否顯示 預設是true
-                        "orderable": true,  //是否可以排序
-                        "width": "1%"
-                    },
-                    {
-                        "targets": [3],    //欄位從0開始算
-                        "visible": true,   //欄位是否顯示 預設是true
-                        "orderable": true,  //是否可以排序
-                        "width": "60px"
                     }
 
                 ]
@@ -294,9 +311,24 @@ $("tbody").on("click", "a.bg-success", function(){
 		
 		
     });//$.get
-
     
-}    
+}//function getAllProduct();    
+	
+$("tbody").on("click", "a.bg-success", function(){
+	console.log("edit");
+	
+	//跳出燈箱
+	// 燈箱內修改的內容 及時更改到頁面上
+	
+	
+	
+	
+	
+});
+// 燈箱上的submit按出 才需要透過API修改DB
+	<!--update的API-->
+	///////
+	
     
 </script>
     

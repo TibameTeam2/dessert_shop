@@ -176,6 +176,10 @@ public class ProductServlet_front extends BaseServlet {
 //    	
 //    	writeValueByWriter(res, info);
 	}
+	
+	
+	
+	
 
 	// http://localhost:8081/dessert_shop/product/backend_addProduct
 	public void backend_addProduct(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
@@ -276,60 +280,13 @@ public class ProductServlet_front extends BaseServlet {
 		writeValueByWriter(res, info);
 	}
 
-// 給別人使用的API >>>>> 改成用service的方法了
 
-////  http://localhost:8081/dessert_shop/product/addProductPruchase
-//    public Boolean addProductPruchase(HttpServletRequest req, HttpServletResponse res) {
-//    	System.out.println("Servlet的addProductPruchase");
-//    	
-//    	Integer product_id = new Integer(req.getParameter("product_id"));
-//    	Integer single_purchase = new Integer(req.getParameter("product_purchase"));
-//    	ProductService productSvc = new ProductService();
-//    	ProductBean productBean = productSvc.getOneProduct(product_id);
-//    	
-//    	try {
-//    	Integer databaseTotal_purchase = productBean.getTotal_purchase();
-//    	System.out.println("databaseTotal_purchase:"+databaseTotal_purchase);
-//    	Integer newTotal_purchase = databaseTotal_purchase + single_purchase;
-//    	System.out.println("newTotal_purchase:"+newTotal_purchase);
-//    	
-//    	productBean.setTotal_purchase(newTotal_purchase);
-//    	System.out.println("更新銷售後的productBean:"+productBean);
-// 	
-//    	return true;
-//    	
-//    	} catch(Exception e) {
-//    	
-//    		ResultInfo info = new ResultInfo();
-////        	
-//        	info.setFlag(false);
-//        	info.setMsg("商品銷售量更新失敗!");
-//        	info.setData(productBean);
-//        	
-//        	writeValueByWriter(res, info);	
-//    	return false;
-//    	}
-//    }
-//    
+	// 後端_修改商品資訊
+	// http://localhost:8081/dessert_shop/product/backend_updateProuct
+	public void backend_updateProuct(HttpServletRequest req, HttpServletResponse res) {
+		System.out.println("update");
+		
+	}
 
-//    在service中新增來自評論的星星與review的方法 給語心使用 
-
-	// http://localhost:8081/dessert_shop/product/addReviewStar
-//    public void addReviewStar(HttpServletRequest req, HttpServletResponse res) {
-//    	System.out.println("新增星等與評論");
-//    	Integer star_rating = new Integer (req.getParameter("rating"));
-//    	ProductService productSvc = new ProductService();
-//    	ProductBean productBean = new ProductBean(); 
-//    	ProductBean updateBean = productSvc.addReviewStar(productBean);
-//    	
-//    	ResultInfo info = new ResultInfo();
-//    	
-//    	info.setFlag(true);
-//    	info.setMsg("評論與星等更新成功!");
-//    	info.setData(updateBean);
-//    	
-//    	writeValueByWriter(res, info);
-//    	
-//    }
 
 }
