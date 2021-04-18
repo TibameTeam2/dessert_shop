@@ -95,11 +95,11 @@ CREATE TABLE employee (
     employee_status      TINYINT NOT NULL
 ) AUTO_INCREMENT = 1;
 INSERT INTO employee (employee_account,employee_name,employee_password,employee_position,employee_photo,hire_date,employee_status)
-VALUES ('jason','傑森','1895','工讀生',null,'2021-02-21',1);
+VALUES ('jason','傑森','202cb962ac59075b964b07152d234b70','老闆',null,'2021-02-21',1);
 INSERT INTO employee (employee_account,employee_name,employee_password,employee_position,employee_photo,hire_date,employee_status)
-VALUES ('peter','小吳','1234','主管',null,'2021-01-02',1);
+VALUES ('peter','張偉','202cb962ac59075b964b07152d234b70','主管',null,'2021-01-02',1);
 INSERT INTO employee (employee_account,employee_name,employee_password,employee_position,employee_photo,hire_date,employee_status)
-VALUES ('james','君岳','666','老闆',null,'2020-03-21',1);
+VALUES ('james','小明','202cb962ac59075b964b07152d234b70','工讀生',null,'2020-03-21',1);
 
 
 -- 員工權限內容
@@ -109,10 +109,13 @@ CREATE TABLE authority_content (
 	authority_content_id   	INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
 	authority_content     	VARCHAR(2000) NOT NULL
 ) AUTO_INCREMENT = 1;
-INSERT INTO authority_content (authority_content) VALUES ('張貼公告');
-INSERT INTO authority_content (authority_content) VALUES ('管理會員');
-INSERT INTO authority_content (authority_content) VALUES ('管理商品');
-
+INSERT INTO authority_content (authority_content) VALUES ('員工管理');
+INSERT INTO authority_content (authority_content) VALUES ('會員管理');
+INSERT INTO authority_content (authority_content) VALUES ('公告管理');
+INSERT INTO authority_content (authority_content) VALUES ('訂單管理');
+INSERT INTO authority_content (authority_content) VALUES ('評價管理');
+INSERT INTO authority_content (authority_content) VALUES ('優惠碼管理');
+INSERT INTO authority_content (authority_content) VALUES ('優惠券管理');
 
 -- 員工權限
 set auto_increment_offset=1;
@@ -125,9 +128,16 @@ CREATE TABLE employee_authority (
 	CONSTRAINT employeeAuthority_authorityContent_FK FOREIGN KEY (authority_content_id) REFERENCES authority_content(authority_content_id)
 ) AUTO_INCREMENT = 1;
 INSERT INTO employee_authority (employee_account,authority_content_id) VALUES ('jason',1);
-INSERT INTO employee_authority (employee_account,authority_content_id) VALUES ('peter',1);
+INSERT INTO employee_authority (employee_account,authority_content_id) VALUES ('jason',2);
+INSERT INTO employee_authority (employee_account,authority_content_id) VALUES ('jason',3);
+INSERT INTO employee_authority (employee_account,authority_content_id) VALUES ('jason',4);
+INSERT INTO employee_authority (employee_account,authority_content_id) VALUES ('jason',5);
+INSERT INTO employee_authority (employee_account,authority_content_id) VALUES ('jason',6);
+INSERT INTO employee_authority (employee_account,authority_content_id) VALUES ('jason',7);
 INSERT INTO employee_authority (employee_account,authority_content_id) VALUES ('peter',2);
-
+INSERT INTO employee_authority (employee_account,authority_content_id) VALUES ('peter',3);
+INSERT INTO employee_authority (employee_account,authority_content_id) VALUES ('peter',5);
+INSERT INTO employee_authority (employee_account,authority_content_id) VALUES ('james',3);
 
 -- 趙玉婷------------------------------------------------------------------------------------------------------------
 -- 商品資料表(product)
@@ -525,7 +535,7 @@ announcement_image,announcement_time,announcement_type,announcement_status,emplo
 values('提拉米蘇特價','提拉米蘇超好吃derrrrrr',LOAD_FILE('C:/project/images/announcement_management/a.jpg'),'2021-02-26',1,1,'jason');
 insert into announcement_management (announcement_name,announcement_content,
 announcement_image,announcement_time,announcement_type,announcement_status,employee_account)
-values('檸檬塔暫停供應','員工擠檸檬噴到眼睛',LOAD_FILE('C:/project/images/announcement_management/b.PNG'),"2021-02-27",1,1,'peter');
+values('檸檬塔暫停供應','員工擠檸檬噴到眼睛',LOAD_FILE('C:/project/images/announcement_management/b.PNG'),'2021-02-27',1,1,'peter');
 insert into announcement_management (announcement_name,announcement_content,
 announcement_image,announcement_time,announcement_type,announcement_status,employee_account)
 values('草莓蛋糕下架','草莓農藥太多',LOAD_FILE('C:/project/images/announcement_management/c.PNG'),'2021-02-28',1,1,'james');
@@ -547,19 +557,19 @@ create table coupon_code(
 )AUTO_INCREMENT=1;
 insert into coupon_code(coupon_code,coupon_code_effective_date,coupon_code_expire_date,
 coupon_code_text_content,coupon_code_content,discount_type,employee_account)
-values('MAH6203',"2021-02-27","2022-03-27",'訂餐享8折',0.8,0,'jason');
+values('MAH6203','2021-02-27','2022-03-27','訂餐享8折',0.8,0,'jason');
 insert into coupon_code(coupon_code,coupon_code_effective_date,coupon_code_expire_date,
 coupon_code_text_content,coupon_code_content,discount_type,employee_account)
-values('9K8928',"2021-03-14","2021-03-15",'單身者在白色情人節折價30元',30,1,'peter');
+values('9K8928','2021-03-14','2021-03-15','單身者在白色情人節折價30元',30,1,'peter');
 insert into coupon_code(coupon_code,coupon_code_effective_date,coupon_code_expire_date,
 coupon_code_text_content,coupon_code_content,discount_type,employee_account)
-values('AGQ2598',"2021-03-17","2021-03-31",'即期蛋糕享6折',0.6,0,'james');
+values('AGQ2598','2021-03-17','2021-03-31','即期蛋糕享6折',0.6,0,'james');
 insert into coupon_code(coupon_code,coupon_code_effective_date,coupon_code_expire_date,
 coupon_code_text_content,coupon_code_content,discount_type,employee_account)
-values('HCJ2473',"2021-04-05","2022-04-06",'黑咖啡折20元',20,1,'james');
+values('HCJ2473','2021-04-05','2022-04-06','黑咖啡折20元',20,1,'james');
 insert into coupon_code(coupon_code,coupon_code_effective_date,coupon_code_expire_date,
 coupon_code_text_content,coupon_code_content,discount_type,employee_account)
-values('FUCK7414',"2021-04-05","2022-02-06",'糖料併折50元',50,1,'james');
+values('FUCK7414','2021-04-05','2022-02-06','糖料併折50元',50,1,'james');
 
 
 -- 優惠券

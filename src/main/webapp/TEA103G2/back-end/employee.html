@@ -1,0 +1,587 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>POS Dash | Responsive Bootstrap 4 Admin Dashboard Template</title>
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="assets/images/favicon.ico"/>
+  <link rel="stylesheet" href="assets/css/backend-plugin.min.css">
+  <link rel="stylesheet" href="assets/css/backend.css?v=1.0.0">
+  <link rel="stylesheet" href="assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="assets/vendor/line-awesome/dist/line-awesome/css/line-awesome.min.css">
+  <link rel="stylesheet" href="assets/vendor/remixicon/fonts/remixicon.css">
+
+  <style>
+      .table-img {
+          max-width: 100px;
+          max-height: 100px;
+      }
+
+      @media (min-width: 576px) {
+          .modal-dialog {
+              max-width: 500px !important;
+          }
+      }
+
+      .employee_auth {
+          height: 195px !important;
+          margin-bottom: 12px;
+      }
+  </style>
+
+</head>
+<body>
+<!-- loader Start -->
+<div id="loading">
+  <div id="loading-center">
+  </div>
+</div>
+<!-- loader END -->
+<!-- Wrapper Start -->
+<div class="wrapper">
+
+  <!--Header-->
+  <div class="header"></div>
+
+
+  <div class="content-page">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="d-flex flex-wrap flex-wrap align-items-center justify-content-between mb-4">
+            <div>
+              <h4 class="mb-3">員工列表</h4>
+              <!--              <p class="mb-0">The product list effectively dictates product presentation and provides space<br> to list-->
+              <!--                your products and offering in the most appealing way.</p>-->
+            </div>
+            <a href="page-add-product.html" class="btn btn-primary add-list addEmployee_button" data-toggle="modal"
+               data-target="#new-order1"><i class="las la-plus mr-3"></i>新增員工</a>
+          </div>
+        </div>
+        <div class="col-lg-12">
+          <div class="table-responsive rounded mb-3">
+            <table class="data-table table mb-0 tbl-server-info">
+              <thead class="bg-white text-uppercase">
+              <tr class="ligth ligth-data">
+                <th>員工帳號</th>
+                <th>員工密碼</th>
+                <th>姓名</th>
+                <th>職位</th>
+                <th>到職日</th>
+                <th>狀態</th>
+                <th>照片</th>
+                <th>權限</th>
+                <th>動作</th>
+              </tr>
+              </thead>
+              <tbody class="ligth-body" id="content">
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <!-- Page end  -->
+    </div>
+
+    <!-- Wrapper End-->
+
+    <!--新增員工燈箱-->
+    <div class="modal fade" id="new-order1" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div class="popup text-left">
+
+              <div class="container-fluid add-form-list">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="card">
+                      <div class="card-header d-flex justify-content-between">
+                        <div class="header-title">
+                          <h4 class="card-title">新增員工</h4>
+                        </div>
+                      </div>
+                      <div class="card-body">
+                        <form id="addEmployeeForm" action="page-list-product.html" data-toggle="validator"
+                              enctype="multipart/form-data">
+                          <div class="row">
+
+                            <div class="col-md-12">
+                              <div class="form-group">
+                                <label>員工帳號</label>
+                                <input type="text" class="form-control update_employee_account" placeholder=""
+                                       data-errors="Please Enter Name."
+                                       required name="employee_account">
+                                <div class="help-block with-errors"></div>
+                              </div>
+                            </div>
+                            <div class="col-md-12">
+                              <div class="form-group">
+                                <label>員工密碼</label>
+                                <input type="text" class="form-control update_employee_password" placeholder=""
+                                       data-errors="Please Enter Name."
+                                       required name="employee_password">
+                                <div class="help-block with-errors"></div>
+                              </div>
+                            </div>
+                            <div class="col-md-12">
+                              <div class="form-group">
+                                <label>姓名</label>
+                                <input type="text" class="form-control update_employee_name" placeholder=""
+                                       data-errors="Please Enter Name."
+                                       required name="employee_name">
+                                <div class="help-block with-errors"></div>
+                              </div>
+                            </div>
+                            <div class="col-md-12">
+                              <div class="form-group">
+                                <label>職位</label>
+                                <select name="employee_position"
+                                        class="selectpicker form-control update_employee_position" data-style="py-0">
+                                  <option value="正職">正職</option>
+                                  <option value="工讀生">工讀生</option>
+                                  <option value="主管">主管</option>
+                                  <option value="老闆">老闆</option>
+                                </select>
+                              </div>
+                            </div>
+
+
+                            <div class="col-md-12">
+                              <div class="form-group">
+                                <label>到職日</label>
+                                <input type="date" class="form-control update_hire_date" placeholder=""
+                                       data-errors="Please Enter Name."
+                                       required name="hire_date">
+                                <div class="help-block with-errors"></div>
+                              </div>
+                            </div>
+                            <div class="col-md-12">
+                              <div class="form-group">
+                                <label>狀態</label>
+                                <select name="employee_status" class="selectpicker form-control update_employee_status"
+                                        data-style="py-0">
+                                  <option value="1">在職中</option>
+                                  <option value="0">已離職</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-md-12">
+                              <div class="form-group">
+                                <label>照片</label>
+                                <input type="file" class="form-control image-file update_employee_photo"
+                                       name="employee_photo"
+                                       accept="image/*">
+                              </div>
+                            </div>
+                            <div class="col-md-12 ">
+                              <label>權限</label>
+                              <div class="form-control employee_auth">
+                                <div class="custom-control custom-checkbox custom-checkbox-color-check custom-control-inline">
+                                  <input type="checkbox" class="custom-control-input bg-success checkbox_auth_all"
+                                         id="customCheck-99"
+                                  >
+                                  <label class="custom-control-label " for="customCheck-99">全選</label>
+                                </div>
+                                <br>
+                                <div class="custom-control custom-checkbox custom-checkbox-color-check custom-control-inline">
+                                  <input type="checkbox" class="custom-control-input bg-primary" id="customCheck-1"
+                                         name="employee_auth1" value="1">
+                                  <label class="custom-control-label" for="customCheck-1">員工管理</label>
+                                </div>
+
+                                <div class="custom-control custom-checkbox custom-checkbox-color-check custom-control-inline">
+                                  <input type="checkbox" class="custom-control-input bg-primary" id="customCheck-2"
+                                         name="employee_auth1" value="2">
+                                  <label class="custom-control-label" for="customCheck-2">會員管理</label>
+                                </div>
+                                <div class="custom-control custom-checkbox custom-checkbox-color-check custom-control-inline">
+                                  <input type="checkbox" class="custom-control-input bg-primary" id="customCheck-3"
+                                         name="employee_auth1" value="3">
+                                  <label class="custom-control-label" for="customCheck-3">公告管理</label>
+                                </div>
+                                <div class="custom-control custom-checkbox custom-checkbox-color-check custom-control-inline">
+                                  <input type="checkbox" class="custom-control-input bg-primary" id="customCheck-4"
+                                         name="employee_auth1" value="4">
+                                  <label class="custom-control-label" for="customCheck-4">訂單管理</label>
+                                </div>
+                                <div class="custom-control custom-checkbox custom-checkbox-color-check custom-control-inline">
+                                  <input type="checkbox" class="custom-control-input bg-primary" id="customCheck-5"
+                                         name="employee_auth1" value="5">
+                                  <label class="custom-control-label" for="customCheck-5">評價管理</label>
+                                </div>
+                                <div class="custom-control custom-checkbox custom-checkbox-color-check custom-control-inline">
+                                  <input type="checkbox" class="custom-control-input bg-primary" id="customCheck-6"
+                                         name="employee_auth1" value="6">
+                                  <label class="custom-control-label" for="customCheck-6">優惠碼管理</label>
+                                </div>
+                                <div class="custom-control custom-checkbox custom-checkbox-color-check custom-control-inline">
+                                  <input type="checkbox" class="custom-control-input bg-primary" id="customCheck-7"
+                                         name="employee_auth1" value="7">
+                                  <label class="custom-control-label" for="customCheck-7">優惠券管理</label>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <button type="submit" id="addEmployee" class="btn btn-primary mr-2">新增</button>
+                          <button type="reset" class="btn btn-danger">重置</button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Page end  -->
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Backend Bundle JavaScript -->
+    <script src="assets/js/backend-bundle.min.js"></script>
+
+    <!-- Table Treeview JavaScript -->
+    <script src="assets/js/table-treeview.js"></script>
+
+    <!-- Chart Custom JavaScript -->
+    <script src="assets/js/customizer.js"></script>
+
+    <!-- Chart Custom JavaScript -->
+    <script async src="assets/js/chart-custom.js"></script>
+
+    <!-- app JavaScript -->
+    <script src="assets/js/app.js"></script>
+
+    <!-- moment -->
+    <script src="assets/js/moment.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('.header').load('header.html')
+            // $('.footer').load('footer.html')
+        })
+    </script>
+    <script>
+        /****************進頁面先初始化表格*********************/
+        let table = $(".data-table").DataTable()
+        table.destroy();
+        table = $(".data-table").DataTable({
+            "lengthMenu": [5, 10, 20],     //顯示XX像結果
+            "language": {
+                "processing": "處理中...",
+                "loadingRecords": "載入中...",
+                "lengthMenu": "顯示 _MENU_ 項結果",
+                "zeroRecords": "沒有符合的結果",
+                "info": "顯示第 _START_ 至 _END_ 項結果，共 _TOTAL_ 項",
+                "infoEmpty": "顯示第 0 至 0 項結果，共 0 項",
+                "infoFiltered": "(從 _MAX_ 項結果中過濾)",
+                "infoPostFix": "",
+                "search": "搜尋:",
+                "paginate": {
+                    "first": "第一頁",
+                    "previous": "上一頁",
+                    "next": "下一頁",
+                    "last": "最後一頁"
+                },
+                "aria": {
+                    "sortAscending": ": 升冪排列",
+                    "sortDescending": ": 降冪排列"
+                }
+            },
+            "columnDefs": [
+                {
+                    "targets": [1],    //欄位從0開始算
+                    "visible": true,   //欄位是否顯示 預設是true
+                    "orderable": false  //是否可以排序
+                },
+                {
+                    "targets": [7],    //欄位從0開始算
+                    "visible": false,   //欄位是否顯示 預設是true
+                    "orderable": false,  //是否可以排序
+                }
+            ]
+        })
+        getAllEmployee();
+
+        function getAllEmployee() {
+            var action = '                  <div class="d-flex align-items-center list-action">\n' +
+                // '                    <a class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title=""\n' +
+                // '                       data-original-title="View"\n' +
+                // '                       href="#"><i class="ri-eye-line mr-0"></i></a>\n' +
+                '                    <a class="badge bg-success mr-2 edit" data-toggle="modal"\n' +
+                '               data-target="#new-order1" data-placement="top" title=""\n' +
+                '                       data-original-title="Edit"\n' +
+                '                       href="javascript:void(0)"><i class="ri-pencil-line mr-0"></i></a>\n' +
+                '                    <a class="badge bg-warning mr-2 delete" data-toggle="tooltip" data-placement="top" title=""\n' +
+                '                       data-original-title="Delete"\n' +
+                '                       href="javascript:void(0)"><i class="ri-delete-bin-line mr-0"></i></a>\n' +
+                '                  </div>'
+            $.get("/dessert_shop/employee/backend_getAll", {}, function (data) {
+                console.log(data);
+                if (data.flag) {
+                    let table = $(".data-table").DataTable()
+                    table.clear().draw();
+                    for (let i = 0; i < data.data.length; i++) {
+                        table.row.add([
+                            data.data[i].employee_account,
+                            data.data[i].employee_password,
+                            data.data[i].employee_name,
+                            data.data[i].employee_position,
+                            getHireDate(data.data[i].hire_date),
+                            data.data[i].employee_status == 1 ? "在職中" : "已離職",
+                            '<img class="table-img" src="/dessert_shop/employee/backend_getPhoto?id=' + data.data[i].employee_account + '">',
+                            data.data[i].employee_auth,
+                            action
+                        ]).draw(false);
+                    }
+                } else {
+                }
+            });
+        }
+
+
+        function getHireDate(time) {
+            return moment(time).format('YYYY-MM-DD')
+        }
+    </script>
+
+    <script>
+        /*******************動作********************/
+        /*******************刪除********************/
+        $("tbody").on("click", "a.delete", function () {
+            let table = $(".data-table").DataTable()
+            let data = table.row($(this).closest('tr')).data();
+            // alert( 'You clicked on '+data[0]+'\'s row' );
+
+            $.get("/dessert_shop/employee/backend_delete", {"employee_account": data[0]}, function (data) {
+                console.log(data);
+                if (data.flag) {
+                    // 註冊成功後跳轉頁面
+                    getAllEmployee();
+                    Swal.fire({
+                        title: data.msg,
+                        text: "",
+                        icon: "success"
+                    });
+                } else {
+                    // 註冊失敗 彈出視窗
+                    Swal.fire({
+                        title: data.msg,
+                        text: "",
+                        icon: "error"
+                    })
+                }
+            })
+        });
+
+
+        /*******************修改 跳出燈箱********************/
+        $("tbody").on("click", "a.edit", function () {
+            let table = $(".data-table").DataTable()
+            let data = table.row($(this).closest('tr')).data();
+            // console.log(data);
+            // alert( 'You clicked on '+data[0]+'\'s row' );
+
+            $(".update_employee_account").val(data[0]);
+            $(".update_employee_name").val(data[2]);
+            getUpdate_employee_position(data[3]);
+            $(".update_hire_date").val(moment(data[4]).format('YYYY-MM-DD'));
+            getUpdate_employee_status(data[5]);
+            $(".update_employee_password").val("");
+            $(".update_employee_password").attr("placeholder", "不填寫則保持原密碼");
+            $(".update_employee_password").attr("required", false);
+            $(".update_employee_photo").val("");
+            // console.log(data[7])
+            //設定權限
+            $("input[type=checkbox]").prop("checked", false);
+            for (let i = 0; i < data[7].length; i++) {
+                $("input[type=checkbox][value=" + data[7][i] + "]").prop("checked", true);
+            }
+            //切換送出鈕的class
+            $("#addEmployee").text("更新");
+            $("#addEmployee").removeClass("type_add_employee")
+            $(".update_employee_account").attr("readonly", true);
+
+            checkbox_auth_all();
+        });
+
+        function getUpdate_employee_status(status) {
+            switch (status) {
+                case "在職中":
+                    $('.update_employee_status').val('1');
+                    break;
+                case "已離職":
+                    $('.update_employee_status').val('0');
+                    break;
+                default:
+                    $('.update_employee_status').val('1');
+                    break;
+            }
+            $('.update_employee_status').selectpicker('render');
+        }
+
+        function getUpdate_employee_position(position) {
+            switch (position) {
+                case "正職":
+                    $('.update_employee_position').val('正職');
+                    break;
+                case "主管":
+                    $('.update_employee_position').val('主管');
+                    break;
+                case "工讀生":
+                    $('.update_employee_position').val('工讀生');
+                    break;
+                case "老闆":
+                    $('.update_employee_position').val('老闆');
+                    break;
+                default:
+                    $('.update_employee_position').val('工讀生');
+                    break;
+            }
+            $('.update_employee_position').selectpicker('render');
+        }
+
+    </script>
+
+
+    <script>
+        /*******************新增員工按鈕 跳出燈箱********************/
+        $(".addEmployee_button").on("click", function () {
+            //按下右上角的新增員工，先清空表格
+            $("#addEmployeeForm").trigger("reset");
+            $(".update_employee_password").val("");
+            $(".update_employee_password").attr("placeholder", "");
+            $('.update_employee_position').selectpicker('render');
+            $('.update_employee_status').selectpicker('render');
+            $(".update_employee_password").attr("required", true);
+            //切換送出鈕的class
+            $("#addEmployee").text("新增");
+            $("#addEmployee").addClass("type_add_employee")
+            $(".update_employee_account").attr("readonly", false);
+        });
+
+        /*****************燈箱中的新增員工以及更新員工 送出按鈕*********************/
+        $("#addEmployee").click(function (e) {
+            e.preventDefault();
+            if ($(this).hasClass("type_add_employee")) {
+                addEmployee();
+            } else {
+                updateEmployee();
+            }
+            return false;
+        });
+
+        /*****************燈箱中的修改員工資料 送出按鈕*****************/
+        function updateEmployee() {
+            //表單提交時檢查所有屬性合法
+            //發送ajax請求，送出表單資料
+            console.log($("#addEmployeeForm").serialize());
+
+            let form = $("#addEmployeeForm")[0];
+            let data = new FormData(form);
+            $.ajax({
+                type: "POST",
+                enctype: 'multipart/form-data',
+                url: '/dessert_shop/employee/backend_update',
+                data: data,
+                processData: false,
+                contentType: false,
+                cache: false,
+                success: function (data) {
+                    if (data.flag) {
+                        Swal.fire({
+                            title: data.msg,
+                            text: "",
+                            icon: "success"
+                        });
+                        getAllEmployee();
+                        $("#new-order1").modal('hide');
+                        // $("#updateEmployeeForm").trigger("reset");
+                    } else {
+                        Swal.fire({
+                            title: data.msg,
+                            text: "",
+                            icon: "error"
+                        })
+                    }
+                }
+            });
+        }
+
+
+        function addEmployee() {
+            //表單提交時檢查所有屬性合法
+            //發送ajax請求，送出表單資料
+            console.log($("#addEmployeeForm").serialize());
+
+            let form = $("#addEmployeeForm")[0];
+            let data = new FormData(form);
+            $.ajax({
+                type: "POST",
+                enctype: 'multipart/form-data',
+                url: '/dessert_shop/employee/backend_addEmployee',
+                data: data,
+                processData: false,
+                contentType: false,
+                cache: false,
+                success: function (data) {
+                    if (data.flag) {
+                        Swal.fire({
+                            title: data.msg,
+                            text: "",
+                            icon: "success"
+                        });
+                        getAllEmployee();
+                        $("#new-order1").modal('hide');
+                        $("#addEmployeeForm").trigger("reset");
+                    } else {
+                        Swal.fire({
+                            title: data.msg,
+                            text: "",
+                            icon: "error"
+                        })
+                    }
+                }
+            });
+        }
+
+    </script>
+
+    <script>
+        //權限的checkbox 全選
+        $(".checkbox_auth_all").on("click", function () {
+            // console.log($(this))
+            if ($(this).prop("checked")) {
+                $("input[type=checkbox]").prop("checked", true);
+
+            } else {
+                $("input[type=checkbox]").prop("checked", false);
+            }
+        });
+        //檢查所有權限選項是否有被選取 有的話就把全選打勾
+        $("input[class*=bg-primary]").on("click", function () {
+            // console.log($(this))
+            checkbox_auth_all()
+        });
+
+        function checkbox_auth_all(){
+            let flag = false
+            $("input[class*=bg-primary]").each(function () {
+                if (!$(this).prop("checked")) {
+                    flag = true;
+                }
+            })
+            if (flag === false) {
+                $(".checkbox_auth_all").prop("checked", true);
+            }else{
+                $(".checkbox_auth_all").prop("checked", false);
+            }
+        }
+    </script>
+</body>
+</html>

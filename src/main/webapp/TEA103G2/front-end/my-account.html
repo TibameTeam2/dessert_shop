@@ -653,12 +653,12 @@
             let order_master_list = `<li>
                     <div class="post-meta" style="margin-bottom: 0px; border-top: 1px solid white; border-bottom: 1px solid white">
                       <span class="detail">訂單編號 : <span class="order_master_id">${data.data[0][i].order_master_id}</span></span>
-                      <span class="detail">下訂時間 : <span class="order_time">${data.data[0][i].order_time}</span></span>
-                      <span class="detail">付款時間 : <span class="payment_time">${data.data[0][i].payment_time}</span></span>
+                      <span class="detail">下訂時間 : <span class="order_time">${getTime(data.data[0][i].order_time)}</span></span>
+                      <span class="detail">付款時間 : <span class="payment_time">${data.data[0][i].payment_time == null ? "無": getTime(data.data[0][i].payment_time)}</span></span>
                       <br>
-                      <span class="detail">發票號碼	: <span class="invoice_number">${data.data[0][i].invoice_number}</span></span>
-                      <span class="detail">優惠券編號 : <span	class="coupon_id">${data.data[0][i].coupon_id}</span></span>
-                      <span class="detail">付款方式	: <span class="payment_method">${data.data[0][i].payment_method}</span> </span>
+                      <span class="detail">發票號碼	: <span class="invoice_number">${data.data[0][i].invoice_number == null ? "無" : data.data[0][i].invoice_number}</span></span>
+                      <span class="detail">優惠券編號 : <span	class="coupon_id">${data.data[0][i].coupon_id == 0 ? "無" : data.data[0][i].coupon_id}</span></span>
+                      <span class="detail">付款方式	: <span class="payment_method">${getPaymentMethod(data.data[0][i].payment_method)}</span> </span>
                       <br>
                       <span class="detail">訂單金額 : <span	class="order_total">${data.data[0][i].order_total}</span></span>
                       <br>
@@ -709,22 +709,25 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     });  //function
 
+
+    function getTime(time) {
+            return moment(time).format('YYYY-MM-DD HH:mm:ss')
+    }
+
+    function getPaymentMethod(method) {
+      switch (method) {
+        case 1 :
+          return "信用卡付款";
+        case 2 :
+          return "到店付款";
+        case 3 :
+          return "匯款";
+        default :
+          return method;
+      }
+    } 
 
 
 

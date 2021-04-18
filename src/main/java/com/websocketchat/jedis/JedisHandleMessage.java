@@ -4,6 +4,8 @@ package com.websocketchat.jedis;
 import java.util.Date;
 import java.util.List;
 
+import com.google.gson.Gson;
+
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
