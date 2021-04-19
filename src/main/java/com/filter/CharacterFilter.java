@@ -24,7 +24,8 @@ public class CharacterFilter implements Filter {
 
         //排除css js檔，這兩種如果被加上text/html;charset=UTF-8 會錯誤
         String request_uri = request.getRequestURI();
-        if(request_uri.contains(".css") || request_uri.contains(".js")||request_uri.contains(".html")||request_uri.contains(".jpg")){
+        if(request_uri.contains(".css") || request_uri.contains(".js")||request_uri.contains(".html")
+                ||request_uri.contains(".jpg")|| request_uri.contains(".png")|| request_uri.contains(".ico")){
             //如果發現是css或者js檔案，直接放行
             filterChain.doFilter(request,response);
             return;
