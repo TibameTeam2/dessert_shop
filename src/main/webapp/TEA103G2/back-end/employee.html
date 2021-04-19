@@ -198,6 +198,11 @@
                                   <label class="custom-control-label" for="customCheck-2">會員管理</label>
                                 </div>
                                 <div class="custom-control custom-checkbox custom-checkbox-color-check custom-control-inline">
+                                  <input type="checkbox" class="custom-control-input bg-primary" id="customCheck-8"
+                                         name="employee_auth1" value="8">
+                                  <label class="custom-control-label" for="customCheck-8">商品管理</label>
+                                </div>
+                                <div class="custom-control custom-checkbox custom-checkbox-color-check custom-control-inline">
                                   <input type="checkbox" class="custom-control-input bg-primary" id="customCheck-3"
                                          name="employee_auth1" value="3">
                                   <label class="custom-control-label" for="customCheck-3">公告管理</label>
@@ -211,6 +216,11 @@
                                   <input type="checkbox" class="custom-control-input bg-primary" id="customCheck-5"
                                          name="employee_auth1" value="5">
                                   <label class="custom-control-label" for="customCheck-5">評價管理</label>
+                                </div>
+                                <div class="custom-control custom-checkbox custom-checkbox-color-check custom-control-inline">
+                                  <input type="checkbox" class="custom-control-input bg-primary" id="customCheck-9"
+                                         name="employee_auth1" value="9">
+                                  <label class="custom-control-label" for="customCheck-9">通知管理</label>
                                 </div>
                                 <div class="custom-control custom-checkbox custom-checkbox-color-check custom-control-inline">
                                   <input type="checkbox" class="custom-control-input bg-primary" id="customCheck-6"
@@ -407,6 +417,7 @@
             $("#addEmployee").removeClass("type_add_employee")
             $(".update_employee_account").attr("readonly", true);
 
+            //檢查checkbox中底下選項全選時 全選被勾上
             checkbox_auth_all();
         });
 
@@ -502,6 +513,7 @@
                         getAllEmployee();
                         $("#new-order1").modal('hide');
                         // $("#updateEmployeeForm").trigger("reset");
+                        isLogin();
                     } else {
                         Swal.fire({
                             title: data.msg,
