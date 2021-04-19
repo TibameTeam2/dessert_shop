@@ -103,17 +103,7 @@ public class ProductService {
 		return dao.getAll();
 	}
 	
-	// 後台，取得"所有"每日優惠
-	public List<ProductBean> getAllDailySpecial(){
-		return dao.getAll();
-	}
 	
-	
-	
-	// 前台，取得"在效期內"且"上架中"的每日優惠
-	public List<ProductBean> getAvailableDailySpecial(){
-		return dao.getAll();
-	}
 	
 	
 	
