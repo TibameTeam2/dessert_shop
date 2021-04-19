@@ -21,6 +21,7 @@ public class ProductDAO implements ProductDAO_interface {
 	String UPDATE;
 	String DELETE;
 	String SELECT_ALL;
+	String SELECT_ALL_AVA;
 	String SELECT_PK;
 	String SELECT_SORT_PURCHASE;
 	String SELECT_SORT_STAR;
@@ -175,55 +176,6 @@ public class ProductDAO implements ProductDAO_interface {
 		}
 		
 	}
-// 給評論(語心)的addReviewStar使用
-// 寫到一半未完成	
-	public ProductBean updateReviewStar(ProductBean productBean) {
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		
-		UPDATE_REVIEW = "UPDATE product set total_star = ?, total_review = ? where product_id = ?";
-
-		try {
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
-			pstmt = con.prepareStatement(UPDATE_REVIEW);
-			
-			pstmt.setInt(1, productBean.getTotal_star());
-			pstmt.setInt(2, productBean.getTotal_review());
-	
-			pstmt.setInt(3, productBean.getProduct_id());
-			
-			pstmt.executeUpdate();
-			
-			
-			// Handle any driver errors
-		} catch (ClassNotFoundException e) {
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
-			// Handle any SQL errors
-		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. "
-					+ se.getMessage());
-			// Clean up JDBC resources
-		} finally {
-			if (pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException se) {
-					se.printStackTrace(System.err);
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (Exception e) {
-					e.printStackTrace(System.err);
-				}
-			}
-		}
-		return productBean;
-	}
-	
 	
 	
 	
@@ -272,13 +224,13 @@ public class ProductDAO implements ProductDAO_interface {
 		}
 		
 	}
-	
+// 後台用，全部商品皆顯示	
 	public List<ProductBean> getAll() {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		PreparedStatement pstmt1 = null;
 		ResultSet rs = null;
-		SELECT_ALL = "SELECT * FROM product order by product_id desc";
+		SELECT_ALL = "SELECT *,ROUND(total_star/total_review, 1) as average_star FROM product order by product_id desc";
 		List<ProductBean> list_productBean = new ArrayList<ProductBean>();
 		ProductBean productBean = null;
 		
@@ -307,6 +259,85 @@ public class ProductDAO implements ProductDAO_interface {
 				productBean.setTotal_star(rs.getInt("total_star"));
 				productBean.setTotal_review(rs.getInt("total_review"));
 				productBean.setTotal_purchase(rs.getInt("total_purchase"));
+				productBean.setAverage_star(rs.getDouble("average_star"));
+				list_productBean.add(productBean);
+				
+				pstmt1 = con.prepareStatement("SELECT image_id FROM sweet.product_image where product_id="+productBean.getProduct_id());
+				List<String> img_url=new ArrayList<String>();
+				ResultSet rs_image = pstmt1.executeQuery();
+//照片的地方
+				while (rs_image.next()) {
+					img_url.add("/product_jsp/product.do?action=getProductImage&id="+rs_image.getString("image_id"));
+				}
+				productBean.setImage_url(img_url);
+//				System.out.println(productBean);
+			}
+			
+			
+			// Handle any driver errors
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. "
+					+ e.getMessage());
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return list_productBean;
+	}
+	public List<ProductBean> getAllAvailable() {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		PreparedStatement pstmt1 = null;
+		ResultSet rs = null;
+		SELECT_ALL_AVA = "SELECT *,ROUND(total_star/total_review, 1) as average_star FROM product where product_status = 1 order by product_id desc";
+		List<ProductBean> list_productBean = new ArrayList<ProductBean>();
+		ProductBean productBean = null;
+		
+		try {
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			pstmt = con.prepareStatement(SELECT_ALL_AVA);
+			
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				
+				productBean = new ProductBean();
+				productBean.setProduct_id(rs.getInt("product_id"));
+				productBean.setProduct_name(rs.getString("product_name"));
+				productBean.setProduct_type(rs.getString("product_type"));
+				productBean.setProduct_subtype(rs.getString("product_subtype"));
+				productBean.setProduct_intro(rs.getString("product_intro"));
+				productBean.setProduct_ingredient(rs.getString("Product_ingredient"));
+				productBean.setProduct_price(rs.getInt("product_price"));
+				productBean.setProduct_available_qty(rs.getInt("product_available_qty"));
+				productBean.setProduct_status(rs.getInt("product_status"));
+				productBean.setExpiry_after_buying(rs.getInt("expiry_after_buying"));
+				productBean.setProduct_calorie(rs.getInt("product_calorie"));
+				productBean.setDegree_of_sweetness(rs.getInt("degree_of_sweetness"));
+				productBean.setTotal_star(rs.getInt("total_star"));
+				productBean.setTotal_review(rs.getInt("total_review"));
+				productBean.setTotal_purchase(rs.getInt("total_purchase"));
+				
+				productBean.setAverage_star(rs.getDouble("average_star"));
+			
 				list_productBean.add(productBean);
 
 				pstmt1 = con.prepareStatement("SELECT image_id FROM sweet.product_image where product_id="+productBean.getProduct_id());
@@ -349,13 +380,13 @@ public class ProductDAO implements ProductDAO_interface {
 		return list_productBean;
 	}
 	
-// 排序的方法*4
+// 排序的方法*5
 	public List<ProductBean> getAllSortByPurchase() {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		PreparedStatement pstmt1 = null;
 		ResultSet rs = null;
-		SELECT_SORT_PURCHASE = "SELECT * FROM product order by total_purchase desc";
+		SELECT_SORT_PURCHASE = "SELECT * FROM product where product_status = 1 order by total_purchase desc";
 		List<ProductBean> list_productBean = new ArrayList<ProductBean>();
 		ProductBean productBean = null;
 		
@@ -431,7 +462,7 @@ public class ProductDAO implements ProductDAO_interface {
 		PreparedStatement pstmt = null;
 		PreparedStatement pstmt1 = null;
 		ResultSet rs = null;
-		SELECT_SORT_PRICE = "SELECT * FROM product order by product_price desc";
+		SELECT_SORT_PRICE = "SELECT * FROM product where product_status = 1 order by product_price desc";
 		List<ProductBean> list_productBean = new ArrayList<ProductBean>();
 		ProductBean productBean = null;
 		
@@ -507,7 +538,7 @@ public class ProductDAO implements ProductDAO_interface {
 		PreparedStatement pstmt = null;
 		PreparedStatement pstmt1 = null;
 		ResultSet rs = null;
-		SELECT_SORT_CALORIE = "SELECT * FROM product order by product_calorie desc";
+		SELECT_SORT_CALORIE = "SELECT * FROM product where product_status = 1 order by product_calorie desc";
 		List<ProductBean> list_productBean = new ArrayList<ProductBean>();
 		ProductBean productBean = null;
 		
@@ -583,7 +614,7 @@ public class ProductDAO implements ProductDAO_interface {
 		PreparedStatement pstmt = null;
 		PreparedStatement pstmt1 = null;
 		ResultSet rs = null;
-		SELECT_SORT_SWEETNESS = "SELECT * FROM product order by degree_of_sweetness desc";
+		SELECT_SORT_SWEETNESS = "SELECT * FROM product where product_status = 1 order by degree_of_sweetness desc";
 		List<ProductBean> list_productBean = new ArrayList<ProductBean>();
 		ProductBean productBean = null;
 		
@@ -659,7 +690,7 @@ public class ProductDAO implements ProductDAO_interface {
 		PreparedStatement pstmt = null;
 		PreparedStatement pstmt1 = null;
 		ResultSet rs = null;
-		SELECT_SORT_STAR = "SELECT *, ROUND(total_star/total_review, 1) as average_star FROM product order by average_star desc";
+		SELECT_SORT_STAR = "SELECT *, ROUND(total_star/total_review, 1) as average_star FROM product where product_status = 1 order by average_star desc";
 		List<ProductBean> list_productBean = new ArrayList<ProductBean>();
 		ProductBean productBean = null;
 		
@@ -1365,17 +1396,17 @@ public List<ProductBean> getAllImage(Integer product_id) {
 //		dao.update(productBean);
 		
 		
+//給別人用，測試:		
+		//更新銷售
+//		ProductService productSvc = new ProductService();
+//		productSvc.addProductPurchase(25, 5);
 		
-		// 更新評論
-//		ProductBean productBean = new ProductBean();
-//		
-//		productBean.setTotal_star(115);
-//		productBean.setTotal_review(25);
-//		productBean.setProduct_id(4);
-//		
-//		dao.updateReviewStar(productBean);
-//
-//		
+		
+		// 更新評論與星等
+//		ProductService productSvc = new ProductService();
+//		productSvc.addReviewStar(25, 4);
+		
+		
 		
 		
 

@@ -455,7 +455,7 @@ public class MemberServlet extends BaseServlet {
         }
     }
 
-    public void backend_getPhoto(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException, SQLException {
+    public void backend_getPhoto(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException, SQLException, ClassNotFoundException {
         res.setContentType("image/png");
         Connection con = null;
         String driver = JDBCUtil.driver;
@@ -463,6 +463,7 @@ public class MemberServlet extends BaseServlet {
         String userid = JDBCUtil.user;
         String passwd = JDBCUtil.password;
         ResultSet rs;
+        Class.forName(driver);
         con = DriverManager.getConnection(url, userid, passwd);
         ServletOutputStream out = res.getOutputStream();
         Statement stmt = con.createStatement();
