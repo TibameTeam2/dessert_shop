@@ -9,5 +9,5 @@ public interface AnnouncementManagementDAO_interface {
 	public void delete(Integer announcement_id);
 	public AnnouncementManagementBean findByPrimaryKey(Integer announcement_id);
 	public List <AnnouncementManagementBean> getAll();
-
+	public List <AnnouncementManagementBean> getAll01();
 }

@@ -1,6 +1,7 @@
 package com.employee_authority.model;
 
 
+import com.employee.model.EmployeeDAO;
 import com.util.JDBCUtil;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -23,9 +24,9 @@ public class EmployeeAuthorityDAO {
      */
     public static void init() {
         // 得到Spring配置文件
-        ApplicationContext app = new ClassPathXmlApplicationContext("applicationContext.xml");
+//        ApplicationContext app = new ClassPathXmlApplicationContext("applicationContext.xml");
         // 取得JDBC模板物件
-        jdbcTemplate = (JdbcTemplate) app.getBean("jdbcTemplate");
+//        jdbcTemplate = (JdbcTemplate) app.getBean("jdbcTemplate");
 
 //        driver = JDBCUtil.driver;
 //        url = JDBCUtil.url;
@@ -79,6 +80,38 @@ public class EmployeeAuthorityDAO {
             }
         }
 
+    }
+
+    //插入員工同時插入權限，交易管理，需要傳入con
+    public void backend_insert(EmployeeAuthorityBean emp_ath_Insert,Connection con) {
+        PreparedStatement pstmt = null;
+        try {
+            pstmt = con.prepareStatement("INSERT INTO employee_authority (employee_account,authority_Content_id)\n" +
+                    "VALUES (?,?)");
+
+            pstmt.setString(1, emp_ath_Insert.getEmployee_account());
+            pstmt.setInt(2, emp_ath_Insert.getAuthority_Content_id());
+            pstmt.executeUpdate();
+            // Handle any driver errors
+        } catch (SQLException se) {
+            try {
+                System.err.println("rolled back by 新增員工權限");
+                con.rollback();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+            throw new RuntimeException("A database error occured. "
+                    + se.getMessage());
+            // Clean up JDBC resources
+        } finally {
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException se) {
+                    se.printStackTrace(System.err);
+                }
+            }
+        }
     }
 
 
@@ -170,6 +203,100 @@ public class EmployeeAuthorityDAO {
 
     }
 
+    //刪除員工之前 先刪除權限  裡面會刪除員工，要把con傳下去
+    public void deleteByEmployee(String employee_account) {
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        try {
+
+            Class.forName(driver);
+            con = DriverManager.getConnection(url, userid, passwd);
+
+            // 1●設定於 pstm.executeUpdate()之前
+            con.setAutoCommit(false);
+
+            pstmt = con.prepareStatement("DELETE FROM employee_authority where employee_account=?");
+
+            pstmt.setString(1, employee_account);
+
+            pstmt.executeUpdate();
+
+            EmployeeDAO empDao = new EmployeeDAO();
+            empDao.backend_delete(employee_account,con);
+
+
+
+
+            // 2●設定於 pstm.executeUpdate()之後
+            con.commit();
+            con.setAutoCommit(true);
+            // Handle any driver errors
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException("Couldn't load database driver. "
+                    + e.getMessage());
+            // Handle any SQL errors
+        } catch (SQLException se) {
+            if (con != null) {
+                try {
+                    // 3●設定於當有exception發生時之catch區塊內
+                    System.err.println("rolled back by 刪除員工權限");
+                    con.rollback();
+                } catch (SQLException excep) {
+                    throw new RuntimeException("rollback error occured. " + excep.getMessage());
+                }
+            }
+            throw new RuntimeException("A database error occured. " + se.getMessage());
+            // Clean up JDBC resources
+        } finally {
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException se) {
+                    se.printStackTrace(System.err);
+                }
+            }
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (Exception e) {
+                    e.printStackTrace(System.err);
+                }
+            }
+        }
+
+    }
+
+    //刪除員工之前 先刪除權限  裡面會刪除員工，要把con傳下去
+    public void deleteByEmployee(String employee_account,Connection con) {
+        PreparedStatement pstmt = null;
+        try {
+            pstmt = con.prepareStatement("DELETE FROM employee_authority where employee_account=?");
+            pstmt.setString(1, employee_account);
+            pstmt.executeUpdate();
+            // Handle any driver errors
+        } catch (SQLException se) {
+            try {
+                System.err.println("rolled back by 刪除員工權限");
+                con.rollback();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+            throw new RuntimeException("A database error occured. "
+                    + se.getMessage());
+            // Clean up JDBC resources
+        } finally {
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException se) {
+                    se.printStackTrace(System.err);
+                }
+            }
+        }
+
+    }
+
+
 
     public EmployeeAuthorityBean findByPrimaryKey(Integer authority_id) {
 
@@ -231,7 +358,66 @@ public class EmployeeAuthorityDAO {
         }
         return Empone;
     }
+    public List<EmployeeAuthorityBean> findByEmployee(String employee_account) {
+        List<EmployeeAuthorityBean> list = new ArrayList<EmployeeAuthorityBean>();
+        EmployeeAuthorityBean Empone = null;
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
 
+        try {
+
+            Class.forName(driver);
+            con = DriverManager.getConnection(url, userid, passwd);
+            pstmt = con.prepareStatement("SELECT * FROM sweet.employee_authority where employee_account = ?");
+
+            pstmt.setString(1, employee_account);
+
+            rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                // EmpgetAll 也稱為 Domain objects
+                Empone = new EmployeeAuthorityBean();
+                Empone.setAuthority_id(rs.getInt("authority_id"));
+                Empone.setEmployee_account(rs.getString("employee_account"));
+                Empone.setAuthority_Content_id(rs.getInt("authority_Content_id"));
+                list.add(Empone); // Store the row in the list
+            }
+
+            // Handle any driver errors
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException("Couldn't load database driver. "
+                    + e.getMessage());
+            // Handle any SQL errors
+        } catch (SQLException se) {
+            throw new RuntimeException("A database error occured. "
+                    + se.getMessage());
+            // Clean up JDBC resources
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException se) {
+                    se.printStackTrace(System.err);
+                }
+            }
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException se) {
+                    se.printStackTrace(System.err);
+                }
+            }
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (Exception e) {
+                    e.printStackTrace(System.err);
+                }
+            }
+        }
+        return list;
+    }
 
     public List<EmployeeAuthorityBean> selectAll() {
         List<EmployeeAuthorityBean> list = new ArrayList<EmployeeAuthorityBean>();

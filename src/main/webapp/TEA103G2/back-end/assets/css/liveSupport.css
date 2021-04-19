@@ -1,0 +1,217 @@
+ button.liveSupportBtn {
+     outline: none;
+     background-color: #87CECB;
+     margin: 15px 0 0 50px;
+     padding: 5px;
+     width: 130px;
+     height: 40px;
+     border-radius: 10px;
+     border: none;
+     font-weight: bolder;
+     color: white;
+ }
+ /*  box-shadow: 右px | 下px | 暈染程度px | 實體線px */
+ 
+ button.liveSupportBtn:hover {
+     background-color: #48D1CC;
+     box-shadow: 0 1px 5px 2px #E0E0E0;
+ }
+ 
+ div.message-table-left {
+     border-right: 2px solid #E0E0E0;
+     padding: 0;
+ }
+ 
+ div.message-table-right {
+     padding: 0;
+ }
+ 
+ div.message-table {
+     position: fixed;
+     top: 19%;
+     left: 34%;
+     background-color: white;
+     border: 1px solid #c7cbd3;
+     z-index: 50;
+     width: 700px;
+     height: 500px;
+     border-radius: 5px;
+     box-shadow: 1px 1px 3px 0 #E0E0E0, 1px 1px 3px 0 #E0E0E0 inset;
+     display: none;
+ }
+ 
+ div.message-title {
+     position: absolute;
+     bottom: 466px;
+     left: 349px;
+     width: 350px;
+     height: 50px;
+     border-radius: 0 5px 0 0;
+     border-color: #F0F0F0;
+     box-shadow: 0 1px 5px 0 #E0E0E0;
+     background-color: #0abab5;
+     color: white;
+ }
+ 
+ div.message-title-name {
+     display: inline-block;
+     margin: 13px 0 0 150px;
+     font-weight: bolder;
+     font-size: 22px;
+     text-align: center;
+ }
+ 
+ button.message-close {
+     display: inline-block;
+     height: 35px;
+     width: 35px;
+     background-color: transparent;
+     border: none;
+     outline: none;
+     padding: 0;
+     position: absolute;
+     top: 9px;
+     right: 10px;
+ }
+ 
+ img.message-close-img {
+     width: 15px;
+ }
+ 
+ div.input-area {
+     width: 350px;
+     height: 48px;
+     border-color: #F0F0F0;
+     border-radius: 0 0 5px 0;
+     box-shadow: 0px 2px 3px 0 #E0E0E0 inset;
+     position: absolute;
+     bottom: 0px;
+     left: 348px;
+ }
+ 
+ input.text-field {
+     width: 270px;
+     margin: 9px 0 0 15px;
+     border-radius: 10px;
+     outline: none;
+     border: 1px solid #E0E0E0;
+     font-size: 10px;
+     background-color: #FCFCFC;
+     height: 33px;
+     padding-left: 10px;
+ }
+ 
+ button.send-message-button {
+     padding: 0;
+     width: 30px;
+     height: 30px;
+     outline: none;
+     background-color: transparent;
+     border: none;
+     margin: 0 0 0 15px;
+ }
+ 
+ img.send-message-img {
+     width: 30px;
+ }
+ 
+ div.cutomer-row-title {
+     width: 350px;
+     height: 50px;
+     border-color: #F0F0F0;
+     box-shadow: 0 1px 5px 0 #E0E0E0;
+     border-radius: 5px 0 0 0;
+     font-size: 25px;
+     font-weight: bolder;
+     padding: 10px 10px 0 150px;
+     margin-bottom: 5px;
+     background-color: #0abab5;
+     color: white;
+ }
+ 
+ ul.customer-row-ul {
+     padding: 0px;
+     height: 445px;
+     overflow-x: hidden;
+     overflow-y: hidden;
+ }
+ 
+ ul.customer-row-ul:hover {
+     overflow-x: hidden;
+     overflow-y: auto;
+ }
+ 
+ ul.customer-row-ul::-webkit-scrollbar-track {
+     background-color: white;
+ }
+ 
+ ul.customer-row-ul::-webkit-scrollbar-thumb {
+     background-color: #87CECB;
+ }
+ 
+ li.customer-row-list {
+     list-style: none;
+     font-size: 20px;
+     width: 342px;
+     height: 65px;
+     border-radius: 10px;
+     border: 1px solid #c7cbd3;
+     padding: 15px 15px 10px 15px;
+     margin-bottom: 1px;
+     margin-left: 3px;
+ }
+ 
+ li.customer-row-list:not(.chooseLi):hover {
+     box-shadow: 1px 2px 3px 0 #EAF5F5;
+     background-color: #F0F0F0;
+ }
+ 
+ .chooseLi {
+     background-color: #B0E0E6;
+ }
+ 
+ div.message-area {
+     width: 350px;
+     overflow-y: auto;
+     overflow-x: hidden;
+     height: 400px;
+     position: absolute;
+     bottom: 48px;
+     left: 348px;
+ }
+ 
+ div.message-area::-webkit-scrollbar-track {
+     background-color: white;
+ }
+ 
+ div.message-area::-webkit-scrollbar-thumb {
+     background-color: #D1E9E9;
+ }
+ 
+ div.message-area ul {
+     padding: 0;
+ }
+ 
+ div.message-area ul li {
+     display: inline-block;
+     clear: both;
+     padding: 10px;
+     border-radius: 15px;
+     font-family: Helvetica, Arial, sans-serif;
+     font-size: 15px;
+ }
+ 
+ li.message-li-friend {
+     display: inline;
+     background: #F0F0F0;
+     float: left;
+     max-width: 220px;
+     margin: 8px 0 0 10px;
+ }
+ 
+ li.message-li-me {
+     float: right;
+     background: #e5f4f5;
+     max-width: 220px;
+     margin: 8px 10px 0 0;
+ }

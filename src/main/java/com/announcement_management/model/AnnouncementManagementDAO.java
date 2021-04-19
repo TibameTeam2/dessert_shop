@@ -208,6 +208,65 @@ public class AnnouncementManagementDAO implements AnnouncementManagementDAO_inte
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
+		SELECT = "SELECT * FROM announcement_management where announcement_status = 1";
+
+		AnnouncementManagementBean AMB;
+		ResultSet rs = null;
+
+		List<AnnouncementManagementBean> list_announcement_managementBean = new ArrayList<AnnouncementManagementBean>();
+
+		try {
+			Class.forName(driver);
+
+			con = DriverManager.getConnection(url, userid, password);
+
+			pstmt = con.prepareStatement(SELECT);
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				AMB = new AnnouncementManagementBean();
+				AMB.setAnnouncement_id(rs.getInt("announcement_id"));
+				AMB.setAnnouncement_name(rs.getString("announcement_name"));
+				AMB.setAnnouncement_content(rs.getString("announcement_content"));
+				AMB.setAnnouncement_image(rs.getBytes("announcement_image"));
+				AMB.setAnnouncement_time(rs.getTimestamp("announcement_time"));
+				AMB.setAnnouncement_type(rs.getInt("announcement_type"));
+				AMB.setAnnouncement_status(rs.getInt("announcement_status"));
+				AMB.setEmployee_account(rs.getString("employee_account"));
+
+				list_announcement_managementBean.add(AMB);
+//				System.out.println(AMB + "\n");
+			}
+
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return list_announcement_managementBean;
+	}
+	
+	public List<AnnouncementManagementBean> getAll01() {
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
 		SELECT = "SELECT * FROM announcement_management";
 
 		AnnouncementManagementBean AMB;
@@ -261,6 +320,7 @@ public class AnnouncementManagementDAO implements AnnouncementManagementDAO_inte
 		}
 		return list_announcement_managementBean;
 	}
+	
 
 	public AnnouncementManagementBean findByPrimaryKey(Integer announcement_id) {
 
