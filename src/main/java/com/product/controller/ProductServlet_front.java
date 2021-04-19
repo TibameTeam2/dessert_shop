@@ -36,21 +36,6 @@ public class ProductServlet_front extends BaseServlet {
 		System.out.println("test");
 	}
 	
-// 後端的getAll，所有商品皆出現
-// 呈現在http://localhost:8081/dessert_shop/product/backend_getAllProduct
-	public void backend_getAllProduct(HttpServletRequest req, HttpServletResponse res) {
-		ProductService productSvc = new ProductService();
-		List<ProductBean> productList = productSvc.getAll();
-		
-		ResultInfo info = new ResultInfo();
-		
-		info.setFlag(true);
-		info.setMsg("資料取得成功!");
-		info.setData(productList);
-		
-		writeValueByWriter(res, info);
-		
-	}
 	
 	
 // 前端的getAll，只有上架的可以出現
@@ -68,6 +53,13 @@ public class ProductServlet_front extends BaseServlet {
 		writeValueByWriter(res, info);
 
 	}
+	
+	
+	
+// 前端的getAllDailySpecial，只有上架的且在優惠期間的 可以出現
+	
+	
+	
 	
 
 	// http://localhost:8081/dessert_shop/product/getOneProduct?id=?
@@ -178,6 +170,38 @@ public class ProductServlet_front extends BaseServlet {
 	}
 	
 	
+// 後端的getAll，所有商品皆出現
+// 呈現在http://localhost:8081/dessert_shop/product/backend_getAllProduct
+	public void backend_getAllProduct(HttpServletRequest req, HttpServletResponse res) {
+		ProductService productSvc = new ProductService();
+		List<ProductBean> productList = productSvc.getAll();
+		
+		ResultInfo info = new ResultInfo();
+		
+		info.setFlag(true);
+		info.setMsg("資料取得成功!");
+		info.setData(productList);
+		
+		writeValueByWriter(res, info);
+		
+	}
+	
+	
+// 後端的getAllDailySpecial，不論效期所有優惠商品皆出現
+// 呈現在http://localhost:8081/dessert_shop/product/backend_getAllDailySpecial
+	public void backend_getAllDailySpecial(HttpServletRequest req, HttpServletResponse res) {
+		ProductService productSvc = new ProductService();
+		List<ProductBean> productList = productSvc.getAll();
+		
+		ResultInfo info = new ResultInfo();
+		
+		info.setFlag(true);
+		info.setMsg("資料取得成功!");
+		info.setData(productList);
+		
+		writeValueByWriter(res, info);
+		
+	}
 	
 	
 
@@ -355,6 +379,25 @@ public class ProductServlet_front extends BaseServlet {
 				writeValueByWriter(res, info);
 
 				System.out.println("修改商品&照片成功!");//
+		
+	}
+	
+// 後端_修改商品狀態
+	// http://localhost:8081/dessert_shop/product/backend_updateProuctStatus
+	public void backend_updateProuctStatus(HttpServletRequest req, HttpServletResponse res){
+		System.out.println("Servlet更新商品狀態");
+		Integer product_id = new Integer(req.getParameter("product_id"));
+		Integer product_status = new Integer(req.getParameter("product_status"));
+		System.out.println("後端更新取得product_status:"+product_status);
+		ProductService productSvc = new ProductService();
+		productSvc.updateProductStatus(product_id, product_status);
+
+		ResultInfo info = new ResultInfo();
+
+		info.setFlag(true);
+		info.setMsg("商品狀態更新成功!");
+
+		writeValueByWriter(res, info);
 		
 	}
 

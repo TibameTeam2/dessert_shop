@@ -1391,7 +1391,7 @@ public List<ProductBean> getAllImage(Integer product_id) {
 //		productBean.setTotal_star(+4);
 //		productBean.setTotal_review(+1);
 //		productBean.setTotal_purchase(166);
-//		productBean.setProduct_id(4);
+//		productBean.setProduct_id(22);
 //		
 //		dao.update(productBean);
 		
@@ -1405,6 +1405,11 @@ public List<ProductBean> getAllImage(Integer product_id) {
 		// 更新評論與星等
 //		ProductService productSvc = new ProductService();
 //		productSvc.addReviewStar(25, 4);
+
+		
+		// 更新商品狀態
+//		ProductService productSvc = new ProductService();
+//		productSvc.updateProductStatus(22, 1);
 		
 		
 		

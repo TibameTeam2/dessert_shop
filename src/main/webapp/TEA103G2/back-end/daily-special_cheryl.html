@@ -70,10 +70,10 @@
         <div class="col-lg-12">
           <div class="d-flex flex-wrap flex-wrap align-items-center justify-content-between mb-4">
             <div>
-              <h4 class="mb-3">商品列表</h4>
+              <h4 class="mb-3">每日優惠 - 商品列表</h4>
             </div>
-            <a href="add-product.html" class="btn btn-primary add-list" data-toggle="modal" data-target="#add-product">
-            <i class="las la-plus mr-3"></i>新增商品</a>
+            <a href="add-product.html" class="btn btn-primary add-list" data-toggle="modal" data-target="#add-daily-special">
+            <i class="las la-plus mr-3"></i>新增優惠商品</a>
           </div>
         </div>
         <!-- Table的地方 --><!--  一個tr為一列 -->
@@ -82,20 +82,16 @@
             <table class="data-table table mb-0 tbl-server-info">
               <thead class="bg-white text-uppercase">
               <tr class="ligth ligth-data">
+                <th>每日優惠編號</th>
                 <th>商品照片</th>
                 <th>商品名稱</th>
-                <th>編號</th>
-                <th>主分類</th>
+                <th>商品編號</th>
                 <th>子分類</th>
-                <th>售價</th>
-                <th>現貨數量</th>
+                <th>原始售價</th>
+                <th>優惠價格</th>
+                <th>開始日期</th>
+                <th>結束日期</th>
                 <th>狀態</th>
-                <th>累計銷售</th>
-                <th>平均星等</th>
-                <th>累計評論</th>
-                <th>甜度</th>
-                <th>熱量</th>
-                <th>賞味天數</th>
                 <th>動作</th>
               </tr>
               </thead>
@@ -364,8 +360,8 @@
   </div>
 </div>
 
-<!-- ----------------------------------------------- 右上角新增商品 燈箱 ----------------------------------------------------------------- -->
-<div class="modal fade" id="add-product" tabindex="-1" role="dialog" aria-hidden="true">
+<!-- ----------------------------------------------- 右上角新增優惠商品 燈箱 ----------------------------------------------------------------- -->
+<div class="modal fade" id="add-daily-special" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-body">
@@ -377,11 +373,11 @@
 	                <div class="card">
 	                    <div class="card-header d-flex justify-content-between">
 	                        <div class="header-title">
-	                            <h4 class="card-title">新增商品</h4>
+	                            <h4 class="card-title">新增每日優惠商品</h4>
 	                        </div>
 	                    </div>
 	                    <div class="card-body">
-	                        <form id="addProduct_form" action="javascript:void(0)" data-toggle="validator" enctype="multipart/form-data">
+	                        <form id="addDailySpecial_form" action="javascript:void(0)" data-toggle="validator" enctype="multipart/form-data">
 	                            <div class="row">
 	                            	<div class="col-md-6">                      
 	                                    <div class="form-group">
@@ -533,7 +529,7 @@
 	                                    </div>
 	                                </div>
 	                            </div>                            
-	                            <button type="submit" id="addProduct" class="btn btn-primary mr-2">送出新增</button>
+	                            <button type="submit" id="addDailySpecial" class="btn btn-primary mr-2">送出新增</button>
 	                            <button type="reset" class="btn btn-danger">重置</button>
 	                        </form>
 	                    </div>
@@ -587,11 +583,11 @@
 <!-- 商品展示 -->
 <script>
 
-getAllProduct();
+getAllDailySpecial();
 
 
 let url = location.href.split("/TEA103G2")[0];
-function getAllProduct(){
+function getAllDailySpecial(){
 <!--因為有商品成分跟介紹的部分 所以應該要做預覽-->		
     $.get("/dessert_shop/product/backend_getAllProduct", {}, function (data) {
 		var action = `<div class="d-flex align-items-center list-action">
