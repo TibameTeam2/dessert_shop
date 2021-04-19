@@ -4,9 +4,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
@@ -23,8 +25,10 @@ import com.order_master.model.OrderMasterService;
 import com.util.BaseServlet;
 import com.util.ResultInfo;
 
+import cn.hutool.core.convert.Convert;
 import cn.hutool.crypto.digest.DigestUtil;
 
+@MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 50 * 1024 * 1024, maxRequestSize = 50 * 1024 * 1024)
 public class OrderMasterServlet extends BaseServlet {
 	
 	OrderMasterService OrderMasterSvc = new OrderMasterService();
@@ -92,8 +96,16 @@ public class OrderMasterServlet extends BaseServlet {
 	public void backend_addOrderMaster(HttpServletRequest req, HttpServletResponse res) throws IOException {
 		
 		//獲取數據
-        Map<String, String[]> map = req.getParameterMap();
+        Map<String, String[]> map1 = req.getParameterMap();
+        Map map = new HashMap(map1);
         System.out.println("map= " + new ObjectMapper().writeValueAsString(map));
+        
+        String[] str = map1.get("payment_time")[0].split("T");
+        String str_ts = str[0]+" "+str[1];
+        
+        java.sql.Timestamp ts = new java.sql.Timestamp(Convert.toDate(str_ts).getTime());
+        map.replace("payment_time", ts);
+        
         //封裝物件
         OrderMasterBean orderMasterBean = new OrderMasterBean();
         try {
@@ -113,7 +125,7 @@ public class OrderMasterServlet extends BaseServlet {
         } else {
             //新增失敗
             info.setFlag(false);
-            info.setMsg("新增失敗!");
+            info.setMsg("新增失敗 請注意外鍵!");
         }
         
         writeValueByWriter(res, info);

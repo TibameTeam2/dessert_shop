@@ -1030,7 +1030,7 @@
                 </div>
 
                 <div class="card-body">
-                  <form id="addOrderMasterForm" action="page-list-product.html" data-toggle="validator">
+                  <form id="addOrderMasterForm" action="page-list-product.html" data-toggle="validator" enctype="multipart/form-data">
 
                     <div class="row">
 
@@ -1105,7 +1105,7 @@
                         <div class="form-group">
                           <label>訂單備註</label>
                           <input type="text" class="form-control" placeholder="" data-errors="Please Enter Name."
-                            required name="order_remarks">
+                             name="order_remarks">
                           <div class="help-block with-errors"></div>
                         </div>
                       </div>
@@ -1327,7 +1327,7 @@
         console.log(data);
         if (data.flag) {
 
-          getAllMember();
+          getAllOrderMaster();
           Swal.fire({
             title: data.msg,
             text: "",
@@ -1370,7 +1370,7 @@
       let data = new FormData(form);
       $.ajax({
         type: "POST",
-        // enctype: 'multipart/form-data',
+        enctype: 'multipart/form-data',
         url: '/dessert_shop/orderMaster/backend_addOrderMaster',
         data: data,
         processData: false,
@@ -1383,7 +1383,7 @@
               text: "",
               icon: "success"
             });
-            getAllMember();
+            getAllOrderMaster();
             $("#new-order1").modal('hide');
             $("#addOrderMasterForm").trigger("reset");
           } else {
