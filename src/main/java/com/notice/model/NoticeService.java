@@ -72,17 +72,36 @@ public class NoticeService {
 //	4.再呼叫updateNotice(noticeBean)
 
 		NoticeBean noticeId = dao.findByPrimaryKey(notice.getNotice_id());
-		
+
 		if (notice.getMember_account().equals(noticeId.getMember_account())) {
 
 			noticeId.setRead_status(1);
 			dao.update(noticeId);
 
 		}
-		
-		System.out.println("已更新"+noticeId+"狀態");
+
+		System.out.println("已更新" + noticeId + "狀態");
 
 		return true;
 	}
 
+	/*********************** 後臺更新 ***********************/
+	public Boolean backend_updateNotice(NoticeBean noticeBean) {
+
+		NoticeBean notice = dao.findByPrimaryKey(noticeBean.getNotice_id());
+
+		
+		notice.setMember_account(noticeBean.getMember_account());
+		notice.setNotice_type(noticeBean.getNotice_type());
+		notice.setRead_status(noticeBean.getRead_status());
+		notice.setNotice_content(noticeBean.getNotice_content());
+
+		dao.update(notice);
+		
+
+
+		System.out.println("已更新" + notice + "狀態");
+		return true;
+
+	}
 }

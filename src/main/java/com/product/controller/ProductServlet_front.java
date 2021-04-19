@@ -203,7 +203,7 @@ public class ProductServlet_front extends BaseServlet {
     public void backend_checkProductName(HttpServletRequest req, HttpServletResponse res) {
     	//獲取數據
     	String product_name = req.getParameter("product_name");
-    	System.out.println("商品名稱:" + product_name);//
+//    	System.out.println("商品名稱:" + product_name);//
     	ProductService producSvc = new ProductService();
  // 新增getOneProductByName的service dao
     	ProductBean productBean = producSvc.getOneProductByName(product_name);
