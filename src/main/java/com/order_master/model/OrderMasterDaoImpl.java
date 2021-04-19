@@ -453,6 +453,54 @@ public class OrderMasterDaoImpl implements OrderMasterDao {
 			return list;
 			
 		}
+	
+	
+	public void update_backend(OrderMasterBean omBean) {
+		UPDATE =
+			"UPDATE order_master set payment_time = ?, order_status = ?, invoice_number = ? where order_master_id = ?";
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		
+		try {
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			pstmt = con.prepareStatement(UPDATE);
+			
+			pstmt.setTimestamp(1, omBean.getPayment_time());
+			pstmt.setInt(2, omBean.getOrder_status());
+			pstmt.setString(3, omBean.getInvoice_number());
+			pstmt.setInt(4, omBean.getOrder_master_id());
+			
+			pstmt.executeUpdate();
+			
+			// Handle any driver errors
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. "
+					+ e.getMessage());
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		
+	}
 		
 		
 	

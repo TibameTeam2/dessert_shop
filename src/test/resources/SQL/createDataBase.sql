@@ -660,7 +660,8 @@ INSERT INTO  order_master (member_account, payment_time, payment_method, coupon_
 VALUES ('amy', '2021-01-04 03:04:07', '1', null, '2', 'AA12345675', '360', '藍莓乳酪要濃郁才好吃');
 INSERT INTO  order_master (member_account, payment_time, payment_method, coupon_id, order_status, invoice_number, order_total, order_remarks)
 VALUES ('amy', '2021-01-06 03:04:07', '1', null, '2', 'AA12345676', '460', '無');
-
+INSERT INTO  order_master (member_account, payment_time, payment_method, coupon_id, order_status, invoice_number, order_total, order_remarks)
+VALUES ('jason', null, '2', null, '0', null, '240', '肚子好餓');
 
 
 -- 訂單明細
@@ -699,6 +700,8 @@ INSERT INTO order_detail (order_master_id, product_id, product_qty, product_pric
 VALUES ('6', 3, '1', '120');
 INSERT INTO order_detail (order_master_id, product_id, product_qty, product_price)
 VALUES ('6', 4, '1', '120');
+INSERT INTO order_detail (order_master_id, product_id, product_qty, product_price)
+VALUES ('7', 5, '2', '120');
 
 
 -- 訂位明細

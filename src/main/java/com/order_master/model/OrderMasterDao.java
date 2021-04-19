@@ -10,4 +10,5 @@ public interface OrderMasterDao {
 	List<OrderMasterBean> getAll();
 	List<OrderMasterBean> findByMemberAccount(String member_account);
 	List<OrderMasterBean> getOrderMaster(String member_account);
+	void update_backend(OrderMasterBean orderMasterBean);
 }

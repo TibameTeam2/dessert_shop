@@ -73,9 +73,21 @@ public class OrderMasterService {
             dao.insert(orderMasterBean);
             return true;
         } catch (Exception e) {
+        	e.printStackTrace();
             return false;
         }	
 		
+	}
+	
+	public boolean update_backend(OrderMasterBean orderMasterBean) {
+		
+		try {
+            dao.update_backend(orderMasterBean);
+            return true;
+        } catch (Exception e) {
+        	e.printStackTrace();
+            return false;
+        }
 	}
 	
 	
