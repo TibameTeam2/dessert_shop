@@ -505,6 +505,16 @@
 		<url-pattern>/listMemberComment/*</url-pattern>
 	</servlet-mapping>
 
+	<!--DealerReplyServlet 用在後臺新增回覆顧客評論 -->
+	<servlet>
+		<servlet-name>DealerReplyServlet</servlet-name>
+		<servlet-class>com.dealer_reply.controller.DealerReplyServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DealerReplyServlet</servlet-name>
+		<url-pattern>/dealerReply/*</url-pattern>
+	</servlet-mapping>
+
 
 
 
