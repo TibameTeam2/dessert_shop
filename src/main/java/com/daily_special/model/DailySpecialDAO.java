@@ -238,7 +238,7 @@ public class DailySpecialDAO implements DailySpecialDAO_interface {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		SELECT_ALL_VALID = "SELECT * FROM sweet.daily_special where now() between discount_start_time and discount_deadline;  ";	
+		SELECT_ALL_VALID = "SELECT ds.*, p.* FROM (SELECT * FROM daily_special ds WHERE now() BETWEEN discount_start_time AND discount_deadline)ds join (SELECT * FROM product p WHERE product_status = 1)p  on ds.product_id = p.product_id";	
 		List<DailySpecialBean> list_dsBean = new ArrayList<DailySpecialBean>();
 		DailySpecialBean dsBean = null;
 		
@@ -380,11 +380,11 @@ public class DailySpecialDAO implements DailySpecialDAO_interface {
 //		System.out.println(dsBean);
 
 
-		// 查詢
-//        List<DailySpecialBean> list = dao.getAll();
-//        for (DailySpecialBean dsBean : list) {
-//            System.out.println(dsBean);
-//        }
+		// 查詢所有優惠，無論有效或失效
+        List<DailySpecialBean> list = dao.getAll();
+        for (DailySpecialBean dsBean : list) {
+            System.out.println(dsBean);
+        }
 		
 		
 		// 查詢有效的優惠
