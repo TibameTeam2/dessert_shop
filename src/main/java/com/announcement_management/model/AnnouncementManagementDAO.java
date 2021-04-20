@@ -208,7 +208,7 @@ public class AnnouncementManagementDAO implements AnnouncementManagementDAO_inte
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
-		SELECT = "SELECT * FROM announcement_management where announcement_status = 1";
+		SELECT = "SELECT * FROM announcement_management where announcement_status = 1 order by announcement_time desc";
 
 		AnnouncementManagementBean AMB;
 		ResultSet rs = null;

@@ -42,7 +42,7 @@ public class AmServletF extends BaseServlet {
 
 		writeValueByWriter(res, info);
 	}
-
+//getAllAM01為全部的公告(包含已公告未公告)
 	public void getAllAM01(HttpServletRequest req, HttpServletResponse res) {
 
 		AnnouncementManagementService ams = new AnnouncementManagementService();

@@ -21,11 +21,14 @@ import com.coupon_code.model.CouponCodeBean;
 import com.coupon_code.model.CouponCodeService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.member.model.MemberService;
 import com.util.BaseServlet;
 import com.util.ResultInfo;
 
 @MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 50 * 1024 * 1024, maxRequestSize = 50 * 1024 * 1024)
 public class CouponCodeServlet extends BaseServlet{
+	
+	MemberService MS = new MemberService();
 	
 	public void getCouponCodeData(HttpServletRequest rep , HttpServletResponse res) {
 		
@@ -78,18 +81,9 @@ public class CouponCodeServlet extends BaseServlet{
 		} catch (InvocationTargetException e) {
 			e.printStackTrace();
 		} 
-//		System.out.println("難道會是這裡?");
-//		Part part = req.getPart("announcement_image");
-//		System.out.println("不會吧 = =");
-//		InputStream in = part.getInputStream();
-//		System.out.println("是這裡?");
-//		byte[] buf = new byte[in.available()];
-//		in.read(buf);
-//		in.close();
-//		ccb.setAnnouncement_image(buf);
 		boolean flag = ccs.addCC2(cc);
 
-//		System.out.println("我覺得是這裡");
+
 
 		ResultInfo info = new ResultInfo();
 		// 創建結果 準備返回前端
@@ -123,15 +117,6 @@ public void updateCC(HttpServletRequest req, HttpServletResponse res) throws IOE
 		} catch (InvocationTargetException e) {
 			e.printStackTrace();
 		} 
-//        Part part = req.getPart("announcement_image");
-//        InputStream in = part.getInputStream();
-//        byte[] buf = new byte[in.available()];
-//        in.read(buf);
-//        in.close();
-//        if (buf.length != 0) {
-//        	cc.setAnnouncement_image(buf);
-//        }
-        
         boolean flag = ccs.updateCC2(cc);
         ResultInfo info = new ResultInfo();
         //創建結果 準備返回前端
