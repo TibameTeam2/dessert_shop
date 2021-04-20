@@ -44,7 +44,16 @@
 <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=6073dff91ec66e0011e92ec0&product=inline-share-buttons" async="async"></script>
 <!-- 分享按鈕結束 -->
 
-
+<style>
+	/*a.compare.-on{*/
+	/*	background-color:#83bc2e;*/
+	/*	color:#fff;*/
+	/*}*/
+	/*a.compare{*/
+	/*	background-color:#fff;*/
+	/*	color:#000;*/
+	/*}*/
+</style>
 </head>
 
 <body>
@@ -567,7 +576,7 @@
 									</a>
 									<div class="product-action">
 										<a href="#收藏網頁" class="action"><i class="lar la-heart"></i></a>
-										<a href="#比較網頁" class="action"><i class="las la-sync"></i></a>
+										<a href="javascript:void(0)" class="action compare"><i class="las la-sync"></i></a>
 										<a href="#跳出燈箱" class="action search" data-bs-toggle="modal"
 									  	 data-bs-target="#quick-view" ><i class="las la-search"></i></a>
 										<a href="#加入購物車" class="action"><i class="ion-bag"></i></a>
@@ -643,6 +652,8 @@
 	      			}
 	      	
    				}
+			  //等商品渲染完後，把比較商品的比較按鈕上色
+				getCompareList()
    		}
    		
    		$("div.single-product .product-action").on("click", function(){
@@ -715,7 +726,82 @@
     
        
  </script>
+<script>
+	/*******************以下比較列表********************/
+	$("body").on("click", "a.compare", function(e) {
+		let id = $(this).closest("div[class=single-product]").attr("id")
+		console.log($(this))
+		if($(this).hasClass("-on")){
+			removeCompareList(id)
+			$(this).removeClass("-on");
+			$(this).css("background-color","#fff");
+			$(this).css("color","#000");
+			updateCompareNumber()
+		}else{
+			if(addCompareList(id)){
+				console.log("成功加入")
+				$(this).css("background-color","#83bc2e");
+				$(this).css("color","#fff");
+				$(this).addClass("-on");
+				updateCompareNumber()
+			}else{
+				Swal.fire({
+					title: "比較列表最多三個商品",
+					text: '',
+					icon: "error"
+				})
+				$(this).css("background-color","#fff");
+				$(this).css("color","#000");
+			}
+		}
+	})
 
+	function getCompareList(){
+		let compareList = JSON.parse(localStorage.getItem("compareList"));
+		if(compareList==null){
+			compareList=[];
+			localStorage.setItem("compareList", JSON.stringify(compareList));
+			return;
+		}else{
+			compareList.forEach(function(item, index, arr) {
+				console.log($("#"+item));
+				$("#"+item).find("a.compare").addClass("-on");
+				$("#"+item).find("a.compare").css("background-color","#83bc2e");
+				$("#"+item).find("a.compare").css("color","#fff");
+			});
+		}
+	}
+
+
+	function addCompareList(product_id){
+		let compareList = JSON.parse(localStorage.getItem("compareList"));
+		if(compareList==null ) {
+			compareList=[product_id];
+			localStorage.setItem("compareList", JSON.stringify(compareList));
+			return true;
+		}else{
+			if(compareList.length>=3) return false;
+			compareList.push(product_id);
+			localStorage.setItem("compareList", JSON.stringify(compareList));
+			return true;
+		}
+	}
+
+	// removeCompareList(3);
+	function removeCompareList(product_id){
+		let compareList = JSON.parse(localStorage.getItem("compareList"));
+		if(compareList==null ) return true;
+		compareList.forEach(function(item, index, arr) {
+			if(item == product_id) {
+				arr.splice(index, 1);
+			}
+		});
+		localStorage.setItem("compareList", JSON.stringify(compareList));
+		console.log(compareList);
+		return true;
+	}
+
+</script>
 </body>
 
 </html>

@@ -206,8 +206,8 @@
 <script>
     $(function () {
 
-        let names = [1,2,3];
-        localStorage.setItem("compareList", JSON.stringify(names));
+        // let names = [1,2,3];
+        // localStorage.setItem("compareList", JSON.stringify(names));
 
         let compareList = JSON.parse(localStorage.getItem("compareList"));
         console.log(compareList);
@@ -299,6 +299,7 @@
             localStorage.setItem("compareList", JSON.stringify(compareList))
             console.log(compareList);
             $(`td[data-product_id=${product_id}]`).remove();
+            updateCompareNumber();
             // $('li[data-item_id=' + item_id + ']')
         })
 
@@ -307,15 +308,16 @@
             let compareList=[];
             localStorage.setItem("compareList", JSON.stringify(compareList));
             $(`td[data-product_id]`).remove();
+            updateCompareNumber();
         });
 
-        removeCompareList(1);
-        removeCompareList(2);
-        removeCompareList(3);
-        addCompareList(6);
-        addCompareList(8);
-        addCompareList(9);
-        addCompareList(10);
+        // removeCompareList(1);
+        // removeCompareList(2);
+        // removeCompareList(3);
+        // addCompareList(6);
+        // addCompareList(8);
+        // addCompareList(9);
+        // addCompareList(10);
         function addCompareList(product_id){
             let compareList = JSON.parse(localStorage.getItem("compareList"));
             if(compareList==null ) {
