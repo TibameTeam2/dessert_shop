@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Amino - Organic & Multipurpose Bootstrap 5 Template</title>
+    <title>嗜甜 - 主頁</title>
     <meta name="robots" content="noindex, follow" />
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -387,7 +387,7 @@
                 </div>
                 <!-- Section Title Start -->
                 <div class="swiper-container product-active">
-                    <div class="swiper-wrapper"> <!-- 整個大區塊Start -->
+                    <div class="swiper-wrapper" id="daily-special"> <!-- 整個大區塊Start -->
                     	<!-- 優惠商品從此開始插入 -->
 <!--                         <div class="swiper-slide"> -->
 <!--                             Single Product Start -->
@@ -1946,7 +1946,7 @@
 
 
     <!-- Quick View Start -->
-    <div class="modal fade" id="quick-view">
+    <div class="modal fade" id="quick-view" data-product_id="product_id">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -2144,6 +2144,9 @@
         });
     </script>
 <script>
+	
+	let url = location.href.split("/TEA103G2")[0];
+	
 	$.get("/dessert_shop/dailySpecial/getValidDailySpecialProduct", {}, function (data) {
 		console.log("dailySpecial"+data.msg);
 		for(var i = 0 ; i < data.data.length; i++){
@@ -2152,43 +2155,53 @@
 			let product_name = data.data[i].product_name;
 			let product_subtype = data.data[i].product_subtype;
 			let product_price = data.data[i].product_price;
-		}
+			let discount_price = data.data[i].discount_price;
+			let average_star = data.data[i].average_star;
+			// 照片只取前兩張
+			let image_list = data.data[i].image_url.valueOf();
+			let product_img1 = url+image_list[0];
+ 			let product_img2 = url+image_list[1];
 		
 		
 		
-		let single_dailySpecial = `
-					<div class="swiper-slide">
-		            <!-- Single Product Start -->
-			            <div class="single-product" id="${product_id}">
-			                <div class="product-image">
-			                    <a class="product-thumbnail" href="shop-single.html">
-			                        <img src="assets/images/product/cakes/cupCinnamon-a.jpg" alt="product">
-			                        <img class="image-hover" src="assets/images/product/cakes/cupCinnamon-b.jpg" alt="product">
-			                    </a>
-			                    <div class="product-action">
-			                        <a href="#" class="action"><i class="lar la-heart"></i></a>
-			                        <a href="#" class="action"><i class="las la-sync"></i></a>
-			                        <a href="#" class="action" data-bs-toggle="modal" data-bs-target="#quick-view"><i class="las la-search"></i></a>
-			                        <a href="#" class="action"><i class="ion-bag"></i></a>
-			                    </div>
-			                    <div class="product-flag">
-			                        <span class="discount">sale</span>
-			                    </div>
-			                </div>
-			                <div class="product-content">
-			                    <h4 class="product-title"><a href="shop-single.html">莓芬肉桂</a></h4>
-			                    <div class="manufacturer"><a href="#">杯子蛋糕</a></div>
-			                    <div class="product-price">
-			                        <span class="regular-price">$90</span>
-			                        <span class="sele-price">$75</span>
-			                    </div>
-			                </div>
-			            </div>
-		            	<!-- Single Product End -->
-		        	</div>`
+			let single_dailySpecial = `
+						<div class="swiper-slide">
+			            <!-- Single Product Start -->
+				            <div class="single-product" id="${product_id}">
+				                <div class="product-image">
+				                    <a class="product-thumbnail" href="shop-single.html">
+				                        <img src="${product_img1}" alt="ProductImage">
+				                        <img class="image-hover" src="${product_img2}" alt="ProductImage">
+				                    </a>
+				                    <div class="product-action">
+				                        <a href="#" class="action"><i class="lar la-heart"></i></a>
+				                        <a href="#" class="action"><i class="las la-sync"></i></a>
+				                        <a href="#" class="action" data-bs-toggle="modal" data-bs-target="#quick-view"><i class="las la-search"></i></a>
+				                        <a href="#" class="action"><i class="ion-bag"></i></a>
+				                    </div>
+				                    <div class="product-flag">
+				                        <span class="new">${average_star}</span>
+				                    </div>
+				                </div>
+				                <div class="product-content">
+				                    <h4 class="product-title"><a href="shop-single.html">${product_name}</a></h4>
+				                    <div class="manufacturer"><a href="#">${product_subtype}</a></div>
+				                    <div class="product-price">
+				                        <span class="regular-price">$${product_price}</span>
+				                        <span class="sele-price">$${discount_price}</span>
+				                    </div>
+				                </div>
+				            </div>
+			            	<!-- Single Product End -->
+			        	</div>`
+			        	
+			console.log("test for 迴圈裡");        	
+			$("#daily-special").append(single_dailySpecial);
+		        	
+				
+		}// for迴圈
 			
-			
-	});    
+	});//$.get()    
     
 </script>
 
