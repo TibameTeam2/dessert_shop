@@ -65,6 +65,21 @@ public class ProductService {
 		}
 	}
 	
+// 更新商品狀態
+	public Boolean updateProductStatus(Integer product_id, Integer product_status) {
+		
+		ProductBean productBean = new ProductBean();
+		productBean = dao.findByPrimaryKey(product_id);
+		if(productBean == null) {
+			System.out.println("更新商品狀態失敗！");
+			return false;
+		}else {
+			productBean.setProduct_status(product_status);
+			dao.update(productBean);
+			System.out.println("更新商品狀態成功！");
+			return true;
+		}
+	}
 	
 	
 	
@@ -87,6 +102,13 @@ public class ProductService {
 	public List<ProductBean> getAll(){
 		return dao.getAll();
 	}
+	
+	
+	
+	
+	
+	
+	
 
 // 前台的方法，需過慮上架狀態	
 	public List<ProductBean> getAllAvailable(){
