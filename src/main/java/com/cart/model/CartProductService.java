@@ -177,10 +177,7 @@ public class CartProductService {
 		dao.deleteCartAndUpdateProductQty(list_cartProductBean);
 		
 	}
-	
-	
-	
-	
+		
 
 	// 修改優惠券狀態
 	public void updateCouponStatus(Integer coupon_id, Integer coupon_status) {
@@ -189,12 +186,6 @@ public class CartProductService {
 
 	}
 	
-	// Line發通知
-	public void lineMessage(String member_account, String message) {
-		
-		
-		
-	}
 	
 	
 	
