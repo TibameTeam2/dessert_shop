@@ -297,12 +297,19 @@ public class OrderMasterServlet extends BaseServlet {
 		ResultInfo info = new ResultInfo();
 		//查詢原本orderMaster並修改資料
 		OrderMasterBean orderMasterBean = OrderMasterSvc.getOneOrderMaster(order_master_id);
+		if (orderMasterBean == null) {
+			//付款失敗
+            info.setFlag(false);
+            info.setMsg("付款失敗!查無此訂單!");
+            writeValueByWriter(res, info);
+            return ;
+		}
 		if (orderMasterBean.getOrder_status() == 0) {
 			orderMasterBean.setOrder_status(1);
 		} else {
 			//付款失敗
             info.setFlag(false);
-            info.setMsg("付款失敗!訂單原狀態並不是未付款!");
+            info.setMsg("付款失敗!訂單原狀態不是未付款!");
             writeValueByWriter(res, info);
             return ;
 		}
