@@ -107,7 +107,7 @@
 
 
 
-	<!--Notice 測試Servlet -->
+	<!--通知-->
 	<servlet>
 		<servlet-name>NoticeServlet</servlet-name>
 		<servlet-class>com.notice.controller.NoticeServlet</servlet-class>
@@ -116,6 +116,18 @@
 		<servlet-name>NoticeServlet</servlet-name>
 		<url-pattern>/notice/*</url-pattern>
 	</servlet-mapping>
+	
+	<!--訂閱-->
+	<servlet>
+		<servlet-name>SubscriberListServlet</servlet-name>
+		<servlet-class>com.subscriber_list.controller.SubscriberListServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SubscriberListServlet</servlet-name>
+		<url-pattern>/subscriberList/*</url-pattern>	
+	</servlet-mapping>
+
+
 
 
 	<!--LiveSupport 測試 -->

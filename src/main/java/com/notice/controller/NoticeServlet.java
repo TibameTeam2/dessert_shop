@@ -23,8 +23,7 @@ import com.util.ResultInfo;
 
 public class NoticeServlet extends BaseServlet {
 
-	public void test(HttpServletRequest req, HttpServletResponse res) {
-	}
+	public void test(HttpServletRequest req, HttpServletResponse res) {}
 
 	/********************************* 取得全部通知(前臺) ********************************/
 	public void getAllNotice(HttpServletRequest req, HttpServletResponse res) {
@@ -193,17 +192,36 @@ public class NoticeServlet extends BaseServlet {
 
 		NoticeService noticeSvc = new NoticeService();
 		boolean flag = noticeSvc.backend_updateNotice(noticeBean);
-		
+
 		ResultInfo info = new ResultInfo();
-        
-        if (flag) {           
-            info.setFlag(true);
-            info.setMsg("更新成功!");
-        } else {           
-            info.setFlag(false);
-            info.setMsg("更新失敗!");
-        }			
+
+		if (flag) {
+			info.setFlag(true);
+			info.setMsg("更新成功!");
+		} else {
+			info.setFlag(false);
+			info.setMsg("更新失敗!");
+		}
 		writeValueByWriter(res, info);
 	}
 
+	/*************************** 刪除通知訊息(後臺) ********************************/
+	public void backend_delete(HttpServletRequest req, HttpServletResponse res) {
+
+		Integer notice_id = new Integer(req.getParameter("notice_id"));
+
+		ResultInfo info = new ResultInfo();
+
+		try {
+			NoticeService noticeSvc = new NoticeService();
+			noticeSvc.deleteNotice(notice_id);
+			info.setFlag(true);
+			info.setMsg("已刪除通知!");
+		} catch (Exception e) {
+			info.setFlag(false);
+			info.setMsg("刪除通知失敗!");
+		}
+		writeValueByWriter(res, info);
+
+	}
 }
