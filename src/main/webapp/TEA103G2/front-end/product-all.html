@@ -59,8 +59,8 @@
 <body>
 	<!-- Loading Progress ============================================= -->
 	<div id="loading-progress">
-		<a class="logo" href="#"> <img src="assets/images/logo.jpg"
-			data-logo-alt="images/files/logo-header.png" alt=""> <!--        <h3><span class="colored">Astron</span></h3>-->
+		<img src="assets/images/sweetness_logo.png" data-logo-alt="images/files/logo-header.png" alt="">
+			<!--        <h3><span class="colored">Astron</span></h3>-->
 			<!--        <span>HTML Template</span>-->
 		</a>
 		<!-- .logo end -->
@@ -466,13 +466,42 @@
      	console.log("轉換後:"+request_subtype);	
   
        	
-       	// 要取得資訊的API
+       	// 要取得商品資訊的API
        	$.get("/dessert_shop/product/getAllProduct", {}, function (data) {
        		console.log(data.msg);
        		productDisplay(data);
 //      		console.log(window.location.href);
            		
         });
+       	
+       
+       	var validDSProduct=0;
+     // 取得有效特價商品的API,用var儲存data，最後寫function() ,比對product_id，把頁面上id符合的 價格覆蓋
+       	$.get("/dessert_shop/dailySpecial/getValidDailySpecialProduct", {}, function (data) {
+       		validDSProduct = data.data;
+        	console.log("validDSProduct:"+validDSProduct);///???????????沒印出來阿
+           	updatePrice(validDSProduct);
+           	console.log("優惠商品flag:"+data.flag);
+   
+        });	
+   		
+       	function updatePrice(data){
+			console.log("updatePrice!!!!!!!!!!!!!!!");       		
+       		for(var i = 0 ; i < data.length; i++){
+       			console.log(data[i]);
+       			let update_id = data[i].product_id;
+       			let update_price = data[i].discount_price;
+       			let old_price = data[i].product_price;
+       			
+       			$("#"+update_id).find(".sele-price").html('<span class="regular-price">$'+old_price+'</span> <span class="sale-price">$'+update_price+'</span>');
+
+       			
+       		}
+      }//updatePrice() 
+   		
+		       	
+       	
+       	
          
 				     	
 	<!--*******  排序功能  ******--> // 語法重複性太高，有空再修改...    
@@ -627,14 +656,14 @@
 							<!-- Single Product End -->
 						</div>`
 	                  
-						$("div#grid div.row:last-child").append(single_product_grid); 
+					$("div#grid div.row:last-child").append(single_product_grid); 
 						
 						
 		    		let single_product_list=`
 		    			<!-- Single Product Start -->
 						<div class="single-product product-list" id="${product_id}">
 							<div class="product-image">
-								<a class="product-thumbnail" href="shop-single.html"> 
+								<a class="product-thumbnail" href="product-single.html?id=${product_id}"> 
 								<img src="${product_img1}" alt="product">
 								<img class="image-hover" src="${product_img2}" alt="product">
 								</a>
@@ -665,7 +694,7 @@
 								</div>
 								<div class="availability">
 									<p>
-										現貨數量: <span>${product_available_qty}</span>
+										現貨數量: <span class="current_qty">${product_available_qty}</span>
 									</p>
 								</div>
 								<div class="cart-btn">
@@ -675,17 +704,29 @@
 						</div>
 						<!-- Single Product End -->`
 						
-		    			$("div#list").append(single_product_list); 
-	      			}
+		    		$("div#list").append(single_product_list); 
+
+						// 更新價格*****************************************************************
+						// updatePrice();
 	      	
-   				}
-			  //等商品渲染完後，把比較商品的比較按鈕上色
-				getCompareList()
-   		}
+   				}//for迴圈end
+	      		
+			}
+			//等商品渲染完後，把比較商品的比較按鈕上色
+			getCompareList();
+			  
+			  
+			  
+   		}//productDisplay()
    		
-   		$("div.single-product .product-action").on("click", function(){
-   		});
    		
+   		
+
+   		
+   		
+
+       	
+       	
 // 商品總覽(不帶任何參數時)
 		function defaultDisplay(data){
 			console.log("defaultDisplay")
@@ -748,7 +789,7 @@
 	    			<!-- Single Product Start -->
 					<div class="single-product product-list" id="${product_id}">
 						<div class="product-image">
-							<a class="product-thumbnail" href="shop-single.html"> 
+							<a class="product-thumbnail" href="product-single.html?id=${product_id}"> 
 							<img src="${product_img1}" alt="product">
 							<img class="image-hover" src="${product_img2}" alt="product">
 							</a>
@@ -779,7 +820,7 @@
 							</div>
 							<div class="availability">
 								<p>
-									現貨數量: <span>${product_available_qty}</span>
+									現貨數量: <span class="current_qty">${product_available_qty}</span>
 								</p>
 							</div>
 							<div class="cart-btn">
@@ -819,8 +860,8 @@
      			let rating_star = (avg_star/5*100);
      			let image_list = data.data.image_url.valueOf();
 				let product_intro = data.data.product_intro;
-				let product_ingredient = data.data.product_intro;
-				let product_available_qty = data.data.product_ingredient;
+				let product_ingredient = data.data.product_ingredient;
+				let product_available_qty = data.data.product_available_qty;
 				
 				// quick-view區塊給product_id
 				$("#quick-view").attr("data-product_id", product_id);
@@ -870,8 +911,28 @@
 			console.log("加入購物車的數量:"+single_purchase);
 			
 			// API要給id 跟數量 如果頁面沒有數量可以選 設為1
-			$.post("cart/insertProductIntoCart?product_id="+product_id+"&product_quantity="+single_purchase,{},function(){
-				console.log("加入購物車的flag:"+data.flag);
+			$.post("/dessert_shop/cart/insertProductIntoCart?product_id="+product_id+"&product_quantity="+single_purchase,{},function(data){
+				console.log("加入購物車回傳的flag:"+data.flag);
+				// 判斷是否登入
+				if(data.flag == false){
+					Swal.fire({
+		                title: data.msg,
+		                text: "請先登入帳號!",
+		                icon: "error"
+		              }).then(function(){
+						 location.href="login.html";
+		              });
+						
+				}else{
+					// 已登入的情況下，可即時更新現貨數量
+					let product_available_qty = data.data;
+					console.log("及時的現貨數量:"+product_available_qty);
+					// 操作畫面上的現貨數量
+// 					$(this).closest(".availability").find(".current_qty").text(product_available_qty);
+// 					$(".current_qty").text(product_available_qty);
+					// 一直改不成功
+				}
+				
 			});//$.post
 			
 			
@@ -893,11 +954,12 @@
         	
         	
 //    });
+
  
 	
     
        
- </script>
+</script>
 <script>
 	/*******************以下比較列表********************/
 	$("body").on("click", "a.compare", function(e) {

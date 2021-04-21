@@ -35,129 +35,130 @@
             <div class="card">
               <div class="card-header d-flex justify-content-between">
                 <div class="header-title">
-                  <h4 class="card-title">公告新增 Add Announcement</h4>
-                </div>
-              </div>
-              <div class="card-body">
-                <form id="addAMform" action="page-list-product.html" data-toggle="validator"
-                  contentType="multipart/form-data">
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>公告名稱</label>
-                        <input type="text" class="form-control" placeholder="Enter announcement_name."
-                          data-errors="Please Enter announcement_name." id="announcement_name" name="announcement_name"
-                          required>
-                        <div class="help-block with-errors"></div>
+                  <h4 class="card-title">優惠碼新增 Add Coupon code</h4>
                       </div>
                     </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>編輯員工</label>
-                        <input type="text" class="form-control" placeholder="Enter Code"
-                          data-errors="Please Enter Code." id="employee_account" name="employee_account" required>
-                        <div class="help-block with-errors"></div>
+                    <div class="card-body">
+                      <form id="addCCform" action="page-list-coupon-code.html" data-toggle="validator"
+                        contentType="multipart/form-data">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <label>優惠碼序號</label>
+                              <input type="text" class="form-control" placeholder="Enter coupon_code"
+                                data-errors="Please Enter coupon_code."
+                                name="coupon_code" required>
+                              <div class="help-block with-errors"></div>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label>編輯員工</label>
+                              <input type="text" class="form-control" placeholder="Enter employee_account"
+                                data-errors="Please Enter Code." name="employee_account" required>
+                              <div class="help-block with-errors"></div>
 
-                        <!-- <select name="type" class="selectpicker form-control" data-style="py-0">
+                              <!-- <select name="type" class="selectpicker form-control" data-style="py-0">
                           <option value="jason">jason</option>
                           <option value="james">james</option>
-                          <option value="peter">peter</option> -->
+                          <option value="peter">peter</option>
+                              </select> -->
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label>優惠碼生效日期時間</label>
+                              <input type="text" class="form-control" placeholder="Enter YYYY-MM-DD hh:mm:ss"
+                                data-errors="Please Enter Code." name="coupon_code_effective_date"
+                                required>
+                              <div class="help-block with-errors"></div>
+                            </div>
+                          </div>
 
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>公告時間</label>
-                        <input type="text" class="form-control" placeholder="Enter Code"
-                          data-errors="Please Enter Code." id="announcement_time" name="announcement_time" required>
-                        <div class="help-block with-errors"></div>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>公告狀態</label>
-                        <!-- <input type="text" class="form-control" placeholder="Enter Code"
-                          data-errors="Please Enter Code." id="announcement_status" name="announcement_status" required>
-                        <div class="help-block with-errors"></div> -->
-                        <select name="announcement_status" class="selectpicker form-control" data-style="py-0"
-                          id="announcement_status">
-                          <option value="0">未公告</option>
-                          <option value="1">已公告</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>公告類別</label>
-                        <input type="text" class="form-control" placeholder="Enter Code"
-                          data-errors="Please Enter Code." id="announcement_type" name="announcement_type" required>
-                        <div class="help-block with-errors"></div>
-                        <!-- <select name="announcement_type" class="selectpicker form-control" data-style="py-0"
-                          id="announcement_type">
-                          <option value="0">公告</option>
-                          <option value="1">商品</option>
-                          <option value="2">服務</option>
-                          <option value="3">優惠折扣</option>
-                        </select> -->
-                      </div>
-                    </div>
-                    <!-- <div class="col-md-6">
-                    <div class="form-group">
-                      <label>Cost *</label>
-                      <input type="text" class="form-control" placeholder="Enter Cost" data-errors="Please Enter Cost."
-                             required>
-                      <div class="help-block with-errors"></div>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label>Price *</label>
-                      <input type="text" class="form-control" placeholder="Enter Price"
-                             data-errors="Please Enter Price." required>
-                      <div class="help-block with-errors"></div>
-                    </div>
-                  </div>
-                  <div class="col-md-12">
-                    <div class="form-group">
-                      <label>Tax Method *</label>
-                      <select name="type" class="selectpicker form-control" data-style="py-0">
-                        <option>Exclusive</option>
-                        <option>Inclusive</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="col-md-12">
-                    <div class="form-group">
-                      <label>Quantity *</label>
-                      <input type="text" class="form-control" placeholder="Enter Quantity" required>
-                      <div class="help-block with-errors"></div>
-                    </div>
-                  </div> -->
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>公告圖片</label>
-                        <input type="file" class="form-control image-file" name="pic" accept="image/*">
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>公告內容</label>
-                        <textarea class="form-control" rows="4" data-errors="Please Enter Code."
-                          id="announcement_content" name="announcement_content" required></textarea>
-                        <div class="help-block with-errors"></div>
-                      </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label>優惠碼到期日期時間</label>
+                              <input type="text" class="form-control" placeholder="Enter YYYY-MM-DD hh:mm:ss"
+                                data-errors="Please Enter Code." name="coupon_code_expire_date"
+                                required>
+                              <div class="help-block with-errors"></div>
+                            </div>
+                          </div>
 
+
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label>優惠方式</label>
+                              <!-- <input type="text" class="form-control" placeholder="Enter Code"
+                                data-errors="Please Enter Code." id="announcement_status" name="announcement_status"
+                                required> -->
+                              <div class="help-block with-errors"></div>
+                              <select name="discount_type" class="selectpicker form-control" data-style="py-0"
+                                >
+                                <option value="0">打折(*)</option>
+                                <option value="1">折價(-)</option>
+                              </select>
+                            </div>
+                          </div>
+
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label>優惠碼內容</label>
+                              <input type="text" class="form-control" placeholder="Enter coupon_code_content"
+                                data-errors="Please Enter Code." name="coupon_code_content"
+                                required>
+                              <div class="help-block with-errors"></div>
+                            </div>
+                          </div>
+
+
+
+                          <!-- <div class="col-md-6">
+                            <div class="form-group">
+                              <label>公告類別</label> -->
+                              <!-- <input type="text" class="form-control" placeholder="Enter Code"
+                                data-errors="Please Enter Code." id="announcement_type" name="announcement_type"
+                                required> -->
+                              <!-- <div class="help-block with-errors"></div>
+                              <select name="announcement_type" class="selectpicker form-control" data-style="py-0"
+                                id="announcement_type">
+                                <option value="0">公告</option>
+                                <option value="1">商品</option>
+                                <option value="2">服務</option>
+                                <option value="3">優惠折扣</option>
+                              </select>
+
+                            </div>
+                          </div> -->
+
+                          <!-- <div class="col-md-12">
+                            <div class="form-group">
+                              <label>公告圖片</label>
+                              <input type="file" class="form-control image-file" name="announcement_image"
+                                id="announcement_image" accept="image/*">
+                            </div>
+                          </div> -->
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <label>優惠碼文字內容</label>
+                              <textarea class="form-control" rows="4" data-errors="Please Enter Code."
+                                 name="coupon_code_text_content" required></textarea>
+                              <div class="help-block with-errors"></div>
+                            </div>
+
+                          </div>
+                        </div>
+                        <button type="submit" id="addCC" class="btn btn-primary mr-2">確認 confirm</button>
+                        <button type="reset" class="btn btn-danger">重新輸入 Reset</button>
+                      </form>
                     </div>
                   </div>
-                  <button type="submit" class="btn btn-primary mr-2">確認 confirm</button>
-                  <button type="reset" class="btn btn-danger">重新輸入 Reset</button>
-                </form>
+                </div>
               </div>
+              <!-- Page end  -->
             </div>
           </div>
         </div>
-        <!-- Page end  -->
       </div>
     </div>
   </div>
@@ -188,49 +189,44 @@
   <script>
 
 
-    $("#addAMform").submit(function (e) {
+  $("#addCC").click(function (e) {
       e.preventDefault();
       //表單提交時檢查所有屬性合法
       //發送ajax請求，送出表單資料
-      console.log($("#addAMform").serialize());
+      console.log($("#addCCform").serialize());
+      console.log("ADD1");
 
-      let form = $("#addAMform")[0];
-      console.log("form" + form)
+      let form = $("#addCCform")[0];
       let data = new FormData(form);
-      console.log("data" + data)
+      console.log("ADD1");
       $.ajax({
         type: "POST",
         enctype: 'multipart/form-data',
-        url: '/dessert_shop/announcement_management/addAM',
+        url: '/dessert_shop/coupon_code/addCC',
         data: data,
         processData: false,
         contentType: false,
         cache: false,
         success: function (data) {
-          console.log("ajax:" + data);
           if (data.flag) {
-
             Swal.fire({
               title: data.msg,
-              text: "提交成功",
+              text: "",
               icon: "success"
-            }).then(function () {
-              location.href = "page-list-announcement.html";
             });
-
+            then(function () {
+                location.href = "page-list-announcement.html";
+              });
           } else {
-            // 新增失敗 彈出視窗
             Swal.fire({
               title: data.msg,
-              text: "提交失敗",
+              text: "",
               icon: "error"
             })
           }
         }
       });
-
       return false;
-
     });
 
 

@@ -2,342 +2,608 @@
 <html lang="zh-Hant">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>POS Dash | Responsive Bootstrap 4 Admin Dashboard Template</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>POS Dash | Responsive Bootstrap 4 Admin Dashboard Template</title>
 
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="assets/images/favicon.ico" />
-    <link rel="stylesheet" href="assets/css/backend-plugin.min.css">
-    <link rel="stylesheet" href="assets/css/backend.css?v=1.0.0">
-    <link rel="stylesheet" href="assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
-    <link rel="stylesheet" href="assets/vendor/line-awesome/dist/line-awesome/css/line-awesome.min.css">
-    <link rel="stylesheet" href="assets/vendor/remixicon/fonts/remixicon.css">
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="assets/images/favicon.ico" />
+  <link rel="stylesheet" href="assets/css/backend-plugin.min.css">
+  <link rel="stylesheet" href="assets/css/backend.css?v=1.0.0">
+  <link rel="stylesheet" href="assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="assets/vendor/line-awesome/dist/line-awesome/css/line-awesome.min.css">
+  <link rel="stylesheet" href="assets/vendor/remixicon/fonts/remixicon.css">
 
-    <!-- Amber CSS Link-->
-    <link rel="stylesheet" href="assets/css/liveSupport.css">
+  <!-- Amber CSS Link-->
+  <link rel="stylesheet" href="assets/css/liveSupport.css">
 
-    <style type="text/css">
-        table th {
-            text-align: center;
-        }
-        
-        table td {
-            text-align: center;
-        }
-        
-        @media (min-width: 576px) {
-            .modal-dialog {
-                max-width: 1000px !important;
-            }
-        }
-    </style>
+  <style>
+    table th {
+      text-align: center;
+    }
+
+    table td {
+      text-align: center;
+    }
+
+    @media (min-width: 576px) {
+      .modal-dialog {
+        max-width: 1000px !important;
+      }
+    }
+  </style>
+
 </head>
 
-<body class="  ">
-    <!-- loader Start -->
-    <div id="loading">
-        <div id="loading-center">
-        </div>
+<body class="">
+  <!-- loader Start -->
+  <div id="loading">
+    <div id="loading-center">
     </div>
-    <!-- loader END -->
-    <!-- Wrapper Start -->
-    <div class="wrapper">
+  </div>
+  <!-- loader END -->
+  <!-- Wrapper Start -->
+  <div class="wrapper">
 
-        <!--Header-->
-        <div class="header"></div>
+    <!--Header-->
+    <div class="header"></div>
 
-        <div class="content-page">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="d-flex flex-wrap align-items-center justify-content-between mb-4">
-                            <div>
-                                <h4 class="mb-3">通知訊息</h4>
-                                <!--                                 <p class="mb-0">Returns dashboard shows the graphical representation of the channel and Reference <br>wise returns with the comparison to the total units sold..</p> -->
-                            </div>
-                            <a href="page-add-return.html" class="btn btn-primary add-list" data-toggle="modal" data-target="#addList"><i class="las la-plus mr-3"></i>新增通知</a>
+    <div class="content-page">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="d-flex flex-wrap align-items-center justify-content-between mb-4">
+              <div>
+                <h4 class="mb-3">通知訊息管理</h4>
+              </div>
+              <a href="#" class="btn btn-primary add-list" data-toggle="modal" data-target="#addList"><i
+                  class="las la-plus mr-3"></i>新增通知</a>
+            </div>
+          </div>
+          <div class="col-lg-12">
+            <div class="table-responsive rounded mb-3">
+              <table class="data-table table mb-0 tbl-server-info">
+                <thead class="bg-white text-uppercase">
+                  <tr class="ligth ligth-data">
+                    <th>編號</th>
+                    <th>日期</th>
+                    <th>通知類型</th>
+                    <th>通知內容</th>
+                    <th>讀取狀態</th>
+                    <th>會員帳號</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody class="ligth-body" id="content">
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <!-- Page end  -->
+      </div>
+      <!-- Wrapper End-->
+
+      <!-- 新增通知LightBox -->
+      <div class="modal fade" id="addList" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-body">
+              <div class="popup text-left">
+                <!--------------------------------------------------------------->
+
+                <div class="container-fluid add-form-list">
+                  <div class="row">
+
+                    <div class="col-sm-12">
+                      <div class="card" style="margin: 15px 0 15px 0">
+
+                        <div class="card-header d-flex justify-content-between">
+                          <div class="header-title">
+                            <h4 class="card-title" style="margin-left:380px">新增通知訊息</h4>
+                          </div>
                         </div>
-                    </div>
-                    <div class="col-lg-12">
-                        <div class="table-responsive rounded mb-3">
-                            <table class="data-table table mb-0 tbl-server-info">
-                                <thead class="bg-white text-uppercase">
-                                    <tr class="ligth ligth-data">
-                                        <!--                                         <th> -->
-                                        <!--                                             <div class="checkbox d-inline-block"> -->
-                                        <!--                                                 <input type="checkbox" class="checkbox-input" id="checkbox1"> -->
-                                        <!--                                                 <label for="checkbox1" class="mb-0"></label> -->
-                                        <!--                                             </div> -->
-                                        <!--                                         </th> -->
-                                        <th>日期</th>
-                                        <th>通知類型</th>
-                                        <th>通知內容</th>
-                                        <th>讀取狀態</th>
-                                        <th>會員帳號</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <!-- Modal Edit -->
-                                <div class="modal fade" id="edit-note" tabindex="-1" role="dialog" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-body">
-                                                <div class="popup text-left">
-                                                    <div class="media align-items-top justify-content-between">
-                                                        <h3 class="mb-3">Product</h3>
-                                                        <div class="btn-cancel p-0" data-dismiss="modal"><i class="las la-times"></i></div>
-                                                    </div>
-                                                    <div class="content edit-notes">
-                                                        <div class="card card-transparent card-block card-stretch event-note mb-0">
-                                                            <div class="card-body px-0 bukmark">
-                                                                <div class="d-flex align-items-center justify-content-between pb-2 mb-3 border-bottom">
-                                                                    <div class="quill-tool">
-                                                                    </div>
-                                                                </div>
-                                                                <div id="quill-toolbar1">
-                                                                    <p>Virtual Digital Marketing Course every week on Monday, Wednesday and Saturday.Virtual Digital Marketing Course every week on Monday</p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="card-footer border-0">
-                                                                <div class="d-flex flex-wrap align-items-ceter justify-content-end">
-                                                                    <div class="btn btn-primary mr-3" data-dismiss="modal">Cancel</div>
-                                                                    <div class="btn btn-outline-primary" data-dismiss="modal">Save</div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                        </div>
-                    </div>
-                    <!-- Wrapper End-->
 
-                    <div class="container-fluid add-form-list" id="addList" >
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="card">
-                                    <div class="card-header d-flex justify-content-between">
-                                        <div class="header-title">
-                                            <h4 class="card-title">Add Return</h4>
-                                        </div>
-                                    </div>
-                                    <div class="card-body">
-                                        <form action="page-list-returns.html" data-toggle="validator">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Date *</label>
-                                                        <input type="text" class="form-control">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Reference No *</label>
-                                                        <input type="text" class="form-control" placeholder="Enter Reference No" required>
-                                                        <div class="help-block with-errors"></div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Biller *</label>
-                                                        <select name="type" class="selectpicker form-control" data-style="py-0">
-                        <option>Test Biller</option>
-                      </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Customer *</label>
-                                                        <input type="text" class="form-control" placeholder="Enter Customer Name" required>
-                                                        <div class="help-block with-errors"></div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Order Tax *</label>
-                                                        <select name="type" class="selectpicker form-control" data-style="py-0">
-                        <option>No Text</option>
-                        <option>GST @5%</option>
-                        <option>VAT @10%</option>
-                      </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Order Discount</label>
-                                                        <input type="text" class="form-control" placeholder="Discount">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <label>Shipping</label>
-                                                        <input type="text" class="form-control" placeholder="Shipping">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <label>Attach Document</label>
-                                                        <input type="file" class="form-control image-file" name="pic" accept="image/*">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <label>Return Note *</label>
-                                                        <div id="quill-tool">
-                                                            <button class="ql-bold" data-toggle="tooltip" data-placement="bottom" title="Bold"></button>
-                                                            <button class="ql-underline" data-toggle="tooltip" data-placement="bottom" title="Underline"></button>
-                                                            <button class="ql-italic" data-toggle="tooltip" data-placement="bottom" title="Add italic text <cmd+i>"></button>
-                                                            <button class="ql-image" data-toggle="tooltip" data-placement="bottom" title="Upload image"></button>
-                                                            <button class="ql-code-block" data-toggle="tooltip" data-placement="bottom" title="Show code"></button>
-                                                        </div>
-                                                        <div id="quill-toolbar">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <button type="submit" class="btn btn-primary mr-2">Add Returns</button>
-                                            <button type="reset" class="btn btn-danger">Reset</button>
-                                        </form>
-                                    </div>
+                        <div class="card-body">
+                          <form id="addNotice_form" action="noticeManager.html" data-toggle="validator"
+                            enctype="multipart/form-data">
+                            <div class="row">
+
+                              <div class="col-md-6">
+                                <div class="form-group">
+                                  <label>通知類型</label>
+                                  <select name="notice_type" class="selectpicker form-control add_notice_type"
+                                    data-style="py-0 ">
+                                    <option value="">請選擇通知類型
+                                    </option>
+                                    <option value="1">購買成功
+                                    </option>
+                                    <option value="2">取貨提醒
+                                    </option>
+                                    <option value="3">訂位成功
+                                    </option>
+                                    <option value="4">訂位提醒
+                                    </option>
+                                  </select>
                                 </div>
+                              </div>
+
+                              <div class="col-md-6 ">
+                                <div class="form-group ">
+                                  <label>會員帳號</label>
+                                  <select name="member_account" class="form-control add_member_account"
+                                    data-style="py-0">
+                                    <option value="">請選擇會員</option>
+                                  </select>
+                                </div>
+                              </div>
+
+                              <div class="col-md-12 ">
+                                <div class="form-group " style="margin-bottom: 15px">
+                                  <label>通知訊息</label>
+                                  <textarea name="notice_content" class="form-control add_notice_content" rows="2"
+                                    placeholder="請輸入通知內容..." required data-error="內容不得為空白，請輸入內容"></textarea>
+                                  <div class="help-block with-errors"></div>
+                                </div>
+                              </div>
                             </div>
+                            <button type="submit" id="addNotice" class="btn btn-primary mr-2"
+                              style="margin-left:700px">新增通知</button>
+                            <button type="reset" class="btn btn-danger form_reset">清除內容</button>
+                          </form>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Page end  -->
+                </div>
+
+                <!--------------------------------------------------------------->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 更新通知LightBox -->
+      <div class="modal fade" id="updateList" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-body">
+              <div class="popup text-left">
+                <!--------------------------------------------------------------->
+
+                <div class="container-fluid add-form-list">
+                  <div class="row">
+
+                    <div class="col-sm-12">
+                      <div class="card" style="margin: 15px 0 15px 0">
+
+                        <div class="card-header d-flex justify-content-between">
+                          <div class="header-title">
+                            <h4 class="card-title" style="margin-left:380px">更新通知訊息</h4>
+                          </div>
+                        </div>
+
+                        <div class="card-body">
+                          <form id="updateNotice_form" action="noticeManager.html" data-toggle="validator"
+                            enctype="multipart/form-data">
+
+                            <div class="row">
+
+                              <div class="col-md-6">
+                                <div class="form-group">
+                                  <label></label>通知編號</label>
+                                  <input name="notice_id" type="text" class="form-control update_notice_id"
+                                    placeholder="" name="notice_id" readonly
+                                    style="background-color:white; border: none;">
+                                </div>
+                              </div>
+
+                              <div class="col-md-6">
+                                <div class="form-group ">
+                                  <label>會員帳號</label>
+                                  <!-- <input name="member_account" type="text" class="form-control update_member_account"
+                                    placeholder="" readonly style="background-color:white; border: none;"> -->
+                                    <select name="member_account" class="form-control update_member_account"
+                                    data-style="py-0">                                    
+                                  </select>
+                                </div>
+                              </div>
+
+
+                              <div class="col-md-6">
+                                <div class="form-group">
+                                  <label>通知類型</label>
+                                  <select name="notice_type" class="selectpicker form-control update_notice_type"
+                                    data-style="py-0 ">
+                                    <option value="1">購買成功
+                                    </option>
+                                    <option value="2">取貨提醒
+                                    </option>
+                                    <option value="3">訂位成功
+                                    </option>
+                                    <option value="4">訂位提醒
+                                    </option>
+                                  </select>
+                                </div>
+                              </div>
+
+                              <div class="col-md-6">
+                                <div class="form-group ">
+                                  <label>讀取狀態</label>
+                                  <select name="read_status" class="selectpicker form-control update_read_status"
+                                    data-style="py-0">
+                                    <option value="0">未讀</option>
+                                    <option value="1">已讀</option>
+                                  </select>
+                                </div>
+                              </div>
+
+                              <div class="col-md-12 ">
+                                <div class="form-group " style="margin-bottom: 15px">
+                                  <label>通知訊息</label>
+                                  <textarea name="notice_content" class="form-control update_notice_content" rows="2"
+                                    placeholder="請輸入通知內容..." required data-error="內容不得為空白，請輸入內容"></textarea>
+                                  <div class="help-block with-errors"></div>
+                                </div>
+                              </div>
+                            </div>
+                            <button type="submit" id="updateNotice" class="btn btn-primary mr-2"
+                              style="margin-left:780px">更新通知</button>
+                          </form>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Page end  -->
+                </div>
+
+                <!--------------------------------------------------------------->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
 
 
-                            <!-- Backend Bundle JavaScript -->
-                            <script src="assets/js/backend-bundle.min.js"></script>
-
-                            <!-- Table Treeview JavaScript -->
-                            <script src="assets/js/table-treeview.js"></script>
-
-                            <!-- Chart Custom JavaScript -->
-                            <script src="assets/js/customizer.js"></script>
-
-                            <!-- Chart Custom JavaScript -->
-                            <script async src="assets/js/chart-custom.js"></script>
-
-                            <!-- app JavaScript -->
-                            <script src="assets/js/app.js"></script>
-
-                            <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.js"></script>
-
-                            <script>
-                                $(document).ready(function() {
-                                    $('.header').load('header.html')
-                                        // $('.footer').load('footer.html')
-                                })
+      <!-- Backend Bundle JavaScript -->
+      <script src="assets/js/backend-bundle.min.js"></script>
+      <!-- Table Treeview JavaScript -->
+      <script src="assets/js/table-treeview.js"></script>
+      <!-- Chart Custom JavaScript -->
+      <script src="assets/js/customizer.js"></script>
+      <!-- Chart Custom JavaScript -->
+      <script async src="assets/js/chart-custom.js"></script>
+      <!-- app JavaScript -->
+      <script src="assets/js/app.js"></script>
+      <!-- Timestamp轉成指定格式 -->
+      <script src="assets/js/moment.js"></script>
 
 
+      <script>
+        /*--------------- 載入Header區塊 ---------------*/
+        $(document).ready(function () {
+          $('.header').load('header.html');
+        })
+
+        /*----------------- 進頁面先初始化表格 -----------------*/
+        let table = $(".data-table").DataTable()
+        table.destroy();
+        table = $(".data-table")
+          .DataTable({
+            "lengthMenu": [10,
+              15, 20, 25
+            ], //顯示XX像結果
+            "language": {
+              "processing": "處理中...",
+              "loadingRecords": "載入中...",
+              "lengthMenu": "顯示 _MENU_ 項結果",
+              "zeroRecords": "沒有符合的結果",
+              "info": "顯示第 _START_ 至 _END_ 筆結果，共 _TOTAL_ 筆",
+              "infoEmpty": "顯示第 0 至 0 筆結果，共 0 筆",
+              "infoFiltered": "(從 _MAX_ 項結果中過濾)",
+              "infoPostFix": "",
+              "search": "搜尋:",
+              "paginate": {
+                "first": "第一頁",
+                "previous": "上一頁",
+                "next": "下一頁",
+                "last": "最後一頁"
+              },
+              "aria": {
+                "sortAscending": ": 升冪排列",
+                "sortDescending": ": 降冪排列"
+              }
+            },
+            "columnDefs": [{
+              "targets": [0], //欄位從0開始算
+              "visible": true, //欄位是否顯示 預設是true
+              "orderable": true, //是否可以排序
+              "width": "1%"
+            }, {
+              "targets": [1],
+              "visible": true,
+              "orderable": true,
+              "width": "5%"
+            }, {
+              "targets": [2],
+              "visible": true,
+              "orderable": true,
+              "width": "2%",
+              render: function (data, type, row) {
+                switch (data) {
+                  case 1:
+                    return "購買成功 ";
+                  case 2:
+                    return "取貨提醒 ";
+                  case 3:
+                    return "訂位成功 ";
+                  case 4:
+                    return "訂位提醒 ";
+                  default:
+                    return data;
+                }
+              }
+            }, {
+              "targets": [3],
+              "visible": true,
+              "orderable": false,
+              "width": "15%",
+              "className": "dt-body-left"
+            }, {
+              "targets": [4],
+              "visible": true,
+              "orderable": true,
+              "width": "2%",
+              render: function (data, type, row) {
+                switch (data) {
+                  case 0:
+                    return "未讀";
+                  case 1:
+                    return "已讀";
+                  default:
+                    return data;
+                }
+              }
+            }, {
+              "targets": [5],
+              "visible": true,
+              "orderable": true,
+              "width": "5%"
+            }, {
+              "targets": [6],
+              "visible": true,
+              "orderable": true,
+              "width": "2%"
+            }]
+          })
+        getAllNotice();
+
+        /*----------------- 選單選項 -----------------*/
+        $.post("/dessert_shop/member/backend_getAll", function (data) {
+          if (data.flag) {
+            for (var i = 0; i < data.data.length; i++) {
+              console.log(data.data[i].member_account);
+              $('.add_member_account').append(`<option value="` + data.data[i].member_account + `">` + data.data[i].member_account + `</option>`)
+              $('.update_member_account').append(`<option value="` + data.data[i].member_account + `">` + data.data[i].member_account + `</option>`)
+            }
+            $('.add_member_account').selectpicker('refresh');
+            $('.update_member_account').selectpicker('refresh');
+          } else { }
+        });
 
 
-                                $.post("/dessert_shop/notice/backend_getAllNotice", function(data) {
-                                    if (data.flag) {
-                                        let table = $(".data-table").DataTable();
-                                        table.destroy();
-                                        table = $(".data-table").DataTable({
-                                            "autoWidth": false,
-                                            "lengthMenu": [5, 10, 15, 20], //顯示XX像結果
-                                            "language": {
-                                                "processing": "處理中...",
-                                                "loadingRecords": "載入中...",
-                                                "lengthMenu": "顯示 _MENU_ 項結果",
-                                                "zeroRecords": "沒有符合的結果",
-                                                "info": "顯示第 _START_ 至 _END_ 項結果，共 _TOTAL_ 項",
-                                                "infoEmpty": "顯示第 0 至 0 項結果，共 0 項",
-                                                "infoFiltered": "(從 _MAX_ 項結果中過濾)",
-                                                "infoPostFix": "",
-                                                "search": "搜尋:",
-                                                "paginate": {
-                                                    "first": "第一頁",
-                                                    "previous": "上一頁",
-                                                    "next": "下一頁",
-                                                    "last": "最後一頁"
-                                                },
-                                                "aria": {
-                                                    "sortAscending": ": 升冪排列",
-                                                    "sortDescending": ": 降冪排列"
-                                                }
-                                            },
-                                            bAutoWidth: false,
-                                            "aoColumns": [{
-                                                sWidth: '15%'
-                                            }, {
-                                                sWidth: '15%'
-                                            }, {
-                                                sWidth: '40%'
-                                            }, {
-                                                sWidth: '10%'
-                                            }, {
-                                                sWidth: '10%'
-                                            }, {
-                                                sWidth: '15%'
-                                            }, ],
-                                            "columnDefs": [{
-                                                targets: [1],
-                                                render: function(data, type, row) {
-                                                    switch (data) {
-                                                        case 1:
-                                                            return "購買成功";
+        $.get("/dessert_shop/notice/backend_getAllNotice", function (data) {
+          if (data.flag) {
+            for (var i = 0; i < data.data.length; i++) {
+              $('.update_notice_id').append(`<option value="` + data.data[i].notice_id + `">` + data.data[i].notice_id + `</option>`)
+            }
+            $('.update_notice_id').selectpicker('refresh');
+          } else { }
+        });
 
-                                                        case 2:
-                                                            return "取貨提醒";
 
-                                                        case 3:
-                                                            return "訂位成功";
 
-                                                        case 4:
-                                                            return "訂位提醒";
-                                                    }
-                                                }
-                                            }, {
-                                                targets: [2],
-                                                "className": "dt-body-left",
-                                            }]
-                                        })
-                                        table.clear().draw();
-                                        for (let i = 0; i <
-                                            data.data.length; i++) {
-                                            table.row.add([
-                                                //                                     	checkBox
-                                                moment(data.data[i].notice_time).format('YYYY-MM-DD'),
-                                                data.data[i].notice_type,
-                                                data.data[i].notice_content,
-                                                data.data[i].read_status == 0 ? "未讀" : "已讀",
-                                                data.data[i].member_account,
-                                                action
-                                            ]).draw(false);
-                                        }
-                                    } else {}
-                                });
 
-                                /************************************* Function ********************************************/
+        $('.form_reset').on("click", function () {
 
-                                let action = `
-        <div class="d-flex align-items-center list-action">                                                
-          <a class="badge bg-success mr-3" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit" href="#"><i class="ri-pencil-line mr-0"></i></a>                                              
-          <a class="badge bg-warning mr-0" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" href="#"><i class="ri-delete-bin-line mr-0"></i></a>                                            
-        </div>`
+          $('.add_member_account').trigger("change");
+          $('.add_notice_type').trigger("change");
+        })
 
-                                //隱藏燈箱
-                                $("#addList").modal('hide');
+        /*------------------- 新增通知 ************************/
+        $('#addNotice').on("click", function (e) {
 
-                                //開啟燈箱
-                                $("#addList").modal('show');
+          e.preventDefault();
+          console.log($("#addNotice_form").serialize());
 
-                                //切換燈箱顯示、不顯示
-                                $("#addList").modal('toggle');
 
-                                //判斷燈箱是否開啟中
-                                if ($("addList").hasClass('in')) {
-                                    console.log('視窗目前是開啟的狀態..');
-                                }
-                                //  重置表單
-                                $("#addMemberForm").trigger("reset");
-                            </script>
+          let form = $("#addNotice_form")[0];
+          let data = new FormData(form);
+
+          $.post("/dessert_shop/notice/backend_addNotice", $("#addNotice_form").serialize(), function (data) {
+
+            console.log(data);
+
+            if (data.flag) {
+              Swal.fire({
+                title: data.msg,
+                text: "新增成功",
+                icon: "success"
+              });
+              getAllNotice();
+              $("#addList").modal('hide');
+              $("#addNotice_form").trigger("reset");
+              $('.add_member_account').trigger("change");
+              $('.add_notice_type').trigger("change");
+            } else {
+              Swal.fire({
+                title: data.msg,
+                text: "新增失敗",
+                icon: "error"
+              })
+            }
+          });
+        });
+
+
+        /*-------------------- 更新通知 --------------------*/
+        $('tbody').on("click", 'a.edit', function () {
+          let table = $('.data-table').DataTable();
+          let data = table.row($(this).closest('tr')).data();
+
+          $('.update_notice_id').val(data[0]);
+          getUpdate_noticeType(data[2]);
+          $('.update_notice_content').val(data[3]);
+          getUpdate_readStatue(data[4]);
+          // $('.update_member_account').val(data[5]);
+          getMember(data[5]);
+
+          console.log("id=" + $('.update_notice_id').val(data[0]))
+        });
+
+
+
+        $('#updateNotice').on("click", function (e) {
+          e.preventDefault();
+          console.log("按下更新");
+
+          let form = $("#updateNotice_form")[0];
+          let data = new FormData(form);
+
+          $.post("/dessert_shop/notice/backend_update", $("#updateNotice_form").serialize(), function (data) {
+
+            console.log("發送新增請求")
+
+            if (data.flag) {
+              Swal.fire({
+                title: data.msg,
+                text: "新增成功",
+                icon: "success"
+              });
+              getAllNotice();
+              $("#updateList").modal('hide');
+              $("#updateNotice_form").trigger("reset");
+              $('.update_notice_type').trigger("change");
+              $('.update_read_status').trigger("change");
+            } else {
+              Swal.fire({
+                title: data.msg,
+                text: "新增失敗",
+                icon: "error"
+              })
+            }
+          });
+        });
+
+        /*-------------------- 刪除通知 --------------------*/
+        $('tbody').on("click", 'a.delete', function () {
+
+          let table = $(".data-table").DataTable()
+          let data = table.row($(this).closest('tr')).data()
+
+
+          $.post("/dessert_shop/notice/backend_delete", { "notice_id": data[0] }, function (data) {
+            console.log(data);
+            if (data.flag) {            
+              getAllNotice();
+              Swal.fire({
+                title: data.msg,
+                text: "刪除成功",
+                icon: "success"
+              });
+            } else {
+              Swal.fire({
+                title: data.msg,
+                text: "刪除失敗",
+                icon: "error"
+              })
+            }
+          });
+        });
+
+
+        /*-------------------- Function 放置區 --------------------*/
+
+        function getAllNotice() {
+
+          let action = `
+<div class="d-flex align-items-center list-action">                                                
+<a class="badge bg-success mr-3 edit" data-toggle="modal" data-target="#updateList" data-placement="top " title=" " data-original-title="Edit " href="# "><i class="ri-pencil-line mr-0 "></i></a>                                              
+<a class="badge bg-warning mr-0 delete" data-toggle="tooltip " data-placement="top " title="" data-original-title="Delete " href="# "><i class="ri-delete-bin-line mr-0 "></i></a>                                            
+</div>`
+
+          $.post("/dessert_shop/notice/backend_getAllNotice", function (data) {
+
+            if (data.flag) {
+              let table = $(".data-table").DataTable()
+              table.clear().draw();
+              for (let i = 0; i < data.data.length; i++) {
+                table.row.add([
+                  data.data[i].notice_id,
+                  moment(data.data[i].notice_time).format('YYYY-MM-DD'),
+                  data.data[i].notice_type,
+                  data.data[i].notice_content,
+                  data.data[i].read_status,
+                  data.data[i].member_account,
+                  action
+                ]).draw(false);
+              }
+
+            } else { }
+          });
+        }
+
+        function getUpdate_noticeType(type) {
+          switch (type) {
+            case "購買成功":
+              $('.update_notice_type').val("1");
+              break;
+            case "取貨提醒":
+              $('.update_notice_type').val("2");
+              break;
+            case "訂位成功":
+              $('.update_notice_type').val("3");
+              break;
+            case "訂位提醒":
+              $('.update_notice_type').val("4");
+              break;
+            default:
+              $('.update_notice_type').val(type);
+              break;
+          }
+          $('.update_notice_type').selectpicker('refresh');
+        }
+
+        function getUpdate_readStatue(status) {
+          switch (status) {
+            case "未讀":
+              $('.update_read_status').val("0")
+              break;
+            case "已讀":
+              $('.update_read_status').val("1");
+              break;
+            default:
+              $('.update_read_status').val(status);
+              break;
+          }
+          $('.update_read_status').selectpicker('refresh');
+        }
+
+        function getMember(member) {
+          switch (member) {                
+            default:
+              $('.update_member_account').val(member);
+              break;
+          }
+          $('.update_member_account').selectpicker('refresh');
+        }
+      </script>
+
 </body>
 
 </html>

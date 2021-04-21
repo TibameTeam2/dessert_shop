@@ -480,7 +480,7 @@
                           <div class="col-md-6">
                             <div class="form-group">
                               <label>公告時間</label>
-                              <input type="text" class="form-control" placeholder="Enter YYYY-MM-DD hh:mm:ss"
+                              <input type="datetime-local" step="01" class="form-control" placeholder="Enter YYYY-MM-DD hh:mm:ss"
                                 data-errors="Please Enter Code." id="announcement_time" name="announcement_time"
                                 required>
                               <div class="help-block with-errors"></div>
@@ -608,7 +608,7 @@
                           <div class="col-md-6">
                             <div class="form-group">
                               <label>公告時間</label>
-                              <input type="text" class="form-control update_announcement_time" placeholder="Enter Code"
+                              <input type="datetime-local" step="01" class="form-control update_announcement_time" placeholder="Enter Code"
                                 data-errors="Please Enter Code." id="announcement_time" name="announcement_time"
                                 required name="announcement_time">
                               <div class="help-block with-errors"></div>
@@ -890,7 +890,7 @@
       let table = $(".data-table").DataTable()
       let data = table.row($(this).closest('tr')).data();
       console.log(data);
-      alert( 'You clicked on '+data[0]+'\'s row' );
+      // alert( 'You clicked on '+data[0]+'\'s row' );
 
       $(".update_announcement_id").val(data[0]);
       $(".update_announcement_name").val(data[1]);
@@ -1007,13 +1007,14 @@
         contentType: false,
         cache: false,
         success: function (data) {
+          getAllAnnouncement();
           if (data.flag) {
             Swal.fire({
               title: data.msg,
               text: "",
               icon: "success"
             });
-            getAllMember();
+            getAllAnnouncement();
             $("#update_modal").modal('hide');
             $("#updateAMform").trigger("reset");
           } else {

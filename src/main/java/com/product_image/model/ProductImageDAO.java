@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.daily_special.model.DailySpecialBean;
-import com.daily_special.model.DailySpecialDAO;
+import com.daily_special.model.DailySpecialDao;
 import com.util.JDBCUtil;
 import org.springframework.jdbc.core.JdbcTemplate;
 

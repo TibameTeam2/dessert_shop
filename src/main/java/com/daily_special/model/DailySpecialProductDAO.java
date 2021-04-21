@@ -14,7 +14,7 @@ import com.product.model.ProductBean;
 import com.util.JDBCUtil;
 
 
-public class ValidDailySpecialProductDAO implements ValidDailySpecialProductDAO_interface {
+public class DailySpecialProductDAO implements DailySpecialProductDAO_interface {
 //	
 //	private static JdbcTemplate jdbcTemplate;
 //	private String driver = JDBCUtil.driver;
@@ -92,9 +92,9 @@ public class ValidDailySpecialProductDAO implements ValidDailySpecialProductDAO_
 //
 //	}
 	
-	public ValidDailySpecialProductBean getOneValidDSProduct(DailySpecialBean dsBean, ProductBean productBean) {
-		ValidDailySpecialProductBean vds_productBean = new ValidDailySpecialProductBean();
-		vds_productBean = new ValidDailySpecialProductBean();
+	public DailySpecialProductBean getOneDailySpecialProduct(DailySpecialBean dsBean, ProductBean productBean) {
+		DailySpecialProductBean vds_productBean = new DailySpecialProductBean();
+		vds_productBean = new DailySpecialProductBean();
 		
 		vds_productBean.setDiscount_product_id(dsBean.getDiscount_product_id());
 		vds_productBean.setProduct_id(dsBean.getProduct_id());
@@ -124,6 +124,39 @@ public class ValidDailySpecialProductDAO implements ValidDailySpecialProductDAO_
 		return vds_productBean;
 		
 	}
+	// 後台的每日優惠+商品   名稱要改*************
+//	public DailySpecialProductBean getOneDSProduct(DailySpecialBean dsBean, ProductBean productBean) {
+//		DailySpecialProductBean vds_productBean = new DailySpecialProductBean();
+//		vds_productBean = new DailySpecialProductBean();
+//		
+//		vds_productBean.setDiscount_product_id(dsBean.getDiscount_product_id());
+//		vds_productBean.setProduct_id(dsBean.getProduct_id());
+//		vds_productBean.setDiscount_price(dsBean.getDiscount_price());
+//		vds_productBean.setDiscount_start_time(dsBean.getDiscount_start_time());
+//		vds_productBean.setDiscount_deadline(dsBean.getDiscount_deadline());
+//		
+//		vds_productBean.setProduct_name(productBean.getProduct_name());
+//		vds_productBean.setProduct_type(productBean.getProduct_type());
+//		vds_productBean.setProduct_subtype(productBean.getProduct_subtype());
+//		vds_productBean.setProduct_intro(productBean.getProduct_intro());
+//		vds_productBean.setProduct_ingredient(productBean.getProduct_ingredient());
+//		vds_productBean.setProduct_price(productBean.getProduct_price());
+//		vds_productBean.setProduct_available_qty(productBean.getProduct_available_qty());
+//		vds_productBean.setProduct_status(productBean.getProduct_status());
+//		vds_productBean.setExpiry_after_buying(productBean.getExpiry_after_buying());
+//		vds_productBean.setProduct_calorie(productBean.getProduct_calorie());
+//		vds_productBean.setDegree_of_sweetness(productBean.getDegree_of_sweetness());
+//		vds_productBean.setTotal_star(productBean.getTotal_star());
+//		vds_productBean.setTotal_review(productBean.getTotal_review());
+//		vds_productBean.setTotal_purchase(productBean.getTotal_purchase());
+//		vds_productBean.setAverage_star(productBean.getAverage_star());
+//		vds_productBean.setImage_url(productBean.getImage_url());
+//		
+//		
+//		
+//		return vds_productBean;
+//		
+//	}
 	
 	
 

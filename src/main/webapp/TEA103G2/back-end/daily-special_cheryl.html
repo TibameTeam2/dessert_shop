@@ -589,7 +589,7 @@ getAllDailySpecial();
 let url = location.href.split("/TEA103G2")[0];
 function getAllDailySpecial(){
 <!--因為有商品成分跟介紹的部分 所以應該要做預覽-->		
-    $.get("/dessert_shop/product/backend_getAllProduct", {}, function (data) {
+    $.get("/dessert_shop/dailySpecial/getValidDailySpecialProduct", {}, function (data) {
 		var action = `<div class="d-flex align-items-center list-action">
             			<!-- <a class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View"
                  			href="#"><i class="ri-eye-line mr-0"></i></a> -->
@@ -653,13 +653,15 @@ function getAllDailySpecial(){
 	            // 撈第一張照片
 	            let product_img1 = url + data.data[i].image_url[0];
 	            table.row.add([
+	            	data.data[i].discount_product_id,
 	            	'<img class="table-img avatar-50" src="'+product_img1+'">',
 	            	data.data[i].product_name,
 	            	data.data[i].product_id,
-	            	data.data[i].product_type,
 	            	data.data[i].product_subtype,
 	           		data.data[i].product_price,
-	            	data.data[i].product_available_qty,
+	           		data.data[i].discount_price,
+	            	data.data[i].discount_start_time,
+	            	data.data[i].discount_deadline,
 	            	data.data[i].product_status == 0 ? "未上架" : "上架中",
 	            	data.data[i].total_purchase,
 	            	data.data[i].average_star,
