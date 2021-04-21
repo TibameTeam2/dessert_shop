@@ -15749,9 +15749,16 @@ only screen and (max-width: 767px) {
     }
 }
 
+/* 下面註解掉的是原本的 */
+/* .section-padding-02 { */
+/*     padding-top: 100px; */
+/*     padding-bottom: 100px; */
+/* } */
+
+/* 影響首頁最新消息-每日優惠 間距 */
 .section-padding-02 {
-    padding-top: 100px;
-    padding-bottom: 100px;
+    padding-top: 50px;
+    padding-bottom: 50px;
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {

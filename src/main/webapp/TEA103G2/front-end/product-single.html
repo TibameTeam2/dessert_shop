@@ -150,8 +150,9 @@ ul.order_master_comment_list>li.-on button.switch_btn span.minus {
 
 <!-- Loading Progress ============================================= -->
 <div id="loading-progress">
-	<a class="logo" href="#"> <img src="assets/images/logo.jpg"
-		data-logo-alt="images/files/logo-header.png" alt=""> <!--        <h3><span class="colored">Astron</span></h3>-->
+	<a class="logo" href="#"> 
+	<img src="assets/images/sweetness_logo.png" data-logo-alt="images/files/logo-header.png" alt="">
+		<!--        <h3><span class="colored">Astron</span></h3>-->
 		<!--        <span>HTML Template</span>-->
 	</a>
 	<!-- .logo end -->
@@ -403,7 +404,7 @@ ul.order_master_comment_list>li.-on button.switch_btn span.minus {
 								<li>
 									<div class="reassurance-item">
 										<img src="assets/images/icon/icon4.png" alt="">
-										<p>付款方式 : 取貨付款．信用卡</p>
+										<p>付款方式 : 取貨付款．信用卡．匯款</p>
 									</div>
 								</li>
 								<li>
@@ -1089,6 +1090,12 @@ ul.order_master_comment_list>li.-on button.switch_btn span.minus {
 				$("div.shop-single-content .review-star div.star").attr("style", "width:"+rating_star+"%"); 
 
 				// 是否為特價商品(設定每日優惠商品後，對該商品做操作)
+				if(validDSProduct.flag){
+					updatePrice(validDSProduct);
+				}else{
+					getAndUpdatePrice();
+				
+				}
 
 		});
 		
@@ -1098,23 +1105,49 @@ ul.order_master_comment_list>li.-on button.switch_btn span.minus {
 
 		var validDSProduct=0;
 	     // 取得有效特價商品的API,用var儲存data，最後寫function() ,比對product_id，把頁面上id符合的 價格覆蓋
-	       	$.get("/dessert_shop/dailySpecial/getValidDailySpecialProduct", {}, function (data) {
-	       		validDSProduct = data.data;
-	        	console.log("validDSProduct:"+validDSProduct);///???????????沒印出來阿
+       	$.get("/dessert_shop/dailySpecial/getValidDailySpecialProduct", {}, function (data) {
+       		validDSProduct = data;
+        	console.log("validDSProduct:"+validDSProduct);///???????????沒印出來阿
+           	console.log("優惠商品flag:"+validDSProduct.flag);
+        	if(validDSProduct.flag){
 	           	updatePrice(validDSProduct);
-	           	console.log("優惠商品flag:"+data.flag);
-	   
-	        });	
+        	}else{
+        		
+        		getAndUpdatePrice();
+        	}
+   
+        });	
 	   		
-	       	function updatePrice(data){
-				console.log("updatePrice!!!!!!!!!!!!!!!");       		
-	       		for(var i = 0 ; i < data.length; i++){
-	       			console.log(data[i]);
-	       			let update_id = data[i].product_id;
+       	function updatePrice(data){
+			console.log("updatePrice!!!!!!!!!!!!!!!");       		
+       		for(var i = 0 ; i < data.data.length; i++){
+       			console.log(data.data[i]);
+       			let update_id = data.data[i].product_id;
 	       			if (product_id == update_id){
 	       				
-		       			let old_price = data[i].product_price;
-		       			let update_price = data[i].discount_price;
+		       			let old_price = data.data[i].product_price;
+		       			let update_price = data.data[i].discount_price;
+		       			console.log("old_price:"+old_price);
+		       			console.log("update_price:"+update_price);
+	    	   			
+	       				$(".product-prices").html('<span class="old-price">$'+old_price+'</span> <span class="sale-price">$'+update_price+'</span>');
+
+	       			}
+       			
+       			}
+     	}//updatePrice() 
+      
+       	function getAndUpdatePrice(){
+       		$.get("/dessert_shop/dailySpecial/getValidDailySpecialProduct", {}, function (data) {
+	       		validDSProduct = data;
+	        	console.log("getAndUpdate-validDSProduct:"+validDSProduct);
+				console.log("get + updatePrice!!!!");       		
+	       		for(var i = 0 ; i < data.data.length; i++){
+	       			console.log(data[i]);
+	       			let update_id = data.data[i].product_id;
+	       			if (product_id == update_id){
+		       			let old_price = data.data[i].product_price;
+		       			let update_price = data.data[i].discount_price;
 		       			console.log("old_price:"+old_price);
 		       			console.log("update_price:"+update_price);
 	    	   			
@@ -1123,8 +1156,13 @@ ul.order_master_comment_list>li.-on button.switch_btn span.minus {
 	       			}
 	       			
 	       		}
-	      }//updatePrice() 
-		
+	        });	
+      }
+	
+	      
+	      
+	      
+	      
 		
 <!-- 商品評價 -->
 		$.get("/dessert_shop/productComment/getProductComment?productId="+product_id, {}, function(data) {
