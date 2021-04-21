@@ -295,8 +295,11 @@ public class OrderMasterServlet extends BaseServlet {
             if (orderMasterBean.getCoupon_id() != null && orderMasterBean.getCoupon_id() != 0) {
             	CartProductSvc.updateCouponStatus(orderMasterBean.getCoupon_id(), 0);
             }
-            //Line發通知-取消訂單
-            LineUtil.linePushMessage(orderMasterBean.getMember_account(), "您的訂單已取消!"); 
+            //Line發通知-取消訂單 >>>>>>>>>
+            LineUtil.linePushMessage(orderMasterBean.getMember_account(), "您的訂單已取消!");
+            //Notice通知
+            
+            
         } else {
             //取消失敗
             info.setFlag(false);
@@ -354,10 +357,12 @@ public class OrderMasterServlet extends BaseServlet {
             for (OrderDetailBean ODBean : list_OD) {
             	ProductSvc.addProductPurchase(ODBean.getProduct_id(), ODBean.getProduct_qty());
             } 
-            //Line發通知-匯款成功
+            //Line發通知-匯款成功 >>>>>>>>>
             if (orderMasterBean.getPayment_method() == 3) {           	
             	LineUtil.linePushMessage(orderMasterBean.getMember_account(), "匯款完成!");           	
-            }       
+            }
+            //Notice通知
+            
             
         } else {
             //付款失敗

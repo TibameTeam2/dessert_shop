@@ -250,7 +250,7 @@
                             <!------------------------------------- Notice (end)------------------------------------>
 
                             <div class="dropdown">
-                                <a class="action" href="cart.html" role="button">
+                                <a class="action cart_qty" href="cart.html" role="button">
                                     <i class="las la-shopping-bag"></i>
                                 </a>
                             </div>
@@ -663,6 +663,30 @@
             });
         }
     </script>
+
+<script>
+/********************************** 購物車袋子數字 **********************************/
+cartQty();
+function cartQty () {
+    $.get("/dessert_shop/cart/getCartQty", {}, function (data) {
+        
+        if (data.data > 0) {
+            let cart_qty = `<i class="las la-shopping-bag"></i>
+                            <span class="number">${data.data}</span>`;
+            $("a.cart_qty").html(cart_qty);
+        } else {
+            let cart_qty = `<i class="las la-shopping-bag"></i>`;
+            $("a.cart_qty").html(cart_qty);
+        }
+        
+    });  //get
+}
+
+
+
+</script>
+
+
 </body>
 
 </html>
