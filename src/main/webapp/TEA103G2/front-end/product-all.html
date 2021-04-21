@@ -59,7 +59,8 @@
 <body>
 	<!-- Loading Progress ============================================= -->
 	<div id="loading-progress">
-		<img src="assets/images/sweetness_logo.png" data-logo-alt="images/files/logo-header.png" alt="">
+		<a class="logo" href="#">
+			<img src="assets/images/sweetness_logo.png" data-logo-alt="images/files/logo-header.png" alt="">
 			<!--        <h3><span class="colored">Astron</span></h3>-->
 			<!--        <span>HTML Template</span>-->
 		</a>
@@ -81,7 +82,7 @@
 
 
 	<div class="main-wrapper">
-	
+
 		<!--Header-->
 		<div class="header"></div>
 
@@ -132,15 +133,15 @@
 					<div class="tab-pane fade show active" id="grid">
 						<div class="row">
 						<!-- 方格商品清單 會插在這裡-->
-						
+
 						</div>
 					</div>
-					
-					
-					<!-- 條列式 -->					
+
+
+					<!-- 條列式 -->
 					<div class="tab-pane fade" id="list">
-					<!-- 條列式清單插入的位置 -->					
-						
+					<!-- 條列式清單插入的位置 -->
+
 					</div>
 				</div>
 				<!-- Tab Content End -->
@@ -184,7 +185,7 @@
 									<div class="swiper-container">
 										<div class="swiper-wrapper">
 										<!-- 大圖插入處 -->
-										
+
 										</div>
 									</div>
 								</div>
@@ -192,7 +193,7 @@
 									<div class="swiper-container">
 										<div class="swiper-wrapper">
 										<!-- 下方小圖插入處 -->
-										
+
 										</div>
 									</div>
 									<!-- Add Arrows -->
@@ -270,7 +271,7 @@
 <!-- 										<li><a href="#"><i class="ion-social-twitter"></i></a></li> -->
 <!-- 										<li><a href="#"><i class="ion-social-pinterest"></i></a></li> -->
 <!-- 										<li><a href="#"><i class="ion-social-linkedin"></i></a></li> -->
-										
+
 										<!-- 分享按鈕 from SHAR THIS -->
 										<li>
 										<div class="sharethis-inline-share-buttons"></div>
@@ -348,7 +349,7 @@
                 }), $("#lp-bar").animate({ width: n + "%" }, 0)
             }, waitForAll: !0
         });
-   
+
    	</script>
 
 
@@ -363,10 +364,10 @@
 
        	let request_type=getParameter("type");
        	let request_subtype= getParameter("subtype");
-       	console.log("轉換前:"+request_type);	
-     	console.log("轉換前:"+request_subtype);	
-     		
-   
+       	console.log("轉換前:"+request_type);
+     	console.log("轉換前:"+request_subtype);
+
+
        	switch(request_type) {
 	       	 case "cakes":
 	       	 	request_type="蛋糕";
@@ -390,7 +391,7 @@
 		          	  break;
 		          	 default:
 			          // ?
-		       	 	}			
+		       	 	}
 	       	 	}
 	       	  break;
        	 case "chocolates":
@@ -462,19 +463,19 @@
            		defaultDisplay(data);
             });
        	}
-       	console.log("轉換後:"+request_type);	
-     	console.log("轉換後:"+request_subtype);	
-  
-       	
+       	console.log("轉換後:"+request_type);
+     	console.log("轉換後:"+request_subtype);
+
+
        	// 要取得商品資訊的API
        	$.get("/dessert_shop/product/getAllProduct", {}, function (data) {
        		console.log(data.msg);
        		productDisplay(data);
 //      		console.log(window.location.href);
-           		
+
         });
-       	
-       
+
+
        	var validDSProduct=0;
      // 取得有效特價商品的API,用var儲存data，最後寫function() ,比對product_id，把頁面上id符合的 價格覆蓋
        	$.get("/dessert_shop/dailySpecial/getValidDailySpecialProduct", {}, function (data) {
@@ -482,29 +483,29 @@
         	console.log("validDSProduct:"+validDSProduct);///???????????沒印出來阿
            	updatePrice(validDSProduct);
            	console.log("優惠商品flag:"+data.flag);
-   
-        });	
-   		
+
+        });
+
        	function updatePrice(data){
-			console.log("updatePrice!!!!!!!!!!!!!!!");       		
+			console.log("updatePrice!!!!!!!!!!!!!!!");
        		for(var i = 0 ; i < data.length; i++){
        			console.log(data[i]);
        			let update_id = data[i].product_id;
        			let update_price = data[i].discount_price;
        			let old_price = data[i].product_price;
-       			
+
        			$("#"+update_id).find(".sele-price").html('<span class="regular-price">$'+old_price+'</span> <span class="sale-price">$'+update_price+'</span>');
 
-       			
+
        		}
-      }//updatePrice() 
-   		
-		       	
-       	
-       	
-         
-				     	
-	<!--*******  排序功能  ******--> // 語法重複性太高，有空再修改...    
+      }//updatePrice()
+
+
+
+
+
+
+	<!--*******  排序功能  ******--> // 語法重複性太高，有空再修改...
 		$(".sorting").on("change", function(){
     		console.log("change sorting!");
     		let sort = $(".sorting").val();
@@ -520,7 +521,7 @@
 			     		productDisplay(data);
 					}
 			     });
-    			
+
     		}else if (sort == 2){
     			$.get("/dessert_shop/product/getAllSortByStar", {}, function (data) {
 		     		console.log("sort star");
@@ -532,7 +533,7 @@
 			     		productDisplay(data);
 					}
 		     	});
-    			
+
     		}else if(sort == 3){
     			$.get("/dessert_shop/product/getAllSortByPrice", {}, function (data) {
 		     		console.log("sort price");
@@ -544,8 +545,8 @@
 			     		productDisplay(data);
 					}
 		     	});
-    			
-    			
+
+
      		}else if (sort == 4){
      			$.get("/dessert_shop/product/getAllSortByCalorie", {}, function (data) {
 		     		console.log("sort calorie");
@@ -557,7 +558,7 @@
 			     		productDisplay(data);
 					}
 			    });
-     			
+
      		}else if(sort == 5){
      			$.get("/dessert_shop/product/getAllSortBySweetness", {}, function (data) {
 		     		console.log("sort sweetness");
@@ -569,7 +570,7 @@
 			     		productDisplay(data);
 					}
 			     });
-     			
+
      		}else if(sort == 0){
      			// 跳回去原始的
      			$.get("/dessert_shop/product/getAllProduct", {}, function (data) {
@@ -583,9 +584,9 @@
 					}
      	       	});
      		}
-   		});  
+   		});
 		// 是不是應該讓排序的條件可以顯示?熱量 甜度 銷售量 看不到
-           
+
         // 讓他在取得api拿到預設的0
        $(window).on("load", function(){
     	   // 圖片等資源載入完成之後
@@ -595,16 +596,16 @@
 //        var sort = $(".sorting :selected").val();
 //    		console.log(sort);
 
-	  
+
 
    		let url = location.href.split("/TEA103G2")[0];
    		function productDisplay(data){
    			console.log("productDisplay");
-		    
+
 			for(var i = 0 ; i < data.data.length; i++){
 	      		// 判斷是否符合該主分類
 	  			if((data.data[i].product_subtype == request_subtype && data.data[i].product_type == request_type) | (request_subtype == null && data.data[i].product_type == request_type)){
-	  				
+
 	  				console.log("dispaly裡的subtype"+data.data[i].product_subtype);
 
 	  				let product_id = data.data[i].product_id;
@@ -617,17 +618,17 @@
 	//       		let image_list = [data.data[i].image_url]; //此取法為二維陣列
 					let product_intro = data.data[i].product_intro;
 					let product_available_qty = data.data[i].product_available_qty;
-	      				
+
 	     			let product_img1 = url+image_list[0];
 	     			let product_img2 = url+image_list[1];
-	     	           				
+
 	  				let single_product_grid = `
 	      				<div class="col-lg-3 col-sm-6" data->
 							<!-- Single Product Start -->
 							<div class="single-product" id="${product_id}">
 								<div class="product-image">
-									<a class="product-thumbnail" href="product-single.html?id=${product_id}"> 
-										<img src="${product_img1}" alt="product">										
+									<a class="product-thumbnail" href="product-single.html?id=${product_id}">
+										<img src="${product_img1}" alt="product">
 										<img class="image-hover" src="${product_img2}" alt="product">
 									</a>
 									<div class="product-action">
@@ -655,21 +656,21 @@
 							</div>
 							<!-- Single Product End -->
 						</div>`
-	                  
-					$("div#grid div.row:last-child").append(single_product_grid); 
-						
-						
+
+					$("div#grid div.row:last-child").append(single_product_grid);
+
+
 		    		let single_product_list=`
 		    			<!-- Single Product Start -->
 						<div class="single-product product-list" id="${product_id}">
 							<div class="product-image">
-								<a class="product-thumbnail" href="product-single.html?id=${product_id}"> 
+								<a class="product-thumbnail" href="product-single.html?id=${product_id}">
 								<img src="${product_img1}" alt="product">
 								<img class="image-hover" src="${product_img2}" alt="product">
 								</a>
 								<div class="product-action">
 									<a href="#" class="action"><i class="lar la-heart"></i></a>
-									<a href="#" class="action"><i class="las la-sync"></i></a> 
+									<a href="#" class="action"><i class="las la-sync"></i></a>
 									<a href="#" class="action search" data-bs-toggle="modal"
 										data-bs-target="#quick-view"><i class="las la-search"></i></a>
 								</div>
@@ -703,36 +704,36 @@
 							</div>
 						</div>
 						<!-- Single Product End -->`
-						
-		    		$("div#list").append(single_product_list); 
+
+		    		$("div#list").append(single_product_list);
 
 						// 更新價格*****************************************************************
 						// updatePrice();
-	      	
+
    				}//for迴圈end
-	      		
+
 			}
 			//等商品渲染完後，把比較商品的比較按鈕上色
 			getCompareList();
-			  
-			  
-			  
+
+
+
    		}//productDisplay()
-   		
-   		
-   		
 
-   		
-   		
 
-       	
-       	
+
+
+
+
+
+
+
 // 商品總覽(不帶任何參數時)
 		function defaultDisplay(data){
 			console.log("defaultDisplay")
-			
+
 			for(var i = 0 ; i < data.data.length; i++){
-  				
+
   				let product_id = data.data[i].product_id;
 				let product_name = data.data[i].product_name;
 				let product_subtype = data.data[i].product_subtype;
@@ -743,22 +744,22 @@
 //       		let image_list = [data.data[i].image_url]; //此取法為二維陣列
 				let product_intro = data.data[i].product_intro;
 				let product_available_qty = data.data[i].product_available_qty;
-      				
+
      			let product_img1 = url+image_list[0];
      			let product_img2 = url+image_list[1];
-     	           				
+
   				let single_product_grid = `
       				<div class="col-lg-3 col-sm-6" data->
 						<!-- Single Product Start -->
 						<div class="single-product" id="${product_id}">
 							<div class="product-image">
-								<a class="product-thumbnail" href="product-single.html?id=${product_id}"> 
-									<img src="${product_img1}" alt="product">										
+								<a class="product-thumbnail" href="product-single.html?id=${product_id}">
+									<img src="${product_img1}" alt="product">
 									<img class="image-hover" src="${product_img2}" alt="product">
 								</a>
 								<div class="product-action">
 									<a href="#收藏網頁" class="action"><i class="lar la-heart"></i></a>
-									<a href="#比較網頁" class="action"><i class="las la-sync"></i></a>
+									<a href="javascript:void(0)" class="action compare"><i class="las la-sync"></i></a>
 									<a href="#" class="action search" data-bs-toggle="modal"
 								  	 data-bs-target="#quick-view" ><i class="las la-search"></i></a>
 									<a href="javascript:void(0)" class="action add-cart"><i class="ion-bag"></i></a>
@@ -781,21 +782,21 @@
 						</div>
 						<!-- Single Product End -->
 					</div>`
-                  
-					$("div#grid div.row:last-child").append(single_product_grid); 
-					
-					
+
+					$("div#grid div.row:last-child").append(single_product_grid);
+
+
 	    		let single_product_list=`
 	    			<!-- Single Product Start -->
 					<div class="single-product product-list" id="${product_id}">
 						<div class="product-image">
-							<a class="product-thumbnail" href="product-single.html?id=${product_id}"> 
+							<a class="product-thumbnail" href="product-single.html?id=${product_id}">
 							<img src="${product_img1}" alt="product">
 							<img class="image-hover" src="${product_img2}" alt="product">
 							</a>
 							<div class="product-action">
 								<a href="#" class="action"><i class="lar la-heart"></i></a>
-								<a href="#" class="action"><i class="las la-sync"></i></a> 
+								<a href="#" class="action"><i class="las la-sync"></i></a>
 								<a href="#" class="action search" data-bs-toggle="modal"
 									data-bs-target="#quick-view"><i class="las la-search"></i></a>
 							</div>
@@ -829,20 +830,20 @@
 						</div>
 					</div>
 					<!-- Single Product End -->`
-					
-	    			$("div#list").append(single_product_list); 
-      	
+
+	    			$("div#list").append(single_product_list);
+
 				}
-		
+
 		}//defaultDisplay
-		
-   		
-   		
-   		
-   		
-   		
-   		
-   		
+
+
+
+
+
+
+
+
    		// 同時取到grid跟list的放大鏡
    		$("body").on("click", "a.search", function(e) {
    			let product_id = $(this).closest(".single-product").attr("id");
@@ -862,23 +863,23 @@
 				let product_intro = data.data.product_intro;
 				let product_ingredient = data.data.product_ingredient;
 				let product_available_qty = data.data.product_available_qty;
-				
+
 				// quick-view區塊給product_id
 				$("#quick-view").attr("data-product_id", product_id);
-				
+
 				$("div.quick-view-content .product-name").text(product_name);
 				$("div.quick-view-content .reference").html(product_type+":"+"<span>"+product_subtype+"</span>");
 				$("div.quick-view-content").find("i[class='fal fa-comment-dots'] span").text("("+total_review+")");
 				$("div.quick-view-content ul.shop-rating-content").find("span").text("("+total_review+")");
-				$("div.quick-view-content .review-star div.star").attr("style", "width:"+rating_star+"%"); 
+				$("div.quick-view-content .review-star div.star").attr("style", "width:"+rating_star+"%");
 				$("div.quick-view-content .sale-price").text("$"+product_price);
 				$("div.quick-view-content .product-description ul").html("<li>"+product_intro+"</li>");
 				$("div.quick-view-content .product-description ul").append("<li>"+" 成份: "+product_ingredient+"</li>");
 				$("#quick-view .new").text(fixed_star);
-				
+
 				$("div.quick-view-top .swiper-wrapper").html("");
 				$("div[class='product-thumbnail quick-view-thumbs'] .swiper-wrapper").html("");
-				
+
 				let product_images=[];
 				for(var i = 0 ; i < image_list.length ; i++){
 					product_images[i]= url + image_list[i];
@@ -889,15 +890,15 @@
 						</div>`
 					$("div.quick-view-top .swiper-wrapper").append(quick_view_image);
 					$("div[class='product-thumbnail quick-view-thumbs'] .swiper-wrapper").append(quick_view_image);
-     			} 
-     			
-     			
+     			}
+
+
    			});
-   			
+
    		});
-   		
-		
-	// 加入購物車	
+
+
+	// 加入購物車
 		$("body").on("click", ".add-cart", function(){
 			console.log("加入購物車");
 			let product_id = $(this).closest(".single-product").attr("id");
@@ -907,9 +908,9 @@
 			}
 			console.log("加入購物車的id:"+product_id);
 			let single_purchase = $(".purchase_qty").val();
-			
+
 			console.log("加入購物車的數量:"+single_purchase);
-			
+
 			// API要給id 跟數量 如果頁面沒有數量可以選 設為1
 			$.post("/dessert_shop/cart/insertProductIntoCart?product_id="+product_id+"&product_quantity="+single_purchase,{},function(data){
 				console.log("加入購物車回傳的flag:"+data.flag);
@@ -922,7 +923,7 @@
 		              }).then(function(){
 						 location.href="login.html";
 		              });
-						
+
 				}else{
 					// 已登入的情況下，可即時更新現貨數量
 					let product_available_qty = data.data;
@@ -932,33 +933,33 @@
 // 					$(".current_qty").text(product_available_qty);
 					// 一直改不成功
 				}
-				
+
 			});//$.post
-			
-			
+
+
 			$(".purchase_qty").val("1");//清空quick-view裡的數量
-			
+
 		});
-		
-		
-		
-   		
-   	// 分頁功能	
 
-   		
-   		
-   		
 
-        	
-        	
-        	
-        	
+
+
+   	// 分頁功能
+
+
+
+
+
+
+
+
+
 //    });
 
- 
-	
-    
-       
+
+
+
+
 </script>
 <script>
 	/*******************以下比較列表********************/
