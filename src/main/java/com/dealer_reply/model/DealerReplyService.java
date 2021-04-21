@@ -13,7 +13,7 @@ public class DealerReplyService {
 		dao = new DealerReplyDaoImpl();
 	}
 
-	// 用在業者新增回覆
+	// 用在業者新增回覆, 並將member_comment表格的comment_status欄位改為「1」
 	public int addDealerReply(Integer review_id, String reply_content, String employee_account) {
 
 		int key = 0;

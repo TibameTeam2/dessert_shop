@@ -426,24 +426,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	<!--HistoryCommentOrderMasterServlet 用在載入歷史評價的order_master_id們 -->
 	<servlet>
 		<servlet-name>HistoryCommentOrderMasterServlet</servlet-name>
@@ -542,6 +524,16 @@
 	<servlet-mapping>
 		<servlet-name>DealerReplyServlet</servlet-name>
 		<url-pattern>/dealerReply/*</url-pattern>
+	</servlet-mapping>
+
+	<!--BucketListServlet 用在前臺加入收藏 -->
+	<servlet>
+		<servlet-name>BucketListServlet</servlet-name>
+		<servlet-class>com.bucket_list.controller.BucketListServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>BucketListServlet</servlet-name>
+		<url-pattern>/bucketList/*</url-pattern>
 	</servlet-mapping>
 
 

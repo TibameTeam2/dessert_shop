@@ -20,11 +20,12 @@ public class HistoryCommentOrderMasterDaoImpl implements HistoryCommentOrderMast
 	private String userid = JDBCUtil.user;
 	private String passwd = JDBCUtil.password;
 
-	private static final String HEHEHE = "select member_account, om.order_master_id, order_time, payment_time, invoice_number, coupon_id, payment_method, order_remarks, comment_time\r\n" + 
+	private static final String HEHEHE = "select om.member_account, om.order_master_id, om.order_time, om.payment_time, om.invoice_number, om.payment_method, om.order_remarks, c.coupon_text_content, mc.comment_time\r\n" + 
 			"from order_master om\r\n" + 
+			"left join coupon c on om.coupon_id = c.coupon_id\r\n" + 
 			"left join order_detail od on om.order_master_id = od.order_master_id\r\n" + 
 			"left join member_comment mc on od.order_detail_id = mc.order_detail_id\r\n" + 
-			"where member_account = ? and comment_time is not null\r\n" + 
+			"where om.member_account = ? and comment_time is not null\r\n" + 
 			"group by order_master_id; ";
 
 
@@ -72,7 +73,7 @@ public class HistoryCommentOrderMasterDaoImpl implements HistoryCommentOrderMast
 				hcomBean.setOrder_time(rs.getTimestamp("order_time"));
 				hcomBean.setPayment_time(rs.getTimestamp("payment_time"));
 				hcomBean.setInvoice_number(rs.getString("invoice_number"));
-				hcomBean.setCoupon_id(rs.getInt("coupon_id"));
+				hcomBean.setCoupon_text_content(rs.getString("coupon_text_content"));
 				hcomBean.setPayment_method(rs.getInt("payment_method"));
 				hcomBean.setOrder_remarks(rs.getString("order_remarks"));
 				hcomBean.setComment_time(rs.getTimestamp("comment_time"));;
@@ -195,7 +196,7 @@ public class HistoryCommentOrderMasterDaoImpl implements HistoryCommentOrderMast
 			System.out.println("order_time: " + hcomb.getOrder_time() + ",");
 			System.out.println("payment_time: " + hcomb.getPayment_time() + ",");
 			System.out.println("invoice_number: " + hcomb.getInvoice_number() + ",");
-			System.out.println("coupon_id: " + hcomb.getCoupon_id()+",");
+			System.out.println("coupon_id: " + hcomb.getCoupon_text_content()+",");
 			System.out.println("payment_method: " + hcomb.getPayment_method() + ",");
 			System.out.println("order_remarks: " + hcomb.getOrder_remarks() + ",");
 			System.out.println("comment_time: " + hcomb.getComment_time());

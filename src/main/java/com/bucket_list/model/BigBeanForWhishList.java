@@ -1,15 +1,13 @@
 package com.bucket_list.model;
 
 import java.io.Serializable;
-import java.sql.Date;
 
-public class Bucket_ListBean implements Serializable {
+public class BigBeanForWhishList implements Serializable{
+
 	private Integer bucket_list_id;
 	private String member_account;
 	private Integer product_id;
 	private Integer bucket_list_status;
-	
-	//以下屬性使此Bean成為巨大Bean
 	private String product_name;
 	private String product_type;
 	private String product_subtype;
@@ -20,7 +18,7 @@ public class Bucket_ListBean implements Serializable {
 	private String product_image;
 	@Override
 	public String toString() {
-		return "Bucket_ListBean [bucket_list_id=" + bucket_list_id + ", member_account=" + member_account
+		return "BigBeanForWhishList [bucket_list_id=" + bucket_list_id + ", member_account=" + member_account
 				+ ", product_id=" + product_id + ", bucket_list_status=" + bucket_list_status + ", product_name="
 				+ product_name + ", product_type=" + product_type + ", product_subtype=" + product_subtype
 				+ ", product_price=" + product_price + ", product_available_qty=" + product_available_qty
@@ -100,6 +98,5 @@ public class Bucket_ListBean implements Serializable {
 		this.product_image = product_image;
 	}
 	
-
 	
 }
