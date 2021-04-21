@@ -16,5 +16,22 @@ public class NewsLetterService {
 		
 		return dao.getAll();
 	}
+	
+	/*********************** 新增電子報(後臺) ***********************/
+	public Boolean addNewsLetter(NewsLetterBean newsLetterBean) {
+		
+		try {		
+			
+			dao.insert(newsLetterBean);			
+			return true;
+					 
+		}catch(Exception e) {
+			
+			e.printStackTrace();
+			return false;
+		}
+		
+		
+	}
 
 }
