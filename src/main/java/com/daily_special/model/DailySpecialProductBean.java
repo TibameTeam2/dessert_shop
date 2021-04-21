@@ -3,7 +3,7 @@ package com.daily_special.model;
 import java.sql.Timestamp;
 import java.util.List;
 
-public class ValidDailySpecialProductBean {
+public class DailySpecialProductBean {
 	private Integer discount_product_id;
 	private Integer product_id;
 	private Integer discount_price;
