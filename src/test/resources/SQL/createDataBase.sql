@@ -574,7 +574,7 @@ coupon_code_text_content,coupon_code_content,discount_type,employee_account)
 values('HCJ2473','2021-04-05','2022-04-06','黑咖啡折20元',20,1,'james');
 insert into coupon_code(coupon_code,coupon_code_effective_date,coupon_code_expire_date,
 coupon_code_text_content,coupon_code_content,discount_type,employee_account)
-values('FUCK7414','2021-04-05','2022-02-06','糖料併折50元',50,1,'james');
+values('4147KCUF','2021-04-05','2022-02-06','糖料併折50元',50,1,'james');
 
 
 -- 優惠券
@@ -612,7 +612,10 @@ insert into coupon(member_account,coupon_sending_time,coupon_effective_date,
 coupon_expire_date,coupon_text_content,
 coupon_content,discount_type,coupon_status,employee_account,coupon_code_id)
 values('jason','2021-03-11','2021-03-14','2021-03-15','單身者在白色情人節折價30元',30,1,0,'peter','2');
-
+insert into coupon(member_account,coupon_sending_time,coupon_effective_date,
+coupon_expire_date,coupon_text_content,
+coupon_content,discount_type,coupon_status,employee_account,coupon_code_id)
+values('jason','2021-03-11','2021-03-14','2021-03-15','中獎折價20元',20,1,1,'peter',null);
 
 
 -- 謝東陞------------------------------------------------------------------------------------------------------------
@@ -663,7 +666,7 @@ VALUES ('amy', '2021-01-04 03:04:07', '1', null, '2', 'AA12345675', '360', '藍�
 INSERT INTO  order_master (member_account, payment_time, payment_method, coupon_id, order_status, invoice_number, order_total, order_remarks)
 VALUES ('amy', '2021-01-06 03:04:07', '1', null, '2', 'AA12345676', '460', '無');
 INSERT INTO  order_master (member_account, payment_time, payment_method, coupon_id, order_status, invoice_number, order_total, order_remarks)
-VALUES ('jason', null, '2', null, '0', null, '240', '肚子好餓');
+VALUES ('jason', null, '2', '5', '0', null, '220', '肚子好餓');
 
 
 -- 訂單明細
