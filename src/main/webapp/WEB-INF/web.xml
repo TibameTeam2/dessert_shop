@@ -314,6 +314,15 @@
 		<servlet-name>ProductImageServlet</servlet-name>
 		<url-pattern>/productImage/*</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>DailySpecialServlet</servlet-name>
+		<servlet-class>com.daily_special.controller.DailySpecialServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DailySpecialServlet</servlet-name>
+		<url-pattern>/dailySpecial/*</url-pattern>
+	</servlet-mapping>
 
 
 
@@ -503,6 +512,16 @@
 	<servlet-mapping>
 		<servlet-name>ListMemberCommentServlet</servlet-name>
 		<url-pattern>/listMemberComment/*</url-pattern>
+	</servlet-mapping>
+
+	<!--DealerReplyServlet 用在後臺新增回覆顧客評論 -->
+	<servlet>
+		<servlet-name>DealerReplyServlet</servlet-name>
+		<servlet-class>com.dealer_reply.controller.DealerReplyServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DealerReplyServlet</servlet-name>
+		<url-pattern>/dealerReply/*</url-pattern>
 	</servlet-mapping>
 
 

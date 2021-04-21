@@ -5,254 +5,236 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- 以下三行為取消快取 -->
-  <META HTTP-EQUIV="pragma" CONTENT="no-cache">
-    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
-      <META HTTP-EQUIV="expires" CONTENT="0">
-        <!-- 以上三行為取消快取 -->
+  <META HTTP-EQUIV="pragma" CONTENT="no-cache" />
+  <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate" />
+  <META HTTP-EQUIV="expires" CONTENT="0" />
+  <!-- 以上三行為取消快取 -->
 
-        <title>POS Dash | Responsive Bootstrap 4 Admin Dashboard Template</title>
+  <title>嗜甜後臺</title>
 
-        <!-- Favicon -->
-        <link rel="shortcut icon" href="assets/images/favicon.ico"/>
-        <link rel="stylesheet" href="assets/css/backend-plugin.min.css">
-        <link rel="stylesheet" href="assets/css/backend.css?v=1.0.0">
-        <link rel="stylesheet" href="assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
-        <link rel="stylesheet" href="assets/vendor/line-awesome/dist/line-awesome/css/line-awesome.min.css">
-        <link rel="stylesheet" href="assets/vendor/remixicon/fonts/remixicon.css">
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="assets/images/favicon.ico"/>
+  <link rel="stylesheet" href="assets/css/backend-plugin.min.css">
+  <link rel="stylesheet" href="assets/css/backend.css?v=1.0.0">
+  <link rel="stylesheet" href="assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="assets/vendor/line-awesome/dist/line-awesome/css/line-awesome.min.css">
+  <link rel="stylesheet" href="assets/vendor/remixicon/fonts/remixicon.css">
 
+  <style media="screen">
 
-        <style media="screen">
+  .table-img .product_img_small{
+    max-width: 100px;
+    max-height: 100px;
+  }
+  @media (min-width: 576px){
+    .modal-dialog{
+      max-width:1000px !important;
+    }
+  }
 
-        .table-img .product_img_small{
-          max-width: 100px;
-          max-height: 100px;
-        }
-        @media (min-width: 576px){
-          .modal-dialog{
-            max-width:1000px !important;
-          }
-        }
-
-        .single-comment .comment-author img {
-          border-radius: 50%;
-          width: 70px;
-          height: 70px;
-          float: right;
-        }
-
-
-        .ch_m_photo{
-          margin-top: 20px;
-          margin-left: 40px;
-          float: left;
-        }
-
-        /* .row {
-        --bs-gutter-x: 30px;
-        --bs-gutter-y: 0;
-        border: 1px solid red;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-flex-wrap: wrap;
-        -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-        margin-top: calc(var(--bs-gutter-y) * -1);
-        margin-right: calc(var(--bs-gutter-x) / -2);
-        margin-left: calc(var(--bs-gutter-x) / -2);
-      }
-
-      .row>* {
-      border: 1px solid pink;
-      -webkit-flex-shrink: 0;
-      -ms-flex-negative: 0;
-      flex-shrink: 0;
-      width: 100%;
-      max-width: 100%;
-      padding-right: calc(var(--bs-gutter-x) / 2);
-      padding-left: calc(var(--bs-gutter-x) / 2);
-      margin-top: var(--bs-gutter-y);
-      } */
+  .single-comment .comment-author img {
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    float: right;
+  }
 
 
-      /* 評價的星號 開始 */
-      div.star_block {
-        display: inline-block;
-      }
-
-      div.star_block>span.star {
-        cursor: pointer;
-        display: inline-block;
-        margin-right: 3px;
-      }
-
-      div.star_block>span.star.-on {
-        color: yellow;
-      }
-      /* 評價的星號 結束 */
-
-      /* 評價的星號_1 開始 */
-      .single-comment .comment-content .author-name-rating {
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-box-align: center;
-        -webkit-align-items: center;
-        -ms-flex-align: center;
-        align-items: center;
-        margin-bottom: 10px;
-      }
-      .single-comment .comment-content .author-name-rating .name {
-        font-weight: 600;
-        text-transform: capitalize;
-        font-size: 14px;
-        color: #6c6c6c;
-        margin-bottom: 0;
-        line-height: 1;
-        margin-right: 10px;
-      }
-      .single-comment .comment-content .author-name-rating .review-star {
-        position: relative;
-        display: inline-block;
-      }
-      .single-comment .comment-content .author-name-rating .review-star::before {
-        content: "\2605" "\2605" "\2605" "\2605" "\2605";
-        font-family: Ionicons;
-        display: inline-block;
-        color: #dbdbdb;
-        font-weight: 400;
-        line-height: 1;
-        vertical-align: middle;
-      }
-      .single-comment .comment-content .author-name-rating .review-star .star {
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 100%;
-        z-index: 2;
-        overflow: hidden;
-      }
-      .single-comment .comment-content .author-name-rating .review-star .star::before {
-        content: "\2605" "\2605" "\2605" "\2605" "\2605";
-        /* content: "\f2fc" "\f2fc" "\f2fc" "\f2fc" "\f2fc"; */
-        font-family: Ionicons;
-        display: inline-block;
-        color: #ffc600;
-        font-weight: 400;
-        line-height: 1;
-        vertical-align: middle;
-      }
-      /* 評價的星號_1 結束 */
-
-      </style>
+  .ch_m_photo{
+    margin-top: 20px;
+    margin-left: 40px;
+    float: left;
+  }
 
 
+  /* 評價的星號 開始 */
+  div.star_block {
+    display: inline-block;
+  }
+
+  div.star_block>span.star {
+    cursor: pointer;
+    display: inline-block;
+    margin-right: 3px;
+  }
+
+  div.star_block>span.star.-on {
+    color: yellow;
+  }
+  /* 評價的星號 結束 */
+
+  /* 評價的星號_1 開始 */
+  .single-comment .comment-content .author-name-rating {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  .single-comment .comment-content .author-name-rating .name {
+    font-weight: 600;
+    text-transform: capitalize;
+    font-size: 14px;
+    color: #6c6c6c;
+    margin-bottom: 0;
+    line-height: 1;
+    margin-right: 10px;
+  }
+  .single-comment .comment-content .author-name-rating .review-star {
+    position: relative;
+    display: inline-block;
+  }
+  .single-comment .comment-content .author-name-rating .review-star::before {
+    content: "\2605" "\2605" "\2605" "\2605" "\2605";
+    font-family: Ionicons;
+    display: inline-block;
+    color: #dbdbdb;
+    font-weight: 400;
+    line-height: 1;
+    vertical-align: middle;
+  }
+  .single-comment .comment-content .author-name-rating .review-star .star {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    z-index: 2;
+    overflow: hidden;
+  }
+  .single-comment .comment-content .author-name-rating .review-star .star::before {
+    content: "\2605" "\2605" "\2605" "\2605" "\2605";
+    /* content: "\f2fc" "\f2fc" "\f2fc" "\f2fc" "\f2fc"; */
+    font-family: Ionicons;
+    display: inline-block;
+    color: #ffc600;
+    font-weight: 400;
+    line-height: 1;
+    vertical-align: middle;
+  }
+  /* 評價的星號_1 結束 */
+
+  /* Swal 開始 */
+  .swal2-popup.swal2-modal {
+    font-size: 10pt;
+  }
+  .swal2-modal .swal2-title {
+    font-size: 1.2em;
+  }
+  .swal2-modal button {
+    /* padding: 10px 16px; */
+  }
+  /* Swal 結束 */
 
 
-    </head>
-    <body>
-      <!-- loader Start -->
-      <div id="loading">
-        <div id="loading-center">
-        </div>
-      </div>
-      <!-- loader END -->
-
-
-      <!-- Wrapper Start -->
-      <div class="wrapper">
-
-        <!--Header-->
-        <div class="header"></div>
-
-
-        <!-- 本頁標題 開始 (我是誰? 結束在哪?) -->
-        <div class="content-page">
-          <div class="container-fluid">
-            <div class="row">
-              <div class="col-lg-12">
-                <div class="d-flex flex-wrap align-items-center justify-content-between mb-4">
-                  <div>
-                    <h4 class="mb-3">顧客評論</h4>
-                    <p class="mb-0">顯示所有顧客的評論，要記得回覆客人喔!</p><br>
-                  </div>
-                  <a href="page-add-return.html" class="btn btn-primary add-list"><i class="las la-plus mr-3"></i>Add Returns</a>
-                </div>
-              </div>
-              <div class="col-lg-12">
-                <div class="table-responsive rounded mb-3">
-                  <table class="data-table table mb-0 tbl-server-info">
-
-                    <!-- 項目名稱 開始 -->
-                    <thead class="bg-white text-uppercase">
-                      <tr class="ligth ligth-data">
-                        <th>評論時間</th>
-                        <th>評論編號</th>
-                        <th>商品照片</th>
-                        <th>商品名稱</th>
-                        <th>會員帳號</th>
-                        <th>星等</th>
-                        <th>是否回覆</th>
-                        <th>Action</th>
-                        <th>order_detail_id</th>
-                        <th>member_photo</th>
-                        <th>product_id</th>
-                        <th>image_id</th>
-                        <th>comment_content</th>
-                        <th>review_image_id</th>
-                        <th>review_image</th>
-                        <th>reply_id</th>
-                        <th>reply_content</th>
-                        <th>reply_time</th>
-                        <th>employee_account</th>
-                      </tr>
-                    </thead>
-                    <!-- 項目名稱 結束 -->
-
-
-                    <!-- 假資料_客戶評論們 開始 -->
-                    <tbody class="ligth-body">
-                      <!-- <tr>
-                      <td>2021-04-13 15:28</td>
-                      <td>1</td>
-                      <td>巧克力杯子3</td>
-                      <td>哆啦 A 夢</td>
-                      <td>
-                      <div class="single-comment">
-                      <div class="comment-content">
-                      <div class="author-name-rating">
-                      <div class="review-star">
-                      <div class="star" style="width: 80%;"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </td>
-            <td><div data-commentstatus="comment_status"></div></td> -->
-            <!-- <td><div data-commentstatus="comment_status" class="badge badge-success">Done</div></td> -->
-            <!-- <td>
-            <div class="d-flex align-items-center list-action">
-            <a class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View" href="#"><i class="ri-eye-line mr-0"></i></a>
-            <a class="badge bg-success mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit" href="#"><i class="ri-pencil-line mr-0"></i></a>
-            <a class="badge bg-warning mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" href="#"><i class="ri-delete-bin-line mr-0"></i></a>
-          </div>
-        </td>
-      </tr> -->
-      <!-- <tr>
-      <td>2021-04-13 15:28</td>
-      <td>1</td>
-      <td>巧克力杯子3</td>
-      <td>哆啦 A 夢</td>
-      <td>
-      <div class="single-comment">
-      <div class="comment-content">
-      <div class="author-name-rating">
-      <div class="review-star">
-      <div class="star" style="width: 80%;"></div>
+</style>
+</head>
+<body>
+  <!-- loader Start -->
+  <div id="loading">
+    <div id="loading-center">
     </div>
   </div>
+  <!-- loader END -->
+
+
+  <!-- Wrapper Start -->
+  <div class="wrapper">
+
+    <!--Header-->
+    <div class="header"></div>
+
+
+    <!-- 本頁標題 開始 (我是誰? 結束在哪?) -->
+    <div class="content-page">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="d-flex flex-wrap align-items-center justify-content-between mb-4">
+              <div>
+                <h4 class="mb-3">顧客評論</h4>
+                <p class="mb-0">顯示所有顧客的評論，要記得回覆客人喔!</p><br>
+              </div>
+              <a href="page-add-return.html" class="btn btn-primary add-list"><i class="las la-plus mr-3"></i>Add Returns</a>
+            </div>
+          </div>
+          <div class="col-lg-12">
+            <div class="table-responsive rounded mb-3">
+              <table class="data-table table mb-0 tbl-server-info">
+
+                <!-- 項目名稱 開始 -->
+                <thead class="bg-white text-uppercase">
+                  <tr class="ligth ligth-data">
+                    <th>評論時間</th>
+                    <th>商品品項</th>
+                    <th>星等</th>
+                    <th>評論編號</th>
+                    <th>會員帳號</th>
+                    <th>是否回覆</th>
+                    <th>Action</th>
+                    <th>order_detail_id</th>
+                    <th>member_photo</th>
+                    <th>product_id</th>
+                    <th>product_image</th>
+                    <th>product_name</th>
+                    <th>product_type</th>
+                    <th>image_id</th>
+                    <th>comment_content</th>
+                    <th>review_image_id</th>
+                    <th>review_image</th>
+                    <th>reply_id</th>
+                    <th>reply_content</th>
+                    <th>reply_time</th>
+                    <th>employee_account</th>
+                  </tr>
+                </thead>
+                <!-- 項目名稱 結束 -->
+
+
+                <!-- 假資料_客戶評論們 開始 -->
+                <tbody class="ligth-body">
+                  <!-- <tr>
+                  <td>2021-04-13 15:28</td>
+                  <td>1</td>
+                  <td>巧克力杯子3</td>
+                  <td>哆啦 A 夢</td>
+                  <td>
+                  <div class="single-comment">
+                  <div class="comment-content">
+                  <div class="author-name-rating">
+                  <div class="review-star">
+                  <div class="star" style="width: 80%;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </td>
+        <td><div data-commentstatus="comment_status"></div></td> -->
+        <!-- <td><div data-commentstatus="comment_status" class="badge badge-success">Done</div></td> -->
+        <!-- <td>
+        <div class="d-flex align-items-center list-action">
+        <a class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View" href="#"><i class="ri-eye-line mr-0"></i></a>
+        <a class="badge bg-success mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit" href="#"><i class="ri-pencil-line mr-0"></i></a>
+        <a class="badge bg-warning mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" href="#"><i class="ri-delete-bin-line mr-0"></i></a>
+      </div>
+    </td>
+  </tr> -->
+  <!-- <tr>
+  <td>2021-04-13 15:28</td>
+  <td>1</td>
+  <td>巧克力杯子3</td>
+  <td>哆啦 A 夢</td>
+  <td>
+  <div class="single-comment">
+  <div class="comment-content">
+  <div class="author-name-rating">
+  <div class="review-star">
+  <div class="star" style="width: 80%;"></div>
+</div>
+</div>
 </div>
 </div>
 </td>
@@ -274,6 +256,8 @@
 </div>
 </div>
 </div>
+
+
 <!-- Modal Edit -->
 <div class="modal fade" id="edit-note" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -331,13 +315,15 @@
                     </div>
                   </div>
                   <div class="card-body">
-                    <form action="javascript:void(0)" data-toggle="validator">
+                    <form id="addReplyForm" action="javascript:void(0)" data-toggle="validator" enctype="multipart/form-data">
                       <div class="row" style="margin:20px">
 
+
+                        <!-- 會員照片帳號 開始 -->
                         <div class="col-md-4">
                           <div class="form-group">
-                            <div class="media view_member_photo">
-                              <!-- <img src="" class="mr-3 avatar-70 img-fluid rounded" alt="#"> -->
+                            <div id="acceptMemberPhoto" class="media view_member_photo">
+                              <img src="" class="mr-3 avatar-70 img-fluid rounded" alt="#">
                               <div class="media-body">
                                 <input class="mt-3 view_member_account" style="border:none" />
                                 <!-- <h5 class="mt-3 view_member_account"></h5> -->
@@ -345,12 +331,13 @@
                             </div>
                           </div>
                         </div>
+                        <!-- 會員照片帳號 結束 -->
 
 
                         <div class="col-md-8">
                           <ul class="list-group list-group-horizontal" style="float:right; float:top">
                             <li class="list-group-item">評論的商品<input class="text-primary view_product_name" style="border:none" readonly/></li>
-                            <li class="list-group-item">評論編號<input class="view_review_id" style="border:none; color:#32BDEA" readonly/></li>
+                            <li class="list-group-item">評論編號<input class="view_review_id" name="ReviewId" style="border:none; color:#32BDEA; width:-8rem" readonly/></li>
                             <li class="list-group-item">評價星等
                               <div class="single-comment view_rating">
                                 <!-- <div class="comment-content">
@@ -363,7 +350,7 @@
                         </div>
                       </li>
                       <li class="list-group-item">回覆狀態
-                        <div class="text-primary view_comment_status">
+                        <div class="text-primary view_comment_status" style="width: 5rem">
                           <!-- <div class="badge badge-warning">尚未回覆</div> -->
                           <!-- <div class="badge badge-success">完成回覆</div> -->
                         </div>
@@ -375,8 +362,9 @@
                   <div class="col-md-8" style="margin:auto,0">
                     <div class="form-group">
                       <label>顧客的評論</label>
+                      <!-- <textarea class="form-control view_comment_content" disabled/> -->
                       <input class="form-control view_comment_content" rows="10" readonly/>
-                      <!-- <span class="form-control" rows="10">藍莓乳酪蛋糕好吃!</span> -->
+                      <!-- <span class="form-control view_comment_content" rows="10"></span> -->
                     </div>
                   </div>
 
@@ -384,14 +372,17 @@
                   <!-- 表單_顧客上傳的三張照片 開始 -->
                   <div class="col-md-4" style="margin-top:20px">
                     <ul class="list-unstyled p-0 m-0 row">
-                      <li class="col-lg-4 col-md-6 col-sm-6 mt-2">
-                        <img src="assets/images/page-img/10.jpg" class="w-100 img-fluid rounded view_review_image1" alt="Responsive image">
+                      <li class="col-lg-4 col-md-6 col-sm-6 mt-2 view_review_image1" data-name="li_1">
+                        <img src = "" class="w-100 img-fluid rounded img1">
+                        <!-- <img src = "/dessert_shop/reviewImageUpload/getReviewImage?review_image_id=5" class="w-100 img-fluid rounded"> -->
                       </li>
-                      <li class="col-lg-4 col-md-6 col-sm-6 mt-2">
-                        <img src="assets/images/page-img/11.jpg" class="rounded w-100 img-fluid rounded view_review_image2" alt="Responsive image">
+                      <li class="col-lg-4 col-md-6 col-sm-6 mt-2 view_review_image2" data-name="li_2">
+                        <img src = "" class="w-100 img-fluid rounded img2">
+                        <!-- <img src = "/dessert_shop/reviewImageUpload/getReviewImage?review_image_id=6" class="w-100 img-fluid rounded"> -->
                       </li>
-                      <li class="col-lg-4 col-md-6 col-sm-6 mt-2">
-                        <img src="assets/images/page-img/12.jpg" class="rounded w-100 img-fluid rounded view_review_image3" alt="Responsive image">
+                      <li class="col-lg-4 col-md-6 col-sm-6 mt-2 view_review_image3" data-name="li_3">
+                        <img src = "" class="w-100 img-fluid rounded img3">
+                        <!-- <img src = "/dessert_shop/reviewImageUpload/getReviewImage?review_image_id=7" class="w-100 img-fluid rounded"> -->
                       </li>
                     </ul>
                   </div>
@@ -402,7 +393,7 @@
                   <div class="col-md-12">
                     <div class="form-group">
                       <label>回覆顧客 *</label>
-                      <textarea class="form-control view_reply_content" placeholder="謝謝您的光臨 . . ." data-errors="Please Enter Cost." rows="4" name="view_reply_content" required></textarea>
+                      <textarea class="form-control view_reply_content" placeholder="謝謝您的光臨 . . ." data-errors="Please Enter Cost." rows="4" name="ReplyContent" required></textarea>
                       <div class="help-block with-errors"></div>
                     </div>
                   </div>
@@ -413,10 +404,11 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       <label>請選擇員工帳號 *</label>
-                      <select name="view_employee_account" class="form-control" placeholder="我是 . . ." data-style="py-0" required>
+                      <select name="EmployeeAccount" class="selectpicker form-control" placeholder="我是 . . ." data-style="py-0" required>
                         <option value>請選擇員工帳號</option>
-                        <option value="1">員工一號</option>
-                        <option value="2">員工二號</option>
+                        <option value="james">James</option>
+                        <option value="peter">Peter</option>
+                        <option value="jason">Jason</option>
                       </select>
                     </div>
                   </div>
@@ -432,14 +424,13 @@
 
                 </div>
               </form>
-              <button type="submit" class="btn btn-primary mr-2">Add Product</button>
-              <button type="reset" class="btn btn-danger">Reset</button>
+              <button type="submit" id="addReply" class="btn btn-primary mr-2">確認送出回覆</button>
+              <button type="reset" class="btn btn-danger">取消</button>
             </div>
           </div>
         </div>
       </div>
     </div>
-
     <!-- 跳出的燈箱_表單 結束 -->
 
 
@@ -507,19 +498,19 @@ table = $(".data-table").DataTable({
     }
   },
   // "columns": [
-    // { "data": "comment_time" }, //第一欄使用data中的name
-    // { "data": "member_photo", "defaultContent": "", "visible": false }, //can be null or undefined
-    // { "data": "comment_content", "defaultContent": "" }, //can be null or undefined
-    // { "data": "review_image_id", "defaultContent": "" }, //can be null or undefined
-    // { "data": "review_image", "defaultContent": "" }, //can be null or undefined
-    // { "data": "reply_id", "defaultContent": "" }, //can be null or undefined
-    // { "data": "reply_content", "defaultContent": "" }, //can be null or undefined
-    // { "data": "reply_time", "defaultContent": "" }, //can be null or undefined
-    // { "data": "employee_account", "defaultContent": "" }, //can be null or undefined
+  // { "data": "comment_time" }, //第一欄使用data中的name
+  // { "data": "member_photo", "defaultContent": "", "visible": false },
+  // { "data": "comment_content", "defaultContent": "" },
+  // { "data": "review_image_id", "defaultContent": "" },
+  // { "data": "review_image", "defaultContent": "" },
+  // { "data": "reply_id", "defaultContent": "" },
+  // { "data": "reply_content", "defaultContent": "" },
+  // { "data": "reply_time", "defaultContent": "" },
+  // { "data": "employee_account", "defaultContent": "" },
   // ],
   "columnDefs": [
     {
-      "targets": [0,1,2,3,5,6,7], //從0開始算起的欄位
+      "targets": [0,1,2,3,5,6], //從0開始算起的欄位
       "visible": true,  //要顯示
       "orderable": true,  //是否可以排序
       "width": "auto"
@@ -531,7 +522,7 @@ table = $(".data-table").DataTable({
       "width": "auto"
     },
     {
-      "targets": '_all',    //欄位從0開始算
+      "targets": '_all',    //其他欄位
       "visible": false,   //欄位是否顯示 預設是true
       "orderable": false  //是否可以排序
     }
@@ -546,11 +537,11 @@ function getAllComment(){
 
   //取得所有評論資料(listMemberComment)的get請求
   $.get("/dessert_shop/listMemberComment/getListMemberComment", {}, function(data){
-    console.log("取得所有評論資料(listMemberComment)的	$.get的:");
-    console.log("data.data.length = " + data.data.length);
-    console.log("data.data = " + data.data);
-    console.log(data.data);
-    console.log("------------------------");
+    // console.log("取得所有評論資料(listMemberComment)的	$.get的:");
+    // console.log("data.data.length = " + data.data.length);
+    // console.log("data.data = " + data.data);
+    // console.log(data.data);
+    // console.log("------------------------");
 
     // 欲得到所有評論資料(listMemberComment)的get請求
     if(data.flag){
@@ -561,17 +552,18 @@ function getAllComment(){
       for(let i = 0; i < data.data.length; i++){
         table.row.add([
           moment(data.data[i].comment_time).format('YYYY-MM-DD HH:mm:ss'),
-          data.data[i].review_id,
-          getProductPic(data.data[i].product_image),
-          data.data[i].product_name,
-          data.data[i].member_account,
+          getProductPicNameType(data.data[i].product_image, data.data[i].product_name, data.data[i].product_type),
           getStarShine(data.data[i].rating),
+          data.data[i].review_id,
+          data.data[i].member_account,
           getCommentStatus(data.data[i].comment_status),
           action,
-
           data.data[i].order_detail_id,
-          data.data[i].memebr_photo,
+          getMemberPhoto(data.data[i].member_photo),
           data.data[i].product_id,
+          data.data[i].product_image,
+          data.data[i].product_name,
+          data.data[i].product_type,
           data.data[i].image_id,
           data.data[i].comment_content,
           data.data[i].review_image_id,
@@ -592,6 +584,17 @@ function getAllComment(){
   }) //取得所有評論資料(listMemberComment)的get請求
 
 } //getAllComment()
+
+function getProductPicNameType(product_image, product_name, product_type){
+  let aaa = '<div class="d-flex align-items-center">\n'
+  + ' <img src="/dessert_shop'+ product_image +'" class="img-fluid rounded avatar-50 mr-3" alt="image">\n'
+  + ' <div>\n'
+  + ' '+ product_name +'\n'
+  + ' <p class="mb-0"><small>'+ product_type +'</small></p>\n'
+  + ' </div>\n'
+  + ' </div>\n';
+  return aaa;
+}
 
 function getStarShine(rating){
 
@@ -662,6 +665,7 @@ function getStarShine(rating){
   }
 }
 
+
 function getCommentStatus(comment_status){
   switch (Number(comment_status)) {
     case 0:
@@ -675,49 +679,260 @@ function getCommentStatus(comment_status){
   }
 }
 
+
+// 已被getProductPicNameType取代
 function getProductPic(product_image){
-  let ooo = '<div class="d-flex align-items-center">\n'
+  let zzz = '<div class="d-flex align-items-center">\n'
   + ' <img src="/dessert_shop'+ product_image +'" class="img-fluid rounded avatar-50 mr-3" alt="image">\n'
-  + ' <div>\n'
-  + ''
+  // + ' <div>\n'
+  // + ''
   // + ' <p class="mb-0"><small>This is test Product</small></p>\n'
-  + ' </div>\n'
+  // + ' </div>\n'
   + ' </div>\n';
-  return ooo;
+  return zzz;
 }
 
+//若資料庫有照片,則不需要此方法
 function getMemberPhoto(member_photo){
-  let xxx =  ' <img src="/dessert_shop'+ member_photo +'" class="mr-3 avatar-70 img-fluid rounded view_member_photo" alt="#">\n'
-  return xxx;
+  if(member_photo == undefined){
+    let xxx = '<img src="assets/images/user/01.jpg" class="mr-3 avatar-70 img-fluid rounded">\n';
+    return xxx;
+  } else {
+    return member_photo;
+  }
 }
 
-//要顯示的加class, 要傳出去的加name
+
+//複習字串拼接
+function getReviewImage(array){
+  // console.log(array);
+  // console.log("array = " + array);
+
+  // var myNewArray = [].concat.apply([], array);
+  // console.log(myNewArray);
+
+  // 將陣列轉為字串:「/reviewImageUpload/getReviewImage?review_image_id=null」
+  let arrayToString = array.toString();
+  // console.log(arrayToString);
+
+  //取不到最後的字,結果為:「nul」
+  // console.log(arrayToString.slice(-4, -1));
+
+  //不為-1:代表該字串含有"null"
+  // console.log(arrayToString.lastIndexOf("null")); //50
+
+  //字串分成兩部分, 得到null
+  // console.log(arrayToString.split("=")[1]); //null
+
+
+  if ((arrayToString.split("=")[1]) != 'null'){ //若陣列內找不到'null'
+    // console.log('review_image 不為 null');
+    // console.log(array[0]);
+    let pic1 = '<img src = "/dessert_shop'+ array[0] +'" class="w-100 img-fluid rounded">'
+    let pic2 = '<img src = "/dessert_shop'+ array[1] +'" class="w-100 img-fluid rounded">'
+    let pic3 = '<img src = "/dessert_shop'+ array[2] +'" class="w-100 img-fluid rounded">'
+
+    //若有img標籤, 則移除
+    if($("ul li").find("img.rounded")){
+      $('li.view_review_image1').empty();
+      $('li.view_review_image2').empty();
+      $('li.view_review_image3').empty();
+    }
+
+    switch (array.length) {
+      case 3:
+      $("li.view_review_image1").append(pic1);
+      $("li.view_review_image2").append(pic2);
+      $("li.view_review_image3").append(pic3);
+      break;
+
+      case 2:
+      $("li.view_review_image1").append(pic1);
+      $("li.view_review_image2").append(pic2);
+      break;
+
+      case 1:
+      $("li.view_review_image1").append(pic1);
+      break;
+
+      default:
+      $('li.view_review_image1').empty();
+      $('li.view_review_image2').empty();
+      $('li.view_review_image3').empty();
+    }
+
+  } else {
+    // console.log('review_image 為 null');
+    $('li.view_review_image1').empty();
+    $('li.view_review_image2').empty();
+    $('li.view_review_image3').empty();
+  }
+
+}
+
+
+//老闆說要顯示的加class, 要傳出去的加name
+//按下藍色鉛筆
 $("tbody").on('click', 'a.view', function(){
   let table = $(".data-table").DataTable();
   let data = table.row($(this).closest('tr')).data();
   console.log(data);
-  // alert( 'You clicked on '+data[0]+'\'s row' );
 
-  $(".view_member_photo").val(data[9]);
+  //以下兩行結果一樣
+  // console.log("data[8] = " + data[8]);  //data[8] = /member/backend_getPhoto?id=amy
+  // console.log("getMemberPhoto(data[8]) = " + getMemberPhoto(data[8])); //getMemberPhoto(data[8]) = /member/backend_getPhoto?id=amy
+
+  let vvv = "/dessert_shop" + data[8];
+  $("div.view_member_photo img").attr('src', vvv);
+
   $(".view_member_account").val(data[4]);
-  $(".view_product_name").val(data[3]);
-  $(".view_review_id").val(data[1]);
-  $(".view_rating").html(data[5]);
-  $(".view_comment_status").html(data[6]);
-  $(".view_comment_content").val(data[12]);
-  $(".view_reply_content").val(data[16]);
-  data[17] != "Invalid date" ? $(".view_reply_time").val(data[17]).attr("disabled", "disabled") : $(".view_reply_time").removeAttr("style");
+  $(".view_product_name").val(data[11]);
+  $(".view_review_id").val(data[3]);
+  $(".view_rating").html(data[2]);
+  $(".view_comment_status").html(data[5]);
+  $(".view_comment_content").val(data[14]);
+  $(".view_reply_content").val(data[18]);
+  data[19] != "Invalid date" ? $(".view_reply_time").val(data[19]).attr("disabled", "disabled") : $(".view_reply_time").val("").attr("disabled", "disabled");
+  getReviewImage(data[16]);
+})
 
-  console.log(data[9]);
-  $(".view_member_photo").html(data[9]);
+//按下review_image可以放大
+$("ul.list-unstyled").on('click', function(){
+  let li_length = $(this).children().length; //3
+  let img_length = $(this).find("img").length; //3
+  // console.log(this); //「ul」的程式碼
 
+  let myarr = [];
+  let yourarr = [];
+
+  for(let i = 0; i < img_length; i++){
+
+    let url = $(this).find("img").eq(i).attr("src"); ///dessert_shop/reviewImageUpload/getReviewImage?review_image_id=5
+    let object =
+    {
+      title: '',
+      text: '顧客針對此商品上傳的照片',
+      imageUrl: url,
+      imageWidth: "100%",
+      imageHeight: "100%",
+      imageAlt: 'Custom image',
+      confirmButtonText: i == img_length -1 ? '結束' : '下一張',
+    };
+    myarr.push(object);
+    yourarr.push(i+1);
+  }
+  Swal.mixin({
+    confirmButtonText: '下一步',
+    showCancelButton: true,
+    cancelButtonText: '取消',
+    progressSteps: yourarr,
+  }).queue(myarr)
+})
+
+//若按下表單的取消鈕
+$("button:reset").on('click', function(){
+  $("#lb_view").modal('hide');
 })
 
 
+//按下藍色鉛筆內的「確認送出」
+$("#addReply").on('click', function(e){
+  e.preventDefault();
+
+  let a = $("#addReplyForm").find(".view_comment_status").find("div.badge").html(); //.html() 會取得元素裡的所有內容。
+  console.log(a);
+
+  //若此會員評論為「尚未回覆」
+  if(a == "尚未回覆"){
+
+    console.log($("#addReplyForm").serialize());//抓到ReviewId, ReplyContent,EmployeeAccount
+
+    let form = $(this).siblings('form')[0]; //轉成js物件
+    let data = new FormData(form); //此FormData物件用來裝著要傳給DealerReplyServlet的key-value
+    console.log(form);
+    console.log(data);
+
+    $.ajax({
+      type: "POST",
+      enctype: "multipart/form-data",
+      url: "/dessert_shop/dealerReply/addDealerReply",
+      data: data,
+      processData: false,
+      contentType: false,
+      cache: false,
+      success: function(data){
+        if(data.flag){
+          Swal.fire({
+            title: data.msg,
+            text: "回覆成功",
+            icon: "success"
+          });
+          $("div.view_comment_status").empty().append('<div class="badge badge-success">完成回覆</div>');
+          console.log($(this).closest('tr'));
+          getAllComment();
+          $("#lb_view").modal('hide');
+          $("#addReplyForm").trigger("reset");
+        } else {
+          Swal.fire({
+            title: data.msg,
+            text: "回覆失敗",
+            icon: "error"
+          });
+        }
+      }
+    });
+    return false;
+
+    // 若此會員評論先前已回覆過
+  } else {
+    console.log($("#addReplyForm").serialize());//抓到ReviewId, ReplyContent,EmployeeAccount
+    let form = $(this).siblings('form')[0]; //轉成js物件
+    let data = new FormData(form); //此FormData物件用來裝著要傳給DealerReplyServlet的key-value
+    console.log(form);
+    console.log(data);
+
+    let new_reply_time = moment(Date.now()).format('YYYY-MM-DD HH:mm:ss');
+    console.log(new_reply_time);
+
+    //更新回覆的時間也要裝進form表單
+    data.append("NewReplyTime", new_reply_time);
+
+    $.ajax({
+      type: "POST",
+      enctype: "multipart/form-data",
+      url: "/dessert_shop/dealerReply/updateDealerReply",
+      data: data,
+      processData: false,
+      contentType: false,
+      cache: false,
+      success: function(data){
+        if(data.flag){
+          Swal.fire({
+            title: data.msg,
+            text: "修改成功",
+            icon: "success"
+          });
+          $("div.view_comment_status").empty().append('<div class="badge badge-sucess">完成回覆</div>');
+          console.log($(this).closest('tr'));
+          getAllComment();
+          $("#lb_view").modal('hide');
+          $("#addReplyForm").trigger("reset");
+        } else {
+          Swal.fire({
+            title: data.msg,
+            text: "修改失敗",
+            icon: "error"
+          });
+        }
+      }
+    });
+    return false;
+  }
+})
+
+
+
 </script>
-
-
-
 
 </body>
 </html>

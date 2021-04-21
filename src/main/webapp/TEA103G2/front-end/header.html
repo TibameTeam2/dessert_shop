@@ -87,7 +87,7 @@
                                         <!--                                        </ul>-->
                                     </li>
                                     <li>
-                                        <a href="#">商品總覽</a>
+                                        <a href="product-all.html">商品總覽</a>
                                         <ul class="mega-sub-menu">
                                             <li>
                                                 <a href="product-all.html?type=cakes" class="menu-title">蛋糕</a>
@@ -220,7 +220,7 @@
                             <!--                            </div>-->
                             <a class="action" href="compare.html">
                                 <i class="ion-ios-shuffle-strong"></i>
-                                <span class="number">3</span>
+                                <span class="number  compare_number">0</span>
                             </a>
                             <a class="action" href="wishlist.html">
                                 <i class="lar la-heart"></i>
@@ -664,6 +664,7 @@
         }
     </script>
 
+
 <script>
 /********************************** 購物車袋子數字 **********************************/
 cartQty();
@@ -682,10 +683,21 @@ function cartQty () {
     });  //get
 }
 
-
-
 </script>
 
+
+<script>
+    /*******************更新比較列表中的數字**********************/
+    updateCompareNumber();
+    function updateCompareNumber() {
+        let compareList = JSON.parse(localStorage.getItem("compareList"));
+        if (compareList == null) {
+            $(".compare_number").text(0)
+        }else{
+            $(".compare_number").text(compareList.length);
+        }
+    }
+</script>
 
 </body>
 

@@ -10,6 +10,7 @@ public class ListMemberCommentService {
 		dao = new ListMemberCommentDaoImpl();
 	}
 	
+	// 用在後台顯示所有評論資料
 	public List<ListMemberCommentBean> findAllCommentContent(){
 		return dao.findAllCommentContent();
 		

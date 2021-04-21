@@ -1060,7 +1060,7 @@
 					+ '<span class="detail">付款時間 : <span>'+ payment_time +'</span></span>\n'
 					+ '<br>\n'
 					+ '<span class="detail">發票號碼 : <span>'+ invoice_number +'</span></span>\n'
-					+ '<span class="detail">優惠券序號 : <a href="#"><span>'+ coupon_id +'</span></a></span>\n'
+					+ '<span class="detail">優惠碼 : <a href="#"><span>'+ coupon_id +'</span></a></span>\n'
 					+ '<span class="detail">付款方式 : <span>' + payment_method + '</span></span>\n'
 					+ '<br>\n'
 					+ '<span class="detail">訂單備註 : <span>' + order_remarks 	+ '</span></span> <br>\n'
@@ -1113,8 +1113,8 @@
 							let product_name = data1.data[j].product_name;
 
 							let od_list = '<!-- 尚未評價/某訂單/商品們 開始 -->\n'
-							//加<form> 開始, 使用「action="javascript:void(0)」是為了不由前台提交,而是發AJAX(前台中的背景)
-							+ '<form id="'+ order_detail_id +'" data-star = 0 data-orderdetailid="'+order_detail_id+'" action="javascript:void(0)" enctype="multipart/form-data">\n'
+							//加<form> 開始, 使用「action="javascript:void(0)」是為了不由前臺提交,而是發AJAX(前臺中的背景)
+							+ '<form id="'+ order_detail_id +'" data-star= 0 data-orderdetailid="'+order_detail_id+'" action="javascript:void(0)" enctype="multipart/form-data">\n'
 							+ '<hr class="my-4">\n'
 							+ '<!-- <blockquote><p>評價文字內容的亮點/摘錄</p></blockquote> -->\n'
 							+ '<div class="single-comment">\n'
@@ -1236,17 +1236,22 @@
 		$("div#link2").on("click", "a[role='button']", function(e){
 			e.preventDefault();
 			console.log($(this));
-			// console.log($(this).closest('form').serialize()); //會只抓到 CommentContent
+			console.log($(this).closest('form').serialize()); //會只抓到 CommentContent
 
 			let form = $(this).closest('form')[0]; //轉成js物件
 			let data = new FormData(form); //此FormData物件用來裝著要傳給MemberCommentServlet的key-value
-
+			console.log(data);
 			order_detail_id = $(this).closest('form').attr('data-orderdetailid');
 			product_id = $(this).closest('form').find('h6[data-productid]').attr('data-productid');
 			star = $(this).closest('form').attr('data-star'); //因為.star為<span>標籤, 不是<input>標籤或<textarea>標籤等,所以用attr()取星等
 
 			if(star == "0"){
-				alert("請評價星等, 謝謝!");
+				Swal.fire(
+					'請評價星等',
+					'請告訴我們這項商品在您心中值幾顆星呢?',
+					'info'
+				)
+				// alert("請評價星等, 謝謝!");
 				return;
 			}
 			console.log(order_detail_id);

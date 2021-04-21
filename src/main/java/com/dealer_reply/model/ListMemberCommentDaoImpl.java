@@ -28,7 +28,7 @@ public class ListMemberCommentDaoImpl implements ListMemberCommentDao {
 	private static final String DELETE = "";
 	private static final String GET_ONE = "";
 	private static final String FindAllCommentContent = "select mc.review_id, mc.order_detail_id, mc.product_id, comment_content, rating, comment_time, comment_status,\r\n"
-			+ "reply_id, dr.review_id, reply_content, reply_time, dr.employee_account, p.product_name, pi.image_id, om.member_account\r\n"
+			+ "reply_id, dr.review_id, reply_content, reply_time, dr.employee_account, p.product_name, p.product_type, pi.image_id, om.member_account\r\n"
 			+ "from member_comment mc\r\n" + "left join dealer_reply dr on mc.review_id = dr.review_id\r\n"
 			+ "left join product p on mc.product_id = p.product_id\r\n"
 			+ "left join product_image pi on mc.product_id = pi.product_id\r\n"
@@ -89,6 +89,7 @@ public class ListMemberCommentDaoImpl implements ListMemberCommentDao {
 				listMemberCommentBean.setReply_time(rs.getTimestamp("reply_time"));
 				listMemberCommentBean.setEmployee_account(rs.getString("employee_account"));
 				listMemberCommentBean.setProduct_name(rs.getString("product_name"));
+				listMemberCommentBean.setProduct_type(rs.getString("product_type"));
 				listMemberCommentBean.setImage_id(rs.getInt("image_id"));
 				listMemberCommentBean.setProduct_image(
 						"/product_jsp/product.do?action=getProductImage&id=" + listMemberCommentBean.getImage_id());
@@ -163,6 +164,7 @@ public class ListMemberCommentDaoImpl implements ListMemberCommentDao {
 			System.out.println("reply_time: " + listMemberCommentBean.getReply_time() + ",");
 			System.out.println("employee_account: " + listMemberCommentBean.getEmployee_account() + ",");
 			System.out.println("product_name: " + listMemberCommentBean.getProduct_name() + ",");
+			System.out.println("product_type: " + listMemberCommentBean.getProduct_type());
 			System.out.println("image_id: " + listMemberCommentBean.getImage_id() + ",");
 			System.out.println("product_image: " + listMemberCommentBean.getProduct_image() + ",");
 			System.out.println("member_account: " + listMemberCommentBean.getMember_account() + ",");

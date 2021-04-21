@@ -44,7 +44,16 @@
 <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=6073dff91ec66e0011e92ec0&product=inline-share-buttons" async="async"></script>
 <!-- 分享按鈕結束 -->
 
-
+<style>
+	/*a.compare.-on{*/
+	/*	background-color:#83bc2e;*/
+	/*	color:#fff;*/
+	/*}*/
+	/*a.compare{*/
+	/*	background-color:#fff;*/
+	/*	color:#000;*/
+	/*}*/
+</style>
 </head>
 
 <body>
@@ -234,13 +243,13 @@
 											<button type="button" class="sub">
 												<i class="ion-ios-arrow-down"></i>
 											</button>
-											<input type="text" value="1" />
+											<input type="text" value="1" class="purchase_qty"/>
 											<button type="button" class="add">
 												<i class="ion-ios-arrow-up"></i>
 											</button>
 										</div>
 										<div class="product-cart">
-											<button class="btn btn-primary btn-hover-dark"> 加入購物車 </button>
+											<button class="btn btn-primary btn-hover-dark add-cart"> 加入購物車 </button>
 										</div>
 									</div>
 								</div>
@@ -356,6 +365,7 @@
        	let request_subtype= getParameter("subtype");
        	console.log("轉換前:"+request_type);	
      	console.log("轉換前:"+request_subtype);	
+     		
    
        	switch(request_type) {
 	       	 case "cakes":
@@ -447,12 +457,14 @@
        		}
        	  break;
        	 default:
-       	 // 要寫啥?
+       		$.get("/dessert_shop/product/getAllProduct", {}, function (data) {
+           		console.log(data.msg);
+           		defaultDisplay(data);
+            });
        	}
        	console.log("轉換後:"+request_type);	
      	console.log("轉換後:"+request_subtype);	
   
-       	
        	
        	// 要取得資訊的API
        	$.get("/dessert_shop/product/getAllProduct", {}, function (data) {
@@ -473,7 +485,11 @@
    					console.log("sort purchase");
 					$("div#grid div.row").find("div[class='col-lg-3 col-sm-6']").remove();
 					$("div#list").find("div[class='single-product product-list']").remove();
-		     		productDisplay(data);
+					if(request_type == null && request_subtype == null){
+						defaultDisplay(data);
+					}else{
+			     		productDisplay(data);
+					}
 			     });
     			
     		}else if (sort == 2){
@@ -481,7 +497,11 @@
 		     		console.log("sort star");
 		     		$("div#grid div.row").find("div[class='col-lg-3 col-sm-6']").remove();
 					$("div#list").find("div[class='single-product product-list']").remove();
-		     		productDisplay(data);
+					if(request_type == null && request_subtype == null){
+						defaultDisplay(data);
+					}else{
+			     		productDisplay(data);
+					}
 		     	});
     			
     		}else if(sort == 3){
@@ -489,7 +509,11 @@
 		     		console.log("sort price");
 		     		$("div#grid div.row").find("div[class='col-lg-3 col-sm-6']").remove();
 					$("div#list").find("div[class='single-product product-list']").remove();
-		     		productDisplay(data);
+					if(request_type == null && request_subtype == null){
+						defaultDisplay(data);
+					}else{
+			     		productDisplay(data);
+					}
 		     	});
     			
     			
@@ -498,7 +522,11 @@
 		     		console.log("sort calorie");
 		     		$("div#grid div.row").find("div[class='col-lg-3 col-sm-6']").remove();
 					$("div#list").find("div[class='single-product product-list']").remove();
-		     		productDisplay(data);
+					if(request_type == null && request_subtype == null){
+						defaultDisplay(data);
+					}else{
+			     		productDisplay(data);
+					}
 			    });
      			
      		}else if(sort == 5){
@@ -506,7 +534,11 @@
 		     		console.log("sort sweetness");
 		     		$("div#grid div.row").find("div[class='col-lg-3 col-sm-6']").remove();
 					$("div#list").find("div[class='single-product product-list']").remove();
-		     		productDisplay(data);
+					if(request_type == null && request_subtype == null){
+						defaultDisplay(data);
+					}else{
+			     		productDisplay(data);
+					}
 			     });
      			
      		}else if(sort == 0){
@@ -515,7 +547,11 @@
      	       		console.log("依最新商品");
      	       		$("div#grid div.row").find("div[class='col-lg-3 col-sm-6']").remove();
 					$("div#list").find("div[class='single-product product-list']").remove();
-     	       		productDisplay(data);
+					if(request_type == null && request_subtype == null){
+						defaultDisplay(data);
+					}else{
+			     		productDisplay(data);
+					}
      	       	});
      		}
    		});  
@@ -534,7 +570,7 @@
 
    		let url = location.href.split("/TEA103G2")[0];
    		function productDisplay(data){
-   			console.log("display");
+   			console.log("productDisplay");
 		    
 			for(var i = 0 ; i < data.data.length; i++){
 	      		// 判斷是否符合該主分類
@@ -567,10 +603,10 @@
 									</a>
 									<div class="product-action">
 										<a href="#收藏網頁" class="action"><i class="lar la-heart"></i></a>
-										<a href="#比較網頁" class="action"><i class="las la-sync"></i></a>
+										<a href="javascript:void(0)" class="action compare"><i class="las la-sync"></i></a>
 										<a href="#跳出燈箱" class="action search" data-bs-toggle="modal"
 									  	 data-bs-target="#quick-view" ><i class="las la-search"></i></a>
-										<a href="#加入購物車" class="action"><i class="ion-bag"></i></a>
+										<a href="javascript:void(0)" class="action add-cart"><i class="ion-bag"></i></a>
 									</div>
 										<div class="product-flag">
 										<span class="new">${fixed_star}</span>
@@ -633,7 +669,7 @@
 									</p>
 								</div>
 								<div class="cart-btn">
-									<a href="#" class="btn btn-primary btn-hover-dark"> 加入購物車 </a>
+									<a href="javascript:void(0)" class="btn btn-primary btn-hover-dark add-cart"> 加入購物車 </a>
 								</div>
 							</div>
 						</div>
@@ -643,12 +679,130 @@
 	      			}
 	      	
    				}
+			  //等商品渲染完後，把比較商品的比較按鈕上色
+				getCompareList()
    		}
    		
    		$("div.single-product .product-action").on("click", function(){
    		});
    		
-   		// 同時取到grid跟list
+// 商品總覽(不帶任何參數時)
+		function defaultDisplay(data){
+			console.log("defaultDisplay")
+			
+			for(var i = 0 ; i < data.data.length; i++){
+  				
+  				let product_id = data.data[i].product_id;
+				let product_name = data.data[i].product_name;
+				let product_subtype = data.data[i].product_subtype;
+  				let product_price = data.data[i].product_price;
+    			let avg_star = data.data[i].total_star/data.data[i].total_review;
+     			let fixed_star = avg_star.toFixed(1);
+     			let image_list = data.data[i].image_url.valueOf();
+//       		let image_list = [data.data[i].image_url]; //此取法為二維陣列
+				let product_intro = data.data[i].product_intro;
+				let product_available_qty = data.data[i].product_available_qty;
+      				
+     			let product_img1 = url+image_list[0];
+     			let product_img2 = url+image_list[1];
+     	           				
+  				let single_product_grid = `
+      				<div class="col-lg-3 col-sm-6" data->
+						<!-- Single Product Start -->
+						<div class="single-product" id="${product_id}">
+							<div class="product-image">
+								<a class="product-thumbnail" href="product-single.html?id=${product_id}"> 
+									<img src="${product_img1}" alt="product">										
+									<img class="image-hover" src="${product_img2}" alt="product">
+								</a>
+								<div class="product-action">
+									<a href="#收藏網頁" class="action"><i class="lar la-heart"></i></a>
+									<a href="#比較網頁" class="action"><i class="las la-sync"></i></a>
+									<a href="#" class="action search" data-bs-toggle="modal"
+								  	 data-bs-target="#quick-view" ><i class="las la-search"></i></a>
+									<a href="javascript:void(0)" class="action add-cart"><i class="ion-bag"></i></a>
+								</div>
+									<div class="product-flag">
+									<span class="new">${fixed_star}</span>
+								</div>
+							</div>
+							<div class="product-content">
+								<h4 class="product-title">
+									<a href="product-single.html?id=${product_id}">${product_name}</a>
+								</h4>
+								<div class="manufacturer">
+									<a href="#">${product_subtype}</a>
+								</div>
+								<div class="product-price">
+									<span class="sele-price">$${product_price}</span>
+								</div>
+							</div>
+						</div>
+						<!-- Single Product End -->
+					</div>`
+                  
+					$("div#grid div.row:last-child").append(single_product_grid); 
+					
+					
+	    		let single_product_list=`
+	    			<!-- Single Product Start -->
+					<div class="single-product product-list" id="${product_id}">
+						<div class="product-image">
+							<a class="product-thumbnail" href="shop-single.html"> 
+							<img src="${product_img1}" alt="product">
+							<img class="image-hover" src="${product_img2}" alt="product">
+							</a>
+							<div class="product-action">
+								<a href="#" class="action"><i class="lar la-heart"></i></a>
+								<a href="#" class="action"><i class="las la-sync"></i></a> 
+								<a href="#" class="action search" data-bs-toggle="modal"
+									data-bs-target="#quick-view"><i class="las la-search"></i></a>
+							</div>
+							<div class="product-flag">
+								<span class="new">${fixed_star}</span>
+							</div>
+						</div>
+						<div class="product-content">
+							<h4 class="product-title">
+								<a href="shop-single.html">${product_name}</a>
+							</h4>
+							<div class="manufacturer">
+								<a href="#">${product_subtype}</a>
+							</div>
+							<div class="product-price">
+								<span class="sele-price">$${product_price}</span>
+							</div>
+							<div class="product-desc">
+								<ul>
+									${product_intro}
+								</ul>
+							</div>
+							<div class="availability">
+								<p>
+									現貨數量: <span>${product_available_qty}</span>
+								</p>
+							</div>
+							<div class="cart-btn">
+								<a href="javascript:void(0)" class="btn btn-primary btn-hover-dark add-cart"> 加入購物車 </a>
+							</div>
+						</div>
+					</div>
+					<!-- Single Product End -->`
+					
+	    			$("div#list").append(single_product_list); 
+      	
+				}
+		
+		}//defaultDisplay
+		
+   		
+   		
+   		
+   		
+   		
+   		
+   		
+   		// 同時取到grid跟list的放大鏡
    		$("body").on("click", "a.search", function(e) {
    			let product_id = $(this).closest(".single-product").attr("id");
    			console.log("quick view");
@@ -667,6 +821,9 @@
 				let product_intro = data.data.product_intro;
 				let product_ingredient = data.data.product_intro;
 				let product_available_qty = data.data.product_ingredient;
+				
+				// quick-view區塊給product_id
+				$("#quick-view").attr("data-product_id", product_id);
 				
 				$("div.quick-view-content .product-name").text(product_name);
 				$("div.quick-view-content .reference").html(product_type+":"+"<span>"+product_subtype+"</span>");
@@ -698,6 +855,32 @@
    			
    		});
    		
+		
+	// 加入購物車	
+		$("body").on("click", ".add-cart", function(){
+			console.log("加入購物車");
+			let product_id = $(this).closest(".single-product").attr("id");
+			if(product_id == null){
+				product_id = $("#quick-view").attr("data-product_id");
+				console.log("product_id為null，quick view product_id:"+product_id);
+			}
+			console.log("加入購物車的id:"+product_id);
+			let single_purchase = $(".purchase_qty").val();
+			
+			console.log("加入購物車的數量:"+single_purchase);
+			
+			// API要給id 跟數量 如果頁面沒有數量可以選 設為1
+			$.post("cart/insertProductIntoCart?product_id="+product_id+"&product_quantity="+single_purchase,{},function(){
+				console.log("加入購物車的flag:"+data.flag);
+			});//$.post
+			
+			
+			$(".purchase_qty").val("1");//清空quick-view裡的數量
+			
+		});
+		
+		
+		
    		
    	// 分頁功能	
 
@@ -715,7 +898,82 @@
     
        
  </script>
+<script>
+	/*******************以下比較列表********************/
+	$("body").on("click", "a.compare", function(e) {
+		let id = $(this).closest("div[class=single-product]").attr("id")
+		console.log($(this))
+		if($(this).hasClass("-on")){
+			removeCompareList(id)
+			$(this).removeClass("-on");
+			$(this).css("background-color","#fff");
+			$(this).css("color","#000");
+			updateCompareNumber()
+		}else{
+			if(addCompareList(id)){
+				console.log("成功加入")
+				$(this).css("background-color","#83bc2e");
+				$(this).css("color","#fff");
+				$(this).addClass("-on");
+				updateCompareNumber()
+			}else{
+				Swal.fire({
+					title: "比較列表最多三個商品",
+					text: '',
+					icon: "error"
+				})
+				$(this).css("background-color","#fff");
+				$(this).css("color","#000");
+			}
+		}
+	})
 
+	function getCompareList(){
+		let compareList = JSON.parse(localStorage.getItem("compareList"));
+		if(compareList==null){
+			compareList=[];
+			localStorage.setItem("compareList", JSON.stringify(compareList));
+			return;
+		}else{
+			compareList.forEach(function(item, index, arr) {
+				console.log($("#"+item));
+				$("#"+item).find("a.compare").addClass("-on");
+				$("#"+item).find("a.compare").css("background-color","#83bc2e");
+				$("#"+item).find("a.compare").css("color","#fff");
+			});
+		}
+	}
+
+
+	function addCompareList(product_id){
+		let compareList = JSON.parse(localStorage.getItem("compareList"));
+		if(compareList==null ) {
+			compareList=[product_id];
+			localStorage.setItem("compareList", JSON.stringify(compareList));
+			return true;
+		}else{
+			if(compareList.length>=3) return false;
+			compareList.push(product_id);
+			localStorage.setItem("compareList", JSON.stringify(compareList));
+			return true;
+		}
+	}
+
+	// removeCompareList(3);
+	function removeCompareList(product_id){
+		let compareList = JSON.parse(localStorage.getItem("compareList"));
+		if(compareList==null ) return true;
+		compareList.forEach(function(item, index, arr) {
+			if(item == product_id) {
+				arr.splice(index, 1);
+			}
+		});
+		localStorage.setItem("compareList", JSON.stringify(compareList));
+		console.log(compareList);
+		return true;
+	}
+
+</script>
 </body>
 
 </html>

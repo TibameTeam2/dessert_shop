@@ -181,6 +181,7 @@
 
 
     <build>
+        <finalName>dessert_shop</finalName>
         <defaultGoal>install</defaultGoal>
         <plugins>
             <plugin>

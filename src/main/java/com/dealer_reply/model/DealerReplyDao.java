@@ -2,9 +2,11 @@ package com.dealer_reply.model;
 
 import java.util.List;
 
+import com.member_comment.model.MemberCommentBean;
+
 public interface DealerReplyDao {
 
-	public void insert(DealerReplyBean DealerReplyBean);
+	public int insert(DealerReplyBean DealerReplyBean, MemberCommentBean memberCommentBean);
 
 	public void update(DealerReplyBean DealerReplyBean);
 
