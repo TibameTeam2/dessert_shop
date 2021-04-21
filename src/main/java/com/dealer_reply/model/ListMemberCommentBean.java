@@ -18,6 +18,12 @@ public class ListMemberCommentBean implements Serializable {
 	private Timestamp reply_time;
 	private String employee_account;
 	private String product_name;
+	private String product_type;
+	private Integer image_id;
+	private String product_image;
+	private String member_account;
+	private String member_name;
+	private String member_photo;
 	private Integer review_image_id;
 	private List<String> review_image;
 	@Override
@@ -26,8 +32,10 @@ public class ListMemberCommentBean implements Serializable {
 				+ ", product_id=" + product_id + ", comment_content=" + comment_content + ", rating=" + rating
 				+ ", comment_time=" + comment_time + ", comment_status=" + comment_status + ", reply_id=" + reply_id
 				+ ", reply_content=" + reply_content + ", reply_time=" + reply_time + ", employee_account="
-				+ employee_account + ", product_name=" + product_name + ", review_image_id=" + review_image_id
-				+ ", review_image=" + review_image + "]";
+				+ employee_account + ", product_name=" + product_name + ", product_type=" + product_type + ", image_id="
+				+ image_id + ", product_image=" + product_image + ", member_account=" + member_account
+				+ ", member_name=" + member_name + ", member_photo=" + member_photo + ", review_image_id="
+				+ review_image_id + ", review_image=" + review_image + "]";
 	}
 	public Integer getReview_id() {
 		return review_id;
@@ -101,6 +109,42 @@ public class ListMemberCommentBean implements Serializable {
 	public void setProduct_name(String product_name) {
 		this.product_name = product_name;
 	}
+	public String getProduct_type() {
+		return product_type;
+	}
+	public void setProduct_type(String product_type) {
+		this.product_type = product_type;
+	}
+	public Integer getImage_id() {
+		return image_id;
+	}
+	public void setImage_id(Integer image_id) {
+		this.image_id = image_id;
+	}
+	public String getProduct_image() {
+		return product_image;
+	}
+	public void setProduct_image(String product_image) {
+		this.product_image = product_image;
+	}
+	public String getMember_account() {
+		return member_account;
+	}
+	public void setMember_account(String member_account) {
+		this.member_account = member_account;
+	}
+	public String getMember_name() {
+		return member_name;
+	}
+	public void setMember_name(String member_name) {
+		this.member_name = member_name;
+	}
+	public String getMember_photo() {
+		return member_photo;
+	}
+	public void setMember_photo(String member_photo) {
+		this.member_photo = member_photo;
+	}
 	public Integer getReview_image_id() {
 		return review_image_id;
 	}
@@ -113,6 +157,5 @@ public class ListMemberCommentBean implements Serializable {
 	public void setReview_image(List<String> review_image) {
 		this.review_image = review_image;
 	}
-	
 	
 }

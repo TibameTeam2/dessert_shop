@@ -1,5 +1,5 @@
 ﻿<!doctype html>
-<html lang="zh-Hant">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -71,7 +71,7 @@
                   <i class="las la-minus"></i><span>List Product</span>
                 </a>
               </li>
-              <li class="active">
+              <li class="">
                 <a href="page-add-product.html">
                   <i class="las la-minus"></i><span>Add Product</span>
                 </a>
@@ -189,7 +189,7 @@
                   <i class="las la-minus"></i><span>List Returns</span>
                 </a>
               </li>
-              <li class="">
+              <li class="active">
                 <a href="page-add-return.html">
                   <i class="las la-minus"></i><span>Add Return</span>
                 </a>
@@ -958,7 +958,7 @@
                       </div>
                       <div class="p-3">
                         <h5 class="mb-1"><a href="/cdn-cgi/l/email-protection" class="__cf_email__"
-                                            data-cfemail="fbb1949a95bf8e94bb8b89948b9e898f82d5989496">[email&#160;protected]</a>
+                                            data-cfemail="6b21040a052f1e042b1b19041b0e191f1245080406">[email&#160;protected]</a>
                         </h5>
                         <p class="mb-0">Since 10 march, 2020</p>
                         <div class="d-flex align-items-center justify-content-center mt-3">
@@ -1006,121 +1006,88 @@
           <div class="card">
             <div class="card-header d-flex justify-content-between">
               <div class="header-title">
-                <h4 class="card-title">新增商品</h4>
+                <h4 class="card-title">Add Return</h4>
               </div>
             </div>
             <div class="card-body">
-              <form action="page-list-product.html" data-toggle="validator">
+              <form action="page-list-returns.html" data-toggle="validator">
                 <div class="row">
-                  <div class="col-md-12">
+                  <div class="col-md-6">
                     <div class="form-group">
-                      <label>商品種類 *</label>
+                      <label>Date *</label>
+                      <input type="text" class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Reference No *</label>
+                      <input type="text" class="form-control" placeholder="Enter Reference No" required>
+                      <div class="help-block with-errors"></div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Biller *</label>
                       <select name="type" class="selectpicker form-control" data-style="py-0">
-                        <option>Standard</option>
-                        <option>Combo</option>
-                        <option>Digital</option>
-                        <option>Service</option>
+                        <option>Test Biller</option>
                       </select>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label>商品名稱 *</label>
-                      <input type="text" class="form-control" placeholder="Enter Name" data-errors="Please Enter Name."
-                             required>
+                      <label>Customer *</label>
+                      <input type="text" class="form-control" placeholder="Enter Customer Name" required>
                       <div class="help-block with-errors"></div>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label>商品編號 *</label>
-                      <input type="text" class="form-control" placeholder="Enter Code" data-errors="Please Enter Code."
-                             required>
-                      <div class="help-block with-errors"></div>
-                    </div>
-                  </div>
-                  <div class="col-md-12">
-                    <div class="form-group">
-                      <label>商品編號2 *</label>
-                      <input type="text" class="form-control" placeholder="Enter Code" data-errors="Please Enter Code."
-                             required>
-                      <div class="help-block with-errors"></div>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label>Barcode Symbology *</label>
+                      <label>Order Tax *</label>
                       <select name="type" class="selectpicker form-control" data-style="py-0">
-                        <option>CREM01</option>
-                        <option>UM01</option>
-                        <option>SEM01</option>
-                        <option>COF01</option>
-                        <option>FUN01</option>
-                        <option>DIS01</option>
-                        <option>NIS01</option>
+                        <option>No Text</option>
+                        <option>GST @5%</option>
+                        <option>VAT @10%</option>
                       </select>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label>Category *</label>
-                      <select name="type" class="selectpicker form-control" data-style="py-0">
-                        <option>Beauty</option>
-                        <option>Grocery</option>
-                        <option>Food</option>
-                        <option>Furniture</option>
-                        <option>Shoes</option>
-                        <option>Frames</option>
-                        <option>Jewellery</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label>Cost *</label>
-                      <input type="text" class="form-control" placeholder="Enter Cost" data-errors="Please Enter Cost."
-                             required>
-                      <div class="help-block with-errors"></div>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label>Price *</label>
-                      <input type="text" class="form-control" placeholder="Enter Price"
-                             data-errors="Please Enter Price." required>
-                      <div class="help-block with-errors"></div>
+                      <label>Order Discount</label>
+                      <input type="text" class="form-control" placeholder="Discount">
                     </div>
                   </div>
                   <div class="col-md-12">
                     <div class="form-group">
-                      <label>Tax Method *</label>
-                      <select name="type" class="selectpicker form-control" data-style="py-0">
-                        <option>Exclusive</option>
-                        <option>Inclusive</option>
-                      </select>
+                      <label>Shipping</label>
+                      <input type="text" class="form-control" placeholder="Shipping">
                     </div>
                   </div>
                   <div class="col-md-12">
                     <div class="form-group">
-                      <label>Quantity *</label>
-                      <input type="text" class="form-control" placeholder="Enter Quantity" required>
-                      <div class="help-block with-errors"></div>
-                    </div>
-                  </div>
-                  <div class="col-md-12">
-                    <div class="form-group">
-                      <label>Image</label>
+                      <label>Attach Document</label>
                       <input type="file" class="form-control image-file" name="pic" accept="image/*">
                     </div>
                   </div>
                   <div class="col-md-12">
                     <div class="form-group">
-                      <label>Description / Product Details</label>
-                      <textarea class="form-control" rows="4"></textarea>
+                      <label>Return Note *</label>
+                      <div id="quill-tool">
+                        <button class="ql-bold" data-toggle="tooltip" data-placement="bottom" title="Bold"></button>
+                        <button class="ql-underline" data-toggle="tooltip" data-placement="bottom"
+                                title="Underline"></button>
+                        <button class="ql-italic" data-toggle="tooltip" data-placement="bottom"
+                                title="Add italic text <cmd+i>"></button>
+                        <button class="ql-image" data-toggle="tooltip" data-placement="bottom"
+                                title="Upload image"></button>
+                        <button class="ql-code-block" data-toggle="tooltip" data-placement="bottom"
+                                title="Show code"></button>
+                      </div>
+                      <div id="quill-toolbar">
+                      </div>
                     </div>
                   </div>
                 </div>
-                <button type="submit" class="btn btn-primary mr-2">Add Product</button>
+                <button type="submit" class="btn btn-primary mr-2">Add Returns</button>
                 <button type="reset" class="btn btn-danger">Reset</button>
               </form>
             </div>
