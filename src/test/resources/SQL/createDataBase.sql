@@ -117,7 +117,9 @@ INSERT INTO authority_content (authority_content) VALUES ('評價管理');    # 
 INSERT INTO authority_content (authority_content) VALUES ('優惠碼管理');
 INSERT INTO authority_content (authority_content) VALUES ('優惠券管理');
 INSERT INTO authority_content (authority_content) VALUES ('商品管理');
-INSERT INTO authority_content (authority_content) VALUES ('通知管理');     #9
+INSERT INTO authority_content (authority_content) VALUES ('通知管理');
+INSERT INTO authority_content (authority_content) VALUES ('訂閱管理');     #10
+INSERT INTO authority_content (authority_content) VALUES ('電子報管理');
 -- 員工權限
 set auto_increment_offset=1;
 set auto_increment_increment=1;
