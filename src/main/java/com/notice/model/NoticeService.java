@@ -3,6 +3,7 @@ package com.notice.model;
 import java.util.List;
 
 import com.mysql.cj.protocol.x.Notice;
+import com.notice.controller.NoticeWS;
 
 public class NoticeService {
 
@@ -72,17 +73,55 @@ public class NoticeService {
 //	4.再呼叫updateNotice(noticeBean)
 
 		NoticeBean noticeId = dao.findByPrimaryKey(notice.getNotice_id());
-		
+
 		if (notice.getMember_account().equals(noticeId.getMember_account())) {
 
 			noticeId.setRead_status(1);
 			dao.update(noticeId);
 
 		}
-		
-		System.out.println("已更新"+noticeId+"狀態");
+
+		System.out.println("已更新" + noticeId + "狀態");
 
 		return true;
+	}
+
+	/*********************** 後臺更新 ***********************/
+	public Boolean backend_updateNotice(NoticeBean noticeBean) {
+
+		NoticeBean notice = dao.findByPrimaryKey(noticeBean.getNotice_id());
+
+		notice.setMember_account(noticeBean.getMember_account());
+		notice.setNotice_type(noticeBean.getNotice_type());
+		notice.setRead_status(noticeBean.getRead_status());
+		notice.setNotice_content(noticeBean.getNotice_content());
+
+		dao.update(notice);
+
+		System.out.println("已更新" + notice + "狀態");
+		return true;
+
+	}
+
+	/*********************** 新增時加入資料庫並推播(給東陞用) ***********************/
+	public Boolean addWSNotice(NoticeBean noticeBean) {
+
+		// 訂單成立即新增通知與推播至用戶端
+		try {
+
+			dao.insert(noticeBean);
+			NoticeWS.sendCustomizeMessage(noticeBean.getMember_account(), noticeBean.getNotice_content());
+			
+			System.out.println("成功新增通知並推播="+noticeBean);
+			return true;
+
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			System.out.println("新增通知失敗");
+			return false;
+		}
+
 	}
 
 }
