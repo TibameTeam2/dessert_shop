@@ -78,7 +78,7 @@ public class NoticeServlet extends BaseServlet {
 				info.setFlag(true);
 				info.setMsg("新增成功");
 
-				NoticeWS.sendCustomizeMessage(member.getMember_account(), noticeBean.getNotice_content());
+				NoticeWS.sendCustomizeMessage(noticeBean.getMember_account(), noticeBean.getNotice_content());
 
 			} else {
 

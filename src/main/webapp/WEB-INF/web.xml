@@ -58,14 +58,14 @@
 	</servlet-mapping>
 
 	<!-- 本來要給0201用的，後來沒用到先註解 -->
-<!-- 	<servlet> -->
-<!-- 		<servlet-name>ProductImageServlet</servlet-name> -->
-<!-- 		<servlet-class>com.product_image.controller.ProductImageServlet</servlet-class> -->
-<!-- 	</servlet> -->
-<!-- 	<servlet-mapping> -->
-<!-- 		<servlet-name>ProductImageServlet</servlet-name> -->
-<!-- 		<url-pattern>/product_image_jsp/product.do</url-pattern> -->
-<!-- 	</servlet-mapping> -->
+	<!-- <servlet> -->
+	<!-- <servlet-name>ProductImageServlet</servlet-name> -->
+	<!-- <servlet-class>com.product_image.controller.ProductImageServlet</servlet-class> -->
+	<!-- </servlet> -->
+	<!-- <servlet-mapping> -->
+	<!-- <servlet-name>ProductImageServlet</servlet-name> -->
+	<!-- <url-pattern>/product_image_jsp/product.do</url-pattern> -->
+	<!-- </servlet-mapping> -->
 
 
 	<!--測試用Servlet -->
@@ -107,7 +107,7 @@
 
 
 
-	<!--通知-->
+	<!--通知 -->
 	<servlet>
 		<servlet-name>NoticeServlet</servlet-name>
 		<servlet-class>com.notice.controller.NoticeServlet</servlet-class>
@@ -116,18 +116,26 @@
 		<servlet-name>NoticeServlet</servlet-name>
 		<url-pattern>/notice/*</url-pattern>
 	</servlet-mapping>
-	
-	<!--訂閱-->
+
+	<!--訂閱 -->
 	<servlet>
 		<servlet-name>SubscriberListServlet</servlet-name>
 		<servlet-class>com.subscriber_list.controller.SubscriberListServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>SubscriberListServlet</servlet-name>
-		<url-pattern>/subscriberList/*</url-pattern>	
+		<url-pattern>/subscriberList/*</url-pattern>
 	</servlet-mapping>
 
-
+	<!--電子報-->
+	<servlet>
+		<servlet-name>NewLetterServlet</servlet-name>
+		<servlet-class>com.newsLetter.controller.NewLetterServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>NewLetterServlet</servlet-name>
+		<url-pattern>/newsLetter/*</url-pattern>
+	</servlet-mapping>
 
 
 	<!--LiveSupport 測試 -->
@@ -317,7 +325,7 @@
 
 
 
-	<!--  ProductImage 玉婷  -->
+	<!-- ProductImage 玉婷 -->
 	<servlet>
 		<servlet-name>ProductImageServlet</servlet-name>
 		<servlet-class>com.product_image.controller.ProductImageServlet</servlet-class>
@@ -898,41 +906,41 @@
 
 
 
-    <!--前台登入過濾器-->
-    <filter>
-        <filter-name>loginFilter</filter-name>
-        <filter-class>com.filter.LoginFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>loginFilter</filter-name>
-        <url-pattern>/TEA103G2/front-end/my-account.html</url-pattern>
-        <url-pattern>/TEA103G2/front-end/cart.html</url-pattern>
-        <url-pattern>/TEA103G2/front-end/checkout.html</url-pattern>
-        <dispatcher>REQUEST</dispatcher>
-        <dispatcher>FORWARD</dispatcher>
-        <dispatcher>INCLUDE</dispatcher>
-        <dispatcher>ERROR</dispatcher>
-        <dispatcher>ASYNC</dispatcher>
-    </filter-mapping>
+	<!--前台登入過濾器 -->
+	<filter>
+		<filter-name>loginFilter</filter-name>
+		<filter-class>com.filter.LoginFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>loginFilter</filter-name>
+		<url-pattern>/TEA103G2/front-end/my-account.html</url-pattern>
+		<url-pattern>/TEA103G2/front-end/cart.html</url-pattern>
+		<url-pattern>/TEA103G2/front-end/checkout.html</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>INCLUDE</dispatcher>
+		<dispatcher>ERROR</dispatcher>
+		<dispatcher>ASYNC</dispatcher>
+	</filter-mapping>
 
-	<!--後台登入全局過濾器-->
-<!--	<filter>-->
-<!--		<filter-name>backendLoginFilter</filter-name>-->
-<!--		<filter-class>com.filter.BackendLoginFilter</filter-class>-->
-<!--		<init-param>-->
-<!--			<param-name>excludedPages</param-name>-->
-<!--			<param-value>/TEA103G2/back-end/login.html</param-value>-->
-<!--		</init-param>-->
-<!--	</filter>-->
-<!--	<filter-mapping>-->
-<!--		<filter-name>backendLoginFilter</filter-name>-->
-<!--		<url-pattern>/TEA103G2/back-end/employee.html</url-pattern>-->
-<!--		<dispatcher>REQUEST</dispatcher>-->
-<!--		<dispatcher>FORWARD</dispatcher>-->
-<!--		<dispatcher>INCLUDE</dispatcher>-->
-<!--		<dispatcher>ERROR</dispatcher>-->
-<!--		<dispatcher>ASYNC</dispatcher>-->
-<!--	</filter-mapping>-->
+	<!--後台登入全局過濾器 -->
+	<!-- <filter> -->
+	<!-- <filter-name>backendLoginFilter</filter-name> -->
+	<!-- <filter-class>com.filter.BackendLoginFilter</filter-class> -->
+	<!-- <init-param> -->
+	<!-- <param-name>excludedPages</param-name> -->
+	<!-- <param-value>/TEA103G2/back-end/login.html</param-value> -->
+	<!-- </init-param> -->
+	<!-- </filter> -->
+	<!-- <filter-mapping> -->
+	<!-- <filter-name>backendLoginFilter</filter-name> -->
+	<!-- <url-pattern>/TEA103G2/back-end/employee.html</url-pattern> -->
+	<!-- <dispatcher>REQUEST</dispatcher> -->
+	<!-- <dispatcher>FORWARD</dispatcher> -->
+	<!-- <dispatcher>INCLUDE</dispatcher> -->
+	<!-- <dispatcher>ERROR</dispatcher> -->
+	<!-- <dispatcher>ASYNC</dispatcher> -->
+	<!-- </filter-mapping> -->
 
 
 
