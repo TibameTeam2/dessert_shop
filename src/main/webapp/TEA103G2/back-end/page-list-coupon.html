@@ -1,0 +1,764 @@
+﻿<!doctype html>
+<html lang="zh-Hant">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>POS Dash | Responsive Bootstrap 4 Admin Dashboard Template</title>
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="assets/images/favicon.ico" />
+  <link rel="stylesheet" href="assets/css/backend-plugin.min.css">
+  <link rel="stylesheet" href="assets/css/backend.css?v=1.0.0">
+  <link rel="stylesheet" href="assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="assets/vendor/line-awesome/dist/line-awesome/css/line-awesome.min.css">
+  <link rel="stylesheet" href="assets/vendor/remixicon/fonts/remixicon.css">
+
+  <style>
+    .table-img {
+      max-width: 100px;
+      max-height: 100px;
+    }
+
+    @media (min-width: 576px) {
+      .modal-dialog {
+        max-width: 1000px !important;
+      }
+    }
+  </style>
+
+</head>
+
+<body class="  ">
+  <!-- loader Start -->
+  <div id="loading">
+    <div id="loading-center">
+    </div>
+  </div>
+  <!-- loader END -->
+  <!-- Wrapper Start -->
+  <div class="wrapper">
+
+    <!--Header-->
+    <div class="header"></div>
+
+    <div class="content-page">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="d-flex flex-wrap flex-wrap align-items-center justify-content-between mb-4">
+              <div>
+                <h4 class="mb-3">優惠券清單 Coupon code List</h4>
+                <p class="mb-0">The product list effectively dictates product presentation and provides space<br> to
+                  list
+                  your products and offering in the most appealing way.</p>
+              </div>
+              <a href="page-add-coupon-code.html" class="btn btn-primary add-list" data-toggle="modal"
+                data-target="#new-order1"><i class="las la-plus mr-3"></i>新增優惠券 Add
+                Coupon</a>
+            </div>
+          </div>
+          <div class="col-lg-12">
+            <div class="table-responsive rounded mb-3">
+              <table class="data-table table mb-0 tbl-server-info">
+                <thead class="bg-white text-uppercase">
+                  <tr class="ligth ligth-data">
+                    <th>優惠券ID</th>
+                    <th>會員帳號</th>
+                    <th>優惠券寄送日</th>
+                    <th>優惠券生效日</th>
+                    <th>優惠券到期日</th>
+                    <th>優惠券文字內容</th>
+                    <th>優惠券內容</th>
+                    <th>優惠方式</th>
+                    <th>優惠券狀態</th>
+                    <th>編輯員工</th>
+                    <th>優惠碼ID</th>
+                    <th>動作</th>
+                  </tr>
+                </thead>
+                <tbody class="ligth-body">
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================!新增的燈箱!============================================ -->
+
+  <div class="modal fade" id="new-order1" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="popup text-left">
+
+
+            <div class="container-fluid add-form-list">
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="card">
+                    <div class="card-header d-flex justify-content-between">
+                      <div class="header-title">
+                        <h4 class="card-title">優惠券新增 Add Coupon</h4>
+                      </div>
+                    </div>
+                    <div class="card-body">
+                      <form id="addCPform" action="page-list-coupon-code.html" data-toggle="validator"
+                        contentType="multipart/form-data">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <label>會員帳號</label>
+                              <input type="text" class="form-control" placeholder="Enter member_account"
+                                data-errors="Please Enter member_account." name="member_account" required>
+                              <div class="help-block with-errors"></div>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label>編輯員工</label>
+                              <input type="text" class="form-control" placeholder="Enter employee_account"
+                                data-errors="Please Enter Code." name="employee_account" id="employee_account" required>
+                              <div class="help-block with-errors"></div>
+                            </div>
+                          </div>
+
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label>優惠券寄送時間</label>
+
+                              <!-- <input type="text" class="form-control" placeholder="Enter employee_account"
+                                data-errors="Please Enter Code." name="employee_account" required> -->
+
+                              <input type="datetime-local" step="01" class="form-control"
+                                placeholder="Enter YYYY-MM-DD hh:mm:ss" data-errors="Please Enter Code."
+                                name="coupon_sending_time" required>
+
+                              <div class="help-block with-errors"></div>
+                            </div>
+                          </div>
+
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label>優惠券生效日</label>
+                              <input type="datetime-local" step="01" class="form-control"
+                                placeholder="Enter YYYY-MM-DD hh:mm:ss" data-errors="Please Enter Code."
+                                name="coupon_effective_date" required>
+                              <div class="help-block with-errors"></div>
+                            </div>
+                          </div>
+
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label>優惠券到期日</label>
+                              <input type="datetime-local" step="01" class="form-control"
+                                placeholder="Enter YYYY-MM-DD hh:mm:ss" data-errors="Please Enter Code."
+                                name="coupon_expire_date" required>
+                              <div class="help-block with-errors"></div>
+                            </div>
+                          </div>
+
+
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label>優惠方式</label>
+
+                              <div class="help-block with-errors"></div>
+                              <select name="discount_type" class="selectpicker form-control" data-style="py-0">
+                                <option value="0">打折(*)</option>
+                                <option value="1">折價(-)</option>
+                              </select>
+                            </div>
+                          </div>
+
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label>優惠券內容</label>
+                              <input type="text" class="form-control" placeholder="Enter coupon_content"
+                                data-errors="Please Enter Code." name="coupon_content" required>
+                              <div class="help-block with-errors"></div>
+                            </div>
+                          </div>
+
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label>優惠券狀態</label>
+                              <select name="coupon_status" class="selectpicker form-control" data-style="py-0">
+                                <option value="0">未使用</option>
+                              </select>
+                            </div>
+                          </div>
+
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label>優惠碼ID</label>
+                              <input type="text" class="form-control" placeholder="Enter coupon_code_id"
+                                data-errors="Please Enter Code." name="coupon_code_id">
+                              <div class="help-block with-errors"></div>
+                            </div>
+                          </div>
+
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <label>優惠券文字內容</label>
+                              <textarea class="form-control" rows="4" data-errors="Please Enter Code."
+                                name="coupon_text_content" required></textarea>
+                              <div class="help-block with-errors"></div>
+                            </div>
+                          </div>
+
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <label><input type="radio">寄送E-mail 通知</label>
+
+
+                              <div class="col-md-6">
+                                <div class="form-group">
+                                  <label>E-mail 標題</label>
+                                  <input type="text" class="form-control" placeholder="Enter E-mail title"
+                                    data-errors="Please Enter E-mail title.">
+                                  <div class="help-block with-errors"></div>
+                                </div>
+                              </div>
+
+                              <div class="col-md-12">
+                                <div class="form-group">
+                                  <label>E-mail 內文</label>
+                                  <textarea class="form-control" rows="4" placeholder="Enter E-mail content"
+                                    data-errors="Please Enter E-mail content."></textarea>
+                                  <div class="help-block with-errors"></div>
+                                </div>
+                              </div>
+
+                            </div>
+                          </div>
+                        </div>
+                        <button type="submit" id="addCP" class="btn btn-primary mr-2">確認 confirm</button>
+                        <button type="reset" class="btn btn-danger">重新輸入 Reset</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ============================================!編輯的燈箱!============================================ -->
+
+  <div class="modal fade" id="update_modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="popup text-left">
+
+
+            <div class="container-fluid add-form-list">
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="card">
+                    <div class="card-header d-flex justify-content-between">
+                      <div class="header-title">
+                        <h4 class="card-title">優惠券編輯 Update Coupon code</h4>
+                      </div>
+                    </div>
+                    <div class="card-body">
+                      <form id="updateCPform" action="page-list-product.html" data-toggle="validator"
+                        contentType="multipart/form-data">
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label>優惠券ID</label>
+                              <input type="text" class="form-control update_coupon_id" placeholder=""
+                                data-errors="Please Enter xxx." id="coupon_id" name="coupon_id" required
+                                name="coupon_id" readonly>
+                              <div class="help-block with-errors"></div>
+                            </div>
+                          </div>
+
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label>會員帳號</label>
+                              <input type="text" class="form-control update_member_account" placeholder=""
+                                data-errors="Please Enter xxx." id="member_account" name="member_account" required
+                                name="member_account" readonly>
+                              <div class="help-block with-errors"></div>
+                            </div>
+                          </div>
+
+
+
+
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <label>優惠碼ID</label>
+                              <input type="text" class="form-control update_coupon_code_id"
+                                placeholder="Enter coupon_code_id." data-errors="Please Enter coupon_code_id."
+                                id="coupon_code_id" name="coupon_code_id" required name="coupon_code_id">
+                              <div class="help-block with-errors"></div>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label>編輯員工</label>
+                              <input type="text" class="form-control update_employee_account"
+                                placeholder="Enter employee_account" data-errors="Please Enter Code."
+                                id="employee_account" name="employee_account" required name="employee_account">
+                              <div class="help-block with-errors"></div>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label>優惠券寄送日</label>
+                              <input type="datetime-local" step="01" class="form-control update_coupon_sending_time"
+                                placeholder="Enter coupon_sending_time" data-errors="Please Enter Code."
+                                id="coupon_sending_time" name="coupon_sending_time" required name="coupon_sending_time">
+                              <div class="help-block with-errors"></div>
+                            </div>
+                          </div>
+
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label>優惠券生效日</label>
+                              <input type="datetime-local" step="01" class="form-control update_coupon_effective_date"
+                                placeholder="Enter coupon_effective_date" data-errors="Please Enter Code."
+                                id="coupon_effective_date" name="coupon_effective_date" required
+                                name="coupon_effective_date">
+                              <div class="help-block with-errors"></div>
+                            </div>
+                          </div>
+
+
+
+
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label>優惠券到期日</label>
+                              <input type="datetime-local" step="01" class="form-control update_coupon_expire_date"
+                                placeholder="Enter coupon_expire_date" data-errors="Please Enter Code."
+                                id="coupon_expire_date" name="coupon_expire_date" required name="coupon_expire_date">
+                              <div class="help-block with-errors"></div>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label>優惠方式</label>
+                              <div class="help-block with-errors"></div>
+                              <select name="discount_type" class="selectpicker form-control update_discount_type"
+                                data-style="py-0" id="discount_type">
+                                <option value="0">打扣(*)</option>
+                                <option value="1">折價(-)</option>
+                              </select>
+                            </div>
+                          </div>
+
+
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label>優惠券內容</label>
+                              <input type="text" class="form-control update_coupon_content" placeholder="Enter Code"
+                                data-errors="Please Enter Code." id="coupon_content" name="coupon_content" required>
+                              <div class="help-block with-errors"></div>
+                            </div>
+                          </div>
+
+                          <div class="col-md-6">
+                            <div class="form-group">
+                              <label>優惠券狀態</label>
+                              <select name="coupon_status" class="selectpicker form-control update_coupon_status"
+                                id="coupon_status" data-style="py-0">
+                                <option value="0">未使用</option>
+                              </select>
+                            </div>
+                          </div>
+
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <label>優惠券文字內容</label>
+                              <textarea class="form-control update_coupon_text_content" rows="4"
+                                data-errors="Please Enter Code." id="coupon_text_content" name="coupon_text_content"
+                                required name="coupon_text_content"></textarea>
+                              <div class="help-block with-errors"></div>
+                            </div>
+
+                          </div>
+                        </div>
+                        <button type="submit" id="updateCP" class="btn btn-primary mr-2">確認編輯 confirm</button>
+                        <button type="reset" class="btn btn-danger">重新輸入 Reset</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- Wrapper End-->
+
+  <!-- Backend Bundle JavaScript -->
+  <script src="assets/js/backend-bundle.min.js"></script>
+
+  <!-- Table Treeview JavaScript -->
+  <script src="assets/js/table-treeview.js"></script>
+
+  <!-- Chart Custom JavaScript -->
+  <script src="assets/js/customizer.js"></script>
+
+  <!-- Chart Custom JavaScript -->
+  <script async src="assets/js/chart-custom.js"></script>
+
+  <!-- app JavaScript -->
+  <script src="assets/js/app.js"></script>
+
+  <script src="assets/js/moment.js"></script>
+
+  <script>
+    $(document).ready(function () {
+      $('.header').load('header.html')
+      // $('.footer').load('footer.html')
+    })
+  </script>
+
+  <script>
+
+    getAllCoupon();
+    function getAllCoupon() {
+      var action = '                  <div class="d-flex align-items-center list-action">\n' +
+        // '                    <a class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title=""\n' +
+        // '                       data-original-title="View"\n' +
+        // '                       href="#"><i class="ri-eye-line mr-0"></i></a>\n' +
+        '                    <a class="badge bg-success mr-2 edit" data-toggle="modal" data-placement="top" title=""\n' +
+        '                      data-target="#update_modal" data-original-title="Edit"\n' +
+        '                       href="javascript:void(0)"><i class="ri-pencil-line mr-0"></i></a>\n' +
+        '                    <a class="badge bg-warning mr-2 delete" data-toggle="tooltip" data-placement="top" title=""\n' +
+        '                       data-original-title="Delete"\n' +
+        '                       href="javascript:void(0)"><i class="ri-delete-bin-line mr-0"></i></a>\n' +
+        '                  </div>'
+      $.get("/dessert_shop/coupon/getCouponData", {}, function (data) {
+        console.log(data);
+        if (data.flag) {
+          let table = $(".data-table").DataTable()
+          table.destroy();
+          table = $(".data-table").DataTable({
+            "autoWidth": false,
+            "lengthMenu": [8, 15, 20, 30],     //顯示XX筆結果
+            "language": {
+              "processing": "處理中...",
+              "loadingRecords": "載入中...",
+              "lengthMenu": "顯示 _MENU_ 筆結果",
+              "zeroRecords": "沒有符合的結果",
+              "info": "顯示第 _START_ 至 _END_ 筆結果，共 _TOTAL_ 筆",
+              "infoEmpty": "顯示第 0 至 0 項結果，共 0 項",
+              "infoFiltered": "(從 _MAX_ 項結果中過濾)",
+              "infoPostFix": "",
+              "search": "搜尋:",
+              "paginate": {
+                "first": "第一頁",
+                "previous": "上一頁",
+                "next": "下一頁",
+                "last": "最後一頁"
+              },
+              "aria": {
+                "sortAscending": ": 升冪排列",
+                "sortDescending": ": 降冪排列"
+              }
+            },
+            // "columns": [
+            //     { "data": "name" }, //第一欄使用data中的name
+            //     { "data": "age" } //第二欄使用data中的age
+            // ],
+            // "columns": [
+            //     {
+            //         title: "會員帳號",
+            //         data: "member_account"
+            //     },
+            //     {
+            //         title: "會員密碼",
+            //         data: "member_password"
+            //     },
+            // ]
+            "columnDefs": [
+              {
+                "targets": [0, 1, 2],    //欄位從0開始算
+                "visible": true,   //欄位是否顯示 預設是true
+                "orderable": true  //是否可以排序
+              },
+              // {
+              //   "targets": [2],    //欄位從0開始算
+              //   "visible": true,   //欄位是否顯示 預設是true
+              //   "orderable": true,  //是否可以排序
+              //   "width": "1%"
+              // }
+
+            ]
+          })
+          table.clear().draw();
+          for (let i = 0; i < data.data.length; i++) {
+
+            // let announcement_image = data.data[i].announcement_image;
+
+            // console.log(data.data[i].announcement_image),
+
+
+            table.row.add([
+              data.data[i].coupon_id,
+              data.data[i].member_account,
+              // data.data[i].announcement_content,
+
+              // '<img class="table-img" src="data:image/png;base64,${announcement_image}">',
+
+              // data.data[i].announcement_image,
+              getTime(data.data[i].coupon_sending_time),
+              getTime(data.data[i].coupon_effective_date),
+              getTime(data.data[i].coupon_expire_date),
+              data.data[i].coupon_text_content,
+              data.data[i].coupon_content,
+              // data.data[i].announcement_time,
+              // getType(data.data[i].announcement_type),
+              // data.data[i].announcement_type,
+              // data.data[i].announcement_type,
+              // data.data[i].member_gender == 1 ? "男" : "女",
+
+              // getTime(data.data[i].register_time),
+              // getRegisterMethod(data.data[i].register_method),
+              data.data[i].discount_type == 0 ? "打折(*)" : "折價(-)",
+              data.data[i].coupon_status == 0 ? "未使用" : "已使用",
+              // '<img class="table-img" src="/dessert_shop/member/backend_getPhoto?id=' + data.data[i].member_account + '">',
+              // '<img class="table-img" src="data:image/png;base64,data.data[i].announcement_image">',
+              data.data[i].employee_account,
+              data.data[i].coupon_code_id,
+
+              action
+            ]).draw(false);
+          }
+
+          // $.post("/dessert_shop/coupon/getCouponData", {}, function (data) {
+
+            // if(data.flag){
+            //   for(var i = 0 ; i < data.data.length ; i++){
+            //     console.log("我在哪" + data.data[i].employee_account);
+
+            //     $('#employee_account').append(`<option value ="` + data.data[i].employee_account + >)
+            //     $('#employee_account').selectpicker('refresh');
+            //   }
+            // }
+
+
+          // });
+
+
+        } else {
+        }
+      });
+    }
+    function getTime(time) {
+      return moment(time).format('YYYY-MM-DD HH:mm:ss')
+    }
+
+    // $('#employee_account').val(employee_account);
+
+  </script>
+
+  <script>
+    // $("button#addCP").click(function () {
+    //   console.log($("input.form-control").val().trim());
+    // })
+
+    // $("input.form-control").val().trim();
+    // console.log($("input.form-control").val().trim());
+
+    $("tbody").on("click", "a.delete", function () {
+      // console.log(123);
+      let table = $(".data-table").DataTable()
+      let data = table.row($(this).closest('tr')).data();
+      // alert( 'You clicked on '+data[0]+'\'s row' );
+
+      $.get("/dessert_shop/coupon/deleteCP", { "coupon_id": data[0] }, function (data) {
+        console.log(data);
+        if (data.flag) {
+          // 註冊成功後跳轉頁面
+          getAllCoupon();
+          Swal.fire({
+            title: data.msg,
+            text: "",
+            icon: "success"
+          });
+        } else {
+          // 註冊失敗 彈出視窗
+          Swal.fire({
+            title: data.msg,
+            text: "",
+            icon: "error"
+          })
+        }
+      })
+
+    });
+
+
+  </script>
+
+  <script>
+
+    $("tbody").on("click", "a.edit", function () {
+      let table = $(".data-table").DataTable()
+      let data = table.row($(this).closest('tr')).data();
+      console.log(data);
+      // alert('You clicked on ' + data[0] + '\'s row');
+
+      $(".update_coupon_id").val(data[0]);
+      $(".update_member_account").val(data[1]);
+      $(".update_employee_account").val(data[9]);
+      $(".update_coupon_code_id").val(data[10]);
+      $(".update_coupon_sending_time").val(moment(data[2]).format('YYYY-MM-DD'));
+      $(".update_coupon_effective_date").val(moment(data[3]).format('YYYY-MM-DD'));
+      $(".update_coupon_expire_date").val(moment(data[4]).format('YYYY-MM-DD'));
+      $(".update_coupon_content").val(data[6]);
+      $(".update_coupon_text_content").val(data[5]);
+      getUpdate_discount_type(data[7]);
+      getUpdate_coupon_status(data[8]);
+
+    });
+
+    function getUpdate_discount_type(type) {
+      switch (type) {
+        case "打折(*)":
+          $('.selectpicker').val('0');
+          break;
+        case "折價(-)":
+          $('.selectpicker').val('1');
+          break;
+        default:
+          $('.selectpicker').val('0');
+          break;
+      }
+      $('.selectpicker').selectpicker('render');
+    }
+
+    function getUpdate_coupon_status(status) {
+      switch (status) {
+        case "未使用":
+          $('.selectpicker').val('0');
+          break;
+        case "已使用":
+          $('.selectpicker').val('1');
+          break;
+        default:
+          $('.selectpicker').val('0');
+          break;
+      }
+      $('.selectpicker').selectpicker('render');
+    }
+
+
+  </script>
+
+
+
+  <script>
+    $("#addCP").click(function (e) {
+      e.preventDefault();
+      //表單提交時檢查所有屬性合法
+      //發送ajax請求，送出表單資料
+      console.log($("#addCPform").serialize());
+      console.log("ADD1");
+
+      let form = $("#addCPform")[0];
+      let data = new FormData(form);
+      console.log("ADD1");
+      $.ajax({
+        type: "POST",
+        enctype: 'multipart/form-data',
+        url: '/dessert_shop/coupon/addCP',
+        data: data,
+        processData: false,
+        contentType: false,
+        cache: false,
+        success: function (data) {
+          if (data.flag) {
+            Swal.fire({
+              title: data.msg,
+              text: "",
+              icon: "success"
+            });
+            getAllCoupon();
+            $("#new-order1").modal('hide');
+            $("#addCPform").trigger("reset");
+          } else {
+            Swal.fire({
+              title: data.msg,
+              text: "",
+              icon: "error"
+            })
+          }
+        }
+      });
+      return false;
+    });
+
+  </script>
+
+  <script>
+
+    $("#updateCP").click(function (e) {
+      e.preventDefault();
+      //表單提交時檢查所有屬性合法
+      //發送ajax請求，送出表單資料
+      console.log($("#updateCPform").serialize());
+
+      let form = $("#updateCPform")[0];
+      let data = new FormData(form);
+      $.ajax({
+        type: "POST",
+        enctype: 'multipart/form-data',
+        url: '/dessert_shop/coupon/updateCP',
+        data: data,
+        processData: false,
+        contentType: false,
+        cache: false,
+        success: function (data) {
+          if (data.flag) {
+            Swal.fire({
+              title: data.msg,
+              text: "",
+              icon: "success"
+            });
+            getAllCoupon();
+            $("#update_modal").modal('hide');
+            $("#updateCPform").trigger("reset");
+          } else {
+            Swal.fire({
+              title: data.msg,
+              text: "",
+              icon: "error"
+            })
+          }
+        }
+      });
+      return false;
+    });
+
+
+
+  </script>
+
+
+
+
+
+</body>
+
+</html>

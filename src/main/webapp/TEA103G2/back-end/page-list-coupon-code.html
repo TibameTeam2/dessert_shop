@@ -480,7 +480,7 @@
                           <div class="col-md-6">
                             <div class="form-group">
                               <label>優惠碼生效日期時間</label>
-                              <input type="text" class="form-control" placeholder="Enter YYYY-MM-DD hh:mm:ss"
+                              <input type="datetime-local" step="01" class="form-control" placeholder="Enter YYYY-MM-DD hh:mm:ss"
                                 data-errors="Please Enter Code." name="coupon_code_effective_date"
                                 required>
                               <div class="help-block with-errors"></div>
@@ -490,7 +490,7 @@
                           <div class="col-md-6">
                             <div class="form-group">
                               <label>優惠碼到期日期時間</label>
-                              <input type="text" class="form-control" placeholder="Enter YYYY-MM-DD hh:mm:ss"
+                              <input type="datetime-local" step="01" class="form-control" placeholder="Enter YYYY-MM-DD hh:mm:ss"
                                 data-errors="Please Enter Code." name="coupon_code_expire_date"
                                 required>
                               <div class="help-block with-errors"></div>
@@ -633,7 +633,7 @@
                           <div class="col-md-6">
                             <div class="form-group">
                               <label>優惠碼生效日期時間</label>
-                              <input type="text" class="form-control update_coupon_code_effective_date" placeholder="Enter coupon_code_effective_date"
+                              <input type="datetime-local" step="01" class="form-control update_coupon_code_effective_date" placeholder="Enter coupon_code_effective_date"
                                 data-errors="Please Enter Code." id="coupon_code_effective_date" name="coupon_code_effective_date"
                                 required name="coupon_code_effective_date">
                               <div class="help-block with-errors"></div>
@@ -642,7 +642,7 @@
                           <div class="col-md-6">
                             <div class="form-group">
                               <label>優惠碼到期日期時間</label>
-                              <input type="text" class="form-control update_coupon_code_expire_date" placeholder="Enter coupon_code_expire_date"
+                              <input type="datetime-local" step="01" class="form-control update_coupon_code_expire_date" placeholder="Enter coupon_code_expire_date"
                                 data-errors="Please Enter Code." id="coupon_code_expire_date" name="coupon_code_expire_date"
                                 required name="coupon_code_expire_date">
                               <div class="help-block with-errors"></div>
@@ -947,7 +947,7 @@
       let table = $(".data-table").DataTable()
       let data = table.row($(this).closest('tr')).data();
       console.log(data);
-      alert( 'You clicked on '+data[0]+'\'s row' );
+      // alert( 'You clicked on '+data[0]+'\'s row' );
 
       $(".update_coupon_code_id").val(data[0]);
       $(".update_coupon_code").val(data[1]);
@@ -1074,7 +1074,7 @@
               text: "",
               icon: "success"
             });
-            getAllMember();
+            getAllCouponCode();
             $("#update_modal").modal('hide');
             $("#updateCCform").trigger("reset");
           } else {

@@ -117,7 +117,9 @@ INSERT INTO authority_content (authority_content) VALUES ('評價管理');    # 
 INSERT INTO authority_content (authority_content) VALUES ('優惠碼管理');
 INSERT INTO authority_content (authority_content) VALUES ('優惠券管理');
 INSERT INTO authority_content (authority_content) VALUES ('商品管理');
-INSERT INTO authority_content (authority_content) VALUES ('通知管理');     #9
+INSERT INTO authority_content (authority_content) VALUES ('通知管理');
+INSERT INTO authority_content (authority_content) VALUES ('訂閱管理');     #10
+INSERT INTO authority_content (authority_content) VALUES ('電子報管理');
 -- 員工權限
 set auto_increment_offset=1;
 set auto_increment_increment=1;
@@ -572,7 +574,7 @@ coupon_code_text_content,coupon_code_content,discount_type,employee_account)
 values('HCJ2473','2021-04-05','2022-04-06','黑咖啡折20元',20,1,'james');
 insert into coupon_code(coupon_code,coupon_code_effective_date,coupon_code_expire_date,
 coupon_code_text_content,coupon_code_content,discount_type,employee_account)
-values('FUCK7414','2021-04-05','2022-02-06','糖料併折50元',50,1,'james');
+values('4147KCUF','2021-04-05','2022-02-06','糖料併折50元',50,1,'james');
 
 
 -- 優惠券
@@ -610,7 +612,10 @@ insert into coupon(member_account,coupon_sending_time,coupon_effective_date,
 coupon_expire_date,coupon_text_content,
 coupon_content,discount_type,coupon_status,employee_account,coupon_code_id)
 values('jason','2021-03-11','2021-03-14','2021-03-15','單身者在白色情人節折價30元',30,1,0,'peter','2');
-
+insert into coupon(member_account,coupon_sending_time,coupon_effective_date,
+coupon_expire_date,coupon_text_content,
+coupon_content,discount_type,coupon_status,employee_account,coupon_code_id)
+values('jason','2021-03-11','2021-03-14','2021-03-15','中獎折價20元',20,1,1,'peter',null);
 
 
 -- 謝東陞------------------------------------------------------------------------------------------------------------
@@ -651,17 +656,17 @@ CREATE TABLE order_master (
 INSERT INTO  order_master (member_account, payment_time, payment_method, coupon_id, order_status, invoice_number, order_total, order_remarks)
 VALUES ('tom', '2021-01-02 03:04:05', '1', 2, '1', 'AA12345678', '200', '希望能吃到好吃的巧克力杯子');
 INSERT INTO  order_master (member_account, payment_time, payment_method, coupon_id, order_status, invoice_number, order_total, order_remarks)
-VALUES ('jason', '2021-01-02 03:04:06', '1', null, '1', 'AA12345672', '120', '希望能吃到好吃的草莓千層');
+VALUES ('jason', '2021-01-02 03:04:06', '1', 1, '1', 'AA12345672', '120', '希望能吃到好吃的草莓千層');
 INSERT INTO  order_master (member_account, payment_time, payment_method, coupon_id, order_status, invoice_number, order_total, order_remarks)
-VALUES ('amy', '2021-01-02 03:04:07', '1', null, '2', 'AA12345673', '720', '最期待香蕉拿鐵!');
+VALUES ('amy', '2021-01-02 03:04:07', '1', 2, '2', 'AA12345673', '720', '最期待香蕉拿鐵!');
 INSERT INTO  order_master (member_account, payment_time, payment_method, coupon_id, order_status, invoice_number, order_total, order_remarks)
-VALUES ('amy', '2021-01-03 03:04:07', '1', null, '2', 'AA12345674', '340', '最期待巧克力杯子! 想念草莓千層!');
+VALUES ('amy', '2021-01-03 03:04:07', '1', 2, '2', 'AA12345674', '340', '最期待巧克力杯子! 想念草莓千層!');
 INSERT INTO  order_master (member_account, payment_time, payment_method, coupon_id, order_status, invoice_number, order_total, order_remarks)
-VALUES ('amy', '2021-01-04 03:04:07', '1', null, '2', 'AA12345675', '360', '藍莓乳酪要濃郁才好吃');
+VALUES ('amy', '2021-01-04 03:04:07', '1', 1, '2', 'AA12345675', '360', '藍莓乳酪要濃郁才好吃');
 INSERT INTO  order_master (member_account, payment_time, payment_method, coupon_id, order_status, invoice_number, order_total, order_remarks)
-VALUES ('amy', '2021-01-06 03:04:07', '1', null, '2', 'AA12345676', '460', '無');
+VALUES ('amy', '2021-01-06 03:04:07', '1', 1, '2', 'AA12345676', '460', '無');
 INSERT INTO  order_master (member_account, payment_time, payment_method, coupon_id, order_status, invoice_number, order_total, order_remarks)
-VALUES ('jason', null, '2', null, '0', null, '240', '肚子好餓');
+VALUES ('jason', null, '2', '5', '0', null, '220', '肚子好餓');
 
 
 -- 訂單明細

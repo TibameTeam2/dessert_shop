@@ -771,6 +771,11 @@ function getReviewImage(array){
 }
 
 
+function getEmployeeSelected(employee_account){
+  $('.selectpicker').val(employee_account);
+  $('.selectpicker').selectpicker('render');
+}
+
 //老闆說要顯示的加class, 要傳出去的加name
 //按下藍色鉛筆
 $("tbody").on('click', 'a.view', function(){
@@ -794,6 +799,7 @@ $("tbody").on('click', 'a.view', function(){
   $(".view_reply_content").val(data[18]);
   data[19] != "Invalid date" ? $(".view_reply_time").val(data[19]).attr("disabled", "disabled") : $(".view_reply_time").val("").attr("disabled", "disabled");
   getReviewImage(data[16]);
+  getEmployeeSelected(data[20]);
 })
 
 //按下review_image可以放大

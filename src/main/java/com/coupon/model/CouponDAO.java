@@ -11,6 +11,7 @@ import java.util.List;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import com.member.model.MemberBean;
 import com.util.JDBCUtil;
 
 public class CouponDAO implements CouponDAO_interface {
@@ -312,6 +313,60 @@ public class CouponDAO implements CouponDAO_interface {
 		}
 		return CB;
 	}
+	
+	
+	public String selectEmail(String member_account) {
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		String getEmail = "select member_email from member where member_account = ?";
+		
+		MemberBean mb;
+		
+		ResultSet rs = null;
+		
+		String member_email = null;
+		
+		try {
+			Class.forName(driver);
+			
+			con = DriverManager.getConnection(url, userid, password);
+			
+			pstmt = con.prepareStatement(getEmail);
+			
+			pstmt.setString(1, member_account);
+			
+			while(rs.next()) {
+				member_email = rs.getNString(member_email);
+				
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		
+		return member_email;
+	}
+	
+	
+	
 
 	public static void main(String[] args) {
 

@@ -9,10 +9,10 @@ import com.product.model.ProductService;
 
 public class DailySpecialService {
 	
-	private DailySpecialDAO_interface dao;
+	private DailySpecialDao dao;
 	
 	public DailySpecialService() {
-		dao = new DailySpecialDAO();
+		dao = new DailySpecialDaoImpl();
 	}
 	
 	// 後台，取得"所有"的每日"優惠"，不包含商品
@@ -73,5 +73,17 @@ public class DailySpecialService {
 //		}
 //		return product_list;// 回傳為商品資訊
 //	}
+
+
+	//用在收藏, 主要撈discount_price
+	public DailySpecialBean findDiscountPriceByProductId(Integer product_id) {
+
+		DailySpecialBean dailySpecialBean = new DailySpecialBean();
+		dailySpecialBean.setDiscount_product_id(product_id);
+		dao.findDiscountPriceByProductId(product_id);
+
+		return dailySpecialBean;
+	}
+
 
 }
