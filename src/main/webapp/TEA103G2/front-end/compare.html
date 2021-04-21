@@ -275,7 +275,7 @@
 <!--                      <span class="discount-percentage">Save 20%</span>-->
                     </div>
                     <div class="product-cart">
-                      <button class="btn btn-primary btn-hover-dark">加入購物車</button>
+                      <button class="btn btn-primary btn-hover-dark add-cart">加入購物車</button>
                     </div>
                   </div>
                 </div>
@@ -352,6 +352,31 @@
     });
 
 
+
+
+    // 加入購物車
+    $("body").on("click", ".add-cart", function(){
+        let product_id= $(this).closest("td").attr("data-product_id");
+        // API要給id 跟數量 如果頁面沒有數量可以選 設為1
+        $.post("/dessert_shop/cart/insertProductIntoCart?product_id="+product_id+"&product_quantity=1",{},function(data){
+            console.log("加入購物車回傳的flag:"+data.flag);
+            if(data.flag == false){
+                Swal.fire({
+                    title: data.msg,
+                    text: "請先登入帳號!",
+                    icon: "error"
+                }).then(function(){
+                    location.href="login.html";
+                });
+            }else {
+                Swal.fire({
+                    title: "已加入購物車",
+                    text: "",
+                    icon: "success"
+                })
+            }
+        });//$.post
+    });
 
 </script>
 

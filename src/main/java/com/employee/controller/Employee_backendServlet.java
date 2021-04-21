@@ -68,11 +68,19 @@ public class Employee_backendServlet extends BaseServlet {
             info.setFlag(false);
             info.setMsg("帳號或密碼錯誤!");
         } else if (emp != null) {
-            info.setFlag(true);
-            req.getSession().setAttribute("employee", emp);//登入成功
-            info.setMsg("登入成功!");
-            info.setData(emp);
-            info.setRedirect(req.getContextPath() + "/TEA103G2/back-end/index.html");
+            if(emp.getEmployee_status()==0){
+                info.setFlag(false);
+//                req.getSession().setAttribute("employee", emp);//登入成功
+                info.setMsg("員工已離職!");
+                info.setData(emp);
+//                info.setRedirect(req.getContextPath() + "/TEA103G2/back-end/index.html");
+            }else {
+                info.setFlag(true);
+                req.getSession().setAttribute("employee", emp);//登入成功
+                info.setMsg("登入成功!");
+                info.setData(emp);
+                info.setRedirect(req.getContextPath() + "/TEA103G2/back-end/index.html");
+            }
         }
         writeValueByWriter(res, info);
     }

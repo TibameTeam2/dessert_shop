@@ -55,11 +55,11 @@ CREATE TABLE member (
 	member_status	  TINYINT NOT NULL
 );
 INSERT INTO member (member_account,member_password,member_name,member_phone,member_email,member_photo,member_gender,member_birthday,register_method,member_status)
-VALUES ('jason','202cb962ac59075b964b07152d234b70','傑森','0956732874','jasonwu1994@gmail.com',null,1,'1994-09-24',1,0);
+VALUES ('jason','202cb962ac59075b964b07152d234b70','傑森','0956732874','jasonwu1994@gmail.com',LOAD_FILE('C:\\project\\images\\member\\jason_statham.png'),1,'1994-09-24',1,0);
 INSERT INTO member (member_account,member_password,member_name,member_phone,member_email,member_photo,member_gender,member_birthday,register_method,member_status)
-VALUES ('tom','202cb962ac59075b964b07152d234b70','湯姆貓','0911798243','tom@gmail.com',null,1,'2012-08-04',1,0);
+VALUES ('tom','202cb962ac59075b964b07152d234b70','湯姆貓','0911798243','tom@gmail.com',LOAD_FILE('C:\\project\\images\\member\\tom_cruise.jpg'),1,'2012-08-04',1,0);
 INSERT INTO member (member_account,member_password,member_name,member_phone,member_email,member_photo,member_gender,member_birthday,register_method,member_status)
-VALUES ('amy','202cb962ac59075b964b07152d234b70','怡婷','0984471254','amy@gmail.com',null,0,'2000-01-30',1,0);
+VALUES ('amy','202cb962ac59075b964b07152d234b70','怡婷','0984471254','amy@gmail.com',LOAD_FILE('C:\\project\\images\\member\\amy_adams.jpg'),0,'2000-01-30',1,0);
 
 
 -- 會員信用卡
@@ -95,11 +95,11 @@ CREATE TABLE employee (
     employee_status      TINYINT NOT NULL
 ) AUTO_INCREMENT = 1;
 INSERT INTO employee (employee_account,employee_name,employee_password,employee_position,employee_photo,hire_date,employee_status)
-VALUES ('jason','傑森','202cb962ac59075b964b07152d234b70','老闆',null,'2021-02-21',1);
+VALUES ('jason','傑森','202cb962ac59075b964b07152d234b70','老闆',LOAD_FILE('C:\\project\\images\\employee\\jason.jpg'),'2021-02-21',1);
 INSERT INTO employee (employee_account,employee_name,employee_password,employee_position,employee_photo,hire_date,employee_status)
-VALUES ('peter','張偉','202cb962ac59075b964b07152d234b70','主管',null,'2021-01-02',1);
+VALUES ('peter','東昇','202cb962ac59075b964b07152d234b70','主管',LOAD_FILE('C:\\project\\images\\employee\\peter.jpg'),'2021-01-02',1);
 INSERT INTO employee (employee_account,employee_name,employee_password,employee_position,employee_photo,hire_date,employee_status)
-VALUES ('james','小明','202cb962ac59075b964b07152d234b70','工讀生',null,'2020-03-21',1);
+VALUES ('james','小明','202cb962ac59075b964b07152d234b70','工讀生',LOAD_FILE('C:\\project\\images\\employee\\james.jpg'),'2020-03-21',1);
 
 
 -- 員工權限內容
@@ -139,6 +139,8 @@ INSERT INTO employee_authority (employee_account,authority_content_id) VALUES ('
 INSERT INTO employee_authority (employee_account,authority_content_id) VALUES ('jason',7);
 INSERT INTO employee_authority (employee_account,authority_content_id) VALUES ('jason',8);
 INSERT INTO employee_authority (employee_account,authority_content_id) VALUES ('jason',9);
+INSERT INTO employee_authority (employee_account,authority_content_id) VALUES ('jason',10);
+INSERT INTO employee_authority (employee_account,authority_content_id) VALUES ('jason',11);
 INSERT INTO employee_authority (employee_account,authority_content_id) VALUES ('peter',2);
 INSERT INTO employee_authority (employee_account,authority_content_id) VALUES ('peter',3);
 INSERT INTO employee_authority (employee_account,authority_content_id) VALUES ('peter',5);
