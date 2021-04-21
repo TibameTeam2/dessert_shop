@@ -55,11 +55,11 @@ CREATE TABLE member (
 	member_status	  TINYINT NOT NULL
 );
 INSERT INTO member (member_account,member_password,member_name,member_phone,member_email,member_photo,member_gender,member_birthday,register_method,member_status)
-VALUES ('jason','202cb962ac59075b964b07152d234b70','傑森','0956732874','jasonwu1994@gmail.com',null,1,'1994-09-24',1,0);
+VALUES ('jason','202cb962ac59075b964b07152d234b70','傑森','0956732874','jasonwu1994@gmail.com',LOAD_FILE('C:\\project\\images\\member\\jason_statham.png'),1,'1994-09-24',1,0);
 INSERT INTO member (member_account,member_password,member_name,member_phone,member_email,member_photo,member_gender,member_birthday,register_method,member_status)
-VALUES ('tom','202cb962ac59075b964b07152d234b70','湯姆貓','0911798243','tom@gmail.com',null,1,'2012-08-04',1,0);
+VALUES ('tom','202cb962ac59075b964b07152d234b70','湯姆貓','0911798243','tom@gmail.com',LOAD_FILE('C:\\project\\images\\member\\tom_cruise.jpg'),1,'2012-08-04',1,0);
 INSERT INTO member (member_account,member_password,member_name,member_phone,member_email,member_photo,member_gender,member_birthday,register_method,member_status)
-VALUES ('amy','202cb962ac59075b964b07152d234b70','怡婷','0984471254','amy@gmail.com',null,0,'2000-01-30',1,0);
+VALUES ('amy','202cb962ac59075b964b07152d234b70','怡婷','0984471254','amy@gmail.com',LOAD_FILE('C:\\project\\images\\member\\amy_adams.jpg'),0,'2000-01-30',1,0);
 
 
 -- 會員信用卡
@@ -95,11 +95,11 @@ CREATE TABLE employee (
     employee_status      TINYINT NOT NULL
 ) AUTO_INCREMENT = 1;
 INSERT INTO employee (employee_account,employee_name,employee_password,employee_position,employee_photo,hire_date,employee_status)
-VALUES ('jason','傑森','202cb962ac59075b964b07152d234b70','老闆',null,'2021-02-21',1);
+VALUES ('jason','傑森','202cb962ac59075b964b07152d234b70','老闆',LOAD_FILE('C:\\project\\images\\employee\\jason.jpg'),'2021-02-21',1);
 INSERT INTO employee (employee_account,employee_name,employee_password,employee_position,employee_photo,hire_date,employee_status)
-VALUES ('peter','張偉','202cb962ac59075b964b07152d234b70','主管',null,'2021-01-02',1);
+VALUES ('peter','東昇','202cb962ac59075b964b07152d234b70','主管',LOAD_FILE('C:\\project\\images\\employee\\peter.jpg'),'2021-01-02',1);
 INSERT INTO employee (employee_account,employee_name,employee_password,employee_position,employee_photo,hire_date,employee_status)
-VALUES ('james','小明','202cb962ac59075b964b07152d234b70','工讀生',null,'2020-03-21',1);
+VALUES ('james','小明','202cb962ac59075b964b07152d234b70','工讀生',LOAD_FILE('C:\\project\\images\\employee\\james.jpg'),'2020-03-21',1);
 
 
 -- 員工權限內容
@@ -139,6 +139,8 @@ INSERT INTO employee_authority (employee_account,authority_content_id) VALUES ('
 INSERT INTO employee_authority (employee_account,authority_content_id) VALUES ('jason',7);
 INSERT INTO employee_authority (employee_account,authority_content_id) VALUES ('jason',8);
 INSERT INTO employee_authority (employee_account,authority_content_id) VALUES ('jason',9);
+INSERT INTO employee_authority (employee_account,authority_content_id) VALUES ('jason',10);
+INSERT INTO employee_authority (employee_account,authority_content_id) VALUES ('jason',11);
 INSERT INTO employee_authority (employee_account,authority_content_id) VALUES ('peter',2);
 INSERT INTO employee_authority (employee_account,authority_content_id) VALUES ('peter',3);
 INSERT INTO employee_authority (employee_account,authority_content_id) VALUES ('peter',5);
@@ -544,6 +546,21 @@ values('檸檬塔暫停供應','員工擠檸檬噴到眼睛',LOAD_FILE('C:/proje
 insert into announcement_management (announcement_name,announcement_content,
 announcement_image,announcement_time,announcement_type,announcement_status,employee_account)
 values('草莓蛋糕下架','草莓農藥太多',LOAD_FILE('C:/project/images/announcement_management/c.PNG'),'2021-02-28',1,1,'james');
+insert into announcement_management (announcement_name,announcement_content,
+announcement_image,announcement_time,announcement_type,announcement_status,employee_account)
+values('嗜甜營業時間','歡迎光臨嗜甜,本店營業時間 :星期一至六 早上 10:30 ~ 晚上 9:30,星期日/例假日 休息',LOAD_FILE('C:/project/images/announcement_management/open.jpg'),'2021-02-28',0,1,'james');
+insert into announcement_management (announcement_name,announcement_content,
+announcement_image,announcement_time,announcement_type,announcement_status,employee_account)
+values('優惠券/優惠碼','嗜甜會不定期提供優惠券/優惠碼給消費者使用,皆可用於網路訂餐及實體消費做優惠的服務,謝謝每一位消費者對嗜甜的愛戴及支持',LOAD_FILE('C:/project/images/announcement_management/coupon.jpg'),'2021-03-01',3,1,'peter');
+insert into announcement_management (announcement_name,announcement_content,
+announcement_image,announcement_time,announcement_type,announcement_status,employee_account)
+values('線上客服','嗜甜在此提供新的服務 "即時線上客服",消費者對嗜甜的回饋和評語我們將會一一改進,如有任何疑問及意見,歡迎使用 "即時線上客服" 服務',LOAD_FILE('C:/project/images/announcement_management/customerService.jpg'),'2021-03-03',2,1,'peter');
+insert into announcement_management (announcement_name,announcement_content,
+announcement_image,announcement_time,announcement_type,announcement_status,employee_account)
+values('草莓蛋糕熱銷中','季節限定的大湖草莓,結合了慕斯,口感既清淡又輕盈,入口即溶,微妙絕配,賞心悅目又美味,',LOAD_FILE('C:/project/images/announcement_management/strawberryCake.jpg'),'2021-03-20',1,1,'jason');
+insert into announcement_management (announcement_name,announcement_content,
+announcement_image,announcement_time,announcement_type,announcement_status,employee_account)
+values('全新消息敬請期待','新功能/新產品準備中,',LOAD_FILE('C:/project/images/announcement_management/comingSoon.jpg'),'2021-03-27',0,1,'jason');
 
 
 -- 優惠碼
