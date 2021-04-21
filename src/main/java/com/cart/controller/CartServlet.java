@@ -504,7 +504,7 @@ public class CartServlet extends BaseServlet {
 			req.getSession().removeAttribute("coupon_price");					
 			
 			//Line通知訊息-到店付款方式
-			String message = "您的訂單完成!請撥空至本店付款!\n" + order_message;	
+			String message = "您的訂單完成!\n請撥空至本店付款!\n" + order_message;	
 			
 			info.setMsg("到店付款方式的訂單完成!");
 			
@@ -527,14 +527,17 @@ public class CartServlet extends BaseServlet {
 //				jedis.hset(member.getMember_account(), "payCode_id-" + new_order_master_id, payCode);
 //				jedis.close();
 				//Line通知訊息-匯款方式
-				message = "您的訂單完成!請匯款至此銀行帳戶:\n" + payCode + "\n" + order_message;
+				message = "您的訂單完成!\n請匯款至此銀行帳戶:\n" + payCode + "\n" + order_message;
 			}
 			
 			info.setFlag(true);		
 			info.setRedirect(req.getContextPath() + "/TEA103G2/front-end/my-account.html");
 			 			
 			//Line發通知
-			LineUtil.linePushMessage(member.getMember_account(), message);					
+			LineUtil.linePushMessage(member.getMember_account(), message);		
+			//Notice
+			
+			
 		}
 
 		writeValueByWriter(res, info);
