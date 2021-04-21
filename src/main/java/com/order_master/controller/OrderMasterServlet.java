@@ -17,6 +17,10 @@ import org.apache.commons.beanutils.BeanUtils;
 
 import com.card_detail.model.CardDetailBean;
 import com.cart.model.CartProductService;
+import com.coupon.model.CouponBean;
+import com.coupon.model.CouponService;
+import com.coupon_code.model.CouponCodeBean;
+import com.coupon_code.model.CouponCodeService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.member.model.MemberBean;
@@ -39,6 +43,8 @@ public class OrderMasterServlet extends BaseServlet {
 	OrderDetailService OrderDetailSvc = new OrderDetailService();
 	CartProductService CartProductSvc = new CartProductService();
 	ProductService ProductSvc = new ProductService();
+	CouponService CouponSvc = new CouponService();
+	CouponCodeService CouponCodeSvc = new CouponCodeService();
 	
 	//載入訂單資料
 	public void getOrderMaster(HttpServletRequest req, HttpServletResponse res) {
@@ -53,14 +59,33 @@ public class OrderMasterServlet extends BaseServlet {
         	
         	List<OrderMasterBean> list_OM = OrderMasterSvc.getOrderMaster(member.getMember_account());
         	List<List> list_OD_All = new ArrayList<List>();
+        	List<String> list_coupon_code = new ArrayList<String>();
         	for (OrderMasterBean OMBean : list_OM) {
+        		//包裝明細
         		List<OrderDetailBean> list_OD = OrderDetailSvc.getAllByOrderMasterId(OMBean.getOrder_master_id());
         		list_OD_All.add(list_OD);
+        		
+        		//檢查優惠碼並包裝
+        		Integer coupon_id = OMBean.getCoupon_id();
+        		if (coupon_id != 0 && coupon_id != null) {
+        			CouponBean CB = CouponSvc.getOneCoupon(coupon_id);
+        			Integer coupon_code_id = CB.getCoupon_code_id();
+        			if (coupon_code_id != 0 && coupon_code_id != null) {
+        				CouponCodeBean CCB = CouponCodeSvc.getOneCC(coupon_code_id);
+        				list_coupon_code.add(CCB.getCoupon_code());
+        			} else {
+        				list_coupon_code.add("員工贈送");
+        			}
+        		} else {
+        			list_coupon_code.add("無");
+        		}
+        		
         	}
         	
         	List<List> list = new ArrayList<List>();
         	list.add(list_OM);
         	list.add(list_OD_All);
+        	list.add(list_coupon_code);
         	
         	info.setFlag(true);
         	info.setData(list);
