@@ -13,8 +13,9 @@ public interface DailySpecialDao {
 	public List<DailySpecialBean> getAll();
 	
 	public DailySpecialBean findByPrimaryKey(Integer product_id);
-	
-	
+
+	public List<DailySpecialBean> getAllValid();
+
 	//用在收藏, 要撈discount_price
 	public DailySpecialBean findDiscountPriceByProductId(Integer product_id);
 

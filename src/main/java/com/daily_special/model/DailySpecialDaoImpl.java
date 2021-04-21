@@ -23,6 +23,7 @@ public class DailySpecialDaoImpl implements DailySpecialDao {
 	String DELETE;
 	String SELECT_ALL;
 	String SELECT_PK;
+	String SELECT_ALL_VALID;
 
 //	public void init() {
 //		driver = "com.mysql.cj.jdbc.Driver";
@@ -182,6 +183,62 @@ public class DailySpecialDaoImpl implements DailySpecialDao {
 				dsBean.setDiscount_deadline(rs.getTimestamp("discount_deadline"));
 				list_dsBean.add(dsBean);
 //				System.out.println(dsBean);
+
+			}
+
+			// Handle any driver errors
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return list_dsBean;
+	}
+
+	// 前台的 getAll，只有"有效"的
+	public List<DailySpecialBean> getAllValid() {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		SELECT_ALL_VALID = "SELECT * FROM sweet.daily_special where now() between discount_start_time and discount_deadline;  ";
+		SELECT_ALL_VALID = "SELECT ds.*, p.* FROM (SELECT * FROM daily_special ds WHERE now() BETWEEN discount_start_time AND discount_deadline)ds join (SELECT * FROM product p WHERE product_status = 1)p  on ds.product_id = p.product_id";
+		List<DailySpecialBean> list_dsBean = new ArrayList<DailySpecialBean>();
+		DailySpecialBean dsBean = null;
+
+		try {
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			pstmt = con.prepareStatement(SELECT_ALL_VALID);
+
+			rs = pstmt.executeQuery();
+
+			while(rs.next()) {
+				dsBean = new DailySpecialBean();
+				dsBean.setDiscount_product_id(rs.getInt("discount_product_id"));
+				dsBean.setProduct_id(rs.getInt("product_id"));
+				dsBean.setDiscount_price(rs.getInt("discount_price"));
+				dsBean.setDiscount_start_time(rs.getTimestamp("discount_start_time"));
+				dsBean.setDiscount_deadline(rs.getTimestamp("discount_deadline"));
+				list_dsBean.add(dsBean);
+//				System.out.println(dsBean);
+
 
 			}
 
