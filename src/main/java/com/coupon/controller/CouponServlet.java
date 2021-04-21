@@ -3,6 +3,7 @@ package com.coupon.controller;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -17,11 +18,14 @@ import com.coupon.model.CouponBean;
 import com.coupon.model.CouponService;
 import com.coupon_code.model.CouponCodeBean;
 import com.coupon_code.model.CouponCodeService;
+import com.employee.model.EmployeeBean;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.member.model.MemberBean;
 import com.member.model.MemberService;
 import com.util.BaseServlet;
 import com.util.ResultInfo;
 
+import cn.hutool.core.convert.Convert;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.extra.mail.MailUtil;
 
@@ -31,6 +35,10 @@ public class CouponServlet extends BaseServlet {
 	MemberService memberSvc = new MemberService();
 	
 	public void getCouponData(HttpServletRequest req , HttpServletResponse res) {
+		
+		EmployeeBean employee = (EmployeeBean) req.getSession().getAttribute("employee");
+		
+		System.out.println(employee);
 		
 		CouponService cS = new CouponService();
 		
@@ -62,20 +70,47 @@ public class CouponServlet extends BaseServlet {
 	public void addCP(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
 
 		CouponService cS = new CouponService();
+		
 //		MailTest mt = new MailTest();
 		
 		// 獲取數據
-		Map<String, String[]> map = req.getParameterMap();
+		Map<String, String[]> map1 = req.getParameterMap();
+		Map<String,String[]> map = new HashMap<String,String[]>(map1);
 		
 		String[] str = map.get("coupon_sending_time")[0].split("T");
 		String coupon_sending_time = str[0]+" "+str[1];
 		
+		String[] str1 = map.get("coupon_effective_date")[0].split("T");
+		String coupon_effective_date = str1[0]+" "+str1[1];
+		
+		String[] str2 = map.get("coupon_expire_date")[0].split("T");
+		String coupon_expire_date = str2[0]+" "+str2[1];
+		
 		System.out.println("map= " + new ObjectMapper().writeValueAsString(map));
+		
 		System.out.println("coupon_sending_time : " + coupon_sending_time);
 		
-		Date date = DateUtil.parse(coupon_sending_time);
-		System.out.println("date : " + date);
+		System.out.println("coupon_effective_date : " + coupon_effective_date);
 		
+		System.out.println("coupon_expire_date : " + coupon_expire_date);
+		
+		String[] temp = new String[1];
+		temp[0]= coupon_sending_time;
+		
+		String[] temp1 = new String[1];
+		temp1[0]= coupon_effective_date;
+		
+		String[] temp2 = new String[1];
+		temp2[0]= coupon_expire_date;
+		
+		map.replace("coupon_sending_time", temp);
+		
+		map.replace("coupon_effective_date", temp1);
+		
+		map.replace("coupon_expire_date", temp2);
+		
+		
+		System.out.println("map= " + new ObjectMapper().writeValueAsString(map));
 		System.out.println("不太妙阿阿阿阿阿阿阿???");
 		// 封裝物件
 		CouponBean cp = new CouponBean();
@@ -124,9 +159,40 @@ public class CouponServlet extends BaseServlet {
 		CouponService cS = new CouponService();
 			
 	        //獲取數據
-	        Map<String, String[]> map = req.getParameterMap();
-	        System.out.println("map= " + new ObjectMapper().writeValueAsString(map));
-	        System.out.println("資料一直塞不進去阿阿阿阿阿");
+		Map<String, String[]> map1 = req.getParameterMap();
+		Map<String,String[]> map = new HashMap<String,String[]>(map1);
+		
+		String[] str = map.get("coupon_sending_time")[0].split("T");
+		String coupon_sending_time = str[0]+" "+str[1];
+		
+		String[] str1 = map.get("coupon_effective_date")[0].split("T");
+		String coupon_effective_date = str1[0]+" "+str1[1];
+		
+		String[] str2 = map.get("coupon_expire_date")[0].split("T");
+		String coupon_expire_date = str2[0]+" "+str2[1];
+		
+		System.out.println("map= " + new ObjectMapper().writeValueAsString(map));
+		
+		System.out.println("coupon_sending_time : " + coupon_sending_time);
+		
+		System.out.println("coupon_effective_date : " + coupon_effective_date);
+		
+		System.out.println("coupon_expire_date : " + coupon_expire_date);
+		
+		String[] temp = new String[1];
+		temp[0]= coupon_sending_time;
+		
+		String[] temp1 = new String[1];
+		temp1[0]= coupon_effective_date;
+		
+		String[] temp2 = new String[1];
+		temp2[0]= coupon_expire_date;
+		
+		map.replace("coupon_sending_time", temp);
+		
+		map.replace("coupon_effective_date", temp1);
+		
+		map.replace("coupon_expire_date", temp2);
 	        //封裝物件
 	        CouponBean cp = new CouponBean();
 	        try {
@@ -150,5 +216,7 @@ public class CouponServlet extends BaseServlet {
 	        }
 	        writeValueByWriter(res, info);
 	    }
+	
+	
 
 }

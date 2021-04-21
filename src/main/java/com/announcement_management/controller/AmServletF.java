@@ -42,6 +42,7 @@ public class AmServletF extends BaseServlet {
 
 		writeValueByWriter(res, info);
 	}
+
 //getAllAM01為全部的公告(包含已公告未公告)
 	public void getAllAM01(HttpServletRequest req, HttpServletResponse res) {
 
@@ -87,7 +88,16 @@ public class AmServletF extends BaseServlet {
 		AnnouncementManagementService ams = new AnnouncementManagementService();
 
 		// 獲取數據
-		Map<String, String[]> map = req.getParameterMap();
+		Map<String, String[]> map1 = req.getParameterMap();
+
+		Map<String, String[]> map = new HashMap<String, String[]>(map1);
+		String[] str = map.get("announcement_time")[0].split("T");
+		String announcement_time = str[0] + " " + str[1];
+
+		String[] temp = new String[1];
+		temp[0] = announcement_time;
+		map.replace("announcement_time", temp);
+
 		System.out.println("map= " + new ObjectMapper().writeValueAsString(map));
 		// 封裝物件
 		AnnouncementManagementBean am = new AnnouncementManagementBean();
@@ -97,7 +107,7 @@ public class AmServletF extends BaseServlet {
 			e.printStackTrace();
 		} catch (InvocationTargetException e) {
 			e.printStackTrace();
-		} 
+		}
 		System.out.println("難道會是這裡?");
 		Part part = req.getPart("announcement_image");
 		System.out.println("不會吧 = =");
@@ -125,45 +135,53 @@ public class AmServletF extends BaseServlet {
 		writeValueByWriter(res, info);
 
 	}
-	
+
 	public void updateAM(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
-		
+
 		AnnouncementManagementService ams = new AnnouncementManagementService();
-		
-        //獲取數據
-        Map<String, String[]> map = req.getParameterMap();
-        System.out.println("map= " + new ObjectMapper().writeValueAsString(map));
-        //封裝物件
-        AnnouncementManagementBean am = new AnnouncementManagementBean();
-        try {
+
+		// 獲取數據
+		Map<String, String[]> map1 = req.getParameterMap();
+
+		Map<String, String[]> map = new HashMap<String, String[]>(map1);
+		String[] str = map.get("announcement_time")[0].split("T");
+		String announcement_time = str[0] + " " + str[1];
+
+		String[] temp = new String[1];
+		temp[0] = announcement_time;
+		map.replace("announcement_time", temp);
+		System.out.println("map= " + new ObjectMapper().writeValueAsString(map));
+		// 封裝物件
+		AnnouncementManagementBean am = new AnnouncementManagementBean();
+		try {
 			BeanUtils.populate(am, map);
 		} catch (IllegalAccessException e) {
 			e.printStackTrace();
 		} catch (InvocationTargetException e) {
 			e.printStackTrace();
-		} 
-        Part part = req.getPart("announcement_image");
-        InputStream in = part.getInputStream();
-        byte[] buf = new byte[in.available()];
-        in.read(buf);
-        in.close();
-        if (buf.length != 0) {
-        	am.setAnnouncement_image(buf);
-        }
-        
-        boolean flag = ams.updateAM2(am);
-        ResultInfo info = new ResultInfo();
-        //創建結果 準備返回前端
-        if (flag) {
-            //註冊成功
-            info.setFlag(true);
-            info.setMsg("修改成功!");
-        } else {
-            //註冊失敗
-            info.setFlag(false);
-            info.setMsg("修改失敗!");
-        }
-        writeValueByWriter(res, info);
-    }
+		}
+		Part part = req.getPart("announcement_image");
+		InputStream in = part.getInputStream();
+		byte[] buf = new byte[in.available()];
+		in.read(buf);
+		in.close();
+		if (buf.length != 0) {
+			am.setAnnouncement_image(buf);
+		}
+
+		boolean flag = ams.updateAM2(am);
+		ResultInfo info = new ResultInfo();
+		// 創建結果 準備返回前端
+		if (flag) {
+			// 註冊成功
+			info.setFlag(true);
+			info.setMsg("修改成功!");
+		} else {
+			// 註冊失敗
+			info.setFlag(false);
+			info.setMsg("修改失敗!");
+		}
+		writeValueByWriter(res, info);
+	}
 
 }
