@@ -113,8 +113,7 @@
                             <div class="form-group">
                               <label>會員帳號</label>
                               <input type="text" class="form-control" placeholder="Enter member_account"
-                                data-errors="Please Enter member_account."
-                                name="member_account" required>
+                                data-errors="Please Enter member_account." name="member_account" required>
                               <div class="help-block with-errors"></div>
                             </div>
                           </div>
@@ -122,7 +121,7 @@
                             <div class="form-group">
                               <label>編輯員工</label>
                               <input type="text" class="form-control" placeholder="Enter employee_account"
-                                data-errors="Please Enter Code." name="employee_account" required>
+                                data-errors="Please Enter Code." name="employee_account" id="employee_account" required>
                               <div class="help-block with-errors"></div>
                             </div>
                           </div>
@@ -130,9 +129,14 @@
                           <div class="col-md-6">
                             <div class="form-group">
                               <label>優惠券寄送時間</label>
-                              <input type="datetime-local" step="01" class="form-control" placeholder="Enter YYYY-MM-DD hh:mm:ss"
-                                data-errors="Please Enter Code." name="coupon_sending_time"
-                                required>
+
+                              <!-- <input type="text" class="form-control" placeholder="Enter employee_account"
+                                data-errors="Please Enter Code." name="employee_account" required> -->
+
+                              <input type="datetime-local" step="01" class="form-control"
+                                placeholder="Enter YYYY-MM-DD hh:mm:ss" data-errors="Please Enter Code."
+                                name="coupon_sending_time" required>
+
                               <div class="help-block with-errors"></div>
                             </div>
                           </div>
@@ -140,9 +144,9 @@
                           <div class="col-md-6">
                             <div class="form-group">
                               <label>優惠券生效日</label>
-                              <input type="text" class="form-control" placeholder="Enter YYYY-MM-DD hh:mm:ss"
-                                data-errors="Please Enter Code." name="coupon_effective_date"
-                                required>
+                              <input type="datetime-local" step="01" class="form-control"
+                                placeholder="Enter YYYY-MM-DD hh:mm:ss" data-errors="Please Enter Code."
+                                name="coupon_effective_date" required>
                               <div class="help-block with-errors"></div>
                             </div>
                           </div>
@@ -150,9 +154,9 @@
                           <div class="col-md-6">
                             <div class="form-group">
                               <label>優惠券到期日</label>
-                              <input type="text" class="form-control" placeholder="Enter YYYY-MM-DD hh:mm:ss"
-                                data-errors="Please Enter Code." name="coupon_expire_date"
-                                required>
+                              <input type="datetime-local" step="01" class="form-control"
+                                placeholder="Enter YYYY-MM-DD hh:mm:ss" data-errors="Please Enter Code."
+                                name="coupon_expire_date" required>
                               <div class="help-block with-errors"></div>
                             </div>
                           </div>
@@ -161,7 +165,7 @@
                           <div class="col-md-6">
                             <div class="form-group">
                               <label>優惠方式</label>
-                    
+
                               <div class="help-block with-errors"></div>
                               <select name="discount_type" class="selectpicker form-control" data-style="py-0">
                                 <option value="0">打折(*)</option>
@@ -174,8 +178,7 @@
                             <div class="form-group">
                               <label>優惠券內容</label>
                               <input type="text" class="form-control" placeholder="Enter coupon_content"
-                                data-errors="Please Enter Code." name="coupon_content"
-                                required>
+                                data-errors="Please Enter Code." name="coupon_content" required>
                               <div class="help-block with-errors"></div>
                             </div>
                           </div>
@@ -193,8 +196,7 @@
                             <div class="form-group">
                               <label>優惠碼ID</label>
                               <input type="text" class="form-control" placeholder="Enter coupon_code_id"
-                                data-errors="Please Enter Code." name="coupon_code_id"
-                                required>
+                                data-errors="Please Enter Code." name="coupon_code_id">
                               <div class="help-block with-errors"></div>
                             </div>
                           </div>
@@ -203,15 +205,15 @@
                             <div class="form-group">
                               <label>優惠券文字內容</label>
                               <textarea class="form-control" rows="4" data-errors="Please Enter Code."
-                                 name="coupon_text_content" required></textarea>
+                                name="coupon_text_content" required></textarea>
                               <div class="help-block with-errors"></div>
                             </div>
                           </div>
 
                           <div class="col-md-12">
                             <div class="form-group">
-                              <label><input type = "radio">寄送E-mail 通知</label>
-                              
+                              <label><input type="radio">寄送E-mail 通知</label>
+
 
                               <div class="col-md-6">
                                 <div class="form-group">
@@ -225,11 +227,12 @@
                               <div class="col-md-12">
                                 <div class="form-group">
                                   <label>E-mail 內文</label>
-                                  <textarea class="form-control" rows="4" placeholder="Enter E-mail content" data-errors="Please Enter E-mail content."></textarea>
+                                  <textarea class="form-control" rows="4" placeholder="Enter E-mail content"
+                                    data-errors="Please Enter E-mail content."></textarea>
                                   <div class="help-block with-errors"></div>
                                 </div>
                               </div>
-                      
+
                             </div>
                           </div>
                         </div>
@@ -274,8 +277,8 @@
                             <div class="form-group">
                               <label>優惠券ID</label>
                               <input type="text" class="form-control update_coupon_id" placeholder=""
-                                data-errors="Please Enter xxx." id="coupon_id"
-                                name="coupon_id" required name="coupon_id" readonly>
+                                data-errors="Please Enter xxx." id="coupon_id" name="coupon_id" required
+                                name="coupon_id" readonly>
                               <div class="help-block with-errors"></div>
                             </div>
                           </div>
@@ -284,8 +287,8 @@
                             <div class="form-group">
                               <label>會員帳號</label>
                               <input type="text" class="form-control update_member_account" placeholder=""
-                                data-errors="Please Enter xxx." id="member_account"
-                                name="member_account" required name="member_account" readonly>
+                                data-errors="Please Enter xxx." id="member_account" name="member_account" required
+                                name="member_account" readonly>
                               <div class="help-block with-errors"></div>
                             </div>
                           </div>
@@ -305,17 +308,18 @@
                           <div class="col-md-6">
                             <div class="form-group">
                               <label>編輯員工</label>
-                              <input type="text" class="form-control update_employee_account" placeholder="Enter employee_account"
-                                data-errors="Please Enter Code." id="employee_account" name="employee_account" required name="employee_account">
+                              <input type="text" class="form-control update_employee_account"
+                                placeholder="Enter employee_account" data-errors="Please Enter Code."
+                                id="employee_account" name="employee_account" required name="employee_account">
                               <div class="help-block with-errors"></div>
                             </div>
                           </div>
                           <div class="col-md-6">
                             <div class="form-group">
                               <label>優惠券寄送日</label>
-                              <input type="text" class="form-control update_coupon_sending_time" placeholder="Enter coupon_sending_time"
-                                data-errors="Please Enter Code." id="coupon_sending_time" name="coupon_sending_time"
-                                required name="coupon_sending_time">
+                              <input type="datetime-local" step="01" class="form-control update_coupon_sending_time"
+                                placeholder="Enter coupon_sending_time" data-errors="Please Enter Code."
+                                id="coupon_sending_time" name="coupon_sending_time" required name="coupon_sending_time">
                               <div class="help-block with-errors"></div>
                             </div>
                           </div>
@@ -323,9 +327,10 @@
                           <div class="col-md-6">
                             <div class="form-group">
                               <label>優惠券生效日</label>
-                              <input type="text" class="form-control update_coupon_effective_date" placeholder="Enter coupon_effective_date"
-                                data-errors="Please Enter Code." id="coupon_effective_date" name="coupon_effective_date"
-                                required name="coupon_effective_date">
+                              <input type="datetime-local" step="01" class="form-control update_coupon_effective_date"
+                                placeholder="Enter coupon_effective_date" data-errors="Please Enter Code."
+                                id="coupon_effective_date" name="coupon_effective_date" required
+                                name="coupon_effective_date">
                               <div class="help-block with-errors"></div>
                             </div>
                           </div>
@@ -336,9 +341,9 @@
                           <div class="col-md-6">
                             <div class="form-group">
                               <label>優惠券到期日</label>
-                              <input type="text" class="form-control update_coupon_expire_date" placeholder="Enter coupon_expire_date"
-                                data-errors="Please Enter Code." id="coupon_expire_date" name="coupon_expire_date"
-                                required name="coupon_expire_date">
+                              <input type="datetime-local" step="01" class="form-control update_coupon_expire_date"
+                                placeholder="Enter coupon_expire_date" data-errors="Please Enter Code."
+                                id="coupon_expire_date" name="coupon_expire_date" required name="coupon_expire_date">
                               <div class="help-block with-errors"></div>
                             </div>
                           </div>
@@ -346,9 +351,8 @@
                             <div class="form-group">
                               <label>優惠方式</label>
                               <div class="help-block with-errors"></div>
-                              <select name="discount_type"
-                                class="selectpicker form-control update_discount_type" data-style="py-0"
-                                id="discount_type">
+                              <select name="discount_type" class="selectpicker form-control update_discount_type"
+                                data-style="py-0" id="discount_type">
                                 <option value="0">打扣(*)</option>
                                 <option value="1">折價(-)</option>
                               </select>
@@ -360,8 +364,7 @@
                             <div class="form-group">
                               <label>優惠券內容</label>
                               <input type="text" class="form-control update_coupon_content" placeholder="Enter Code"
-                                data-errors="Please Enter Code." id="coupon_content" name="coupon_content"
-                                required>
+                                data-errors="Please Enter Code." id="coupon_content" name="coupon_content" required>
                               <div class="help-block with-errors"></div>
                             </div>
                           </div>
@@ -369,8 +372,8 @@
                           <div class="col-md-6">
                             <div class="form-group">
                               <label>優惠券狀態</label>
-                              <select name="coupon_status" class="selectpicker form-control update_coupon_status" 
-                              id = "coupon_status" data-style="py-0">
+                              <select name="coupon_status" class="selectpicker form-control update_coupon_status"
+                                id="coupon_status" data-style="py-0">
                                 <option value="0">未使用</option>
                               </select>
                             </div>
@@ -381,7 +384,7 @@
                               <label>優惠券文字內容</label>
                               <textarea class="form-control update_coupon_text_content" rows="4"
                                 data-errors="Please Enter Code." id="coupon_text_content" name="coupon_text_content"
-                                required name ="coupon_text_content"></textarea>
+                                required name="coupon_text_content"></textarea>
                               <div class="help-block with-errors"></div>
                             </div>
 
@@ -510,37 +513,51 @@
             // console.log(data.data[i].announcement_image),
 
 
-              table.row.add([
-                data.data[i].coupon_id,
-                data.data[i].member_account,
-                // data.data[i].announcement_content,
+            table.row.add([
+              data.data[i].coupon_id,
+              data.data[i].member_account,
+              // data.data[i].announcement_content,
 
-                // '<img class="table-img" src="data:image/png;base64,${announcement_image}">',
+              // '<img class="table-img" src="data:image/png;base64,${announcement_image}">',
 
-                // data.data[i].announcement_image,
-                getTime(data.data[i].coupon_sending_time),
-                getTime(data.data[i].coupon_effective_date),
-                getTime(data.data[i].coupon_expire_date),
-                data.data[i].coupon_text_content,
-                data.data[i].coupon_content,
-                // data.data[i].announcement_time,
-                // getType(data.data[i].announcement_type),
-                // data.data[i].announcement_type,
-                // data.data[i].announcement_type,
-                // data.data[i].member_gender == 1 ? "男" : "女",
+              // data.data[i].announcement_image,
+              getTime(data.data[i].coupon_sending_time),
+              getTime(data.data[i].coupon_effective_date),
+              getTime(data.data[i].coupon_expire_date),
+              data.data[i].coupon_text_content,
+              data.data[i].coupon_content,
+              // data.data[i].announcement_time,
+              // getType(data.data[i].announcement_type),
+              // data.data[i].announcement_type,
+              // data.data[i].announcement_type,
+              // data.data[i].member_gender == 1 ? "男" : "女",
 
-                // getTime(data.data[i].register_time),
-                // getRegisterMethod(data.data[i].register_method),
-                data.data[i].discount_type == 0 ? "打折(*)" : "折價(-)",
-                data.data[i].coupon_status == 0 ? "未使用" : "已使用",
-                // '<img class="table-img" src="/dessert_shop/member/backend_getPhoto?id=' + data.data[i].member_account + '">',
-                // '<img class="table-img" src="data:image/png;base64,data.data[i].announcement_image">',
-                data.data[i].employee_account,
-                data.data[i].coupon_code_id,
+              // getTime(data.data[i].register_time),
+              // getRegisterMethod(data.data[i].register_method),
+              data.data[i].discount_type == 0 ? "打折(*)" : "折價(-)",
+              data.data[i].coupon_status == 0 ? "未使用" : "已使用",
+              // '<img class="table-img" src="/dessert_shop/member/backend_getPhoto?id=' + data.data[i].member_account + '">',
+              // '<img class="table-img" src="data:image/png;base64,data.data[i].announcement_image">',
+              data.data[i].employee_account,
+              data.data[i].coupon_code_id,
 
-                action
-              ]).draw(false);
+              action
+            ]).draw(false);
           }
+
+          // $.post("/dessert_shop/coupon/getCouponData", {}, function (data) {
+
+            // if(data.flag){
+            //   for(var i = 0 ; i < data.data.length ; i++){
+            //     console.log("我在哪" + data.data[i].employee_account);
+
+            //     $('#employee_account').append(`<option value ="` + data.data[i].employee_account + >)
+            //     $('#employee_account').selectpicker('refresh');
+            //   }
+            // }
+
+
+          // });
 
 
         } else {
@@ -551,9 +568,17 @@
       return moment(time).format('YYYY-MM-DD HH:mm:ss')
     }
 
+    // $('#employee_account').val(employee_account);
+
   </script>
 
   <script>
+    // $("button#addCP").click(function () {
+    //   console.log($("input.form-control").val().trim());
+    // })
+
+    // $("input.form-control").val().trim();
+    // console.log($("input.form-control").val().trim());
 
     $("tbody").on("click", "a.delete", function () {
       // console.log(123);
@@ -592,7 +617,7 @@
       let table = $(".data-table").DataTable()
       let data = table.row($(this).closest('tr')).data();
       console.log(data);
-      alert( 'You clicked on '+data[0]+'\'s row' );
+      // alert('You clicked on ' + data[0] + '\'s row');
 
       $(".update_coupon_id").val(data[0]);
       $(".update_member_account").val(data[1]);
@@ -729,6 +754,7 @@
 
 
   </script>
+
 
 
 
