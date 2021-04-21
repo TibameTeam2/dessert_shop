@@ -25,17 +25,21 @@ import com.coupon_code.model.CouponCodeService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.member.model.MemberBean;
+import com.notice.model.NoticeBean;
+import com.notice.model.NoticeService;
 import com.order_detail.model.OrderDetailBean;
 import com.order_detail.model.OrderDetailService;
 import com.order_master.model.OrderMasterBean;
 import com.order_master.model.OrderMasterService;
 import com.product.model.ProductService;
 import com.util.BaseServlet;
+import com.util.JedisUtil;
 import com.util.ResultInfo;
 import com.util.LineUtil;
 
 import cn.hutool.core.convert.Convert;
 import cn.hutool.crypto.digest.DigestUtil;
+import redis.clients.jedis.Jedis;
 
 @MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 50 * 1024 * 1024, maxRequestSize = 50 * 1024 * 1024)
 public class OrderMasterServlet extends BaseServlet {
@@ -46,6 +50,7 @@ public class OrderMasterServlet extends BaseServlet {
 	ProductService ProductSvc = new ProductService();
 	CouponService CouponSvc = new CouponService();
 	CouponCodeService CouponCodeSvc = new CouponCodeService();
+	NoticeService NoticeSvc = new NoticeService();
 	
 	//載入訂單資料
 	public void getOrderMaster(HttpServletRequest req, HttpServletResponse res) {
@@ -75,7 +80,7 @@ public class OrderMasterServlet extends BaseServlet {
         				CouponCodeBean CCB = CouponCodeSvc.getOneCC(coupon_code_id);
         				list_coupon_code.add(CCB.getCoupon_code());
         			} else {
-        				list_coupon_code.add("員工贈送");
+        				list_coupon_code.add("本店贈送");
         			}
         		} else {
         			list_coupon_code.add("無");
@@ -313,8 +318,15 @@ public class OrderMasterServlet extends BaseServlet {
             }
             //Line發通知-取消訂單
             LineUtil.linePushMessage(orderMasterBean.getMember_account(), "您的訂單已取消!\n" + order_message);
-            //Notice
             
+            //Notice
+            NoticeBean noticeBean = new NoticeBean();
+			noticeBean.setMember_account(orderMasterBean.getMember_account());
+			noticeBean.setNotice_type(1);
+			noticeBean.setNotice_dispatcher(req.getContextPath() + "/TEA103G2/front-end/my-account.html");
+			String notice_content =  "通知!訂單日期：" + order_time + "，狀態：已取消!";
+			noticeBean.setNotice_content(notice_content);	
+			NoticeSvc.addWSNotice(noticeBean);           
             
         } else {
             //取消失敗
@@ -326,6 +338,34 @@ public class OrderMasterServlet extends BaseServlet {
 		
 	}
 	
+	
+	//查詢匯款代碼
+	public void findPayCode(HttpServletRequest req, HttpServletResponse res) {
+		
+		MemberBean member = (MemberBean) req.getSession().getAttribute("member");
+        ResultInfo info = new ResultInfo();
+        if (member == null) {
+            info.setFlag(false);
+            info.setMsg("尚未登入!");
+            req.getSession().setAttribute("location", req.getContextPath() + "/TEA103G2/front-end/my-account.html");
+			info.setRedirect(req.getContextPath() + "/TEA103G2/front-end/login.html");
+			writeValueByWriter(res, info);
+			return ;
+        }
+
+		//獲取數據
+		Integer order_master_id = new Integer(req.getParameter("order_master_id"));
+		Jedis jedis = JedisUtil.getJedis();
+		String payCode = jedis.hget(member.getMember_account(), "payCode_id-"+order_master_id);
+		jedis.close();
+		
+		info.setFlag(true);
+        info.setMsg("查詢成功!");
+        info.setData(payCode);
+        
+		writeValueByWriter(res, info);
+		
+	}
 	
 	
 	
@@ -387,12 +427,18 @@ public class OrderMasterServlet extends BaseServlet {
             order_message += "\n訂單金額：" + orderMasterBean.getOrder_total() + "元";
             
             //Line發通知-匯款成功
-            if (orderMasterBean.getPayment_method() == 3) {
-            	
+            if (orderMasterBean.getPayment_method() == 3) {	
             	LineUtil.linePushMessage(orderMasterBean.getMember_account(), "您已匯款完成!\n" + order_message);           	
             }
-            //Notice
             
+            //Notice
+            NoticeBean noticeBean = new NoticeBean();
+			noticeBean.setMember_account(orderMasterBean.getMember_account());
+			noticeBean.setNotice_type(1);
+			noticeBean.setNotice_dispatcher(req.getContextPath() + "/TEA103G2/front-end/my-account.html");
+			String notice_content =  "通知!訂單日期：" + order_time + "，狀態：已付款!";
+			noticeBean.setNotice_content(notice_content);	
+			NoticeSvc.addWSNotice(noticeBean);                      
             
         } else {
             //付款失敗
