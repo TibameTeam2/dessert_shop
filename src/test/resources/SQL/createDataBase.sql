@@ -544,6 +544,21 @@ values('檸檬塔暫停供應','員工擠檸檬噴到眼睛',LOAD_FILE('C:/proje
 insert into announcement_management (announcement_name,announcement_content,
 announcement_image,announcement_time,announcement_type,announcement_status,employee_account)
 values('草莓蛋糕下架','草莓農藥太多',LOAD_FILE('C:/project/images/announcement_management/c.PNG'),'2021-02-28',1,1,'james');
+insert into announcement_management (announcement_name,announcement_content,
+announcement_image,announcement_time,announcement_type,announcement_status,employee_account)
+values('嗜甜營業時間','歡迎光臨嗜甜,本店營業時間 :星期一至六 早上 10:30 ~ 晚上 9:30,星期日/例假日 休息',LOAD_FILE('C:/project/images/announcement_management/open.jpg'),'2021-02-28',0,1,'james');
+insert into announcement_management (announcement_name,announcement_content,
+announcement_image,announcement_time,announcement_type,announcement_status,employee_account)
+values('優惠券/優惠碼','嗜甜會不定期提供優惠券/優惠碼給消費者使用,皆可用於網路訂餐及實體消費做優惠的服務,謝謝每一位消費者對嗜甜的愛戴及支持',LOAD_FILE('C:/project/images/announcement_management/coupon.jpg'),'2021-03-01',3,1,'peter');
+insert into announcement_management (announcement_name,announcement_content,
+announcement_image,announcement_time,announcement_type,announcement_status,employee_account)
+values('線上客服','嗜甜在此提供新的服務 "即時線上客服",消費者對嗜甜的回饋和評語我們將會一一改進,如有任何疑問及意見,歡迎使用 "即時線上客服" 服務',LOAD_FILE('C:/project/images/announcement_management/customerService.jpg'),'2021-03-03',2,1,'peter');
+insert into announcement_management (announcement_name,announcement_content,
+announcement_image,announcement_time,announcement_type,announcement_status,employee_account)
+values('草莓蛋糕熱銷中','季節限定的大湖草莓,結合了慕斯,口感既清淡又輕盈,入口即溶,微妙絕配,賞心悅目又美味,',LOAD_FILE('C:/project/images/announcement_management/strawberryCake.jpg'),'2021-03-20',1,1,'jason');
+insert into announcement_management (announcement_name,announcement_content,
+announcement_image,announcement_time,announcement_type,announcement_status,employee_account)
+values('全新消息敬請期待','新功能/新產品準備中,',LOAD_FILE('C:/project/images/announcement_management/comingSoon.jpg'),'2021-03-27',0,1,'jason');
 
 
 -- 優惠碼
