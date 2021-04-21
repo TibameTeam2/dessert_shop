@@ -87,6 +87,10 @@ private AnnouncementManagementDAO_interface dao;
 		return dao.getAll();
 	}
 	
+	public List<AnnouncementManagementBean> getAll01() {
+		return dao.getAll01();
+	}
+	
 	public static byte[] getPictureByteArray(String path) throws IOException {
 		FileInputStream fis = new FileInputStream(path);
 		byte[] buffer = new byte[fis.available()];
@@ -94,5 +98,39 @@ private AnnouncementManagementDAO_interface dao;
 		fis.close();
 		return buffer;
 	}
+	
+	
+	
+	public boolean addAM2(AnnouncementManagementBean am) {
+        try {
+            dao.insert(am);
+            return true;
+        }catch (Exception e){
+
+            return false;
+        }
+    }
+	
+	public boolean updateAM2(AnnouncementManagementBean am) {
+        try {
+        	AnnouncementManagementBean m = dao.findByPrimaryKey(am.getAnnouncement_id());
+            m.setAnnouncement_name(am.getAnnouncement_name());
+            m.setAnnouncement_content(am.getAnnouncement_content());
+            m.setAnnouncement_time(am.getAnnouncement_time());
+            m.setAnnouncement_type(am.getAnnouncement_type());
+            m.setAnnouncement_status(am.getAnnouncement_status());
+            m.setEmployee_account(am.getEmployee_account());
+            
+            if(am.getAnnouncement_image()!=null){
+                m.setAnnouncement_image(am.getAnnouncement_image());
+            }
+            dao.update(m);
+            return true;
+        }catch (Exception e){
+            e.printStackTrace(System.err);
+            return false;
+        }
+    }
+	
 
 }

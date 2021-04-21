@@ -6,19 +6,21 @@ public interface ProductDAO_interface {
 	public int insert(ProductBean productBean);
 	public void update(ProductBean productBean);
 	public void delete(Integer produc_id);
-	public List<ProductBean> getAll();
 	public ProductBean  findByPrimaryKey(Integer product_id);
 	public List<ProductBean> getAllWithOneImage();
-// 排序
+	
+// 後台getAll
+	public List<ProductBean> getAll();
+
+// 前台getAll	
+	public List<ProductBean> getAllAvailable();
+	// 排序
 	public List<ProductBean> getAllSortByPurchase();
 	public List<ProductBean> getAllSortByPrice();
 	public List<ProductBean> getAllSortByCalorie();
 	public List<ProductBean> getAllSortBySweetness();
 	public List<ProductBean> getAllSortByStar();
 	ProductBean findByProductName(String product_name);
-	
-// 給評論用
-//	public ProductBean updateReviewStar(ProductBean productBean) ;
 	
 	
 	

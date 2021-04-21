@@ -1,8 +1,9 @@
 package com.daily_special.model;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class DailySpecialBean {
+public class DailySpecialBean implements Serializable{
 	private Integer discount_product_id;
 	private Integer product_id;
 	private Integer discount_price;

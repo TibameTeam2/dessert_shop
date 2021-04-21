@@ -36,5 +36,11 @@ public class ProductImageService {
 		return dao.getAll();
 	}
 	
+	public void addMultiProductImages(List<ProductImageBean> piBeanList) throws IOException{
+		for(int i = 0; i < piBeanList.size(); i++) {
+			addProductImage(piBeanList.get(i));
+		}
+	}
+	
 	
 }

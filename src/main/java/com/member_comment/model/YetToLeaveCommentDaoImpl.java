@@ -23,15 +23,16 @@ public class YetToLeaveCommentDaoImpl implements YetToLeaveCommentDao {
 	private String passwd = JDBCUtil.password;
 
 	// (傳入member_account)某member_account沒有comment_time表示是尚未評價, select這些資料顯示在尚未評價頁面
-	private static final String YetToLeaveComment_FindByMemberAccount = "select member_account, om.order_master_id, od.order_detail_id, order_time, payment_time, invoice_number, coupon_id, payment_method, order_remarks, comment_time\r\n" + 
+	private static final String YetToLeaveComment_FindByMemberAccount = "select om.member_account, om.order_master_id, od.order_detail_id, order_time, payment_time, invoice_number, c.coupon_text_content, payment_method, order_remarks, comment_time\r\n" + 
 			"from order_master om\r\n" + 
+			"left join coupon c on om.coupon_id = c.coupon_id\r\n" + 
 			"left join order_detail od on om.order_master_id = od.order_master_id\r\n" + 
 			"left join product p on od.product_id = p.product_id\r\n" + 
 			"left join product_image pi on p.product_id = pi.product_id\r\n" + 
 			"left join member_comment mc on od.order_detail_id = mc.order_detail_id\r\n" + 
-			"where member_account = ? and comment_time is null\r\n" + 
+			"where om.member_account = ? and comment_time is null and om.order_status = 2 \r\n" + 
 			"group by od.order_master_id\r\n" + 
-			"order by order_master_id; ";
+			"order by order_master_id;";
 	
 	//(傳入order_master_id)某order_master_id沒有comment_time表示是尚未評價, select這些資料顯示在尚未評價頁面
 	private static final String YetToLeaveComment_FindByOrderMasterId = "select om.order_master_id, od.order_detail_id, p.product_id, product_name, image_id, product_image, comment_time\r\n" + 
@@ -70,7 +71,7 @@ public class YetToLeaveCommentDaoImpl implements YetToLeaveCommentDao {
 				ytlcBean.setOrder_time(rs.getTimestamp("order_time"));
 				ytlcBean.setPayment_time(rs.getTimestamp("payment_time"));
 				ytlcBean.setInvoice_number(rs.getString("invoice_number"));
-				ytlcBean.setCoupon_id(rs.getInt("coupon_id"));
+				ytlcBean.setCoupon_text_content(rs.getString("coupon_text_content"));
 				ytlcBean.setPayment_method(rs.getInt("payment_method"));
 				ytlcBean.setOrder_remarks(rs.getString("order_remarks"));
 				ytlcBean.setComment_time(rs.getTimestamp("comment_time"));
@@ -204,7 +205,7 @@ public class YetToLeaveCommentDaoImpl implements YetToLeaveCommentDao {
 			System.out.println("order_time = " + ytlcBean.getOrder_time() + ",");
 			System.out.println("payment_time = " + ytlcBean.getPayment_time() + ",");
 			System.out.println("invoice_number = " + ytlcBean.getInvoice_number()+ ",");
-			System.out.println("coupon_id = " + ytlcBean.getCoupon_id() + ",");
+			System.out.println("coupon_text_content = " + ytlcBean.getCoupon_text_content() + ",");
 			System.out.println("payment_method = " + ytlcBean.getPayment_method() + ",");
 			System.out.println("order_remarks = " + ytlcBean.getOrder_remarks() + ",");
 			System.out.println("comment_time = " + ytlcBean.getComment_time() + ",");

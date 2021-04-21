@@ -11,7 +11,7 @@ public class YetToLeaveCommentBean implements Serializable{
 	private Timestamp order_time;
 	private Timestamp payment_time; 
 	private String invoice_number;
-	private Integer coupon_id;
+	private String coupon_text_content;
 	private Integer payment_method;
 	private String order_remarks;
 	private Timestamp comment_time;
@@ -23,10 +23,10 @@ public class YetToLeaveCommentBean implements Serializable{
 	public String toString() {
 		return "YetToLeaveCommentBean [member_account=" + member_account + ", order_master_id=" + order_master_id
 				+ ", order_detail_id=" + order_detail_id + ", order_time=" + order_time + ", payment_time="
-				+ payment_time + ", invoice_number=" + invoice_number + ", coupon_id=" + coupon_id + ", payment_method="
-				+ payment_method + ", order_remarks=" + order_remarks + ", comment_time=" + comment_time
-				+ ", product_image=" + product_image + ", product_name=" + product_name + ", product_id=" + product_id
-				+ ", image_id=" + image_id + "]";
+				+ payment_time + ", invoice_number=" + invoice_number + ", coupon_text_content=" + coupon_text_content
+				+ ", payment_method=" + payment_method + ", order_remarks=" + order_remarks + ", comment_time="
+				+ comment_time + ", product_image=" + product_image + ", product_name=" + product_name + ", product_id="
+				+ product_id + ", image_id=" + image_id + "]";
 	}
 	public String getMember_account() {
 		return member_account;
@@ -64,11 +64,11 @@ public class YetToLeaveCommentBean implements Serializable{
 	public void setInvoice_number(String invoice_number) {
 		this.invoice_number = invoice_number;
 	}
-	public Integer getCoupon_id() {
-		return coupon_id;
+	public String getCoupon_text_content() {
+		return coupon_text_content;
 	}
-	public void setCoupon_id(Integer coupon_id) {
-		this.coupon_id = coupon_id;
+	public void setCoupon_text_content(String coupon_text_content) {
+		this.coupon_text_content = coupon_text_content;
 	}
 	public Integer getPayment_method() {
 		return payment_method;
