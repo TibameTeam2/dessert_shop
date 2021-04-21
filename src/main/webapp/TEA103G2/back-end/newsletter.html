@@ -108,53 +108,49 @@
 
                     <div class="card-header d-flex justify-content-between">
                       <div class="header-title">
-                        <h4 class="card-title" style="margin-left:380px">新增通知訊息</h4>
+                        <h4 class="card-title" style="margin-left:380px">新增電子報</h4>
                       </div>
                     </div>
 
                     <div class="card-body">
-                      <form id="addNotice_form" action="noticeManager.html" data-toggle="validator"
-                        enctype="multipart/form-data">
+                      <form id="addLetter_form" action="#" data-toggle="validator" enctype="multipart/form-data">
                         <div class="row">
 
-                          <div class="col-md-6">
-                            <div class="form-group">
-                              <label>通知類型</label>
-                              <select name="notice_type" class="selectpicker form-control add_notice_type"
-                                data-style="py-0 ">
-                                <option value="">請選擇通知類型
-                                </option>
-                                <option value="1">購買成功
-                                </option>
-                                <option value="2">取貨提醒
-                                </option>
-                                <option value="3">訂位成功
-                                </option>
-                                <option value="4">訂位提醒
-                                </option>
-                              </select>
+                          <div class="col-md-6 ">
+                            <div class="form-group ">
+                              <label>發送時間</label>
+                              <input type="datetime-local" step="01" name="newsletter_releasing_time"
+                                class="form-control add_newsletter_releasing_time">
                             </div>
                           </div>
 
                           <div class="col-md-6 ">
                             <div class="form-group ">
-                              <label>會員帳號</label>
-                              <select name="member_account" class="form-control add_member_account" data-style="py-0">
-                                <option value="">請選擇會員</option>
+                              <label>編輯員工</label>
+                              <select name="employee_account" class="form-control add_employee_account"
+                                data-style="py-0">
+                                <option value="">請選擇員工</option>
                               </select>
+                            </div>
+                          </div>
+
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <label>電子報圖檔</label>
+                              <input type="file" class="form-control image-file add_newsletter_image"
+                                name="newsletter_image" accept="image/*">
                             </div>
                           </div>
 
                           <div class="col-md-12 ">
                             <div class="form-group " style="margin-bottom: 15px">
-                              <label>通知訊息</label>
-                              <textarea name="notice_content" class="form-control add_notice_content" rows="2"
-                                placeholder="請輸入通知內容..." required data-error="內容不得為空白，請輸入內容"></textarea>
-                              <div class="help-block with-errors"></div>
+                              <label>電子報內容</label>
+                              <textarea name="newsletter_content" class="form-control add_newsletter_content" rows="2"
+                                placeholder="請輸入通知內容..."></textarea>
                             </div>
                           </div>
                         </div>
-                        <button type="submit" id="addNotice" class="btn btn-primary mr-2"
+                        <button type="submit" id="addLetter" class="btn btn-primary mr-2"
                           style="margin-left:700px">新增通知</button>
                         <button type="reset" class="btn btn-danger form_reset">清除內容</button>
                       </form>
@@ -374,17 +370,17 @@
     getAllnewsLetter();
 
     /*----------------- 選單選項 -----------------*/
-    // $.post("/dessert_shop/member/backend_getAll", function (data) {
-    //   if (data.flag) {
-    //     for (var i = 0; i < data.data.length; i++) {
-    //       console.log(data.data[i].member_account);
-    //       $('.add_member_account').append(`<option value="` + data.data[i].member_account + `">` + data.data[i].member_account + `</option>`)
-    //       $('.update_member_account').append(`<option value="` + data.data[i].member_account + `">` + data.data[i].member_account + `</option>`)
-    //     }
-    //     $('.add_member_account').selectpicker('refresh');
-    //     $('.update_member_account').selectpicker('refresh');
-    //   } else { }
-    // });
+    $.post("/dessert_shop/employee/backend_getAll", function (data) {
+      if (data.flag) {
+        for (var i = 0; i < data.data.length; i++) {
+          console.log(data.data[i].employee_account);
+          $('.add_employee_account').append(`<option value="` + data.data[i].employee_account + `">` + data.data[i].employee_name + `</option>`)
+          // $('.update_member_account').append(`<option value="` + data.data[i].member_account + `">` + data.data[i].member_account + `</option>`)
+        }
+        $('.add_employee_account').selectpicker('refresh');
+        // $('.update_member_account').selectpicker('refresh');
+      } else { }
+    });
 
 
     // $.get("/dessert_shop/notice/backend_getAllNotice", function (data) {
@@ -406,16 +402,57 @@
     // })
 
     /*------------------- 新增通知 ************************/
-    // $('#addNotice').on("click", function (e) {
+
+    $('#addLetter').on("click", function (e) {
+
+      e.preventDefault();
+      console.log($("#addLetter_form").serialize());
+
+      let form = $('#addLetter_form')[0];
+      let data = new FormData(form);
+
+      $.ajax({
+
+        type: "POST",
+        enctype: 'multipart/form-data',
+        url: '/dessert_shop/newsLetter/backend_addNewsLetter',
+        data: data,
+        processData: false,
+        contentType: false,
+        cache: false,
+        success: function (data) {
+          if (data.flag) {
+            Swal.fire({
+              title: data.msg,
+              text: "新增成功",
+              icon: "success"
+            });
+            getAllnewsLetter();
+            $("#addLetter").modal('hide');
+            $("#addLetter_form").trigger("reset");
+          } else {
+            Swal.fire({
+              title: data.msg,
+              text: "新增失敗",
+              icon: "error"
+            })
+          }
+        }
+      });
+      return false;
+    });
+
+
+    // $('#addLetter').on("click", function (e) {
 
     //   e.preventDefault();
-    //   console.log($("#addNotice_form").serialize());
+    //   console.log($("#addLetter_form").serialize());
 
 
-    //   let form = $("#addNotice_form")[0];
+    //   let form = $("#addLetter_form")[0];
     //   let data = new FormData(form);
 
-    //   $.post("/dessert_shop/notice/backend_addNotice", $("#addNotice_form").serialize(), function (data) {
+    //   $.post("/dessert_shop/newsLetter/backend_addNewsLetter", $("#addLetter_form").serialize(), function (data) {
 
     //     console.log(data);
 
@@ -425,11 +462,11 @@
     //         text: "新增成功",
     //         icon: "success"
     //       });
-    //       getAllNotice();
-    //       $("#addList").modal('hide');
-    //       $("#addNotice_form").trigger("reset");
-    //       $('.add_member_account').trigger("change");
-    //       $('.add_notice_type').trigger("change");
+    //       getAllnewsLetter();
+    //       $("#addLetter").modal('hide');
+    //       $("#addLetter_form").trigger("reset");
+    //       // $('.add_member_account').trigger("change");
+    //       // $('.add_notice_type').trigger("change");
     //     } else {
     //       Swal.fire({
     //         title: data.msg,
@@ -438,6 +475,7 @@
     //       })
     //     }
     //   });
+    //   return false;
     // });
 
 
