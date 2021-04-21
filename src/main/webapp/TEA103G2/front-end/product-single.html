@@ -325,8 +325,9 @@ ul.order_master_comment_list>li.-on button.switch_btn span.minus {
 <!-- 							<li><a href="#"><i class="fal fa-edit"></i>撰寫評論</a></li> -->
 						</ul>
 						<div class="product-prices">
-							<span class="old-price">$35.90</span> <span class="sale-price">$28.72</span>
-							<span class="discount-percentage">Save 20%</span>
+<!-- 							<span class="old-price">$35.90</span>  -->
+							<span class="sale-price">$28.72</span>
+<!-- 							<span class="discount-percentage">Save 20%</span> -->
 						</div>
 						<div class="product-description">
 							<!-- 簡介與成份的地方 -->
@@ -877,8 +878,9 @@ ul.order_master_comment_list>li.-on button.switch_btn span.minus {
 								<li><a href="#"><i class="fal fa-edit"></i>撰寫評論</a></li>
 							</ul>
 							<div class="product-prices">
-								<span class="old-price">$喔喔35.90</span> <span class="sale-price">$28.72</span>
-								<span class="discount-percentage">Save 20%</span>
+<!-- 								<span class="old-price">$喔喔35.90</span> -->
+								<span class="sale-price">$28.72</span>
+<!-- 								<span class="discount-percentage">Save 20%</span> -->
 							</div>
 							<div class="product-description">
 								<ul>
@@ -1089,6 +1091,39 @@ ul.order_master_comment_list>li.-on button.switch_btn span.minus {
 				// 是否為特價商品(設定每日優惠商品後，對該商品做操作)
 
 		});
+		
+		
+		
+// 更新價格
+
+		var validDSProduct=0;
+	     // 取得有效特價商品的API,用var儲存data，最後寫function() ,比對product_id，把頁面上id符合的 價格覆蓋
+	       	$.get("/dessert_shop/dailySpecial/getValidDailySpecialProduct", {}, function (data) {
+	       		validDSProduct = data.data;
+	        	console.log("validDSProduct:"+validDSProduct);///???????????沒印出來阿
+	           	updatePrice(validDSProduct);
+	           	console.log("優惠商品flag:"+data.flag);
+	   
+	        });	
+	   		
+	       	function updatePrice(data){
+				console.log("updatePrice!!!!!!!!!!!!!!!");       		
+	       		for(var i = 0 ; i < data.length; i++){
+	       			console.log(data[i]);
+	       			let update_id = data[i].product_id;
+	       			if (product_id == update_id){
+	       				
+		       			let old_price = data[i].product_price;
+		       			let update_price = data[i].discount_price;
+		       			console.log("old_price:"+old_price);
+		       			console.log("update_price:"+update_price);
+	    	   			
+	       				$(".product-prices").html('<span class="old-price">$'+old_price+'</span> <span class="sale-price">$'+update_price+'</span>');
+
+	       			}
+	       			
+	       		}
+	      }//updatePrice() 
 		
 		
 <!-- 商品評價 -->

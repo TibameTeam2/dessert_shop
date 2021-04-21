@@ -38,26 +38,40 @@ public class DailySpecialService {
 	
 //  下面好像用不到...取到優惠後 在去product拿該商品	
 	
-	// 後台，取得"所有"的每日"優惠"，含商品
-//	public List<DailySpecialBean> getAllDailySpecialProduct(){
-//		return dao.getAll();
+	// 後台，取得"所有"的每日"優惠"，含商品*********************************************************
+//	public List<ProductBean> getAllDailySpecialProduct(){
+//		
+//		 List<ProductBean> list_dsProduct = null;
+//		 
+//		 List<DailySpecialBean> list_dsBean = dao.getAll();// 所有優惠清單
+//		 //拿出所有id 去拿商品
+//		 Integer product_id;
+//		 ProductService productSvc = new ProductService();
+//		 ProductBean productBean = new ProductBean();
+//		 for (DailySpecialBean dsBean : list_dsBean) {
+//			 product_id = dsBean.getProduct_id();
+//			 productBean = productSvc.getOneProduct(product_id);
+//			 
+//			 list_dsProduct.add(productBean);
+//		 }
+//		return list_dsProduct;// 所有在DB美日優惠的"商品"
 //	}
 //	
-	// 前台，取得"上架中"且"優惠有效"的每日"優惠"，含商品
-	public List<ProductBean> getValidDailySpecialProduct(){
-		List<DailySpecialBean> list = dao.getAllValid();
-		// 這裡拿到的每日優惠已經是確認為"產品狀態為上架中"的
-		
-		ProductService productSvc = new ProductService();
-		List<ProductBean> product_list = new ArrayList<ProductBean>();
-		
-		for (DailySpecialBean dsBean : list) {
-			Integer product_id = dsBean.getProduct_id();
-			System.out.println("dsBean的product_id:" + product_id);
-			// 用這個product_id去撈product
-			product_list.add(productSvc.getOneProduct(product_id));
-		}
-		return product_list;// 回傳為商品資訊
-	}
+//	// 前台，取得"上架中"且"優惠有效"的每日"優惠"，含商品
+//	public List<ProductBean> getValidDailySpecialProduct(){
+//		List<DailySpecialBean> list = dao.getAllValid();
+//		// 這裡拿到的每日優惠已經是確認為"產品狀態為上架中"的
+//		
+//		ProductService productSvc = new ProductService();
+//		List<ProductBean> product_list = new ArrayList<ProductBean>();
+//		
+//		for (DailySpecialBean dsBean : list) {
+//			Integer product_id = dsBean.getProduct_id();
+//			System.out.println("dsBean的product_id:" + product_id);
+//			// 用這個product_id去撈product
+//			product_list.add(productSvc.getOneProduct(product_id));
+//		}
+//		return product_list;// 回傳為商品資訊
+//	}
 
 }

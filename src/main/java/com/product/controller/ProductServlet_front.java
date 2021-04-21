@@ -54,13 +54,6 @@ public class ProductServlet_front extends BaseServlet {
 
 	}
 	
-	
-	
-// 前端的getAllDailySpecial，只有上架的且在優惠期間的 可以出現
-	
-	
-	
-	
 
 	// http://localhost:8081/dessert_shop/product/getOneProduct?id=?
 	public void getOneProduct(HttpServletRequest req, HttpServletResponse res) {
