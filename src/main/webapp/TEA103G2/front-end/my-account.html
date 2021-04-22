@@ -691,9 +691,19 @@
             //取消訂單按鈕
             if (data.data[0][i].order_status == 0) {
 
-              let cancel_btn = `<button type="button" class="cancel_order">取消訂單</button>`;
+              let cancel_btn = `<button style="margin-left: 5px;" type="button" class="cancel_order">取消訂單</button>`;
 
               $(`li.order_master_${data.data[0][i].order_master_id}`).find("span.order_status").after(cancel_btn);
+
+              //查詢匯款帳戶代碼
+              if (data.data[0][i].payment_method == 3) {
+
+                let pay_code_btn = `<button style="margin-left: 8px;" type="button" class="pay_code">查詢匯款代碼</button>`;
+
+                $(`li.order_master_${data.data[0][i].order_master_id}`).find("button.cancel_order").after(pay_code_btn);
+
+              }
+
             }
 
 
@@ -715,7 +725,7 @@
 
 
         } else {
-          alert(data.msg);
+          
           if (data.redirect) {
             location.href = data.redirect;
           }
@@ -748,10 +758,7 @@
 
 
         } else {
-          alert(data.msg);
-          if (data.redirect) {
-            location.href = data.redirect;
-          }
+          
         }
 
 
@@ -850,6 +857,33 @@
 
 
         });  //then
+
+
+    });
+
+
+    //查詢匯款代碼
+    $("ul.order_master_comment_list").on("click", "button.pay_code", function (e) {
+
+      let order_master_id = $(this).closest("li").attr("data-order_master_id");
+          
+      $.post("/dessert_shop/orderMaster/findPayCode", {"order_master_id": order_master_id}, function(data) {
+        console.log(data);
+
+            if (data.flag) { 
+
+              Swal.fire({
+                title: '查詢銀行帳戶代碼：\n\n' + data.data
+              });
+
+            } else {
+                alert(data.msg);
+                if (data.redirect) {
+                    location.href = data.redirect;
+                }
+            }
+
+          });  //post
 
 
     });

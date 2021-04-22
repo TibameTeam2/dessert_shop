@@ -15,6 +15,8 @@ import com.coupon.model.CouponBean;
 import com.coupon.model.CouponService;
 import com.coupon_code.model.CouponCodeBean;
 import com.member.model.MemberBean;
+import com.notice.model.NoticeBean;
+import com.notice.model.NoticeService;
 import com.order_detail.model.OrderDetailBean;
 import com.order_detail.model.OrderDetailService;
 import com.order_master.model.OrderMasterBean;
@@ -33,6 +35,7 @@ public class CartServlet extends BaseServlet {
 	OrderDetailService OrderDetailSvc = new OrderDetailService();
 	ProductService ProductSvc = new ProductService();
 	CouponService CouponSvc = new CouponService();
+	NoticeService NoticeSvc = new NoticeService();
 
 	// 取得購物車資料
 	public void getCartData(HttpServletRequest req, HttpServletResponse res) {
@@ -504,7 +507,7 @@ public class CartServlet extends BaseServlet {
 			req.getSession().removeAttribute("coupon_price");					
 			
 			//Line通知訊息-到店付款方式
-			String message = "您的訂單完成!請撥空至本店付款!\n" + order_message;	
+			String message = "您的訂單完成!\n請撥空至本店付款!\n" + order_message;	
 			
 			info.setMsg("到店付款方式的訂單完成!");
 			
@@ -523,23 +526,40 @@ public class CartServlet extends BaseServlet {
 				String payCode = svc.payCode_random(); // 生成匯款帳戶
 				info.setData(payCode);
 				// 存Redis
-//				Jedis jedis = JedisUtil.getJedis();
-//				jedis.hset(member.getMember_account(), "payCode_id-" + new_order_master_id, payCode);
-//				jedis.close();
+				Jedis jedis = JedisUtil.getJedis();
+				jedis.hset(member.getMember_account(), "payCode_id-" + new_order_master_id, payCode);
+				jedis.close();
 				//Line通知訊息-匯款方式
-				message = "您的訂單完成!請匯款至此銀行帳戶:\n" + payCode + "\n" + order_message;
+				message = "您的訂單完成!\n請匯款至此銀行帳戶:\n" + payCode + "\n" + order_message;
 			}
 			
 			info.setFlag(true);		
 			info.setRedirect(req.getContextPath() + "/TEA103G2/front-end/my-account.html");
 			 			
 			//Line發通知
-			LineUtil.linePushMessage(member.getMember_account(), message);					
+			LineUtil.linePushMessage(member.getMember_account(), message);
+			
+			//Notice
+			NoticeBean noticeBean = new NoticeBean();
+			noticeBean.setMember_account(member.getMember_account());
+			noticeBean.setNotice_type(1);
+			noticeBean.setNotice_dispatcher(req.getContextPath() + "/TEA103G2/front-end/my-account.html");
+			String notice_content =  "通知!訂單日期：" + current_time + "，狀態：";
+			if (payment_method == 1) {
+				notice_content += "已付款!";
+			} else {
+				notice_content += "未付款!";
+			}
+			noticeBean.setNotice_content(notice_content);	
+			NoticeSvc.addWSNotice(noticeBean);
+			
 		}
 
 		writeValueByWriter(res, info);
 
 	}
+	
+	
 
 	/* ==================== 商品頁面新增商品到購物車 ==================== */
 	// 請在登入狀態下傳product_id及product_quantity

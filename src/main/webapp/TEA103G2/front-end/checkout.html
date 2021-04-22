@@ -56,7 +56,7 @@
 
         <a class="logo" href="#">
 
-            <img src="assets/images/logo.jpg" data-logo-alt="images/files/logo-header.png" alt="">
+            <img src="assets/images/sweetness_logo.png" data-logo-alt="images/files/logo-header.png" alt="">
 
             <!--        <h3><span class="colored">Astron</span></h3>-->
 
@@ -477,7 +477,7 @@
                         $("p.total_quantity").text("合計數量：" + total_quantity);
                         $("p.total_price").text("合計金額：" + total_price + "元");
                         if (coupon_price != null) {
-                            $("p.coupon_price").text("合計金額：" + coupon_price + "元");
+                            $("p.coupon_price").text("優惠金額：" + coupon_price + "元");
                             let final_price = total_price - coupon_price;
                             $("h3.final_price").text("應付金額：" + final_price + "元");
                             $("h3.final_price").attr("data-final_price", final_price);
@@ -506,7 +506,7 @@
 
 
                 } else {
-                    alert(data.msg);
+                    
                     if (data.redirect) {
                         location.href = data.redirect;
                     }
