@@ -21,7 +21,7 @@ public class NoticeDaoImpl implements NoticeDao {
 	private String userid = JDBCUtil.user;
 	private String passwd = JDBCUtil.password;
 
-	private static final String INSERT_STMT = "INSERT INTO sweet.notice (notice_type,notice_content,read_status,member_account) VALUES (?, ?, ?, ?)";
+	private static final String INSERT_STMT = "INSERT INTO sweet.notice (notice_type,notice_content,read_status,member_account, notice_dispatcher) VALUES (?, ?, ?, ?, ?)";
 	private static final String UPDATE = "UPDATE sweet.notice set notice_type=?,notice_content=?, read_status=?, member_account=? where notice_id = ?";
 	private static final String DELETE = "DELETE FROM sweet.notice where notice_id = ?";
 	private static final String GET_ONE_STMT = "SELECT * FROM sweet.notice where notice_id = ?";
@@ -48,6 +48,7 @@ public class NoticeDaoImpl implements NoticeDao {
 			pstmt.setString(2, noticeBean.getNotice_content());
 			pstmt.setInt(3, noticeBean.getRead_status());
 			pstmt.setString(4, noticeBean.getMember_account());
+			pstmt.setString(5, noticeBean.getNotice_dispatcher());
 
 			int count = pstmt.executeUpdate();
 			System.out.println(count);

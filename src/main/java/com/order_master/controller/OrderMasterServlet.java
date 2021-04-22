@@ -3,6 +3,7 @@ package com.order_master.controller;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -24,17 +25,21 @@ import com.coupon_code.model.CouponCodeService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.member.model.MemberBean;
+import com.notice.model.NoticeBean;
+import com.notice.model.NoticeService;
 import com.order_detail.model.OrderDetailBean;
 import com.order_detail.model.OrderDetailService;
 import com.order_master.model.OrderMasterBean;
 import com.order_master.model.OrderMasterService;
 import com.product.model.ProductService;
 import com.util.BaseServlet;
+import com.util.JedisUtil;
 import com.util.ResultInfo;
 import com.util.LineUtil;
 
 import cn.hutool.core.convert.Convert;
 import cn.hutool.crypto.digest.DigestUtil;
+import redis.clients.jedis.Jedis;
 
 @MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 50 * 1024 * 1024, maxRequestSize = 50 * 1024 * 1024)
 public class OrderMasterServlet extends BaseServlet {
@@ -45,6 +50,7 @@ public class OrderMasterServlet extends BaseServlet {
 	ProductService ProductSvc = new ProductService();
 	CouponService CouponSvc = new CouponService();
 	CouponCodeService CouponCodeSvc = new CouponCodeService();
+	NoticeService NoticeSvc = new NoticeService();
 	
 	//載入訂單資料
 	public void getOrderMaster(HttpServletRequest req, HttpServletResponse res) {
@@ -74,7 +80,7 @@ public class OrderMasterServlet extends BaseServlet {
         				CouponCodeBean CCB = CouponCodeSvc.getOneCC(coupon_code_id);
         				list_coupon_code.add(CCB.getCoupon_code());
         			} else {
-        				list_coupon_code.add("員工贈送");
+        				list_coupon_code.add("本店贈送");
         			}
         		} else {
         			list_coupon_code.add("無");
@@ -291,14 +297,36 @@ public class OrderMasterServlet extends BaseServlet {
             info.setFlag(true);
             info.setMsg("取消成功!");
             info.setRedirect(req.getContextPath() + "/TEA103G2/front-end/my-account.html");
+            //Line通知-訂單內容
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			String order_time = sdf.format(orderMasterBean.getOrder_time());
+            String order_message = "訂單日期：" + order_time + "\n訂單內容：";            
+            List<OrderDetailBean> list_OD = OrderDetailSvc.getAllByOrderMasterId(order_master_id);
+            for (OrderDetailBean ODBean : list_OD) {
+            	order_message += "\n" + ODBean.getProduct_name() + " x " + ODBean.getProduct_qty();
+            }
+            //訂單內容優惠券+訂單金額
+            Integer coupon_id = orderMasterBean.getCoupon_id();
+            if (coupon_id != 0 && coupon_id != null) {
+            	order_message += "\n優惠內容：" + CouponSvc.getOneCoupon(coupon_id).getCoupon_text_content();
+            }
+            order_message += "\n訂單金額：" + orderMasterBean.getOrder_total() + "元";          
+            
             //優惠券還原狀態
             if (orderMasterBean.getCoupon_id() != null && orderMasterBean.getCoupon_id() != 0) {
             	CartProductSvc.updateCouponStatus(orderMasterBean.getCoupon_id(), 0);
             }
-            //Line發通知-取消訂單 >>>>>>>>>
-            LineUtil.linePushMessage(orderMasterBean.getMember_account(), "您的訂單已取消!");
-            //Notice通知
+            //Line發通知-取消訂單
+            LineUtil.linePushMessage(orderMasterBean.getMember_account(), "您的訂單已取消!\n" + order_message);
             
+            //Notice
+            NoticeBean noticeBean = new NoticeBean();
+			noticeBean.setMember_account(orderMasterBean.getMember_account());
+			noticeBean.setNotice_type(1);
+			noticeBean.setNotice_dispatcher(req.getContextPath() + "/TEA103G2/front-end/my-account.html");
+			String notice_content =  "通知!訂單日期：" + order_time + "，狀態：已取消!";
+			noticeBean.setNotice_content(notice_content);	
+			NoticeSvc.addWSNotice(noticeBean);           
             
         } else {
             //取消失敗
@@ -310,6 +338,34 @@ public class OrderMasterServlet extends BaseServlet {
 		
 	}
 	
+	
+	//查詢匯款代碼
+	public void findPayCode(HttpServletRequest req, HttpServletResponse res) {
+		
+		MemberBean member = (MemberBean) req.getSession().getAttribute("member");
+        ResultInfo info = new ResultInfo();
+        if (member == null) {
+            info.setFlag(false);
+            info.setMsg("尚未登入!");
+            req.getSession().setAttribute("location", req.getContextPath() + "/TEA103G2/front-end/my-account.html");
+			info.setRedirect(req.getContextPath() + "/TEA103G2/front-end/login.html");
+			writeValueByWriter(res, info);
+			return ;
+        }
+
+		//獲取數據
+		Integer order_master_id = new Integer(req.getParameter("order_master_id"));
+		Jedis jedis = JedisUtil.getJedis();
+		String payCode = jedis.hget(member.getMember_account(), "payCode_id-"+order_master_id);
+		jedis.close();
+		
+		info.setFlag(true);
+        info.setMsg("查詢成功!");
+        info.setData(payCode);
+        
+		writeValueByWriter(res, info);
+		
+	}
 	
 	
 	
@@ -352,17 +408,37 @@ public class OrderMasterServlet extends BaseServlet {
             info.setFlag(true);
             info.setData(orderMasterBean.getInvoice_number());
             info.setMsg("付款成功!");
+            //Line通知-訂單內容
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			String order_time = sdf.format(orderMasterBean.getOrder_time());
+            String order_message = "訂單日期：" + order_time + "\n訂單內容：";          
             //更新銷售數量
             List<OrderDetailBean> list_OD = OrderDetailSvc.getAllByOrderMasterId(order_master_id);
             for (OrderDetailBean ODBean : list_OD) {
             	ProductSvc.addProductPurchase(ODBean.getProduct_id(), ODBean.getProduct_qty());
-            } 
-            //Line發通知-匯款成功 >>>>>>>>>
-            if (orderMasterBean.getPayment_method() == 3) {           	
-            	LineUtil.linePushMessage(orderMasterBean.getMember_account(), "匯款完成!");           	
+            	//訂單內容
+            	order_message += "\n" + ODBean.getProduct_name() + " x " + ODBean.getProduct_qty();
             }
-            //Notice通知
+            //訂單內容優惠券+訂單金額
+            Integer coupon_id = orderMasterBean.getCoupon_id();
+            if (coupon_id != 0 && coupon_id != null) {
+            	order_message += "\n優惠內容：" + CouponSvc.getOneCoupon(coupon_id).getCoupon_text_content();
+            }
+            order_message += "\n訂單金額：" + orderMasterBean.getOrder_total() + "元";
             
+            //Line發通知-匯款成功
+            if (orderMasterBean.getPayment_method() == 3) {	
+            	LineUtil.linePushMessage(orderMasterBean.getMember_account(), "您已匯款完成!\n" + order_message);           	
+            }
+            
+            //Notice
+            NoticeBean noticeBean = new NoticeBean();
+			noticeBean.setMember_account(orderMasterBean.getMember_account());
+			noticeBean.setNotice_type(1);
+			noticeBean.setNotice_dispatcher(req.getContextPath() + "/TEA103G2/front-end/my-account.html");
+			String notice_content =  "通知!訂單日期：" + order_time + "，狀態：已付款!";
+			noticeBean.setNotice_content(notice_content);	
+			NoticeSvc.addWSNotice(noticeBean);                      
             
         } else {
             //付款失敗

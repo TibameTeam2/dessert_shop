@@ -105,7 +105,8 @@ public class NoticeService {
 
 	/*********************** 新增時加入資料庫並推播(給東陞用) ***********************/
 	public Boolean addWSNotice(NoticeBean noticeBean) {
-
+		
+		noticeBean.setRead_status(0);
 		// 訂單成立即新增通知與推播至用戶端
 		try {
 
