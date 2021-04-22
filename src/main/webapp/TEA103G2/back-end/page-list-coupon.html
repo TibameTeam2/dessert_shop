@@ -120,9 +120,13 @@
                           <div class="col-md-6">
                             <div class="form-group">
                               <label>編輯員工</label>
-                              <input type="text" class="form-control" placeholder="Enter employee_account"
+                              <!-- <input type="text" class="form-control" placeholder="Enter employee_account"
                                 data-errors="Please Enter Code." name="employee_account" id="employee_account" required>
-                              <div class="help-block with-errors"></div>
+                              <div class="help-block with-errors"></div> -->
+
+                              <select name="employee_account" class="selectpicker form-control" id = "zzz" data-style="py-0">
+                                <option value="">選擇員工</option>
+                              </select>
                             </div>
                           </div>
 
@@ -308,10 +312,13 @@
                           <div class="col-md-6">
                             <div class="form-group">
                               <label>編輯員工</label>
-                              <input type="text" class="form-control update_employee_account"
+                              <!-- <input type="text" class="form-control update_employee_account"
                                 placeholder="Enter employee_account" data-errors="Please Enter Code."
                                 id="employee_account" name="employee_account" required name="employee_account">
-                              <div class="help-block with-errors"></div>
+                              <div class="help-block with-errors"></div> -->
+                              <select name="employee_account" class="selectpicker form-control" id = "yyy" data-style="py-0">
+                                <option value="">選擇員工</option>
+                              </select>
                             </div>
                           </div>
                           <div class="col-md-6">
@@ -545,19 +552,19 @@
             ]).draw(false);
           }
 
-          // $.post("/dessert_shop/coupon/getCouponData", {}, function (data) {
+          $.post("/dessert_shop/employee/backend_getAll", {}, function (data) {
 
-            // if(data.flag){
-            //   for(var i = 0 ; i < data.data.length ; i++){
-            //     console.log("我在哪" + data.data[i].employee_account);
+            if(data.flag){
+              for(var i = 0 ; i < data.data.length ; i++){
+                console.log("我在哪" + data.data[i].employee_account + "編號" + [i]);
 
-            //     $('#employee_account').append(`<option value ="` + data.data[i].employee_account + >)
-            //     $('#employee_account').selectpicker('refresh');
-            //   }
-            // }
-
-
-          // });
+                $('#zzz').append(`<option value="` + data.data[i].employee_account + `">` + data.data[i].employee_account + `</option>`);
+                $('#yyy').append(`<option value="` + data.data[i].employee_account + `">` + data.data[i].employee_account + `</option>`);
+              }
+              $('#zzz').selectpicker('refresh');
+              $('#yyy').selectpicker('refresh');
+            }
+          });
 
 
         } else {
