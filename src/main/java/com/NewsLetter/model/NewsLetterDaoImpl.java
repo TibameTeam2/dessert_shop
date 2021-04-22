@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class NewsLetterDaoImpl implements NewsLetterDao{
+public class NewsLetterDaoImpl implements NewsLetterDAO{
 
 	private static JdbcTemplate jdbcTemplate;
 	private String driver = JDBCUtil.driver;

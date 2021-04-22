@@ -2,7 +2,7 @@ package com.newsLetter.model;
 
 import java.util.List;
 
-public interface NewsLetterDao {
+public interface NewsLetterDAO {
 	
 	/*************************** 新增 **************************/
 	public void insert(NewsLetterBean newsletterBean);

@@ -75,9 +75,18 @@ public class NewLetterServlet extends BaseServlet {
 		Part part = req.getPart("newsletter_image");
 		InputStream in = part.getInputStream();
 		byte[] buf = new byte[in.available()];
-		in.read(buf);
-		newsLetterBean.setNewsletter_image(buf);
+		in.read(buf);		
 		in.close();
+		
+		
+		if(buf.length==0) {
+			
+			newsLetterBean.setNewsletter_image(null);
+			
+		}else {
+			
+			newsLetterBean.setNewsletter_image(buf);
+		}
 
 		boolean flag = newsLetterSvc.addNewsLetter(newsLetterBean);
 
