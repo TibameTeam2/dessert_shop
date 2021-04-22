@@ -201,9 +201,9 @@
                   <a data-bs-toggle="pill" href="#pills-payment"><i class="fa fa-credit-card"></i>
                     信用卡資訊</a>
                 </li>
-                <li>
-                  <a data-bs-toggle="pill" href="#pills-address"><i class="fa fa-map-marker"></i> 地址(用不到)</a>
-                </li>
+<!--                <li>-->
+<!--                  <a data-bs-toggle="pill" href="#pills-address"><i class="fa fa-map-marker"></i> 地址(用不到)</a>-->
+<!--                </li>-->
                 <li>
                   <a class="active" data-bs-toggle="pill" href="#pills-account"><i class="fa fa-user"></i>
                     帳號詳細資訊</a>
@@ -667,10 +667,10 @@
                       <span class="detail">付款時間 : <span class="payment_time">${data.data[0][i].payment_time == null ? "無": getTime(data.data[0][i].payment_time)}</span></span>
                       <br>
                       <span class="detail">發票號碼	: <span class="invoice_number">${data.data[0][i].invoice_number == null ? "無" : data.data[0][i].invoice_number}</span></span>
-                      <span class="detail">優惠券編號 : <span	class="coupon_id">${data.data[0][i].coupon_id == 0 ? "無" : data.data[0][i].coupon_id}</span></span>
+                      <span class="detail">優惠碼 : <span	class="coupon_id">${data.data[2][i]}</span></span>
                       <span class="detail">付款方式	: <span class="payment_method">${getPaymentMethod(data.data[0][i].payment_method)}</span> </span>
                       <br>
-                      <span class="detail">訂單金額 : <span	class="order_total">${data.data[0][i].order_total}</span></span>
+                      <span class="detail">訂單金額 : <span	class="order_total">${data.data[0][i].order_total}元</span></span>
                       <br>
                       <span class="detail">訂單備註 : <span	class="order_remarks">${data.data[0][i].order_remarks}</span></span>
                       <br>
@@ -691,9 +691,19 @@
             //取消訂單按鈕
             if (data.data[0][i].order_status == 0) {
 
-              let cancel_btn = `<button type="button" class="cancel_order">取消訂單</button>`;
+              let cancel_btn = `<button style="margin-left: 5px;" type="button" class="cancel_order">取消訂單</button>`;
 
               $(`li.order_master_${data.data[0][i].order_master_id}`).find("span.order_status").after(cancel_btn);
+
+              //查詢匯款帳戶代碼
+              if (data.data[0][i].payment_method == 3) {
+
+                let pay_code_btn = `<button style="margin-left: 8px;" type="button" class="pay_code">查詢匯款代碼</button>`;
+
+                $(`li.order_master_${data.data[0][i].order_master_id}`).find("button.cancel_order").after(pay_code_btn);
+
+              }
+
             }
 
 
@@ -715,7 +725,7 @@
 
 
         } else {
-          alert(data.msg);
+          
           if (data.redirect) {
             location.href = data.redirect;
           }
@@ -748,10 +758,7 @@
 
 
         } else {
-          alert(data.msg);
-          if (data.redirect) {
-            location.href = data.redirect;
-          }
+          
         }
 
 
@@ -850,6 +857,33 @@
 
 
         });  //then
+
+
+    });
+
+
+    //查詢匯款代碼
+    $("ul.order_master_comment_list").on("click", "button.pay_code", function (e) {
+
+      let order_master_id = $(this).closest("li").attr("data-order_master_id");
+          
+      $.post("/dessert_shop/orderMaster/findPayCode", {"order_master_id": order_master_id}, function(data) {
+        console.log(data);
+
+            if (data.flag) { 
+
+              Swal.fire({
+                title: '查詢銀行帳戶代碼：\n\n' + data.data
+              });
+
+            } else {
+                alert(data.msg);
+                if (data.redirect) {
+                    location.href = data.redirect;
+                }
+            }
+
+          });  //post
 
 
     });

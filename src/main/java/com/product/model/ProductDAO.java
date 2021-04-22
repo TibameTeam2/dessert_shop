@@ -1419,8 +1419,8 @@ public List<ProductBean> getAllImage(Integer product_id) {
 //		dao.delete(4);
 
 		// 查詢
-//		ProductBean productBean = dao.findByPrimaryKey(2);
-//		System.out.println(productBean);
+		ProductBean productBean = dao.findByPrimaryKey(2);
+		System.out.println(productBean);
 
 
 		// 查詢

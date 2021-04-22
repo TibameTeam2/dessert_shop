@@ -18,6 +18,7 @@ public class CartProductService {
 
 	// 拿cart_id, cart.product_id, product_quantity, product_name, product_price/
 	// product_image的src
+	// max_product_quantity
 	public List<List> getCartDataByMemberAccount(String member_account, String contextPath) {
 
 		List<List> list = new ArrayList<List>();

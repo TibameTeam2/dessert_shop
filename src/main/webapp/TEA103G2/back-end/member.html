@@ -1,5 +1,6 @@
 ﻿<!doctype html>
 <html lang="zh-Hant">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -27,6 +28,7 @@
   </style>
 
 </head>
+
 <body class="  ">
 <!-- loader Start -->
 <div id="loading">
@@ -231,8 +233,7 @@
                               <div class="form-group">
                                 <label>會員帳號</label>
                                 <input type="text" class="form-control update_member_account" placeholder=""
-                                       data-errors="Please Enter Name."
-                                       required name="member_account" readonly>
+                                       data-errors="Please Enter Name." required name="member_account" readonly>
                                 <div class="help-block with-errors"></div>
                               </div>
                             </div>
@@ -240,8 +241,7 @@
                               <div class="form-group">
                                 <label>會員密碼</label>
                                 <input type="text" class="form-control update_member_password" placeholder="不填寫則保持原密碼"
-                                       data-errors="Please Enter Name."
-                                       name="member_password">
+                                       data-errors="Please Enter Name." name="member_password">
                                 <div class="help-block with-errors"></div>
                               </div>
                             </div>
@@ -249,8 +249,7 @@
                               <div class="form-group">
                                 <label>姓名</label>
                                 <input type="text" class="form-control update_member_name" placeholder=""
-                                       data-errors="Please Enter Name."
-                                       required name="member_name">
+                                       data-errors="Please Enter Name." required name="member_name">
                                 <div class="help-block with-errors"></div>
                               </div>
                             </div>
@@ -258,8 +257,7 @@
                               <div class="form-group">
                                 <label>電話</label>
                                 <input type="text" class="form-control update_member_phone" placeholder=""
-                                       data-errors="Please Enter Name."
-                                       required name="member_phone">
+                                       data-errors="Please Enter Name." required name="member_phone">
                                 <div class="help-block with-errors"></div>
                               </div>
                             </div>
@@ -267,8 +265,7 @@
                               <div class="form-group">
                                 <label>信箱</label>
                                 <input type="text" class="form-control update_member_email" placeholder=""
-                                       data-errors="Please Enter Name."
-                                       required name="member_email">
+                                       data-errors="Please Enter Name." required name="member_email">
                                 <div class="help-block with-errors"></div>
                               </div>
                             </div>
@@ -296,8 +293,7 @@
                               <div class="form-group">
                                 <label>生日</label>
                                 <input type="date" class="form-control update_member_birthday" placeholder=""
-                                       data-errors="Please Enter Name."
-                                       required name="member_birthday">
+                                       data-errors="Please Enter Name." required name="member_birthday">
                                 <div class="help-block with-errors"></div>
                               </div>
                             </div>
@@ -314,7 +310,8 @@
                             <div class="col-md-12">
                               <div class="form-group">
                                 <label>照片</label>
-                                <input type="file" class="form-control image-file update_member_photo" name="member_photo" accept="image/*">
+                                <input type="file" class="form-control image-file update_member_photo"
+                                       name="member_photo" accept="image/*">
                               </div>
                             </div>
 
@@ -364,7 +361,7 @@
         let table = $(".data-table").DataTable()
         table.destroy();
         table = $(".data-table").DataTable({
-            "lengthMenu": [3, 5, 10, 20],     //顯示XX像結果
+            "lengthMenu": [3, 5, 10, 20], //顯示XX像結果
             "language": {
                 "processing": "處理中...",
                 "loadingRecords": "載入中...",
@@ -400,19 +397,16 @@
             //         data: "member_password"
             //     },
             // ]
-            "columnDefs": [
-                {
-                    "targets": [1],    //欄位從0開始算
-                    "visible": true,   //欄位是否顯示 預設是true
-                    "orderable": false  //是否可以排序
-                },
-                {
-                    "targets": [2],    //欄位從0開始算
-                    "visible": true,   //欄位是否顯示 預設是true
-                    "orderable": false,  //是否可以排序
-                    "width": "auto"
-                }
-            ]
+            "columnDefs": [{
+                "targets": [1], //欄位從0開始算
+                "visible": true, //欄位是否顯示 預設是true
+                "orderable": false //是否可以排序
+            }, {
+                "targets": [2], //欄位從0開始算
+                "visible": true, //欄位是否顯示 預設是true
+                "orderable": false, //是否可以排序
+                "width": "auto"
+            }]
         })
         getAllMember();
 
@@ -446,7 +440,7 @@
                             getTime(data.data[i].register_time),
                             getRegisterMethod(data.data[i].register_method),
                             data.data[i].member_status == 1 ? "已啟用" : "未啟用",
-                            '<img class="table-img" src="/dessert_shop/member/backend_getPhoto?id=' + data.data[i].member_account + '">',
+                            '<img class="table-img" src="/dessert_shop/member/backend_getPhoto?id=' + data.data[i].member_account +"&" + new Date().getTime()+ '">',
                             action
                         ]).draw(false);
                     }
@@ -473,7 +467,6 @@
                     return method;
             }
         }
-
     </script>
     <script>
         /*******************動作********************/
@@ -483,7 +476,9 @@
             let data = table.row($(this).closest('tr')).data();
             // alert( 'You clicked on '+data[0]+'\'s row' );
 
-            $.get("/dessert_shop/member/backend_delete1", {"member_account": data[0]}, function (data) {
+            $.get("/dessert_shop/member/backend_delete1", {
+                "member_account": data[0]
+            }, function (data) {
                 console.log(data);
                 if (data.flag) {
                     // 註冊成功後跳轉頁面
@@ -538,8 +533,6 @@
             }
             $('.selectpicker').selectpicker('render');
         }
-
-
     </script>
 
 
@@ -608,7 +601,7 @@
                             icon: "success"
                         });
                         getAllMember();
-                        $("#new-order1").modal('hide');
+                        $("#update_modal").modal('hide');
                         // $("#updateMemberForm").trigger("reset");
                     } else {
                         Swal.fire({
@@ -621,7 +614,7 @@
             });
             return false;
         });
-
     </script>
 </body>
+
 </html>

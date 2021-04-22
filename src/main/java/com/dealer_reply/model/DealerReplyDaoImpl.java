@@ -304,14 +304,19 @@ public class DealerReplyDaoImpl implements DealerReplyDao {
 	 * System.out.println("reply_time: "+drFindByPK.getReply_time() + ",");
 	 * System.out.println("employee_account: "+drFindByPK.getEmployee_account() +
 	 * ","); System.out.println("----------有跑查主鍵----------");
-	 * 
-	 * //查詢全部 List<DealerReplyBean> list = dao.getAll(); for (DealerReplyBean dr :
-	 * list) { System.out.println("reply_id: " + dr.getReply_id() + ",");
+	 *
+	 * //查詢全部
+	 * List<DealerReplyBean> list = dao.getAll();
+	 * for (DealerReplyBean dr : list) {
+	 * System.out.println("reply_id: " + dr.getReply_id() + ",");
 	 * System.out.println("revire_id: " + dr.getReview_id() + ",");
 	 * System.out.println("reply_content: " + dr.getReply_content() + ",");
 	 * System.out.println("reply_time: " + dr.getReply_time() + ",");
 	 * System.out.println("employee_account: " + dr.getEmployee_account() + ",");
 	 * System.out.println(); } System.out.println("----------有跑查全部----------"); }
+	 * System.out.println();
+	 * }
+	 * System.out.println("----------有跑查全部----------"); }
 	 */
 
 }

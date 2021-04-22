@@ -1,0 +1,906 @@
+﻿<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>嗜甜 | 顛覆你想像的甜點</title>
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="assets/images/favicon.ico"/>
+  <link rel="stylesheet" href="assets/css/backend-plugin.min.css">
+  <link rel="stylesheet" href="assets/css/backend.css?v=1.0.0">
+  <link rel="stylesheet" href="assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="assets/vendor/line-awesome/dist/line-awesome/css/line-awesome.min.css">
+  <link rel="stylesheet" href="assets/vendor/remixicon/fonts/remixicon.css">
+  
+  
+  <style>
+   thead.bg-white{
+   	text-align:center;
+   }
+   tbody.ligth-body{
+   	white-space: nowrap;
+   	text-align:center;
+   }
+   
+/*   燈箱 開始  */
+   @media (min-width: 576px){
+          .modal-dialog{
+              max-width: 1000px !important;
+          }
+      }
+      
+	/*更新燈箱的照片預覽*/
+	.database_image_wrapper{
+		display: flex; 
+ 		flex-direction: row; 
+	}
+
+
+  	.database_image{
+  		width: 150px;
+  		height: 150px;
+  		padding: 3px;
+  	}    
+   
+/*   燈箱 結束  */
+  
+  </style>
+  
+  
+  
+</head>
+<body class="  ">
+<!-- loader Start -->
+<div id="loading">
+  <div id="loading-center">
+  </div>
+</div>
+<!-- loader END -->
+<!-- Wrapper Start -->
+<div class="wrapper">
+
+
+<!--Header-->
+  <div class="header"></div>
+	
+  <div class="content-page">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="d-flex flex-wrap flex-wrap align-items-center justify-content-between mb-4">
+            <div>
+              <h4 class="mb-3">每日優惠 - 商品列表</h4>
+            </div>
+            <a href="add-product.html" class="btn btn-primary add-list" data-toggle="modal" data-target="#add-daily-special">
+            <i class="las la-plus mr-3"></i>新增優惠商品</a>
+          </div>
+        </div>
+        <!-- Table的地方 --><!--  一個tr為一列 -->
+        <div class="col-lg-12">
+          <div class="table-responsive rounded mb-3">
+            <table class="data-table table mb-0 tbl-server-info">
+              <thead class="bg-white text-uppercase">
+              <tr class="ligth ligth-data">
+                <th>每日優惠編號</th>
+                <th>商品照片</th>
+                <th>商品名稱</th>
+                <th>商品編號</th>
+                <th>子分類</th>
+                <th>原始售價</th>
+                <th>優惠價格</th>
+                <th>開始日期</th>
+                <th>結束日期</th>
+                <th>狀態</th>
+                <th>動作</th>
+              </tr>
+              </thead>
+              <tbody class="ligth-body">
+              <!-- 商品插入的位置 -->
+<!--                                       <tr> -->
+<!--                                           <td> -->
+<!--                                               <div class="checkbox d-inline-block"> -->
+<!--                                                   <input type="checkbox" class="checkbox-input" id="checkbox2"> -->
+<!--                                                   <label for="checkbox2" class="mb-0"></label> -->
+<!--                                               </div> -->
+<!--                                           </td> -->
+<!--                                           <td> -->
+<!--                                               <div class="d-flex align-items-center"> -->
+<!--                                                   <img src="assets/images/table/product/01.jpg" class="img-fluid rounded avatar-50 mr-3" alt="image"> -->
+<!--                                                   <div> -->
+<!--                                                       Organic Cream2蛋糕 -->
+<!--                                                       <p class="mb-0"><small>This is test Product</small></p> -->
+<!--                                                   </div> -->
+<!--                                               </div> -->
+<!--                                           </td> -->
+<!--                                           <td>CREM09</td> -->
+<!--                                           <td>Beauty</td> -->
+<!--                                           <td>$25.00</td> -->
+<!--                                           <td>Lakme</td> -->
+<!--                                           <td>$10.00</td> -->
+<!--                                           <td>10.0</td> -->
+<!--                                           <td> -->
+<!--                                               <div class="d-flex align-items-center list-action"> -->
+<!--                                                   <a class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View" -->
+<!--                                                       href="#"><i class="ri-eye-line mr-0"></i></a> -->
+<!--                                                   <a class="badge bg-success mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit" -->
+<!--                                                       href="#"><i class="ri-pencil-line mr-0"></i></a> -->
+<!--                                                   <a class="badge bg-warning mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete" -->
+<!--                                                       href="#"><i class="ri-delete-bin-line mr-0"></i></a> -->
+<!--                                               </div> -->
+<!--                                           </td> -->
+<!--                                       </tr> -->
+              <!-- 原始假資料結束 -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <!-- Page end  -->
+    </div>
+    <!-- Modal Edit -->
+    <div class="modal fade" id="edit-note" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div class="popup text-left">
+              <div class="media align-items-top justify-content-between">
+                <h3 class="mb-3">Product</h3>
+                <div class="btn-cancel p-0" data-dismiss="modal"><i class="las la-times"></i></div>
+              </div>
+              <div class="content edit-notes">
+                <div class="card card-transparent card-block card-stretch event-note mb-0">
+                  <div class="card-body px-0 bukmark">
+                    <div class="d-flex align-items-center justify-content-between pb-2 mb-3 border-bottom">
+                      <div class="quill-tool">
+                      </div>
+                    </div>
+                    <div id="quill-toolbar1">
+                      <p>Virtual Digital Marketing Course every week on Monday, Wednesday and Saturday.Virtual Digital
+                        Marketing Course every week on Monday</p>
+                    </div>
+                  </div>
+                  <div class="card-footer border-0">
+                    <div class="d-flex flex-wrap align-items-ceter justify-content-end">
+                      <div class="btn btn-primary mr-3" data-dismiss="modal">Cancel</div>
+                      <div class="btn btn-outline-primary" data-dismiss="modal">Save</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Wrapper End-->
+
+
+<!-- 燈箱的內容 -->
+
+<!-- ----------------------------------------------- Edit 燈箱 ----------------------------------------------------------------- -->
+<div class="modal fade" id="update-product" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="popup text-left">
+        <!-- 以下為更改的燈箱內容 -->
+          <div class="container-fluid add-form-list">
+	        <div class="row">
+	            <div class="col-sm-12">
+	                <div class="card">
+	                    <div class="card-header d-flex justify-content-between">
+	                        <div class="header-title">
+	                            <h4 class="card-title">修改商品資訊</h4>
+	                        </div>
+	                    </div>
+	                    <div class="card-body">
+	                        <form id="updateProduct_form" action="javascript:void(0)" data-toggle="validator" enctype="multipart/form-data">
+	                            <div class="row">
+	                            	<div class="col-md-6">                      
+	                                    <div class="form-group">
+	                                        <label id="product_name_label">商品名稱 *</label>
+	                                        <input type="text" class="form-control update_product_name" placeholder="請輸入中/英文或數字" data-errors="Please Enter Name." name="product_name" required>
+	                                        <div class="help-block with-errors"></div>
+	                                    </div>
+	                                </div>
+	                                <div class="col-md-6">
+	                                    <div class="form-group">
+	                                        <label>商品編號 *</label>
+	                                        <input type="text" class="form-control update_product_id" data-errors="Please Enter Code." name="product_id" readonly required>
+	                                        <div class="help-block with-errors"></div>
+	                                    </div>
+	                                </div>     
+	                                <div class="col-md-6">
+	                                    <div class="form-group">
+	                                        <label id="product_category_label">商品類別 *</label>
+	                                        <select name="product_category" class="form-control update_product_category" data-style="py-0" required>
+	                                            <option value>請選擇商品種類</option>
+												<optgroup label="蛋糕">
+													<option value="蛋糕:千層蛋糕">千層蛋糕</option>
+													<option value="蛋糕:杯子蛋糕">杯子蛋糕</option>
+													<option value="蛋糕:起士蛋糕">起士蛋糕</option>
+													<option value="蛋糕:磅蛋糕">磅蛋糕</option>
+													<option value="蛋糕:蛋糕捲">蛋糕捲</option>
+												</optgroup>
+												<optgroup label="巧克力">
+													<option value="巧克力:生巧克力">生巧克力</option>
+													<option value="巧克力:藝術巧克力">藝術巧克力</option>
+													<option value="巧克力:巴克巧克力">巴克巧克力</option>
+												</optgroup>
+												<optgroup label="精緻小點">
+													<option value="精緻小點:派&塔">派 & 塔</option>
+													<option value="精緻小點:泡芙">泡芙</option>
+													<option value="精緻小點:馬卡龍">馬卡龍</option>
+													<option value="精緻小點:可麗露">可麗露</option>
+													<option value="精緻小點:布蕾">布蕾</option>
+												</optgroup>
+												<optgroup label="飲品">
+													<option value="飲品:特調茶飲">特調茶飲</option>
+													<option value="飲品:香濃拿鐵">香濃拿鐵</option>
+													<option value="飲品:經典咖啡">經典咖啡</option>
+													<option value="飲品:繽紛水果飲">繽紛水果飲</option>
+	<!-- 											<option value="飲品:其他">其他</option> -->
+												</optgroup>
+	                                        </select>
+	                                    </div> 
+	                                </div>  
+	                                <div class="col-md-6">
+	                                    <div class="form-group">
+	                                        <label id="product_price_label">商品售價 *</label>
+	                                        <input type="text" class="form-control update_product_price" placeholder="請輸入數字" data-errors="Please Enter Cost." name="product_price" required>
+	                                        <div class="help-block with-errors"></div>
+	                                    </div>
+	                                </div>
+	                                <div class="col-md-6">
+	                                    <div class="form-group">
+	                                        <label id="product_available_qty_label">現貨數量 *</label>
+	                                        <input type="text" class="form-control update_product_available_qty" placeholder="請輸入數字" data-errors="Please Enter Price." name="product_available_qty" required>
+	                                        <div class="help-block with-errors"></div>
+	                                    </div>
+	                                </div>
+	                               	<div class="col-md-6">                                    
+	                                    <div class="form-group">
+	                                        <label id="product_status_label">商品狀態 *</label>
+	                                        <select name="product_status" class="form-control update_product_status" data-style="py-0" required>
+	                                            <option value>請選擇商品狀態</option>
+	                                            <option value=0>未上架</option>
+	                                            <option value=1>上架中</option>
+	                                        </select>
+	                                    </div>
+	                                </div>     
+	                                <div class="col-md-4">     
+	                                	<div class="form-group">
+	                                        <label id="expiry_after_buying_label">賞味天數 *</label>
+	                                        <input type="text" class="form-control update_expiry_after_buying" placeholder="請輸入數字" data-errors="Please Enter a Number." name="expiry_after_buying" required>
+	                                        <div class="help-block with-errors"></div>
+	                                    </div>
+	                                </div>
+	                                <div class="col-md-4">                                    
+	                                    <div class="form-group">
+	                                        <label id="product_calorie_label">商品熱量 *</label>
+	                                        <input type="text" class="form-control update_product_calorie" placeholder="請輸入數字" name="product_calorie" required>
+	                                        <div class="help-block with-errors"></div>
+	                                    </div>
+	                                </div>
+	                                <div class="col-md-4">                                    
+	                                    <div class="form-group">
+	                                        <label>商品甜度 *</label>
+	                                        <select name="degree_of_sweetness" class="form-control update_degree_of_sweetness" data-style="py-0" required>
+	                                            <option value>請選擇商品甜度</option>
+	                                            <option value=1>1</option>
+	                                            <option value=2>2</option>
+	                                            <option value=3>3</option>
+	                                            <option value=4>4</option>
+	                                            <option value=5>5</option>
+	                                        </select>
+	                                    </div>
+	                                </div>
+	                                <div class="col-md-4">                                    
+	                                    <div class="form-group">
+	                                        <label id="avrage_star_label">平均星等</label>
+	                                        <input type="text" class="form-control update_average_star" placeholder="0" name="average_star" required readonly>
+	                                        <input type="hidden" class="form-control update_total_star" placeholder="0" name="total_star" required readonly>
+	                                        <p>累計星等&nbsp:&nbsp<span class="show_total_star">0</span></p>
+	                                    </div>
+	                                </div>
+	                                <div class="col-md-4">                                    
+	                                    <div class="form-group">
+	                                        <label id="total_review_label">累計評價次數</label>
+	                                        <input type="text" class="form-control update_total_review" placeholder="0" name="total_review" required readonly>
+	                                    </div>
+	                                </div>
+	                                <div class="col-md-4">                                    
+	                                    <div class="form-group">
+	                                        <label id="total_purchase_label">累計銷售</label>
+	                                        <input type="text" class="form-control update_total_purchase" placeholder="0" name="total_purchase" required readonly>
+	                                    </div>
+	                                </div>
+	                                <div class="col-md-12">
+	                                    <div class="form-group">
+	                                        <label>商品圖片*</label>
+	                                        <input type="file" class="form-control image-file update_product_image" accept="image/*" name="pic" name="product_image" multiple>
+	                                        <div class="help-block with-errors"></div>
+	                                    </div>
+	<!-- 圖片預覽 還未做好 -->             
+	                                    <div class="database_image_wrapper">
+<!-- 	                                    	<img class="product_image" id="product_image" src="" alt> -->
+	                                    </div>
+	                                </div>
+	                                <div class="col-md-12">
+	                                    <div class="form-group">
+	                                        <label>商品介紹</label>
+	                                        <textarea class="form-control update_product_intro" rows="4"name="product_intro" required></textarea>
+	                                        <div class="help-block with-errors"></div>
+	                                    </div>
+	                                </div>
+	                                <div class="col-md-12">
+	                                    <div class="form-group">
+	                                        <label>商品成分</label>
+	                                        <textarea class="form-control update_product_ingredient" rows="4" name="product_ingredient" required></textarea>
+	                                        <div class="help-block with-errors"></div>
+	                                    </div>
+	                                </div>
+	                            </div>                            
+	                            <button type="submit" id="updateProduct" class="btn btn-primary mr-2">儲存修改</button>
+								<button class="btn btn-danger" data-dismiss="modal">取消</button>
+	                        </form>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	        <!-- Page end  -->
+	      </div>
+	      <!-- 更改的燈箱內容end -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ----------------------------------------------- 右上角新增優惠商品 燈箱 ----------------------------------------------------------------- -->
+<div class="modal fade" id="add-daily-special" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="popup text-left">
+        <!-- 更改的燈箱內容start -->
+          <div class="container-fluid add-form-list">
+	        <div class="row">
+	            <div class="col-sm-12">
+	                <div class="card">
+	                    <div class="card-header d-flex justify-content-between">
+	                        <div class="header-title">
+	                            <h4 class="card-title">新增每日優惠商品</h4>
+	                        </div>
+	                    </div>
+	                    <div class="card-body">
+	                        <form id="addDailySpecial_form" action="javascript:void(0)" data-toggle="validator" enctype="multipart/form-data">
+	                            <div class="row">
+	                            	<div class="col-md-6">                      
+	                                    <div class="form-group">
+	                                        <label id="product_name_label">商品名稱 *</label>
+									<!-- <label>商品名稱 *</label> -->
+	                                        <input type="text" class="form-control" placeholder="請輸入中/英文或數字" data-errors="Please Enter Name." id="product_name" name="product_name" required>
+	                                        <div class="help-block with-errors"></div>
+	                                    </div>
+	                                </div>
+	                                <div class="col-md-6">
+	                                    <div class="form-group">
+	                                        <label>商品編號 *</label>
+	                                        <input type="text" class="form-control" placeholder="自動產生" data-errors="Please Enter Code."  id="product_id" name="product_id" disabled>
+	                                        <div class="help-block with-errors"></div>
+	                                    </div>
+	                                </div>     
+	                                <div class="col-md-6">
+	                                    <div class="form-group">
+	                                        <label id="product_category_label">商品類別 *</label>
+	<!--                                         <select name="product_category" class="selectpicker form-control" data-style="py-0" id="product_category" required> -->
+	                                        <select name="product_category" class="form-control" data-style="py-0" id="product_category" required>
+	                                            <option value>請選擇商品種類</option>
+												<optgroup label="蛋糕">
+													<option value="蛋糕:千層蛋糕">千層蛋糕</option>
+													<option value="蛋糕:杯子蛋糕">杯子蛋糕</option>
+													<option value="蛋糕:起士蛋糕">起士蛋糕</option>
+													<option value="蛋糕:磅蛋糕">磅蛋糕</option>
+													<option value="蛋糕:蛋糕捲">蛋糕捲</option>
+												</optgroup>
+												<optgroup label="巧克力">
+													<option value="巧克力:生巧克力">生巧克力</option>
+													<option value="巧克力:藝術巧克力">藝術巧克力</option>
+													<option value="巧克力:巴克巧克力">巴克巧克力</option>
+												</optgroup>
+												<optgroup label="精緻小點">
+													<option value="精緻小點:派 & 塔">派 & 塔</option>
+													<option value="精緻小點:泡芙">泡芙</option>
+													<option value="精緻小點:馬卡龍">馬卡龍</option>
+													<option value="精緻小點:可麗露">可麗露</option>
+													<option value="精緻小點:布蕾">布蕾</option>
+												</optgroup>
+												<optgroup label="飲品">
+													<option value="飲品:特調茶飲">特調茶飲</option>
+													<option value="飲品:香濃拿鐵">香濃拿鐵</option>
+													<option value="飲品:經典咖啡">經典咖啡</option>
+													<option value="飲品:繽紛水果飲">繽紛水果飲</option>
+	<!-- 											<option value="飲品:其他">其他</option> -->
+												</optgroup>
+	                                        </select>
+	                                    </div> 
+	                                </div>  
+	                                <div class="col-md-6">
+	                                    <div class="form-group">
+	                                        <label id="product_price_label">商品售價 *</label>
+	                                        <input type="text" class="form-control" placeholder="請輸入數字" data-errors="Please Enter Cost." id="product_price" name="product_price" required>
+	                                        <div class="help-block with-errors"></div>
+	                                    </div>
+	                                </div>
+	                                <div class="col-md-6">
+	                                    <div class="form-group">
+	                                        <label id="product_available_qty_label">現貨數量 *</label>
+	                                        <input type="text" class="form-control" placeholder="請輸入數字" data-errors="Please Enter Price." id="product_available_qty" name="product_available_qty" required>
+	                                        <div class="help-block with-errors"></div>
+	                                    </div>
+	                                </div>
+	                               	<div class="col-md-6">                                    
+	                                    <div class="form-group">
+	                                        <label id="product_status_label">商品狀態 *</label>
+	<!--                                         <select name="product_status" class="selectpicker form-control" data-style="py-0" id="product_status" required> -->
+	                                        <select name="product_status" class="form-control" data-style="py-0" id="product_status" required>
+	                                            <option value>請選擇商品狀態</option>
+	                                            <option value=0 selected>未上架 (預設)</option>
+	                                            <option value=1>上架中</option>
+	                                        </select>
+	                                    </div>
+	                                </div>     
+	                                <div class="col-md-4">     
+	                                	<div class="form-group">
+	                                        <label id="expiry_after_buying_label">賞味天數 *</label>
+	                                        <input type="text" class="form-control" placeholder="請輸入數字" data-errors="Please Enter a Number." id="expiry_after_buying" name="expiry_after_buying" required>
+	                                        <div class="help-block with-errors"></div>
+	                                    </div>
+	                                </div>
+	                                <div class="col-md-4">                                    
+	                                    <div class="form-group">
+	                                        <label id="product_calorie_label">商品熱量 *</label>
+	                                        <input type="text" class="form-control" placeholder="請輸入數字" id="product_calorie" name="product_calorie" required>
+	                                        <div class="help-block with-errors"></div>
+	                                    </div>
+	                                </div>
+	                                <div class="col-md-4">                                    
+	                                    <div class="form-group">
+	                                        <label>商品甜度 *</label>
+	<!--                                         <select name="degree_of_sweetness" class="selectpicker form-control" data-style="py-0" id="degree_of_sweetness" required> -->
+	                                        <select name="degree_of_sweetness" class="form-control" data-style="py-0" id="degree_of_sweetness" required>
+	                                            <option value>請選擇商品甜度</option>
+	                                            <option value=1>1</option>
+	                                            <option value=2>2</option>
+	                                            <option value=3>3</option>
+	                                            <option value=4>4</option>
+	                                            <option value=5>5</option>
+	                                        </select>
+	                                    </div>
+	                                </div>
+	                                <div class="col-md-4">                                    
+	                                    <div class="form-group">
+	                                        <label id="total_star_label">累計星等</label>
+	                                        <input type="text" class="form-control" placeholder="0" disabled>
+	                                        <input type="hidden" class="form-control" id="total_star" name="total_star" value="0">
+	                                    </div>
+	                                </div>
+	                                <div class="col-md-4">                                    
+	                                    <div class="form-group">
+	                                        <label id="total_review_label">累計評價次數</label>
+	                                        <input type="text" class="form-control" placeholder="0" disabled>
+	                                        <input type="hidden" class="form-control" id="total_review" name="total_review" value="0">
+	                                    </div>
+	                                </div>
+	                                <div class="col-md-4">                                    
+	                                    <div class="form-group">
+	                                        <label id="total_purchase_label">累計銷售</label>
+	                                        <input type="text" class="form-control" placeholder="0"disabled>
+	                                        <input type="hidden" class="form-control" id="total_purchase" name="total_purchase" value="0">
+	                                    </div>
+	                                </div>
+	                                <div class="col-md-12">
+	                                    <div class="form-group">
+	                                        <label>商品圖片*</label>
+	                                        <input type="file" class="form-control image-file" accept="image/*" name="pic" id="product_image" name="product_image" multiple required>
+	                                        <div class="help-block with-errors"></div>
+	                                    </div>
+	<!-- 圖片預覽 還未做好 -->             
+	                                    <div >
+	                                    	<img class="product_image" id="product_image" src="" alt>
+	                                    </div>
+	                                </div>
+	                                <div class="col-md-12">
+	                                    <div class="form-group">
+	                                        <label>商品介紹</label>
+	                                        <textarea class="form-control" rows="4" id="product_intro" name="product_intro" required></textarea>
+	                                        <div class="help-block with-errors"></div>
+	                                    </div>
+	                                </div>
+	                                <div class="col-md-12">
+	                                    <div class="form-group">
+	                                        <label>商品成分</label>
+	                                        <textarea class="form-control" rows="4" id="product_ingredient" name="product_ingredient" required></textarea>
+	                                        <div class="help-block with-errors"></div>
+	                                    </div>
+	                                </div>
+	                            </div>                            
+	                            <button type="submit" id="addDailySpecial" class="btn btn-primary mr-2">送出新增</button>
+	                            <button type="reset" class="btn btn-danger">重置</button>
+	                        </form>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	        <!-- Page end  -->
+	      </div>
+	    <!-- 更改的燈箱內容end -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Backend Bundle JavaScript -->
+<script src="assets/js/backend-bundle.min.js"></script>
+
+<!-- Table Treeview JavaScript -->
+<script src="assets/js/table-treeview.js"></script>
+
+<!-- Chart Custom JavaScript -->
+<script src="assets/js/customizer.js"></script>
+
+<!-- Chart Custom JavaScript -->
+<script async src="assets/js/chart-custom.js"></script>
+
+<!-- app JavaScript -->
+<script src="assets/js/app.js"></script>
+
+
+<script>
+    $(document).ready(function () {
+        $('.header').load('header.html')
+        // $('.footer').load('footer.html')
+    })
+</script>
+
+
+<!-- 商品展示 -->
+<script>
+
+getAllDailySpecial();
+
+
+let url = location.href.split("/TEA103G2")[0];
+function getAllDailySpecial(){
+<!--因為有商品成分跟介紹的部分 所以應該要做預覽-->		
+    $.get("/dessert_shop/dailySpecial/getValidDailySpecialProduct", {}, function (data) {
+		var action = `<div class="d-flex align-items-center list-action">
+            			<!-- <a class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View"
+                 			href="#"><i class="ri-eye-line mr-0"></i></a> -->
+                 			
+            			<a class="badge bg-success mr-2" data-toggle="modal" data-target="#update-product" data-placement="top" title="" data-original-title="Edit"
+                			href="javascript:void(0)"><i class="ri-pencil-line mr-0"></i></a>
+            			<a class="badge bg-warning mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="ChangeStatus"
+                			href="javascript:void(0)"><i class="fas fa-sync-alt"></i></a>
+        			  </div>`
+        			  
+		if(data.flag){
+			let table=$(".data-table").DataTable();
+			table.destroy();
+			table = $(".data-table").DataTable({
+                "lengthMenu": [5, 10, 20],     //顯示幾項結果
+                "language": {
+                    "processing": "處理中...",
+                    "loadingRecords": "載入中...",
+                    "lengthMenu": "顯示 _MENU_ 項結果",
+                    "zeroRecords": "沒有符合的結果",
+                    "info": "顯示第 _START_ 至 _END_ 項結果，共 _TOTAL_ 項",
+                    "infoEmpty": "顯示第 0 至 0 項結果，共 0 項",
+                    "infoFiltered": "(從 _MAX_ 項結果中過濾)",
+                    "infoPostFix": "",
+                    "search": "搜尋:",
+                    "paginate": {
+                        "first": "第一頁",
+                        "previous": "上一頁",
+                        "next": "下一頁",
+                        "last": "最後一頁"
+                    },
+                    "aria": {
+                        "sortAscending": ": 升冪排列",
+                        "sortDescending": ": 降冪排列"
+                    }
+                },
+                "createdRow": function (row, data, dataIndex) {
+			    	if(data[7] == "未上架"){
+	            		$(row).css("background-color", "#EFF0F2");
+			    	}
+			   
+				},
+                "columnDefs": [
+                    {
+                        "targets": [0],    //欄位從0開始算
+                        "visible": true,   //欄位是否顯示 預設是true
+                        "orderable": false,  //是否可以排序
+                    },
+                    {
+                        "targets": [1, 2],    //欄位從0開始算
+                        "visible": true,   //欄位是否顯示 預設是true
+                        "orderable": true,  //是否可以排序
+                        "width": "1%"
+                    }
+
+                ]
+            })
+			table.clear().draw();
+			
+			for (var i = 0; i < data.data.length; i++) {
+	            // 撈第一張照片
+	            let product_img1 = url + data.data[i].image_url[0];
+	            table.row.add([
+	            	data.data[i].discount_product_id,
+	            	'<img class="table-img avatar-50" src="'+product_img1+'">',
+	            	data.data[i].product_name,
+	            	data.data[i].product_id,
+	            	data.data[i].product_subtype,
+	           		data.data[i].product_price,
+	           		data.data[i].discount_price,
+	            	data.data[i].discount_start_time,
+	            	data.data[i].discount_deadline,
+	            	data.data[i].product_status == 0 ? "未上架" : "上架中",
+	            	data.data[i].total_purchase,
+	            	data.data[i].average_star,
+	            	data.data[i].total_review,
+	            	data.data[i].degree_of_sweetness,
+	            	data.data[i].product_calorie,
+	            	data.data[i].expiry_after_buying,
+	            	action
+	            ]).draw(false);
+			}
+		}else{
+		}
+		
+		
+    });//$.get
+    
+}//function getAllProduct();    
+
+
+// -----------------------  更新燈箱  ----------------------- //
+	
+$("tbody").on("click", "a.bg-success", function(){
+	console.log("edit");
+	// 要去資料庫撈資料...因為有成分跟更新的資訊 內容太多不會在清單上
+	let table = $(".data-table").DataTable();
+	let data = table.row($(this).closest('tr')).data();
+	let product_id = data[2];
+	console.log("product_id:"+product_id);
+	
+   	$(".update_product_name").val(data[1]);
+   	$(".update_product_id").val(product_id);
+   	
+    let subtype = data[4];
+    let type;
+    switch(subtype) {
+  		case "千層蛋糕":
+  	 	case "杯子蛋糕":
+  	 	case "起士蛋糕":
+  	 	case "磅蛋糕":
+  	 	case "蛋糕捲":
+  	 		type = "蛋糕";
+  			$(".update_product_category").val(type+":"+subtype);
+  	 		break;
+  		case "生巧克力":
+  	 	case "藝術巧克力":
+  	 	case "巴克巧克力":
+  	 		type = "巧克力";
+  			$(".update_product_category").val(type+":"+subtype);
+  	 		break;
+  		case "派&塔":
+  	 	case "泡芙":
+  	 	case "馬卡龍":
+  	 	case "可麗露":
+  	 	case "鮮果酪":
+  	 		type = "精緻小點";
+  			$(".update_product_category").val(type+":"+subtype);
+  	 		break;
+  		case "特調茶飲":
+  	 	case "香濃拿鐵":
+  	 	case "經典咖啡":
+  	 	case "繽紛水果飲":
+  	 		type = "飲品";
+  			$(".update_product_category").val(type+":"+subtype);
+  	 		break;
+  	 default:
+  		// ???	 
+	}
+    
+    $(".update_product_price").val(data[5]);
+    $(".update_product_available_qty").val(data[6]);
+    
+    data[7] == "未上架" ? $(".update_product_status").val("0") : $(".update_product_status").val("1");
+    
+    $(".update_expiry_after_buying").val(data[13]);
+    $(".update_product_calorie").val(data[12]);
+    $(".update_degree_of_sweetness").val(data[11]);
+    
+    $(".update_average_star").val(data[9]);
+    $(".update_total_review").val(data[10]);
+    $(".update_total_purchase").val(data[8]);
+   
+    // 簡介跟照片:
+	$.get("/dessert_shop/product/getOneProduct?id="+product_id, {}, function(data){
+		console.log("修改燈箱data msg:"+data.msg);
+		
+		let product_intro = data.data.product_intro;
+		let product_ingredient = data.data.product_ingredient;
+	    $(".update_product_intro").val(product_intro);
+	    $(".update_product_ingredient").val(product_ingredient);
+	    
+	    //total_star不在form中，故再給予 
+	    let total_star = data.data.total_star;
+	    $(".update_total_star").val(total_star);
+	    $(".show_total_star").text(total_star);
+	    console.log("total_star:"+ total_star)
+
+	    // 撈所有照片
+	    $(".database_image_wrapper").html(""); //清空照片
+	    let product_images=[];
+		for (var i = 0; i < data.data.image_url.length; i++) {
+	    	product_images[i] = url + data.data.image_url[i];
+	    	console.log("product_images:"+product_images[i]);
+	    	let image_div = `
+	    			<div class="col-md-2">
+		    			<div>
+		    				<img class="database_image" src="${product_images[i]}" alt="ProductImage">
+		    			</div>
+	    			</div>`
+	        $(".database_image_wrapper").append(image_div); 
+		}
+
+	});// 更新燈箱的$.get
+	
+	
+});//更新燈箱
+
+
+	// ------------------ 燈箱內的送出修改 ------------------ //
+	$("#updateProduct").on("click", function(e){
+		e.preventDefault();
+		console.log("更新送出");
+		
+		let form = $("#updateProduct_form")[0];
+		let data = new FormData(form);
+		$.ajax({
+			type: "POST",
+            enctype: 'multipart/form-data',
+            url: '/dessert_shop/product/backend_updateProuct',
+            data: data,
+            processData: false,
+            contentType: false,
+            cache: false,
+            success: function (data) {
+                if (data.flag) {
+                    Swal.fire({
+                        title: data.msg,
+                        text: "",
+                        icon: "success"
+                    });
+                    getAllProduct();
+                    $("#update-product").modal('hide');
+                } else {
+                    Swal.fire({
+                        title: data.msg,
+                        text: "",
+                        icon: "error"
+                    })
+                }
+            }
+		
+		
+		});//$.ajax
+		
+		return false;
+	});
+	
+	// ------------------ 上/下架 ------------------ //
+	$("tbody").on("click", "a.bg-warning", function(e){
+		e.preventDefault();
+		console.log("更改上下架狀態");
+		// 顯示更換
+		// DB更改
+		let table = $(".data-table").DataTable();
+		let data = table.row($(this).closest('tr')).data();
+		
+		let product_id = data[2];
+		let product_status = data[7];
+		console.log("product_id:"+product_id);
+		console.log("product_status:"+product_status);
+		if(product_status == "上架中"){
+			console.log("更改為未上架");
+			product_status = 0;
+		}else if(product_status == "未上架"){
+			console.log("更改為上架中");
+			product_status = 1;
+		}
+		console.log("轉換後的product_status:"+product_status);
+		$.post("/dessert_shop/product/backend_updateProuctStatus", { product_id, product_status }, function(data){
+			if(data.flag == true){
+				console.log("更新狀態成功");
+				getAllProduct();
+			}else{
+				console.log("更新狀態失敗");
+				
+			}
+		});//$.post
+		
+	});
+	
+	// -----------------------  新增燈箱  ----------------------- //	
+	$("#addProduct").on("click",function(e){
+// 	$("#addProduct_form").submit(function(e){
+	    e.preventDefault();
+	    console.log("新增燈箱submit the form");
+		//照片新增到後台
+		let form = $(this).closest('form')[0];
+		console.log("form:"+form);
+		let data = new FormData(form);
+		console.log("append前的data:"+data);
+			
+			
+		$.ajax({
+			type: "POST",
+			enctype: 'multipart/form-data',
+			url: '/dessert_shop/product/backend_addProduct',
+			data: data,
+			processData: false,
+			contentType: false,
+			cache: false,
+			success: function (data) {
+				console.log("ajax:"+data);
+				if (data.flag) {
+					   
+					Swal.fire({
+						title: data.msg,
+						text: "提交成功",
+						icon: "success"
+					}).then(function(){
+						location.href="list-all-product_cheryl.html";
+					});
+						
+				} else {
+					// 新增失敗 彈出視窗
+					Swal.fire({
+						title: data.msg,
+						text: "提交失敗",
+						icon: "error"
+					})
+				}
+			}
+		});
+		
+		return false;	
+		
+    });//addProduct_form表單submit
+	
+    
+</script>
+    
+    
+  </body>
+</html>
