@@ -774,8 +774,7 @@ public class ProductDAO implements ProductDAO_interface {
 		PreparedStatement pstmt = null;
 		PreparedStatement pstmt1 = null;
 		ResultSet rs = null;
-		SELECT_PK = "SELECT * FROM product where product_id = ?";
-		
+		SELECT_PK = "SELECT *,ROUND(total_star/total_review, 1) as average_star FROM product where product_id = ?";
 		//設定資料
 		ProductBean productBean = null;
 		
@@ -807,6 +806,7 @@ public class ProductDAO implements ProductDAO_interface {
 				productBean.setTotal_review(rs.getInt("total_review"));
 				productBean.setTotal_purchase(rs.getInt("total_purchase"));
 
+				productBean.setAverage_star(rs.getDouble("average_star"));
 // 照片
 				pstmt1 = con.prepareStatement("SELECT image_id FROM sweet.product_image WHERE product_id="+productBean.getProduct_id());
 				List<String> img_url = new ArrayList<String>();
@@ -1391,7 +1391,7 @@ public List<ProductBean> getAllImage(Integer product_id) {
 //		productBean.setTotal_star(+4);
 //		productBean.setTotal_review(+1);
 //		productBean.setTotal_purchase(166);
-//		productBean.setProduct_id(4);
+//		productBean.setProduct_id(22);
 //		
 //		dao.update(productBean);
 		
@@ -1405,6 +1405,11 @@ public List<ProductBean> getAllImage(Integer product_id) {
 		// 更新評論與星等
 //		ProductService productSvc = new ProductService();
 //		productSvc.addReviewStar(25, 4);
+
+		
+		// 更新商品狀態
+//		ProductService productSvc = new ProductService();
+//		productSvc.updateProductStatus(22, 1);
 		
 		
 		
@@ -1414,8 +1419,8 @@ public List<ProductBean> getAllImage(Integer product_id) {
 //		dao.delete(4);
 
 		// 查詢
-//		ProductBean productBean = dao.findByPrimaryKey(2);
-//		System.out.println(productBean);
+		ProductBean productBean = dao.findByPrimaryKey(2);
+		System.out.println(productBean);
 
 
 		// 查詢

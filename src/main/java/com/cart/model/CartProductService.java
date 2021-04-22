@@ -18,6 +18,7 @@ public class CartProductService {
 
 	// 拿cart_id, cart.product_id, product_quantity, product_name, product_price/
 	// product_image的src
+	// max_product_quantity
 	public List<List> getCartDataByMemberAccount(String member_account, String contextPath) {
 
 		List<List> list = new ArrayList<List>();
@@ -177,10 +178,7 @@ public class CartProductService {
 		dao.deleteCartAndUpdateProductQty(list_cartProductBean);
 		
 	}
-	
-	
-	
-	
+		
 
 	// 修改優惠券狀態
 	public void updateCouponStatus(Integer coupon_id, Integer coupon_status) {
@@ -189,12 +187,6 @@ public class CartProductService {
 
 	}
 	
-	// Line發通知
-	public void lineMessage(String member_account, String message) {
-		
-		
-		
-	}
 	
 	
 	

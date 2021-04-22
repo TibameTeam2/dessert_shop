@@ -1,5 +1,6 @@
 package com.cart.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,13 +12,17 @@ import com.cart.model.CartBean;
 import com.cart.model.CartProductBean;
 import com.cart.model.CartProductService;
 import com.coupon.model.CouponBean;
+import com.coupon.model.CouponService;
 import com.coupon_code.model.CouponCodeBean;
 import com.member.model.MemberBean;
 import com.order_detail.model.OrderDetailBean;
+import com.order_detail.model.OrderDetailService;
 import com.order_master.model.OrderMasterBean;
+import com.product.model.ProductService;
 import com.util.BaseServlet;
 import com.util.JedisUtil;
 import com.util.ResultInfo;
+import com.util.LineUtil;
 
 import cn.hutool.core.io.IoUtil;
 import redis.clients.jedis.Jedis;
@@ -25,6 +30,9 @@ import redis.clients.jedis.Jedis;
 public class CartServlet extends BaseServlet {
 
 	CartProductService svc = new CartProductService();
+	OrderDetailService OrderDetailSvc = new OrderDetailService();
+	ProductService ProductSvc = new ProductService();
+	CouponService CouponSvc = new CouponService();
 
 	// 取得購物車資料
 	public void getCartData(HttpServletRequest req, HttpServletResponse res) {
@@ -279,8 +287,7 @@ public class CartServlet extends BaseServlet {
 	public void checkoutData(HttpServletRequest req, HttpServletResponse res) {
 
 		MemberBean member = (MemberBean) req.getSession().getAttribute("member");
-		Integer coupon_price = (Integer) req.getSession().getAttribute("coupon_price");
-		List list = svc.getCartDataByMemberAccount(member.getMember_account(), req.getContextPath());
+		Integer coupon_price = (Integer) req.getSession().getAttribute("coupon_price");		
 		ResultInfo info = new ResultInfo();
 		if (member == null) {
 			info.setFlag(false);
@@ -288,7 +295,7 @@ public class CartServlet extends BaseServlet {
 			req.getSession().setAttribute("location", req.getContextPath() + "/TEA103G2/front-end/checkout.html");
 			info.setRedirect(req.getContextPath() + "/TEA103G2/front-end/login.html");
 		} else {
-			
+			List list = svc.getCartDataByMemberAccount(member.getMember_account(), req.getContextPath());
 			List<CardDetailBean> list_card = svc.selectAllCard(member.getMember_account());
 			list.add(list_card);
 			list.add(member);
@@ -318,6 +325,17 @@ public class CartServlet extends BaseServlet {
 			String card_number = req.getParameter("card_number").trim();
 			String card_expired_day = req.getParameter("card_expired_day").trim();
 			String card_cvc = req.getParameter("card_cvc").trim();
+			
+			//信用卡正規表示法判斷
+			String reg1 = "^[0-9]{4}\\s[0-9]{4}\\s[0-9]{4}\\s[0-9]{4}$";
+			String reg2 ="^((0[1-9])|(1[0-2]))/[0-9]{2}$";
+			String reg3 = "^[0-9]{3}$";			
+			if (!card_number.matches(reg1) || !card_expired_day.matches(reg2) || !card_cvc.matches(reg3)) {
+				info.setFlag(false);
+				info.setMsg("信用卡格式不符!");
+				writeValueByWriter(res, info);
+				return ;
+			}			
 
 			CardDetailBean card_detailBean = new CardDetailBean();
 			card_detailBean.setMember_account(member.getMember_account());
@@ -370,6 +388,7 @@ public class CartServlet extends BaseServlet {
 		OrderMasterBean orderMasterBean = new OrderMasterBean();
 		// 取付款方式
 		Integer payment_method = new Integer(req.getParameter("payment_method"));
+		String card_number = req.getParameter("card_number");
 		
 		ResultInfo info = new ResultInfo();
 		if (member == null) {
@@ -390,8 +409,27 @@ public class CartServlet extends BaseServlet {
 			java.sql.Timestamp payment_time = null;
 			Integer order_status = 0;
 			String invoice_number = null;
+			
 			if (payment_method == 1) {
 				// 信用卡付款
+				
+				//檢查信用卡資料是否存在
+				List<CardDetailBean> list_card = svc.selectAllCard(member.getMember_account());
+				boolean card_number_exist = false;
+				for (CardDetailBean CDBean : list_card) {
+					if (CDBean.getCard_number().equals(card_number)) {
+						card_number_exist = true;
+						break;
+					}
+				}
+				if (!card_number_exist) {
+					info.setFlag(false);
+					info.setMsg("查無信用卡資料!");
+					info.setRedirect(req.getContextPath() + "/TEA103G2/front-end/checkout.html");
+					writeValueByWriter(res, info);
+					return ;
+				}
+				
 				payment_time = new java.sql.Timestamp(System.currentTimeMillis()); // 當前時間
 				order_status = 1; // 已付款
 				invoice_number = svc.invoice_random(); // 生成發票
@@ -432,30 +470,29 @@ public class CartServlet extends BaseServlet {
 			}
 			
 			
-			// list_orderDetailBean
+			// 生成list_orderDetailBean和訂單內容
 			List<OrderDetailBean> list_orderDetailBean = new ArrayList<OrderDetailBean>();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			String current_time = sdf.format(new java.sql.Timestamp(System.currentTimeMillis()));
+			String order_message = "訂單日期："+current_time+"\n訂單內容：";
 			for (CartProductBean CPBean : list_cartProductBean) {
 				OrderDetailBean ODBean = new OrderDetailBean();
 				ODBean.setProduct_id(CPBean.getProduct_id());
 				ODBean.setProduct_qty(CPBean.getProduct_quantity());
 				ODBean.setProduct_price(CPBean.getProduct_price());
-				list_orderDetailBean.add(ODBean);
+				list_orderDetailBean.add(ODBean);			
+				//Line訂單內容
+				order_message += "\n" + CPBean.getProduct_name() + " x " + CPBean.getProduct_quantity();		
 			}
+			if (coupon_id != null) {
+				order_message += "\n優惠內容：" + CouponSvc.getOneCoupon(coupon_id).getCoupon_text_content();
+			}
+			order_message += "\n訂單金額：" + order_total + "元";
+			
 
 			// insert訂單
 			Integer new_order_master_id = svc.insertOrder(orderMasterBean, list_orderDetailBean);
 			
-			// 匯款方式
-			if (payment_method == 3) {
-				String payCode = svc.payCode_random(); // 生成匯款帳戶
-				info.setData(payCode);
-				// 存Redis
-				Jedis jedis = JedisUtil.getJedis();
-				jedis.hset(member.getMember_account(), "payCode_id-" + new_order_master_id, payCode);
-				jedis.close();
-				System.out.println("123");
-			}				
-
 			// 清除購物車+減少商品現貨數量
 			svc.deleteCartAndReduceProductQty(list_cartProductBean);
 		
@@ -464,28 +501,40 @@ public class CartServlet extends BaseServlet {
 				svc.updateCouponStatus(coupon_id, 1);
 			}
 			req.getSession().removeAttribute("coupon_id");
-			req.getSession().removeAttribute("coupon_price");
-
+			req.getSession().removeAttribute("coupon_price");					
 			
+			//Line通知訊息-到店付款方式
+			String message = "您的訂單完成!請撥空至本店付款!\n" + order_message;	
+			
+			info.setMsg("到店付款方式的訂單完成!");
+			
+			//匯款方式處理
 			if (payment_method == 1) {
-				info.setMsg("信用卡付款方式完成!");
-				//呼叫Product的svc更新銷售數量
-//				producysvc.method( id, total);
+				info.setMsg("信用卡付款方式的訂單完成!");
+				//更新銷售數量
+				List<OrderDetailBean> list_OD = OrderDetailSvc.getAllByOrderMasterId(new_order_master_id);
+	            for (OrderDetailBean ODBean : list_OD) {
+	            	ProductSvc.addProductPurchase(ODBean.getProduct_id(), ODBean.getProduct_qty());
+	            }
+	            //Line通知訊息-信用卡付款方式
+	            message = "您的訂單已使用信用卡付款完成!\n" + order_message;
 			} else if (payment_method == 3) {
 				info.setMsg("匯款方式的訂單完成!");
+				String payCode = svc.payCode_random(); // 生成匯款帳戶
+				info.setData(payCode);
+				// 存Redis
+//				Jedis jedis = JedisUtil.getJedis();
+//				jedis.hset(member.getMember_account(), "payCode_id-" + new_order_master_id, payCode);
+//				jedis.close();
+				//Line通知訊息-匯款方式
+				message = "您的訂單完成!請匯款至此銀行帳戶:\n" + payCode + "\n" + order_message;
 			}
 			
-			info.setFlag(true);
-			
+			info.setFlag(true);		
 			info.setRedirect(req.getContextPath() + "/TEA103G2/front-end/my-account.html");
-			 
-			
-			// Line發通知
-			
-			
-			
-			
-			
+			 			
+			//Line發通知
+			LineUtil.linePushMessage(member.getMember_account(), message);					
 		}
 
 		writeValueByWriter(res, info);
@@ -501,7 +550,7 @@ public class CartServlet extends BaseServlet {
 		if (member == null) {
 			info.setFlag(false);
 			info.setMsg("尚未登入!");
-			req.getSession().setAttribute("location", req.getContextPath() + "/TEA103G2/front-end/shop-grid-left-sidebar.html");
+			req.getSession().setAttribute("location", req.getContextPath() + "/TEA103G2/front-end/product-all.html");
 			info.setRedirect(req.getContextPath() + "/TEA103G2/front-end/login.html");
 		} else {
 			Integer product_id = new Integer(req.getParameter("product_id"));
@@ -524,7 +573,22 @@ public class CartServlet extends BaseServlet {
 	}
 
 	
+	/* ==================== 取得購物車當前商品數量 ==================== */
 	
+	public void getCartQty(HttpServletRequest req, HttpServletResponse res) {
+		
+		MemberBean member = (MemberBean) req.getSession().getAttribute("member");
+		ResultInfo info = new ResultInfo();
+		if (member == null) {
+			return ;
+		} else {
+			Integer cart_qty = svc.getCartDataBeforeOrder(member.getMember_account()).size();
+			info.setData(cart_qty);		
+		}
+		
+		writeValueByWriter(res, info);
+		
+	}
 	
 	
 	

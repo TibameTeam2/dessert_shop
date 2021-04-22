@@ -75,5 +75,42 @@ public class CouponService {
 		
 		return dao.getAll();
 	}
+	
+	public boolean addCP2(CouponBean cp) {
+        try {
+            dao.insert(cp);           
+            return true;
+        }catch (Exception e){
+
+            return false;
+        }
+    }
+	
+	public boolean updateCP2(CouponBean cp) {
+        try {
+        	CouponBean m = dao.findByPrimaryKey(cp.getCoupon_id());
+            m.setMember_account(cp.getMember_account());
+            m.setCoupon_sending_time(cp.getCoupon_sending_time());
+            m.setCoupon_effective_date(cp.getCoupon_effective_date());
+            m.setCoupon_expire_date(cp.getCoupon_expire_date());
+            m.setCoupon_text_content(cp.getCoupon_text_content());
+            m.setCoupon_content(cp.getCoupon_content());
+            m.setDiscount_type(cp.getDiscount_type());
+            m.setCoupon_status(cp.getCoupon_status());
+            m.setEmployee_account(cp.getEmployee_account());
+            m.setCoupon_code_id(cp.getCoupon_code_id());
+//            if(am.getAnnouncement_image()!=null){
+//                m.setAnnouncement_image(am.getAnnouncement_image());
+//            }
+            dao.update(m);
+            return true;
+        }catch (Exception e){
+            e.printStackTrace(System.err);
+            return false;
+        }
+    }
+	
+	
+	
 
 }

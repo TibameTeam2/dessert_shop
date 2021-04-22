@@ -17,6 +17,7 @@ import com.util.ResultInfo;
 
 public class ListMemberCommentServlet extends BaseServlet {
 	
+	//用在後臺載入所有評價
 	public void getListMemberComment(HttpServletRequest req, HttpServletResponse res) {
 
 		ListMemberCommentService service = new ListMemberCommentService();

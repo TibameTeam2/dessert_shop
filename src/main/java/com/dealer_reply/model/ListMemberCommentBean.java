@@ -18,6 +18,7 @@ public class ListMemberCommentBean implements Serializable {
 	private Timestamp reply_time;
 	private String employee_account;
 	private String product_name;
+	private String product_type;
 	private Integer image_id;
 	private String product_image;
 	private String member_account;
@@ -31,10 +32,10 @@ public class ListMemberCommentBean implements Serializable {
 				+ ", product_id=" + product_id + ", comment_content=" + comment_content + ", rating=" + rating
 				+ ", comment_time=" + comment_time + ", comment_status=" + comment_status + ", reply_id=" + reply_id
 				+ ", reply_content=" + reply_content + ", reply_time=" + reply_time + ", employee_account="
-				+ employee_account + ", product_name=" + product_name + ", image_id=" + image_id + ", product_image="
-				+ product_image + ", member_account=" + member_account + ", member_name=" + member_name
-				+ ", member_photo=" + member_photo + ", review_image_id=" + review_image_id + ", review_image="
-				+ review_image + "]";
+				+ employee_account + ", product_name=" + product_name + ", product_type=" + product_type + ", image_id="
+				+ image_id + ", product_image=" + product_image + ", member_account=" + member_account
+				+ ", member_name=" + member_name + ", member_photo=" + member_photo + ", review_image_id="
+				+ review_image_id + ", review_image=" + review_image + "]";
 	}
 	public Integer getReview_id() {
 		return review_id;
@@ -107,6 +108,12 @@ public class ListMemberCommentBean implements Serializable {
 	}
 	public void setProduct_name(String product_name) {
 		this.product_name = product_name;
+	}
+	public String getProduct_type() {
+		return product_type;
+	}
+	public void setProduct_type(String product_type) {
+		this.product_type = product_type;
 	}
 	public Integer getImage_id() {
 		return image_id;

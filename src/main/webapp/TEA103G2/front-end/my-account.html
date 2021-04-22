@@ -34,6 +34,9 @@
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/custom.css">
 
+  <!-- 信用卡 -->
+  <link href="assets/css/cardstyle.css" rel="stylesheet">
+
   <!--====== Use the minified version files listed below for better performance and remove the files listed above ======-->
   <!-- <link rel="stylesheet" href="assets/css/vendor/plugins.min.css">
   <link rel="stylesheet" href="assets/css/style.min.css"> -->
@@ -138,7 +141,9 @@
 ============================================= -->
   <div id="loading-progress">
     <a class="logo" href="#">
-      <img src="assets/images/logo.jpg" data-logo-alt="images/files/logo-header.png" alt="">
+      <img src="assets/images/sweetness_logo.png" data-logo-alt="images/files/logo-header.png" alt="">
+
+<!--      <img src="assets/images/logo.jpg" data-logo-alt="images/files/logo-header.png" alt="">-->
       <!--        <h3><span class="colored">Astron</span></h3>-->
       <!--        <span>HTML Template</span>-->
     </a><!-- .logo end -->
@@ -196,9 +201,9 @@
                   <a data-bs-toggle="pill" href="#pills-payment"><i class="fa fa-credit-card"></i>
                     信用卡資訊</a>
                 </li>
-                <li>
-                  <a data-bs-toggle="pill" href="#pills-address"><i class="fa fa-map-marker"></i> 地址(用不到)</a>
-                </li>
+<!--                <li>-->
+<!--                  <a data-bs-toggle="pill" href="#pills-address"><i class="fa fa-map-marker"></i> 地址(用不到)</a>-->
+<!--                </li>-->
                 <li>
                   <a class="active" data-bs-toggle="pill" href="#pills-account"><i class="fa fa-user"></i>
                     帳號詳細資訊</a>
@@ -209,7 +214,7 @@
               </ul>
             </div>
             <!-- My Account Menu End -->
-          </div class="tab-pane fade" id="pills-order">
+          </div>
           <div class="col-xl-9 col-md-8">
             <!-- Tab content start -->
             <div class="tab-content my-account-tab mt-6">
@@ -231,49 +236,7 @@
                 <h4 class="account-title">訂單資料</h4>
                 <ul class="order_master_comment_list">
 
-                  <li>
-                    <div class="post-meta"
-                      style="margin-bottom: 0px; border-top: 1px solid white; border-bottom: 1px solid white">
-                      <span class="detail">訂單編號 : <span class="order_master_id"></span></span>
-                      <span class="detail">下訂時間 : <span class="order_time"></span></span>
-                      <span class="detail">付款時間 : <span class="payment_time"></span></span>
-                      <br>
-                      <span class="detail">發票號碼 : <span class="invoice_number"></span></span>
-                      <span class="detail">優惠券編號 : <span class="coupon_id"></span></span>
-                      <span class="detail">付款方式 : <span class="payment_method"></span> </span>
-                      <br>
-                      <span class="detail">訂單金額 : ((((這是範例用))))<span class="order_total"></span></span>
-                      <br>
-                      <span class="detail">訂單備註 : ((((用雙重迴圈印的))))<span class="order_remarks"></span></span>
-                      <br>
-                      <span class="detail">訂單狀態 : ((((好難刻版!!求CSS大師幫忙美化!!))))<span class="order_status"></span></span>
-                      <button type="button" class="switch_btn">
-                        <span class="plus" style="width: 20px; height: 20px; margin-right: 0px;"><i
-                            class="fas fa-chevron-down" style="color: white; display: inline"></i></span>
-                        <span class="minus" style="width: 20px; height: 20px;"><i class="fas fa-chevron-up"
-                            style="color: white; display: inline"></i></span>
-                      </button>
-                    </div>
-                    <div class="inner_block">
-                      <!-- 訂單明細 -->
-
-                      <span class="product_name">商品名稱：</span>
-                      <span class="product_qty">商品數量：</span>
-                      <span class="product_price">商品價格：</span>
-                      <br>
-                      <span class="product_name">商品名稱：</span>
-                      <span class="product_qty">商品數量：</span>
-                      <span class="product_price">商品價格：</span>
-                      <br>
-                      <span class="product_name">商品名稱：</span>
-                      <span class="product_qty">商品數量：</span>
-                      <span class="product_price">商品價格：</span>
-                      <br>
-
-                    </div>
-                  
-                
-              </li>
+                  <!-- 訂單資料顯示區 -->
 
             </ul>
           </div>
@@ -313,8 +276,48 @@
 
           <div class="tab-pane fade" id="pills-payment">
             <div class="my-account-payment account-wrapper">
-              <h4 class="account-title">Payment Method</h4>
-              <p class="mt-30">You Can't Saved Your Payment Method yet.</p>
+              <h4 class="account-title">信用卡資料</h4>
+              <p class="mt-30 card_empty">您未擁有任何信用卡</p>
+
+              <div>
+
+                <div class="card_list" style="overflow: auto;">
+
+                    <!-- 放信用卡資料 -->
+
+                </div>
+
+                <div class="form-container">
+
+                  <div class="field-container">
+                      <label for="cardnumber">卡號</label>
+                      <input id="cardnumber" class="form-control" type="text" pattern="[0-9]*"
+                          inputmode="numeric">
+                      <svg id="ccicon" class="ccicon" width="750" height="471" viewBox="0 0 750 471"
+                          version="1.1" xmlns="http://www.w3.org/2000/svg"
+                          xmlns:xlink="http://www.w3.org/1999/xlink">
+                      </svg>
+                  </div>
+                  <div class="field-container">
+                      <label for="expirationdate">有效期限 (mm/yy)</label>
+                      <input id="expirationdate" class="form-control" type="text" pattern="[0-9]*"
+                          inputmode="numeric">
+                  </div>
+                  <div class="field-container">
+                      <label for="securitycode">安全碼</label>
+                      <input id="securitycode" class="form-control" type="text" pattern="[0-9]*"
+                          inputmode="numeric">
+                      
+                  </div>
+                  <div style="margin: auto;">
+                    <button type="button" class="insert_card">新增</button>
+                  </div>
+                    
+              </div>
+
+            </div>
+
+
             </div>
           </div>
 
@@ -450,6 +453,12 @@
   <!-- Main JS -->
   <script src="assets/js/main.js"></script>
   <script src="assets/js/moment.js"></script>
+
+  <!-- 信用卡 -->
+  <script src="assets/js/cardimask.min.js"></script>
+  <script src="assets/js/cardindex.js"></script>
+
+
   <script>
     $(document).ready(function () {
       $('.header').load('header.html')
@@ -650,21 +659,22 @@
 
           for (var i = 0; i < data.data[0].length; i++) {
 
-            let order_master_list = `<li>
+            let order_master_list = `<li class="order_master_${data.data[0][i].order_master_id}" data-order_master_id="${data.data[0][i].order_master_id}">
                     <div class="post-meta" style="margin-bottom: 0px; border-top: 1px solid white; border-bottom: 1px solid white">
                       <span class="detail">訂單編號 : <span class="order_master_id">${data.data[0][i].order_master_id}</span></span>
                       <span class="detail">下訂時間 : <span class="order_time">${getTime(data.data[0][i].order_time)}</span></span>
+                      <br>
                       <span class="detail">付款時間 : <span class="payment_time">${data.data[0][i].payment_time == null ? "無": getTime(data.data[0][i].payment_time)}</span></span>
                       <br>
                       <span class="detail">發票號碼	: <span class="invoice_number">${data.data[0][i].invoice_number == null ? "無" : data.data[0][i].invoice_number}</span></span>
-                      <span class="detail">優惠券編號 : <span	class="coupon_id">${data.data[0][i].coupon_id == 0 ? "無" : data.data[0][i].coupon_id}</span></span>
+                      <span class="detail">優惠碼 : <span	class="coupon_id">${data.data[2][i]}</span></span>
                       <span class="detail">付款方式	: <span class="payment_method">${getPaymentMethod(data.data[0][i].payment_method)}</span> </span>
                       <br>
-                      <span class="detail">訂單金額 : <span	class="order_total">${data.data[0][i].order_total}</span></span>
+                      <span class="detail">訂單金額 : <span	class="order_total">${data.data[0][i].order_total}元</span></span>
                       <br>
                       <span class="detail">訂單備註 : <span	class="order_remarks">${data.data[0][i].order_remarks}</span></span>
                       <br>
-                      <span class="detail">訂單狀態 : <span class="order_status">${data.data[0][i].order_status}</span></span>
+                      <span class="detail">訂單狀態 : <span class="order_status">${getOrderStatus(data.data[0][i].order_status)}</span></span>
                       <button type="button" class="switch_btn">
                         <span class="plus" style="width: 20px; height: 20px; margin-right: 0px;"><i class="fas fa-chevron-down" style="color: white; display: inline"></i></span>
                         <span class="minus" style="width: 20px; height: 20px;"><i class="fas fa-chevron-up" style="color: white; display: inline"></i></span>
@@ -677,6 +687,15 @@
                   </li>`;
 
             $("ul.order_master_comment_list").prepend(order_master_list);
+
+            //取消訂單按鈕
+            if (data.data[0][i].order_status == 0) {
+
+              let cancel_btn = `<button type="button" class="cancel_order">取消訂單</button>`;
+
+              $(`li.order_master_${data.data[0][i].order_master_id}`).find("span.order_status").after(cancel_btn);
+            }
+
 
             for (var j = 0; j < data.data[1][i].length; j++) {
 
@@ -707,6 +726,37 @@
 
 
 
+      // 載入信用卡資料
+      $.get("/dessert_shop/orderMaster/getCardData", {}, function (data) {
+        console.log(data);
+        if (data.flag) {
+
+          if (data.data.length != 0) {
+
+          for (var i = 0; i < data.data.length; i++) {
+
+              let card = `<div style="padding-bottom: 5px;">
+                          <span style="padding-right: 5px; font-size: 20px;" id="card-${data.data[i].card_id}" data-card_id="${data.data[i].card_id}" data-card_number="${data.data[i].card_number}" data-card_expired_day="${data.data[i].card_expired_day}" data-card_cvc="${data.data[i].card_cvc}">
+                          卡號：${data.data[i].card_number}</span><button type="button" class="delete_card">刪除</button>
+                          </div>`;
+
+              $("div.card_list").append(card);
+          }
+
+          $("p.card_empty").text("");
+          }
+
+
+        } else {
+          alert(data.msg);
+          if (data.redirect) {
+            location.href = data.redirect;
+          }
+        }
+
+
+      });  //get
+
 
 
     });  //function
@@ -729,21 +779,143 @@
       }
     } 
 
-
-
-
-
+    function getOrderStatus(method) {
+      switch (method) {
+        case 0:
+          return "未付款";
+        case 1:
+          return "已付款";
+        case 2:
+          return "已完成";
+        case 3:
+          return "已取消";  
+        default:
+          return method;
+      }
+    }
 
 
 
     //訂單明細縮合
-    $("ul").on("click", "button.switch_btn", function (e) {
+    $("ul.order_master_comment_list").on("click", "button.switch_btn", function (e) {
       e.preventDefault();
       $(this).closest("li").toggleClass("-on");
       $(this).closest("li").find("div.inner_block").slideToggle();
     });
 
 
+
+    //取消訂單
+    $("ul.order_master_comment_list").on("click", "button.cancel_order", function (e) {
+
+      let order_master_id = $(this).closest("li").attr("data-order_master_id");
+      
+      Swal.fire({
+      title: '確定取消訂單?',
+      text: "",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: '是',
+      cancelButtonText: '否'
+        }).then((result) => {
+
+          if (result.isConfirmed) {
+            
+            $.post("/dessert_shop/orderMaster/cancelOrderMaster", {"order_master_id": order_master_id}, function(data) {
+              console.log(data);
+
+              if (data.flag) { 
+
+                Swal.fire({
+                        icon: 'success',
+                        title: '訂單已取消!',
+                        showConfirmButton: false,
+                        timer: 1000
+                        }).then(function () {
+                            location.href = data.redirect;
+                        });
+
+              } else {
+                  alert(data.msg);
+                  if (data.redirect) {
+                      location.href = data.redirect;
+                  }
+              }
+
+            });  //post
+
+          }
+
+
+        });  //then
+
+
+    });
+
+
+    //新增信用卡
+    $("button.insert_card").on("click", function () {
+        let card_number = $("input#cardnumber").val();
+        let card_expired_day = $("input#expirationdate").val();
+        let card_cvc = $("input#securitycode").val();
+
+        if (card_number == "" || card_expired_day == "" || card_cvc == "") {
+            alert("信用卡資料請勿空白!");
+        } else {
+
+            $.post("/dessert_shop/orderMaster/insertCreditCard", { "card_number": card_number, "card_expired_day": card_expired_day, "card_cvc": card_cvc }, function (data) {
+                console.log(data);
+                if (data.flag) {
+                    let card = `<div style="padding-bottom: 5px;">
+                            <span style="padding-right: 5px; font-size: 20px;" id="card-${data.data.card_id}" data-card_id="${data.data.card_id}" data-card_number="${data.data.card_number}" data-card_expired_day="${data.data.card_expired_day}" data-card_cvc="${data.data.card_cvc}">
+                            卡號：${data.data.card_number}</span><button type="button" class="delete_card">刪除</button>
+                            </div>`;
+
+                    $("div.card_list").append(card);
+
+                    $("p.card_empty").text("");
+
+                } else {
+                    alert(data.msg);
+                    if (data.redirect) {
+                        location.href = data.redirect;
+                    }
+                }
+
+            });  //post
+
+        }
+
+    });
+
+
+    //刪除信用卡
+    $("div.card_list").on("click", "button.delete_card", function () {
+        let card_id = $(this).siblings("span").attr("data-card_id");
+        let card = $(this).closest("div");
+        $.post("/dessert_shop/orderMaster/deleteCreditCard", { "card_id": card_id }, function (data) {
+            console.log(data);
+            if (data.flag) {
+
+                card.remove();
+
+                if ($("div.card_list").children("div").length == 0) {
+                    $("p.card_empty").text("您未有任何信用卡");
+                }
+
+            } else {
+                alert(data.msg);
+                if (data.redirect) {
+                    location.href = data.redirect;
+                }
+            }
+
+        });  //post
+
+
+    });
 
 
 
