@@ -1,0 +1,482 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <title>嗜甜 | 顛覆你想像的甜點</title>
+      
+      <!-- Favicon -->
+      <link rel="shortcut icon" href="assets/images/favicon.ico" />
+      <link rel="stylesheet" href="assets/css/backend-plugin.min.css">
+      <link rel="stylesheet" href="assets/css/backend.css?v=1.0.0">
+      <link rel="stylesheet" href="assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
+      <link rel="stylesheet" href="assets/vendor/line-awesome/dist/line-awesome/css/line-awesome.min.css">
+      <link rel="stylesheet" href="assets/vendor/remixicon/fonts/remixicon.css">  </head>
+  <body class="  ">
+    <!-- loader Start -->
+    <div id="loading">
+          <div id="loading-center">
+          </div>
+    </div>
+    <!-- loader END -->
+    <!-- Wrapper Start -->
+    <div class="wrapper">
+      
+      <!--Header-->
+  	  <div class="header"></div>
+      
+      
+      <div class="content-page">
+     <div class="container-fluid add-form-list">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between">
+                        <div class="header-title">
+                            <h4 class="card-title">新增商品</h4>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <form id="addProduct_form" action="javascript:void(0)" data-toggle="validator" enctype="multipart/form-data">
+<!--                         <form id="addProduct_form" action="index.html" data-toggle="validator" enctype="multipart/form-data"> -->
+                       <!-- 以下為開發時先使用 先不跳轉 -->
+<!--                         <form id="addProduct_form" action="" data-toggle="validator" enctype="multipart/form-data"> -->
+                            <div class="row">
+                            	<div class="col-md-6">                      
+                                    <div class="form-group">
+                                        <label id="product_name_label">商品名稱 *</label>
+								<!-- <label>商品名稱 *</label> -->
+                                        <input type="text" class="form-control" placeholder="請輸入中/英文或數字" data-errors="Please Enter Name." id="product_name" name="product_name" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>商品編號 *</label>
+                                        <input type="text" class="form-control" placeholder="自動產生" data-errors="Please Enter Code."  id="product_id" name="product_id" disabled>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>     
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label id="product_category_label">商品類別 *</label>
+<!--                                         <select name="product_category" class="selectpicker form-control" data-style="py-0" id="product_category" required> -->
+                                        <select name="product_category" class="form-control" data-style="py-0" id="product_category" required>
+                                            <option value>請選擇商品種類</option>
+											<optgroup label="蛋糕">
+												<option value="蛋糕:千層蛋糕">千層蛋糕</option>
+												<option value="蛋糕:杯子蛋糕">杯子蛋糕</option>
+												<option value="蛋糕:起士蛋糕">起士蛋糕</option>
+												<option value="蛋糕:磅蛋糕">磅蛋糕</option>
+												<option value="蛋糕:蛋糕捲">蛋糕捲</option>
+											</optgroup>
+											<optgroup label="巧克力">
+												<option value="巧克力:生巧克力">生巧克力</option>
+												<option value="巧克力:藝術巧克力">藝術巧克力</option>
+												<option value="巧克力:巴克巧克力">巴克巧克力</option>
+											</optgroup>
+											<optgroup label="精緻小點">
+												<option value="精緻小點:派 & 塔">派 & 塔</option>
+												<option value="精緻小點:泡芙">泡芙</option>
+												<option value="精緻小點:馬卡龍">馬卡龍</option>
+												<option value="精緻小點:可麗露">可麗露</option>
+												<option value="精緻小點:布蕾">布蕾</option>
+											</optgroup>
+											<optgroup label="飲品">
+												<option value="飲品:特調茶飲">特調茶飲</option>
+												<option value="飲品:香濃拿鐵">香濃拿鐵</option>
+												<option value="飲品:經典咖啡">經典咖啡</option>
+												<option value="飲品:繽紛水果飲">繽紛水果飲</option>
+<!-- 											<option value="飲品:其他">其他</option> -->
+											</optgroup>
+                                        </select>
+                                    </div> 
+                                </div>  
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label id="product_price_label">商品售價 *</label>
+                                        <input type="text" class="form-control" placeholder="請輸入數字" data-errors="Please Enter Cost." id="product_price" name="product_price" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label id="product_available_qty_label">現貨數量 *</label>
+                                        <input type="text" class="form-control" placeholder="請輸入數字" data-errors="Please Enter Price." id="product_available_qty" name="product_available_qty" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                               	<div class="col-md-6">                                    
+                                    <div class="form-group">
+                                        <label id="product_status_label">商品狀態 *</label>
+<!--                                         <select name="product_status" class="selectpicker form-control" data-style="py-0" id="product_status" required> -->
+                                        <select name="product_status" class="form-control" data-style="py-0" id="product_status" required>
+                                            <option value>請選擇商品狀態</option>
+                                            <option value=0 selected>未上架 (預設)</option>
+                                            <option value=1>上架中</option>
+                                        </select>
+                                    </div>
+                                </div>     
+                                <div class="col-md-4">     
+                                	<div class="form-group">
+                                        <label id="expiry_after_buying_label">賞味天數 *</label>
+                                        <input type="text" class="form-control" placeholder="請輸入數字" data-errors="Please Enter a Number." id="expiry_after_buying" name="expiry_after_buying" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">                                    
+                                    <div class="form-group">
+                                        <label id="product_calorie_label">商品熱量 *</label>
+                                        <input type="text" class="form-control" placeholder="請輸入數字" id="product_calorie" name="product_calorie" required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">                                    
+                                    <div class="form-group">
+                                        <label>商品甜度 *</label>
+<!--                                         <select name="degree_of_sweetness" class="selectpicker form-control" data-style="py-0" id="degree_of_sweetness" required> -->
+                                        <select name="degree_of_sweetness" class="form-control" data-style="py-0" id="degree_of_sweetness" required>
+                                            <option value>請選擇商品甜度</option>
+                                            <option value=1>1</option>
+                                            <option value=2>2</option>
+                                            <option value=3>3</option>
+                                            <option value=4>4</option>
+                                            <option value=5>5</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">                                    
+                                    <div class="form-group">
+                                        <label id="total_star_label">累計星等</label>
+                                        <input type="text" class="form-control" placeholder="0" disabled>
+                                        <input type="hidden" class="form-control" id="total_star" name="total_star" value="0">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">                                    
+                                    <div class="form-group">
+                                        <label id="total_review_label">累計評價次數</label>
+                                        <input type="text" class="form-control" placeholder="0" disabled>
+                                        <input type="hidden" class="form-control" id="total_review" name="total_review" value="0">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">                                    
+                                    <div class="form-group">
+                                        <label id="total_purchase_label">累計銷售</label>
+                                        <input type="text" class="form-control" placeholder="0"disabled>
+                                        <input type="hidden" class="form-control" id="total_purchase" name="total_purchase" value="0">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>商品圖片*</label>
+                                        <input type="file" class="form-control image-file" accept="image/*" name="pic" id="product_image" name="product_image" multiple required>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+<!-- 圖片預覽 還未做好 -->             
+                                    <div >
+                                    	<img class="product_image" id="product_image" src="" alt>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>商品介紹</label>
+                                        <textarea class="form-control" rows="4" id="product_intro" name="product_intro" required></textarea>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>商品成分</label>
+                                        <textarea class="form-control" rows="4" id="product_ingredient" name="product_ingredient" required></textarea>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                            </div>                            
+                            <button type="submit" class="btn btn-primary mr-2">送出新增</button>
+                            <button type="reset" class="btn btn-danger">重置</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Page end  -->
+    </div>
+      </div>
+    </div>
+    <!-- Wrapper End-->
+    
+    
+    <!-- Backend Bundle JavaScript -->
+    <script src="assets/js/backend-bundle.min.js"></script>
+    
+    <!-- Table Treeview JavaScript -->
+    <script src="assets/js/table-treeview.js"></script>
+    
+    <!-- Chart Custom JavaScript -->
+    <script src="assets/js/customizer.js"></script>
+    
+    <!-- Chart Custom JavaScript -->
+    <script async src="assets/js/chart-custom.js"></script>
+    
+    <!-- app JavaScript -->
+    <script src="assets/js/app.js"></script>
+    
+    <script>
+	    $(document).ready(function () {
+	        $('.header').load('header.html')
+	        // $('.footer').load('footer.html')
+	    })
+	</script>
+    
+    
+    
+    <script>
+    
+	    $("#addProduct_form").submit(function(e){
+// 	    $("button[class='btn btn-primary mr-2']").on("click", function(e){
+	    	e.preventDefault();
+	    	console.log("submit the form");
+// 			提交表單時，檢查屬性合法與否
+			
+// 	     	if(checkProductName() & checkPrice() & checkQuantity() & checkExpiry() & checkCalorie() & checkCategory()){
+// 				console.log($("#addProduct_form").serialize()); // 會只抓到文字部分，照片無法這樣取
+// 				$.post("/dessert_shop/product/backend_addProduct", $(this).serialize(), function (data) {
+// 		    		console.log(data.flag);
+// 		    		console.log("!!!!!!!");
+// 					if(data.flag){
+// 						// 提交成功跳轉業面到list_all_product
+// 						// sweetalert
+// 						alert("提交成功");
+// 					}else {
+// 						// 新增商品失敗，彈出視窗
+// 						alert("提交失敗");
+// 					}
+// 		    	});
+		    	
+// 			}//check的if
+			
+			//照片新增到後台
+			let form = $(this).closest('form')[0];
+// 			let form = document.getElementById("addProduct_form");
+			console.log("form:"+form);
+			let data = new FormData(form);
+			console.log("append前的data:"+data);
+			
+// 			let product_name = $("#product_name").val();
+// 			let product_category = $("#product_category").val();
+
+			
+			
+			$.ajax({
+				type: "POST",
+				enctype: 'multipart/form-data',
+				url: '/dessert_shop/product/backend_addProduct',
+				data: data,
+				processData: false,
+				contentType: false,
+				cache: false,
+				success: function (data) {
+					console.log("ajax:"+data);
+					if (data.flag) {
+						   
+						Swal.fire({
+							title: data.msg,
+							text: "提交成功",
+							icon: "success"
+						}).then(function(){
+							location.href="list-all-product.html";
+						});
+							
+					} else {
+						// 新增失敗 彈出視窗
+						Swal.fire({
+							title: data.msg,
+							text: "提交失敗",
+							icon: "error"
+						})
+					}
+				}
+			});
+			
+			return false;	
+			
+	    });//form表單submit
+
+		// 檢查名稱有沒有重複
+    	$("#product_name").blur(checkProductName);
+		// 檢查數字
+		$("#product_price").blur(checkPrice);
+		$("#product_available_qty").blur(checkQuantity);
+		$("#expiry_after_buying").blur(checkExpiry);
+		$("#product_calorie").blur(checkCalorie);
+		
+		// 選單的檢查
+		$("#product_category").on("change", checkCategory);
+		$("#product_category").on("change", function(){
+			console.log("選擇種類:"+($("#product_category").val()));
+		});
+			
+// 		$("#degree_of_sweetness").on("change", checkSweetness);
+		// checkSweetness還沒寫
+		
+		// 檢查圖片
+
+
+    	function checkProductName(){
+			console.log("檢查名稱");
+    		let addProduct_name = $("#product_name").val().trim();
+    		let regProduct_name = /^[\u4e00-\u9fa5_a-zA-Z0-9]{1,10}$/;
+    		let flag =  regProduct_name.test(addProduct_name);
+    		console.log("checkProductName的flag:"+flag);
+    		if(flag){
+    			// 產品名稱合法
+    			let product_name_data = "product_name="+$("#product_name").val().trim();
+    			$.post("/dessert_shop/product/backend_checkProductName", product_name_data, function(data){
+    				// 名稱不重複 vs 名稱重複
+    				console.log("add_product.html裡跑checkProductName的:"+data.flag);
+    				if(data.flag){
+    					console.log("data.flag:"+data.flag);
+    					$("#product_name").css("border", "");
+    					// 不重複不設提醒 以下測試用 拿掉?
+    					$("#product_name_label").html("商品名稱 *&nbsp&nbsp&nbsp&nbsp" + data.msg);
+    				}else{
+    					console.log(data.flag);
+    					$("#product_name").css("border", "1px solid #E08DB4");
+    					$("#product_name_label").html("商品名稱 *&nbsp&nbsp&nbsp&nbsp" + data.msg);
+    				}
+    			});
+    		}else{
+    			// 產品名稱不合法
+    			console.log("名稱不合法");
+    			$("#product_name").css("border", "1px solid #E08DB4");
+    			$("#product_name_label").html("商品名稱*&nbsp&nbsp&nbsp&nbsp不符合語法，請重新輸入！");
+    		}
+    		return flag;
+    	};
+    	
+    	function checkPrice(){
+    		console.log("檢查售價");
+    		let price = $("#product_price").val().trim();
+    		let regNumber = /^[0-9]{1,4}$/;
+    		let flag = regNumber.test(price);
+    		console.log("checkPrice的flag:"+flag);
+    		if(flag){
+    			// 合法
+    			console.log("售價合法!");
+//     			$("#product_price").css("border","1px solid #DCDFE8").css("background-color", "rgb(232, 240, 254)");
+    			// 上面的格式 好像是因為選取紀錄值的關係 
+    			
+    			$("#product_price").css("border", "");
+    			$("#product_price_label").html("商品售價 *");
+    		}else {
+    			// 不合法
+				console.log("售價不合法");
+    			$("#product_price").css("border", "1px solid #E08DB4")
+    			$("#product_price_label").html("商品售價 *&nbsp&nbsp&nbsp&nbsp請輸入數字!!")
+    		}
+    		return flag;
+    	}
+    	
+    	function checkQuantity(){
+    		console.log("檢查現貨數量");
+    		let quantity = $("#product_available_qty").val().trim();
+    		let regNumber = /^[0-9]{1,4}$/;
+    		let flag = regNumber.test(quantity);
+    		console.log("checkQuantity的flag:"+flag);
+    		if(flag){
+    			// 合法
+    			console.log("數量合法");
+    			$("#product_available_qty").css("border", "");
+    			$("#product_available_qty_label").html("現貨數量 *");
+    		}else {
+    			// 不合法
+				console.log("數量不合法");
+    			$("#product_available_qty").css("border", "1px solid #E08DB4")
+    			$("#product_available_qty_label").html("現貨數量 *&nbsp&nbsp&nbsp&nbsp請輸入數字!!")
+    		}
+    		return flag;
+    	}
+    	
+    	function checkExpiry(){
+    		console.log("檢查賞味天數");
+    		let expiray = $("#expiry_after_buying").val().trim();
+    		let regNumber = /^[0-9]{1,4}$/;
+    		let flag = regNumber.test(expiray);
+    		console.log("expiry flag:"+flag);
+    		if(flag){
+    			// 合法
+    			console.log("天數合法");
+    			$("#expiry_after_buying").css("border", "");
+    			$("#expiry_after_buying_label").html("賞味天數 *");
+    		}else {
+    			// 不合法
+				console.log("天數不合法");
+    			$("#expiry_after_buying").css("border", "1px solid #E08DB4");
+    			$("#expiry_after_buying_label").html("賞味天數 *&nbsp&nbsp&nbsp&nbsp請輸入數字!!");
+    		}
+    		return flag;
+    	}
+    	
+    	function checkCalorie(){
+    		console.log("檢查熱量");
+    		let calorie = $("#product_calorie").val().trim();
+    		let regNumber = /^[0-9]{1,4}$/;
+    		let flag = regNumber.test(calorie);
+    		console.log("calorie flag:"+flag);
+    		if(flag){
+    			// 合法
+    			console.log("熱量合法");
+    			$("#product_calorie").css("border", "");
+    			$("#product_calorie_label").html("商品熱量 *");
+    		}else {
+    			// 不合法
+				console.log("熱量不合法");
+    			$("#product_calorie").css("border", "1px solid #E08DB4")
+    			$("#product_calorie_label").html("商品熱量 *&nbsp&nbsp&nbsp&nbsp請輸入數字!!")
+    		}
+    		return flag;
+    	}
+    	// 以下為開發用，不檢查提交表單時會提醒(已設為required)
+    	function checkCategory(){
+    		console.log("檢查類別");
+    		let category = $("#product_category").val();
+			if(category == null){
+				$("#product_category").css("border", "1px solid #E08DB4");//無效
+				$("#product_category_label").html("商品類別 *&nbsp&nbsp&nbsp&nbsp請選擇商品類別!!")
+				return false;
+			}else{
+				console.log("category選擇:"+category);
+				$("#product_category_label").html("商品類別 *")
+				return true;
+			}
+			// ""跟null?
+    		
+    	}
+    	
+    	// 星等 評價 銷售 理論上不應該被更改 先不寫
+//     	function checkStar(){
+//     		console.log("檢查星等");
+//     		let star = $("#total_star").val().trim();
+//     		let regNumber = /^[0-9]{1,4}$/;
+//     		let flag = regNumber.test(star);
+//     		console.log("star flag:"+flag);
+//     		if(flag){
+//     			// 合法
+//     			console.log("星等合法");
+//     			//已有預設css
+// //     			$("#product_price").css("border", "1px solid green")
+//     		}else {
+//     			// 不合法
+// 				console.log("星等不合法");
+//     			$("#product_calorie").css("border", "1px solid red")
+//     			$("#product_calorie_label").html("累計星等*&nbsp&nbsp&nbsp&nbsp請輸入數字!!")
+//     		}
+//     	}
+    
+    
+    </script>
+    
+    
+    
+  </body>
+</html>
