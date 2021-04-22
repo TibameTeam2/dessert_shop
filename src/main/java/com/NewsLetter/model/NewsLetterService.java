@@ -28,10 +28,11 @@ public class NewsLetterService {
 	}
 
 	/*********************** 更新電子報(後臺) ***********************/
-	public Boolean updateNewsLetter(NewsLetterBean newsLetterBean) {
-		
-		
-	}
+//	public Boolean updateNewsLetter(NewsLetterBean newsLetterBean) {
+//		
+//		
+//		
+//	}
 	
 
 }
