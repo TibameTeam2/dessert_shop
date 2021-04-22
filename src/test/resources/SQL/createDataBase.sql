@@ -170,7 +170,7 @@ CREATE TABLE product (
 INSERT INTO product (product_name, product_type, product_subtype , product_intro, product_ingredient, product_price, product_available_qty, product_status, expiry_after_buying, product_calorie, degree_of_sweetness, total_star, total_review, total_purchase)
 VALUES ('綜合野莓果昔', '飲品', '繽紛水果飲','加拿大進口莓果，搭配自家生產新鮮優格，清爽順口，每日一杯，身體無負擔！', '藍莓、桑葚、草莓、槲寄生、優格', 180, 50, 1, 1, 210, 2, 885, 215, 121);
 INSERT INTO product (product_name, product_type, product_subtype , product_intro, product_ingredient, product_price, product_available_qty, product_status, expiry_after_buying, product_calorie, degree_of_sweetness, total_star, total_review, total_purchase)
-VALUES ('莓果薰衣草', '精緻小點', '馬卡龍','季節限定的薰衣草榨取入料，搭配藍莓果醬，淡淡花草清香伴隨酸甜滋味，是馬卡龍中低熱量首選！','薰衣草、藍莓、杏仁粉、蛋白、砂糖', 75, 40, 1, 5, 104, 2, 570, 115, 233);
+VALUES ('草莓千層蛋糕', '蛋糕', '千層蛋糕','製作費時的千層餅皮，夾層為北海道生乳，搭配新鮮草莓，口感豐富，口味濃郁不膩。', '草莓、生乳', 160, 50, 1, 3, 165, 2, 455, 110, 501);
 INSERT INTO product (product_name, product_type, product_subtype , product_intro, product_ingredient, product_price, product_available_qty, product_status, expiry_after_buying, product_calorie, degree_of_sweetness, total_star, total_review, total_purchase)
 VALUES ('法芙娜巧克力慕斯', '精緻小點', '派&塔','使用法國頂級法芙娜（Valrhona）巧克力原料，夾層含巧克力珍珠米，外表淋上絲滑順口的巧克力醬，鏡面光澤，風味獨特。', '可可粉、可可米、鮮奶、明膠、吉利丁粉', 120, 50, 1, 5, 310, 3, 115, 25, 156);
 INSERT INTO product (product_name, product_type, product_subtype , product_intro, product_ingredient, product_price, product_available_qty, product_status, expiry_after_buying, product_calorie, degree_of_sweetness, total_star, total_review, total_purchase)
@@ -234,7 +234,7 @@ VALUES ('伯爵玫瑰杯子蛋糕', '蛋糕', '杯子蛋糕','使用每日新鮮
 INSERT INTO product (product_name, product_type, product_subtype , product_intro, product_ingredient, product_price, product_available_qty, product_status, expiry_after_buying, product_calorie, degree_of_sweetness, total_star, total_review, total_purchase)
 VALUES ('巧克力馬卡龍', '精緻小點', '馬卡龍','來自法國的奢華甜點，覆盆子的酸中和了馬卡龍本身的甜，口感酥脆綿密，甜而不膩！', '杏仁粉、砂糖、可可粉', 80, 50, 1, 1, 165, 3, 445, 105, 491);
 INSERT INTO product (product_name, product_type, product_subtype , product_intro, product_ingredient, product_price, product_available_qty, product_status, expiry_after_buying, product_calorie, degree_of_sweetness, total_star, total_review, total_purchase)
-VALUES ('草莓千層蛋糕', '蛋糕', '千層蛋糕','製作費時的千層餅皮，夾層為北海道生乳，搭配新鮮草莓，口感豐富，口味濃郁不膩。', '草莓、生乳', 160, 50, 1, 3, 165, 2, 455, 110, 501);
+VALUES ('莓果薰衣草', '精緻小點', '馬卡龍','季節限定的薰衣草榨取入料，搭配藍莓果醬，淡淡花草清香伴隨酸甜滋味，是馬卡龍中低熱量首選！','薰衣草、藍莓、杏仁粉、蛋白、砂糖', 75, 40, 1, 5, 104, 2, 570, 115, 233);
 INSERT INTO product (product_name, product_type, product_subtype , product_intro, product_ingredient, product_price, product_available_qty, product_status, expiry_after_buying, product_calorie, degree_of_sweetness, total_star, total_review, total_purchase)
 VALUES ('萊姆閃電泡芙', '精緻小點', '泡芙','清淡的萊姆口味卡士達內餡，搭配酥脆外皮，簡單有品味的一道甜點。', '萊姆、卡士達', 110, 50, 1, 5, 165, 2, 445, 105, 491);
 INSERT INTO product (product_name, product_type, product_subtype , product_intro, product_ingredient, product_price, product_available_qty, product_status, expiry_after_buying, product_calorie, degree_of_sweetness, total_star, total_review, total_purchase)
@@ -305,15 +305,15 @@ VALUES ('1', LOAD_FILE('C:\\project\\images\\product_image\\berriesSmoothie-3.jp
 INSERT INTO product_image (product_id, product_image)
 VALUES ('1', LOAD_FILE('C:\\project\\images\\product_image\\berriesSmoothie-4.jpg'));
 INSERT INTO product_image (product_id, product_image)
-VALUES ('2', LOAD_FILE('C:\\project\\images\\product_image\\bBerryMacaron-2.jpg'));
+VALUES ('34', LOAD_FILE('C:\\project\\images\\product_image\\bBerryMacaron-2.jpg'));
 INSERT INTO product_image (product_id, product_image)
-VALUES ('2', LOAD_FILE('C:\\project\\images\\product_image\\bBerryMacaron-5.jpg'));
+VALUES ('34', LOAD_FILE('C:\\project\\images\\product_image\\bBerryMacaron-5.jpg'));
 INSERT INTO product_image (product_id, product_image)
-VALUES ('2', LOAD_FILE('C:\\project\\images\\product_image\\bBerryMacaron-1.jpg'));
+VALUES ('34', LOAD_FILE('C:\\project\\images\\product_image\\bBerryMacaron-1.jpg'));
 INSERT INTO product_image (product_id, product_image)
-VALUES ('2', LOAD_FILE('C:\\project\\images\\product_image\\bBerryMacaron-3.jpg'));
+VALUES ('34', LOAD_FILE('C:\\project\\images\\product_image\\bBerryMacaron-3.jpg'));
 INSERT INTO product_image (product_id, product_image)
-VALUES ('2', LOAD_FILE('C:\\project\\images\\product_image\\bBerryMacaron-4.jpg'));
+VALUES ('34', LOAD_FILE('C:\\project\\images\\product_image\\bBerryMacaron-4.jpg'));
 INSERT INTO product_image (product_id, product_image)
 VALUES ('3', LOAD_FILE('C:\\project\\images\\product_image\\chocoMousse-1.jpg'));
 INSERT INTO product_image (product_id, product_image)
@@ -465,9 +465,9 @@ VALUES ('33', LOAD_FILE('C:\\project\\images\\product_image\\chocoMacaron-4.jpg'
 INSERT INTO product_image (product_id, product_image)
 VALUES ('33', LOAD_FILE('C:\\project\\images\\product_image\\chocoMacaron-2.jpg'));
 INSERT INTO product_image (product_id, product_image)
-VALUES ('34', LOAD_FILE('C:\\project\\images\\product_image\\strawCrepe-a.jpg'));
+VALUES ('2', LOAD_FILE('C:\\project\\images\\product_image\\strawCrepe-a.jpg'));
 INSERT INTO product_image (product_id, product_image)
-VALUES ('34', LOAD_FILE('C:\\project\\images\\product_image\\strawCrepe-b.jpg'));
+VALUES ('2', LOAD_FILE('C:\\project\\images\\product_image\\strawCrepe-b.jpg'));
 INSERT INTO product_image (product_id, product_image)
 VALUES ('35', LOAD_FILE('C:\\project\\images\\product_image\\limePuff-a.jpg'));
 INSERT INTO product_image (product_id, product_image)
