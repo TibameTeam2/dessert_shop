@@ -912,7 +912,7 @@
 			console.log("加入購物車的數量:"+single_purchase);
 
 			// API要給id 跟數量 如果頁面沒有數量可以選 設為1
-			$.post("/dessert_shop/cart/insertProductIntoCart?product_id="+product_id+"&product_quantity="+single_purchase,{},function(data){
+			$.post("/dessert_shop/cart/insertProductIntoCart",{"product_id":product_id, "product_quantity":single_purchase},function(data){
 				console.log("加入購物車回傳的flag:"+data.flag);
 				// 判斷是否登入
 				if(data.flag == false){
