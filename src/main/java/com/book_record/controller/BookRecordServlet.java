@@ -129,16 +129,7 @@ public class BookRecordServlet extends BaseServlet {
 	//載入可訂位日期與已訂位人數
 	public void getOpenBookingDate(HttpServletRequest req, HttpServletResponse res) {
 		
-		MemberBean member = (MemberBean) req.getSession().getAttribute("member");
 		ResultInfo info = new ResultInfo();
-		if (member == null) {
-			info.setFlag(false);
-			info.setMsg("尚未登入!");
-			req.getSession().setAttribute("location", req.getContextPath() + "/TEA103G2/front-end/booking.html");
-			info.setRedirect(req.getContextPath() + "/TEA103G2/front-end/login.html");
-			writeValueByWriter(res, info);
-			return ;
-		}
 		
 		List<BookRecordBean> list = BRSvc.getAllOpenBookingDate();
 		
@@ -183,14 +174,6 @@ public class BookRecordServlet extends BaseServlet {
 		
 		MemberBean member = (MemberBean) req.getSession().getAttribute("member");
 		ResultInfo info = new ResultInfo();
-		if (member == null) {
-			info.setFlag(false);
-			info.setMsg("尚未登入!");
-			req.getSession().setAttribute("location", req.getContextPath() + "/TEA103G2/front-end/booking.html");
-			info.setRedirect(req.getContextPath() + "/TEA103G2/front-end/login.html");
-			writeValueByWriter(res, info);
-			return ;
-		}
 		
 		//獲取數據
 		Map<String, String[]> map1 = req.getParameterMap();
@@ -249,7 +232,9 @@ public class BookRecordServlet extends BaseServlet {
 		}
 		String booking_time = booking_date + " " + booking_time_hour;
 		bdBean.setBooking_time(java.sql.Timestamp.valueOf(booking_time));
-		bdBean.setMember_account(member.getMember_account());
+		if (member != null) {
+			bdBean.setMember_account(member.getMember_account());
+		}
 		bdBean.setBooking_status(0);
 		//insert訂位明細
 		boolean flag2 = BDSvc.setBookingDetail(bdBean);
@@ -261,22 +246,24 @@ public class BookRecordServlet extends BaseServlet {
 			return ;
 		}	
 		
-		//Line通知-訂位成功
-		String message = "您已訂位完成!\n訂位時間：\n" + booking_time + "\n訂位人數：" + people_num + "人";
-		LineUtil.linePushMessage(member.getMember_account(), message);
-		
-		//Notice
-		NoticeBean noticeBean = new NoticeBean();
-		noticeBean.setMember_account(member.getMember_account());
-		noticeBean.setNotice_type(3);
-		noticeBean.setNotice_dispatcher(req.getContextPath() + "/TEA103G2/front-end/my-account.html");
-		String notice_content =  "通知!訂位完成!時間：" + booking_time + "人數：" + people_num + "人!";
-		noticeBean.setNotice_content(notice_content);	
-		NoticeSvc.addWSNotice(noticeBean);
+		if (member != null) {		
+			//Line通知-訂位成功
+			String message = "您已訂位完成!\n訂位時間：\n" + booking_time + "\n訂位人數：" + people_num + "人";
+			LineUtil.linePushMessage(member.getMember_account(), message);
+			
+			//Notice
+			NoticeBean noticeBean = new NoticeBean();
+			noticeBean.setMember_account(member.getMember_account());
+			noticeBean.setNotice_type(3);
+			noticeBean.setNotice_dispatcher(req.getContextPath() + "/TEA103G2/front-end/my-account.html");
+			String notice_content =  "通知!訂位完成!時間：" + booking_time + "人數：" + people_num + "人!";
+			noticeBean.setNotice_content(notice_content);	
+			NoticeSvc.addWSNotice(noticeBean);
+		}
 		
 		info.setFlag(true);
 		info.setMsg("訂位成功!");
-		info.setRedirect(req.getContextPath() + "/TEA103G2/front-end/my-account.html");
+		info.setRedirect(req.getContextPath() + "/TEA103G2/front-end/index.html");
 		writeValueByWriter(res, info);
 		
 	}

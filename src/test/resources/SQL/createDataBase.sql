@@ -787,7 +787,7 @@ VALUES ('tom', '2021-04-21 12:00:00', '5', '1', '', '09-87654321', '藍湯姆');
 INSERT INTO book_detail (member_account, booking_time, people_num, booking_status, book_postscript, contact_num, booking_name)
 VALUES ('amy', '2021-04-27 14:00:00', '6', '2', '兒童三位', '09-11222333', '綠艾咪');
 INSERT INTO book_detail (member_account, booking_time, people_num, booking_status, book_postscript, contact_num, booking_name)
-VALUES ('tom', '2021-04-28 16:00:00', '3', '0', 'CSS需要幫改', '09-11111222', 'CSS好難');
+VALUES ('tom', '2021-04-28 16:00:00', '3', '0', '', '09-11111222', '黃湯姆');
 
 
 -- 訂位紀錄

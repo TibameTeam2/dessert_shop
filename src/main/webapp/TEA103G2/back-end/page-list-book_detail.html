@@ -235,7 +235,7 @@
           for (let i = 0; i < data.data.length; i++) {
             table.row.add([
               data.data[i].booking_detail_id,
-              data.data[i].member_account,
+              data.data[i].member_account == null ? "無" : data.data[i].member_account,
               getTime(data.data[i].booking_establish_time),
               getTime(data.data[i].booking_time),
               data.data[i].people_num,
