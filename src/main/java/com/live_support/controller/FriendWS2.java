@@ -72,7 +72,7 @@ public class FriendWS2 {
 			receiverSession.getAsyncRemote().sendText(message);
 			userSession.getAsyncRemote().sendText(message);
 		} else {
-			chatMessage.setMessage("不好意思, 客服人員目前不在線上");
+			chatMessage.setMessage("不好意思，客服人員目前不在線上，請稍後再試");
 			userSession.getAsyncRemote().sendText(gson.toJson(chatMessage));
 		}
 		JedisHandleMessage.saveChatMessage(sender, receiver, message);

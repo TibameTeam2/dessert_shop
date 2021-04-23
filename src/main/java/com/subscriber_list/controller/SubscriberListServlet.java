@@ -163,6 +163,7 @@ public class SubscriberListServlet extends BaseServlet {
 	/*************************** 信箱重複驗證(後臺) ***************************/
 	public void backend_checkEmail(HttpServletRequest req, HttpServletResponse res) {
 
+		
 		String subscriber_email = req.getParameter("subscriber_email");
 		System.out.println("checkEmail=" + subscriber_email);
 

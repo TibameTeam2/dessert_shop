@@ -30,6 +30,7 @@
     <!-- Main Style CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/custom.css">
+    
 
 
     <!--====== Use the minified version files listed below for better performance and remove the files listed above ======-->
@@ -218,10 +219,13 @@
 
                 <!-- Blog Start -->
                 <div class="blog-active swiper-container">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
+                    <div class="swiper-wrapper" id = "abc">
+
+                        <!-- 我試試差在這裡 -->
+
+                        <!-- <div class="swiper-slide"> -->
                             <!-- Single Blog Start -->
-                            <div class="single-blog">
+                            <!-- <div class="single-blog">
                                 <div class="blog-images">
                                     <a href="blog-details-left-sidebar.html"><img src="assets/images/blog/blog-01.jpg" alt=""></a>
                                     <div class="meta-category">
@@ -237,12 +241,12 @@
                                         <span class="meta-author">Posted by <span>Demo hasthemes</span></span>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             <!-- Single Blog end -->
-                        </div>
-                        <div class="swiper-slide">
+                        <!-- </div> -->
+                        <!-- <div class="swiper-slide"> -->
                             <!-- Single Blog Start -->
-                            <div class="single-blog">
+                            <!-- <div class="single-blog">
                                 <div class="blog-images">
                                     <a href="blog-details-left-sidebar.html"><img src="assets/images/blog/blog-02.jpg" alt=""></a>
                                     <div class="meta-category">
@@ -258,12 +262,12 @@
                                         <span class="meta-author">Posted by <span>Demo hasthemes</span></span>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             <!-- Single Blog end -->
-                        </div>
-                        <div class="swiper-slide">
+                        <!-- </div> -->
+                        <!-- <div class="swiper-slide"> -->
                             <!-- Single Blog Start -->
-                            <div class="single-blog">
+                            <!-- <div class="single-blog">
                                 <div class="blog-images">
                                     <a href="blog-details-left-sidebar.html"><img src="assets/images/blog/blog-03.jpg" alt=""></a>
                                     <div class="meta-category">
@@ -279,12 +283,12 @@
                                         <span class="meta-author">Posted by <span>Demo hasthemes</span></span>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             <!-- Single Blog end -->
-                        </div>
-                        <div class="swiper-slide">
+                        <!-- </div> -->
+                        <!-- <div class="swiper-slide"> -->
                             <!-- Single Blog Start -->
-                            <div class="single-blog">
+                            <!-- <div class="single-blog">
                                 <div class="blog-images">
                                     <a href="blog-details-left-sidebar.html"><img src="assets/images/blog/blog-04.jpg" alt=""></a>
                                     <div class="meta-category">
@@ -300,13 +304,15 @@
                                         <span class="meta-author">Posted by <span>Demo hasthemes</span></span>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             <!-- Single Blog end -->
-                        </div>
+                        <!-- </div> -->
+
+
                     </div>
                     <!-- Add Pagination -->
-                    <div class="swiper-button-next"><i class="ion-ios-arrow-right"></i></div>
-                    <div class="swiper-button-prev"><i class="ion-ios-arrow-left"></i></div>
+                    <!-- <div class="swiper-button-next"><i class="ion-ios-arrow-right"></i></div>
+                    <div class="swiper-button-prev"><i class="ion-ios-arrow-left"></i></div> -->
                 </div>
                 <!-- Blog End -->
             </div>
@@ -469,8 +475,8 @@
 <!--                         </div> -->
                     </div><!-- 整個大區塊End -->
                     <!-- Add Pagination -->
-                    <div class="swiper-button-next"><i class="ion-ios-arrow-right"></i></div>
-                    <div class="swiper-button-prev"><i class="ion-ios-arrow-left"></i></div>
+                    <!-- <div class="swiper-button-next"><i class="ion-ios-arrow-right"></i></div>
+                    <div class="swiper-button-prev"><i class="ion-ios-arrow-left"></i></div> -->
                 </div>
             </div>
         </div>
@@ -1499,6 +1505,7 @@
 
     <!-- Main JS -->
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/moment.js"></script>
 
     <script>
         $(document).ready(function() {
@@ -1595,7 +1602,96 @@
 				
 		}// for迴圈
 			
-	});//$.get()    
+	});//$.get()
+
+    $(function () {
+
+        function getParameter(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+             return urlParams.get(param);   //取不到值時會是null
+        }
+    
+        $.get("/dessert_shop/announcement_management/getAllAM", {}, function (data) {
+				console.log(data.msg);
+				let url = location.href.split("/TEA103G2")[0];
+
+				var x;
+
+				for (var i = 0; i < 3; i++) {
+
+					let announcement_id = data.data[i].announcement_id;
+					let announcement_name = data.data[i].announcement_name;
+					let announcement_content = data.data[i].announcement_content;
+					let announcement_image = data.data[i].announcement_image;
+					let announcement_time = data.data[i].announcement_time;
+					let announcement_type = data.data[i].announcement_type;
+					let announcement_status = data.data[i].announcement_status;
+					let employee_account = data.data[i].employee_account;
+
+					let time = moment(announcement_time).format('YYYY-MM-DD');
+
+					console.log(announcement_time);
+					// console.log(date);
+
+					x = "${announcement_id}";
+
+
+					switch (announcement_type) {
+
+						case 0:
+							announcement_type = "公告";
+							break;
+						case 1:
+							announcement_type = "商品";
+							break;
+						case 2:
+							announcement_type = "服務";
+							break;
+						case 3:
+							announcement_type = "優惠折扣";
+
+							break;
+
+					}
+
+					// 顯示公告
+
+					let an_announcement = `
+						
+
+                        <div class="swiper-slide" style="width: 370px; margin-right: 30px;">
+                            <!-- Single Blog Start -->
+                            <div class="single-blog">
+                                <div class="blog-images">
+                                    <a href="blog-grid.html"><img src="data:image/png;base64,${announcement_image}" class="abc${i}" alt=""></a>
+                                    <div class="meta-category">
+                                        <a href="#">${announcement_type}</a>
+                                    </div>
+                                </div>
+                                <div class="blog-content">
+                                    <h4 class="blog-title"><a href="javascript:void(0);">${announcement_name}</a></h4>
+                                    <p>${announcement_content}</p>
+                                    <div class="post-meta ">
+                                        <span class="meta-date">${time}</span>
+                                        <span class="meta-author">Posted by <span>${employee_account}</span></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Single Blog end -->
+                        </div>`
+
+
+					console.log(announcement_id);
+
+
+					$("#abc").append(an_announcement);
+
+				}
+		});
+    });
+
+
+
     
 </script>
 

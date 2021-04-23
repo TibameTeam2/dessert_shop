@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>POS Dash | Responsive Bootstrap 4 Admin Dashboard Template</title>
+  <title>嗜甜-公告管理</title>
 
   <!-- Favicon -->
   <link rel="shortcut icon" href="assets/images/favicon.ico" />
@@ -49,9 +49,7 @@
             <div class="d-flex flex-wrap flex-wrap align-items-center justify-content-between mb-4">
               <div>
                 <h4 class="mb-3">公告清單 Announcement List</h4>
-                <p class="mb-0">The product list effectively dictates product presentation and provides space<br> to
-                  list
-                  your products and offering in the most appealing way.</p>
+                <p class="mb-0"><br> </p>
               </div>
               <a href="page-add-announcement.html" class="btn btn-primary add-list" data-toggle="modal"
                 data-target="#new-order1"><i class="las la-plus mr-3"></i>新增公告 Add
@@ -466,23 +464,22 @@
                           <div class="col-md-6">
                             <div class="form-group">
                               <label>編輯員工</label>
-                              <input type="text" class="form-control" placeholder="Enter employee_account"
+                              <!-- <input type="text" class="form-control" placeholder="Enter employee_account"
                                 data-errors="Please Enter Code." id="employee_account" name="employee_account" required>
-                              <div class="help-block with-errors"></div>
+                              <div class="help-block with-errors"></div> -->
 
-                              <!-- <select name="type" class="selectpicker form-control" data-style="py-0">
-                          <option value="jason">jason</option>
-                          <option value="james">james</option>
-                          <option value="peter">peter</option>
-                              </select> -->
+                              <select name="employee_account" class="selectpicker form-control" id="zzz"
+                                data-style="py-0">
+                                <option value="">選擇員工</option>
+                              </select>
                             </div>
                           </div>
                           <div class="col-md-6">
                             <div class="form-group">
                               <label>公告時間</label>
-                              <input type="datetime-local" step="01" class="form-control" placeholder="Enter YYYY-MM-DD hh:mm:ss"
-                                data-errors="Please Enter Code." id="announcement_time" name="announcement_time"
-                                required>
+                              <input type="datetime-local" step="01" class="form-control"
+                                placeholder="Enter YYYY-MM-DD hh:mm:ss" data-errors="Please Enter Code."
+                                id="announcement_time" name="announcement_time" required>
                               <div class="help-block with-errors"></div>
                             </div>
                           </div>
@@ -594,23 +591,22 @@
                           <div class="col-md-6">
                             <div class="form-group">
                               <label>編輯員工</label>
-                              <input type="text" class="form-control update_employee_account" placeholder="Enter Code"
+                              <!-- <input type="text" class="form-control update_employee_account" placeholder="Enter Code"
                                 data-errors="Please Enter Code." id="employee_account" name="employee_account" required name="employee_account">
+                              <div class="help-block with-errors"></div> -->
                               <div class="help-block with-errors"></div>
-
-                              <!-- <select name="type" class="selectpicker form-control" data-style="py-0">
-                          <option value="jason">jason</option>
-                          <option value="james">james</option>
-                          <option value="peter">peter</option>
-                               </select> -->
+                              <select name="employee_account" class="selectpicker form-control update_employee_account" id="yyy"
+                                data-style="py-0">
+                                <option value="">選擇員工</option>
+                              </select>
                             </div>
                           </div>
                           <div class="col-md-6">
                             <div class="form-group">
                               <label>公告時間</label>
-                              <input type="datetime-local" step="01" class="form-control update_announcement_time" placeholder="Enter Code"
-                                data-errors="Please Enter Code." id="announcement_time" name="announcement_time"
-                                required name="announcement_time">
+                              <input type="datetime-local" step="01" class="form-control update_announcement_time"
+                                placeholder="Enter Code" data-errors="Please Enter Code." id="announcement_time"
+                                name="announcement_time" required name="announcement_time">
                               <div class="help-block with-errors"></div>
                             </div>
                           </div>
@@ -660,7 +656,7 @@
                               <label>公告內容</label>
                               <textarea class="form-control update_announcement_content" rows="4"
                                 data-errors="Please Enter Code." id="announcement_content" name="announcement_content"
-                                required name ="announcement_content"></textarea>
+                                required name="announcement_content"></textarea>
                               <div class="help-block with-errors"></div>
                             </div>
 
@@ -795,7 +791,7 @@
                 data.data[i].announcement_name,
                 data.data[i].announcement_content,
 
-                '<img class="table-img" src="data:image/png;base64,'+data.data[i].announcement_image+'">',
+                '<img class="table-img" src="data:image/png;base64,' + data.data[i].announcement_image + '">',
 
                 // data.data[i].announcement_image,
                 getTime(data.data[i].announcement_time),
@@ -815,6 +811,23 @@
                 action
               ]).draw(false);
           }
+
+
+          $.post("/dessert_shop/employee/backend_getAll", {}, function (data) {
+
+            if (data.flag) {
+              for (var i = 0; i < data.data.length; i++) {
+                console.log("我在哪" + data.data[i].employee_account + "編號" + [i]);
+                $('#zzz').append(`<option value="` + data.data[i].employee_account + `">` + data.data[i].employee_account + `</option>`);
+              }
+              $('#zzz').selectpicker('refresh');
+              for (var i = 0; i < data.data.length; i++) {
+                console.log("我在哪" + data.data[i].employee_account + "編號" + [i]);
+                $('#yyy').append(`<option value="` + data.data[i].employee_account + `">` + data.data[i].employee_account + `</option>`);
+              }
+              $('#yyy').selectpicker('refresh');
+            }
+          });
 
 
         } else {
@@ -892,54 +905,76 @@
       console.log(data);
       // alert( 'You clicked on '+data[0]+'\'s row' );
 
+      console.log("type="+ getUpdate_announcement_type()+">"+data[5]);
+      console.log("status="+getUpdate_announcement_status()+">"+data[6]);
+
       $(".update_announcement_id").val(data[0]);
       $(".update_announcement_name").val(data[1]);
       $(".update_announcement_content").val(data[2]);
-      $(".update_employee_account").val(data[7]);
+      // $(".update_employee_account").val(data[7]);
       // $(".update_member_email").val(data[4]);
-      $(".update_announcement_time").val(moment(data[4]).format('YYYY-MM-DD'));
+      $(".update_announcement_time").val(moment(data[4]).format('YYYY-MM-DDThh:mm:ss.SSS'));
+      getUpdate_employee_account(data[7]);
       getUpdate_announcement_type(data[5]);
       getUpdate_announcement_status(data[6]);
       // $(".update_member_password").val("");
-      $(".update_announcement_image").val("");
+      $(".update_announcement_image").val("");    
 
     });
+
+    function getUpdate_employee_account(account) {
+      switch (account) {
+        case account:
+          $('.update_employee_account').val(account);
+          break;
+        default:
+          $('.update_employee_account').val(account);
+          break;
+      }
+      $('.update_employee_account').selectpicker('refresh');
+    }
+
+
+
+
+
+
 
     function getUpdate_announcement_type(type) {
       switch (type) {
         case "公告":
-          $('.selectpicker').val('0');
+          $('.update_announcement_type').val('0');
           break;
         case "商品":
-          $('.selectpicker').val('1');
+          $('.update_announcement_type').val('1');
           break;
         case "服務":
-          $('.selectpicker').val('2');
+          $('.update_announcement_type').val('2');
           break;
         case "優惠折扣":
-          $('.selectpicker').val('3');
+          $('.update_announcement_type').val('3');
           break;
 
         default:
-          $('.selectpicker').val('0');
+          $('.update_announcement_type').val(type);
           break;
       }
-      $('.selectpicker').selectpicker('render');
+      $('.update_announcement_type').selectpicker('refresh');
     }
 
-    function getUpdate_announcement_status(type) {
-      switch (type) {
+    function getUpdate_announcement_status(status) {
+      switch (status) {
         case "未公告":
-          $('.selectpicker').val('0');
+          $('.update_announcement_status').val('0');
           break;
         case "已公告":
-          $('.selectpicker').val('1');
+          $('.update_announcement_status').val('1');
           break;
         default:
-          $('.selectpicker').val('0');
+          $('.update_announcement_status').val(status);
           break;
       }
-      $('.selectpicker').selectpicker('render');
+      $('.update_announcement_status').selectpicker('refresh');
     }
 
 

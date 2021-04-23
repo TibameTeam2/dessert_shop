@@ -274,6 +274,8 @@ public class BucketListDaoImpl implements BucketListDao {
 		return list;
 	}
 
+	
+	//假刪除
 	@Override
 	public void changeBucketListStatusToZero(String member_account, Integer product_id) {
 
