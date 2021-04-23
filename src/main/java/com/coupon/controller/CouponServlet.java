@@ -136,8 +136,19 @@ public class CouponServlet extends BaseServlet {
 //		
 //		String member_email = memberSvc.getOneMember(member_account).getMember_email( );
 		
-		MailUtil.send(member_email, "text", "text", false);
-		System.out.println("寄信囉~~");
+		String emailT = req.getParameter("emailT");
+		String emailC = req.getParameter("emailC");
+		String sendEmail = req.getParameter("sendEmail");
+		
+		System.out.println("emailT = " + emailT);
+		System.out.println("emailC = " + emailC);
+		System.out.println("sendEmail = "+ sendEmail);
+		
+		if (sendEmail != null) {
+			MailUtil.send(member_email, emailT, emailC, false);
+			System.out.println("寄信囉~~");
+		}
+		
 		ResultInfo info = new ResultInfo();
 		// 創建結果 準備返回前端
 		if (flag) {
