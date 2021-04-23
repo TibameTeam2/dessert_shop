@@ -632,7 +632,7 @@
 										<img class="image-hover" src="${product_img2}" alt="product">
 									</a>
 									<div class="product-action">
-										<a href="#收藏網頁" class="action"><i class="lar la-heart"></i></a>
+										<a href="javascript:void(0)" class="action wish"><i class="lar la-heart"></i></a>
 										<a href="javascript:void(0)" class="action compare"><i class="las la-sync"></i></a>
 										<a href="#跳出燈箱" class="action search" data-bs-toggle="modal"
 									  	 data-bs-target="#quick-view" ><i class="las la-search"></i></a>
@@ -715,6 +715,7 @@
 			}
 			//等商品渲染完後，把比較商品的比較按鈕上色
 			getCompareList();
+			getWishList();
 
 
 
@@ -758,7 +759,7 @@
 									<img class="image-hover" src="${product_img2}" alt="product">
 								</a>
 								<div class="product-action">
-									<a href="#收藏網頁" class="action"><i class="lar la-heart"></i></a>
+									<a href="javascript:void(0)" class="action wish"><i class="lar la-heart"></i></a>
 									<a href="javascript:void(0)" class="action compare"><i class="las la-sync"></i></a>
 									<a href="#" class="action search" data-bs-toggle="modal"
 								  	 data-bs-target="#quick-view" ><i class="las la-search"></i></a>
@@ -912,7 +913,7 @@
 			console.log("加入購物車的數量:"+single_purchase);
 
 			// API要給id 跟數量 如果頁面沒有數量可以選 設為1
-			$.post("/dessert_shop/cart/insertProductIntoCart?product_id="+product_id+"&product_quantity="+single_purchase,{},function(data){
+			$.post("/dessert_shop/cart/insertProductIntoCart",{"product_id":product_id, "product_quantity":single_purchase},function(data){
 				console.log("加入購物車回傳的flag:"+data.flag);
 				// 判斷是否登入
 				if(data.flag == false){
@@ -1037,6 +1038,85 @@
 	}
 
 </script>
+
+
+
+
+<script>
+
+//收藏相關
+$('body').on('click', 'a.wish', function(e){
+
+	let ProductId = $(this).closest('div.single-product').attr('id');
+	console.log(ProductId);
+	console.log($(this));
+
+	if($(this).hasClass('-on')){
+
+		//將收藏鈕的綠色消除
+		$(this).removeClass('-on');
+		$(this).css('background-color', '#fff');
+		$(this).css('color', '#000');
+
+		//要將wishlist_k.html頁面內該商品的bucket_list_status改為0
+		changeBucketListStatusToZero(ProductId);
+
+		//更改header收藏鈕的數字
+		wishQtyMinusOne();
+
+	} else {
+
+		//加上綠色
+		$(this).css("background-color","#83bc2e");
+		$(this).css("color","#fff");
+		$(this).addClass("-on");
+
+		// 加入收藏，判斷是否重複product_id
+		addBcuketList(ProductId);
+
+		//更改header收藏鈕的數字
+		wishQtyPlusOne();
+
+	}
+
+
+})
+
+function changeBucketListStatusToZero(ProductId){
+	$.get("/dessert_shop/bucketList/changeBucketListStatusToZero", {"ProductId" : ProductId}, function() {
+	})
+}
+
+
+function addBcuketList(ProductId){
+	$.post("/dessert_shop/bucketList/addBucketList", {"ProductId" : ProductId}, function() {
+	})
+}
+
+function getWishList(){
+
+	//取得目前wishlist_k.html頁面內的商品們的id, 在product_all頁面將已加入wishlist_k.html之商品們, 收藏鈕變為綠色
+	$.get("/dessert_shop/bucketList/getMyBucketList", {}, function(data) {
+
+		for (let i = 0; i < data.data.length; i++) {
+	    let product_id = data.data[i].product_id;
+
+			$("#" + product_id).find("a.wish").addClass("-on");
+			$("#" + product_id).find("a.wish").css("background-color","#83bc2e");
+			$("#" + product_id).find("a.wish").css("color","#fff");
+		}
+
+  })
+
+}
+
+</script>
+
+
+
+
+
+
 </body>
 
 </html>

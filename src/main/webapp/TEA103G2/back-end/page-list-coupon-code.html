@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>POS Dash | Responsive Bootstrap 4 Admin Dashboard Template</title>
+  <title>嗜甜-優惠碼管理</title>
 
   <!-- Favicon -->
   <link rel="shortcut icon" href="assets/images/favicon.ico" />
@@ -458,31 +458,32 @@
                             <div class="form-group">
                               <label>優惠碼序號</label>
                               <input type="text" class="form-control" placeholder="Enter coupon_code"
-                                data-errors="Please Enter coupon_code."
-                                name="coupon_code" required>
+                                data-errors="Please Enter coupon_code." name="coupon_code" required>
                               <div class="help-block with-errors"></div>
                             </div>
                           </div>
+
+
                           <div class="col-md-6">
                             <div class="form-group">
                               <label>編輯員工</label>
-                              <input type="text" class="form-control" placeholder="Enter employee_account"
-                                data-errors="Please Enter Code." name="employee_account" required>
-                              <div class="help-block with-errors"></div>
+                              <!-- <input type="text" class="form-control" placeholder="Enter employee_account"
+                                data-errors="Please Enter Code." name="employee_account" required> -->
+                              <!-- <div class="help-block with-errors"></div> -->
 
-                              <!-- <select name="type" class="selectpicker form-control" data-style="py-0">
-                          <option value="jason">jason</option>
-                          <option value="james">james</option>
-                          <option value="peter">peter</option>
-                              </select> -->
+                              <select name="employee_account" class="selectpicker form-control" id="zzz"
+                                data-style="py-0">
+                                <option value="">選擇員工</option>
+                              </select>
                             </div>
                           </div>
+
                           <div class="col-md-6">
                             <div class="form-group">
                               <label>優惠碼生效日期時間</label>
-                              <input type="datetime-local" step="01" class="form-control" placeholder="Enter YYYY-MM-DD hh:mm:ss"
-                                data-errors="Please Enter Code." name="coupon_code_effective_date"
-                                required>
+                              <input type="datetime-local" step="01" class="form-control"
+                                placeholder="Enter YYYY-MM-DD hh:mm:ss" data-errors="Please Enter Code."
+                                name="coupon_code_effective_date" required>
                               <div class="help-block with-errors"></div>
                             </div>
                           </div>
@@ -490,9 +491,9 @@
                           <div class="col-md-6">
                             <div class="form-group">
                               <label>優惠碼到期日期時間</label>
-                              <input type="datetime-local" step="01" class="form-control" placeholder="Enter YYYY-MM-DD hh:mm:ss"
-                                data-errors="Please Enter Code." name="coupon_code_expire_date"
-                                required>
+                              <input type="datetime-local" step="01" class="form-control"
+                                placeholder="Enter YYYY-MM-DD hh:mm:ss" data-errors="Please Enter Code."
+                                name="coupon_code_expire_date" required>
                               <div class="help-block with-errors"></div>
                             </div>
                           </div>
@@ -505,8 +506,7 @@
                                 data-errors="Please Enter Code." id="announcement_status" name="announcement_status"
                                 required> -->
                               <div class="help-block with-errors"></div>
-                              <select name="discount_type" class="selectpicker form-control" data-style="py-0"
-                                >
+                              <select name="discount_type" class="selectpicker form-control" data-style="py-0">
                                 <option value="0">打折(*)</option>
                                 <option value="1">折價(-)</option>
                               </select>
@@ -517,8 +517,7 @@
                             <div class="form-group">
                               <label>優惠碼內容</label>
                               <input type="text" class="form-control" placeholder="Enter coupon_code_content"
-                                data-errors="Please Enter Code." name="coupon_code_content"
-                                required>
+                                data-errors="Please Enter Code." name="coupon_code_content" required>
                               <div class="help-block with-errors"></div>
                             </div>
                           </div>
@@ -528,10 +527,10 @@
                           <!-- <div class="col-md-6">
                             <div class="form-group">
                               <label>公告類別</label> -->
-                              <!-- <input type="text" class="form-control" placeholder="Enter Code"
+                          <!-- <input type="text" class="form-control" placeholder="Enter Code"
                                 data-errors="Please Enter Code." id="announcement_type" name="announcement_type"
                                 required> -->
-                              <!-- <div class="help-block with-errors"></div>
+                          <!-- <div class="help-block with-errors"></div>
                               <select name="announcement_type" class="selectpicker form-control" data-style="py-0"
                                 id="announcement_type">
                                 <option value="0">公告</option>
@@ -554,7 +553,7 @@
                             <div class="form-group">
                               <label>優惠碼文字內容</label>
                               <textarea class="form-control" rows="4" data-errors="Please Enter Code."
-                                 name="coupon_code_text_content" required></textarea>
+                                name="coupon_code_text_content" required></textarea>
                               <div class="help-block with-errors"></div>
                             </div>
 
@@ -602,8 +601,8 @@
                             <div class="form-group">
                               <label>優惠碼ID</label>
                               <input type="text" class="form-control update_coupon_code_id" placeholder=""
-                                data-errors="Please Enter xxx." id="coupon_code_id"
-                                name="coupon_code_id" required name="coupon_code_id" readonly>
+                                data-errors="Please Enter xxx." id="coupon_code_id" name="coupon_code_id" required
+                                name="coupon_code_id" readonly>
                               <div class="help-block with-errors"></div>
                             </div>
                           </div>
@@ -619,32 +618,34 @@
                           <div class="col-md-6">
                             <div class="form-group">
                               <label>編輯員工</label>
-                              <input type="text" class="form-control update_employee_account" placeholder="Enter employee_account"
+                              <!-- <input type="text" class="form-control update_employee_account" placeholder="Enter employee_account"
                                 data-errors="Please Enter Code." id="employee_account" name="employee_account" required name="employee_account">
-                              <div class="help-block with-errors"></div>
+                              <div class="help-block with-errors"></div> -->
 
-                              <!-- <select name="type" class="selectpicker form-control" data-style="py-0">
-                          <option value="jason">jason</option>
-                          <option value="james">james</option>
-                          <option value="peter">peter</option>
-                               </select> -->
+                              <select name="employee_account" class="selectpicker form-control update_employee_account"
+                                id="yyy" data-style="py-0">
+                                <option value="">選擇員工</option>
+                              </select>
                             </div>
                           </div>
                           <div class="col-md-6">
                             <div class="form-group">
                               <label>優惠碼生效日期時間</label>
-                              <input type="datetime-local" step="01" class="form-control update_coupon_code_effective_date" placeholder="Enter coupon_code_effective_date"
-                                data-errors="Please Enter Code." id="coupon_code_effective_date" name="coupon_code_effective_date"
-                                required name="coupon_code_effective_date">
+                              <input type="datetime-local" step="01"
+                                class="form-control update_coupon_code_effective_date"
+                                placeholder="Enter coupon_code_effective_date" data-errors="Please Enter Code."
+                                id="coupon_code_effective_date" name="coupon_code_effective_date" required
+                                name="coupon_code_effective_date">
                               <div class="help-block with-errors"></div>
                             </div>
                           </div>
                           <div class="col-md-6">
                             <div class="form-group">
                               <label>優惠碼到期日期時間</label>
-                              <input type="datetime-local" step="01" class="form-control update_coupon_code_expire_date" placeholder="Enter coupon_code_expire_date"
-                                data-errors="Please Enter Code." id="coupon_code_expire_date" name="coupon_code_expire_date"
-                                required name="coupon_code_expire_date">
+                              <input type="datetime-local" step="01" class="form-control update_coupon_code_expire_date"
+                                placeholder="Enter coupon_code_expire_date" data-errors="Please Enter Code."
+                                id="coupon_code_expire_date" name="coupon_code_expire_date" required
+                                name="coupon_code_expire_date">
                               <div class="help-block with-errors"></div>
                             </div>
                           </div>
@@ -655,10 +656,9 @@
                                 data-errors="Please Enter Code." id="announcement_status" name="announcement_status"
                                 required> -->
                               <div class="help-block with-errors"></div>
-                              <select name="discount_type"
-                                class="selectpicker form-control update_discount_type" data-style="py-0"
-                                id="discount_type">
-                                <option value="0">打扣(*)</option>
+                              <select name="discount_type" class="selectpicker form-control update_discount_type"
+                                data-style="py-0" id="discount_type">
+                                <option value="0">打折(*)</option>
                                 <option value="1">折價(-)</option>
                               </select>
                             </div>
@@ -668,9 +668,9 @@
                           <div class="col-md-6">
                             <div class="form-group">
                               <label>優惠碼內容</label>
-                              <input type="text" class="form-control update_coupon_code_content" placeholder="Enter Code"
-                                data-errors="Please Enter Code." id="coupon_code_content" name="coupon_code_content"
-                                required>
+                              <input type="text" class="form-control update_coupon_code_content"
+                                placeholder="Enter Code" data-errors="Please Enter Code." id="coupon_code_content"
+                                name="coupon_code_content" required>
                               <div class="help-block with-errors"></div>
                               <!-- <select name="discount_type"
                                 class="selectpicker form-control update_discount_type" data-style="py-0"
@@ -685,10 +685,10 @@
                           <!-- <div class="col-md-6">
                             <div class="form-group">
                               <label>公告類別</label> -->
-                              <!-- <input type="text" class="form-control" placeholder="Enter Code"
+                          <!-- <input type="text" class="form-control" placeholder="Enter Code"
                                 data-errors="Please Enter Code." id="announcement_type" name="announcement_type"
                                 required> -->
-                              <!-- <div class="help-block with-errors"></div>
+                          <!-- <div class="help-block with-errors"></div>
                               <select name="announcement_type"
                                 class="selectpicker form-control update_announcement_type" data-style="py-0"
                                 id="announcement_type">
@@ -713,8 +713,8 @@
                             <div class="form-group">
                               <label>優惠碼文字內容</label>
                               <textarea class="form-control update_coupon_code_text_content" rows="4"
-                                data-errors="Please Enter Code." id="coupon_code_text_content" name="coupon_code_text_content"
-                                required name ="coupon_code_text_content"></textarea>
+                                data-errors="Please Enter Code." id="coupon_code_text_content"
+                                name="coupon_code_text_content" required name="coupon_code_text_content"></textarea>
                               <div class="help-block with-errors"></div>
                             </div>
 
@@ -844,34 +844,51 @@
             // console.log(data.data[i].announcement_image),
 
 
-              table.row.add([
-                data.data[i].coupon_code_id,
-                data.data[i].coupon_code,
-                // data.data[i].announcement_content,
+            table.row.add([
+              data.data[i].coupon_code_id,
+              data.data[i].coupon_code,
+              // data.data[i].announcement_content,
 
-                // '<img class="table-img" src="data:image/png;base64,${announcement_image}">',
+              // '<img class="table-img" src="data:image/png;base64,${announcement_image}">',
 
-                // data.data[i].announcement_image,
-                getTime(data.data[i].coupon_code_effective_date),
-                getTime(data.data[i].coupon_code_expire_date),
-                data.data[i].coupon_code_text_content,
-                data.data[i].coupon_code_content,
-                // data.data[i].announcement_time,
-                // getType(data.data[i].announcement_type),
-                // data.data[i].announcement_type,
-                // data.data[i].announcement_type,
-                // data.data[i].member_gender == 1 ? "男" : "女",
+              // data.data[i].announcement_image,
+              getTime(data.data[i].coupon_code_effective_date),
+              getTime(data.data[i].coupon_code_expire_date),
+              data.data[i].coupon_code_text_content,
+              data.data[i].coupon_code_content,
+              // data.data[i].announcement_time,
+              // getType(data.data[i].announcement_type),
+              // data.data[i].announcement_type,
+              // data.data[i].announcement_type,
+              // data.data[i].member_gender == 1 ? "男" : "女",
 
-                // getTime(data.data[i].register_time),
-                // getRegisterMethod(data.data[i].register_method),
-                data.data[i].discount_type == 0 ? "打折(*)" : "折價(-)",
-                // '<img class="table-img" src="/dessert_shop/member/backend_getPhoto?id=' + data.data[i].member_account + '">',
-                // '<img class="table-img" src="data:image/png;base64,data.data[i].announcement_image">',
-                data.data[i].employee_account,
+              // getTime(data.data[i].register_time),
+              // getRegisterMethod(data.data[i].register_method),
+              data.data[i].discount_type == 0 ? "打折(*)" : "折價(-)",
+              // '<img class="table-img" src="/dessert_shop/member/backend_getPhoto?id=' + data.data[i].member_account + '">',
+              // '<img class="table-img" src="data:image/png;base64,data.data[i].announcement_image">',
+              data.data[i].employee_account,
 
-                action
-              ]).draw(false);
+              action
+            ]).draw(false);
           }
+
+
+          $.post("/dessert_shop/employee/backend_getAll", {}, function (data) {
+
+            if (data.flag) {
+              for (var i = 0; i < data.data.length; i++) {
+                console.log("我在哪" + data.data[i].employee_account + "編號" + [i]);
+                $('#zzz').append(`<option value="` + data.data[i].employee_account + `">` + data.data[i].employee_account + `</option>`);
+              }
+              $('#zzz').selectpicker('refresh');
+              for (var i = 0; i < data.data.length; i++) {
+                console.log("我在哪" + data.data[i].employee_account + "編號" + [i]);
+                $('#yyy').append(`<option value="` + data.data[i].employee_account + `">` + data.data[i].employee_account + `</option>`);
+              }
+              $('#yyy').selectpicker('refresh');
+            }
+          });
 
 
         } else {
@@ -952,53 +969,44 @@
       $(".update_coupon_code_id").val(data[0]);
       $(".update_coupon_code").val(data[1]);
       // $(".update_announcement_content").val(data[2]);
-      $(".update_employee_account").val(data[7]);
+      // $(".update_employee_account").val(data[7]);
       $(".update_coupon_code_text_content").val(data[4]);
-      $(".update_coupon_code_effective_date").val(moment(data[2]).format('YYYY-MM-DD'));
-      $(".update_coupon_code_expire_date").val(moment(data[3]).format('YYYY-MM-DD'));
+      $(".update_coupon_code_effective_date").val(moment(data[2]).format('YYYY-MM-DDThh:mm:ss.SSS'));
+      $(".update_coupon_code_expire_date").val(moment(data[3]).format('YYYY-MM-DDThh:mm:ss.SSS'));
       $(".update_coupon_code_content").val(data[5]);
       // getUpdate_announcement_type(data[5]);
       getUpdate_discount_type(data[6]);
+      getUpdate_employee_account(data[7]);
       // $(".update_member_password").val("");
       // $(".update_announcement_image").val("");
 
     });
 
-    // function getUpdate_announcement_type(type) {
-    //   switch (type) {
-    //     case "公告":
-    //       $('.selectpicker').val('0');
-    //       break;
-    //     case "商品":
-    //       $('.selectpicker').val('1');
-    //       break;
-    //     case "服務":
-    //       $('.selectpicker').val('2');
-    //       break;
-    //     case "優惠折扣":
-    //       $('.selectpicker').val('3');
-    //       break;
-
-    //     default:
-    //       $('.selectpicker').val('0');
-    //       break;
-    //   }
-    //   $('.selectpicker').selectpicker('render');
-    // }
+    function getUpdate_employee_account(account) {
+      switch (account) {
+        case account:
+          $('.update_employee_account').val(account);
+          break;
+        default:
+          $('.update_employee_account').val(account);
+          break;
+      }
+      $('.update_employee_account').selectpicker('refresh');
+    }
 
     function getUpdate_discount_type(type) {
       switch (type) {
         case "打折(*)":
-          $('.selectpicker').val('0');
+          $('.update_discount_type').val('0');
           break;
         case "折價(-)":
-          $('.selectpicker').val('1');
+          $('.update_discount_type').val('1');
           break;
         default:
-          $('.selectpicker').val('0');
+          $('.update_discount_type').val(type);
           break;
       }
-      $('.selectpicker').selectpicker('render');
+      $('.update_discount_type').selectpicker('refresh');
     }
 
 

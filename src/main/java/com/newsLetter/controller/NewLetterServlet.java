@@ -68,7 +68,7 @@ public class NewLetterServlet extends BaseServlet {
 		} catch (IllegalAccessException | InvocationTargetException e) {
 			e.printStackTrace();
 		}
-
+		
 		newsLetterBean.setNewsletter_status(0);
 
 		// 讀取圖片
@@ -76,8 +76,16 @@ public class NewLetterServlet extends BaseServlet {
 		InputStream in = part.getInputStream();
 		byte[] buf = new byte[in.available()];
 		in.read(buf);
-		newsLetterBean.setNewsletter_image(buf);
 		in.close();
+
+		if (buf.length == 0) {
+
+			newsLetterBean.setNewsletter_image(null);
+
+		} else {
+
+			newsLetterBean.setNewsletter_image(buf);
+		}
 
 		boolean flag = newsLetterSvc.addNewsLetter(newsLetterBean);
 
@@ -91,6 +99,90 @@ public class NewLetterServlet extends BaseServlet {
 			info.setFlag(false);
 			info.setMsg("新增失敗!");
 		}
+		writeValueByWriter(res, info);
+	}
+
+	/*********************** 更新電子報(後臺) ***********************/
+	public void backend_updateNewsLetter(HttpServletRequest req, HttpServletResponse res)
+			throws IOException, ServletException {
+
+		Map<String, String[]> map1 = req.getParameterMap();
+		Map<String, String[]> map = new HashMap<String, String[]>(map1);
+
+		String[] str = map.get("newsletter_releasing_time")[0].split("T");
+		String newsletter_releasing_time = str[0] + " " + str[1];
+
+		System.out.println("map= " + new ObjectMapper().writeValueAsString(map));
+		System.out.println("newsletter_releasing_time=" + newsletter_releasing_time);
+
+		String[] temp = new String[1];
+		temp[0] = newsletter_releasing_time;
+
+		map.replace("newsletter_releasing_time", temp);
+
+		NewsLetterBean newsLetterBean = new NewsLetterBean();
+		try {
+			BeanUtils.populate(newsLetterBean, map);
+		} catch (IllegalAccessException | InvocationTargetException e) {
+			e.printStackTrace();
+		}
+
+		newsLetterBean.setNewsletter_status(0);
+
+		// 讀取圖片
+		Part part = req.getPart("newsletter_image");
+		InputStream in = part.getInputStream();
+		byte[] buf = new byte[in.available()];
+		in.read(buf);
+		in.close();
+
+		if (buf.length != 0) {
+			newsLetterBean.setNewsletter_image(buf);
+		} else {
+			newsLetterBean.setNewsletter_image(null);
+		}
+
+		boolean flag = newsLetterSvc.updateNewsLetter(newsLetterBean);
+
+		System.out.println(newsLetterBean);
+
+		ResultInfo info = new ResultInfo();
+		if (flag) {
+			info.setFlag(true);
+			info.setMsg("更新成功!");
+		} else {
+			info.setFlag(false);
+			info.setMsg("更新失敗!");
+		}
+		writeValueByWriter(res, info);
+	}
+
+	/*********************** 刪除電子報(後臺) ***********************/
+	public void backend_deleteNewsLetter(HttpServletRequest req, HttpServletResponse res) {
+
+		Integer newsletter_id = new Integer(req.getParameter("newsletter_id"));
+
+		System.out.println(newsletter_id);
+		ResultInfo info = new ResultInfo();
+
+		newsLetterSvc.deleteNewsLetter(newsletter_id);
+		info.setFlag(true);
+		info.setMsg("已刪除電子報!");
+
+		writeValueByWriter(res, info);
+	}
+	
+	/*********************** 寄送電子報(後臺) ***********************/
+	public void sendNewsLetter(HttpServletRequest req, HttpServletResponse res) {
+		
+		Integer newsletter_id = new Integer(req.getParameter("newsletter_id"));	
+		
+		newsLetterSvc.sendNewsLetter(newsletter_id);
+		
+		ResultInfo info = new ResultInfo();
+		info.setFlag(true);
+		
+		info.setMsg("已寄送電子報!");
 		writeValueByWriter(res, info);
 	}
 

@@ -353,12 +353,12 @@
       $("div.order_master_id").find("label").text("訂單編號："+data[0]);
       $("div.order_master_id").find("input").val(data[0]);
 
-      getUpdate_member_status(data[6]);
+      getUpdate_order_status(data[6]);
 
     });
 
 
-    function getUpdate_member_status(status) {
+    function getUpdate_order_status(status) {
         switch (status) {
             case "未付款":
                 $('select.update_order_status').val('0');

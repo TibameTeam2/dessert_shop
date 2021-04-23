@@ -24,7 +24,7 @@ public class NewsLetterDaoImpl implements NewsLetterDao{
 
 
 	private static final String INSERT_STMT ="INSERT INTO sweet.newsletter (newsletter_content,newsletter_image, newsletter_releasing_time,newsletter_status,employee_account) VALUES (?, ?, ?, ?, ?)";
-	private static final String UPDATE ="UPDATE newsletter set newsletter_content=?, newsletter_image=?, newsletter_releasing_time=? where newsletter_id = ?";
+	private static final String UPDATE ="UPDATE newsletter set newsletter_content=?, newsletter_image=?, newsletter_releasing_time=?, newsletter_status=? where newsletter_id = ?";
 	private static final String DELETE ="DELETE FROM sweet.newsletter where newsletter_id = ?";
 	private static final String GET_ONE_STMT ="SELECT * FROM newsletter where newsletter_id = ?";
 	private static final String GET_ALL_STMT ="select * from sweet.newsletter";		
@@ -91,7 +91,8 @@ public class NewsLetterDaoImpl implements NewsLetterDao{
 			pstmt.setString(1, newsletterBean.getNewsletter_content());
 			pstmt.setBytes(2, newsletterBean.getNewsletter_image());
 			pstmt.setTimestamp(3, newsletterBean.getNewsletter_releasing_time());
-			pstmt.setInt(4, newsletterBean.getNewsletter_id());
+			pstmt.setInt(4, newsletterBean.getNewsletter_status());			
+			pstmt.setInt(5, newsletterBean.getNewsletter_id());
 
 			// 更新筆數
 			int count = pstmt.executeUpdate();
@@ -134,7 +135,7 @@ public class NewsLetterDaoImpl implements NewsLetterDao{
 
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userid, passwd);
-			pstmt = con.prepareStatement(UPDATE);
+			pstmt = con.prepareStatement(DELETE);
 
 			pstmt.setInt(1, newsletter_id);
 
@@ -330,7 +331,7 @@ public class NewsLetterDaoImpl implements NewsLetterDao{
 
 
 //        // 刪除
-//       dao.delete(4);
+//       dao.delete(6);
 //
 //        // 查詢
 //		NewsLetterBean newsletterBean = dao.findByPrimaryKey(3);

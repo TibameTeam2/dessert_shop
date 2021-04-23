@@ -30,13 +30,12 @@
 }
 
 .form-container {
-    display: grid;
+    display: block;
     grid-column-gap: 10px;
     grid-template-columns: auto auto;
     grid-template-rows: 90px 90px 90px;
     grid-template-areas: "name name""number number""expiration security";
-    max-width: 400px;
-    padding: 20px;
+    max-width: 300px;
     color: #707070;
 }
 
@@ -221,7 +220,7 @@
 
 #cardfront .st12 {
     fill: #4C4C4C;
-}
+} */
 
 /* BACK OF CARD */
 #cardback .st0 {
@@ -280,9 +279,9 @@
 }
 
 /* FLIP ANIMATION */
-.container {
+/* .container {
     perspective: 1000px;
-}
+} */
 
 .creditcard {
     width: 100%;

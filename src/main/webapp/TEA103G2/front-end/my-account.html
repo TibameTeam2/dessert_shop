@@ -61,21 +61,25 @@
 
 
     /* 縮合 開始 */
-    ul.order_master_comment_list {
+    ul.order_master_comment_list,
+    ul.book_detail_list {
       margin: 24px 0 0 0;
       padding: 0;
       list-style: none;
     }
 
-    ul.order_master_comment_list>li {
+    ul.order_master_comment_list>li,
+    ul.book_detail_list>li {
       margin-bottom: 30px;
     }
 
-    ul.order_master_comment_list>li:last-child {
+    ul.order_master_comment_list>li:last-child,
+    ul.book_detail_list>li:last-child {
       margin-bottom: 0;
     }
 
-    ul.order_master_comment_list>li {
+    ul.order_master_comment_list>li,
+    ul.book_detail_list>li {
       /* ul.order_master_comment_list > li > a.link_title{ */
       display: block;
       width: 100%;
@@ -89,7 +93,8 @@
       font-weight: normal;
     }
 
-    ul.order_master_comment_list>li::after {
+    ul.order_master_comment_list>li::after,
+    ul.book_detail_list>li::after {
       /* ul.order_master_comment_list > li > a.link_title::after{ */
       content: "";
       display: block;
@@ -143,7 +148,7 @@
     <a class="logo" href="#">
       <img src="assets/images/sweetness_logo.png" data-logo-alt="images/files/logo-header.png" alt="">
 
-<!--      <img src="assets/images/logo.jpg" data-logo-alt="images/files/logo-header.png" alt="">-->
+      <!--      <img src="assets/images/logo.jpg" data-logo-alt="images/files/logo-header.png" alt="">-->
       <!--        <h3><span class="colored">Astron</span></h3>-->
       <!--        <span>HTML Template</span>-->
     </a><!-- .logo end -->
@@ -201,9 +206,9 @@
                   <a data-bs-toggle="pill" href="#pills-payment"><i class="fa fa-credit-card"></i>
                     信用卡資訊</a>
                 </li>
-<!--                <li>-->
-<!--                  <a data-bs-toggle="pill" href="#pills-address"><i class="fa fa-map-marker"></i> 地址(用不到)</a>-->
-<!--                </li>-->
+                <li>
+                  <a data-bs-toggle="pill" href="#pills-booking"><i class="fa fa-user-plus"></i>訂位資訊</a>
+                </li>
                 <li>
                   <a class="active" data-bs-toggle="pill" href="#pills-account"><i class="fa fa-user"></i>
                     帳號詳細資訊</a>
@@ -238,194 +243,182 @@
 
                   <!-- 訂單資料顯示區 -->
 
-            </ul>
-          </div>
-
-
-          <div class="tab-pane fade" id="pills-download">
-            <div class="my-account-download account-wrapper">
-              <h4 class="account-title">Download</h4>
-              <div class="account-table text-center mt-30 table-responsive">
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th class="name">Product</th>
-                      <th class="date">Date</th>
-                      <th class="status">Expire</th>
-                      <th class="action">Download</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Mostarizing Oil</td>
-                      <td>Aug 22, 2020</td>
-                      <td>Yes</td>
-                      <td><a href="#">Download File</a></td>
-                    </tr>
-                    <tr>
-                      <td>Katopeno Altuni</td>
-                      <td>July 22, 2020</td>
-                      <td>Never</td>
-                      <td><a href="#">Download File</a></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-
-          <div class="tab-pane fade" id="pills-payment">
-            <div class="my-account-payment account-wrapper">
-              <h4 class="account-title">信用卡資料</h4>
-              <p class="mt-30 card_empty">您未擁有任何信用卡</p>
-
-              <div>
-
-                <div class="card_list" style="overflow: auto;">
-
-                    <!-- 放信用卡資料 -->
-
-                </div>
-
-                <div class="form-container">
-
-                  <div class="field-container">
-                      <label for="cardnumber">卡號</label>
-                      <input id="cardnumber" class="form-control" type="text" pattern="[0-9]*"
-                          inputmode="numeric">
-                      <svg id="ccicon" class="ccicon" width="750" height="471" viewBox="0 0 750 471"
-                          version="1.1" xmlns="http://www.w3.org/2000/svg"
-                          xmlns:xlink="http://www.w3.org/1999/xlink">
-                      </svg>
-                  </div>
-                  <div class="field-container">
-                      <label for="expirationdate">有效期限 (mm/yy)</label>
-                      <input id="expirationdate" class="form-control" type="text" pattern="[0-9]*"
-                          inputmode="numeric">
-                  </div>
-                  <div class="field-container">
-                      <label for="securitycode">安全碼</label>
-                      <input id="securitycode" class="form-control" type="text" pattern="[0-9]*"
-                          inputmode="numeric">
-                      
-                  </div>
-                  <div style="margin: auto;">
-                    <button type="button" class="insert_card">新增</button>
-                  </div>
-                    
+                </ul>
               </div>
 
-            </div>
 
-
-            </div>
-          </div>
-
-          <div class="tab-pane fade" id="pills-address">
-            <div class="my-account-address account-wrapper">
-              <div class="row">
-                <div class="col-md-6">
-                  <h4 class="account-title">Billing address</h4>
-                  <div class="account-address mt-30">
-                    <h6 class="name">Alex Tuntuni</h6>
-                    <p>1355 Market St, Suite 900 <br> San Francisco, CA 94103</p>
-                    <p>Mobile: (123) 456-7890</p>
-                    <a class="btn btn-primary btn-hover-dark" href="#"><i class="fa fa-edit"></i> Edit Address</a>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <h4 class="account-title">Shipping address</h4>
-                  <div class="account-address mt-30">
-                    <h6 class="name">Alex Tuntuni</h6>
-                    <p>1355 Market St, Suite 900 <br> San Francisco, CA 94103</p>
-                    <p>Mobile: (123) 456-7890</p>
-                    <a class="btn btn-primary btn-hover-dark" href="#"><i class="fa fa-edit"></i> Edit Address</a>
+              <div class="tab-pane fade" id="pills-download">
+                <div class="my-account-download account-wrapper">
+                  <h4 class="account-title">Download</h4>
+                  <div class="account-table text-center mt-30 table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th class="name">Product</th>
+                          <th class="date">Date</th>
+                          <th class="status">Expire</th>
+                          <th class="action">Download</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Mostarizing Oil</td>
+                          <td>Aug 22, 2020</td>
+                          <td>Yes</td>
+                          <td><a href="#">Download File</a></td>
+                        </tr>
+                        <tr>
+                          <td>Katopeno Altuni</td>
+                          <td>July 22, 2020</td>
+                          <td>Never</td>
+                          <td><a href="#">Download File</a></td>
+                        </tr>
+                      </tbody>
+                    </table>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
 
-          <div class="tab-pane fade show active" id="pills-account">
-            <div class="my-account-details account-wrapper">
-              <h4 class="account-title">個人資料</h4>
+              <div class="tab-pane fade" id="pills-payment">
+                <div class="my-account-payment account-wrapper">
+                  <h4 class="account-title">信用卡資料</h4>
+                  <p class="mt-30 card_empty">您未擁有任何信用卡</p>
 
-              <div class="account-details">
-                <form id="update_form" action="javascript:void(0)" enctype="multipart/form-data">
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="single-form preview">
-                        <img class="img-fluid " id="member_photo" src="assets/images/logo.jpg"
-                          data-logo-alt="images/files/logo-header.png" alt="">
-                        <br>
-                      </div>
-                      <div>
-                        <input type="file" name="upfile" id="p_file">
-                        <!--<input type="text" class="form-control" name="member_name">-->
-                      </div>
+                  <div>
+
+                    <div class="card_list" style="overflow: auto;">
+
+                      <!-- 放信用卡資料 -->
+
                     </div>
-                    <div class="col-md-6">
-                      <div class="single-form">
-                        <label class="form-label">姓名</label>
-                        <input type="text" class="form-control" name="member_name">
+
+
+                    <div class="form-container">
+
+                      <div class="field-container">
+                        <label for="cardnumber">卡號</label>
+                        <input id="cardnumber" class="form-control" type="text" pattern="[0-9]*" inputmode="numeric">
+                        <svg id="ccicon" class="ccicon" width="750" height="471" viewBox="0 0 750 471" version="1.1"
+                          xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        </svg>
                       </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="single-form">
-                        <label class="form-label">帳號</label>
-                        <input type="text" class="form-control" name="member_account" value="123" disabled="disabled">
-                        <!--<label class="form-label" id="member_account"></label>-->
+                      <div class="field-container">
+                        <label for="expirationdate">有效期限 (mm/yy)</label>
+                        <input id="expirationdate" class="form-control" type="text" pattern="[0-9]*"
+                          inputmode="numeric">
                       </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="single-form">
-                        <label class="form-label">手機</label>
-                        <input type="text" class="form-control" name="member_phone">
+                      <div class="field-container">
+                        <label for="securitycode">安全碼</label>
+                        <input id="securitycode" class="form-control" type="text" pattern="[0-9]*" inputmode="numeric">
+
                       </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="single-form">
-                        <label class="form-label">信箱</label>
-                        <input type="text" class="form-control" name="member_email">
+                      <div style="float: right;">
+                        <button type="button" class="insert_card">新增</button>
                       </div>
+
                     </div>
-                    <div class="col-md-12">
-                      <label class="form-label">性別</label><br>
-                      <input class="form-check-input" type="radio" name="member_gender" id="radio1" value="1" checked>
-                      <label for="radio1"><span></span>男</label>
-                      <input class="form-check-input" type="radio" name="member_gender" id="radio2" value="0">
-                      <label for="radio2"><span></span>女</label>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="single-form">
-                        <label class="form-label">生日</label>
-                        <input type="date" class="form-control" name="member_birthday">
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="single-form">
-                        <button class="btn btn-primary btn-hover-dark submit">儲存修改</button>
-                      </div>
-                      <div>
-                        <button class="btn btn-primary btn-hover-dark" id="bindLine">綁定Line帳號</button>
-                      </div>
-                    </div>
-                    <input type="hidden" name="member_account" value="">
+
                   </div>
-                </form>
+
+
+                </div>
+              </div>
+
+              <div class="tab-pane fade" id="pills-booking">
+                <div class="my-account-address account-wrapper">
+
+                  <h4 class="account-title">訂位明細</h4>
+                  <ul class="book_detail_list">
+
+                    <!-- 訂位明細顯示區 -->
+
+                  </ul>
+
+                </div>
+              </div>
+
+              <div class="tab-pane fade show active" id="pills-account">
+                <div class="my-account-details account-wrapper">
+                  <h4 class="account-title">個人資料</h4>
+
+                  <div class="account-details">
+                    <form id="update_form" action="javascript:void(0)" enctype="multipart/form-data">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="single-form preview">
+                            <img class="img-fluid " id="member_photo" src="assets/images/logo.jpg"
+                              data-logo-alt="images/files/logo-header.png" alt="">
+                            <br>
+                          </div>
+                          <div>
+                            <input type="file" name="upfile" id="p_file">
+                            <!--<input type="text" class="form-control" name="member_name">-->
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="single-form">
+                            <label class="form-label">姓名</label>
+                            <input type="text" class="form-control" name="member_name">
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="single-form">
+                            <label class="form-label">帳號</label>
+                            <input type="text" class="form-control" name="member_account" value="123"
+                              disabled="disabled">
+                            <!--<label class="form-label" id="member_account"></label>-->
+                          </div>
+                        </div>
+                        <div class="col-md-12">
+                          <div class="single-form">
+                            <label class="form-label">手機</label>
+                            <input type="text" class="form-control" name="member_phone">
+                          </div>
+                        </div>
+                        <div class="col-md-12">
+                          <div class="single-form">
+                            <label class="form-label">信箱</label>
+                            <input type="text" class="form-control" name="member_email">
+                          </div>
+                        </div>
+                        <div class="col-md-12">
+                          <label class="form-label">性別</label><br>
+                          <input class="form-check-input" type="radio" name="member_gender" id="radio1" value="1"
+                            checked>
+                          <label for="radio1"><span></span>男</label>
+                          <input class="form-check-input" type="radio" name="member_gender" id="radio2" value="0">
+                          <label for="radio2"><span></span>女</label>
+                        </div>
+                        <div class="col-md-12">
+                          <div class="single-form">
+                            <label class="form-label">生日</label>
+                            <input type="date" class="form-control" name="member_birthday">
+                          </div>
+                        </div>
+                        <div class="col-md-12">
+                          <div class="single-form">
+                            <button class="btn btn-primary btn-hover-dark submit">儲存修改</button>
+                          </div>
+                          <div>
+                            <button class="btn btn-primary btn-hover-dark" id="bindLine">綁定Line帳號</button>
+                          </div>
+                        </div>
+                        <input type="hidden" name="member_account" value="">
+                      </div>
+                    </form>
+                  </div>
+                </div>
               </div>
             </div>
+            <!-- Tab content End -->
           </div>
         </div>
-        <!-- Tab content End -->
       </div>
     </div>
-  </div>
-  </div>
-  <!-- My Account Section End -->
+    <!-- My Account Section End -->
 
-  <!--Footer-->
-  <div class="footer"></div>
+    <!--Footer-->
+    <div class="footer"></div>
 
   </div>
 
@@ -664,7 +657,7 @@
                       <span class="detail">訂單編號 : <span class="order_master_id">${data.data[0][i].order_master_id}</span></span>
                       <span class="detail">下訂時間 : <span class="order_time">${getTime(data.data[0][i].order_time)}</span></span>
                       <br>
-                      <span class="detail">付款時間 : <span class="payment_time">${data.data[0][i].payment_time == null ? "無": getTime(data.data[0][i].payment_time)}</span></span>
+                      <span class="detail">付款時間 : <span class="payment_time">${data.data[0][i].payment_time == null ? "無" : getTime(data.data[0][i].payment_time)}</span></span>
                       <br>
                       <span class="detail">發票號碼	: <span class="invoice_number">${data.data[0][i].invoice_number == null ? "無" : data.data[0][i].invoice_number}</span></span>
                       <span class="detail">優惠碼 : <span	class="coupon_id">${data.data[2][i]}</span></span>
@@ -725,7 +718,7 @@
 
 
         } else {
-          
+
           if (data.redirect) {
             location.href = data.redirect;
           }
@@ -743,7 +736,7 @@
 
           if (data.data.length != 0) {
 
-          for (var i = 0; i < data.data.length; i++) {
+            for (var i = 0; i < data.data.length; i++) {
 
               let card = `<div style="padding-bottom: 5px;">
                           <span style="padding-right: 5px; font-size: 20px;" id="card-${data.data[i].card_id}" data-card_id="${data.data[i].card_id}" data-card_number="${data.data[i].card_number}" data-card_expired_day="${data.data[i].card_expired_day}" data-card_cvc="${data.data[i].card_cvc}">
@@ -751,14 +744,14 @@
                           </div>`;
 
               $("div.card_list").append(card);
-          }
+            }
 
-          $("p.card_empty").text("");
+            $("p.card_empty").text("");
           }
 
 
         } else {
-          
+
         }
 
 
@@ -766,25 +759,75 @@
 
 
 
+      //載入訂位明細
+      $.get("/dessert_shop/bookRecord/getBookDetailData", {}, function (data) {
+        console.log(data);
+        if (data.flag) {
+
+          for (var i = 0; i < data.data.length; i++) {
+
+            let book_detail_list = `<li class="book_detail_${data.data[i].booking_detail_id}" data-booking_detail_id="${data.data[i].booking_detail_id}">
+                      <div class="post-meta" style="margin-bottom: 0px; border-top: 1px solid white; border-bottom: 1px solid white">
+                      <span class="detail">訂位明細編號 : <span class="booking_detail_id">${data.data[i].booking_detail_id}</span></span>
+                      <span class="detail">下訂時間 : <span class="booking_establish_time">${getTime(data.data[i].booking_establish_time)}</span></span>
+                      <br>
+                      <span class="detail">訂位時間 : <span class="booking_time">${getTime(data.data[i].booking_time)}</span></span>
+                      <br>
+                      <span class="detail">訂位者姓名	: <span class="booking_name">${data.data[i].booking_name}</span></span>
+                      <span class="detail">連絡電話 : <span	class="contact_num">${data.data[i].contact_num}</span></span>
+                      <span class="detail">訂位人數	: <span class="people_num">${data.data[i].people_num}</span> </span>
+                      <br> 
+                      <span class="detail">訂位備註 : <span	class="book_postscript">${data.data[i].book_postscript}</span></span>
+                      <br>
+                      <span class="detail">訂位狀態 : <span class="booking_status">${getBookingStatus(data.data[i].booking_status)}</span></span>
+                    </div>
+                    </li>`;
+
+            $("ul.book_detail_list").prepend(book_detail_list);
+
+            //取消訂位按鈕
+            if (data.data[i].booking_status == 0) {
+
+              let cancel_btn = `<button style="margin-left: 5px;" type="button" class="cancel_booking">取消訂位</button>`;
+
+              $(`li.book_detail_${data.data[i].booking_detail_id}`).find("span.booking_status").after(cancel_btn);
+            }
+
+
+          }
+
+
+        } else {
+
+        }
+
+
+      });  //get
+
+
+
+
+
+
     });  //function
 
 
     function getTime(time) {
-            return moment(time).format('YYYY-MM-DD HH:mm:ss')
+      return moment(time).format('YYYY-MM-DD HH:mm:ss')
     }
 
     function getPaymentMethod(method) {
       switch (method) {
-        case 1 :
+        case 1:
           return "信用卡付款";
-        case 2 :
+        case 2:
           return "到店付款";
-        case 3 :
+        case 3:
           return "匯款";
-        default :
+        default:
           return method;
       }
-    } 
+    }
 
     function getOrderStatus(method) {
       switch (method) {
@@ -795,11 +838,25 @@
         case 2:
           return "已完成";
         case 3:
-          return "已取消";  
+          return "已取消";
         default:
           return method;
       }
     }
+
+    function getBookingStatus(method) {
+      switch (method) {
+        case 0:
+          return "已訂位";
+        case 1:
+          return "已完成";
+        case 2:
+          return "已取消";
+        default:
+          return method;
+      }
+    }
+
 
 
 
@@ -816,47 +873,47 @@
     $("ul.order_master_comment_list").on("click", "button.cancel_order", function (e) {
 
       let order_master_id = $(this).closest("li").attr("data-order_master_id");
-      
+
       Swal.fire({
-      title: '確定取消訂單?',
-      text: "",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: '是',
-      cancelButtonText: '否'
-        }).then((result) => {
+        title: '確定取消訂單?',
+        text: "",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: '是',
+        cancelButtonText: '否'
+      }).then((result) => {
 
-          if (result.isConfirmed) {
-            
-            $.post("/dessert_shop/orderMaster/cancelOrderMaster", {"order_master_id": order_master_id}, function(data) {
-              console.log(data);
+        if (result.isConfirmed) {
 
-              if (data.flag) { 
+          $.post("/dessert_shop/orderMaster/cancelOrderMaster", { "order_master_id": order_master_id }, function (data) {
+            console.log(data);
 
-                Swal.fire({
-                        icon: 'success',
-                        title: '訂單已取消!',
-                        showConfirmButton: false,
-                        timer: 1000
-                        }).then(function () {
-                            location.href = data.redirect;
-                        });
+            if (data.flag) {
 
-              } else {
-                  alert(data.msg);
-                  if (data.redirect) {
-                      location.href = data.redirect;
-                  }
+              Swal.fire({
+                icon: 'success',
+                title: '訂單已取消!',
+                showConfirmButton: false,
+                timer: 1000
+              }).then(function () {
+                location.href = data.redirect;
+              });
+
+            } else {
+              alert(data.msg);
+              if (data.redirect) {
+                location.href = data.redirect;
               }
+            }
 
-            });  //post
+          });  //post
 
-          }
+        }
 
 
-        });  //then
+      });  //then
 
 
     });
@@ -866,24 +923,24 @@
     $("ul.order_master_comment_list").on("click", "button.pay_code", function (e) {
 
       let order_master_id = $(this).closest("li").attr("data-order_master_id");
-          
-      $.post("/dessert_shop/orderMaster/findPayCode", {"order_master_id": order_master_id}, function(data) {
+
+      $.post("/dessert_shop/orderMaster/findPayCode", { "order_master_id": order_master_id }, function (data) {
         console.log(data);
 
-            if (data.flag) { 
+        if (data.flag) {
 
-              Swal.fire({
-                title: '查詢銀行帳戶代碼：\n\n' + data.data
-              });
+          Swal.fire({
+            title: '查詢銀行帳戶代碼：\n\n' + data.data
+          });
 
-            } else {
-                alert(data.msg);
-                if (data.redirect) {
-                    location.href = data.redirect;
-                }
-            }
+        } else {
+          alert(data.msg);
+          if (data.redirect) {
+            location.href = data.redirect;
+          }
+        }
 
-          });  //post
+      });  //post
 
 
     });
@@ -891,62 +948,112 @@
 
     //新增信用卡
     $("button.insert_card").on("click", function () {
-        let card_number = $("input#cardnumber").val();
-        let card_expired_day = $("input#expirationdate").val();
-        let card_cvc = $("input#securitycode").val();
+      let card_number = $("input#cardnumber").val();
+      let card_expired_day = $("input#expirationdate").val();
+      let card_cvc = $("input#securitycode").val();
 
-        if (card_number == "" || card_expired_day == "" || card_cvc == "") {
-            alert("信用卡資料請勿空白!");
-        } else {
+      if (card_number == "" || card_expired_day == "" || card_cvc == "") {
+        alert("信用卡資料請勿空白!");
+      } else {
 
-            $.post("/dessert_shop/orderMaster/insertCreditCard", { "card_number": card_number, "card_expired_day": card_expired_day, "card_cvc": card_cvc }, function (data) {
-                console.log(data);
-                if (data.flag) {
-                    let card = `<div style="padding-bottom: 5px;">
+        $.post("/dessert_shop/orderMaster/insertCreditCard", { "card_number": card_number, "card_expired_day": card_expired_day, "card_cvc": card_cvc }, function (data) {
+          console.log(data);
+          if (data.flag) {
+            let card = `<div style="padding-bottom: 5px;">
                             <span style="padding-right: 5px; font-size: 20px;" id="card-${data.data.card_id}" data-card_id="${data.data.card_id}" data-card_number="${data.data.card_number}" data-card_expired_day="${data.data.card_expired_day}" data-card_cvc="${data.data.card_cvc}">
                             卡號：${data.data.card_number}</span><button type="button" class="delete_card">刪除</button>
                             </div>`;
 
-                    $("div.card_list").append(card);
+            $("div.card_list").append(card);
 
-                    $("p.card_empty").text("");
+            $("p.card_empty").text("");
 
-                } else {
-                    alert(data.msg);
-                    if (data.redirect) {
-                        location.href = data.redirect;
-                    }
-                }
+          } else {
+            alert(data.msg);
+            if (data.redirect) {
+              location.href = data.redirect;
+            }
+          }
 
-            });  //post
+        });  //post
 
-        }
+      }
 
     });
 
 
     //刪除信用卡
     $("div.card_list").on("click", "button.delete_card", function () {
-        let card_id = $(this).siblings("span").attr("data-card_id");
-        let card = $(this).closest("div");
-        $.post("/dessert_shop/orderMaster/deleteCreditCard", { "card_id": card_id }, function (data) {
+      let card_id = $(this).siblings("span").attr("data-card_id");
+      let card = $(this).closest("div");
+      $.post("/dessert_shop/orderMaster/deleteCreditCard", { "card_id": card_id }, function (data) {
+        console.log(data);
+        if (data.flag) {
+
+          card.remove();
+
+          if ($("div.card_list").children("div").length == 0) {
+            $("p.card_empty").text("您未有任何信用卡");
+          }
+
+        } else {
+          alert(data.msg);
+          if (data.redirect) {
+            location.href = data.redirect;
+          }
+        }
+
+      });  //post
+
+
+    });
+
+
+    //取消訂位
+    $("ul.book_detail_list").on("click", "button.cancel_booking", function (e) {
+
+      let booking_detail_id = $(this).closest("li").attr("data-booking_detail_id");
+
+      Swal.fire({
+        title: '確定取消訂位?',
+        text: "",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: '是',
+        cancelButtonText: '否'
+      }).then((result) => {
+
+        if (result.isConfirmed) {
+
+          $.post("/dessert_shop/bookRecord/cancelBooking", { "booking_detail_id": booking_detail_id }, function (data) {
             console.log(data);
+
             if (data.flag) {
 
-                card.remove();
-
-                if ($("div.card_list").children("div").length == 0) {
-                    $("p.card_empty").text("您未有任何信用卡");
-                }
+              Swal.fire({
+                icon: 'success',
+                title: '訂位已取消!',
+                showConfirmButton: false,
+                timer: 1000
+              }).then(function () {
+                location.href = data.redirect;
+              });
 
             } else {
-                alert(data.msg);
-                if (data.redirect) {
-                    location.href = data.redirect;
-                }
+              alert(data.msg);
+              if (data.redirect) {
+                location.href = data.redirect;
+              }
             }
 
-        });  //post
+          });  //post
+
+        }
+
+
+      });  //then
 
 
     });

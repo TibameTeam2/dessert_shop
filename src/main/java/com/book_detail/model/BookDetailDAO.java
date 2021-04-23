@@ -308,6 +308,118 @@ public class BookDetailDAO {
 	}
 	
 	
+	public List<BookDetailBean> getAllByMemberAccount(String member_account) {
+		SELECT_ALL =
+			"SELECT * FROM book_detail where member_account = ?";
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		List<BookDetailBean> list_BookDetailBean = new ArrayList<BookDetailBean>();
+		BookDetailBean bdBean = null;
+		
+		
+		try {
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			pstmt = con.prepareStatement(SELECT_ALL);
+			
+			pstmt.setString(1, member_account);
+			
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				bdBean = new BookDetailBean();
+				bdBean.setBooking_detail_id(rs.getInt("booking_detail_id"));
+				bdBean.setMember_account(rs.getString("member_account"));
+				bdBean.setBooking_establish_time(rs.getTimestamp("booking_establish_time"));
+				bdBean.setBooking_time(rs.getTimestamp("booking_time"));
+				bdBean.setPeople_num(rs.getInt("people_num"));
+				bdBean.setBooking_status(rs.getInt("booking_status"));
+				bdBean.setBook_postscript(rs.getString("book_postscript"));
+				bdBean.setContact_num(rs.getString("contact_num"));
+				bdBean.setBooking_name(rs.getString("booking_name"));
+				list_BookDetailBean.add(bdBean);
+			}
+			
+			
+			// Handle any driver errors
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. "
+					+ e.getMessage());
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		
+		return list_BookDetailBean;
+		
+	}
+	
+	
+	public void update_status(BookDetailBean bdBean) {
+		UPDATE =
+			"UPDATE book_detail set booking_status = ? where booking_detail_id = ?";
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		
+		try {
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			pstmt = con.prepareStatement(UPDATE);
+			
+			pstmt.setInt(1, bdBean.getBooking_status());
+			pstmt.setInt(2, bdBean.getBooking_detail_id());
+			
+			pstmt.executeUpdate();
+			
+			// Handle any driver errors
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. "
+					+ e.getMessage());
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		
+	}
+	
+	
 	public static void main(String[] args) {
 		BookDetailDAO dao = new BookDetailDAO();
 	

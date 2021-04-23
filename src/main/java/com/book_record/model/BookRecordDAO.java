@@ -27,6 +27,7 @@ public class BookRecordDAO {
 	String UPDATE;
 	String DELETE;
 	String SELECT_ALL;
+	String SELECT_ALL_OPEN;
 	String SELECT_PK;
 	
 	
@@ -243,6 +244,69 @@ public class BookRecordDAO {
 	}
 	
 	
+	public BookRecordBean findByBookingDate(java.sql.Date booking_date) {
+		SELECT_PK =
+			"SELECT * FROM book_record where booking_date = ?";
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+				
+		BookRecordBean brBean = null;
+		
+		
+		try {
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			pstmt = con.prepareStatement(SELECT_PK);
+			
+			pstmt.setDate(1, booking_date);
+			
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				brBean = new BookRecordBean();
+				brBean.setBook_record_id(rs.getInt("book_record_id"));
+				brBean.setBooking_date(rs.getDate("booking_date"));
+				brBean.setTen_total_count(rs.getInt("ten_total_count"));
+				brBean.setTwelve_total_count(rs.getInt("twelve_total_count"));
+				brBean.setFourteen_total_count(rs.getInt("fourteen_total_count"));
+				brBean.setSixteen_total_count(rs.getInt("sixteen_total_count"));
+				brBean.setEighteen_total_count(rs.getInt("eighteen_total_count"));
+				brBean.setTwenty_total_count(rs.getInt("twenty_total_count"));
+			}
+			
+			
+			// Handle any driver errors
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. "
+					+ e.getMessage());
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		
+		return brBean;
+		
+	}
+	
+	
 	public List<BookRecordBean> getAll() {
 		SELECT_ALL =
 			"SELECT * FROM book_record";
@@ -305,6 +369,134 @@ public class BookRecordDAO {
 		return list_BookRecordBean;
 		
 	}
+	
+	
+	public List<BookRecordBean> getAllOpen() {
+		SELECT_ALL_OPEN =
+			"SELECT * FROM book_record where booking_date > current_date() order by booking_date";
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		List<BookRecordBean> list_BookRecordBean = new ArrayList<BookRecordBean>();
+		BookRecordBean brBean = null;
+		
+		
+		try {
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			pstmt = con.prepareStatement(SELECT_ALL_OPEN);
+			
+			
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				brBean = new BookRecordBean();
+				brBean.setBook_record_id(rs.getInt("book_record_id"));
+				brBean.setBooking_date(rs.getDate("booking_date"));
+				brBean.setTen_total_count(rs.getInt("ten_total_count"));
+				brBean.setTwelve_total_count(rs.getInt("twelve_total_count"));
+				brBean.setFourteen_total_count(rs.getInt("fourteen_total_count"));
+				brBean.setSixteen_total_count(rs.getInt("sixteen_total_count"));
+				brBean.setEighteen_total_count(rs.getInt("eighteen_total_count"));
+				brBean.setTwenty_total_count(rs.getInt("twenty_total_count"));
+				list_BookRecordBean.add(brBean);
+			}
+			
+			
+			// Handle any driver errors
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. "
+					+ e.getMessage());
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		
+		return list_BookRecordBean;
+		
+	}
+	
+	
+	public BookRecordBean findByBookingDate(String booking_date) {
+		SELECT_PK =
+			"SELECT * FROM book_record where booking_date = ?";
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+				
+		BookRecordBean brBean = null;
+		
+		
+		try {
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			pstmt = con.prepareStatement(SELECT_PK);
+			
+			pstmt.setString(1, booking_date);
+			
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				brBean = new BookRecordBean();
+				brBean.setBook_record_id(rs.getInt("book_record_id"));
+				brBean.setBooking_date(rs.getDate("booking_date"));
+				brBean.setTen_total_count(rs.getInt("ten_total_count"));
+				brBean.setTwelve_total_count(rs.getInt("twelve_total_count"));
+				brBean.setFourteen_total_count(rs.getInt("fourteen_total_count"));
+				brBean.setSixteen_total_count(rs.getInt("sixteen_total_count"));
+				brBean.setEighteen_total_count(rs.getInt("eighteen_total_count"));
+				brBean.setTwenty_total_count(rs.getInt("twenty_total_count"));
+			}
+			
+			
+			// Handle any driver errors
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. "
+					+ e.getMessage());
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		
+		return brBean;
+		
+	}
+	
 	
 	
 	

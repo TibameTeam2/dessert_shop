@@ -512,10 +512,10 @@ CREATE TABLE newsletter (
     employee_account			VARCHAR(50) NOT NULL,
     CONSTRAINT newsletter_employee_FK FOREIGN KEY(employee_account) REFERENCES  employee(employee_account)
 )AUTO_INCREMENT=1;
-INSERT INTO newsletter(newsletter_content,newsletter_releasing_time,newsletter_status,employee_account)
-VALUES('以色列已經有近半數國民打了輝瑞新冠疫苗第一劑。以色列政府決定，2月21號開始，全國大部份解封，不過進入密閉空間、娛樂場所，仍必須下載以色列衛生部的「綠色通行證」，經認證後才可以進入。以色列直說，這是他們「回歸正常生活的開始」','2021-01-01','1','peter');
-INSERT INTO newsletter(newsletter_image,newsletter_releasing_time,newsletter_status,employee_account) VALUES (LOAD_FILE('C:/test_img/tomcat.png'),'2021-02-02','0','james');
-INSERT INTO newsletter(newsletter_content,newsletter_image,newsletter_releasing_time,newsletter_status,employee_account) VALUES ('譯自英文-托馬斯·貓（Thomas Cat）是一個虛構的角色，也是米高梅（Metro-Goldwyn-Mayer）的湯姆和傑瑞（Tom and Jerry）戲劇動畫短篇小說系列中兩個名義上的主角之一。',LOAD_FILE('C:/test_img/tomcat2.png'),'2021-02-02','0','james');
+INSERT INTO newsletter(newsletter_content,newsletter_image,newsletter_releasing_time,newsletter_status,employee_account) VALUES ('感恩母親節，4/20至4/30預購特惠中',LOAD_FILE('C:\\project\\images\\newsletter\\MotherDay.jpg'),'2021-04-15','0','james');
+INSERT INTO newsletter(newsletter_content,newsletter_image,newsletter_releasing_time,newsletter_status,employee_account) VALUES ('感恩父親節，7/20至7/31預購特惠中',LOAD_FILE('C:\\project\\images\\newsletter\\FatherDay2.jpg'),'2021-7-15','0','peter');
+INSERT INTO newsletter(newsletter_content,newsletter_image,newsletter_releasing_time,newsletter_status,employee_account) VALUES ('歡樂聖誕節，活動專屬商品特惠中',LOAD_FILE('C:\\project\\images\\newsletter\\Christmas.jpg'),'2021-12-01','0','james');
+INSERT INTO newsletter(newsletter_content,newsletter_image,newsletter_releasing_time,newsletter_status,employee_account) VALUES ('甜蜜情人節，活動專屬商品特惠中',LOAD_FILE('C:\\project\\images\\newsletter\\Valentines2.png'),'2021-02-01','0','jason');
 
 
 -- 即時客服 --
@@ -531,9 +531,9 @@ CREATE TABLE live_support (
     CONSTRAINT liveSupport_member_FK FOREIGN KEY(member_account) REFERENCES  member(member_account),
     CONSTRAINT liveSupport_employee_FK FOREIGN KEY(employee_account) REFERENCES  employee(employee_account)
 )AUTO_INCREMENT=1;
-INSERT INTO live_support(chat_history,sender,member_account,employee_account) VALUES ('我們需要神隊友','1','tom','peter');
-INSERT INTO live_support(chat_history,sender,member_account,employee_account) VALUES ('無此選項','0','tom','peter');
-INSERT INTO live_support(chat_history,sender,member_account,employee_account) VALUES ('那就放棄吧','1','tom','peter');
+INSERT INTO live_support(chat_history,sender,member_account,employee_account) VALUES ('請問連假營業時間','1','tom','peter');
+INSERT INTO live_support(chat_history,sender,member_account,employee_account) VALUES ('連假正常營業','0','tom','peter');
+INSERT INTO live_support(chat_history,sender,member_account,employee_account) VALUES ('謝謝!!','1','tom','peter');
 
 
 -- 通知 --
@@ -781,11 +781,13 @@ CREATE TABLE book_detail (
     constraint bookDetail_member_FK foreign key (member_account) references member (member_account)
 ) AUTO_INCREMENT = 1;
 INSERT INTO book_detail (member_account, booking_time, people_num, booking_status, book_postscript, contact_num, booking_name)
-VALUES ('jason', '2021-01-02 03:04:05', '7', '1', '紅色死神加兒童椅', '09-12345678', '紅色死神');
+VALUES ('jason', '2021-04-20 10:00:00', '7', '0', '兒童一位', '09-12345678', '紅傑森');
 INSERT INTO book_detail (member_account, booking_time, people_num, booking_status, book_postscript, contact_num, booking_name)
-VALUES ('tom', '2021-01-02 03:04:06', '8', '4', '藍色死神加個兒童椅', '09-12345672', '藍色死神');
+VALUES ('tom', '2021-04-21 12:00:00', '5', '1', '', '09-87654321', '藍湯姆');
 INSERT INTO book_detail (member_account, booking_time, people_num, booking_status, book_postscript, contact_num, booking_name)
-VALUES ('amy', '2021-01-02 03:04:07', '9', '1', '綠色死神加個兒童椅', '09-12345673', '綠色死神');
+VALUES ('amy', '2021-04-27 14:00:00', '6', '2', '兒童三位', '09-11222333', '綠艾咪');
+INSERT INTO book_detail (member_account, booking_time, people_num, booking_status, book_postscript, contact_num, booking_name)
+VALUES ('tom', '2021-04-28 16:00:00', '3', '0', '', '09-11111222', '黃湯姆');
 
 
 -- 訂位紀錄
@@ -802,11 +804,15 @@ CREATE TABLE book_record (
     twenty_total_count 	      tinyint not null
 ) AUTO_INCREMENT = 1;
 INSERT INTO book_record (booking_date, ten_total_count, twelve_total_count, fourteen_total_count, sixteen_total_count, eighteen_total_count, twenty_total_count)
-VALUES ('2021-01-02', '0', '1', '2', '3', '4', '5');
+VALUES ('2021-04-20', '7', '1', '12', '0', '4', '5');
 INSERT INTO book_record (booking_date, ten_total_count, twelve_total_count, fourteen_total_count, sixteen_total_count, eighteen_total_count, twenty_total_count)
-VALUES ('2021-01-03', '1', '2', '3', '4', '5', '6');
+VALUES ('2021-04-21', '0', '5', '3', '4', '15', '0');
 INSERT INTO book_record (booking_date, ten_total_count, twelve_total_count, fourteen_total_count, sixteen_total_count, eighteen_total_count, twenty_total_count)
-VALUES ('2021-01-04', '2', '3', '4', '5', '6', '7');
+VALUES ('2021-04-27', '5', '3', '6', '5', '0', '7');
+INSERT INTO book_record (booking_date, ten_total_count, twelve_total_count, fourteen_total_count, sixteen_total_count, eighteen_total_count, twenty_total_count)
+VALUES ('2021-04-28', '0', '20', '20', '5', '0', '10');
+INSERT INTO book_record (booking_date, ten_total_count, twelve_total_count, fourteen_total_count, sixteen_total_count, eighteen_total_count, twenty_total_count)
+VALUES ('2021-04-29', '0', '3', '0', '5', '14', '0');
 
 
 -- 梁語心------------------------------------------------------------------------------------------------------------

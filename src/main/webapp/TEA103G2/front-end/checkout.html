@@ -192,9 +192,9 @@
 
                             <div class="form-container -on">
 
-                                <sapn>請選擇您的信用卡</span>
+                                    <span>請選擇您的信用卡</span>
                                     <span class="card_empty">(您未有任何信用卡)</span>
-                                    <div class="card_list" style="overflow: auto;">
+                                    <div class="card_list">
 
                                         <!-- 放信用卡資料 -->
 
@@ -493,8 +493,8 @@
 
                         for (var i = 0; i < data.data[3].length; i++) {
 
-                            let card = `<div style="padding-bottom: 5px;"><input type="radio" class="card" id="card-${data.data[3][i].card_id}" name="card_list">
-                                        <label style="padding-right: 5px;" for="card-${data.data[3][i].card_id}" data-card_id="${data.data[3][i].card_id}" data-card_number="${data.data[3][i].card_number}" data-card_expired_day="${data.data[3][i].card_expired_day}" data-card_cvc="${data.data[3][i].card_cvc}">
+                            let card = `<div style="margin-bottom: 5px;"><input style="float: left;" type="radio" class="card" id="card-${data.data[3][i].card_id}" name="card_list">
+                                        <label style="margin-right: 5px; float: left;" for="card-${data.data[3][i].card_id}" data-card_id="${data.data[3][i].card_id}" data-card_number="${data.data[3][i].card_number}" data-card_expired_day="${data.data[3][i].card_expired_day}" data-card_cvc="${data.data[3][i].card_cvc}">
                                         卡號：${data.data[3][i].card_number}</label><button type="button" class="delete_card">刪除</button></div>`;
 
                             $("div.card_list").append(card);
@@ -532,8 +532,8 @@
                 $.post("/dessert_shop/cart/insertCreditCard", { "card_number": card_number, "card_expired_day": card_expired_day, "card_cvc": card_cvc }, function (data) {
                     console.log(data);
                     if (data.flag) {
-                        let card = `<div style="padding-bottom: 5px;"><input type="radio" class="card" id="card-${data.data.card_id}" name="card_list">
-                                <label style="padding-right: 5px;" for="card-${data.data.card_id}" data-card_id="${data.data.card_id}" data-card_number="${data.data.card_number}" data-card_expired_day="${data.data.card_expired_day}" data-card_cvc="${data.data.card_cvc}">
+                        let card = `<div style="margin-bottom: 5px;"><input style="float: left;" type="radio" class="card" id="card-${data.data.card_id}" name="card_list">
+                                <label style="margin-right: 5px; float: left;" for="card-${data.data.card_id}" data-card_id="${data.data.card_id}" data-card_number="${data.data.card_number}" data-card_expired_day="${data.data.card_expired_day}" data-card_cvc="${data.data.card_cvc}">
                                 卡號：${data.data.card_number}</label><button type="button" class="delete_card">刪除</button></div>`;
 
                         $("div.card_list").append(card);

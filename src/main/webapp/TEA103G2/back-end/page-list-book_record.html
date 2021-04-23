@@ -1,0 +1,340 @@
+﻿<!doctype html>
+<html lang="zh-Hant">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>嗜甜-訂位管理-訂位紀錄</title>
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="assets/images/favicon.ico" />
+  <link rel="stylesheet" href="assets/css/backend-plugin.min.css">
+  <link rel="stylesheet" href="assets/css/backend.css?v=1.0.0">
+  <link rel="stylesheet" href="assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="assets/vendor/line-awesome/dist/line-awesome/css/line-awesome.min.css">
+  <link rel="stylesheet" href="assets/vendor/remixicon/fonts/remixicon.css">
+
+
+  <style>
+    @media (min-width: 576px){ 
+
+      .modal-dialog{ 
+
+        max-width:400px !important; 
+
+      } 
+
+    } 
+
+
+  </style>
+
+
+</head>
+
+<body class="  ">
+  <!-- loader Start -->
+  <div id="loading">
+    <div id="loading-center">
+    </div>
+  </div>
+  <!-- loader END -->
+  <!-- Wrapper Start -->
+  <div class="wrapper">
+
+<!--Header--> 
+<div class="header"></div> 
+
+
+    <div class="content-page">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="d-flex flex-wrap align-items-center justify-content-between mb-4">
+              <div>
+                <h4 class="mb-3">訂位紀錄</h4>
+                <p class="mb-0"></p>
+              </div>
+              <a href="page-add-product.html" class="btn btn-primary add-list" data-toggle="modal"
+               data-target="#insert_modal"><i class="las la-plus mr-3"></i>新增訂位日</a>
+            </div>
+          </div>
+          <div class="col-lg-12">
+            <div class="table-responsive rounded mb-3">
+              <!-- =============================================== 表格 ================================================= -->
+              <table class="data-table table mb-0 tbl-server-info">
+
+                <thead class="bg-white text-uppercase">
+
+                  <tr class="ligth ligth-data">
+                    <th>訂單紀錄編號</th>
+                    <th>訂位日期</th>
+                    <th>10點訂位人數</th>
+                    <th>12點訂位人數</th>
+                    <th>14點訂位人數</th>
+                    <th>16點訂位人數</th>
+                    <th>18點訂位人數</th>
+                    <th>20點訂位人數</th>
+                    <th>動作</th>
+                  </tr>
+
+                </thead>
+
+                <tbody class="ligth-body">
+
+                  <!-- 訂位記錄顯示區 -->
+
+                </tbody>
+
+              </table>
+              <!-- ====================================================================================================== -->
+            </div>
+          </div>
+        </div>
+        <!-- Page end  -->
+      </div>
+
+      <!-- 新增可訂位日期燈箱 -->
+      <div class="modal fade" id="insert_modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-body">
+              <div class="popup text-left">
+
+                <div>
+                  <h4 class="mb-3">新增可訂位日期</h4>
+                </div>
+
+                <div class="card-body">
+                  <form id="insertBookRecordForm" action="page-list-product.html" data-toggle="validator" enctype="multipart/form-data">
+
+                    <div class="row">
+
+                      <div class="col-md-12">
+                        <div class="form-group booking_date">
+                          <label>訂位日期：</label>
+                          <input type="date" class="form-control insert_booking_date" placeholder=""
+                                 data-errors="Please Enter Name."
+                                 required name="booking_date" value="">
+                          <div class="help-block with-errors"></div>
+                        </div>
+                      </div>
+
+                    </div>
+                    <button type="submit" id="submit_insert_modal" class="btn btn-primary mr-2">新增</button>
+                    <button type="reset" id="insert_modal_close" class="btn btn-danger">取消</button>
+                  </form>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 新增可訂位日期燈箱結束 -->
+      
+
+
+    </div>
+  </div>
+  <!-- Wrapper End-->
+
+  <!-- Backend Bundle JavaScript -->
+  <script src="assets/js/backend-bundle.min.js"></script>
+
+  <!-- Table Treeview JavaScript -->
+  <script src="assets/js/table-treeview.js"></script>
+
+  <!-- Chart Custom JavaScript -->
+  <script src="assets/js/customizer.js"></script>
+
+  <!-- Chart Custom JavaScript -->
+  <script async src="assets/js/chart-custom.js"></script>
+
+  <!-- app JavaScript -->
+  <script src="assets/js/app.js"></script>
+
+  <!-- moment -->
+  <script src="assets/js/moment.js"></script>
+
+  <script> 
+
+    $(document).ready(function () { 
+
+        $('.header').load('header.html') 
+
+        // $('.footer').load('footer.html') 
+
+    }) 
+
+  </script> 
+
+
+
+  <script>
+    /****************進頁面先初始化表格*********************/
+    let table = $(".data-table").DataTable()
+    table.destroy();
+    table = $(".data-table").DataTable({
+      "lengthMenu": [3, 5, 10, 20],     //顯示XX像結果
+      "language": {
+        "processing": "處理中...",
+        "loadingRecords": "載入中...",
+        "lengthMenu": "顯示 _MENU_ 項結果",
+        "zeroRecords": "沒有符合的結果",
+        "info": "顯示第 _START_ 至 _END_ 項結果，共 _TOTAL_ 項",
+        "infoEmpty": "顯示第 0 至 0 項結果，共 0 項",
+        "infoFiltered": "(從 _MAX_ 項結果中過濾)",
+        "infoPostFix": "",
+        "search": "搜尋:",
+        "paginate": {
+          "first": "第一頁",
+          "previous": "上一頁",
+          "next": "下一頁",
+          "last": "最後一頁"
+        },
+        "aria": {
+          "sortAscending": ": 升冪排列",
+          "sortDescending": ": 降冪排列"
+        }
+      }
+      // "columnDefs": [
+      //   {
+      //     "targets": [],    //欄位從0開始算
+      //     "visible": true,   //欄位是否顯示 預設是true
+      //     "orderable": false  //是否可以排序
+      //   }
+      // ]
+    });
+    getAllBookRecord();
+
+
+
+    function getAllBookRecord() {
+      let action = `<div class="d-flex align-items-center list-action">
+                    <a class="badge bg-warning mr-2 delete" data-toggle="tooltip" data-placement="top" title=""
+                      data-original-title="Delete"
+                       href="javascript:void(0)"><i class="ri-delete-bin-line mr-0"></i></a>
+                  </div>`;
+
+      $.get("/dessert_shop/bookRecord/backend_getBookRecordData", {}, function (data) {
+        console.log(data);
+        if (data.flag) {
+          let table = $(".data-table").DataTable()
+          table.clear().draw();
+          for (let i = 0; i < data.data.length; i++) {
+            table.row.add([
+              data.data[i].book_record_id,
+              getTime(data.data[i].booking_date),
+              data.data[i].ten_total_count,
+              data.data[i].twelve_total_count,
+              data.data[i].fourteen_total_count,
+              data.data[i].sixteen_total_count,
+              data.data[i].eighteen_total_count,
+              data.data[i].twenty_total_count,
+              action
+            ]).draw(false);
+          }
+        } else {
+
+        }
+
+      });  //get
+
+
+    }  //function
+
+
+    function getTime(time) {
+      return moment(time).format('YYYY-MM-DD')
+    }
+
+
+    /*******************動作********************/
+    /*******************刪除********************/
+    $("tbody").on("click", "a.delete", function () {
+        let table = $(".data-table").DataTable()
+        let data = table.row($(this).closest('tr')).data();
+        // alert( 'You clicked on '+data[0]+'\'s row' );
+
+        $.post("/dessert_shop/bookRecord/backend_deleteBookRecord", {"book_record_id": data[0]}, function (data) {
+            console.log(data);
+            if (data.flag) {
+                // 刪除成功後跳轉頁面
+                getAllBookRecord();
+                Swal.fire({
+                    title: data.msg,
+                    text: "",
+                    icon: "success"
+                });
+            } else {
+                // 刪除失敗 彈出視窗
+                Swal.fire({
+                    title: data.msg,
+                    text: "",
+                    icon: "error"
+                })
+            }
+
+        });  //post
+
+    });
+
+
+
+    /*******************燈箱新增可訂位日期(訂位紀錄)********************/
+    $("#submit_insert_modal").click(function (e) {
+      e.preventDefault();
+      //表單提交時檢查所有屬性合法
+      //發送ajax請求，送出表單資料
+      console.log($("#insertBookRecordForm").serialize());
+
+      let form = $("#insertBookRecordForm")[0];
+      let data = new FormData(form);
+
+      $.ajax({
+          type: "POST",
+          enctype: 'multipart/form-data',
+          url: '/dessert_shop/bookRecord/backend_openBookingDate',
+          data: data,
+          processData: false,
+          contentType: false,
+          cache: false,
+          success: function (data) {
+          if (data.flag) {
+            Swal.fire({
+              title: data.msg,
+              text: "",
+              icon: "success"
+            });
+            getAllBookRecord();
+            $("#update_modal").modal('hide');
+            $("#updateOrderMasterForm").trigger("reset");
+          } else {
+            Swal.fire({
+              title: data.msg,
+              text: "",
+              icon: "error"
+            })
+          }
+        }
+      });  //ajax
+      return false;
+    });
+
+
+
+    /*******************燈箱關閉********************/
+    $("#insert_modal_close").click(function (e) {
+      e.preventDefault();
+      $("#insert_modal").modal('hide'); 
+    });
+
+
+
+  </script>
+
+
+</body>
+
+</html>
