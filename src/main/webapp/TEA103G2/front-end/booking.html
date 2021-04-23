@@ -40,6 +40,113 @@
     <link rel="stylesheet" href="assets/css/style.min.css"> -->
 
     <!------------------------------------------------------------- 頁面CSS ------------------------------------------------------------->
+    <style>
+        .book_h1 {
+            margin-top: 360px;
+            margin-bottom: 30px;
+            color: #95CACA;
+            font-weight: bolder;
+        }
+
+        label.booking_name_label {
+            margin-top: 20px;
+        }
+
+        label.contact_num_label {
+
+            margin-top: 20px;
+        }
+
+        label.booking_date_label {
+            margin-top: 20px;
+            margin-right: 5px;
+        }
+
+        label.booking_time_hour_label {
+            margin-top: 20px;
+            margin-left: 80px;
+            margin-right: 5px;
+        }
+
+        label.max-people_num_label {
+            margin-top: 20px;
+            margin-left: 80px;
+        }
+
+        label.book_postscript_label {
+            margin-top: 20px;
+        }
+
+        input.booking_name {
+            display: inline-block;
+            border: 1px solid rgb(196, 194, 194);
+            border-radius: 5px;
+            margin-left: 5px;
+        }
+
+        input.contact_num {
+            display: inline-block;
+            border: 1px solid rgb(196, 194, 194);
+            border-radius: 5px;
+            margin-left: 5px;
+        }
+
+        input.booking_date {
+            border: 1px solid rgb(196, 194, 194);
+            border-radius: 5px;
+        }
+
+        input.booking_time_hour {
+            border: 1px solid rgb(196, 194, 194);
+            border-radius: 5px;
+        }
+
+        span.max-people_num {
+            margin-left: 5px;
+        }
+
+        textarea.book_postscript {
+            width: 300px;
+            line-height: 3em;
+            margin-top: 20px;
+            margin-left: 5px;
+            border: 1px solid rgb(196, 194, 194);
+            border-radius: 5px;
+            vertical-align: middle;
+            resize: none;
+        }
+
+        a.btn-booking {
+            width: 100px;
+            margin-top: 10px;
+            border-radius: 15px;
+            vertical-align: bottom;
+            margin-left: 80px;
+            background-color: #95CACA;
+            border-color: #95CACA;
+        }
+
+        a.btn-go-index {
+            width: 100px;
+            margin-top: 10px;
+            border-radius: 15px;
+            margin-left: 20px;
+            vertical-align: bottom;
+            background-color: #95CACA;
+            border-color: #95CACA;
+        }
+
+
+        a.btn-booking:hover {
+            background-color:#6FB7B7;
+            border-color:#6FB7B7;
+        }
+
+        a.btn-go-index:hover{
+            background-color:#6FB7B7;
+            border-color:#6FB7B7;
+        }
+    </style>
 </head>
 
 <body class="body-scroll">
@@ -61,23 +168,15 @@
         </a><!-- .logo end -->
 
         <div class="lp-content">
-
             <div class="lp-counter">
-
                 Loading
-
                 <div id="lp-counter">0%</div>
-
             </div><!-- .lp-counter end -->
 
             <div class="lp-bar">
-
                 <div id="lp-bar"></div>
-
             </div><!-- .lp-bar end -->
-
         </div><!-- .lp-content end -->
-
     </div>
 
     <!-- #loading-progress end -->
@@ -105,19 +204,21 @@
 
 
         <!------------------------------------------------------------- Content ------------------------------------------------------------->
-        <div style="width: 800px;">
+        <div style="width:1000px; margin-left:50px;">
 
-            <h1>線上訂位系統</h1>
+            <h1 class="book_h1">線上訂位系統</h1>
 
             <div class="checkout-title">
-                <h4 class="title">訂位資訊</h4>
+                <h4 class="title" style="color:rgb(166 164 164);">訂位資訊</h4>
             </div>
 
             <div class="row">
                 <div class="col-sm-12">
                     <div class="single-form">
-                        <label class="form-label">訂位者姓名:</label>
-                        <input class="form-control booking_name"></input>
+                        <label class="form-label booking_name_label">訂位姓名 :</label>
+                        <input type="text" class="booking_name"></input>
+                        <input type="radio" name="male" id="male" style="margin-left: 10px;">&nbsp;男
+                        <input type="radio" name="female" id="female" style="margin-left: 10px;">&nbsp;女
                     </div>
                 </div>
             </div>
@@ -125,26 +226,43 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="single-form">
-                        <label class="form-label">連絡電話:</label>
-                        <input class="form-control contact_num"></input>
+                        <label class="form-label contact_num_label">連絡電話 :</label>
+                        <input class="contact_num"></input>
                     </div>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-sm-12">
-                    <div class="single-form">
-                        <label class="form-label">訂位日期:</label>
+                    <div class="single-form" style="display: inline-block;">
+                        <label class="form-label booking_date_label">訂位日期 :</label>
                         <select class="select2 booking_date" style="width: 120px;">
                         </select>
                     </div>
+
+                    <div class="single-form" style="display: inline-block;">
+                        <label class="form-label booking_time_hour_label">訂位時間 :</label>
+                        <select class="select2 booking_time_hour" style="width: 120px;">
+                            <option value="10:00:00">10:00:00</option>
+                            <option value="12:00:00">12:00:00</option>
+                            <option value="14:00:00">14:00:00</option>
+                            <option value="16:00:00">16:00:00</option>
+                            <option value="18:00:00">18:00:00</option>
+                            <option value="20:00:00">20:00:00</option>
+                        </select>
+                    </div>
+
+                    <div class="single-form people_num" style="display: inline-block;">
+                        <label class="form-label max-people_num_label">訂位人數 :</label>
+                        <span class="max-people_num">(剩餘可訂位人數:0)</span>
+                    </div>
                 </div>
             </div>
 
-            <div class="row">
+            <!-- <div class="row" >
                 <div class="col-sm-12">
-                    <div class="single-form">
-                        <label class="form-label">訂位時間:</label>
+                    <div class="single-form" style="display: inline-block;">
+                        <label class="form-label booking_time_hour_label">訂位時間:</label>
                         <select class="select2 booking_time_hour" style="width: 120px;">
                             <option value="10:00:00">10:00:00</option>
                             <option value="12:00:00">12:00:00</option>
@@ -155,28 +273,32 @@
                         </select>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col-sm-12">
                     <div class="single-form people_num">
                         <label class="form-label">訂位人數:</label>
                         <span class="max-people_num">(剩餘可訂位人數:0)</span>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
-            <div class="col-sm-12">
+            <div class="col-sm-12" style="margin-bottom:40px;">
                 <div class="single-form">
-                    <label class="form-label">訂位備註:</label>
-                    <textarea class="form-control book_postscript"></textarea>
+                    <label class="form-label book_postscript_label">訂位備註 :</label>
+                    <textarea class="book_postscript"></textarea>
+                    <a class="btn btn-shopping btn-primary btn-hover-dark  btn-booking"
+                        data-booking_people_num="0">送出</a>
+                    <a href="index.html" class="btn btn-shopping btn-primary btn-hover-dark  btn-go-index">回首頁</a>
                 </div>
             </div>
 
-            <div class="booking-btn mt-20">
-                <a class="btn btn-shopping btn-primary btn-hover-dark d-block btn-booking" data-booking_people_num="0">送出</a>
-                <a href="index.html" class="btn btn-shopping btn-primary btn-hover-dark d-block btn-go-index">回首頁</a>
-            </div>
+            <!-- <div class="booking-btn mt-20" style="margin-bottom: 20px;">
+                <a class="btn btn-shopping btn-primary btn-hover-dark  btn-booking"
+                     data-booking_people_num="0">送出</a>
+                 <a href="index.html" class="btn btn-shopping btn-primary btn-hover-dark  btn-go-index">回首頁</a>
+            </div> -->
 
 
         </div>
@@ -411,31 +533,31 @@
 
             //增加訂位人數
             $("div.people_num").on("click", "button.add", function () {
-                
+
                 let input = $(this).siblings("input.people_num");
                 let max_people_num = $("span.max-people_num").attr("data-max_people_num");
-                
+
                 if (parseInt(input.val()) < max_people_num) {
-                    input.val( parseInt(input.val()) + 1 );
+                    input.val(parseInt(input.val()) + 1);
                     $("a.btn-booking").attr("data-booking_people_num", input.val());
                 } else {
                     alert("訂位人數已達上限");
                 }
-                
+
             });
 
             //減少訂位人數
             $("div.people_num").on("click", "button.sub", function () {
-                
+
                 let input = $(this).siblings("input.people_num");
-                
+
                 if (parseInt(input.val()) > 1) {
-                    input.val( parseInt(input.val()) - 1 );
+                    input.val(parseInt(input.val()) - 1);
                     $("a.btn-booking").attr("data-booking_people_num", input.val());
                 } else {
                     alert("訂位人數不得小於1");
                 }
-                
+
             });
 
 
@@ -450,12 +572,14 @@
                 let people_num = $(this).attr("data-booking_people_num");
                 let book_postscript = $("textarea.book_postscript").val().trim();
 
-                let form =  {"booking_name":booking_name,
-                            "contact_num":contact_num,
-                            "booking_date":booking_date,
-                            "booking_time_hour":booking_time_hour,
-                            "people_num":people_num,
-                            "book_postscript":book_postscript};
+                let form = {
+                    "booking_name": booking_name,
+                    "contact_num": contact_num,
+                    "booking_date": booking_date,
+                    "booking_time_hour": booking_time_hour,
+                    "people_num": people_num,
+                    "book_postscript": book_postscript
+                };
 
                 $.post("/dessert_shop/bookRecord/setBookingDate", form, function (data) {
                     console.log(data);
