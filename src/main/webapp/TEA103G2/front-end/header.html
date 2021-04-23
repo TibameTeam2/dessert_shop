@@ -305,7 +305,7 @@
                         <div class="header-actions">
                             <div class="dropdown">
                                 <a class="action" href="#" role="button" data-bs-toggle="dropdown"><i
-                        class="lar la-user"></i></a>
+                                        class="lar la-user"></i></a>
 
                                 <ul class="dropdown-menu dropdown-profile">
                                     <li><a href="my-account.html">我的帳戶</a></li>
@@ -532,9 +532,12 @@
 
     <!-- Main JS -->
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/jquery.min.js"></script>
+
+
     <script>
         /********************************** 通知顯示資訊 **********************************/
-        $.post("/dessert_shop/notice/getAllNotice", function(data) {
+        $.post("/dessert_shop/notice/getAllNotice", function (data) {
             // console.log(data.data);
             if (data.flag) {
                 console.log(data.data);
@@ -548,18 +551,18 @@
                         let isOn = data.data[i].read_status == 0 ? "-on" : "";
                         // console.log(isOn);
                         $('div.notice_content>ul').prepend(
-                                `<a href=` + data.data[i].notice_dispatcher + `><li class="notice_li" type="button" id="` + noticeId + `"><div class="noticeLeft` + isOn + `">` + data.data[i].notice_content + `</div><div class="noticeRight` + isOn + `"></div></li></a>`
-                            )
-                            //                         console.log(i + "\n" + data.data[i].member_account + "\n" + data.data[i].notice_content);
-                            //                         console.log("noticeId=" + noticeId);
+                            `<a href=` + data.data[i].notice_dispatcher + `><li class="notice_li" type="button" id="` + noticeId + `"><div class="noticeLeft` + isOn + `">` + data.data[i].notice_content + `</div><div class="noticeRight` + isOn + `"></div></li></a>`
+                        )
+                        //                         console.log(i + "\n" + data.data[i].member_account + "\n" + data.data[i].notice_content);
+                        //                         console.log("noticeId=" + noticeId);
                         if (noticeStatus == 0) {
                             count += 1;
                         }
 
 
-                        $('li[id=' + noticeId + ']').on("click", function() {
+                        $('li[id=' + noticeId + ']').on("click", function () {
                             // 更新的請求 
-                            $.post("/dessert_shop/notice/alreadyReadNotice?notice_id=" + noticeId + "&member_account=" + memberAccount, function(response) {
+                            $.post("/dessert_shop/notice/alreadyReadNotice?notice_id=" + noticeId + "&member_account=" + memberAccount, function (response) {
                                 console.log("sucess");
                             })
                         })
@@ -581,7 +584,7 @@
         });
 
 
-        $.post("/dessert_shop/member/isLogin", function(response) {
+        $.post("/dessert_shop/member/isLogin", function (response) {
             if (response.flag) {
                 /********************************** webSocket **********************************/
                 var MyPoint = "/NoticeWS/" + response.data.member_account; //登入的帳號
@@ -592,54 +595,58 @@
                 var endPointURL = "ws://" + window.location.host + webCtx + MyPoint;
                 webSocket = new WebSocket(endPointURL);
                 //建立連線
-                webSocket.onopen = function(e) {
-                        console.log(response.data.member_account + "通知連線開啟");
-                    }
-                    //接收訊息
-                webSocket.onmessage = function(e) {
-                        $('div.notice_content>ul').prepend(
-                            `<li class="notice_li" type="button"><div class="noticeLeft-on" > ` + e.data + ` </div><div class="noticeRight-on"></div ></li>`
-                        )
-                        $('div.ws_content>ul').prepend(
-                            `<li class="ws_content_li" type="button"><span>` + e.data + `</span></li>`
-                        )
-                        timeout();
-                        console.log("接收訊息=" + e.data);
-                    }
-                    //發生錯誤
-                webSocket.onerror = function(e) {
+                webSocket.onopen = function (e) {
+                    console.log(response.data.member_account + "通知連線開啟");
+                }
+                //接收訊息
+                webSocket.onmessage = function (e) {
+                    $('div.notice_content>ul').prepend(
+                        `<li class="notice_li" type="button"><div class="noticeLeft-on" > ` + e.data + ` </div><div class="noticeRight-on"></div ></li>`
+                    )
+
+                    $('div.ws_content>ul').prepend(
+                        `<li class="ws_content_li" type="button"><span>` + e.data + `</span></li>`
+                    )
+                    timeout();
+
+
+
+                    console.log("接收訊息=" + e.data);
+                }
+                //發生錯誤
+                webSocket.onerror = function (e) {
                     console.log("錯誤訊息:", e);
                 };
 
                 //關閉連線
-                webSocket.onclose = function(e) {
+                webSocket.onclose = function (e) {
                     console.log("連線關閉");
                 }
-            } else {}
+            } else { }
         });
 
         /******************************* 通知滑鼠移入變色 *******************************/
-        $('img.bell').on('mouseover', function() {
+        $('img.bell').on('mouseover', function () {
             this.src = "assets/images/icon/bell2.png";
         });
-        $('img.bell').on('mouseout', function() {
+        $('img.bell').on('mouseout', function () {
             this.src = "assets/images/icon/bell.png";
         });
 
         /********************************** Funtion **********************************/
         function timeout() {
-            setTimeout(function() {
-                $('li.ws_content_li').last().fadeOut(300, function() {
+            setTimeout(function () {
+                $('li.ws_content_li').last().fadeOut(300, function () {
                     $(this).last().remove();
                 });
-            }, 5000);
+            }, 10000);
         }
     </script>
 
 
     <script>
         /********************************** 登入登出切換 **********************************/
-        $.get("/dessert_shop/member/isLogin", {}, function(data) {
+        $.get("/dessert_shop/member/isLogin", {}, function (data) {
             // console.log(data);
             if (data.flag) {
                 $('.login').html('<a href="javascript:logout()" className="logout">登出</a>');
@@ -650,11 +657,11 @@
                     $("img.user_icon").css('display', 'inline-block');
                     $('img.user_icon').attr("src", url + "/member/backend_getPhoto?id=" + data.data.member_account);
                 }
-            } else {}
+            } else { }
         });
 
         function logout() {
-            $.get("/dessert_shop/member/logout", {}, function(data) {
+            $.get("/dessert_shop/member/logout", {}, function (data) {
                 console.log(data);
                 if (data.flag) {
                     if (data.redirect)

@@ -512,10 +512,10 @@ CREATE TABLE newsletter (
     employee_account			VARCHAR(50) NOT NULL,
     CONSTRAINT newsletter_employee_FK FOREIGN KEY(employee_account) REFERENCES  employee(employee_account)
 )AUTO_INCREMENT=1;
-INSERT INTO newsletter(newsletter_content,newsletter_releasing_time,newsletter_status,employee_account)
-VALUES('以色列已經有近半數國民打了輝瑞新冠疫苗第一劑。以色列政府決定，2月21號開始，全國大部份解封，不過進入密閉空間、娛樂場所，仍必須下載以色列衛生部的「綠色通行證」，經認證後才可以進入。以色列直說，這是他們「回歸正常生活的開始」','2021-01-01','1','peter');
-INSERT INTO newsletter(newsletter_image,newsletter_releasing_time,newsletter_status,employee_account) VALUES (LOAD_FILE('C:/test_img/tomcat.png'),'2021-02-02','0','james');
-INSERT INTO newsletter(newsletter_content,newsletter_image,newsletter_releasing_time,newsletter_status,employee_account) VALUES ('譯自英文-托馬斯·貓（Thomas Cat）是一個虛構的角色，也是米高梅（Metro-Goldwyn-Mayer）的湯姆和傑瑞（Tom and Jerry）戲劇動畫短篇小說系列中兩個名義上的主角之一。',LOAD_FILE('C:/test_img/tomcat2.png'),'2021-02-02','0','james');
+INSERT INTO newsletter(newsletter_content,newsletter_image,newsletter_releasing_time,newsletter_status,employee_account) VALUES ('感恩母親節，4/20至4/30預購特惠中',LOAD_FILE('C:\\project\\images\\newsletter\\MotherDay.jpg'),'2021-04-15','0','james');
+INSERT INTO newsletter(newsletter_content,newsletter_image,newsletter_releasing_time,newsletter_status,employee_account) VALUES ('感恩父親節，7/20至7/31預購特惠中',LOAD_FILE('C:\\project\\images\\newsletter\\FatherDay2.jpg'),'2021-7-15','0','peter');
+INSERT INTO newsletter(newsletter_content,newsletter_image,newsletter_releasing_time,newsletter_status,employee_account) VALUES ('歡樂聖誕節，活動專屬商品特惠中',LOAD_FILE('C:\\project\\images\\newsletter\\Christmas.jpg'),'2021-12-01','0','james');
+INSERT INTO newsletter(newsletter_content,newsletter_image,newsletter_releasing_time,newsletter_status,employee_account) VALUES ('甜蜜情人節，活動專屬商品特惠中',LOAD_FILE('C:\\project\\images\\newsletter\\Valentines2.png'),'2021-02-01','0','jason');
 
 
 -- 即時客服 --
@@ -531,9 +531,9 @@ CREATE TABLE live_support (
     CONSTRAINT liveSupport_member_FK FOREIGN KEY(member_account) REFERENCES  member(member_account),
     CONSTRAINT liveSupport_employee_FK FOREIGN KEY(employee_account) REFERENCES  employee(employee_account)
 )AUTO_INCREMENT=1;
-INSERT INTO live_support(chat_history,sender,member_account,employee_account) VALUES ('我們需要神隊友','1','tom','peter');
-INSERT INTO live_support(chat_history,sender,member_account,employee_account) VALUES ('無此選項','0','tom','peter');
-INSERT INTO live_support(chat_history,sender,member_account,employee_account) VALUES ('那就放棄吧','1','tom','peter');
+INSERT INTO live_support(chat_history,sender,member_account,employee_account) VALUES ('請問連假營業時間','1','tom','peter');
+INSERT INTO live_support(chat_history,sender,member_account,employee_account) VALUES ('連假正常營業','0','tom','peter');
+INSERT INTO live_support(chat_history,sender,member_account,employee_account) VALUES ('謝謝!!','1','tom','peter');
 
 
 -- 通知 --
