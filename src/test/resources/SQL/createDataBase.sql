@@ -170,7 +170,7 @@ CREATE TABLE product (
 INSERT INTO product (product_name, product_type, product_subtype , product_intro, product_ingredient, product_price, product_available_qty, product_status, expiry_after_buying, product_calorie, degree_of_sweetness, total_star, total_review, total_purchase)
 VALUES ('綜合野莓果昔', '飲品', '繽紛水果飲','加拿大進口莓果，搭配自家生產新鮮優格，清爽順口，每日一杯，身體無負擔！', '藍莓、桑葚、草莓、槲寄生、優格', 180, 50, 1, 1, 210, 2, 885, 215, 121);
 INSERT INTO product (product_name, product_type, product_subtype , product_intro, product_ingredient, product_price, product_available_qty, product_status, expiry_after_buying, product_calorie, degree_of_sweetness, total_star, total_review, total_purchase)
-VALUES ('莓果薰衣草', '精緻小點', '馬卡龍','季節限定的薰衣草榨取入料，搭配藍莓果醬，淡淡花草清香伴隨酸甜滋味，是馬卡龍中低熱量首選！','薰衣草、藍莓、杏仁粉、蛋白、砂糖', 75, 40, 1, 5, 104, 2, 570, 115, 233);
+VALUES ('草莓千層蛋糕', '蛋糕', '千層蛋糕','製作費時的千層餅皮，夾層為北海道生乳，搭配新鮮草莓，口感豐富，口味濃郁不膩。', '草莓、生乳', 160, 50, 1, 3, 165, 2, 455, 110, 501);
 INSERT INTO product (product_name, product_type, product_subtype , product_intro, product_ingredient, product_price, product_available_qty, product_status, expiry_after_buying, product_calorie, degree_of_sweetness, total_star, total_review, total_purchase)
 VALUES ('法芙娜巧克力慕斯', '精緻小點', '派&塔','使用法國頂級法芙娜（Valrhona）巧克力原料，夾層含巧克力珍珠米，外表淋上絲滑順口的巧克力醬，鏡面光澤，風味獨特。', '可可粉、可可米、鮮奶、明膠、吉利丁粉', 120, 50, 1, 5, 310, 3, 115, 25, 156);
 INSERT INTO product (product_name, product_type, product_subtype , product_intro, product_ingredient, product_price, product_available_qty, product_status, expiry_after_buying, product_calorie, degree_of_sweetness, total_star, total_review, total_purchase)
@@ -186,17 +186,17 @@ VALUES ('藍莓優格磅蛋糕', '蛋糕', '磅蛋糕','厚實的蛋糕體夾著
 INSERT INTO product (product_name, product_type, product_subtype , product_intro, product_ingredient, product_price, product_available_qty, product_status, expiry_after_buying, product_calorie, degree_of_sweetness, total_star, total_review, total_purchase)
 VALUES ('覆盆子檸檬磅蛋糕', '蛋糕', '磅蛋糕','加拿大進口的覆盆子，基底是檸檬口味的磅蛋糕，配上綿密奶霜，是磅蛋糕裡面簡單又耐人尋味的基本款。', '蜂蜜，檸檬、覆盆子、鮮奶', 90, 80, 1, 5, 164, 2, 129, 31, 146);
 INSERT INTO product (product_name, product_type, product_subtype , product_intro, product_ingredient, product_price, product_available_qty, product_status, expiry_after_buying, product_calorie, degree_of_sweetness, total_star, total_review, total_purchase)
-VALUES ('橙香松子巧克力', '巧克力', '巴克巧克力','純手工的自製巧克力，加入柑橘果乾與口感清脆的松子仁，薄脆的口感及清爽的滋味，值得您嘗試！', '柳橙乾、檸檬乾、松子、可可粉、黑巧克力', 65, 50, 1, 10, 133, 2, 130, 35, 133);
+VALUES ('橙香松子巧克力', '巧克力', '巴克巧克力','純手工的自製巧克力，加入柑橘果乾與口感清脆的松子仁，薄脆的口感及清爽的滋味，值得您嘗試！', '柳橙乾、檸檬乾、松子、可可粉、黑巧克力', 65, 10, 1, 10, 133, 2, 130, 35, 133);
 INSERT INTO product (product_name, product_type, product_subtype , product_intro, product_ingredient, product_price, product_available_qty, product_status, expiry_after_buying, product_calorie, degree_of_sweetness, total_star, total_review, total_purchase)
-VALUES ('奶油夾心巧克力', '巧克力', '藝術巧克力','使用苦甜巧克力的微苦中和夾心奶油的甜，經過多道工法製作，精緻的外表讓人不忍心入口卻又好吃到一口接一口！', '苦甜巧克力、調溫巧克力、白巧克力、奶油、明膠、蝶豆花萃取色素', 70, 50, 1, 10, 113, 2, 135, 28, 1346);
+VALUES ('奶油夾心巧克力', '巧克力', '藝術巧克力','使用苦甜巧克力的微苦中和夾心奶油的甜，經過多道工法製作，精緻的外表讓人不忍心入口卻又好吃到一口接一口！', '苦甜巧克力、調溫巧克力、白巧克力、奶油、明膠、蝶豆花萃取色素', 70, 10, 1, 10, 113, 2, 135, 28, 1346);
 INSERT INTO product (product_name, product_type, product_subtype , product_intro, product_ingredient, product_price, product_available_qty, product_status, expiry_after_buying, product_calorie, degree_of_sweetness, total_star, total_review, total_purchase)
-VALUES ('蔓越莓軟心巧克力', '巧克力', '藝術巧克力','卡士達夾心搭配酸甜蔓越莓果醬，甜而不膩的滋味，搭配奢華的外表，是送禮的不二選擇。', '黑巧克力、蔓越莓果醬、奶油、砂糖', 65, 60, 1, 7, 123, 3, 137, 29, 356);
+VALUES ('蔓越莓軟心巧克力', '巧克力', '藝術巧克力','卡士達夾心搭配酸甜蔓越莓果醬，甜而不膩的滋味，搭配奢華的外表，是送禮的不二選擇。', '黑巧克力、蔓越莓果醬、奶油、砂糖', 65, 10, 1, 7, 123, 3, 137, 29, 356);
 INSERT INTO product (product_name, product_type, product_subtype , product_intro, product_ingredient, product_price, product_available_qty, product_status, expiry_after_buying, product_calorie, degree_of_sweetness, total_star, total_review, total_purchase)
-VALUES ('藍莓巧心棒', '巧克力', '藝術巧克力','口味偏甜的巧克力，內層包裹藍莓風味的椰子粉，獨特的口感搭配清甜果香，獨特組合值得您一試！', '藍莓、椰子粉、黑巧克力、奶油', 60, 50, 1, 5, 157, 1, 134, 29, 146);
+VALUES ('藍莓巧心棒', '巧克力', '藝術巧克力','口味偏甜的巧克力，內層包裹藍莓風味的椰子粉，獨特的口感搭配清甜果香，獨特組合值得您一試！', '藍莓、椰子粉、黑巧克力、奶油', 60, 10, 1, 5, 157, 1, 134, 29, 146);
 INSERT INTO product (product_name, product_type, product_subtype , product_intro, product_ingredient, product_price, product_available_qty, product_status, expiry_after_buying, product_calorie, degree_of_sweetness, total_star, total_review, total_purchase)
-VALUES ('焦糖夾心巧克力', '巧克力', '藝術巧克力','外層的黑巧克力包裹牛奶糖口感的焦糖夾心，甜與苦的味覺衝擊，硬與柔的雙重口感，是甜食愛好者不容錯過的甜點！', '焦糖、明膠、黑巧克力、肉桂粉', 50, 60, 1, 10, 238, 4, 315, 69, 656);
+VALUES ('焦糖夾心巧克力', '巧克力', '藝術巧克力','外層的黑巧克力包裹牛奶糖口感的焦糖夾心，甜與苦的味覺衝擊，硬與柔的雙重口感，是甜食愛好者不容錯過的甜點！', '焦糖、明膠、黑巧克力、肉桂粉', 50, 10, 1, 10, 238, 4, 315, 69, 656);
 INSERT INTO product (product_name, product_type, product_subtype , product_intro, product_ingredient, product_price, product_available_qty, product_status, expiry_after_buying, product_calorie, degree_of_sweetness, total_star, total_review, total_purchase)
-VALUES ('椰棗布朗尼', '巧克力', '生巧克力','來自中東的紅寶石-椰棗，打成泥後混合焦糖，搭配奶油與可可，口感柔軟黏糯，甜度偏甜，生巧克力的新搭配。', '椰棗、可可粉、鮮奶油、砂糖', 65, 50, 1, 5, 246, 5, 345, 77, 339);
+VALUES ('椰棗布朗尼', '巧克力', '生巧克力','來自中東的紅寶石-椰棗，打成泥後混合焦糖，搭配奶油與可可，口感柔軟黏糯，甜度偏甜，生巧克力的新搭配。', '椰棗、可可粉、鮮奶油、砂糖', 65, 10, 1, 5, 246, 5, 345, 77, 339);
 INSERT INTO product (product_name, product_type, product_subtype , product_intro, product_ingredient, product_price, product_available_qty, product_status, expiry_after_buying, product_calorie, degree_of_sweetness, total_star, total_review, total_purchase)
 VALUES ('甜心覆盆子馬卡龍', '精緻小點', '馬卡龍','來自法國的奢華甜點，覆盆子的酸中和了馬卡龍本身的甜，口感酥脆綿密，甜而不膩！', '杏仁粉、砂糖、覆盆子、奶油', 70, 100, 1, 7, 165, 3, 349, 79, 349);
 INSERT INTO product (product_name, product_type, product_subtype , product_intro, product_ingredient, product_price, product_available_qty, product_status, expiry_after_buying, product_calorie, degree_of_sweetness, total_star, total_review, total_purchase)
@@ -234,7 +234,7 @@ VALUES ('伯爵玫瑰杯子蛋糕', '蛋糕', '杯子蛋糕','使用每日新鮮
 INSERT INTO product (product_name, product_type, product_subtype , product_intro, product_ingredient, product_price, product_available_qty, product_status, expiry_after_buying, product_calorie, degree_of_sweetness, total_star, total_review, total_purchase)
 VALUES ('巧克力馬卡龍', '精緻小點', '馬卡龍','來自法國的奢華甜點，覆盆子的酸中和了馬卡龍本身的甜，口感酥脆綿密，甜而不膩！', '杏仁粉、砂糖、可可粉', 80, 50, 1, 1, 165, 3, 445, 105, 491);
 INSERT INTO product (product_name, product_type, product_subtype , product_intro, product_ingredient, product_price, product_available_qty, product_status, expiry_after_buying, product_calorie, degree_of_sweetness, total_star, total_review, total_purchase)
-VALUES ('草莓千層蛋糕', '蛋糕', '千層蛋糕','製作費時的千層餅皮，夾層為北海道生乳，搭配新鮮草莓，口感豐富，口味濃郁不膩。', '草莓、生乳', 160, 50, 1, 3, 165, 2, 455, 110, 501);
+VALUES ('莓果薰衣草', '精緻小點', '馬卡龍','季節限定的薰衣草榨取入料，搭配藍莓果醬，淡淡花草清香伴隨酸甜滋味，是馬卡龍中低熱量首選！','薰衣草、藍莓、杏仁粉、蛋白、砂糖', 75, 40, 1, 5, 104, 2, 570, 115, 233);
 INSERT INTO product (product_name, product_type, product_subtype , product_intro, product_ingredient, product_price, product_available_qty, product_status, expiry_after_buying, product_calorie, degree_of_sweetness, total_star, total_review, total_purchase)
 VALUES ('萊姆閃電泡芙', '精緻小點', '泡芙','清淡的萊姆口味卡士達內餡，搭配酥脆外皮，簡單有品味的一道甜點。', '萊姆、卡士達', 110, 50, 1, 5, 165, 2, 445, 105, 491);
 INSERT INTO product (product_name, product_type, product_subtype , product_intro, product_ingredient, product_price, product_available_qty, product_status, expiry_after_buying, product_calorie, degree_of_sweetness, total_star, total_review, total_purchase)
@@ -305,15 +305,15 @@ VALUES ('1', LOAD_FILE('C:\\project\\images\\product_image\\berriesSmoothie-3.jp
 INSERT INTO product_image (product_id, product_image)
 VALUES ('1', LOAD_FILE('C:\\project\\images\\product_image\\berriesSmoothie-4.jpg'));
 INSERT INTO product_image (product_id, product_image)
-VALUES ('2', LOAD_FILE('C:\\project\\images\\product_image\\bBerryMacaron-2.jpg'));
+VALUES ('34', LOAD_FILE('C:\\project\\images\\product_image\\bBerryMacaron-2.jpg'));
 INSERT INTO product_image (product_id, product_image)
-VALUES ('2', LOAD_FILE('C:\\project\\images\\product_image\\bBerryMacaron-5.jpg'));
+VALUES ('34', LOAD_FILE('C:\\project\\images\\product_image\\bBerryMacaron-5.jpg'));
 INSERT INTO product_image (product_id, product_image)
-VALUES ('2', LOAD_FILE('C:\\project\\images\\product_image\\bBerryMacaron-1.jpg'));
+VALUES ('34', LOAD_FILE('C:\\project\\images\\product_image\\bBerryMacaron-1.jpg'));
 INSERT INTO product_image (product_id, product_image)
-VALUES ('2', LOAD_FILE('C:\\project\\images\\product_image\\bBerryMacaron-3.jpg'));
+VALUES ('34', LOAD_FILE('C:\\project\\images\\product_image\\bBerryMacaron-3.jpg'));
 INSERT INTO product_image (product_id, product_image)
-VALUES ('2', LOAD_FILE('C:\\project\\images\\product_image\\bBerryMacaron-4.jpg'));
+VALUES ('34', LOAD_FILE('C:\\project\\images\\product_image\\bBerryMacaron-4.jpg'));
 INSERT INTO product_image (product_id, product_image)
 VALUES ('3', LOAD_FILE('C:\\project\\images\\product_image\\chocoMousse-1.jpg'));
 INSERT INTO product_image (product_id, product_image)
@@ -465,9 +465,9 @@ VALUES ('33', LOAD_FILE('C:\\project\\images\\product_image\\chocoMacaron-4.jpg'
 INSERT INTO product_image (product_id, product_image)
 VALUES ('33', LOAD_FILE('C:\\project\\images\\product_image\\chocoMacaron-2.jpg'));
 INSERT INTO product_image (product_id, product_image)
-VALUES ('34', LOAD_FILE('C:\\project\\images\\product_image\\strawCrepe-a.jpg'));
+VALUES ('2', LOAD_FILE('C:\\project\\images\\product_image\\strawCrepe-a.jpg'));
 INSERT INTO product_image (product_id, product_image)
-VALUES ('34', LOAD_FILE('C:\\project\\images\\product_image\\strawCrepe-b.jpg'));
+VALUES ('2', LOAD_FILE('C:\\project\\images\\product_image\\strawCrepe-b.jpg'));
 INSERT INTO product_image (product_id, product_image)
 VALUES ('35', LOAD_FILE('C:\\project\\images\\product_image\\limePuff-a.jpg'));
 INSERT INTO product_image (product_id, product_image)
