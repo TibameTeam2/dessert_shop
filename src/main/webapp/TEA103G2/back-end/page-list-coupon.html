@@ -49,9 +49,7 @@
             <div class="d-flex flex-wrap flex-wrap align-items-center justify-content-between mb-4">
               <div>
                 <h4 class="mb-3">優惠券清單 Coupon code List</h4>
-                <p class="mb-0">The product list effectively dictates product presentation and provides space<br> to
-                  list
-                  your products and offering in the most appealing way.</p>
+                <p class="mb-0"><br></p>
               </div>
               <a href="page-add-coupon-code.html" class="btn btn-primary add-list" data-toggle="modal"
                 data-target="#new-order1"><i class="las la-plus mr-3"></i>新增優惠券 Add
@@ -112,9 +110,17 @@
                           <div class="col-md-12">
                             <div class="form-group">
                               <label>會員帳號</label>
-                              <input type="text" class="form-control" placeholder="Enter member_account"
+                              <!-- <input type="text" class="form-control" placeholder="Enter member_account"
                                 data-errors="Please Enter member_account." name="member_account" required>
-                              <div class="help-block with-errors"></div>
+                              <div class="help-block with-errors"></div> -->
+
+                              <select name="member_account" class="selectpicker form-control" id="xxx"
+                                data-style="py-0">
+                                <option value="">選擇會員</option>
+                              </select>
+
+
+
                             </div>
                           </div>
                           <div class="col-md-6">
@@ -124,7 +130,8 @@
                                 data-errors="Please Enter Code." name="employee_account" id="employee_account" required>
                               <div class="help-block with-errors"></div> -->
 
-                              <select name="employee_account" class="selectpicker form-control" id = "zzz" data-style="py-0">
+                              <select name="employee_account" class="selectpicker form-control" id="zzz"
+                                data-style="py-0">
                                 <option value="">選擇員工</option>
                               </select>
                             </div>
@@ -200,7 +207,7 @@
                             <div class="form-group">
                               <label>優惠碼ID</label>
                               <input type="text" class="form-control" placeholder="Enter coupon_code_id"
-                                data-errors="Please Enter Code." name="coupon_code_id">
+                                data-errors="Please Enter Code." name="coupon_code_id" required>
                               <div class="help-block with-errors"></div>
                             </div>
                           </div>
@@ -305,7 +312,7 @@
                               <label>優惠碼ID</label>
                               <input type="text" class="form-control update_coupon_code_id"
                                 placeholder="Enter coupon_code_id." data-errors="Please Enter coupon_code_id."
-                                id="coupon_code_id" name="coupon_code_id" required name="coupon_code_id">
+                                id="coupon_code_id" name="coupon_code_id">
                               <div class="help-block with-errors"></div>
                             </div>
                           </div>
@@ -316,7 +323,8 @@
                                 placeholder="Enter employee_account" data-errors="Please Enter Code."
                                 id="employee_account" name="employee_account" required name="employee_account">
                               <div class="help-block with-errors"></div> -->
-                              <select name="employee_account" class="selectpicker form-control" id = "yyy" data-style="py-0">
+                              <select name="employee_account" class="selectpicker form-control update_employee_account"
+                                id="yyy" data-style="py-0">
                                 <option value="">選擇員工</option>
                               </select>
                             </div>
@@ -554,8 +562,8 @@
 
           $.post("/dessert_shop/employee/backend_getAll", {}, function (data) {
 
-            if(data.flag){
-              for(var i = 0 ; i < data.data.length ; i++){
+            if (data.flag) {
+              for (var i = 0; i < data.data.length; i++) {
                 console.log("我在哪" + data.data[i].employee_account + "編號" + [i]);
 
                 $('#zzz').append(`<option value="` + data.data[i].employee_account + `">` + data.data[i].employee_account + `</option>`);
@@ -565,6 +573,18 @@
               $('#yyy').selectpicker('refresh');
             }
           });
+
+          $.post("/dessert_shop/member/backend_getAll", {}, function (data) {
+
+            if (data.flag) {
+              for (var i = 0; i < data.data.length; i++) {
+                console.log("我在哪" + data.data[i].member_account + "編號" + [i]);
+                $('#xxx').append(`<option value="` + data.data[i].member_account + `">` + data.data[i].member_account + `</option>`);    
+              }
+              $('#xxx').selectpicker('refresh');
+            }
+          });
+
 
 
         } else {
@@ -628,46 +648,60 @@
 
       $(".update_coupon_id").val(data[0]);
       $(".update_member_account").val(data[1]);
-      $(".update_employee_account").val(data[9]);
+      // $(".update_employee_account").val(data[9]);
       $(".update_coupon_code_id").val(data[10]);
-      $(".update_coupon_sending_time").val(moment(data[2]).format('YYYY-MM-DD'));
-      $(".update_coupon_effective_date").val(moment(data[3]).format('YYYY-MM-DD'));
-      $(".update_coupon_expire_date").val(moment(data[4]).format('YYYY-MM-DD'));
+      $(".update_coupon_sending_time").val(moment(data[2]).format('YYYY-MM-DDThh:mm:ss.SSS'));
+      $(".update_coupon_effective_date").val(moment(data[3]).format('YYYY-MM-DDThh:mm:ss.SSS'));
+      $(".update_coupon_expire_date").val(moment(data[4]).format('YYYY-MM-DDThh:mm:ss.SSS'));
       $(".update_coupon_content").val(data[6]);
       $(".update_coupon_text_content").val(data[5]);
+      getUpdate_employee_account(data[9]);
       getUpdate_discount_type(data[7]);
       getUpdate_coupon_status(data[8]);
 
     });
 
+
+    function getUpdate_employee_account(account) {
+      switch (account) {
+        case account:
+          $('.update_employee_account').val(account);
+          break;
+        default:
+          $('.update_employee_account').val(account);
+          break;
+      }
+      $('.update_employee_account').selectpicker('refresh');
+    }
+
     function getUpdate_discount_type(type) {
       switch (type) {
         case "打折(*)":
-          $('.selectpicker').val('0');
+          $('.update_discount_type').val('0');
           break;
         case "折價(-)":
-          $('.selectpicker').val('1');
+          $('.update_discount_type').val('1');
           break;
         default:
-          $('.selectpicker').val('0');
+          $('.update_discount_type').val(type);
           break;
       }
-      $('.selectpicker').selectpicker('render');
+      $('.update_discount_type').selectpicker('refresh');
     }
 
     function getUpdate_coupon_status(status) {
       switch (status) {
         case "未使用":
-          $('.selectpicker').val('0');
+          $('.update_coupon_status').val('0');
           break;
         case "已使用":
-          $('.selectpicker').val('1');
+          $('.update_coupon_status').val('1');
           break;
         default:
-          $('.selectpicker').val('0');
+          $('.update_coupon_status').val(status);
           break;
       }
-      $('.selectpicker').selectpicker('render');
+      $('.update_coupon_status').selectpicker('refresh');
     }
 
 

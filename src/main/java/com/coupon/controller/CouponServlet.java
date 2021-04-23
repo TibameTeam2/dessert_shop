@@ -136,7 +136,7 @@ public class CouponServlet extends BaseServlet {
 //		
 //		String member_email = memberSvc.getOneMember(member_account).getMember_email( );
 		
-		MailUtil.send(member_email, "嗜甜X用戶回饋", "親愛的用戶您好,感謝您一直支持本店,為表達我們誠摯的心意,賞你一張優惠券", false);
+		MailUtil.send(member_email, "text", "text", false);
 		System.out.println("寄信囉~~");
 		ResultInfo info = new ResultInfo();
 		// 創建結果 準備返回前端
