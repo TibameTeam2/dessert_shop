@@ -55,6 +55,27 @@ public class ProductServlet_front extends BaseServlet {
 	}
 	
 
+	// http://localhost:8081/dessert_shop/product/backend_getOneProductByName
+	public void backend_getOneProductByName(HttpServletRequest req, HttpServletResponse res) {
+		String product_name = req.getParameter("product_name");
+		
+		System.out.println("Servlet product_name:"+product_name);
+		
+		ProductService productSvc = new ProductService();
+		ProductBean productBean = productSvc.getOneProductByName(product_name);
+		System.out.println("servlet backend_getOneProductByName:"+productBean);
+		
+		
+		ResultInfo info = new ResultInfo();
+		
+		info.setFlag(true);
+		info.setMsg("資料取得成功!");
+		info.setData(productBean);
+		
+		writeValueByWriter(res, info);
+		
+	}
+	
 	// http://localhost:8081/dessert_shop/product/getOneProduct?id=?
 	public void getOneProduct(HttpServletRequest req, HttpServletResponse res) {
 		Integer product_id = new Integer(req.getParameter("id"));
@@ -367,11 +388,11 @@ public class ProductServlet_front extends BaseServlet {
 				System.out.println("backend_addProduct跑完!");//
 				ResultInfo info = new ResultInfo();
 				info.setFlag(true);
-				info.setMsg("修改商品&照片成功!");
+				info.setMsg("修改商品資訊成功!");
 
 				writeValueByWriter(res, info);
 
-				System.out.println("修改商品&照片成功!");//
+				System.out.println("修改商品資訊成功!");//
 		
 	}
 	

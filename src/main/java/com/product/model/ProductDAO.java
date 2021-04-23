@@ -11,7 +11,7 @@ import java.util.List;
 
 
 public class ProductDAO implements ProductDAO_interface {
-	private static JdbcTemplate jdbcTemplate;
+//	private static JdbcTemplate jdbcTemplate;
 	private String driver = JDBCUtil.driver;
 	private String url = JDBCUtil.url;
 	private String userid = JDBCUtil.user;
@@ -859,6 +859,8 @@ public class ProductDAO implements ProductDAO_interface {
 		ResultSet rs = null;
 		SELECT_PNAME = "SELECT * FROM product where product_name = ?";
 		
+		System.out.println("productDAO findByName");//
+		
 		//設定資料
 		ProductBean productBean = null;
 		
@@ -874,21 +876,23 @@ public class ProductDAO implements ProductDAO_interface {
 			while(rs.next()) {
 				productBean = new ProductBean();
 				
-//				productBean.setProduct_id(rs.getInt("product_id"));
+				System.out.println("productDAO findByName productBean"+productBean);//
+				
+				productBean.setProduct_id(rs.getInt("product_id"));
 				productBean.setProduct_name(rs.getString("product_name"));
-//				productBean.setProduct_type(rs.getString("product_type"));
-//				productBean.setProduct_subtype(rs.getString("product_subtype"));
-//				productBean.setProduct_intro(rs.getString("product_intro"));
-//				productBean.setProduct_ingredient(rs.getString("Product_ingredient"));
-//				productBean.setProduct_price(rs.getInt("product_price"));
-//				productBean.setProduct_available_qty(rs.getInt("product_available_qty"));
-//				productBean.setProduct_status(rs.getInt("product_status"));
-//				productBean.setExpiry_after_buying(rs.getInt("expiry_after_buying"));
-//				productBean.setProduct_calorie(rs.getInt("product_calorie"));
-//				productBean.setDegree_of_sweetness(rs.getInt("degree_of_sweetness"));
-//				productBean.setTotal_star(rs.getInt("total_star"));
-//				productBean.setTotal_review(rs.getInt("total_review"));
-//				productBean.setTotal_purchase(rs.getInt("total_purchase"));
+				productBean.setProduct_type(rs.getString("product_type"));
+				productBean.setProduct_subtype(rs.getString("product_subtype"));
+				productBean.setProduct_intro(rs.getString("product_intro"));
+				productBean.setProduct_ingredient(rs.getString("Product_ingredient"));
+				productBean.setProduct_price(rs.getInt("product_price"));
+				productBean.setProduct_available_qty(rs.getInt("product_available_qty"));
+				productBean.setProduct_status(rs.getInt("product_status"));
+				productBean.setExpiry_after_buying(rs.getInt("expiry_after_buying"));
+				productBean.setProduct_calorie(rs.getInt("product_calorie"));
+				productBean.setDegree_of_sweetness(rs.getInt("degree_of_sweetness"));
+				productBean.setTotal_star(rs.getInt("total_star"));
+				productBean.setTotal_review(rs.getInt("total_review"));
+				productBean.setTotal_purchase(rs.getInt("total_purchase"));
 //				
 // 照片
 //				pstmt1 = con.prepareStatement("SELECT image_id FROM sweet.product_image WHERE product_id="+productBean.getProduct_id());
@@ -902,7 +906,7 @@ public class ProductDAO implements ProductDAO_interface {
 //				productBean.setImage_url(img_url);
 				
 				
-				System.out.println("DAO : findByProductName" + productBean);
+				System.out.println("DAO : findByProductName:" + productBean);
 			}
 			
 			// Handle any driver errors

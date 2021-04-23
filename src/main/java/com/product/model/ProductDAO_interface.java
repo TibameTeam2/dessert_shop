@@ -20,7 +20,9 @@ public interface ProductDAO_interface {
 	public List<ProductBean> getAllSortByCalorie();
 	public List<ProductBean> getAllSortBySweetness();
 	public List<ProductBean> getAllSortByStar();
-	ProductBean findByProductName(String product_name);
+	
+	
+	public ProductBean findByProductName(String product_name);
 	
 	
 	
