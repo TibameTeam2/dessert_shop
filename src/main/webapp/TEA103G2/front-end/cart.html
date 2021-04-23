@@ -367,10 +367,9 @@
 
                                     <td class=" quantity " colspan="3 ">
                                         <div class="product-quantity d-inline-flex ">
-                                            <button type="button " class="sub "><i
-                                                    class="fas fa-minus "></i></i></button>
+                                            <button type="button " class="sub "><i class="fas fa-minus "></i></button>
                                             <input type="text " value="${data.data[0][i].product_quantity}" readonly class="quantity-input" />
-                                            <button type="button " class="add "><i class="fas fa-plus "></i></i></button>
+                                            <button type="button " class="add "><i class="fas fa-plus "></i></button>
                                         </div>
                                         <div class="max-product-quantity">現貨數量:${data.data[2][i]}</div>
                                     </td>
@@ -817,14 +816,6 @@
             });
         </script>
 
-
-        <script>
-            $.post("/dessert_shop/member/isLogin", function (response) {
-                /*********************************** chat 測試 **************************************/
-
-
-            });
-        </script>
 
 </body>
 

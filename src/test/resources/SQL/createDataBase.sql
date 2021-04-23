@@ -781,11 +781,11 @@ CREATE TABLE book_detail (
     constraint bookDetail_member_FK foreign key (member_account) references member (member_account)
 ) AUTO_INCREMENT = 1;
 INSERT INTO book_detail (member_account, booking_time, people_num, booking_status, book_postscript, contact_num, booking_name)
-VALUES ('jason', '2021-01-02 03:04:05', '7', '1', '紅色死神加兒童椅', '09-12345678', '紅色死神');
+VALUES ('jason', '2021-04-20 10:00:00', '7', '0', '兒童一位', '09-12345678', '紅傑森');
 INSERT INTO book_detail (member_account, booking_time, people_num, booking_status, book_postscript, contact_num, booking_name)
-VALUES ('tom', '2021-01-02 03:04:06', '8', '4', '藍色死神加個兒童椅', '09-12345672', '藍色死神');
+VALUES ('tom', '2021-04-21 12:00:00', '5', '1', '', '09-87654321', '藍湯姆');
 INSERT INTO book_detail (member_account, booking_time, people_num, booking_status, book_postscript, contact_num, booking_name)
-VALUES ('amy', '2021-01-02 03:04:07', '9', '1', '綠色死神加個兒童椅', '09-12345673', '綠色死神');
+VALUES ('amy', '2021-04-27 14:00:00', '6', '2', '兒童三位', '09-11222333', '綠艾咪');
 
 
 -- 訂位紀錄
@@ -802,11 +802,15 @@ CREATE TABLE book_record (
     twenty_total_count 	      tinyint not null
 ) AUTO_INCREMENT = 1;
 INSERT INTO book_record (booking_date, ten_total_count, twelve_total_count, fourteen_total_count, sixteen_total_count, eighteen_total_count, twenty_total_count)
-VALUES ('2021-01-02', '0', '1', '2', '3', '4', '5');
+VALUES ('2021-04-20', '7', '1', '12', '0', '4', '5');
 INSERT INTO book_record (booking_date, ten_total_count, twelve_total_count, fourteen_total_count, sixteen_total_count, eighteen_total_count, twenty_total_count)
-VALUES ('2021-01-03', '1', '2', '3', '4', '5', '6');
+VALUES ('2021-04-21', '0', '5', '3', '4', '15', '0');
 INSERT INTO book_record (booking_date, ten_total_count, twelve_total_count, fourteen_total_count, sixteen_total_count, eighteen_total_count, twenty_total_count)
-VALUES ('2021-01-04', '2', '3', '4', '5', '6', '7');
+VALUES ('2021-04-27', '5', '3', '6', '5', '0', '7');
+INSERT INTO book_record (booking_date, ten_total_count, twelve_total_count, fourteen_total_count, sixteen_total_count, eighteen_total_count, twenty_total_count)
+VALUES ('2021-04-28', '0', '20', '20', '5', '0', '10');
+INSERT INTO book_record (booking_date, ten_total_count, twelve_total_count, fourteen_total_count, sixteen_total_count, eighteen_total_count, twenty_total_count)
+VALUES ('2021-04-29', '0', '3', '0', '5', '14', '0');
 
 
 -- 梁語心------------------------------------------------------------------------------------------------------------

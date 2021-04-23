@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>嗜甜-訂單管理</title>
+  <title>嗜甜-訂位管理-訂位明細</title>
 
   <!-- Favicon -->
   <link rel="shortcut icon" href="assets/images/favicon.ico" />
@@ -52,7 +52,7 @@
           <div class="col-lg-12">
             <div class="d-flex flex-wrap align-items-center justify-content-between mb-4">
               <div>
-                <h4 class="mb-3">訂單資料</h4>
+                <h4 class="mb-3">訂位明細</h4>
                 <p class="mb-0"></p>
               </div>
             </div>
@@ -65,16 +65,15 @@
                 <thead class="bg-white text-uppercase">
 
                   <tr class="ligth ligth-data">
-                    <th>訂單編號</th>
+                    <th>訂位明細編號</th>
                     <th>會員帳號</th>
-                    <th>下訂時間</th>
-                    <th>付款時間</th>
-                    <th>付款方式</th>
-                    <th>優惠券編號</th>
-                    <th>訂單狀態</th>
-                    <th>發票號碼</th>
-                    <th>訂單金額</th>
-                    <th>訂單備註</th>
+                    <th>訂位成立時間</th>
+                    <th>訂位時間</th>
+                    <th>訂位人數</th>
+                    <th>訂位狀態</th>
+                    <th>訂位備註</th>
+                    <th>連絡電話</th>
+                    <th>姓名</th>
                     <th>動作</th>
                   </tr>
 
@@ -82,7 +81,7 @@
 
                 <tbody class="ligth-body">
 
-                  <!-- 訂單資料顯示區 -->
+                  <!-- 訂位明細顯示區 -->
 
                 </tbody>
 
@@ -94,7 +93,7 @@
         <!-- Page end  -->
       </div>
 
-      <!-- 修改訂單狀態燈箱 -->
+      <!-- 修改訂位明細狀態燈箱 -->
       <div class="modal fade" id="update_modal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
@@ -102,32 +101,31 @@
               <div class="popup text-left">
 
                 <div>
-                  <h4 class="mb-3">修改訂單狀態</h4>
+                  <h4 class="mb-3">修改訂位狀態</h4>
                 </div>
 
                 <div class="card-body">
-                  <form id="updateOrderMasterForm" action="page-list-product.html" data-toggle="validator" enctype="multipart/form-data">
+                  <form id="updateBookDetailForm" action="page-list-product.html" data-toggle="validator" enctype="multipart/form-data">
 
                     <div class="row">
 
                       <div class="col-md-12">
-                        <div class="form-group order_master_id">
-                          <label>訂單編號：</label>
-                          <input type="hidden" class="form-control update_order_master_id" placeholder=""
+                        <div class="form-group booking_detail_id">
+                          <label>訂位明細編號：</label>
+                          <input type="hidden" class="form-control update_booking_detail_id" placeholder=""
                                  data-errors="Please Enter Name."
-                                 required name="order_master_id" value="">
+                                 required name="booking_detail_id" value="">
                           <div class="help-block with-errors"></div>
                         </div>
                       </div>
 
                       <div class="col-md-12">
                         <div class="form-group">
-                          <label>訂單狀態</label>
-                          <select name="order_status" class="selectpicker form-control update_order_status" data-style="py-0">
-                            <option value="0">未付款</option>
-                            <option value="1">已付款</option>
-                            <option value="2">已完成</option>
-                            <option value="3">已取消</option>      
+                          <label>訂位狀態</label>
+                          <select name="booking_status" class="selectpicker form-control update_booking_status" data-style="py-0">
+                            <option value="0">已訂位</option>
+                            <option value="1">已完成</option>
+                            <option value="2">已取消</option>      
                           </select>
                         </div>
                       </div>
@@ -143,53 +141,8 @@
           </div>
         </div>
       </div>
-      <!-- 修改訂單狀態燈箱結束 -->
+      <!-- 修改訂位明細狀態燈箱結束 -->
       
-      <!-- 顯示訂單明細燈箱 -->
-      <div class="modal fade" id="view_modal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-body">
-              <div class="popup text-left">
-
-                <div>
-                  <h4 class="mb-3">訂單明細</h4>
-                </div>
-
-                <div class="card-body">
-                  <form id="viewOrderDetail" action="page-list-product.html" data-toggle="validator">
-
-                    <div class="row">
-
-                      <div class="col-md-12">
-                        <div class="form-group view_order_master_id">
-                          <label>訂單編號：</label>
-                          <div class="help-block with-errors"></div>
-                        </div>
-                      </div>
-
-                      <div class="col-md-12">
-                        <div class="form-group">
-                          <label>訂單內容</label>
-                          <div class="order_detail_list">
-
-                            <!-- 訂單明細顯示區 -->
-
-                          </div>
-                        </div>
-                      </div>
-
-                    </div>
-                    <button type="submit" id="view_modal_close" class="btn btn-primary mr-2">關閉</button>
-                  </form>
-                </div>
-
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- 顯示訂單明細燈箱結束 -->
 
 
     </div>
@@ -254,46 +207,42 @@
           "sortAscending": ": 升冪排列",
           "sortDescending": ": 降冪排列"
         }
-      },
-      "columnDefs": [
-        {
-          "targets": [7, 9, 10],    //欄位從0開始算
-          "visible": true,   //欄位是否顯示 預設是true
-          "orderable": false  //是否可以排序
-        }
-      ]
+      }
+      // "columnDefs": [
+      //   {
+      //     "targets": [],    //欄位從0開始算
+      //     "visible": true,   //欄位是否顯示 預設是true
+      //     "orderable": false  //是否可以排序
+      //   }
+      // ]
     });
-    getAllOrderMaster();
+    getAllBookDetail();
 
 
 
-    function getAllOrderMaster() {
+    function getAllBookDetail() {
       let action = `<div class="d-flex align-items-center list-action">
-                    <a class="badge badge-info mr-2 view" data-toggle="modal" data-placement="top" title=""
-                      data-target="#view_modal" data-original-title="View"
-                      href="javascript:void(0)"><i class="ri-eye-line mr-0"></i></a>
                     <a class="badge bg-success mr-2 update" data-toggle="modal" data-placement="top" title=""
                       data-target="#update_modal" data-original-title="Edit"
                        href="javascript:void(0)"><i class="ri-pencil-line mr-0"></i></a>
                   </div>`;
 
-      $.get("/dessert_shop/orderMaster/backend_getAll", {}, function (data) {
+      $.get("/dessert_shop/bookRecord/backend_getBookDetailData", {}, function (data) {
         console.log(data);
         if (data.flag) {
           let table = $(".data-table").DataTable()
           table.clear().draw();
           for (let i = 0; i < data.data.length; i++) {
             table.row.add([
-              data.data[i].order_master_id,
+              data.data[i].booking_detail_id,
               data.data[i].member_account,
-              getTime(data.data[i].order_time),
-              data.data[i].payment_time == null ? "無" : getTime(data.data[i].payment_time),
-              getPaymentMethod(data.data[i].payment_method),
-              data.data[i].coupon_id == 0 ? "無" : data.data[i].coupon_id,
-              getOrderStatus(data.data[i].order_status),
-              data.data[i].invoice_number == null ? "無" : data.data[i].invoice_number,
-              data.data[i].order_total,
-              data.data[i].order_remarks,
+              getTime(data.data[i].booking_establish_time),
+              getTime(data.data[i].booking_time),
+              data.data[i].people_num,
+              getBookingStatus(data.data[i].booking_status),
+              data.data[i].book_postscript,
+              data.data[i].contact_num,
+              data.data[i].booking_name,
               action
             ]).draw(false);
           }
@@ -311,28 +260,13 @@
       return moment(time).format('YYYY-MM-DD HH:mm:ss')
     }
 
-    function getPaymentMethod(method) {
-      switch (method) {
-        case 1:
-          return "信用卡付款";
-        case 2:
-          return "到店付款";
-        case 3:
-          return "匯款";
-        default:
-          return method;
-      }
-    }
-
-    function getOrderStatus(method) {
+    function getBookingStatus(method) {
       switch (method) {
         case 0:
-          return "未付款";
+          return "已訂位";
         case 1:
-          return "已付款";
-        case 2:
           return "已完成";
-        case 3:
+        case 2:
           return "已取消";  
         default:
           return method;
@@ -350,90 +284,48 @@
       // console.log(data);
       // alert( 'You clicked on '+data[0]+'\'s row' );
 
-      $("div.order_master_id").find("label").text("訂單編號："+data[0]);
-      $("div.order_master_id").find("input").val(data[0]);
+      $("div.booking_detail_id").find("label").text("訂位明細編號："+data[0]);
+      $("div.booking_detail_id").find("input").val(data[0]);
 
-      getUpdate_order_status(data[6]);
+      getUpdate_booking_status(data[5]);
 
     });
 
 
-    function getUpdate_order_status(status) {
+    function getUpdate_booking_status(status) {
         switch (status) {
-            case "未付款":
-                $('select.update_order_status').val('0');
-                break;
-            case "已付款":
-                $('select.update_order_status').val('1');
+            case "已訂位":
+                $('select.update_booking_status').val('0');
                 break;
             case "已完成":
-                $('select.update_order_status').val('2');
+                $('select.update_booking_status').val('1');
                 break;
             case "已取消":
-                $('select.update_order_status').val('3');
+                $('select.update_booking_status').val('2');
                 break;
             default:
-                $('select.update_order_status').val('0');
+                $('select.update_booking_status').val('0');
                 break;
       }
-            $('select.update_order_status').selectpicker('render');
+            $('select.update_booking_status').selectpicker('render');
     }
 
-    /*****************燈箱顯示訂單明細*****************/
-    $("tbody").on("click", "a.view", function() {
-
-      $("div.order_detail_list").html("");
-
-      let table = $(".data-table").DataTable()
-      let data = table.row($(this).closest('tr')).data();
-      // console.log(data);
-      // alert( 'You clicked on '+data[0]+'\'s row' );
-      $("div.view_order_master_id").find("label").text("訂單編號："+data[0]);
-
-      $.post("/dessert_shop/orderMaster/backend_showOrderDetail", {"order_master_id": data[0]}, function (data) {
-        console.log(data);
-        if (data.flag) {
-
-          for (var i = 0; i < data.data.length; i++) {
-
-            let order_detail = `<span class="product_name">商品名稱：${data.data[i].product_name}</span>
-                    <span class="product_price">商品價格：${data.data[i].product_price}</span>
-                    <span class="product_qty">商品數量：${data.data[i].product_qty}</span>
-                    <br>`;
-
-            $("div.order_detail_list").prepend(order_detail);
-
-          }
-          
-
-        } else {
-
-          let empty = `<h5>查無資料</h5>`;
-
-          $("div.order_detail_list").html(empty);
-
-        }
-
-      });  //post
 
 
-    });
-
-
-    /*******************燈箱修改訂單資料狀態********************/
+    /*******************燈箱修改訂位明細狀態********************/
     $("#submit_update_modal").click(function (e) {
       e.preventDefault();
       //表單提交時檢查所有屬性合法
       //發送ajax請求，送出表單資料
-      console.log($("#updateOrderMasterForm").serialize());
+      console.log($("#updateBookDetailForm").serialize());
 
-      let form = $("#updateOrderMasterForm")[0];
+      let form = $("#updateBookDetailForm")[0];
       let data = new FormData(form);
 
       $.ajax({
           type: "POST",
           enctype: 'multipart/form-data',
-          url: '/dessert_shop/orderMaster/backend_updateOrderMaster',
+          url: '/dessert_shop/bookRecord/backend_updateBookDetail',
           data: data,
           processData: false,
           contentType: false,
@@ -445,9 +337,9 @@
               text: "",
               icon: "success"
             });
-            getAllOrderMaster();
+            getAllBookDetail();
             $("#update_modal").modal('hide');
-            $("#updateOrderMasterForm").trigger("reset");
+            $("#updateBookDetailForm").trigger("reset");
           } else {
             Swal.fire({
               title: data.msg,
@@ -463,11 +355,6 @@
 
 
     /*******************燈箱關閉********************/
-    $("#view_modal_close").click(function (e) {
-      e.preventDefault();
-      $("#view_modal").modal('hide'); 
-    });
-
     $("#update_modal_close").click(function (e) {
       e.preventDefault();
       $("#update_modal").modal('hide'); 
