@@ -1,7 +1,6 @@
 package com.bucket_list.model;
 
 import java.util.List;
-import java.util.Set;
 
 public interface BucketListDao {
 	
