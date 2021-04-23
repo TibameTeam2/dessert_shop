@@ -9,13 +9,17 @@ public class DailySpecialBean implements Serializable{
 	private Integer discount_price;
 	private Timestamp discount_start_time;
 	private Timestamp discount_deadline;
+	private Integer discount_status;
+	
 	
 	@Override
 	public String toString() {
-		return "daily_specialBean [discount_product_id=" + discount_product_id + ", product_id=" + product_id
+		return "DailySpecialBean [discount_product_id=" + discount_product_id + ", product_id=" + product_id
 				+ ", discount_price=" + discount_price + ", discount_start_time=" + discount_start_time
-				+ ", discount_deadline=" + discount_deadline + "]";
+				+ ", discount_deadline=" + discount_deadline + ", discount_status=" + discount_status + "]";
 	}
+	
+	
 	
 	public Integer getDiscount_product_id() {
 		return discount_product_id;
@@ -54,6 +58,15 @@ public class DailySpecialBean implements Serializable{
 	public void setDiscount_deadline(Timestamp discount_deadline) {
 		this.discount_deadline = discount_deadline;
 	}
+
+	public Integer getDiscount_status() {
+		return discount_status;
+	}
+
+	public void setDiscount_status(Integer discount_status) {
+		this.discount_status = discount_status;
+	}
+
 	
 	
 }

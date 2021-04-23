@@ -217,7 +217,7 @@ public class DailySpecialDaoImpl implements DailySpecialDao {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		SELECT_ALL_VALID = "SELECT * FROM sweet.daily_special where now() between discount_start_time and discount_deadline;  ";
+//		SELECT_ALL_VALID = "SELECT * FROM sweet.daily_special where now() between discount_start_time and discount_deadline;  ";
 		SELECT_ALL_VALID = "SELECT ds.*, p.* FROM (SELECT * FROM daily_special ds WHERE now() BETWEEN discount_start_time AND discount_deadline)ds join (SELECT * FROM product p WHERE product_status = 1)p  on ds.product_id = p.product_id";
 		List<DailySpecialBean> list_dsBean = new ArrayList<DailySpecialBean>();
 		DailySpecialBean dsBean = null;
@@ -236,6 +236,10 @@ public class DailySpecialDaoImpl implements DailySpecialDao {
 				dsBean.setDiscount_price(rs.getInt("discount_price"));
 				dsBean.setDiscount_start_time(rs.getTimestamp("discount_start_time"));
 				dsBean.setDiscount_deadline(rs.getTimestamp("discount_deadline"));
+				
+				// set discount_status
+				
+				
 				list_dsBean.add(dsBean);
 //				System.out.println(dsBean);
 
