@@ -129,7 +129,7 @@ public class OrderMasterServlet extends BaseServlet {
 		if (member == null) {
 			info.setFlag(false);
 			info.setMsg("尚未登入!");
-			req.getSession().setAttribute("location", req.getContextPath() + "/TEA103G2/front-end/my-account.html");
+			req.getSession().setAttribute("location", req.getContextPath() + "/TEA103G2/front-end/my-account.html?active=payment");
 			info.setRedirect(req.getContextPath() + "/TEA103G2/front-end/login.html");
 		} else {
 			// 取資料並包裝
@@ -176,7 +176,7 @@ public class OrderMasterServlet extends BaseServlet {
 		if (member == null) {
 			info.setFlag(false);
 			info.setMsg("尚未登入!");
-			req.getSession().setAttribute("location", req.getContextPath() + "/TEA103G2/front-end/my-account.html");
+			req.getSession().setAttribute("location", req.getContextPath() + "/TEA103G2/front-end/my-account.html?active=payment");
 			info.setRedirect(req.getContextPath() + "/TEA103G2/front-end/login.html");
 		} else {
 			// 取資料
@@ -268,7 +268,7 @@ public class OrderMasterServlet extends BaseServlet {
         if (member == null) {
             info.setFlag(false);
             info.setMsg("尚未登入!");
-            req.getSession().setAttribute("location", req.getContextPath() + "/TEA103G2/front-end/my-account.html");
+            req.getSession().setAttribute("location", req.getContextPath() + "/TEA103G2/front-end/my-account.html?active=order");
 			info.setRedirect(req.getContextPath() + "/TEA103G2/front-end/login.html");
 			writeValueByWriter(res, info);
 			return ;
@@ -284,7 +284,7 @@ public class OrderMasterServlet extends BaseServlet {
 			//取消失敗
             info.setFlag(false);
             info.setMsg("取消失敗!");
-            info.setRedirect(req.getContextPath() + "/TEA103G2/front-end/my-account.html");
+            info.setRedirect(req.getContextPath() + "/TEA103G2/front-end/my-account.html?active=order");
             writeValueByWriter(res, info);
             return ;
 		}		
@@ -296,7 +296,7 @@ public class OrderMasterServlet extends BaseServlet {
             //取消成功      	        	
             info.setFlag(true);
             info.setMsg("取消成功!");
-            info.setRedirect(req.getContextPath() + "/TEA103G2/front-end/my-account.html");
+            info.setRedirect(req.getContextPath() + "/TEA103G2/front-end/my-account.html?active=order");
             //Line通知-訂單內容
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String order_time = sdf.format(orderMasterBean.getOrder_time());
@@ -323,7 +323,7 @@ public class OrderMasterServlet extends BaseServlet {
             NoticeBean noticeBean = new NoticeBean();
 			noticeBean.setMember_account(orderMasterBean.getMember_account());
 			noticeBean.setNotice_type(1);
-			noticeBean.setNotice_dispatcher(req.getContextPath() + "/TEA103G2/front-end/my-account.html");
+			noticeBean.setNotice_dispatcher(req.getContextPath() + "/TEA103G2/front-end/my-account.html?active=order");
 			String notice_content =  "通知!訂單日期：" + order_time + "，狀態：已取消!";
 			noticeBean.setNotice_content(notice_content);	
 			NoticeSvc.addWSNotice(noticeBean);           
@@ -347,7 +347,7 @@ public class OrderMasterServlet extends BaseServlet {
         if (member == null) {
             info.setFlag(false);
             info.setMsg("尚未登入!");
-            req.getSession().setAttribute("location", req.getContextPath() + "/TEA103G2/front-end/my-account.html");
+            req.getSession().setAttribute("location", req.getContextPath() + "/TEA103G2/front-end/my-account.html?active=order");
 			info.setRedirect(req.getContextPath() + "/TEA103G2/front-end/login.html");
 			writeValueByWriter(res, info);
 			return ;
@@ -435,7 +435,7 @@ public class OrderMasterServlet extends BaseServlet {
             NoticeBean noticeBean = new NoticeBean();
 			noticeBean.setMember_account(orderMasterBean.getMember_account());
 			noticeBean.setNotice_type(1);
-			noticeBean.setNotice_dispatcher(req.getContextPath() + "/TEA103G2/front-end/my-account.html");
+			noticeBean.setNotice_dispatcher(req.getContextPath() + "/TEA103G2/front-end/my-account.html?active=order");
 			String notice_content =  "通知!訂單日期：" + order_time + "，狀態：已付款!";
 			noticeBean.setNotice_content(notice_content);	
 			NoticeSvc.addWSNotice(noticeBean);                      

@@ -246,7 +246,12 @@ public class BookRecordServlet extends BaseServlet {
 			return ;
 		}	
 		
-		if (member != null) {		
+		info.setFlag(true);
+		info.setMsg("訂位成功!");
+		info.setRedirect(req.getContextPath() + "/TEA103G2/front-end/index.html");
+		
+		if (member != null) {
+			info.setRedirect(req.getContextPath() + "/TEA103G2/front-end/my-account.html?active=booking");
 			//Line通知-訂位成功
 			String message = "您已訂位完成!\n訂位時間：\n" + booking_time + "\n訂位人數：" + people_num + "人";
 			LineUtil.linePushMessage(member.getMember_account(), message);
@@ -255,15 +260,12 @@ public class BookRecordServlet extends BaseServlet {
 			NoticeBean noticeBean = new NoticeBean();
 			noticeBean.setMember_account(member.getMember_account());
 			noticeBean.setNotice_type(3);
-			noticeBean.setNotice_dispatcher(req.getContextPath() + "/TEA103G2/front-end/my-account.html");
+			noticeBean.setNotice_dispatcher(req.getContextPath() + "/TEA103G2/front-end/my-account.html?active=booking");
 			String notice_content =  "通知!訂位完成!時間：" + booking_time + "人數：" + people_num + "人!";
 			noticeBean.setNotice_content(notice_content);	
 			NoticeSvc.addWSNotice(noticeBean);
-		}
+		}	
 		
-		info.setFlag(true);
-		info.setMsg("訂位成功!");
-		info.setRedirect(req.getContextPath() + "/TEA103G2/front-end/index.html");
 		writeValueByWriter(res, info);
 		
 	}
@@ -302,7 +304,7 @@ public class BookRecordServlet extends BaseServlet {
         if (member == null) {
             info.setFlag(false);
             info.setMsg("尚未登入!");
-            req.getSession().setAttribute("location", req.getContextPath() + "/TEA103G2/front-end/my-account.html");
+            req.getSession().setAttribute("location", req.getContextPath() + "/TEA103G2/front-end/my-account.html?active=booking");
 			info.setRedirect(req.getContextPath() + "/TEA103G2/front-end/login.html");
 			writeValueByWriter(res, info);
 			return ;
@@ -322,7 +324,7 @@ public class BookRecordServlet extends BaseServlet {
 	        //取消成功
 	        info.setFlag(true);
 	        info.setMsg("取消成功!");
-	        info.setRedirect(req.getContextPath() + "/TEA103G2/front-end/my-account.html");
+	        info.setRedirect(req.getContextPath() + "/TEA103G2/front-end/my-account.html?active=booking");
 	        
 	        //Line通知-取消成功
 	        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  
@@ -334,7 +336,7 @@ public class BookRecordServlet extends BaseServlet {
 			NoticeBean noticeBean = new NoticeBean();
 			noticeBean.setMember_account(member.getMember_account());
 			noticeBean.setNotice_type(3);
-			noticeBean.setNotice_dispatcher(req.getContextPath() + "/TEA103G2/front-end/my-account.html");
+			noticeBean.setNotice_dispatcher(req.getContextPath() + "/TEA103G2/front-end/my-account.html?active=booking");
 			String notice_content =  "通知!訂位取消!時間：" + booking_time + "人數：" + bdBean.getPeople_num() + "人!";
 			noticeBean.setNotice_content(notice_content);	
 			NoticeSvc.addWSNotice(noticeBean);	        

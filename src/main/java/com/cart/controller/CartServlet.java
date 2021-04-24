@@ -534,7 +534,7 @@ public class CartServlet extends BaseServlet {
 			}
 			
 			info.setFlag(true);		
-			info.setRedirect(req.getContextPath() + "/TEA103G2/front-end/my-account.html");
+			info.setRedirect(req.getContextPath() + "/TEA103G2/front-end/my-account.html?active=order");
 			 			
 			//Line發通知
 			LineUtil.linePushMessage(member.getMember_account(), message);
@@ -543,7 +543,7 @@ public class CartServlet extends BaseServlet {
 			NoticeBean noticeBean = new NoticeBean();
 			noticeBean.setMember_account(member.getMember_account());
 			noticeBean.setNotice_type(1);
-			noticeBean.setNotice_dispatcher(req.getContextPath() + "/TEA103G2/front-end/my-account.html");
+			noticeBean.setNotice_dispatcher(req.getContextPath() + "/TEA103G2/front-end/my-account.html?active=order");
 			String notice_content =  "通知!訂單日期：" + current_time + "，狀態：";
 			if (payment_method == 1) {
 				notice_content += "已付款!";
