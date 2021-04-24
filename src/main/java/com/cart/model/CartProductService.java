@@ -204,6 +204,9 @@ public class CartProductService {
 			
 		CartBean cartBean_exist = dao.findCart(member_account, product_id);
 		if (cartBean_exist == null) {
+			if (product_quantity > max_product_quantity) {
+				cartBean.setProduct_quantity(max_product_quantity);
+			}
 			dao.insertCart(cartBean);
 		} else {
 			Integer new_product_quantity = cartBean_exist.getProduct_quantity() + product_quantity;
