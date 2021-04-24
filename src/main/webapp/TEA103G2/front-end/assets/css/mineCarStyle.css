@@ -163,7 +163,7 @@ div.overlay {
 }
 
 
-/* 元素 article 置中及基本樣式 */
+/* ���� article 蝵桐葉���璅�撘� */
 
 article.coupon-article {
     background-color: white;
@@ -305,3 +305,138 @@ div.coupon-form-div {
 div.coupon-form {
     margin-top: 5px;
 }
+
+
+/************************* 訂位CSS *******************************/
+ .book_h1 {
+            margin-top: 360px;
+            margin-bottom: 30px;
+            color:#83ba2f;
+            font-weight: bolder;
+        }
+
+        label.booking_name_label {
+            margin-top: 20px;
+        }
+
+        label.contact_num_label {
+
+            margin-top: 20px;
+        }
+
+        label.booking_date_label {
+            margin-top: 20px;
+            margin-right: 5px;
+        }
+
+        label.booking_time_hour_label {
+            margin-top: 20px;
+            margin-left: 80px;
+            margin-right: 5px;
+        }
+
+        label.max-people_num_label {
+            margin-top: 20px;
+            margin-left: 80px;
+        }
+
+        label.book_postscript_label {
+            margin-top: 20px;
+        }
+
+        input.booking_name {
+            display: inline-block;
+            border: 1px solid rgb(196, 194, 194);
+            border-radius: 5px;
+            margin-left: 5px;
+        }
+
+        input.contact_num {
+            display: inline-block;
+            border: 1px solid rgb(196, 194, 194);
+            border-radius: 5px;
+            margin-left: 5px;
+        }
+
+        input.booking_date {
+            border: 1px solid rgb(196, 194, 194);
+            border-radius: 5px;
+        }
+
+        input.booking_time_hour {
+            border: 1px solid rgb(196, 194, 194);
+            border-radius: 5px;
+        }
+
+        span.max-people_num {
+            margin-left: 5px;
+        }
+
+        textarea.book_postscript {
+            width: 300px;
+            line-height: 3em;
+            margin-top: 20px;
+            margin-left: 5px;
+            border: 1px solid rgb(196, 194, 194);
+            border-radius: 5px;
+            vertical-align: middle;
+            resize: none;
+        }
+
+        a.btn-booking {
+            width: 100px;
+            margin-top: 10px;
+            border-radius: 15px;
+            vertical-align: bottom;
+            margin-left: 80px;
+            background-color: #83ba2f;
+            border-color:#83ba2f;
+        }
+
+        a.btn-go-index {
+            width: 100px;
+            margin-top: 10px;
+            border-radius: 15px;
+            margin-left: 20px;
+            vertical-align: bottom;
+            background-color:#83ba2f;
+            border-color:#83ba2f;
+        }
+
+
+        a.btn-booking:hover {
+            background-color:rgb(106, 151, 38);
+            border-color:rgb(106, 151, 38);
+        }
+
+        a.btn-go-index:hover{
+            background-color:rgb(106, 151, 38);
+            border-color:rgb(106, 151, 38);
+        }
+        
+       button.people_sub{
+       background-color: white;
+       border:1px solid #808080;
+       margin-left:5px;              
+       }
+       
+       button.people_sub:hover{
+       background-color:#ebebeb;
+       }       
+       
+       input.people_num{
+       width:50px;
+       text-align: center;
+       font-size: 5px;
+       }
+       
+       button.people_add{
+       background-color: white;
+       border:1px solid #808080;
+       }
+       
+       button.people_add:hover{
+       background-color:#ebebeb;
+       }
+       
+      

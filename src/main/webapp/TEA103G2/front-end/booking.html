@@ -40,113 +40,8 @@
     <link rel="stylesheet" href="assets/css/style.min.css"> -->
 
     <!------------------------------------------------------------- 頁面CSS ------------------------------------------------------------->
-    <style>
-        .book_h1 {
-            margin-top: 360px;
-            margin-bottom: 30px;
-            color:#83ba2f;
-            font-weight: bolder;
-        }
+    <!-- ↑CSS放到mineCar裡了 -->
 
-        label.booking_name_label {
-            margin-top: 20px;
-        }
-
-        label.contact_num_label {
-
-            margin-top: 20px;
-        }
-
-        label.booking_date_label {
-            margin-top: 20px;
-            margin-right: 5px;
-        }
-
-        label.booking_time_hour_label {
-            margin-top: 20px;
-            margin-left: 80px;
-            margin-right: 5px;
-        }
-
-        label.max-people_num_label {
-            margin-top: 20px;
-            margin-left: 80px;
-        }
-
-        label.book_postscript_label {
-            margin-top: 20px;
-        }
-
-        input.booking_name {
-            display: inline-block;
-            border: 1px solid rgb(196, 194, 194);
-            border-radius: 5px;
-            margin-left: 5px;
-        }
-
-        input.contact_num {
-            display: inline-block;
-            border: 1px solid rgb(196, 194, 194);
-            border-radius: 5px;
-            margin-left: 5px;
-        }
-
-        input.booking_date {
-            border: 1px solid rgb(196, 194, 194);
-            border-radius: 5px;
-        }
-
-        input.booking_time_hour {
-            border: 1px solid rgb(196, 194, 194);
-            border-radius: 5px;
-        }
-
-        span.max-people_num {
-            margin-left: 5px;
-        }
-
-        textarea.book_postscript {
-            width: 300px;
-            line-height: 3em;
-            margin-top: 20px;
-            margin-left: 5px;
-            border: 1px solid rgb(196, 194, 194);
-            border-radius: 5px;
-            vertical-align: middle;
-            resize: none;
-        }
-
-        a.btn-booking {
-            width: 100px;
-            margin-top: 10px;
-            border-radius: 15px;
-            vertical-align: bottom;
-            margin-left: 80px;
-            background-color: #83ba2f;
-            border-color:#83ba2f;
-        }
-
-        a.btn-go-index {
-            width: 100px;
-            margin-top: 10px;
-            border-radius: 15px;
-            margin-left: 20px;
-            vertical-align: bottom;
-            background-color:#83ba2f;
-            border-color:#83ba2f;
-        }
-
-
-        a.btn-booking:hover {
-            background-color:rgb(106, 151, 38);
-            border-color:rgb(106, 151, 38);
-        }
-
-        a.btn-go-index:hover{
-            background-color:rgb(106, 151, 38);
-            border-color:rgb(106, 151, 38);
-        }
-    </style>
 </head>
 
 <body class="body-scroll">
@@ -217,8 +112,8 @@
                     <div class="single-form">
                         <label class="form-label booking_name_label">訂位姓名 :</label>
                         <input type="text" class="booking_name"></input>
-                        <input type="radio" name="male" id="male" style="margin-left: 10px;">&nbsp;男
-                        <input type="radio" name="female" id="female" style="margin-left: 10px;">&nbsp;女
+<!--                         <input type="radio" name="sex" id="male" value="1" style="margin-left: 10px;">&nbsp;男 -->
+<!--                         <input type="radio" name="sex" id="female" value="0" style="margin-left: 10px;">&nbsp;女 -->
                     </div>
                 </div>
             </div>
@@ -411,13 +306,13 @@
 
                         if (data.data[0].ten_total_count < 20) {
 
-                            let people_num = `<label class="form-label">訂位人數:</label>
+                            let people_num = `<label class="form-label max-people_num_label">訂位人數:</label>
                                                 <div class="d-inline-flex ">
-                                                <button type="" class="sub "><i class="fas fa-minus"></i></button>
-                                                <input type=" text " value="1" readonly class="people_num"/>
-                                                <button type="" class="add "><i class="fas fa-plus "></i></button>    
+                                                <button type="" class="sub people_sub"><i class="la la-minus"></i></button>
+                                                <input type=" text " value="1" class="people_num" readonly="readonly"/>
+                                                <button type="" class="add people_add"><i class="la la-plus"></i></button>    
                                                 </div>
-                                                <span class="max-people_num" data-max_people_num="${20 - data.data[0].ten_total_count}">(剩餘可訂位人數:${20 - data.data[0].ten_total_count})</span>`;
+                                                <span class="max-people_num" data-max_people_num="${20 - data.data[0].ten_total_count}">( 剩餘可訂位人數 : ${20 - data.data[0].ten_total_count} 位)</span>`;
 
                             $("div.people_num").html(people_num);
                             $("a.btn-booking").attr("data-booking_people_num", 1);
@@ -460,8 +355,8 @@
 
                             let people_num = `<label class="form-label">訂位人數:</label>
                                                 <div class="d-inline-flex ">
-                                                <button type="" class="sub "><i class="fas fa-minus"></i></button>
-                                                <input type=" text " value="1" readonly class="people_num"/>
+                                                <button type="" class="sub"><i class="fas fa-minus"></i></button>
+                                                <input type=" text " value="1"  class="people_num"/>
                                                 <button type="" class="add "><i class="fas fa-plus "></i></button>    
                                                 </div>
                                                 <span class="max-people_num" data-max_people_num="${20 - data.data}">(剩餘可訂位人數:${20 - data.data})</span>`;
@@ -502,7 +397,7 @@
 
                             let people_num = `<label class="form-label">訂位人數:</label>
                                                 <div class="d-inline-flex ">
-                                                <button type="" class="sub "><i class="fas fa-minus"></i></button>
+                                                <button type="" class="sub"><i class="fas fa-minus"></i></button>
                                                 <input type=" text " value="1" readonly class="people_num"/>
                                                 <button type="" class="add "><i class="fas fa-plus "></i></button>    
                                                 </div>
@@ -513,7 +408,7 @@
 
                         } else {
 
-                            let people_num = `<label class="form-label">訂位人數:</label>
+                            let people_num = `<label class="form-labels">訂位人數:</label>
                                                 <span class="max-people_num">(剩餘可訂位人數:0)</span>`;
 
                             $("div.people_num").html(people_num);
@@ -616,6 +511,17 @@
             $("select").select2({
                 minimumResultsForSearch: -1
             });
+        </script>
+
+        <script>
+            //radio 切換
+//             $('#male').click(function () {
+//                 $('#female').prop('checked', false)
+//             })
+
+//             $('#female').click(function () {
+//                 $('#male').prop('checked', false)
+//             })
         </script>
 
 </body>
