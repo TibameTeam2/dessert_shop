@@ -12,6 +12,7 @@ import java.util.Properties;
  */
 public class JDBCUtil {
     public static String url="jdbc:mysql://localhost:3306/sweet?serverTimezone=Asia/Taipei";
+//    public static String url="jdbc:mysql://10.140.0.2:3306/sweet?serverTimezone=Asia/Taipei";
     public static String user="jason";
     public static String password="123456";
     public static String driver="com.mysql.cj.jdbc.Driver";
