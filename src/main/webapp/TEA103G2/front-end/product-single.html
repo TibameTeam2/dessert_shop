@@ -1453,7 +1453,8 @@ ul.order_master_comment_list>li.-on button.switch_btn span.minus {
 		
 		$('.add').on('click', function() {
 			let qty = $(this).prev().val().trim();
-			if (qty == "" || qty == null) {
+			let qty_reg = /^[0-9]{1,10}$/;
+			if (!qty.match(qty_reg)) {
 				$(this).prev().val("1");
 			} else {
 				$(this).prev().val(Math.floor(parseInt($(this).prev().val()) + 1));
@@ -1462,7 +1463,8 @@ ul.order_master_comment_list>li.-on button.switch_btn span.minus {
 		});
 		$('.sub').on('click', function() {
 			let qty = $(this).next().val().trim();
-			if (qty == "" || qty == null) {
+			let qty_reg = /^[0-9]{1,10}$/;
+			if (!qty.match(qty_reg)) {
 				$(this).next().val("1");
 			} else {
 				if ($(this).next().val() > 1) {
