@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
-<title>Amino - Organic & Multipurpose Bootstrap 5 Template</title>
+<title>嗜甜-商品總覽</title>
 <meta name="robots" content="noindex, follow" />
 <meta name="description" content="">
 <meta name="viewport"
@@ -92,8 +92,8 @@
 			<div class="container">
 				<div class="page-banner">
 					<ul class="breadcrumb justify-content-center">
-						<li class="breadcrumb-item"><a href="index.html">Home</a></li>
-						<li class="breadcrumb-item active">Shop</li>
+						<li class="breadcrumb-item"><a href="index.html">主頁</a></li>
+						<li class="breadcrumb-item active">商品總覽</li>
 					</ul>
 				</div>
 			</div>
@@ -710,9 +710,9 @@
 						// 更新價格*****************************************************************
 						// updatePrice();
 
-   				}//for迴圈end
+   				}//if-end
+			}//for迴圈end
 
-			}
 			//等商品渲染完後，把比較商品的比較按鈕上色
 			getCompareList();
 			getWishList();
@@ -929,6 +929,7 @@
 					// 已登入的情況下，可即時更新現貨數量
 					let product_available_qty = data.data;
 					console.log("及時的現貨數量:"+product_available_qty);
+					cartQty();
 					// 操作畫面上的現貨數量
 // 					$(this).closest(".availability").find(".current_qty").text(product_available_qty);
 // 					$(".current_qty").text(product_available_qty);

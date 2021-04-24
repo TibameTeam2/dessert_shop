@@ -9,8 +9,10 @@ public class DailySpecialProductBean {
 	private Integer discount_price;
 	private Timestamp discount_start_time;
 	private Timestamp discount_deadline;
+	private Integer discount_status;
 	
-    private String product_name;
+
+	private String product_name;
     private String product_type;
     private String product_subtype;
     private String product_intro;
@@ -27,20 +29,30 @@ public class DailySpecialProductBean {
     private Double average_star;
     private List<String> image_url;
     
+	
+	
 	@Override
 	public String toString() {
-		return "ValidDailySpecialProductBean [discount_product_id=" + discount_product_id + ", product_id=" + product_id
+		return "DailySpecialProductBean [discount_product_id=" + discount_product_id + ", product_id=" + product_id
 				+ ", discount_price=" + discount_price + ", discount_start_time=" + discount_start_time
-				+ ", discount_deadline=" + discount_deadline + ", product_name=" + product_name + ", product_type="
-				+ product_type + ", product_subtype=" + product_subtype + ", product_intro=" + product_intro
-				+ ", product_ingredient=" + product_ingredient + ", product_price=" + product_price
-				+ ", product_available_qty=" + product_available_qty + ", product_status=" + product_status
-				+ ", expiry_after_buying=" + expiry_after_buying + ", product_calorie=" + product_calorie
-				+ ", degree_of_sweetness=" + degree_of_sweetness + ", total_star=" + total_star + ", total_review="
-				+ total_review + ", total_purchase=" + total_purchase + ", average_star=" + average_star
-				+ ", image_url=" + image_url + "]";
+				+ ", discount_deadline=" + discount_deadline + ", discount_status=" + discount_status
+				+ ", product_name=" + product_name + ", product_type=" + product_type + ", product_subtype="
+				+ product_subtype + ", product_intro=" + product_intro + ", product_ingredient=" + product_ingredient
+				+ ", product_price=" + product_price + ", product_available_qty=" + product_available_qty
+				+ ", product_status=" + product_status + ", expiry_after_buying=" + expiry_after_buying
+				+ ", product_calorie=" + product_calorie + ", degree_of_sweetness=" + degree_of_sweetness
+				+ ", total_star=" + total_star + ", total_review=" + total_review + ", total_purchase=" + total_purchase
+				+ ", average_star=" + average_star + ", image_url=" + image_url + "]";
+	}
+	
+	public Integer getDiscount_status() {
+		return discount_status;
 	}
 
+	public void setDiscount_status(Integer discount_status) {
+		this.discount_status = discount_status;
+	}
+	
 	public Integer getDiscount_product_id() {
 		return discount_product_id;
 	}

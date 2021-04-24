@@ -8,7 +8,7 @@ public interface DailySpecialDao {
 	
 	public void update(DailySpecialBean dsBean);
 	
-	public void delete(Integer product_id);
+	public void delete(Integer discount_product_id);
 	
 	public List<DailySpecialBean> getAll();
 	

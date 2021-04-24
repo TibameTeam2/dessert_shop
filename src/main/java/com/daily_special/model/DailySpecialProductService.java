@@ -12,7 +12,7 @@ public class DailySpecialProductService {
 		dao = new DailySpecialProductDAO();
 	}
 	
-	public DailySpecialProductBean getOneValidDailySpecialProduct(DailySpecialBean dsBean, ProductBean productBean) {
+	public DailySpecialProductBean getOneDailySpecialProduct(DailySpecialBean dsBean, ProductBean productBean) {
 		
 		return dao.getOneDailySpecialProduct(dsBean, productBean);
 	}

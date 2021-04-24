@@ -30,7 +30,20 @@ public class DailySpecialService {
 		return list;
 	}
 	
+	// 後台 刪除優惠
+	public void deleteDailySpecial(Integer product_id){
+		dao.delete(product_id);
+	}
 	
+	// 後台 新增優惠
+	public void addDailySpecial(DailySpecialBean dsBean) {
+		dao.insert(dsBean);
+	}
+	
+	// 後台 更新優惠
+	public void updateDailySpecial(DailySpecialBean dsBean) {
+		dao.update(dsBean);
+	}
 	
 	
 	

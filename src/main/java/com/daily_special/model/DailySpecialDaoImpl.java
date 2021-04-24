@@ -119,7 +119,7 @@ public class DailySpecialDaoImpl implements DailySpecialDao {
 
 	}
 
-	public void delete(Integer product_id) {
+	public void delete(Integer discount_product_id) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		DELETE = "DELETE FROM daily_special WHERE discount_product_id = ?";
@@ -129,7 +129,7 @@ public class DailySpecialDaoImpl implements DailySpecialDao {
 			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(DELETE);
 
-			pstmt.setInt(1, product_id);
+			pstmt.setInt(1, discount_product_id);
 
 			pstmt.executeUpdate();
 
@@ -158,12 +158,22 @@ public class DailySpecialDaoImpl implements DailySpecialDao {
 		}
 
 	}
-
+	
+	// 後台用，全拿
 	public List<DailySpecialBean> getAll() {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		SELECT_ALL = "SELECT * FROM daily_special";
+//		SELECT_ALL = "SELECT * FROM daily_special";
+		SELECT_ALL = "SELECT *, " + 
+				"  CASE " + 
+				"	WHEN discount_start_time > now() THEN 0" + 
+				"   WHEN discount_deadline < now() THEN 2" + 
+				"   WHEN discount_start_time <= now() <=  discount_deadline  THEN 1" + 
+				"   ELSE \"N\" " + 
+				"  END AS \"discount_status\" " + 
+				"  FROM daily_special ds left join product p on ds.product_id = p.product_id order by discount_product_id desc" ;
+		
 		List<DailySpecialBean> list_dsBean = new ArrayList<DailySpecialBean>();
 		DailySpecialBean dsBean = null;
 
@@ -181,6 +191,8 @@ public class DailySpecialDaoImpl implements DailySpecialDao {
 				dsBean.setDiscount_price(rs.getInt("discount_price"));
 				dsBean.setDiscount_start_time(rs.getTimestamp("discount_start_time"));
 				dsBean.setDiscount_deadline(rs.getTimestamp("discount_deadline"));
+				dsBean.setDiscount_status(rs.getInt("discount_status"));;
+				
 				list_dsBean.add(dsBean);
 //				System.out.println(dsBean);
 
@@ -219,6 +231,7 @@ public class DailySpecialDaoImpl implements DailySpecialDao {
 		ResultSet rs = null;
 //		SELECT_ALL_VALID = "SELECT * FROM sweet.daily_special where now() between discount_start_time and discount_deadline;  ";
 		SELECT_ALL_VALID = "SELECT ds.*, p.* FROM (SELECT * FROM daily_special ds WHERE now() BETWEEN discount_start_time AND discount_deadline)ds join (SELECT * FROM product p WHERE product_status = 1)p  on ds.product_id = p.product_id";
+		
 		List<DailySpecialBean> list_dsBean = new ArrayList<DailySpecialBean>();
 		DailySpecialBean dsBean = null;
 
@@ -236,6 +249,8 @@ public class DailySpecialDaoImpl implements DailySpecialDao {
 				dsBean.setDiscount_price(rs.getInt("discount_price"));
 				dsBean.setDiscount_start_time(rs.getTimestamp("discount_start_time"));
 				dsBean.setDiscount_deadline(rs.getTimestamp("discount_deadline"));
+				
+				
 				list_dsBean.add(dsBean);
 //				System.out.println(dsBean);
 

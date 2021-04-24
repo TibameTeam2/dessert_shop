@@ -101,6 +101,7 @@ public class DailySpecialProductDAO implements DailySpecialProductDAO_interface 
 		vds_productBean.setDiscount_price(dsBean.getDiscount_price());
 		vds_productBean.setDiscount_start_time(dsBean.getDiscount_start_time());
 		vds_productBean.setDiscount_deadline(dsBean.getDiscount_deadline());
+		vds_productBean.setDiscount_status(dsBean.getDiscount_status());
 		
 		vds_productBean.setProduct_name(productBean.getProduct_name());
 		vds_productBean.setProduct_type(productBean.getProduct_type());
