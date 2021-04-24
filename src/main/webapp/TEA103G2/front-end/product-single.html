@@ -1211,8 +1211,8 @@ ul.order_master_comment_list>li.-on button.switch_btn span.minus {
 		$.get("/dessert_shop/product/getAllSortByPurchase", {}, function (data) {
        		console.log(data.msg);
 			
-       		for(var i = 0 ; i < 3; i++){
-	  				let hotSale_id = data.data[i].product_id;
+       		for(var i = 0 ; i < 6; i++){
+	  			let hotSale_id = data.data[i].product_id;
 				// 與本頁重複的不放
 				console.log("product_id:"+product_id);
 				console.log("hotSale_id:"+hotSale_id);
@@ -1329,7 +1329,7 @@ ul.order_master_comment_list>li.-on button.switch_btn span.minus {
  										<div class="single-product">
  											<div class="product-image">
  												<a class="product-thumbnail" href="product-single.html?id=${product_id}">
- 													<imgsrc="${product_img1}" alt="product">
+ 													<img src="${product_img1}" alt="product">
  													<img class="image-hover" src="${product_img2}" alt="product">
  												</a>
  												<div class="product-action">
