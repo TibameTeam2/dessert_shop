@@ -4,6 +4,7 @@ import java.util.List;
 
 public interface NewsLetterDao {
 	
+	
 	/*************************** 新增 **************************/
 	public void insert(NewsLetterBean newsletterBean);
 

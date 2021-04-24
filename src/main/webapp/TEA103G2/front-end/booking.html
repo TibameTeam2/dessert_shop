@@ -1,0 +1,623 @@
+﻿<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>嗜甜-訂位系統</title>
+    <meta name="robots" content="noindex, follow" />
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.png">
+
+    <!-- CSS
+	============================================ -->
+
+    <!-- Icon Font CSS -->
+    <link rel="stylesheet" href="assets/css/plugins/ionicons.min.css">
+    <link rel="stylesheet" href="assets/css/plugins/line-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/plugins/fontawesome.min.css">
+
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="assets/css/plugins/animate.min.css">
+    <link rel="stylesheet" href="assets/css/plugins/swiper-bundle.min.css">
+    <link rel="stylesheet" href="assets/css/plugins/nice-select.css">
+    <link rel="stylesheet" href="assets/css/plugins/select2.min.css">
+    <link rel="stylesheet" href="assets/css/plugins/jquery-ui.min.css">
+    <link rel="stylesheet" href="assets/css/plugins/magnific-popup.css">
+
+    <!-- Main Style CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/custom.css">
+
+    <!-- Mine CSS -->
+    <link rel="stylesheet" href="assets/css/mineCarStyle.css">
+
+
+    <!--====== Use the minified version files listed below for better performance and remove the files listed above ======-->
+    <!-- <link rel="stylesheet" href="assets/css/vendor/plugins.min.css">
+    <link rel="stylesheet" href="assets/css/style.min.css"> -->
+
+    <!------------------------------------------------------------- 頁面CSS ------------------------------------------------------------->
+    <style>
+        .book_h1 {
+            margin-top: 360px;
+            margin-bottom: 30px;
+            color:#83ba2f;
+            font-weight: bolder;
+        }
+
+        label.booking_name_label {
+            margin-top: 20px;
+        }
+
+        label.contact_num_label {
+
+            margin-top: 20px;
+        }
+
+        label.booking_date_label {
+            margin-top: 20px;
+            margin-right: 5px;
+        }
+
+        label.booking_time_hour_label {
+            margin-top: 20px;
+            margin-left: 80px;
+            margin-right: 5px;
+        }
+
+        label.max-people_num_label {
+            margin-top: 20px;
+            margin-left: 80px;
+        }
+
+        label.book_postscript_label {
+            margin-top: 20px;
+        }
+
+        input.booking_name {
+            display: inline-block;
+            border: 1px solid rgb(196, 194, 194);
+            border-radius: 5px;
+            margin-left: 5px;
+        }
+
+        input.contact_num {
+            display: inline-block;
+            border: 1px solid rgb(196, 194, 194);
+            border-radius: 5px;
+            margin-left: 5px;
+        }
+
+        input.booking_date {
+            border: 1px solid rgb(196, 194, 194);
+            border-radius: 5px;
+        }
+
+        input.booking_time_hour {
+            border: 1px solid rgb(196, 194, 194);
+            border-radius: 5px;
+        }
+
+        span.max-people_num {
+            margin-left: 5px;
+        }
+
+        textarea.book_postscript {
+            width: 300px;
+            line-height: 3em;
+            margin-top: 20px;
+            margin-left: 5px;
+            border: 1px solid rgb(196, 194, 194);
+            border-radius: 5px;
+            vertical-align: middle;
+            resize: none;
+        }
+
+        a.btn-booking {
+            width: 100px;
+            margin-top: 10px;
+            border-radius: 15px;
+            vertical-align: bottom;
+            margin-left: 80px;
+            background-color: #83ba2f;
+            border-color:#83ba2f;
+        }
+
+        a.btn-go-index {
+            width: 100px;
+            margin-top: 10px;
+            border-radius: 15px;
+            margin-left: 20px;
+            vertical-align: bottom;
+            background-color:#83ba2f;
+            border-color:#83ba2f;
+        }
+
+
+        a.btn-booking:hover {
+            background-color:rgb(106, 151, 38);
+            border-color:rgb(106, 151, 38);
+        }
+
+        a.btn-go-index:hover{
+            background-color:rgb(106, 151, 38);
+            border-color:rgb(106, 151, 38);
+        }
+    </style>
+</head>
+
+<body class="body-scroll">
+
+    <!-- Loading Progress 
+
+============================================= -->
+
+    <div id="loading-progress">
+
+        <a class="logo" href="#">
+
+            <img src="assets/images/sweetness_logo.png" data-logo-alt="images/files/logo-header.png" alt="">
+
+            <!--        <h3><span class="colored">Astron</span></h3>-->
+
+            <!--        <span>HTML Template</span>-->
+
+        </a><!-- .logo end -->
+
+        <div class="lp-content">
+            <div class="lp-counter">
+                Loading
+                <div id="lp-counter">0%</div>
+            </div><!-- .lp-counter end -->
+
+            <div class="lp-bar">
+                <div id="lp-bar"></div>
+            </div><!-- .lp-bar end -->
+        </div><!-- .lp-content end -->
+    </div>
+
+    <!-- #loading-progress end -->
+
+
+    <div class="main-wrapper">
+        <!------------------------------------------------------------- Header ------------------------------------------------------------->
+
+        <!--Header-->
+
+        <div class="header"></div>
+
+        <!--Page Banner Start-->
+        <div class="section page-banner-wrapper bg-cover" style="background-image: url(assets/images/page-banner.jpg);">
+            <div class="container">
+                <div class="page-banner">
+                    <ul class="breadcrumb justify-content-center">
+                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                        <li class="breadcrumb-item active">Booking</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--Page Banner Start-->
+
+
+        <!------------------------------------------------------------- Content ------------------------------------------------------------->
+        <div style="width:1000px; margin-left:50px;">
+
+            <h1 class="book_h1">線上訂位系統</h1>
+
+            <div class="checkout-title">
+                <h4 class="title" style="color:rgb(166 164 164);">訂位資訊</h4>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="single-form">
+                        <label class="form-label booking_name_label">訂位姓名 :</label>
+                        <input type="text" class="booking_name"></input>
+                        <input type="radio" name="male" id="male" style="margin-left: 10px;">&nbsp;男
+                        <input type="radio" name="female" id="female" style="margin-left: 10px;">&nbsp;女
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="single-form">
+                        <label class="form-label contact_num_label">連絡電話 :</label>
+                        <input class="contact_num"></input>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="single-form" style="display: inline-block;">
+                        <label class="form-label booking_date_label">訂位日期 :</label>
+                        <select class="select2 booking_date" style="width: 120px;">
+                        </select>
+                    </div>
+
+                    <div class="single-form" style="display: inline-block;">
+                        <label class="form-label booking_time_hour_label">訂位時間 :</label>
+                        <select class="select2 booking_time_hour" style="width: 120px;">
+                            <option value="10:00:00">10:00:00</option>
+                            <option value="12:00:00">12:00:00</option>
+                            <option value="14:00:00">14:00:00</option>
+                            <option value="16:00:00">16:00:00</option>
+                            <option value="18:00:00">18:00:00</option>
+                            <option value="20:00:00">20:00:00</option>
+                        </select>
+                    </div>
+
+                    <div class="single-form people_num" style="display: inline-block;">
+                        <label class="form-label max-people_num_label">訂位人數 :</label>
+                        <span class="max-people_num">(剩餘可訂位人數:0)</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div class="row" >
+                <div class="col-sm-12">
+                    <div class="single-form" style="display: inline-block;">
+                        <label class="form-label booking_time_hour_label">訂位時間:</label>
+                        <select class="select2 booking_time_hour" style="width: 120px;">
+                            <option value="10:00:00">10:00:00</option>
+                            <option value="12:00:00">12:00:00</option>
+                            <option value="14:00:00">14:00:00</option>
+                            <option value="16:00:00">16:00:00</option>
+                            <option value="18:00:00">18:00:00</option>
+                            <option value="20:00:00">20:00:00</option>
+                        </select>
+                    </div>
+                </div>
+            </div> -->
+
+            <!-- <div class="row">
+                <div class="col-sm-12">
+                    <div class="single-form people_num">
+                        <label class="form-label">訂位人數:</label>
+                        <span class="max-people_num">(剩餘可訂位人數:0)</span>
+                    </div>
+                </div>
+            </div> -->
+
+            <div class="col-sm-12" style="margin-bottom:40px;">
+                <div class="single-form">
+                    <label class="form-label book_postscript_label">訂位備註 :</label>
+                    <textarea class="book_postscript"></textarea>
+                    <a class="btn btn-shopping btn-primary btn-hover-dark  btn-booking"
+                        data-booking_people_num="0">送出</a>
+                    <a href="index.html" class="btn btn-shopping btn-primary btn-hover-dark  btn-go-index">回首頁</a>
+                </div>
+            </div>
+
+            <!-- <div class="booking-btn mt-20" style="margin-bottom: 20px;">
+                <a class="btn btn-shopping btn-primary btn-hover-dark  btn-booking"
+                     data-booking_people_num="0">送出</a>
+                 <a href="index.html" class="btn btn-shopping btn-primary btn-hover-dark  btn-go-index">回首頁</a>
+            </div> -->
+
+
+        </div>
+
+
+        <!------------------------------------------------------------- Footer ------------------------------------------------------------->
+
+        <!--Footer-->
+
+        <div class="footer"></div>
+
+
+
+        <!-- JS
+    ============================================ -->
+
+        <!-- Modernizer & jQuery JS -->
+        <script src="assets/js/vendor/modernizr-3.11.2.min.js "></script>
+        <script src="assets/js/vendor/jquery-3.5.1.min.js "></script>
+        <script src="assets/js/vendor/jquery.waitforimages.min.js"></script>
+        <script src="assets/js/plugins/sweetalert2.all.min.js"></script>
+
+        <!-- Bootstrap JS -->
+        <script src="assets/js/plugins/popper.min.js "></script>
+        <script src="assets/js/plugins/bootstrap.min.js "></script>
+
+        <!-- Plugins JS -->
+        <script src="assets/js/plugins/swiper-bundle.min.js "></script>
+        <script src="assets/js/plugins/jquery.nice-select.min.js "></script>
+        <script src="assets/js/plugins/select2.min.js "></script>
+        <script src="assets/js/plugins/jquery-ui.min.js "></script>
+        <script src="assets/js/plugins/jquery.magnific-popup.min.js "></script>
+        <script src="assets/js/plugins/jquery.zoom.min.js "></script>
+        <script src="assets/js/plugins/ajax-contact.js "></script>
+
+        <!--====== Use the minified version files listed below for better performance and remove the files listed above ======-->
+        <!-- <script src="assets/js/plugins.min.js "></script> -->
+
+        <!-- Main JS -->
+        <script src="assets/js/main.js "></script>
+        <!-- momnet js -->
+        <script src="assets/js/moment.js"></script>
+
+
+
+        <script>
+
+            $(document).ready(function () {
+
+                $('.header').load('header.html');
+
+                $('.footer').load('footer.html');
+
+            });
+
+
+            $("body").waitForImages({
+
+                finished: function () {
+
+                    setTimeout(function () {
+
+                        $(".lp-content, #loading-progress .logo").css({ opacity: 0 })
+
+                        $("#loading-progress").addClass("hide-it"),
+
+                            setTimeout(function () {
+
+                                $(".banner-parallax > .bg-element, .banner-parallax > .overlay-pattern").addClass("appeared")
+
+                            }, 1000)
+
+                    }, 0)
+
+                }, each: function (a, t, e) {
+
+                    var n = Math.floor((a + 1) / t * 100);
+
+                    $("#lp-counter").animate({ $this: n }, {
+
+                        duration: 150, easing: "", queue: !1, step: function (a) {
+
+                            var t = Math.round(a);
+
+                            $("#lp-counter").text(t + "%")
+
+                        }
+
+                    }), $("#lp-bar").animate({ width: n + "%" }, 0)
+
+                }, waitForAll: !0
+
+            });
+
+
+            /*========================進網頁載入資料=============================*/
+            $(function () {
+                //載入可訂位日期資料
+                $.get("/dessert_shop/bookRecord/getOpenBookingDate", {}, function (data) {
+                    console.log(data);
+                    if (data.flag) {
+
+                        for (var i = 0; i < data.data.length; i++) {
+
+                            let option_date = `<option value="${getTime(data.data[i].booking_date)}">${getTime(data.data[i].booking_date)}</option>`;
+
+                            $("select.booking_date").append(option_date);
+
+                        }
+
+                        if (data.data[0].ten_total_count < 20) {
+
+                            let people_num = `<label class="form-label">訂位人數:</label>
+                                                <div class="d-inline-flex ">
+                                                <button type="" class="sub "><i class="fas fa-minus"></i></button>
+                                                <input type=" text " value="1" readonly class="people_num"/>
+                                                <button type="" class="add "><i class="fas fa-plus "></i></button>    
+                                                </div>
+                                                <span class="max-people_num" data-max_people_num="${20 - data.data[0].ten_total_count}">(剩餘可訂位人數:${20 - data.data[0].ten_total_count})</span>`;
+
+                            $("div.people_num").html(people_num);
+                            $("a.btn-booking").attr("data-booking_people_num", 1);
+
+                        } else {
+
+                        }
+
+                    } else {
+
+                        if (data.redirect) {
+                            location.href = data.redirect;
+                        }
+                    }
+
+                });  //get
+
+
+            });  //function
+
+
+
+            function getTime(time) {
+                return moment(time).format('YYYY-MM-DD')
+            }
+
+
+
+            //載入訂位人數1
+            $("select.booking_date").on("change", function () {
+
+                let booking_date = $("select.booking_date").val();
+                let booking_time_hour = $("select.booking_time_hour").val();
+
+                $.post("/dessert_shop/bookRecord/getPeopleNum", { "booking_date": booking_date, "booking_time_hour": booking_time_hour }, function (data) {
+                    console.log(data);
+                    if (data.flag) {
+
+                        if (data.data < 20) {
+
+                            let people_num = `<label class="form-label">訂位人數:</label>
+                                                <div class="d-inline-flex ">
+                                                <button type="" class="sub "><i class="fas fa-minus"></i></button>
+                                                <input type=" text " value="1" readonly class="people_num"/>
+                                                <button type="" class="add "><i class="fas fa-plus "></i></button>    
+                                                </div>
+                                                <span class="max-people_num" data-max_people_num="${20 - data.data}">(剩餘可訂位人數:${20 - data.data})</span>`;
+
+                            $("div.people_num").html(people_num);
+                            $("a.btn-booking").attr("data-booking_people_num", 1);
+
+                        } else {
+
+                            let people_num = `<label class="form-label">訂位人數:</label>
+                                                <span class="max-people_num">(剩餘可訂位人數:0)</span>`;
+
+                            $("div.people_num").html(people_num);
+                            $("a.btn-booking").attr("data-booking_people_num", 0);
+                        }
+
+
+                    } else {
+
+                    }
+
+                });  //post
+
+
+            });
+
+            //載入訂位人數2
+            $("select.booking_time_hour").on("change", function () {
+
+                let booking_date = $("select.booking_date").val();
+                let booking_time_hour = $("select.booking_time_hour").val();
+
+                $.post("/dessert_shop/bookRecord/getPeopleNum", { "booking_date": booking_date, "booking_time_hour": booking_time_hour }, function (data) {
+                    console.log(data);
+                    if (data.flag) {
+
+                        if (data.data < 20) {
+
+                            let people_num = `<label class="form-label">訂位人數:</label>
+                                                <div class="d-inline-flex ">
+                                                <button type="" class="sub "><i class="fas fa-minus"></i></button>
+                                                <input type=" text " value="1" readonly class="people_num"/>
+                                                <button type="" class="add "><i class="fas fa-plus "></i></button>    
+                                                </div>
+                                                <span class="max-people_num" data-max_people_num="${20 - data.data}">(剩餘可訂位人數:${20 - data.data})</span>`;
+
+                            $("div.people_num").html(people_num);
+                            $("a.btn-booking").attr("data-booking_people_num", 1);
+
+                        } else {
+
+                            let people_num = `<label class="form-label">訂位人數:</label>
+                                                <span class="max-people_num">(剩餘可訂位人數:0)</span>`;
+
+                            $("div.people_num").html(people_num);
+                            $("a.btn-booking").attr("data-booking_people_num", 0);
+                        }
+
+
+                    } else {
+
+                    }
+
+                });  //post
+
+
+            });
+
+
+            //增加訂位人數
+            $("div.people_num").on("click", "button.add", function () {
+
+                let input = $(this).siblings("input.people_num");
+                let max_people_num = $("span.max-people_num").attr("data-max_people_num");
+
+                if (parseInt(input.val()) < max_people_num) {
+                    input.val(parseInt(input.val()) + 1);
+                    $("a.btn-booking").attr("data-booking_people_num", input.val());
+                } else {
+                    alert("訂位人數已達上限");
+                }
+
+            });
+
+            //減少訂位人數
+            $("div.people_num").on("click", "button.sub", function () {
+
+                let input = $(this).siblings("input.people_num");
+
+                if (parseInt(input.val()) > 1) {
+                    input.val(parseInt(input.val()) - 1);
+                    $("a.btn-booking").attr("data-booking_people_num", input.val());
+                } else {
+                    alert("訂位人數不得小於1");
+                }
+
+            });
+
+
+
+
+            /*========================送出訂位資料=============================*/
+            $("a.btn-booking").on("click", function () {
+                let booking_name = $("input.booking_name").val().trim();
+                let contact_num = $("input.contact_num").val().trim();
+                let booking_date = $("select.booking_date").val();
+                let booking_time_hour = $("select.booking_time_hour").val();
+                let people_num = $(this).attr("data-booking_people_num");
+                let book_postscript = $("textarea.book_postscript").val().trim();
+
+                let form = {
+                    "booking_name": booking_name,
+                    "contact_num": contact_num,
+                    "booking_date": booking_date,
+                    "booking_time_hour": booking_time_hour,
+                    "people_num": people_num,
+                    "book_postscript": book_postscript
+                };
+
+                $.post("/dessert_shop/bookRecord/setBookingDate", form, function (data) {
+                    console.log(data);
+                    if (data.flag) {
+
+                        Swal.fire({
+                            icon: 'success',
+                            title: '訂位完成!',
+                            showConfirmButton: false,
+                            timer: 1000
+                        }).then(function () {
+                            location.href = data.redirect;
+                        });
+
+                    } else {
+                        alert(data.msg);
+                        if (data.redirect) {
+                            location.href = data.redirect;
+                        }
+                    }
+
+
+                });  //post
+
+            });
+
+
+
+
+        </script>
+
+        <script>
+            //select2關閉搜尋框
+            $("select").select2({
+                minimumResultsForSearch: -1
+            });
+        </script>
+
+</body>
+
+</html>

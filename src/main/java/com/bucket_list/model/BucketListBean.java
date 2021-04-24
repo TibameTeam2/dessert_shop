@@ -38,16 +38,6 @@ public class BucketListBean implements Serializable {
 		this.bucket_list_status = bucket_list_status;
 	}
 	
-	//以下屬性使此Bean成為巨大Bean
-//	private String product_name;
-//	private String product_type;
-//	private String product_subtype;
-//	private Integer product_price;
-//	private Integer product_available_qty;
-//	private Integer discount_price;
-//	private Integer image_id;
-//	private String product_image;
-	
-	
+
 	
 }

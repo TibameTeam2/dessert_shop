@@ -198,7 +198,15 @@
 
 
 
-
+	<!-- 訂位系統 -->
+	<servlet>
+		<servlet-name>BookRecordServlet</servlet-name>
+		<servlet-class>com.book_record.controller.BookRecordServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>BookRecordServlet</servlet-name>
+		<url-pattern>/bookRecord/*</url-pattern>
+	</servlet-mapping>
 
 
 
