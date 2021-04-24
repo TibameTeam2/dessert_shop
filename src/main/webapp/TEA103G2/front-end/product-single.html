@@ -1019,7 +1019,7 @@ ul.order_master_comment_list>li.-on button.switch_btn span.minus {
 				$(".product_info").append("<li>"+" 甜度："+degree_of_sweetness+"°Bx</li>");
 				$(".product_info").append("<li>"+" 熱量："+product_calorie+" kcal</li>");
 				$(".product_info").append("<li>"+" 賞味天數："+expiry_after_buying+"</li>");
-				$(".product_info").append("<li>"+" 現貨數量："+product_available_qty+"</li>");
+				$(".product_info").append("<li class='max_qty' data-max="+product_available_qty+">"+" 現貨數量："+product_available_qty+"</li>");
 				$("div#tab1 .product-description ul").html("<li>"+product_intro+"</li>");
 				$("div#tab1 .product-description ul").append("<br>");
 				$("div#tab1 .product-description ul").append("<li>"+" 成份："+product_ingredient+"</li>");
@@ -1399,39 +1399,79 @@ ul.order_master_comment_list>li.-on button.switch_btn span.minus {
 // 				console.log("product_id為null，quick view product_id:"+product_id);
 // 			}
 			console.log("加入購物車的id:"+product_id);
-			let single_purchase = $(".purchase-qty").val();
+			let single_purchase = $(".purchase-qty").val().trim();
 
 			console.log("加入購物車的數量:"+single_purchase);
 
+			let max = $("li.max_qty").attr("data-max");
+			let qty_reg = /^[0-9]{1,10}$/;
+			
+			if (!single_purchase.match(qty_reg) || parseInt(single_purchase) == 0) {
+				alert("商品訂購數量不正確");
+			} else if (parseInt(single_purchase) > parseInt(max)) {
+				alert("商品訂購數量不得超過現貨");
+			} else {
+
 			// API要給id 跟數量 如果頁面沒有數量可以選 設為1
-			$.post("/dessert_shop/cart/insertProductIntoCart",{"product_id":product_id, "product_quantity":single_purchase},function(data){
-				console.log("加入購物車回傳的flag:"+data.flag);
-				// 判斷是否登入
-				if(data.flag == false){
-					Swal.fire({
-		                title: data.msg,
-		                text: "請先登入帳號!",
-		                icon: "error"
-		              }).then(function(){
-						 location.href="login.html";
-		              });
+				$.post("/dessert_shop/cart/insertProductIntoCart",{"product_id":product_id, "product_quantity":single_purchase},function(data){
+					console.log("加入購物車回傳的flag:"+data.flag);
+					// 判斷是否登入
+					if(data.flag == false){
+						Swal.fire({
+							title: data.msg,
+							text: "請先登入帳號!",
+							icon: "error"
+						}).then(function(){
+							location.href="login.html";
+						});
 
-				}else{
-					// 已登入的情況下，可即時更新現貨數量
-					let product_available_qty = data.data;
-					console.log("及時的現貨數量:"+product_available_qty);
-					cartQty();
-					// 操作畫面上的現貨數量
-// 					$(this).closest(".availability").find(".current_qty").text(product_available_qty);
-// 					$(".current_qty").text(product_available_qty);
-					// 一直改不成功
-				}
+					}else{
+						// 已登入的情況下，可即時更新現貨數量
+						let product_available_qty = data.data;
+						console.log("及時的現貨數量:"+product_available_qty);
+						Swal.fire({
+							title: "已加入購物車",
+							text: "",
+							icon: "success"
+						});
+						cartQty();
+						// 操作畫面上的現貨數量
+	// 					$(this).closest(".availability").find(".current_qty").text(product_available_qty);
+	// 					$(".current_qty").text(product_available_qty);
+						// 一直改不成功
+					}
 
-			});//$.post
+				});//$.post
 
+			}
 
 			$(".purchase_qty").val("1");//清空quick-view裡的數量
 
+		});
+
+		//購物車商品數量增減按鈕
+		
+		$('.add').on('click', function() {
+			let qty = $(this).prev().val().trim();
+			if (qty == "" || qty == null) {
+				$(this).prev().val("1");
+			} else {
+				$(this).prev().val(Math.floor(parseInt($(this).prev().val()) + 1));
+			}		
+			
+		});
+		$('.sub').on('click', function() {
+			let qty = $(this).next().val().trim();
+			if (qty == "" || qty == null) {
+				$(this).next().val("1");
+			} else {
+				if ($(this).next().val() > 1) {
+					$(this).next().val(Math.ceil($(this).next().val() - 1));
+				} else {
+					alert("商品訂購數量不能低於1個");
+					$(this).next().val("1");
+				}
+			}
 		});
 
 

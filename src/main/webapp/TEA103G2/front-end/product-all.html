@@ -929,6 +929,11 @@
 					// 已登入的情況下，可即時更新現貨數量
 					let product_available_qty = data.data;
 					console.log("及時的現貨數量:"+product_available_qty);
+					Swal.fire({
+						title: "已加入購物車",
+						text: "",
+						icon: "success"
+                	});
 					cartQty();
 					// 操作畫面上的現貨數量
 // 					$(this).closest(".availability").find(".current_qty").text(product_available_qty);
@@ -942,6 +947,10 @@
 			$(".purchase_qty").val("1");//清空quick-view裡的數量
 
 		});
+
+
+
+
 
 
 

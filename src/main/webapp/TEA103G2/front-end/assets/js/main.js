@@ -595,24 +595,20 @@
     /*--
     		    Product Quantity Activation
         -----------------------------------*/
-    $('.add').on('click', function() {
-        // if ($(this).prev().val()) {
-        //     $(this).prev().val(+$(this).prev().val() + 1);
-        // }
-
-        if ($(this).prev().val() < 20) {
-            if ($(this).prev().val() < 20) $(this).prev().val(+$(this).prev().val() + 1);
-        } else {
-            alert("商品訂購數量最多20個");
-        }
-    });
-    $('.sub').on('click', function() {
-        if ($(this).next().val() > 1) {
-            if ($(this).next().val() > 1) $(this).next().val(+$(this).next().val() - 1);
-        } else {
-            alert("商品訂購數量不能低於1個");
-        }
-    });
+    // $('.add').on('click', function() {
+    //     if ($(this).prev().val() < 20) {
+    //         if ($(this).prev().val() < 20) $(this).prev().val(+$(this).prev().val() + 1);
+    //     } else {
+    //         alert("商品訂購數量最多20個");
+    //     }
+    // });
+    // $('.sub').on('click', function() {
+    //     if ($(this).next().val() > 1) {
+    //         if ($(this).next().val() > 1) $(this).next().val(+$(this).next().val() - 1);
+    //     } else {
+    //         alert("商品訂購數量不能低於1個");
+    //     }
+    // });
 
     /*--
     		    Checkout Account Active
