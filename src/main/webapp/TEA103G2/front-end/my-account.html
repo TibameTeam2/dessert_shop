@@ -191,11 +191,14 @@
             <div class="my-account-menu mt-6">
               <ul class="nav account-menu-list flex-column">
                 <li>
-                  <a data-bs-toggle="pill" href="#pills-dashboard"><i class="fa fa-tachometer"></i> 導覽</a>
+                  <a data-bs-toggle="pill" href="#pills-dashboard" class="pills-dashboard"><i class="fa fa-tachometer"></i> 導覽</a>
                 </li>
                 <li>
-                  <a data-bs-toggle="pill" href="#pills-order"><i class="fa fa-shopping-cart"></i>
+                  <a data-bs-toggle="pill" href="#pills-order" class="pills-order"><i class="fa fa-shopping-cart"></i>
                     訂單資訊</a>
+                </li>
+                <li>
+                  <a data-bs-toggle="pill" href="#pills-booking" class="pills-booking"><i class="fa fa-user-plus"></i>訂位資訊</a>
                 </li>
                 <li>
                   <a href="member-comment.html" class="member-comment"><i class="fa fa-sign-out"></i> 我的評價</a>
@@ -203,14 +206,11 @@
                   <!--                  下載(用不到)</a>-->
                 </li>
                 <li>
-                  <a data-bs-toggle="pill" href="#pills-payment"><i class="fa fa-credit-card"></i>
+                  <a data-bs-toggle="pill" href="#pills-payment" class="pills-payment"><i class="fa fa-credit-card"></i>
                     信用卡資訊</a>
                 </li>
                 <li>
-                  <a data-bs-toggle="pill" href="#pills-booking"><i class="fa fa-user-plus"></i>訂位資訊</a>
-                </li>
-                <li>
-                  <a class="active" data-bs-toggle="pill" href="#pills-account"><i class="fa fa-user"></i>
+                  <a data-bs-toggle="pill" href="#pills-account" class="active pills-account"><i class="fa fa-user"></i>
                     帳號詳細資訊</a>
                 </li>
                 <li>
@@ -223,7 +223,7 @@
           <div class="col-xl-9 col-md-8">
             <!-- Tab content start -->
             <div class="tab-content my-account-tab mt-6">
-              <div class="tab-pane fade" id="pills-dashboard">
+              <div class="tab-pane fade pills-dashboard" id="pills-dashboard">
                 <div class="my-account-dashboard account-wrapper">
                   <h4 class="account-title">Dashboard</h4>
                   <div class="welcome-dashboard">
@@ -237,7 +237,7 @@
               </div>
 
 
-              <div class="tab-pane fade" id="pills-order">
+              <div class="tab-pane fade pills-order" id="pills-order">
                 <h4 class="account-title">訂單資料</h4>
                 <ul class="order_master_comment_list">
 
@@ -245,41 +245,52 @@
 
                 </ul>
               </div>
+              <div class="tab-pane fade pills-booking" id="pills-booking">
+                <div class="my-account-address account-wrapper">
 
+                  <h4 class="account-title">訂位明細</h4>
+                  <ul class="book_detail_list">
 
-              <div class="tab-pane fade" id="pills-download">
-                <div class="my-account-download account-wrapper">
-                  <h4 class="account-title">Download</h4>
-                  <div class="account-table text-center mt-30 table-responsive">
-                    <table class="table">
-                      <thead>
-                        <tr>
-                          <th class="name">Product</th>
-                          <th class="date">Date</th>
-                          <th class="status">Expire</th>
-                          <th class="action">Download</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>Mostarizing Oil</td>
-                          <td>Aug 22, 2020</td>
-                          <td>Yes</td>
-                          <td><a href="#">Download File</a></td>
-                        </tr>
-                        <tr>
-                          <td>Katopeno Altuni</td>
-                          <td>July 22, 2020</td>
-                          <td>Never</td>
-                          <td><a href="#">Download File</a></td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
+                    <!-- 訂位明細顯示區 -->
+
+                  </ul>
+
                 </div>
               </div>
 
-              <div class="tab-pane fade" id="pills-payment">
+<!--              <div class="tab-pane fade" id="pills-download">-->
+<!--                <div class="my-account-download account-wrapper">-->
+<!--                  <h4 class="account-title">Download</h4>-->
+<!--                  <div class="account-table text-center mt-30 table-responsive">-->
+<!--                    <table class="table">-->
+<!--                      <thead>-->
+<!--                        <tr>-->
+<!--                          <th class="name">Product</th>-->
+<!--                          <th class="date">Date</th>-->
+<!--                          <th class="status">Expire</th>-->
+<!--                          <th class="action">Download</th>-->
+<!--                        </tr>-->
+<!--                      </thead>-->
+<!--                      <tbody>-->
+<!--                        <tr>-->
+<!--                          <td>Mostarizing Oil</td>-->
+<!--                          <td>Aug 22, 2020</td>-->
+<!--                          <td>Yes</td>-->
+<!--                          <td><a href="#">Download File</a></td>-->
+<!--                        </tr>-->
+<!--                        <tr>-->
+<!--                          <td>Katopeno Altuni</td>-->
+<!--                          <td>July 22, 2020</td>-->
+<!--                          <td>Never</td>-->
+<!--                          <td><a href="#">Download File</a></td>-->
+<!--                        </tr>-->
+<!--                      </tbody>-->
+<!--                    </table>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </div>-->
+
+              <div class="tab-pane fade pills-payment" id="pills-payment">
                 <div class="my-account-payment account-wrapper">
                   <h4 class="account-title">信用卡資料</h4>
                   <p class="mt-30 card_empty">您未擁有任何信用卡</p>
@@ -324,20 +335,9 @@
                 </div>
               </div>
 
-              <div class="tab-pane fade" id="pills-booking">
-                <div class="my-account-address account-wrapper">
 
-                  <h4 class="account-title">訂位明細</h4>
-                  <ul class="book_detail_list">
 
-                    <!-- 訂位明細顯示區 -->
-
-                  </ul>
-
-                </div>
-              </div>
-
-              <div class="tab-pane fade show active" id="pills-account">
+              <div class="tab-pane fade show active pills-account" id="pills-account">
                 <div class="my-account-details account-wrapper">
                   <h4 class="account-title">個人資料</h4>
 
@@ -477,6 +477,27 @@
         }), $("#lp-bar").animate({ width: n + "%" }, 0)
       }, waitForAll: !0
     });
+  </script>
+  <script>
+      /********************** account payment booking order dashboard ***************************************************/
+      //  /my-account.html?active=order    網址後面給參數就會跳轉到指定分頁
+      $(function () {
+          //一進頁面先檢查有沒有指定到哪個分頁
+          let active = getParameter("active"); //取不到值時會是null
+          if(active!==null){
+              $("a.active").removeClass("active");
+              $("a.pills-"+active).addClass("active");
+              let account = $("div.active")
+              account.removeClass("active");
+              account.removeClass("show");
+              $("div.pills-"+active).addClass("active");
+              $("div.pills-"+active).addClass("show");
+          }
+      })
+      function getParameter(param) {
+          const urlParams = new URLSearchParams(window.location.search);
+          return urlParams.get(param); //取不到值時會是null
+      }
   </script>
   <script>
 

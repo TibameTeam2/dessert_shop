@@ -578,16 +578,13 @@ create table announcement_management (
 )AUTO_INCREMENT=1;
 insert into announcement_management (announcement_name,announcement_content,
 announcement_image,announcement_time,announcement_type,announcement_status,employee_account)
-values('提拉米蘇特價','提拉米蘇超好吃derrrrrr',LOAD_FILE('C:/project/images/announcement_management/a.jpg'),'2021-02-26',1,1,'jason');
+values('提拉米蘇特價','香醇濃沉的口感,甘甜與苦澀的完美融合,感謝各位消費者的肯定,提拉米蘇熱銷中',LOAD_FILE('C:/project/images/announcement_management/t.jpg'),'2021-02-26',1,1,'jason');
 insert into announcement_management (announcement_name,announcement_content,
 announcement_image,announcement_time,announcement_type,announcement_status,employee_account)
-values('檸檬塔暫停供應','員工擠檸檬噴到眼睛',LOAD_FILE('C:/project/images/announcement_management/b.PNG'),'2021-02-27',1,1,'peter');
+values('新品上市-檸檬蛋糕','國產檸檬的香氣與奶油乳酪的完美比例,酸甜不膩口與扎實的口感,經典永遠令人回味,檸檬蛋糕 新上市',LOAD_FILE('C:/project/images/announcement_management/lemonCake.jpg'),'2021-02-27',1,1,'peter');
 insert into announcement_management (announcement_name,announcement_content,
 announcement_image,announcement_time,announcement_type,announcement_status,employee_account)
-values('草莓蛋糕下架','草莓農藥太多',LOAD_FILE('C:/project/images/announcement_management/c.PNG'),'2021-02-28',1,1,'james');
-insert into announcement_management (announcement_name,announcement_content,
-announcement_image,announcement_time,announcement_type,announcement_status,employee_account)
-values('嗜甜營業時間','歡迎光臨嗜甜,本店營業時間 :星期一至六 早上 10:30 ~ 晚上 9:30,星期日/例假日 休息',LOAD_FILE('C:/project/images/announcement_management/open.jpg'),'2021-02-28',0,1,'james');
+values('嗜甜營業時間','歡迎光臨嗜甜,本店營業時間 :星期一至六 早上 10:30 ~ 晚上 9:30,星期日/例假日 休息',LOAD_FILE('C:/project/images/announcement_management/open.jpg'),'2021-02-25',0,1,'james');
 insert into announcement_management (announcement_name,announcement_content,
 announcement_image,announcement_time,announcement_type,announcement_status,employee_account)
 values('優惠券/優惠碼','嗜甜會不定期提供優惠券/優惠碼給消費者使用,皆可用於網路訂餐及實體消費做優惠的服務,謝謝每一位消費者對嗜甜的愛戴及支持',LOAD_FILE('C:/project/images/announcement_management/coupon.jpg'),'2021-03-01',3,1,'peter');
@@ -599,7 +596,7 @@ announcement_image,announcement_time,announcement_type,announcement_status,emplo
 values('草莓蛋糕熱銷中','季節限定的大湖草莓,結合了慕斯,口感既清淡又輕盈,入口即溶,微妙絕配,賞心悅目又美味,',LOAD_FILE('C:/project/images/announcement_management/strawberryCake.jpg'),'2021-03-20',1,1,'jason');
 insert into announcement_management (announcement_name,announcement_content,
 announcement_image,announcement_time,announcement_type,announcement_status,employee_account)
-values('全新消息敬請期待','新功能/新產品準備中,',LOAD_FILE('C:/project/images/announcement_management/comingSoon.jpg'),'2021-03-27',0,1,'jason');
+values('全新消息敬請期待','新功能/新產品準備中',LOAD_FILE('C:/project/images/announcement_management/comingSoon.jpg'),'2021-03-27',0,1,'jason');
 
 
 -- 優惠碼
@@ -616,6 +613,9 @@ create table coupon_code(
 	employee_account                VARCHAR(50) NOT NULL,
 	foreign key (employee_account) references employee(employee_account)
 )AUTO_INCREMENT=1;
+insert into coupon_code(coupon_code,coupon_code_effective_date,coupon_code_expire_date,
+coupon_code_text_content,coupon_code_content,discount_type,employee_account)
+values('vip','2021-02-27','2022-05-27','訂餐享5折',0.5,0,'jason');
 insert into coupon_code(coupon_code,coupon_code_effective_date,coupon_code_expire_date,
 coupon_code_text_content,coupon_code_content,discount_type,employee_account)
 values('MAH6203','2021-02-27','2022-03-27','訂餐享8折',0.8,0,'jason');
