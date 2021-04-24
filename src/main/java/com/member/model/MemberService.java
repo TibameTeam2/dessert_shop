@@ -33,7 +33,7 @@ public class MemberService {
             jedis.expire(activeCode, 600);
             jedis.close();
             String context = "請點擊以下連結啟用您的帳號(10分鐘內有效)\n" + path + "/TEA103G2/front-end/login.html?activeCode=" + activeCode;
-            MailUtil.send("jasonwu1994@gmail.com", "嗜甜，信箱驗證", context, false);
+            MailUtil.send(member.getMember_email(), "嗜甜，信箱驗證", context, false);
             System.out.println("thread " + member);
         }).start();
         return true;
