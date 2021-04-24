@@ -21993,12 +21993,12 @@ only screen and (max-width: 767px) {
 
 .checkout-title .title::after {
     content: "";
-    width: 50px;
+    width: 100px;
     display: block;
-    margin-top: 10px;
+    margin-top: 4px;
     border-bottom-width: 2px;
     border-bottom-style: solid;
-    border-color: inherit;
+    border-color: rgb(201, 201, 201);
 }
 
 .checkout-form {
