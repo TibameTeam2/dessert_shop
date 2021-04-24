@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>嗜甜 | 顛覆你想像的甜點</title>
+  <title>嗜甜-商品管理-每日優惠商品</title>
 
   <!-- Favicon -->
   <link rel="shortcut icon" href="assets/images/favicon.ico"/>
@@ -187,7 +187,7 @@
 <!-- 燈箱的內容 -->
 
 <!-- ----------------------------------------------- Edit 燈箱 ----------------------------------------------------------------- -->
-<div class="modal fade" id="update-product" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="update-daily-special" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-body">
@@ -208,23 +208,13 @@
 	                                <div class="col-md-6">
 	                                    <div class="form-group">
 	                                        <label id="update_product_name_label">商品名稱 *</label>
-	                                        <select name="product_name" class="form-control selectpicker" data-style="py-0" id="update_product_name" required>
-	                                            <option value>請選擇商品</option>
-												<optgroup label="蛋糕" class="cakes">
-												</optgroup>
-												<optgroup label="巧克力" class="chocolates">
-												</optgroup>
-												<optgroup label="精緻小點" class="others">
-												</optgroup>
-												<optgroup label="飲品" class="drinks">
-												</optgroup>
-	                                        </select>
+	                                        <input type="text" class="form-control" placeholder="自動產生" data-errors="Please Enter Code."  id="update_product_name" name="product_name" readonly>
 	                                    </div> 
 	                                </div>  
 	                                <div class="col-md-6">
 	                                    <div class="form-group">
 	                                        <label>優惠編號 *</label>
-	                                        <input type="text" class="form-control" placeholder="自動產生" data-errors="Please Enter Code."  id="update_discount_product_id" name="discount_product_id" disabled>
+	                                        <input type="text" class="form-control" placeholder="自動產生" data-errors="Please Enter Code."  id="update_discount_product_id" name="discount_product_id" readonly>
 	                                        <div class="help-block with-errors"></div>
 	                                    </div>
 	                                </div>     
@@ -447,80 +437,80 @@
 getAllDailySpecial();
 
 
+/****************進頁面先初始化表格*********************/
+let table=$(".data-table").DataTable();
+	table.destroy();
+	table = $(".data-table").DataTable({
+              "lengthMenu": [5, 10, 20],     //顯示幾項結果
+              "language": {
+                  "processing": "處理中...",
+                  "loadingRecords": "載入中...",
+                  "lengthMenu": "顯示 _MENU_ 項結果",
+                  "zeroRecords": "沒有符合的結果",
+                  "info": "顯示第 _START_ 至 _END_ 項結果，共 _TOTAL_ 項",
+                  "infoEmpty": "顯示第 0 至 0 項結果，共 0 項",
+                  "infoFiltered": "(從 _MAX_ 項結果中過濾)",
+                  "infoPostFix": "",
+                  "search": "搜尋:",
+                  "paginate": {
+                      "first": "第一頁",
+                      "previous": "上一頁",
+                      "next": "下一頁",
+                      "last": "最後一頁"
+                  },
+                  "aria": {
+                      "sortAscending": ": 升冪排列",
+                      "sortDescending": ": 降冪排列"
+                  }
+              },
+              "createdRow": function (row, data, dataIndex, text, column) {
+	    	if(data[10] != "生效中" & data[10] !="尚未開始"){
+           		$(row).css("background-color", "#EFF0F2");
+	    	}else if(data[10] =="尚未開始"){
+	    		$(row).css("background-color", "#f1f8f1");
+	    	}
+		},
+              "columnDefs": [
+                  {
+                      "targets": [0],    //欄位從0開始算
+                      "visible": true,   //欄位是否顯示 預設是true
+                      "orderable": true,  //是否可以排序
+                  },
+                  {
+                      "targets": [1, 2],    //欄位從0開始算
+                      "visible": true,   //欄位是否顯示 預設是true
+                      "orderable": true,  //是否可以排序
+                  },
+                  {
+                  	  "targets": [9],    //欄位從0開始算
+                      "visible": true,   //欄位是否顯示 預設是true
+                      "orderable": true,  //是否可以排序
+	               	  "createdCell": function (td, cellData, rowData, row, col) {
+				   	  		if(cellData == "未上架"){
+				   				$(td).css("color","red");
+				   			}
+						}
+                  }
+
+              ]
+     });
+
+
 let url = location.href.split("/TEA103G2")[0];
 function getAllDailySpecial(){
 <!--因為有商品成分跟介紹的部分 所以應該要做預覽-->		
-    $.get("/dessert_shop/dailySpecial/backend_getAllDailySpecialProduct", {}, function (data) {
 		var action = `<div class="d-flex align-items-center list-action">
-            			<!-- <a class="badge badge-info mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="View"
-                 			href="#"><i class="ri-eye-line mr-0"></i></a> -->
-                 			
-            			<a class="badge bg-success mr-2" data-toggle="modal" data-target="#update-product" data-placement="top" title="" data-original-title="Edit"
+            			<a class="badge bg-success mr-2" data-toggle="modal" data-target="#update-daily-special" data-placement="top" title="" data-original-title="Edit"
                 			href="javascript:void(0)"><i class="ri-pencil-line mr-0"></i></a>
-            			<a class="badge bg-warning mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="ChangeStatus"
-                			href="javascript:void(0)"><i class="fas fa-sync-alt"></i></a>
+            			<a class="badge bg-warning mr-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"
+                			href="javascript:void(0)"><i class="ri-delete-bin-line mr-0"></i></a>
         			  </div>`
-        			  
+  			  
+    $.get("/dessert_shop/dailySpecial/backend_getAllDailySpecialProduct", {}, function (data) {
 		if(data.flag){
-			let table=$(".data-table").DataTable();
-			table.destroy();
-			table = $(".data-table").DataTable({
-                "lengthMenu": [5, 10, 20],     //顯示幾項結果
-                "language": {
-                    "processing": "處理中...",
-                    "loadingRecords": "載入中...",
-                    "lengthMenu": "顯示 _MENU_ 項結果",
-                    "zeroRecords": "沒有符合的結果",
-                    "info": "顯示第 _START_ 至 _END_ 項結果，共 _TOTAL_ 項",
-                    "infoEmpty": "顯示第 0 至 0 項結果，共 0 項",
-                    "infoFiltered": "(從 _MAX_ 項結果中過濾)",
-                    "infoPostFix": "",
-                    "search": "搜尋:",
-                    "paginate": {
-                        "first": "第一頁",
-                        "previous": "上一頁",
-                        "next": "下一頁",
-                        "last": "最後一頁"
-                    },
-                    "aria": {
-                        "sortAscending": ": 升冪排列",
-                        "sortDescending": ": 降冪排列"
-                    }
-                },
-                "createdRow": function (row, data, dataIndex, text, column) {
-			    	if(data[10] != "生效中" & data[10] !="尚未開始"){
-	            		$(row).css("background-color", "#EFF0F2");
-			    	}else if(data[10] =="尚未開始"){
-			    		$(row).css("background-color", "#f1f8f1");
-			    	}
-				},
-                "columnDefs": [
-                    {
-                        "targets": [0],    //欄位從0開始算
-                        "visible": true,   //欄位是否顯示 預設是true
-                        "orderable": false,  //是否可以排序
-                    },
-                    {
-                        "targets": [1, 2],    //欄位從0開始算
-                        "visible": true,   //欄位是否顯示 預設是true
-                        "orderable": true,  //是否可以排序
-                        "width": "1%"
-                    },
-                    {
-                    	 "targets": [9],    //欄位從0開始算
-                         "visible": true,   //欄位是否顯示 預設是true
-                         "orderable": true,  //是否可以排序
-		               	 "createdCell": function (td, cellData, rowData, row, col) {
-					   		if(cellData == "未上架"){
-					   			$(td).css("color","red");
-					   		}
-						}
-                    }
-
-                ]
-            })
-			table.clear().draw();
 			
+			let table = $(".data-table").DataTable()
+			table.clear().draw();
 			for (var i = 0; i < data.data.length; i++) {
 	            // 撈第一張照片
 	            let product_img1 = url + data.data[i].image_url[0];
@@ -564,8 +554,6 @@ function getStatus(pStatus, dStatus){
 		return "生效中";
 	}else if(pStatus == 1 & dStatus == 2){
 		return "已過期";
-	}else if(pStatus == 1 & dStatus == 3){
-		return "強制暫停";
 	}
 }
 
@@ -577,23 +565,6 @@ function getStatus(pStatus, dStatus){
 // 	$("#addDailySpecial_from").trigger("reset"); // 無效
 // })	
 
-// ****選單選項帶出原有價格跟id**** //
-$("#add_product_name").on("change", function(){
-	console.log("選項");
-	let product_name_data = "product_name=" + $(this).val().trim();
-	$.post("/dessert_shop/product/product/backend_getOneProductByName?", product_name_data, function(data){
-		
- 	console.log("data.flag:"+data.flat);
-		if(data.flag){
-			let product_price = data.data.product_price;
-			let product_id = data.data.product_id;
-			console.log("product_price:"+product_price);
-			$("#add_product_price").val(product_price);
-			$("#add_product_id").val(product_id);
-		}
-	});
-	
-});
 // ****下拉選單出現所有商品**** //
 $.get("/dessert_shop/product/backend_getAllProduct", {}, function(data){
      if(data.flag){
@@ -620,6 +591,24 @@ $.get("/dessert_shop/product/backend_getAllProduct", {}, function(data){
      }
 });
 
+// ****選單選項帶出原有價格跟id**** //
+$("#add_product_name").on("change", function(){
+	console.log("選項");
+	let product_name_data = "product_name=" + $(this).val().trim();
+	console.log("product_name_data:"+product_name_data);
+	$.post("/dessert_shop/product/product/backend_getOneProductByName?", product_name_data, function(data){
+		
+ 	console.log("data.flag:"+data.flat);
+		if(data.flag){
+			let product_price = data.data.product_price;
+			let product_id = data.data.product_id;
+			console.log("product_price:"+product_price);
+			$("#add_product_price").val(product_price);
+			$("#add_product_id").val(product_id);
+		}
+	});
+	
+});
 	
 // ****送出新增**** //	
 	$("#addDailySpecial").on("click",function(e){
@@ -671,69 +660,31 @@ $.get("/dessert_shop/product/backend_getAllProduct", {}, function(data){
 	
 	
 // -----------------------  更新燈箱  ----------------------- //
-	
+//**** 開啟 ****//	
 $("tbody").on("click", "a.bg-success", function(){
 	console.log("edit");
-	// 要去資料庫撈資料...因為有成分跟更新的資訊 內容太多不會在清單上
 	let table = $(".data-table").DataTable();
 	let data = table.row($(this).closest('tr')).data();
 	
-	
-// 	let discount_product_id = data[0];
-// 	let discount_product_name = data[2];
-	let product_id = data[3];
 	console.log("discount_product_id:"+data[0]);
 	console.log("product_name:"+data[2]);
 	console.log("product_id:"+data[3]);
 	
    	$("#update_discount_product_id").val(data[0]);
-   	$("#update_product_name").val("`+data[2]+`");
+   	let product_name = data[2];
+   	$("#update_product_name").val(product_name);
    	$("#update_product_id").val(data[3]);
     $("#update_product_price").val(data[5]);
     $("#update_discount_price").val(data[6]);
     
-    data[7] == "未上架" ? $(".update_product_status").val("0") : $(".update_product_status").val("1");
-    
-    $("#update_discount_start_time").val(data[7]);
-    $("#update_discount_deadline").val(data[8]);
-   
-    // 簡介跟照片:
-// 	$.get("/dessert_shop/product/getOneProduct?id="+product_id, {}, function(data){
-// 		console.log("修改燈箱data msg:"+data.msg);
-		
-// 		let product_intro = data.data.product_intro;
-// 		let product_ingredient = data.data.product_ingredient;
-// 	    $(".update_product_intro").val(product_intro);
-// 	    $(".update_product_ingredient").val(product_ingredient);
-	    
-// 	    //total_star不在form中，故再給予 
-// 	    let total_star = data.data.total_star;
-// 	    $(".update_total_star").val(total_star);
-// 	    $(".show_total_star").text(total_star);
-// 	    console.log("total_star:"+ total_star)
-
-// 	    // 撈所有照片
-// 	    $(".database_image_wrapper").html(""); //清空照片
-// 	    let product_images=[];
-// 		for (var i = 0; i < data.data.image_url.length; i++) {
-// 	    	product_images[i] = url + data.data.image_url[i];
-// 	    	console.log("product_images:"+product_images[i]);
-// 	    	let image_div = `
-// 	    			<div class="col-md-2">
-// 		    			<div>
-// 		    				<img class="database_image" src="${product_images[i]}" alt="ProductImage">
-// 		    			</div>
-// 	    			</div>`
-// 	        $(".database_image_wrapper").append(image_div); 
-// 		}
-
-// 	});// 更新燈箱的$.get
+	$("#update_discount_start_time").val(moment(data[7]).format('YYYY-MM-DDTHH:mm:ss.SSS'));
+    $("#update_discount_deadline").val(moment(data[8]).format('YYYY-MM-DDTHH:mm:ss.SSS'));
 	
 	
 });//更新燈箱
 
 
-	// ------------------ 燈箱內的送出修改 ------------------ //
+	// ****更新 送出修改**** //
 	$("#updateProduct").on("click", function(e){
 		e.preventDefault();
 		console.log("更新送出");
@@ -752,15 +703,15 @@ $("tbody").on("click", "a.bg-success", function(){
                 if (data.flag) {
                     Swal.fire({
                         title: data.msg,
-                        text: "",
+                        text: "修改成功",
                         icon: "success"
                     });
-                    getAllProduct();
-                    $("#update-product").modal('hide');
+                    getAllDailySpecial();
+                    $("#update-daily-special").modal('hide');
                 } else {
                     Swal.fire({
                         title: data.msg,
-                        text: "",
+                        text: "更新失敗",
                         icon: "error"
                     })
                 }
@@ -772,38 +723,62 @@ $("tbody").on("click", "a.bg-success", function(){
 		return false;
 	});
 	
-	// ------------------ 上/下架 ------------------ //
-// 	$("tbody").on("click", "a.bg-warning", function(e){
-// 		e.preventDefault();
-// 		console.log("更改上下架狀態");
-// 		// 顯示更換
-// 		// DB更改
-// 		let table = $(".data-table").DataTable();
-// 		let data = table.row($(this).closest('tr')).data();
+	// ----------------- 刪除優惠 ----------------- //
+	$("tbody").on("click", "a.bg-warning", function(e){
+		e.preventDefault();
+		console.log("刪除優惠活動");
+		const swalWithBootstrapButtons = Swal.mixin({
+			  customClass: {
+			    confirmButton: 'btn btn-success',
+			    cancelButton: 'btn btn-danger'
+			  },
+			  buttonsStyling: false
+		})
 		
-// 		let product_id = data[2];
-// 		let product_status = data[7];
-// 		console.log("product_id:"+product_id);
-// 		console.log("product_status:"+product_status);
-// 		if(product_status == "上架中"){
-// 			console.log("更改為未上架");
-// 			product_status = 0;
-// 		}else if(product_status == "未上架"){
-// 			console.log("更改為上架中");
-// 			product_status = 1;
-// 		}
-// 		console.log("轉換後的product_status:"+product_status);
-// 		$.post("/dessert_shop/product/backend_updateProuctStatus", { product_id, product_status }, function(data){
-// 			if(data.flag == true){
-// 				console.log("更新狀態成功");
-// 				getAllProduct();
-// 			}else{
-// 				console.log("更新狀態失敗");
+		swalWithBootstrapButtons.fire({
+			  title: '確定要刪除嗎?',
+			  icon: 'warning',
+			  showCancelButton: true,
+			  confirmButtonText: '是, 確認刪除!',
+			  cancelButtonText: '取消',
+			  reverseButtons: true
+			}).then((result) => {
+			  if (result.isConfirmed) {
+				// DB更改
+				let table = $(".data-table").DataTable();
+				let data = table.row($(this).closest('tr')).data();
 				
-// 			}
-// 		});//$.post
+				let discount_product_id = data[0];
+				$.post("/dessert_shop/dailySpecial/backend_deleteDailySpecial", { discount_product_id }, function(data){
+					if(data.flag == true){
+						console.log("已刪除優惠活動");
+		                getAllDailySpecial();
+					}else{
+						console.log("刪除優惠失敗");
+						
+					}
+				});//$.post
+				//
+			    swalWithBootstrapButtons.fire(
+			      '已刪除!',
+			      '',
+			      'success'
+			    )
+			  } else if (
+			    /* Read more about handling dismissals below */
+			    result.dismiss === Swal.DismissReason.cancel
+			  ) {
+			    swalWithBootstrapButtons.fire(
+			      '已取消',
+			      '',
+			      'error'
+			    )
+			  }
+			})
+			 
+			 
 		
-// 	});
+	});
 	
     
     

@@ -119,17 +119,17 @@ public class DailySpecialDaoImpl implements DailySpecialDao {
 
 	}
 
-	public void delete(Integer product_id) {
+	public void delete(Integer discount_product_id) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		DELETE = "DELETE FROM daily_special WHERE product_id = ?";
+		DELETE = "DELETE FROM daily_special WHERE discount_product_id = ?";
 
 		try {
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(DELETE);
 
-			pstmt.setInt(1, product_id);
+			pstmt.setInt(1, discount_product_id);
 
 			pstmt.executeUpdate();
 
@@ -172,7 +172,7 @@ public class DailySpecialDaoImpl implements DailySpecialDao {
 				"   WHEN discount_start_time <= now() <=  discount_deadline  THEN 1" + 
 				"   ELSE \"N\" " + 
 				"  END AS \"discount_status\" " + 
-				"FROM daily_special ds left join product p on ds.product_id = p.product_id";
+				"  FROM daily_special ds left join product p on ds.product_id = p.product_id order by discount_product_id desc" ;
 		
 		List<DailySpecialBean> list_dsBean = new ArrayList<DailySpecialBean>();
 		DailySpecialBean dsBean = null;

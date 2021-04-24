@@ -53,7 +53,7 @@ public class DailySpecialServlet extends BaseServlet {
 			System.out.println("dsBean的product_id:" + product_id);
 			// 用這個id撈產品
 			productBean = productSvc.getOneProduct(product_id);
-			vds_productBean = vdspSvc.getOneValidDailySpecialProduct(dsBean, productBean);
+			vds_productBean = vdspSvc.getOneDailySpecialProduct(dsBean, productBean);
 			
 			System.out.println("vds_productBean:"+vds_productBean);
 			validProduct_list.add(vds_productBean);
@@ -89,7 +89,7 @@ public class DailySpecialServlet extends BaseServlet {
 			System.out.println("dsBean的product_id:" + product_id);
 			// 用這個id撈產品
 			productBean = productSvc.getOneProduct(product_id);
-			ds_productBean = dspSvc.getOneValidDailySpecialProduct(dsBean, productBean);
+			ds_productBean = dspSvc.getOneDailySpecialProduct(dsBean, productBean);
 			
 			System.out.println("ds_productBean:"+ds_productBean);
 			allDSProduct_list.add(ds_productBean);
@@ -130,12 +130,12 @@ public class DailySpecialServlet extends BaseServlet {
 		temp_end[0] = discount_deadline;
 		new_map.replace("discount_deadline", temp_end);
 		
-		System.out.println("replace完後的new_map= " + new_map);
+		System.out.println("replace完後的new_map= " + new ObjectMapper().writeValueAsString(new_map));
     	
      	DailySpecialBean dsBean = new DailySpecialBean();
      	ResultInfo info = new ResultInfo();
     	try {
-    		BeanUtils.populate(dsBean, map);
+    		BeanUtils.populate(dsBean, new_map);
     		System.out.println("封裝好的dsBean:" + dsBean);
     		
     		// 調用service將商品"新增"至DB
@@ -187,7 +187,7 @@ public class DailySpecialServlet extends BaseServlet {
      	DailySpecialBean dsBean = new DailySpecialBean();
      	ResultInfo info = new ResultInfo();
     	try {
-    		BeanUtils.populate(dsBean, map);
+    		BeanUtils.populate(dsBean, new_map);
     		System.out.println("封裝好的dsBean:" + dsBean);
     		
     		// 調用service將優惠"新增"至DB
@@ -207,6 +207,33 @@ public class DailySpecialServlet extends BaseServlet {
 
 			writeValueByWriter(res, info);
     	}
+		
+		
+	}
+	
+	// 後台 刪除每日優惠
+	// http://localhost:8081/dessert_shop/dailySpecial/backend_deleteDailySpecial
+	public void backend_deleteDailySpecial(HttpServletRequest req, HttpServletResponse res) {
+
+		Integer discount_product_id = new Integer(req.getParameter("discount_product_id"));
+		
+		DailySpecialService dsSvc = new DailySpecialService();
+
+		ResultInfo info = new ResultInfo();
+		try {
+		
+			dsSvc.deleteDailySpecial(discount_product_id);
+			info.setFlag(true);
+			info.setMsg("刪除優惠成功!");
+			
+			writeValueByWriter(res, info);
+			
+		}catch(Exception e) {
+			
+			info.setFlag(false);
+			info.setMsg("刪除優惠失敗!");
+			writeValueByWriter(res, info);
+		}
 		
 		
 	}
