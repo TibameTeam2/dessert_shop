@@ -254,9 +254,9 @@ CREATE TABLE bucket_list (
 	CONSTRAINT bucketList_member_FK FOREIGN KEY (member_account) REFERENCES member(member_account),
 	CONSTRAINT bucketList_product_FK FOREIGN KEY (product_id) REFERENCES product(product_id)
 ) AUTO_INCREMENT = 1;
-INSERT INTO bucket_list (member_account, product_id, bucket_list_status)VALUES ('jason',1,1);
-INSERT INTO bucket_list (member_account, product_id, bucket_list_status)VALUES ('jason',2,1);
-INSERT INTO bucket_list (member_account, product_id, bucket_list_status)VALUES ('jason',3,1);
+# INSERT INTO bucket_list (member_account, product_id, bucket_list_status)VALUES ('jason',1,1);
+# INSERT INTO bucket_list (member_account, product_id, bucket_list_status)VALUES ('jason',2,1);
+# INSERT INTO bucket_list (member_account, product_id, bucket_list_status)VALUES ('jason',3,1);
 INSERT INTO bucket_list (member_account, product_id, bucket_list_status)VALUES ('tom',2,1);
 INSERT INTO bucket_list (member_account, product_id, bucket_list_status)VALUES ('amy',3,1);
 INSERT INTO bucket_list (member_account, product_id, bucket_list_status)VALUES ('amy',1,1);
@@ -743,10 +743,10 @@ CREATE TABLE cart (
 	constraint cart_member_fk foreign key (member_account) references member (member_account),
     constraint cart_product_fk foreign key (product_id) references product (product_id)
 ) AUTO_INCREMENT = 1;
-INSERT INTO cart (member_account, product_id, product_quantity)VALUES ('jason', 1, '8');
+# INSERT INTO cart (member_account, product_id, product_quantity)VALUES ('jason', 1, '8');
 INSERT INTO cart (member_account, product_id, product_quantity)VALUES ('tom', 2, '7');
 INSERT INTO cart (member_account, product_id, product_quantity)VALUES ('amy', 3, '8');
-INSERT INTO cart (member_account, product_id, product_quantity)VALUES ('jason', 3, '7');
+# INSERT INTO cart (member_account, product_id, product_quantity)VALUES ('jason', 3, '7');
 
 
 -- 訂單資料
