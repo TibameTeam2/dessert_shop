@@ -479,8 +479,14 @@
                         if (coupon_price != null) {
                             $("p.coupon_price").text("優惠金額：" + coupon_price + "元");
                             let final_price = total_price - coupon_price;
-                            $("h3.final_price").text("應付金額：" + final_price + "元");
-                            $("h3.final_price").attr("data-final_price", final_price);
+                            if (final_price <= 0) {
+                                final_price = 0;
+                                $("h3.final_price").text("應付金額：" + final_price + "元");
+                                $("h3.final_price").attr("data-final_price", final_price);
+                            } else {
+                                $("h3.final_price").text("應付金額：" + final_price + "元");
+                                $("h3.final_price").attr("data-final_price", final_price);
+                            }                    
                         } else {
                             $("h3.final_price").text("應付金額：" + total_price + "元");
                             $("h3.final_price").attr("data-final_price", total_price);

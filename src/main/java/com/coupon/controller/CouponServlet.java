@@ -122,7 +122,11 @@ public class CouponServlet extends BaseServlet {
 			e.printStackTrace();
 		} catch (InvocationTargetException e) {
 			e.printStackTrace();
-		} 
+		}
+		if (cp.getCoupon_code_id() == 0) {
+			cp.setCoupon_code_id(null);
+		}
+		
 		boolean flag = cS.addCP2(cp);
 		
 		

@@ -74,7 +74,12 @@ public class CouponDAO implements CouponDAO_interface {
 			pstmt.setInt(7, CB.getDiscount_type());
 			pstmt.setInt(8, CB.getCoupon_status());
 			pstmt.setString(9, CB.getEmployee_account());
-			pstmt.setInt(10, CB.getCoupon_code_id());
+			if (CB.getCoupon_code_id() != null) {
+				pstmt.setInt(10, CB.getCoupon_code_id());
+			} else {
+				pstmt.setString(10, null);
+			}				
+		
 
 			pstmt.executeUpdate();
 
