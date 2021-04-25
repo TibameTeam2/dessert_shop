@@ -301,7 +301,7 @@ svg.abcRioButtonSvg {
                     //以下開始重置密碼，發請求給伺服器
                     if (password) {
                         console.log("password=" + password[0]);
-                        $.post("/dessert_shop/member/resetPassword?", "resetPasswordCode=" + resetPasswordCode + "&password=" + password[0], async function (data) {
+                        $.post("/dessert_shop/member/resetPassword?", "resetPasswordCode=" + resetPasswordCode + "&password=" + password[0], function (data) {
                             console.log(data);
                             if (data.flag) {
                                 Swal.fire({

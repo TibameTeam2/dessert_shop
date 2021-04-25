@@ -79,7 +79,7 @@ public class Employee_backendServlet extends BaseServlet {
                 req.getSession().setAttribute("employee", emp);//登入成功
                 info.setMsg("登入成功!");
                 info.setData(emp);
-                info.setRedirect(req.getContextPath() + "/TEA103G2/back-end/index.html");
+                info.setRedirect(req.getContextPath() + "/TEA103G2/back-end/employee.html");
             }
         }
         writeValueByWriter(res, info);
