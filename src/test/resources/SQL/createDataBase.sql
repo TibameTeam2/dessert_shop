@@ -672,9 +672,6 @@ create table coupon_code(
 )AUTO_INCREMENT=1;
 insert into coupon_code(coupon_code,coupon_code_effective_date,coupon_code_expire_date,
 coupon_code_text_content,coupon_code_content,discount_type,employee_account)
-values('vip','2021-02-27','2022-05-27','訂餐享5折',0.5,0,'jason');
-insert into coupon_code(coupon_code,coupon_code_effective_date,coupon_code_expire_date,
-coupon_code_text_content,coupon_code_content,discount_type,employee_account)
 values('MAH6203','2021-02-27','2022-03-27','訂餐享8折',0.8,0,'jason');
 insert into coupon_code(coupon_code,coupon_code_effective_date,coupon_code_expire_date,
 coupon_code_text_content,coupon_code_content,discount_type,employee_account)
