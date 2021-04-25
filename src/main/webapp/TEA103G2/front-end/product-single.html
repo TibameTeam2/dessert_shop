@@ -43,6 +43,16 @@
 .swiper-container .single-img {
 /* 	border: 1px solid red; */
 }
+
+/* .single-img{ */
+/* 	text-align : center; */
+/* } */
+
+.single-img img{
+	width: 100%;
+}
+
+
 /* 小縮圖區塊   +放大圖區塊*/
 .swiper-container .swiper-wrapper .swiper-slide {
 /* 	border: 1px solid green; */
@@ -736,52 +746,52 @@ ul.order_master_comment_list>li.-on button.switch_btn span.minus {
 							<div class="quick-view-top">
 								<div class="swiper-container">
 									<div class="swiper-wrapper">
-										<div class="swiper-slide">
-											<img src="assets/images/shop-single/shop-single-01.jpg"
-												alt="Product Image">
-										</div>
-										<div class="swiper-slide">
-											<img src="assets/images/product/cakes/strawRoll-a.jpg"
-												alt="Product Image">
-										</div>
-										<div class="swiper-slide">
-											<img src="assets/images/shop-single/shop-single-03.jpg"
-												alt="Product Image">
-										</div>
-										<div class="swiper-slide ">
-											<img src="assets/images/shop-single/shop-single-04.jpg"
-												alt="Product Image">
-										</div>
-										<div class="swiper-slide">
-											<img src="assets/images/shop-single/shop-single-05.jpg"
-												alt="Product Image">
-										</div>
+<!-- 										<div class="swiper-slide"> -->
+<!-- 											<img src="assets/images/shop-single/shop-single-01.jpg" -->
+<!-- 												alt="Product Image"> -->
+<!-- 										</div> -->
+<!-- 										<div class="swiper-slide"> -->
+<!-- 											<img src="assets/images/product/cakes/strawRoll-a.jpg" -->
+<!-- 												alt="Product Image"> -->
+<!-- 										</div> -->
+<!-- 										<div class="swiper-slide"> -->
+<!-- 											<img src="assets/images/shop-single/shop-single-03.jpg" -->
+<!-- 												alt="Product Image"> -->
+<!-- 										</div> -->
+<!-- 										<div class="swiper-slide "> -->
+<!-- 											<img src="assets/images/shop-single/shop-single-04.jpg" -->
+<!-- 												alt="Product Image"> -->
+<!-- 										</div> -->
+<!-- 										<div class="swiper-slide"> -->
+<!-- 											<img src="assets/images/shop-single/shop-single-05.jpg" -->
+<!-- 												alt="Product Image"> -->
+<!-- 										</div> -->
 									</div>
 								</div>
 							</div>
 							<div class="product-thumbnail quick-view-thumbs">
 								<div class="swiper-container">
 									<div class="swiper-wrapper">
-										<div class="swiper-slide">
-											<img src="assets/images/shop-single/shop-single-01.jpg"
-												alt="Product Thumbnail">
-										</div>
-										<div class="swiper-slide">
-											<img src="assets/images/shop-single/shop-single-02.jpg"
-												alt="Product Thumbnail">
-										</div>
-										<div class="swiper-slide">
-											<img src="assets/images/shop-single/shop-single-03.jpg"
-												alt="Product Thumbnail">
-										</div>
-										<div class="swiper-slide">
-											<img src="assets/images/shop-single/shop-single-04.jpg"
-												alt="Product Thumbnail">
-										</div>
-										<div class="swiper-slide">
-											<img src="assets/images/shop-single/shop-single-05.jpg"
-												alt="Product Thumbnail">
-										</div>
+<!-- 										<div class="swiper-slide"> -->
+<!-- 											<img src="assets/images/shop-single/shop-single-01.jpg" -->
+<!-- 												alt="Product Thumbnail"> -->
+<!-- 										</div> -->
+<!-- 										<div class="swiper-slide"> -->
+<!-- 											<img src="assets/images/shop-single/shop-single-02.jpg" -->
+<!-- 												alt="Product Thumbnail"> -->
+<!-- 										</div> -->
+<!-- 										<div class="swiper-slide"> -->
+<!-- 											<img src="assets/images/shop-single/shop-single-03.jpg" -->
+<!-- 												alt="Product Thumbnail"> -->
+<!-- 										</div> -->
+<!-- 										<div class="swiper-slide"> -->
+<!-- 											<img src="assets/images/shop-single/shop-single-04.jpg" -->
+<!-- 												alt="Product Thumbnail"> -->
+<!-- 										</div> -->
+<!-- 										<div class="swiper-slide"> -->
+<!-- 											<img src="assets/images/shop-single/shop-single-05.jpg" -->
+<!-- 												alt="Product Thumbnail"> -->
+<!-- 										</div> -->
 									</div>
 								</div>
 								<!-- Add Arrows -->
@@ -789,7 +799,7 @@ ul.order_master_comment_list>li.-on button.switch_btn span.minus {
 								<div class="swiper-button-prev"></div>
 							</div>
 							<div class="product-flag">
-								<span class="new">New真假</span>
+								<span class="new">Hot</span>
 							</div>
 						</div>
 						<!-- Quick View image End -->
@@ -810,7 +820,6 @@ ul.order_master_comment_list>li.-on button.switch_btn span.minus {
 									</div>
 								</li>
 								<li><a href="#"><i class="fal fa-comment-dots"></i>查看評論 <span>(3)</span></a></li>
-								<li><a href="#"><i class="fal fa-edit"></i>撰寫評論</a></li>
 							</ul>
 							<div class="product-prices">
 <!-- 								<span class="old-price">$喔喔35.90</span> -->
@@ -840,7 +849,7 @@ ul.order_master_comment_list>li.-on button.switch_btn span.minus {
 										</button>
 									</div>
 									<div class="product-cart">
-										<button class="btn btn-primary btn-hover-dark">加入購物車</button>
+										<button class="btn btn-primary btn-hover-dark add-cart">加入購物車</button>
 									</div>
 								</div>
 							</div>
@@ -855,12 +864,21 @@ ul.order_master_comment_list>li.-on button.switch_btn span.minus {
 								</p>
 							</div>
 							<div class="product-sharing">
-								<ul class="social-sharing">
-									<li><a href="#"><i class="ion-social-facebook"></i></a></li>
-									<li><a href="#"><i class="ion-social-twitter"></i></a></li>
-									<li><a href="#"><i class="ion-social-pinterest"></i></a></li>
-									<li><a href="#"><i class="ion-social-linkedin"></i></a></li>
-								</ul>
+								<span class="label">分享</span>
+									<ul class="social-sharing">
+
+										<!-- 分享按鈕 from SHAR THIS -->
+										<li>
+										<div class="sharethis-inline-share-buttons"></div>
+										</li>
+								
+								
+<!-- 								<ul class="social-sharing"> -->
+<!-- 									<li><a href="#"><i class="ion-social-facebook"></i></a></li> -->
+<!-- 									<li><a href="#"><i class="ion-social-twitter"></i></a></li> -->
+<!-- 									<li><a href="#"><i class="ion-social-pinterest"></i></a></li> -->
+<!-- 									<li><a href="#"><i class="ion-social-linkedin"></i></a></li> -->
+<!-- 								</ul> -->
 							</div>
 						</div>
 						<!-- Quick View Content End -->
@@ -1326,16 +1344,16 @@ ul.order_master_comment_list>li.-on button.switch_btn span.minus {
 	     			let single_product_grid = `
 	     					<div class="swiper-slide">
 	     					<!-- Single Product Start -->
- 										<div class="single-product">
+ 										<div class="single-product" id="${hotSale_id}">
  											<div class="product-image">
- 												<a class="product-thumbnail" href="product-single.html?id=${product_id}">
+ 												<a class="product-thumbnail" href="product-single.html?id=${hotSale_id}">
  													<img src="${product_img1}" alt="product">
  													<img class="image-hover" src="${product_img2}" alt="product">
  												</a>
  												<div class="product-action">
  													<a href="#" class="action"><i class="lar la-heart"></i></a> 
  													<a href="#" class="action"><i class="las la-sync"></i></a>
- 													<a href="#" class="action" data-bs-toggle="modal" data-bs-target="#quick-view"><i class="las la-search"></i></a>
+ 													<a href="#" class="action search" data-bs-toggle="modal" data-bs-target="#quick-view"><i class="las la-search"></i></a>
  													<a href="#" class="action"><i class="ion-bag"></i></a>
  												</div>
  												<div class="product-flag">
@@ -1344,7 +1362,7 @@ ul.order_master_comment_list>li.-on button.switch_btn span.minus {
  											</div>
  											<div class="product-content">
  												<h4 class="product-title">
- 													<a href="product-single.html?id=${product_id}">${product_name}</a>
+ 													<a href="product-single.html?id=${hotSale_id}">${product_name}</a>
  												</h4>
  												<div class="manufacturer">
  													<a href="product-all.html?type=`+ product_type +`&subtype=`+ product_subtype +`">${product_subtype_string}</a>
@@ -1388,6 +1406,64 @@ ul.order_master_comment_list>li.-on button.switch_btn span.minus {
 				}
        		}			
         });
+		
+		// 下方熱銷商品-燈箱的地方
+   		$("body").on("click", "a.search", function(e) {
+   			let product_id = $(this).closest(".single-product").attr("id");
+   			console.log("quick view");
+   			console.log(product_id);
+   			$.get("/dessert_shop/product/getOneProduct?id="+product_id, {}, function(data) {
+   				console.log("點選後:"+data.data.product_id);
+				let product_name = data.data.product_name;
+				let product_type = data.data.product_type;
+				let product_subtype = data.data.product_subtype;
+  				let product_price = data.data.product_price;
+  				let total_review = data.data.total_review;
+    			let avg_star = data.data.total_star/total_review;
+     			let fixed_star = avg_star.toFixed(1);
+     			let rating_star = (avg_star/5*100);
+     			let image_list = data.data.image_url.valueOf();
+				let product_intro = data.data.product_intro;
+				let product_ingredient = data.data.product_ingredient;
+				let product_available_qty = data.data.product_available_qty;
+
+				// quick-view區塊給product_id
+				$("#quick-view").attr("data-product_id", product_id);
+
+				$("div.quick-view-content .product-name").text(product_name);
+				$("div.quick-view-content .reference").html(product_type+":"+"<span>"+product_subtype+"</span>");
+				$("div.quick-view-content").find("i[class='fal fa-comment-dots'] span").text("("+total_review+")");
+				$("div.quick-view-content ul.shop-rating-content").find("span").text("("+total_review+")");
+				$("div.quick-view-content .review-star div.star").attr("style", "width:"+rating_star+"%");
+				$("div.quick-view-content .sale-price").text("$"+product_price);
+				$("div.quick-view-content .product-description ul").html("<li>"+product_intro+"</li>");
+				$("div.quick-view-content .product-description ul").append("<li>"+" 成份: "+product_ingredient+"</li>");
+				$("#quick-view .new").text(fixed_star);
+
+				$("#quick-view .swiper-wrapper").html("");
+				$("div[class='product-thumbnail quick-view-thumbs'] .swiper-wrapper").html("");
+
+				let product_images=[];
+				for(var i = 0 ; i < image_list.length ; i++){
+					product_images[i]= url + image_list[i];
+					console.log(product_images[i]);
+     				let quick_view_image=`
+     					<div class="swiper-slide">
+							<img src="${product_images[i]}" alt="Product Thumbnail">
+						</div>`
+					$("#quick-view .swiper-wrapper").append(quick_view_image);
+     			}
+
+
+   			});
+
+   		});
+		
+		
+		
+		
+		
+		
 		
 		// 加入購物車
 		$("body").on("click", ".add-cart", function(){
