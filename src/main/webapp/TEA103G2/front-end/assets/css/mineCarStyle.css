@@ -417,7 +417,8 @@ div.coupon-form {
        button.people_sub{
        background-color: white;
        border:1px solid #808080;
-       margin-left:5px;              
+       margin-left:5px;
+       border-right: none;             
        }
        
        button.people_sub:hover{
@@ -433,6 +434,7 @@ div.coupon-form {
        button.people_add{
        background-color: white;
        border:1px solid #808080;
+       border-left: none;         
        }
        
        button.people_add:hover{
