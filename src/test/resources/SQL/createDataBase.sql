@@ -55,7 +55,7 @@ CREATE TABLE member (
 	member_status	  TINYINT NOT NULL
 );
 INSERT INTO member (member_account,member_password,member_name,member_phone,member_email,member_photo,member_gender,member_birthday,register_method,member_status)
-VALUES ('jason','202cb962ac59075b964b07152d234b70','傑森','0956732874','jasonwu1994@gmail.com',LOAD_FILE('C:\\project\\images\\member\\jason_statham.png'),1,'1994-09-24',1,0);
+VALUES ('jason','202cb962ac59075b964b07152d234b70','傑森','0956732874','jason@csie.io',LOAD_FILE('C:\\project\\images\\member\\jason_statham.png'),1,'1994-09-24',1,0);
 INSERT INTO member (member_account,member_password,member_name,member_phone,member_email,member_photo,member_gender,member_birthday,register_method,member_status)
 VALUES ('tom','202cb962ac59075b964b07152d234b70','湯姆貓','0911798243','tom@gmail.com',LOAD_FILE('C:\\project\\images\\member\\tom_cruise.jpg'),1,'2012-08-04',1,0);
 INSERT INTO member (member_account,member_password,member_name,member_phone,member_email,member_photo,member_gender,member_birthday,register_method,member_status)
