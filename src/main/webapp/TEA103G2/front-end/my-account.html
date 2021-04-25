@@ -82,15 +82,16 @@
     ul.book_detail_list>li {
       /* ul.order_master_comment_list > li > a.link_title{ */
       display: block;
-      width: 100%;
+      width: 80%;
       color: white;
       background-color: #ffffff;
       box-shadow: 2px 2px 8px 0 rgba(56, 55, 53, 0.33);
       border-radius: 26px;
-      padding: 4px 40px;
+      /* padding: 4px 40px; */
       text-decoration: none;
       font-size: 24px;
       font-weight: normal;
+      margin-left:120px;
     }
 
     ul.order_master_comment_list>li::after,
@@ -238,7 +239,7 @@
 
 
               <div class="tab-pane fade pills-order" id="pills-order">
-                <h4 class="account-title">訂單資料</h4>
+                <h4 class="account-title" style="margin-left: 130px; font-weight: bolder;">訂單資料</h4>
                 <ul class="order_master_comment_list">
 
                   <!-- 訂單資料顯示區 -->
@@ -248,7 +249,7 @@
               <div class="tab-pane fade pills-booking" id="pills-booking">
                 <div class="my-account-address account-wrapper">
 
-                  <h4 class="account-title">訂位明細</h4>
+                  <h4 class="account-title" style="margin-left:130px; font-weight: bolder;">訂位明細</h4>
                   <ul class="book_detail_list">
 
                     <!-- 訂位明細顯示區 -->
@@ -292,7 +293,7 @@
 
               <div class="tab-pane fade pills-payment" id="pills-payment">
                 <div class="my-account-payment account-wrapper">
-                  <h4 class="account-title">信用卡資料</h4>
+                  <h4 class="account-title" style="font-weight:bolder; margin-bottom:10px;">信用卡資料</h4>
                   <p class="mt-30 card_empty">您未擁有任何信用卡</p>
 
                   <div>
@@ -307,24 +308,24 @@
                     <div class="form-container">
 
                       <div class="field-container">
-                        <label for="cardnumber">卡號</label>
-                        <input id="cardnumber" class="form-control" type="text" pattern="[0-9]*" inputmode="numeric">
+                        <label for="cardnumber" style="margin-bottom:5px;">卡號</label>
+                        <input id="cardnumber" class="form-control" type="text" pattern="[0-9]*" inputmode="numeric" style="margin-bottom:15px">
                         <svg id="ccicon" class="ccicon" width="750" height="471" viewBox="0 0 750 471" version="1.1"
                           xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                         </svg>
                       </div>
                       <div class="field-container">
-                        <label for="expirationdate">有效期限 (mm/yy)</label>
+                        <label for="expirationdate"  style="margin-bottom:5px;">有效期限 (MM/YY)</label>
                         <input id="expirationdate" class="form-control" type="text" pattern="[0-9]*"
-                          inputmode="numeric">
+                          inputmode="numeric" style="margin-bottom:15px">
                       </div>
                       <div class="field-container">
-                        <label for="securitycode">安全碼</label>
-                        <input id="securitycode" class="form-control" type="text" pattern="[0-9]*" inputmode="numeric">
+                        <label for="securitycode" style="margin-bottom:5px;">安全碼</label>
+                        <input id="securitycode" class="form-control" type="text" pattern="[0-9]*" inputmode="numeric" style="margin-bottom:25px">
 
                       </div>
                       <div style="float: right;">
-                        <button type="button" class="insert_card">新增</button>
+                        <button type="button" class="insert_card" style="">新增</button>
                       </div>
 
                     </div>
@@ -674,28 +675,26 @@
           for (var i = 0; i < data.data[0].length; i++) {
 
             let order_master_list = `<li class="order_master_${data.data[0][i].order_master_id}" data-order_master_id="${data.data[0][i].order_master_id}">
-                    <div class="post-meta" style="margin-bottom: 0px; border-top: 1px solid white; border-bottom: 1px solid white">
-                      <span class="detail">訂單編號 : <span class="order_master_id">${data.data[0][i].order_master_id}</span></span>
-                      <span class="detail">下訂時間 : <span class="order_time">${getTime(data.data[0][i].order_time)}</span></span>
+                    <div class="post-meta order_detail_div">
+                      <span class="detail">訂單編號  : <span class="order_master_id detail-content">${data.data[0][i].order_master_id}</span></span>
+                      <span class="detail">下訂時間  : <span class="order_time detail-content">${getTime(data.data[0][i].order_time)}</span></span>
+                      <span class="detail">付款時間  : <span class="payment_time detail-content">${data.data[0][i].payment_time == null ? "無" : getTime(data.data[0][i].payment_time)}</span></span>
                       <br>
-                      <span class="detail">付款時間 : <span class="payment_time">${data.data[0][i].payment_time == null ? "無" : getTime(data.data[0][i].payment_time)}</span></span>
+                      <span class="detail">發票號碼 : <span class="invoice_number detail-content">${data.data[0][i].invoice_number == null ? "無" : data.data[0][i].invoice_number}</span></span>
+                      <span class="detail">優惠碼 : <span	class="coupon_id detail-content">${data.data[2][i]}</span></span>
+                      <span class="detail">付款方式 : <span class="payment_method detail-content">${getPaymentMethod(data.data[0][i].payment_method)}</span> </span>
                       <br>
-                      <span class="detail">發票號碼	: <span class="invoice_number">${data.data[0][i].invoice_number == null ? "無" : data.data[0][i].invoice_number}</span></span>
-                      <span class="detail">優惠碼 : <span	class="coupon_id">${data.data[2][i]}</span></span>
-                      <span class="detail">付款方式	: <span class="payment_method">${getPaymentMethod(data.data[0][i].payment_method)}</span> </span>
+                      <span class="detail">訂單金額 : <span	class="order_total detail-content">${data.data[0][i].order_total}元</span></span>
+                      <span class="detail">訂單狀態 : <span class="order_status detail-content">${getOrderStatus(data.data[0][i].order_status)}</span></span>
                       <br>
-                      <span class="detail">訂單金額 : <span	class="order_total">${data.data[0][i].order_total}元</span></span>
-                      <br>
-                      <span class="detail">訂單備註 : <span	class="order_remarks">${data.data[0][i].order_remarks}</span></span>
-                      <br>
-                      <span class="detail">訂單狀態 : <span class="order_status">${getOrderStatus(data.data[0][i].order_status)}</span></span>
-                      <button type="button" class="switch_btn">
-                        <span class="plus" style="width: 20px; height: 20px; margin-right: 0px;"><i class="fas fa-chevron-down" style="color: white; display: inline"></i></span>
-                        <span class="minus" style="width: 20px; height: 20px;"><i class="fas fa-chevron-up" style="color: white; display: inline"></i></span>
+                      <span class="detail">訂單備註 : <span	class="order_remarks detail-content_end">${data.data[0][i].order_remarks}</span></span>         
+                      <button type="button" class="switch_btn detail_btn">
+                        <span class="plus detail_btn_plus"><i class="fas fa-chevron-down" style="font-size:20px;"></i></span>
+                        <span class="minus detail_btn_minus"><i class="fas fa-chevron-up" style="font-size:20px;"></i></span>
                       </button>
                     </div>
-                    <div class="inner_block order_master_${data.data[0][i].order_master_id}">
-
+                    <div class="inner_block order_master_div order_master_${data.data[0][i].order_master_id}" style="padding-bottom:15px;">
+					<hr style="width:540px;margin-top:25px ; margin-bottom:10px; border-color:#E0E0E0;">
 
                     </div>
                   </li>`;
@@ -705,35 +704,33 @@
             //取消訂單按鈕
             if (data.data[0][i].order_status == 0) {
 
-              let cancel_btn = `<button style="margin-left: 5px;" type="button" class="cancel_order">取消訂單</button>`;
+              let cancel_btn = `<button style="margin-left:5px;" type="button" class="cancel_order">取消訂單</button>`;
 
               $(`li.order_master_${data.data[0][i].order_master_id}`).find("span.order_status").after(cancel_btn);
 
               //查詢匯款帳戶代碼
               if (data.data[0][i].payment_method == 3) {
 
-                let pay_code_btn = `<button style="margin-left: 8px;" type="button" class="pay_code">查詢匯款代碼</button>`;
+                let pay_code_btn = `<button style="margin-left:8px;" type="button" class="pay_code">查詢匯款代碼</button>`;
 
                 $(`li.order_master_${data.data[0][i].order_master_id}`).find("button.cancel_order").after(pay_code_btn);
 
               }
 
-            }
-
-
+            }            
+            
             for (var j = 0; j < data.data[1][i].length; j++) {
 
-              let order_detail = `<span class="product_name">商品名稱：${data.data[1][i][j].product_name}</span>
-                      <span class="product_price">商品價格：${data.data[1][i][j].product_price}</span>
-                      <span class="product_qty">商品數量：${data.data[1][i][j].product_qty}</span>
+              let order_detail = `<span class="product_name" style="display:inline-block; margin-bottom:5px; font-size:13px; ">商品名稱：</span><span style="font-size:13px;">${data.data[1][i][j].product_name}</span>
+                      <span class="product_price" style="display:inline-block; margin-bottom:5px; font-size:13px; margin-left:30px;">商品價格：</span><span style="font-size:13px;">${data.data[1][i][j].product_price}</span>
+                      <span class="product_qty" style="display:inline-block; margin-bottom:5px; font-size:13px; margin-left:30px;">商品數量：</span><span style="font-size:13px;">${data.data[1][i][j].product_qty} 個</span>
                       <br>`;
 
-              $(`div.order_master_${data.data[0][i].order_master_id}`).prepend(order_detail);
+              $(`div.order_master_${data.data[0][i].order_master_id}`).append(order_detail);
 
             }
 
-
-
+             
           }
 
 
@@ -759,10 +756,10 @@
 
             for (var i = 0; i < data.data.length; i++) {
 
-              let card = `<div style="padding-bottom: 5px;">
-                          <span style="padding-right: 5px; font-size: 20px;" id="card-${data.data[i].card_id}" data-card_id="${data.data[i].card_id}" data-card_number="${data.data[i].card_number}" data-card_expired_day="${data.data[i].card_expired_day}" data-card_cvc="${data.data[i].card_cvc}">
-                          卡號：${data.data[i].card_number}</span><button type="button" class="delete_card">刪除</button>
-                          </div>`;
+              let card = `<div style="margin-bottom:10px;">
+                          <span style="font-size:16px;margin-bottom:15px;" id="card-${data.data[i].card_id}" data-card_id="${data.data[i].card_id}" data-card_number="${data.data[i].card_number}" data-card_expired_day="${data.data[i].card_expired_day}" data-card_cvc="${data.data[i].card_cvc}">
+                          卡號：</span><span style="font-size:16px;">${data.data[i].card_number}</span><button type="button" class="delete_card">刪除</button>
+                          </div><hr style="width:300px;">`;
 
               $("div.card_list").append(card);
             }
@@ -787,20 +784,19 @@
 
           for (var i = 0; i < data.data.length; i++) {
 
-            let book_detail_list = `<li class="book_detail_${data.data[i].booking_detail_id}" data-booking_detail_id="${data.data[i].booking_detail_id}">
-                      <div class="post-meta" style="margin-bottom: 0px; border-top: 1px solid white; border-bottom: 1px solid white">
-                      <span class="detail">訂位明細編號 : <span class="booking_detail_id">${data.data[i].booking_detail_id}</span></span>
-                      <span class="detail">下訂時間 : <span class="booking_establish_time">${getTime(data.data[i].booking_establish_time)}</span></span>
+            let book_detail_list = `<li class="book_detail_${data.data[i].booking_detail_id} book_detail_li" data-booking_detail_id="${data.data[i].booking_detail_id}">
+                      <div class="post-meta">
+                      <span class="detail book_title">訂位明細編號 : </span><span class="booking_detail_id book_content">${data.data[i].booking_detail_id}</span>
+                      <span class="detail book_title">下訂時間 : </span><span class="booking_establish_time book_content">${getTime(data.data[i].booking_establish_time)}</span>
+                      <span class="detail book_title">訂位狀態 : </span><span class="booking_status book_content_status">${getBookingStatus(data.data[i].booking_status)}</span>
                       <br>
-                      <span class="detail">訂位時間 : <span class="booking_time">${getTime(data.data[i].booking_time)}</span></span>
+                      <span class="detail book_title">訂位時間 : </span><span class="booking_time book_content">${getTime(data.data[i].booking_time)}</span>
                       <br>
-                      <span class="detail">訂位者姓名	: <span class="booking_name">${data.data[i].booking_name}</span></span>
-                      <span class="detail">連絡電話 : <span	class="contact_num">${data.data[i].contact_num}</span></span>
-                      <span class="detail">訂位人數	: <span class="people_num">${data.data[i].people_num}</span> </span>
+                      <span class="detail book_title">訂位者姓名 : </span><span class="booking_name book_content">${data.data[i].booking_name}</span>
+                      <span class="detail book_title">連絡電話 : </span><span	class="contact_num book_content">${data.data[i].contact_num}</span>
+                      <span class="detail book_title">訂位人數 : </span><span class="people_num book_content">${data.data[i].people_num} 位</span> 
                       <br> 
-                      <span class="detail">訂位備註 : <span	class="book_postscript">${data.data[i].book_postscript}</span></span>
-                      <br>
-                      <span class="detail">訂位狀態 : <span class="booking_status">${getBookingStatus(data.data[i].booking_status)}</span></span>
+                      <span class="detail book_title">訂位備註 : </span><span	class="book_postscript book_content">${data.data[i].book_postscript}</span>                     
                     </div>
                     </li>`;
 
