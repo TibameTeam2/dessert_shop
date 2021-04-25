@@ -292,7 +292,7 @@ public class ProductServlet_front extends BaseServlet {
 		System.out.println("backend_addProduct跑完!");
 		ResultInfo info = new ResultInfo();
 		info.setFlag(true);
-		info.setMsg("新增商品&照片成功!");//這行???
+		info.setMsg("新增商品成功!");//這行???
 
 		writeValueByWriter(res, info);
 
