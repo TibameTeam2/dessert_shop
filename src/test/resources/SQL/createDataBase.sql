@@ -892,7 +892,7 @@ INSERT INTO member_comment(order_detail_id, comment_content, rating, product_id,
 INSERT INTO member_comment(order_detail_id, comment_content, rating, product_id, comment_status) VALUES(3, '完全沒有地雷，至今吃過的三款蛋糕都很好吃! 最推薦的是藍莓乳酪，值得回購!', 5, 3, 1);
 INSERT INTO member_comment(order_detail_id, comment_content, rating, product_id, comment_status) VALUES(5, '完全被香蕉拿鐵征服味蕾', 4, 5, 0);
 INSERT INTO member_comment(order_detail_id, comment_content, rating, product_id, comment_status) VALUES(6, '高級巧克力的香氣!', 5, 1, 1);
-INSERT INTO member_comment(order_detail_id, comment_content, rating, product_id, comment_status) VALUES(7, '清爽的鮮奶油搭配酸酸甜甜的草莓，已融化!', 1, 2, 1);
+INSERT INTO member_comment(order_detail_id, comment_content, rating, product_id, comment_status) VALUES(7, '清爽的鮮奶油搭配酸酸甜甜的草莓，已融化!', 5, 2, 1);
 INSERT INTO member_comment(order_detail_id, comment_content, rating, product_id, comment_status) VALUES(8, '全台灣最好吃的藍莓乳酪!', 5, 3, 0);
 
 
