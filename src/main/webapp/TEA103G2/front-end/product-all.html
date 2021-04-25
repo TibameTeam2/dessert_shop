@@ -224,8 +224,9 @@
 <!-- 									<li><a href="#"><i class="fal fa-edit"></i> 撰寫評論 </a></li> -->
 								</ul>
 								<div class="product-prices">
-									<span class="old-price">$35.90</span> <span class="sale-price">$28.72</span>
-									<span class="discount-percentage">Save 20%</span>
+<!-- 									<span class="old-price">$35.90</span>  -->
+									<span class="sale-price">$28.72</span>
+<!-- 									<span class="discount-percentage">Save 20%</span> -->
 								</div>
 								<div class="product-description">
 									<ul>
@@ -495,8 +496,10 @@
        			let old_price = data[i].product_price;
 
        			$("#"+update_id).find(".sele-price").html('<span class="regular-price">$'+old_price+'</span> <span class="sale-price">$'+update_price+'</span>');
-
-
+       			$("div.quick-view-content").find(".sale-price").html('<span class="regular-price">$'+old_price+'</span> <span class="sale-price">$'+update_price+'</span>');
+//        			$("#"+update_id).find(".sale-price").html('<span class="regular-price">$'+old_price+'</span> <span class="sale-price">$'+update_price+'</span>');
+				
+				
        		}
       }//updatePrice()
 
@@ -612,8 +615,15 @@
 					let product_name = data.data[i].product_name;
 					let product_subtype = data.data[i].product_subtype;
 	  				let product_price = data.data[i].product_price;
-	    			let avg_star = data.data[i].total_star/data.data[i].total_review;
-	     			let fixed_star = avg_star.toFixed(1);
+	  				
+	  				let average_star = null;
+	    			if(data.data[i].average_star != 0 ){
+	    				average_star = data.data[i].average_star;
+	    			}else{
+	    				average_star = "new";
+	    			}
+// 	    			let average_star = data.data[i].average_star;
+// 	     			let fixed_star = average_star.toFixed(1);
 	     			let image_list = data.data[i].image_url.valueOf();
 	//       		let image_list = [data.data[i].image_url]; //此取法為二維陣列
 					let product_intro = data.data[i].product_intro;
@@ -639,7 +649,7 @@
 										<a href="javascript:void(0)" class="action add-cart"><i class="ion-bag"></i></a>
 									</div>
 										<div class="product-flag">
-										<span class="new">${fixed_star}</span>
+										<span class="new">${average_star}</span>
 									</div>
 								</div>
 								<div class="product-content">
@@ -675,7 +685,7 @@
 										data-bs-target="#quick-view"><i class="las la-search"></i></a>
 								</div>
 								<div class="product-flag">
-									<span class="new">${fixed_star}</span>
+									<span class="new">${average_star}</span>
 								</div>
 							</div>
 							<div class="product-content">
@@ -739,8 +749,16 @@
 				let product_name = data.data[i].product_name;
 				let product_subtype = data.data[i].product_subtype;
   				let product_price = data.data[i].product_price;
-    			let avg_star = data.data[i].total_star/data.data[i].total_review;
-     			let fixed_star = avg_star.toFixed(1);
+  				
+  				let average_star = null;
+    			if(data.data[i].average_star != 0 ){
+    				average_star = data.data[i].average_star;
+    			}else{
+    				average_star = "new";
+    			}
+    				
+//     			let average_star = data.data[i].average_star;
+//      			let fixed_star = average_star.toFixed(1);
      			let image_list = data.data[i].image_url.valueOf();
 //       		let image_list = [data.data[i].image_url]; //此取法為二維陣列
 				let product_intro = data.data[i].product_intro;
@@ -766,7 +784,7 @@
 									<a href="javascript:void(0)" class="action add-cart"><i class="ion-bag"></i></a>
 								</div>
 									<div class="product-flag">
-									<span class="new">${fixed_star}</span>
+									<span class="new">${average_star}</span>
 								</div>
 							</div>
 							<div class="product-content">
@@ -802,7 +820,7 @@
 									data-bs-target="#quick-view"><i class="las la-search"></i></a>
 							</div>
 							<div class="product-flag">
-								<span class="new">${fixed_star}</span>
+								<span class="new">${average_star}</span>
 							</div>
 						</div>
 						<div class="product-content">
@@ -857,9 +875,18 @@
 				let product_subtype = data.data.product_subtype;
   				let product_price = data.data.product_price;
   				let total_review = data.data.total_review;
-    			let avg_star = data.data.total_star/total_review;
-     			let fixed_star = avg_star.toFixed(1);
-     			let rating_star = (avg_star/5*100);
+  				
+  				let average_star = null;
+     			let rating_star = null;
+    			if(data.data.average_star != 0 ){
+    				average_star = data.data.average_star;
+     				rating_star = (average_star/5*100);
+    			}else{
+    				average_star = "new";
+     				rating_star = 0;
+    			}
+//     			let average_star = data.data.average_star;
+//      			let fixed_star = average_star.toFixed(1);
      			let image_list = data.data.image_url.valueOf();
 				let product_intro = data.data.product_intro;
 				let product_ingredient = data.data.product_ingredient;
@@ -876,7 +903,7 @@
 				$("div.quick-view-content .sale-price").text("$"+product_price);
 				$("div.quick-view-content .product-description ul").html("<li>"+product_intro+"</li>");
 				$("div.quick-view-content .product-description ul").append("<li>"+" 成份: "+product_ingredient+"</li>");
-				$("#quick-view .new").text(fixed_star);
+				$("#quick-view .new").text(average_star);
 
 				$("div.quick-view-top .swiper-wrapper").html("");
 				$("div[class='product-thumbnail quick-view-thumbs'] .swiper-wrapper").html("");
