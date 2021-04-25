@@ -526,9 +526,11 @@ public class CartServlet extends BaseServlet {
 				String payCode = svc.payCode_random(); // 生成匯款帳戶
 				info.setData(payCode);
 				// 存Redis
+				new Thread(() -> {
 				Jedis jedis = JedisUtil.getJedis();
 				jedis.hset(member.getMember_account(), "payCode_id-" + new_order_master_id, payCode);
 				jedis.close();
+				}).start();
 				//Line通知訊息-匯款方式
 				message = "您的訂單完成!\n請匯款至此銀行帳戶:\n" + payCode + "\n" + order_message;
 			}
