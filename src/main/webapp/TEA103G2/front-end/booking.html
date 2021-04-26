@@ -353,13 +353,13 @@
 
                         if (data.data < 20) {
 
-                            let people_num = `<label class="form-label">訂位人數:</label>
+                            let people_num = `<label class="form-label max-people_num_label">訂位人數:</label>
                                                 <div class="d-inline-flex ">
-                                                <button type="" class="sub"><i class="fas fa-minus"></i></button>
+                                                <button type="" class="sub people_sub"><i class="la la-minus"></i></button>
                                                 <input type=" text " value="1"  class="people_num"/>
-                                                <button type="" class="add "><i class="fas fa-plus "></i></button>    
+                                                <button type="" class="add people_add"><i class="la la-plus"></i></button>    
                                                 </div>
-                                                <span class="max-people_num" data-max_people_num="${20 - data.data}">(剩餘可訂位人數:${20 - data.data})</span>`;
+                                                <span class="max-people_num" data-max_people_num="${20 - data.data}">(剩餘可訂位人數 : ${20 - data.data} 位)</span>`;
 
                             $("div.people_num").html(people_num);
                             $("a.btn-booking").attr("data-booking_people_num", 1);
@@ -395,21 +395,21 @@
 
                         if (data.data < 20) {
 
-                            let people_num = `<label class="form-label">訂位人數:</label>
+                            let people_num = `<label class="form-label max-people_num_label">訂位人數:</label>
                                                 <div class="d-inline-flex ">
-                                                <button type="" class="sub"><i class="fas fa-minus"></i></button>
+                                                <button type="" class="sub people_sub"><i class="la la-minus"></i></button>
                                                 <input type=" text " value="1" readonly class="people_num"/>
-                                                <button type="" class="add "><i class="fas fa-plus "></i></button>    
+                                                <button type="" class="add people_add"><i class="la la-plus"></i></button>    
                                                 </div>
-                                                <span class="max-people_num" data-max_people_num="${20 - data.data}">(剩餘可訂位人數:${20 - data.data})</span>`;
+                                                <span class="max-people_num" data-max_people_num="${20 - data.data}">(剩餘可訂位人數 : ${20 - data.data} 位)</span>`;
 
                             $("div.people_num").html(people_num);
                             $("a.btn-booking").attr("data-booking_people_num", 1);
 
                         } else {
 
-                            let people_num = `<label class="form-labels">訂位人數:</label>
-                                                <span class="max-people_num">(剩餘可訂位人數:0)</span>`;
+                            let people_num = `<label class="form-labels" style="margin-left:100px;">訂位人數 :</label>
+                                                <span class="max-people_num">(剩餘可訂位人數 : 0 位)</span>`;
 
                             $("div.people_num").html(people_num);
                             $("a.btn-booking").attr("data-booking_people_num", 0);
