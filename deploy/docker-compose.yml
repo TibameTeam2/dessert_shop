@@ -1,0 +1,64 @@
+version: "3"
+services:
+  mysql:
+    image: mysql:8.0.23
+    container_name: mysql
+    restart: always
+    ports:
+      - 3306:3306
+    volumes:
+      - ./mysql/my_jason.cnf:/etc/mysql/conf.d/my_jason.cnf
+    environment:
+      MYSQL_USER: "jason"
+      MYSQL_PASSWORD: "123456"
+      MYSQL_ROOT_PASSWORD: "123456"
+      MYSQL_DATABASE: sweet
+    networks:
+      my_network:
+        ipv4_address: 172.31.0.2
+
+  redis:
+    image: redis:6.2.1
+    container_name: redis
+    restart: always
+    ports:
+      - 6379:6379
+    volumes:
+      - ./mysql/redis.conf:/usr/local/etc/redis/redis.conf
+    command: redis-server /usr/local/etc/redis/redis.conf
+    networks:
+      my_network:
+        ipv4_address: 172.31.0.3
+
+  tomcat:
+    image: tomcat:9-jdk8
+    container_name: tomcat
+    restart: always
+    ports:
+      - 80:8080
+    volumes:
+      - ./tomcat/webapps:/usr/local/tomcat/webapps/
+      - ./tomcat/upload:/usr/local/tomcat/upload/
+    networks:
+      my_network:
+        ipv4_address: 172.31.0.4
+
+networks:
+  my_network:
+    ipam:
+      config:
+        - subnet: 172.31.0.0/16
+
+#  phpmyadmin:
+#    image: phpmyadmin/phpmyadmin:latest
+#    container_name: m_phpmyadmin
+#    restart: always
+#    ports:
+#      - "9000:80"
+#    environment:
+#      MYSQL_USER: "jason"
+#      MYSQL_PASSWORD: "123456"
+#      MYSQL_ROOT_PASSWORD: "123456"
+#      PMA_HOST: m_mysql
+#      UPLOAD_LIMIT: 204800
+#      PMA_ARBITRARY: 1
