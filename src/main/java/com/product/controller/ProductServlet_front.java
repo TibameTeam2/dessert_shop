@@ -51,7 +51,7 @@ public class ProductServlet_front extends BaseServlet {
 		info.setData(productList);
 
 		writeValueByWriter(res, info);
-
+		
 	}
 	
 
