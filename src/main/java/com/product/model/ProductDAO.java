@@ -462,7 +462,7 @@ public class ProductDAO implements ProductDAO_interface {
 		PreparedStatement pstmt = null;
 		PreparedStatement pstmt1 = null;
 		ResultSet rs = null;
-		SELECT_SORT_PRICE = "SELECT * FROM product where product_status = 1 order by product_price desc";
+		SELECT_SORT_PRICE = "SELECT *, ROUND(total_star/total_review, 1) as average_star FROM product where product_status = 1 order by product_price desc";
 		List<ProductBean> list_productBean = new ArrayList<ProductBean>();
 		ProductBean productBean = null;
 		
@@ -491,6 +491,7 @@ public class ProductDAO implements ProductDAO_interface {
 				productBean.setTotal_star(rs.getInt("total_star"));
 				productBean.setTotal_review(rs.getInt("total_review"));
 				productBean.setTotal_purchase(rs.getInt("total_purchase"));
+				productBean.setAverage_star(rs.getDouble("average_star"));
 				list_productBean.add(productBean);
 				
 				pstmt1 = con.prepareStatement("SELECT image_id FROM sweet.product_image where product_id="+productBean.getProduct_id());

@@ -274,21 +274,21 @@ CREATE TABLE daily_special (
 	CONSTRAINT daily_special_product_FK FOREIGN KEY (product_id) REFERENCES product(product_id)
 ) AUTO_INCREMENT = 1;
 INSERT INTO daily_special (product_id, discount_price, discount_start_time, discount_deadline)
-VALUES ('1', 70, '2021-04-01 00:00:00', '2021-04-15 23:59:59');
+VALUES ('1', 70, '2021-04-01 00:00:00', '2021-07-31 23:59:59');
 INSERT INTO daily_special (product_id, discount_price, discount_start_time, discount_deadline)
-VALUES ('7', 120, '2021-04-01 00:00:00', '2021-04-30 23:59:59');
+VALUES ('7', 120, '2021-04-01 00:00:00', '2021-08-02 23:59:59');
 INSERT INTO daily_special (product_id, discount_price, discount_start_time, discount_deadline)
-VALUES ('16', 100, '2021-04-01 00:00:00', '2021-04-30 23:59:59');
+VALUES ('16', 100, '2021-04-01 00:00:00', '2022-04-30 23:59:59');
 INSERT INTO daily_special (product_id, discount_price, discount_start_time, discount_deadline)
-VALUES ('19', 60, '2021-04-20 00:00:00', '2021-05-19 23:59:59');
+VALUES ('19', 60, '2021-04-20 00:00:00', '2022-05-19 23:59:59');
 INSERT INTO daily_special (product_id, discount_price, discount_start_time, discount_deadline)
-VALUES ('20', 140, '2021-04-14 00:00:00', '2021-04-30 23:59:59');
+VALUES ('20', 140, '2021-04-14 00:00:00', '2022-04-30 23:59:59');
 INSERT INTO daily_special (product_id, discount_price, discount_start_time, discount_deadline)
-VALUES ('30', 60, '2021-4-01 00:00:00', '2021-05-01 23:59:59');
+VALUES ('30', 60, '2021-4-01 00:00:00', '2022-05-01 23:59:59');
 INSERT INTO daily_special (product_id, discount_price, discount_start_time, discount_deadline)
-VALUES ('31', 120, '2021-05-01 00:00:00', '2021-05-01 23:59:59');
+VALUES ('31', 120, '2021-05-01 00:00:00', '2022-05-01 23:59:59');
 INSERT INTO daily_special (product_id, discount_price, discount_start_time, discount_deadline)
-VALUES ('36', 80, '2021-05-01 00:00:00', '2021-05-14 23:59:59');
+VALUES ('36', 80, '2022-05-01 00:00:00', '2023-05-14 23:59:59');
 
 -- 商品照片(product_image)
 set auto_increment_offset = 1;

@@ -51,6 +51,8 @@ public class ProductServlet_front extends BaseServlet {
 		info.setData(productList);
 
 		writeValueByWriter(res, info);
+		
+		System.out.println("測試getAll");//要刪掉
 
 	}
 	

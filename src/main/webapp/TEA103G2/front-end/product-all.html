@@ -364,7 +364,7 @@
           }
 
        	let request_type=getParameter("type");
-       	let request_subtype= getParameter("subtype");
+       	let request_subtype=getParameter("subtype");
        	console.log("轉換前:"+request_type);
      	console.log("轉換前:"+request_subtype);
 
@@ -509,126 +509,147 @@
 
 
 	<!--*******  排序功能  ******--> // 語法重複性太高，有空再修改...
-		$(".sorting").on("change", function(){
-    		console.log("change sorting!");
-    		let sort = $(".sorting").val();
-    		console.log(sort);
-    		if (sort == 1){
-   				$.get("/dessert_shop/product/getAllSortByPurchase", {}, function (data) {
-   					console.log("sort purchase");
-					$("div#grid div.row").find("div[class='col-lg-3 col-sm-6']").remove();
-					$("div#list").find("div[class='single-product product-list']").remove();
-					if(request_type == null && request_subtype == null){
-						defaultDisplay(data);
-					}else{
-			     		productDisplay(data);
-					}
-			     });
-
-    		}else if (sort == 2){
-    			$.get("/dessert_shop/product/getAllSortByStar", {}, function (data) {
-		     		console.log("sort star");
-		     		$("div#grid div.row").find("div[class='col-lg-3 col-sm-6']").remove();
-					$("div#list").find("div[class='single-product product-list']").remove();
-					if(request_type == null && request_subtype == null){
-						defaultDisplay(data);
-					}else{
-			     		productDisplay(data);
-					}
-		     	});
-
-    		}else if(sort == 3){
-    			$.get("/dessert_shop/product/getAllSortByPrice", {}, function (data) {
-		     		console.log("sort price");
-		     		$("div#grid div.row").find("div[class='col-lg-3 col-sm-6']").remove();
-					$("div#list").find("div[class='single-product product-list']").remove();
-					if(request_type == null && request_subtype == null){
-						defaultDisplay(data);
-					}else{
-			     		productDisplay(data);
-					}
-		     	});
-
-
-     		}else if (sort == 4){
-     			$.get("/dessert_shop/product/getAllSortByCalorie", {}, function (data) {
-		     		console.log("sort calorie");
-		     		$("div#grid div.row").find("div[class='col-lg-3 col-sm-6']").remove();
-					$("div#list").find("div[class='single-product product-list']").remove();
-					if(request_type == null && request_subtype == null){
-						defaultDisplay(data);
-					}else{
-			     		productDisplay(data);
-					}
-			    });
-
-     		}else if(sort == 5){
-     			$.get("/dessert_shop/product/getAllSortBySweetness", {}, function (data) {
-		     		console.log("sort sweetness");
-		     		$("div#grid div.row").find("div[class='col-lg-3 col-sm-6']").remove();
-					$("div#list").find("div[class='single-product product-list']").remove();
-					if(request_type == null && request_subtype == null){
-						defaultDisplay(data);
-					}else{
-			     		productDisplay(data);
-					}
-			     });
-
-     		}else if(sort == 0){
-     			// 跳回去原始的
-     			$.get("/dessert_shop/product/getAllProduct", {}, function (data) {
-     	       		console.log("依最新商品");
-     	       		$("div#grid div.row").find("div[class='col-lg-3 col-sm-6']").remove();
-					$("div#list").find("div[class='single-product product-list']").remove();
-					if(request_type == null && request_subtype == null){
-						defaultDisplay(data);
-					}else{
-			     		productDisplay(data);
-					}
-     	       	});
-     		}
-   		});
-		// 是不是應該讓排序的條件可以顯示?熱量 甜度 銷售量 看不到
+	
+	$(".sorting").on("change", function(){
+	  		console.log("change sorting!");
+	  		let sort = $(".sorting").val();
+	  		console.log("sort:"+sort);
+	  		if (sort == 1){
+	 				$.get("/dessert_shop/product/getAllSortByPurchase", {}, function (data) {
+	 					console.log("sort purchase");
+				$("div#grid div.row").find("div[class='col-lg-3 col-sm-6']").remove();
+				$("div#list").find("div[class='single-product product-list']").remove();
+				if(request_type == null && request_subtype == null){
+					defaultDisplay(data);
+				}else{
+		     		productDisplay(data);
+				}
+		     });
+	
+	  		}else if (sort == 2){
+	  			$.get("/dessert_shop/product/getAllSortByStar", {}, function (data) {
+	     		console.log("sort star");
+	     		$("div#grid div.row").find("div[class='col-lg-3 col-sm-6']").remove();
+				$("div#list").find("div[class='single-product product-list']").remove();
+				if(request_type == null && request_subtype == null){
+					defaultDisplay(data);
+				}else{
+		     		productDisplay(data);
+				}
+	     	});
+	
+	  		}else if(sort == 3){
+	  			$.get("/dessert_shop/product/getAllSortByPrice", {}, function (data) {
+	     		console.log("sort price");
+	     		$("div#grid div.row").find("div[class='col-lg-3 col-sm-6']").remove();
+				$("div#list").find("div[class='single-product product-list']").remove();
+				if(request_type == null && request_subtype == null){
+					defaultDisplay(data);
+				}else{
+		     		productDisplay(data);
+				}
+	     	});
+	
+	
+	   		}else if (sort == 4){
+	   			$.get("/dessert_shop/product/getAllSortByCalorie", {}, function (data) {
+	     		console.log("sort calorie");
+	     		$("div#grid div.row").find("div[class='col-lg-3 col-sm-6']").remove();
+				$("div#list").find("div[class='single-product product-list']").remove();
+				if(request_type == null && request_subtype == null){
+					defaultDisplay(data);
+				}else{
+		     		productDisplay(data);
+				}
+		    });
+	
+	   		}else if(sort == 5){
+	   			$.get("/dessert_shop/product/getAllSortBySweetness", {}, function (data) {
+	     		console.log("sort sweetness");
+	     		$("div#grid div.row").find("div[class='col-lg-3 col-sm-6']").remove();
+				$("div#list").find("div[class='single-product product-list']").remove();
+				if(request_type == null && request_subtype == null){
+					defaultDisplay(data);
+				}else{
+		     		productDisplay(data);
+				}
+		     });
+	
+	   		}else if(sort == 0){
+	   			// 跳回去原始的
+	   			$.get("/dessert_shop/product/getAllProduct", {}, function (data) {
+	   	       		console.log("依最新商品");
+	   	       		$("div#grid div.row").find("div[class='col-lg-3 col-sm-6']").remove();
+				$("div#list").find("div[class='single-product product-list']").remove();
+				if(request_type == null && request_subtype == null){
+					defaultDisplay(data);
+				}else{
+		     		productDisplay(data);
+				}
+	   	       	});
+	   		}
+	 		});
 
         // 讓他在取得api拿到預設的0
        $(window).on("load", function(){
     	   // 圖片等資源載入完成之後
     	   console.log("sorting!");
-   			var sort = $(".sorting").val();
+    	   var sort = $(".sorting").val();
     	});
 //        var sort = $(".sorting :selected").val();
 //    		console.log(sort);
 
-
-
    		let url = location.href.split("/TEA103G2")[0];
+
+//	當代有type與subtype時
    		function productDisplay(data){
    			console.log("productDisplay");
-
+			let sort = $(".sorting").val();
+	  		
 			for(var i = 0 ; i < data.data.length; i++){
 	      		// 判斷是否符合該主分類
 	  			if((data.data[i].product_subtype == request_subtype && data.data[i].product_type == request_type) | (request_subtype == null && data.data[i].product_type == request_type)){
 
-	  				console.log("dispaly裡的subtype"+data.data[i].product_subtype);
+// 	  				console.log("dispaly裡的type"+data.data[i].product_type);
+// 	  				console.log("dispaly裡的subtype"+data.data[i].product_subtype);
 
 	  				let product_id = data.data[i].product_id;
 					let product_name = data.data[i].product_name;
 					let product_subtype = data.data[i].product_subtype;
 	  				let product_price = data.data[i].product_price;
 	  				
-	  				let average_star = null;
-	    			if(data.data[i].average_star != 0 ){
-	    				average_star = data.data[i].average_star;
-	    			}else{
-	    				average_star = "new";
-	    			}
+					let total_purchase = data.data[i].total_purchase;
+					let product_calorie = data.data[i].product_calorie;
+					let degree_of_sweetness = data.data[i].degree_of_sweetness;
+					
+	  				let average_star = null;	
+	  				switch(sort){
+	  					case "1":
+	  						average_star = 	total_purchase + "  sold";
+	  						break;
+	  					case "4":
+	  						average_star = product_calorie + "  cal";
+	  						break;
+	  					case "5":
+	  						average_star = degree_of_sweetness + "  °Bx";
+	  						break;
+	  					default:
+// 	  						console.log("switch case 裡的default");
+	  						if(data.data[i].average_star != 0 ){
+	  		    				average_star = data.data[i].average_star;
+	  		    			}else{
+	  		    				average_star = "new";
+	  		    			}
+	  				}
+	  				
+	  				
 // 	    			let average_star = data.data[i].average_star;
 // 	     			let fixed_star = average_star.toFixed(1);
 	     			let image_list = data.data[i].image_url.valueOf();
 	//       		let image_list = [data.data[i].image_url]; //此取法為二維陣列
 					let product_intro = data.data[i].product_intro;
 					let product_available_qty = data.data[i].product_available_qty;
-
+					
 	     			let product_img1 = url+image_list[0];
 	     			let product_img2 = url+image_list[1];
 
@@ -641,7 +662,7 @@
 										<img src="${product_img1}" alt="product">
 										<img class="image-hover" src="${product_img2}" alt="product">
 									</a>
-									<div class="product-action">
+								<div class="product-action">
 										<a href="javascript:void(0)" class="action wish"><i class="lar la-heart"></i></a>
 										<a href="javascript:void(0)" class="action compare"><i class="las la-sync"></i></a>
 										<a href="#跳出燈箱" class="action search" data-bs-toggle="modal"
@@ -741,24 +762,43 @@
 
 // 商品總覽(不帶任何參數時)
 		function defaultDisplay(data){
-			console.log("defaultDisplay")
-
+// 			console.log("defaultDisplay")
+			let sort = $(".sorting").val();
+			
 			for(var i = 0 ; i < data.data.length; i++){
 
   				let product_id = data.data[i].product_id;
 				let product_name = data.data[i].product_name;
 				let product_subtype = data.data[i].product_subtype;
   				let product_price = data.data[i].product_price;
-  				
-  				let average_star = null;
-    			if(data.data[i].average_star != 0 ){
-    				average_star = data.data[i].average_star;
-    			}else{
-    				average_star = "new";
-    			}
-    				
+  				    				
+    			let total_purchase = data.data[i].total_purchase;
+				let product_calorie = data.data[i].product_calorie;
+				let degree_of_sweetness = data.data[i].degree_of_sweetness;
+				
+  				let average_star = null;	
+  				switch(sort){
+  					case "1":
+  						average_star = 	total_purchase + "  sold";
+  						break;
+  					case "4":
+  						average_star = product_calorie + "  cal";
+  						break;
+  					case "5":
+  						average_star = degree_of_sweetness + "  °Bx";
+  						break;
+  					default:
+//   					console.log("switch case 裡的default");
+  						if(data.data[i].average_star != 0 ){
+  		    				average_star = data.data[i].average_star;
+  		    			}else{
+  		    				average_star = "new";
+  		    			}
+  				}
+    			
+    			
 //     			let average_star = data.data[i].average_star;
-//      			let fixed_star = average_star.toFixed(1);
+//      		let fixed_star = average_star.toFixed(1);
      			let image_list = data.data[i].image_url.valueOf();
 //       		let image_list = [data.data[i].image_url]; //此取法為二維陣列
 				let product_intro = data.data[i].product_intro;
@@ -784,7 +824,7 @@
 									<a href="javascript:void(0)" class="action add-cart"><i class="ion-bag"></i></a>
 								</div>
 									<div class="product-flag">
-									<span class="new">${average_star}</span>
+								<span class="new">${average_star}</span>
 								</div>
 							</div>
 							<div class="product-content">
@@ -820,7 +860,7 @@
 									data-bs-target="#quick-view"><i class="las la-search"></i></a>
 							</div>
 							<div class="product-flag">
-								<span class="new">${average_star}</span>
+							<span class="new">${average_star}</span>
 							</div>
 						</div>
 						<div class="product-content">
