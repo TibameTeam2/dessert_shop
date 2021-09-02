@@ -1,7 +1,9 @@
 # dessert_shop
 環境需求：  
-*  Eclipse + JavaEE + tomacat  
-*  MySQL
+*  Java 8   
+*  tomacat 9.0
+*  MySQL 8.0
+*  Redis
 
 前置作業：  
 *  將src/test/resources/SQL/createDataBase.sql複製至MySQL建置資料庫  
